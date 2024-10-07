@@ -1,0 +1,4 @@
+prog
+{
+  var x : int;
+}
