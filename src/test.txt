@@ -1,4 +1,0 @@
-prog
-{
-  var x : int;
-}
