@@ -22,7 +22,7 @@ letter [a-zA-Z]
 "var"                           { return VARIABLE; }
 "proc"                          { return PROCEDURE; }
 "func"                          { return FUNCTION; }
-"return"                        { return RETURN; }
+"->"                            { return RETURN; }
 "type"                          { return TYPE; }
 "struct"                        { return STRUCT; }
 "fstruct"                       { return FSTRUCT; }
@@ -64,8 +64,8 @@ letter [a-zA-Z]
 ".."                            { return DOT_DOT; }
 "["                             { return OPEN_BRACKET; }
 "]"                             { return CLOSE_BRACKET; }
-"("                             { return OPEN_PARENTHEIFS; }
-")"                             { return CLOSE_PARENTHEIFS; }
+"("                             { return OPEN_PARENTHESIS; }
+")"                             { return CLOSE_PARENTHESIS; }
 
 
 0|[1-9][0-9]* { 

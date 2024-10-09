@@ -1,0 +1,18 @@
+// Arithmetic expressions
+expression:
+    expression PLUS expression
+    | expression MINUS expression
+    | expression MULTIPLY expression
+    | expression DIVIDE expression
+    | function_call_expression  
+    | IDENTIFIER
+    | INTEGER ;
+
+type: INTEGER
+    | FLOAT
+    | BOOLEAN
+    | CHARACTER
+    | STRING OPEN_BRACKET INTEGER CLOSE_BRACKET ;
+
+function_call_expression: IDENTIFIER OPEN_PARENTHESIS argument_list CLOSE_PARENTHESIS ;
+

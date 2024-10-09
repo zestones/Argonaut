@@ -1,5 +1,29 @@
 PROG
-  var b : int;
+
+var a : int;
+var b : int;
+var c : int;
+var d : int;
+
+func myfunction(a : int, b : int) -> int 
 {
-  b := 1 + 2;
+    var z : int;
+    z := a + b;
+}
+
+c := myfunction(1, 2);
+
+a := 1;
+b := 2;
+
+a := 1 + 2;
+
+d := 1;
+if d > 0 then
+{
+    d := 0;
+}
+else
+{
+    d := 1;
 }

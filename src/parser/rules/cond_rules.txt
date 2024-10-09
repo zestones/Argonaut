@@ -1,0 +1,13 @@
+// Conditions and boolean expressions
+
+condition: expression comparison_operator expression ;
+
+comparison_operator:
+    EQUAL
+    | NOT_EQUAL
+    | LESS_THAN
+    | GREATER_THAN
+    | LESS_EQUAL
+    | GREATER_EQUAL
+    ;
+

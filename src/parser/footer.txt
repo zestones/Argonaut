@@ -1,0 +1,16 @@
+
+
+%%
+
+void yyerror(const char *s) {
+    if (yychar == 0) {
+        fprintf(stderr, "\033[1;31m<error> Syntax error at line %d: %s\033[0m\n", error_line, s);
+    } 
+    else {
+        fprintf(stderr, "\033[1;31m<error> Syntax error at line %d: %s near token '%s'\033[0m\n", error_line, s, yytext);
+    }
+}
+
+int main() {
+    return yyparse();
+}
