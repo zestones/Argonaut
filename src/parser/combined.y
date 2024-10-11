@@ -52,13 +52,11 @@ variable_declaration: VARIABLE IDENTIFIER TWO_POINTS type SEMICOLON ;
 
 function_declaration: FUNCTION IDENTIFIER OPEN_PARENTHESIS parameter_list CLOSE_PARENTHESIS RETURN type START declaration_list statement_list END ;
 
-argument_list:
-    argument_list COMMA expression
+argument_list: argument_list COMMA expression
     | expression
     | ;
 
-parameter_list:
-    parameter_list COMMA parameter
+parameter_list: parameter_list COMMA parameter
     | parameter
     | ;
 
@@ -87,7 +85,6 @@ statement_block: START statement_list END ;
 
 statement_list: statement_list statement
               | ;
-
 statement:
     assignment_statement
     | if_statement
@@ -97,8 +94,6 @@ assignment_statement: IDENTIFIER OPAFF expression SEMICOLON ;
 
 if_statement: IF condition THEN statement_block
             | IF condition THEN statement_block ELSE statement_block;
-
-
 
 standalone_function_call_statement: function_call_expression SEMICOLON
     {
