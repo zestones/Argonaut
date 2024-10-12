@@ -19,6 +19,14 @@ func myfunction(a : int, b : int) -> int
 {
     var z : int;
     z := a + b;
+
+    return z;
+}
+
+proc myprocedure(a : int, b : int)
+{
+    var z : int;
+    z := a + b;
 }
 
 c := myfunction(1, 2);

@@ -22,7 +22,8 @@ letter [a-zA-Z]
 "var"                           { return VARIABLE; }
 "proc"                          { return PROCEDURE; }
 "func"                          { return FUNCTION; }
-"->"                            { return RETURN; }
+"->"                            { return RETURN_TYPE; }
+"return"                        { return RETURN_VALUE; }
 "type"                          { return TYPE; }
 "struct"                        { return STRUCT; }
 "fstruct"                       { return FSTRUCT; }

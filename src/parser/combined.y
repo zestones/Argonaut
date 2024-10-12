@@ -15,7 +15,7 @@
 %token IDENTIFIER VARIABLE OPAFF
 %token STRUCT FSTRUCT
 %token TYPE INTEGER_CONST INTEGER FLOAT BOOLEAN CHARACTER STRING VOID
-%token PROCEDURE FUNCTION RETURN
+%token PROCEDURE FUNCTION RETURN_TYPE RETURN_VALUE
 %token IF THEN ELSE
 %token WHILE DO
 %token EQUAL NOT_EQUAL LESS_THAN GREATER_THAN LESS_EQUAL GREATER_EQUAL
@@ -47,11 +47,14 @@ declaration_list: declaration_list declaration
 
 declaration: variable_declaration 
            | function_declaration 
-           | type_declaration;
+           | type_declaration
+           | procedure_declaration ;
 
 variable_declaration: VARIABLE IDENTIFIER TWO_POINTS type SEMICOLON ;
 
-function_declaration: FUNCTION IDENTIFIER OPEN_PARENTHESIS parameter_list CLOSE_PARENTHESIS RETURN type START declaration_list statement_list END ;
+function_declaration: FUNCTION IDENTIFIER OPEN_PARENTHESIS parameter_list CLOSE_PARENTHESIS RETURN_TYPE type START declaration_list statement_list return_statement END ;
+
+procedure_declaration: PROCEDURE IDENTIFIER OPEN_PARENTHESIS parameter_list CLOSE_PARENTHESIS START declaration_list statement_list END ;
 
 type_declaration: TYPE IDENTIFIER TWO_POINTS STRUCT START complex_type_fields END FSTRUCT SEMICOLON
                 | TYPE IDENTIFIER TWO_POINTS ARRAY dimension OF type_name SEMICOLON ;
@@ -112,6 +115,8 @@ statement:
     | standalone_function_call_statement ;
 
 assignment_statement: IDENTIFIER OPAFF expression SEMICOLON ;
+
+return_statement: RETURN_VALUE IDENTIFIER SEMICOLON;
 
 if_statement: IF condition THEN statement_block
             | IF condition THEN statement_block ELSE statement_block;
