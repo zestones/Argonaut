@@ -53,7 +53,10 @@ variable_declaration: VARIABLE IDENTIFIER TWO_POINTS type SEMICOLON ;
 
 function_declaration: FUNCTION IDENTIFIER OPEN_PARENTHESIS parameter_list CLOSE_PARENTHESIS RETURN type START declaration_list statement_list END ;
 
-type_declaration: TYPE IDENTIFIER TWO_POINTS STRUCT START complex_type_fields END FSTRUCT SEMICOLON ;
+type_declaration: TYPE IDENTIFIER TWO_POINTS STRUCT START complex_type_fields END FSTRUCT SEMICOLON
+                | TYPE IDENTIFIER TWO_POINTS ARRAY dimension OF type_name SEMICOLON ;
+
+
 
 argument_list: argument_list COMMA expression
     | expression
@@ -65,7 +68,14 @@ parameter_list: parameter_list COMMA parameter
 
 parameter: IDENTIFIER TWO_POINTS type ;
 
-// Arithmetic expressions
+
+
+dimension: OPEN_BRACKET list_dimensions CLOSE_BRACKET ;
+
+list_dimensions: one_dimension
+               | list_dimensions COMMA one_dimension ;
+
+one_dimension: INTEGER DOT_DOT INTEGER ;// Arithmetic expressions
 expression:
     expression PLUS expression
     | expression MINUS expression
