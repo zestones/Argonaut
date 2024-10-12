@@ -7,6 +7,8 @@ condition: OPEN_PARENTHESIS expression comparison_operator expression CLOSE_PARE
          | NOT expression
          ;
 
+loop: WHILE condition statement_block ;
+
 comparison_operator: EQUAL
                    | NOT_EQUAL
                    | LESS_THAN

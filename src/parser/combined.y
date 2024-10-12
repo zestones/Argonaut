@@ -39,6 +39,8 @@ condition: OPEN_PARENTHESIS expression comparison_operator expression CLOSE_PARE
          | NOT expression
          ;
 
+loop: WHILE condition statement_block ;
+
 comparison_operator: EQUAL
                    | NOT_EQUAL
                    | LESS_THAN
@@ -115,10 +117,11 @@ statement_block: START statement_list END ;
 
 statement_list: statement_list statement
               | ;
-statement:
-    assignment_statement
+
+statement: assignment_statement
     | if_statement
-    | standalone_function_call_statement ;
+    | standalone_function_call_statement
+    | loop_statement ;
 
 assignment_statement: IDENTIFIER OPAFF expression SEMICOLON ;
 
@@ -127,10 +130,9 @@ return_statement: RETURN_VALUE IDENTIFIER SEMICOLON;
 if_statement: IF condition statement_block
             | IF condition statement_block ELSE statement_block;
 
-standalone_function_call_statement: function_call_expression SEMICOLON
-    {
-        printf("> Standalone function call\n");
-    };
+loop_statement: loop;
+
+standalone_function_call_statement: function_call_expression SEMICOLON ;
 
 
 
