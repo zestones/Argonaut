@@ -16,8 +16,7 @@
 %token STRUCT FSTRUCT
 %token TYPE INTEGER_CONST INTEGER FLOAT BOOLEAN CHARACTER STRING 
 %token PROCEDURE FUNCTION RETURN_TYPE RETURN_VALUE
-%token IF ELSE
-%token WHILE DO
+%token IF ELSE WHILE
 %token EQUAL NOT_EQUAL LESS_THAN GREATER_THAN LESS_EQUAL GREATER_EQUAL
 
 %left AND OR 
@@ -86,15 +85,20 @@ dimension: OPEN_BRACKET list_dimensions CLOSE_BRACKET ;
 list_dimensions: one_dimension
                | list_dimensions COMMA one_dimension ;
 
-one_dimension: INTEGER DOT_DOT INTEGER ;// Arithmetic expressions
-expression:
-    expression PLUS expression
-    | expression MINUS expression
-    | expression MULTIPLY expression
-    | expression DIVIDE expression
-    | function_call_expression  
-    | IDENTIFIER
-    | INTEGER ;
+one_dimension: INTEGER DOT_DOT INTEGER ;
+
+// Arithmetic expressions
+expression: expression PLUS expression
+          | expression MINUS expression
+          | expression MULTIPLY expression
+          | expression DIVIDE expression
+          | expression_atom ;
+
+expression_atom: function_call_expression  
+               | IDENTIFIER
+               | INTEGER
+               | FLOAT
+               | OPEN_PARENTHESIS expression CLOSE_PARENTHESIS ;
 
 type: INTEGER
     | FLOAT
@@ -103,7 +107,7 @@ type: INTEGER
     | STRING OPEN_BRACKET INTEGER CLOSE_BRACKET ;
 
 complex_type_fields: type_field
-                  | complex_type_fields type_field ;
+                   | complex_type_fields type_field ;
 
 type_field: IDENTIFIER TWO_POINTS type_name SEMICOLON ;
 

@@ -1,12 +1,15 @@
 // Arithmetic expressions
-expression:
-    expression PLUS expression
-    | expression MINUS expression
-    | expression MULTIPLY expression
-    | expression DIVIDE expression
-    | function_call_expression  
-    | IDENTIFIER
-    | INTEGER ;
+expression: expression PLUS expression
+          | expression MINUS expression
+          | expression MULTIPLY expression
+          | expression DIVIDE expression
+          | expression_atom ;
+
+expression_atom: function_call_expression  
+               | IDENTIFIER
+               | INTEGER
+               | FLOAT
+               | OPEN_PARENTHESIS expression CLOSE_PARENTHESIS ;
 
 type: INTEGER
     | FLOAT
@@ -15,7 +18,7 @@ type: INTEGER
     | STRING OPEN_BRACKET INTEGER CLOSE_BRACKET ;
 
 complex_type_fields: type_field
-                  | complex_type_fields type_field ;
+                   | complex_type_fields type_field ;
 
 type_field: IDENTIFIER TWO_POINTS type_name SEMICOLON ;
 

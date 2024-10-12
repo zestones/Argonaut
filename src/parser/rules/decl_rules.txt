@@ -36,3 +36,4 @@ list_dimensions: one_dimension
                | list_dimensions COMMA one_dimension ;
 
 one_dimension: INTEGER DOT_DOT INTEGER ;
+

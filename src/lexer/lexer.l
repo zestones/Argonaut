@@ -19,20 +19,24 @@ letter [a-zA-Z]
 "PROG"                          { return PROG; }
 "{"                             { return START; }
 "}"                             { return END; }
+
 "var"                           { return VARIABLE; }
 "proc"                          { return PROCEDURE; }
 "func"                          { return FUNCTION; }
-"->"                            { return RETURN_TYPE; }
+
 "return"                        { return RETURN_VALUE; }
+"->"                            { return RETURN_TYPE; }
+
 "type"                          { return TYPE; }
 "struct"                        { return STRUCT; }
 "fstruct"                       { return FSTRUCT; }
 "array"                         { return ARRAY; }
 "of"                            { return OF; }
+
 "if"                            { return IF; }
 "else"                          { return ELSE; }
 "while"                         { return WHILE; }
-"do"                            { return DO; }
+
 "int"                           { return INTEGER; }
 "float"                         { return FLOAT; }
 "bool"                          { return BOOLEAN; }
