@@ -30,11 +30,9 @@ letter [a-zA-Z]
 "array"                         { return ARRAY; }
 "of"                            { return OF; }
 "if"                            { return IF; }
-"then"                          { return THEN; }
 "else"                          { return ELSE; }
 "while"                         { return WHILE; }
 "do"                            { return DO; }
-"void"                          { return VOID; }
 "int"                           { return INTEGER; }
 "float"                         { return FLOAT; }
 "bool"                          { return BOOLEAN; }

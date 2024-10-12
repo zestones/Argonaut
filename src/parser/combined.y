@@ -14,12 +14,14 @@
 %token ARRAY OF OPEN_BRACKET CLOSE_BRACKET
 %token IDENTIFIER VARIABLE OPAFF
 %token STRUCT FSTRUCT
-%token TYPE INTEGER_CONST INTEGER FLOAT BOOLEAN CHARACTER STRING VOID
+%token TYPE INTEGER_CONST INTEGER FLOAT BOOLEAN CHARACTER STRING 
 %token PROCEDURE FUNCTION RETURN_TYPE RETURN_VALUE
-%token IF THEN ELSE
+%token IF ELSE
 %token WHILE DO
 %token EQUAL NOT_EQUAL LESS_THAN GREATER_THAN LESS_EQUAL GREATER_EQUAL
-%token AND OR NOT
+
+%left AND OR 
+%right NOT
 
 %left PLUS MINUS
 %left MULTIPLY DIVIDE
@@ -29,17 +31,21 @@ program: PROG declaration_list statement_list
     | error { yyerror("Unexpected input in program structure."); } 
     | ;
 // Conditions and boolean expressions
+condition: OPEN_PARENTHESIS expression comparison_operator expression CLOSE_PARENTHESIS
+         | OPEN_PARENTHESIS condition CLOSE_PARENTHESIS
+         | condition AND condition
+         | condition OR condition
+         | NOT condition
+         | NOT expression
+         ;
 
-condition: expression comparison_operator expression ;
-
-comparison_operator:
-    EQUAL
-    | NOT_EQUAL
-    | LESS_THAN
-    | GREATER_THAN
-    | LESS_EQUAL
-    | GREATER_EQUAL
-    ;
+comparison_operator: EQUAL
+                   | NOT_EQUAL
+                   | LESS_THAN
+                   | GREATER_THAN
+                   | LESS_EQUAL
+                   | GREATER_EQUAL
+                   ;
 
 // Declarations
 declaration_list: declaration_list declaration
@@ -118,8 +124,8 @@ assignment_statement: IDENTIFIER OPAFF expression SEMICOLON ;
 
 return_statement: RETURN_VALUE IDENTIFIER SEMICOLON;
 
-if_statement: IF condition THEN statement_block
-            | IF condition THEN statement_block ELSE statement_block;
+if_statement: IF condition statement_block
+            | IF condition statement_block ELSE statement_block;
 
 standalone_function_call_statement: function_call_expression SEMICOLON
     {
