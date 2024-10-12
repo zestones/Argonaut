@@ -36,7 +36,7 @@ letter [a-zA-Z]
 "void"                          { return VOID; }
 "int"                           { return INTEGER; }
 "float"                         { return FLOAT; }
-"boolean"                       { return BOOLEAN; }
+"bool"                          { return BOOLEAN; }
 "char"                          { return CHARACTER; }
 "string"                        { return STRING; }
 

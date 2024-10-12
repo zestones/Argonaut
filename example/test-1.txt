@@ -1,9 +1,18 @@
 PROG
 
 var a : int;
-var b : int;
-var c : int;
-var d : int;
+var b : char;
+var is_red : bool;
+var str : string[10];
+var d : float;
+
+type mytype : struct
+{
+    a : custom_type;
+    b : char;
+    c : float;
+} fstruct;
+
 
 func myfunction(a : int, b : int) -> int 
 {

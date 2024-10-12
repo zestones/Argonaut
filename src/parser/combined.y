@@ -46,11 +46,14 @@ declaration_list: declaration_list declaration
                 | ;
 
 declaration: variable_declaration 
-           | function_declaration ;
+           | function_declaration 
+           | type_declaration;
 
 variable_declaration: VARIABLE IDENTIFIER TWO_POINTS type SEMICOLON ;
 
 function_declaration: FUNCTION IDENTIFIER OPEN_PARENTHESIS parameter_list CLOSE_PARENTHESIS RETURN type START declaration_list statement_list END ;
+
+type_declaration: TYPE IDENTIFIER TWO_POINTS STRUCT START complex_type_fields END FSTRUCT SEMICOLON ;
 
 argument_list: argument_list COMMA expression
     | expression
@@ -77,6 +80,14 @@ type: INTEGER
     | BOOLEAN
     | CHARACTER
     | STRING OPEN_BRACKET INTEGER CLOSE_BRACKET ;
+
+complex_type_fields: type_field
+                  | complex_type_fields type_field ;
+
+type_field: IDENTIFIER TWO_POINTS type_name SEMICOLON ;
+
+type_name: type
+         | IDENTIFIER ;
 
 function_call_expression: IDENTIFIER OPEN_PARENTHESIS argument_list CLOSE_PARENTHESIS ;
 
