@@ -1,8 +1,13 @@
 %{
     #include "parser.h"
     #include <stdio.h>
+    #include <stdlib.h>
+    #include <unistd.h>
 
     int yylex();
+
+    extern FILE *yyin;
+    extern FILE *yyout;
 
     extern int error_line;
     extern char *yytext;
@@ -30,8 +35,7 @@
 %%
 
 program: PROG declaration_list statement_list
-    | error { yyerror("Unexpected input in program structure."); } 
-    | ;
+       | ;
 
 // Conditions and boolean expressions
 condition: OPEN_PARENTHESIS expression comparison_operator expression CLOSE_PARENTHESIS
@@ -59,9 +63,11 @@ declaration_list: declaration_list declaration
 declaration: variable_declaration 
            | function_declaration 
            | type_declaration
-           | procedure_declaration ;
+           | procedure_declaration 
+           ;
 
-variable_declaration: VARIABLE IDENTIFIER TWO_POINTS type SEMICOLON ;
+variable_declaration: VARIABLE IDENTIFIER TWO_POINTS type SEMICOLON 
+                     ;
 
 function_declaration: FUNCTION IDENTIFIER OPEN_PARENTHESIS parameter_list CLOSE_PARENTHESIS RETURN_TYPE type START declaration_list statement_list return_statement END ;
 
@@ -131,7 +137,8 @@ statement: assignment_statement
     | standalone_function_call_statement
     | loop_statement ;
 
-assignment_statement: IDENTIFIER OPAFF expression SEMICOLON ;
+assignment_statement: IDENTIFIER OPAFF expression SEMICOLON 
+                    ;
 
 return_statement: RETURN_VALUE IDENTIFIER SEMICOLON;
 
@@ -146,6 +153,42 @@ standalone_function_call_statement: function_call_expression SEMICOLON ;
 
 %%
 
-int main() {
-    return run_parser();
+static void print_usage(const char *program_name) {
+    fprintf(stdout, COLOR_BOLD COLOR_UNDERLINE "\nUsage:" COLOR_RESET);
+    fprintf(stdout, COLOR_GREEN " %s -f <file>\n" COLOR_RESET, program_name);
+
+    fprintf(stdout, "\n");
+
+    fprintf(stdout, COLOR_BOLD "Options:\n" COLOR_RESET);
+    
+    fprintf(stdout, "  " COLOR_YELLOW "-f <file>      " COLOR_RESET "The input file to be processed.\n");
+
+    fprintf(stdout, "\n");
+
+    fprintf(stdout, COLOR_BOLD "Description:\n" COLOR_RESET);
+    fprintf(stdout, "  This program compiles the specified input file.\n\n");
+
+    exit(EXIT_SUCCESS);
+}
+
+int main(int argc, char **argv) {
+    int opt;
+    while ((opt = getopt(argc, argv, "f:")) != -1) {
+        switch (opt) {
+            case 'f':
+                FILE *file = fopen(optarg, "r");
+                if (!file) {
+                    fprintf(stderr, COLOR_RED "Error: Could not open file %s\n" COLOR_RESET, optarg);
+                    return 1;
+                }
+                yyin = file;
+                return yyparse();
+            default:
+                print_usage(argv[0]);
+                return 1;
+        }
+    }
+
+    print_usage(argv[0]);
+    return 1;
 }

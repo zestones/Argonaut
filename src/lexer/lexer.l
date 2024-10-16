@@ -1,8 +1,11 @@
 %{
     #include "../parser/parser.h"
     #include "y.tab.h"
-    
+
     int error_line = 1; 
+    int error_column = 1; 
+
+    extern char *yytext;
 %}
 
 number [0-9]
@@ -10,85 +13,85 @@ letter [a-zA-Z]
 
 %%
 
-[ \t]+                          ;  // Ignorer les espaces et tabulations
+[ \t]+                          { error_column += yyleng; }  
 
-"//".*						    ;  // Ignorer les commentaires
+"//".*						    { error_column += yyleng; }  
 
-\n                              { error_line++; } 
+\n                              { error_line++; error_column = 1; } // Reset column number on new line
 
+"PROG"                          { error_column += yyleng; return PROG; }
+"{"                             { error_column += yyleng; return START; }
+"}"                             { error_column += yyleng; return END; }
 
-"PROG"                          { return PROG; }
-"{"                             { return START; }
-"}"                             { return END; }
+"var"                           { error_column += yyleng; return VARIABLE; }
+"proc"                          { error_column += yyleng; return PROCEDURE; }
+"func"                          { error_column += yyleng; return FUNCTION; }
 
-"var"                           { return VARIABLE; }
-"proc"                          { return PROCEDURE; }
-"func"                          { return FUNCTION; }
+"return"                        { error_column += yyleng; return RETURN_VALUE; }
+"->"                            { error_column += yyleng; return RETURN_TYPE; }
 
-"return"                        { return RETURN_VALUE; }
-"->"                            { return RETURN_TYPE; }
+"type"                          { error_column += yyleng; return TYPE; }
+"struct"                        { error_column += yyleng; return STRUCT; }
+"fstruct"                       { error_column += yyleng; return FSTRUCT; }
+"array"                         { error_column += yyleng; return ARRAY; }
+"of"                            { error_column += yyleng; return OF; }
 
-"type"                          { return TYPE; }
-"struct"                        { return STRUCT; }
-"fstruct"                       { return FSTRUCT; }
-"array"                         { return ARRAY; }
-"of"                            { return OF; }
+"if"                            { error_column += yyleng; return IF; }
+"else"                          { error_column += yyleng; return ELSE; }
+"while"                         { error_column += yyleng; return WHILE; }
 
-"if"                            { return IF; }
-"else"                          { return ELSE; }
-"while"                         { return WHILE; }
+"int"                           { error_column += yyleng; return INTEGER; }
+"float"                         { error_column += yyleng; return FLOAT; }
+"bool"                          { error_column += yyleng; return BOOLEAN; }
+"char"                          { error_column += yyleng; return CHARACTER; }
+"string"                        { error_column += yyleng; return STRING; }
 
-"int"                           { return INTEGER; }
-"float"                         { return FLOAT; }
-"bool"                          { return BOOLEAN; }
-"char"                          { return CHARACTER; }
-"string"                        { return STRING; }
+"=="                            { error_column += yyleng; return EQUAL; }
+"!="                            { error_column += yyleng; return NOT_EQUAL; }
+"<"                             { error_column += yyleng; return LESS_THAN; }
+">"                             { error_column += yyleng; return GREATER_THAN; }
+"<="                            { error_column += yyleng; return LESS_EQUAL; }
+">="                            { error_column += yyleng; return GREATER_EQUAL; }
 
-"=="                            { return EQUAL; }
-"!="                            { return NOT_EQUAL; }
-"<"                             { return LESS_THAN; }
-">"                             { return GREATER_THAN; }
-"<="                            { return LESS_EQUAL; }
-">="                            { return GREATER_EQUAL; }
+"&&"                            { error_column += yyleng; return AND; }
+"||"                            { error_column += yyleng; return OR; }
+"!"                             { error_column += yyleng; return NOT; }
 
-"&&"                            { return AND; }
-"||"                            { return OR; }
-"!"                             { return NOT; }
+"+"                             { error_column += yyleng; return PLUS; }
+"-"                             { error_column += yyleng; return MINUS; }
+"*"                             { error_column += yyleng; return MULTIPLY; }
+"/"                             { error_column += yyleng; return DIVIDE; }
 
-"+"                             { return PLUS; }
-"-"                             { return MINUS; }
-"*"                             { return MULTIPLY; }
-"/"                             { return DIVIDE; }
+":="                            { error_column += yyleng; return OPAFF; }
 
-":="                             { return OPAFF; }
-
-";"                             { return SEMICOLON; }
-":"                             { return TWO_POINTS; }
-","                             { return COMMA; }
-".."                            { return DOT_DOT; }
-"["                             { return OPEN_BRACKET; }
-"]"                             { return CLOSE_BRACKET; }
-"("                             { return OPEN_PARENTHESIS; }
-")"                             { return CLOSE_PARENTHESIS; }
-
+";"                             { error_column += yyleng; return SEMICOLON; }
+":"                             { error_column += yyleng; return TWO_POINTS; }
+","                             { error_column += yyleng; return COMMA; }
+".."                            { error_column += yyleng; return DOT_DOT; }
+"["                             { error_column += yyleng; return OPEN_BRACKET; }
+"]"                             { error_column += yyleng; return CLOSE_BRACKET; }
+"("                             { error_column += yyleng; return OPEN_PARENTHESIS; }
+")"                             { error_column += yyleng; return CLOSE_PARENTHESIS; }
 
 0|[1-9][0-9]* { 
     yylval = atoi(yytext);
+    error_column += yyleng;
     return INTEGER; 
 }
 
 {number}+","{number}+ { 
     yylval = atof(yytext);
+    error_column += yyleng;
     return FLOAT; 
 }
 
 {letter}+({letter}|{number}|"_"|"-")* { 
     yylval = yytext[0] - 'a';
+    error_column += yyleng;
     return IDENTIFIER;
 }
 
-.                               { yyerror(yytext); }
-
+.                               { yywarn(yytext); error_column += yyleng; } 
 
 %%
 

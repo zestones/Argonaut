@@ -2,6 +2,42 @@
 
 %%
 
-int main() {
-    return run_parser();
+static void print_usage(const char *program_name) {
+    fprintf(stdout, COLOR_BOLD COLOR_UNDERLINE "\nUsage:" COLOR_RESET);
+    fprintf(stdout, COLOR_GREEN " %s -f <file>\n" COLOR_RESET, program_name);
+
+    fprintf(stdout, "\n");
+
+    fprintf(stdout, COLOR_BOLD "Options:\n" COLOR_RESET);
+    
+    fprintf(stdout, "  " COLOR_YELLOW "-f <file>      " COLOR_RESET "The input file to be processed.\n");
+
+    fprintf(stdout, "\n");
+
+    fprintf(stdout, COLOR_BOLD "Description:\n" COLOR_RESET);
+    fprintf(stdout, "  This program compiles the specified input file.\n\n");
+
+    exit(EXIT_SUCCESS);
+}
+
+int main(int argc, char **argv) {
+    int opt;
+    while ((opt = getopt(argc, argv, "f:")) != -1) {
+        switch (opt) {
+            case 'f':
+                FILE *file = fopen(optarg, "r");
+                if (!file) {
+                    fprintf(stderr, COLOR_RED "Error: Could not open file %s\n" COLOR_RESET, optarg);
+                    return 1;
+                }
+                yyin = file;
+                return yyparse();
+            default:
+                print_usage(argv[0]);
+                return 1;
+        }
+    }
+
+    print_usage(argv[0]);
+    return exit(EXIT_SUCCESS);
 }

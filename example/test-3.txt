@@ -1,0 +1,15 @@
+PROG
+var a : int;
+var b : char;
+var is_red : bool;
+var str : string[10];
+var d : float;
+
+// Invalid character '@' will trigger a warning
+var e : int @;
+
+// Invalid character '#' will trigger a warning
+f := 10 #;
+
+// Invalid character '$' will trigger a warning
+a := 1.5 $;
