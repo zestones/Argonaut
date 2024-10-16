@@ -1,0 +1,10 @@
+{
+    "files.associations": {
+        "*.embeddedhtml": "html",
+        "*.rmd": "markdown",
+        "hash.h": "c",
+        "lexeme_table.h": "c",
+        "parser.h": "c",
+        "y.tab.h": "c"
+    }
+}

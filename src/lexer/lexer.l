@@ -1,6 +1,7 @@
 %{
+    #include "../parser/parser.h"
     #include "y.tab.h"
-    void yyerror(const char *s);
+    
     int error_line = 1; 
 %}
 

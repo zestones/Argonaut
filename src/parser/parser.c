@@ -1,6 +1,6 @@
+#include "../bin/y.tab.h"
+#include "parser.h"
 
-
-%%
 
 void yyerror(const char *s) {
     if (yychar == 0) {
@@ -11,6 +11,10 @@ void yyerror(const char *s) {
     }
 }
 
-int main() {
-    return yyparse();
+int run_parser() {
+    // initialize_parser();
+    int parse_result = yyparse(); 
+    // cleanup_parser();
+
+    return parse_result;
 }

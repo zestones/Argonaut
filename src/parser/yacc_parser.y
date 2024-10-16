@@ -1,10 +1,13 @@
 %{
+    #include "parser.h"
     #include <stdio.h>
+
     int yylex();
 
     extern int error_line;
     extern char *yytext;
-    void yyerror(const char *s);
+
+    int current_lexeme_code;
 %}
 
 
@@ -14,7 +17,7 @@
 %token ARRAY OF OPEN_BRACKET CLOSE_BRACKET
 %token IDENTIFIER VARIABLE OPAFF
 %token STRUCT FSTRUCT
-%token TYPE INTEGER_CONST INTEGER FLOAT BOOLEAN CHARACTER STRING 
+%token TYPE INTEGER FLOAT BOOLEAN CHARACTER STRING 
 %token PROCEDURE FUNCTION RETURN_TYPE RETURN_VALUE
 %token IF ELSE WHILE
 %token EQUAL NOT_EQUAL LESS_THAN GREATER_THAN LESS_EQUAL GREATER_EQUAL
@@ -29,6 +32,7 @@
 program: PROG declaration_list statement_list
     | error { yyerror("Unexpected input in program structure."); } 
     | ;
+
 // Conditions and boolean expressions
 condition: OPEN_PARENTHESIS expression comparison_operator expression CLOSE_PARENTHESIS
          | OPEN_PARENTHESIS condition CLOSE_PARENTHESIS
@@ -142,15 +146,6 @@ standalone_function_call_statement: function_call_expression SEMICOLON ;
 
 %%
 
-void yyerror(const char *s) {
-    if (yychar == 0) {
-        fprintf(stderr, "\033[1;31m<error> Syntax error at line %d: %s\033[0m\n", error_line, s);
-    } 
-    else {
-        fprintf(stderr, "\033[1;31m<error> Syntax error at line %d: %s near token '%s'\033[0m\n", error_line, s, yytext);
-    }
-}
-
 int main() {
-    return yyparse();
+    return run_parser();
 }

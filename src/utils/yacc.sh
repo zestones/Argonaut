@@ -1,2 +1,2 @@
 #!/bin/sh
-cat src/parser/header.y src/parser/tokens/tokens.y src/parser/body.txt src/parser/rules/cond_rules.txt src/parser/rules/decl_rules.txt src/parser/rules/expr_rules.txt src/parser/rules/stmt_rules.txt src/parser/footer.txt > src/parser/combined.y
+cat src/parser/other/header.txt src/parser/tokens/tokens.y src/parser/other/body.txt src/parser/rules/cond_rules.txt src/parser/rules/decl_rules.txt src/parser/rules/expr_rules.txt src/parser/rules/stmt_rules.txt src/parser/other/footer.txt > src/parser/yacc_parser.y

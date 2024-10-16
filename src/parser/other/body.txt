@@ -3,3 +3,4 @@
 program: PROG declaration_list statement_list
     | error { yyerror("Unexpected input in program structure."); } 
     | ;
+
