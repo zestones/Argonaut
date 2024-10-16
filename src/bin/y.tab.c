@@ -69,7 +69,11 @@
 /* First part of user prologue.  */
 #line 1 "src/parser/yacc_parser.y"
 
+    #include "../lexer/lexeme_table.h"
+    #include "../utils/hash.h"
+
     #include "parser.h"
+
     #include <stdio.h>
     #include <stdlib.h>
     #include <unistd.h>
@@ -84,7 +88,7 @@
 
     int current_lexeme_code;
 
-#line 88 "src/bin/y.tab.c"
+#line 92 "src/bin/y.tab.c"
 
 # ifndef YY_CAST
 #  ifdef __cplusplus
@@ -581,14 +585,14 @@ static const yytype_int8 yytranslate[] =
 /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    37,    37,    38,    41,    42,    43,    44,    45,    46,
-      49,    51,    52,    53,    54,    55,    56,    60,    61,    63,
-      64,    65,    66,    69,    72,    74,    76,    77,    81,    82,
-      83,    85,    86,    87,    89,    93,    95,    96,    98,   101,
-     102,   103,   104,   105,   107,   108,   109,   110,   111,   113,
-     114,   115,   116,   117,   119,   120,   122,   124,   125,   127,
-     130,   132,   133,   135,   136,   137,   138,   140,   143,   145,
-     146,   148,   150
+       0,    41,    41,    42,    45,    46,    47,    48,    49,    50,
+      53,    55,    56,    57,    58,    59,    60,    64,    65,    67,
+      68,    69,    70,    73,    76,    78,    80,    81,    85,    86,
+      87,    89,    90,    91,    93,    97,    99,   100,   102,   105,
+     106,   107,   108,   109,   111,   112,   113,   114,   115,   117,
+     118,   119,   120,   121,   123,   124,   126,   128,   129,   131,
+     134,   136,   137,   139,   140,   141,   142,   144,   147,   149,
+     150,   152,   154
 };
 #endif
 
@@ -1262,7 +1266,7 @@ yyreduce:
   switch (yyn)
     {
 
-#line 1266 "src/bin/y.tab.c"
+#line 1270 "src/bin/y.tab.c"
 
       default: break;
     }
@@ -1455,18 +1459,19 @@ yyreturnlab:
   return yyresult;
 }
 
-#line 154 "src/parser/yacc_parser.y"
+#line 158 "src/parser/yacc_parser.y"
 
 
 static void print_usage(const char *program_name) {
     fprintf(stdout, COLOR_BOLD COLOR_UNDERLINE "\nUsage:" COLOR_RESET);
-    fprintf(stdout, COLOR_GREEN " %s -f <file>\n" COLOR_RESET, program_name);
+    fprintf(stdout, COLOR_GREEN " %s -f <file> [-v] [-h]\n" COLOR_RESET, program_name);
 
     fprintf(stdout, "\n");
 
     fprintf(stdout, COLOR_BOLD "Options:\n" COLOR_RESET);
-    
     fprintf(stdout, "  " COLOR_YELLOW "-f <file>      " COLOR_RESET "The input file to be processed.\n");
+    fprintf(stdout, "  " COLOR_YELLOW "-v             " COLOR_RESET "Enable verbose mode (display lexeme table).\n");
+    fprintf(stdout, "  " COLOR_YELLOW "-h             " COLOR_RESET "Show help (this usage information).\n");
 
     fprintf(stdout, "\n");
 
@@ -1477,8 +1482,14 @@ static void print_usage(const char *program_name) {
 }
 
 int main(int argc, char **argv) {
-    int opt;
-    while ((opt = getopt(argc, argv, "f:")) != -1) {
+    int opt, verbose = 0;
+    
+    if (argc == 1) {
+        // No arguments provided
+        print_usage(argv[0]);
+    }
+
+    while ((opt = getopt(argc, argv, "f:vh")) != -1) {
         switch (opt) {
             case 'f':
                 FILE *file = fopen(optarg, "r");
@@ -1486,14 +1497,32 @@ int main(int argc, char **argv) {
                     fprintf(stderr, COLOR_RED "Error: Could not open file %s\n" COLOR_RESET, optarg);
                     return 1;
                 }
+                
                 yyin = file;
-                return yyparse();
+        
+                init_hash_table();
+                init_lexeme_table();
+                
+                yyparse();
+
+                fclose(file);
+                break;
+            case 'v':
+                verbose = 1;
+                break;
+            case 'h':
+                print_usage(argv[0]);
+                break;
             default:
                 print_usage(argv[0]);
                 return 1;
         }
     }
 
-    print_usage(argv[0]);
-    return 1;
+    if (verbose) {
+        print_lexeme_table();
+        print_hash_table();
+    }
+
+    return 0;
 }

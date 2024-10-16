@@ -9,6 +9,8 @@
 #define COLOR_MAGENTA "\033[35m"
 #define COLOR_CYAN    "\033[36m"
 #define COLOR_WHITE   "\033[37m"
+#define COLOR_BOLD_YELLOW "\033[1;33m"
+ 
 
 #define COLOR_BOLD    "\033[1m"
 #define COLOR_UNDERLINE "\033[4m"

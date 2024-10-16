@@ -1,5 +1,9 @@
 %{
+    #include "../lexer/lexeme_table.h"
+    #include "../utils/hash.h"
+
     #include "parser.h"
+
     #include <stdio.h>
     #include <stdlib.h>
     #include <unistd.h>

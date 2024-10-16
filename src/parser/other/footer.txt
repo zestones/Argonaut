@@ -4,13 +4,14 @@
 
 static void print_usage(const char *program_name) {
     fprintf(stdout, COLOR_BOLD COLOR_UNDERLINE "\nUsage:" COLOR_RESET);
-    fprintf(stdout, COLOR_GREEN " %s -f <file>\n" COLOR_RESET, program_name);
+    fprintf(stdout, COLOR_GREEN " %s -f <file> [-v] [-h]\n" COLOR_RESET, program_name);
 
     fprintf(stdout, "\n");
 
     fprintf(stdout, COLOR_BOLD "Options:\n" COLOR_RESET);
-    
     fprintf(stdout, "  " COLOR_YELLOW "-f <file>      " COLOR_RESET "The input file to be processed.\n");
+    fprintf(stdout, "  " COLOR_YELLOW "-v             " COLOR_RESET "Enable verbose mode (display lexeme table).\n");
+    fprintf(stdout, "  " COLOR_YELLOW "-h             " COLOR_RESET "Show help (this usage information).\n");
 
     fprintf(stdout, "\n");
 
@@ -21,8 +22,14 @@ static void print_usage(const char *program_name) {
 }
 
 int main(int argc, char **argv) {
-    int opt;
-    while ((opt = getopt(argc, argv, "f:")) != -1) {
+    int opt, verbose = 0;
+    
+    if (argc == 1) {
+        // No arguments provided
+        print_usage(argv[0]);
+    }
+
+    while ((opt = getopt(argc, argv, "f:vh")) != -1) {
         switch (opt) {
             case 'f':
                 FILE *file = fopen(optarg, "r");
@@ -30,14 +37,32 @@ int main(int argc, char **argv) {
                     fprintf(stderr, COLOR_RED "Error: Could not open file %s\n" COLOR_RESET, optarg);
                     return 1;
                 }
+                
                 yyin = file;
-                return yyparse();
+        
+                init_hash_table();
+                init_lexeme_table();
+                
+                yyparse();
+
+                fclose(file);
+                break;
+            case 'v':
+                verbose = 1;
+                break;
+            case 'h':
+                print_usage(argv[0]);
+                break;
             default:
                 print_usage(argv[0]);
                 return 1;
         }
     }
 
-    print_usage(argv[0]);
-    return exit(EXIT_SUCCESS);
+    if (verbose) {
+        print_lexeme_table();
+        print_hash_table();
+    }
+
+    return 0;
 }

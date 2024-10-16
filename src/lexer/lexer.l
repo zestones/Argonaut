@@ -1,10 +1,12 @@
 %{
+    #include "../lexer/lexeme_table.h"
     #include "../parser/parser.h"
     #include "y.tab.h"
 
     int error_line = 1; 
     int error_column = 1; 
 
+    extern int current_lexeme_code;
     extern char *yytext;
 %}
 
@@ -88,6 +90,8 @@ letter [a-zA-Z]
 {letter}+({letter}|{number}|"_"|"-")* { 
     yylval = yytext[0] - 'a';
     error_column += yyleng;
+    
+    current_lexeme_code = insert_lexeme(yytext);
     return IDENTIFIER;
 }
 

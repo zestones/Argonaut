@@ -3,7 +3,7 @@
 
 
 void yywarn(const char *s) {
-    fprintf(stderr, "\033[1;33m<Warning> At line %d, column %d: %s near token '%s'\033[0m\n", error_line, error_column, s, yytext);
+    fprintf(stderr, COLOR_BOLD_YELLOW "<Warning> At line %d, column %d: %s near token '%s'\n" COLOR_RESET, error_line, error_column, s, yytext);
 }
 
 void yyerror(const char *s) {
@@ -20,7 +20,7 @@ void yyerror(const char *s) {
     }
 
     if (yychar) {
-        fprintf(stderr, "\033[1;31m<%s> At line %d, column %d: %s near token '%s'\033[0m\n", type, error_line, error_column, s, yytext);
+        fprintf(stderr, COLOR_RED "<%s> At line %d, column %d: %s near token '%s'\n" COLOR_RESET, type, error_line, error_column, s, yytext);
     } 
 }
 

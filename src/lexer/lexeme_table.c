@@ -1,82 +1,79 @@
+#include "../../lib/table_printer.h"
 #include "../../lib/colors.h"
+#include "../utils/hash.h"
 #include "lexeme_table.h"
 
+static Lexeme lexeme_table[MAX_LEXEME_COUNT];
+static int lexeme_table_size = 0;
 
-static Lexeme *lexeme_table[HASH_TABLE_SIZE];
-static int lexicographic_code_counter = 1;
+Lexeme construct_lexeme(const char* lexeme, int length, int next) {
+    Lexeme new_lexeme;
+
+    strcpy(new_lexeme.lexeme, lexeme);
+    new_lexeme.length = length;
+    new_lexeme.next = next;
+
+    return new_lexeme;
+}
 
 void init_lexeme_table() {
-    for (int i = 0; i < HASH_TABLE_SIZE; i++) {
-        lexeme_table[i] = NULL;
-    }
+    memset(lexeme_table, -1, sizeof(lexeme_table));
+    
+    insert_lexeme("int");
+    insert_lexeme("float");
+    insert_lexeme("bool");
+    insert_lexeme("char");
 }
 
 int insert_lexeme(const char* lexeme) {
     int length = strlen(lexeme);
-    unsigned int hash_index = hash_function(lexeme, length);
+    int hash_index = find_hash(hash_function(lexeme, length));
+    int prev_index = -1;
 
-    // Check if the lexeme already exists
-    Lexeme *current = lexeme_table[hash_index];
-    while (current != NULL) {
-        if (strcmp(current->lexeme, lexeme) == 0) {
-            return current->lexicographic_code;
-        }
+    while (hash_index != -1) {
+        if (!strcmp(lexeme_table[hash_index].lexeme, lexeme)) break;
 
-        current = current->next;
+        prev_index = hash_index;
+        hash_index = lexeme_table[hash_index].next;
     }
 
-    // Lexeme doesn't exist, insert new one
-    Lexeme *new_lexeme = (Lexeme*)malloc(sizeof(Lexeme));
-    if (new_lexeme == NULL) {
-        fprintf(stderr, "Memory allocation failed for new lexeme\n");
-        exit(EXIT_FAILURE);
-    }
+    if (hash_index != -1) return hash_index;
+    else hash_index = lexeme_table_size;
 
-    strcpy(new_lexeme->lexeme, lexeme);
-    new_lexeme->length = length;
-    new_lexeme->lexicographic_code = lexicographic_code_counter++;
-    new_lexeme->next = lexeme_table[hash_index];
-    lexeme_table[hash_index] = new_lexeme;
+    Lexeme new_lexeme = construct_lexeme(lexeme, length, -1);
+    insert_hash(lexeme, hash_index);
 
-    return new_lexeme->lexicographic_code;
+    if (prev_index != -1) lexeme_table[prev_index].next = hash_index;
+    lexeme_table[lexeme_table_size++] = new_lexeme;
+
+    return hash_index;
 }
 
-Lexeme *find_lexeme(const char* lexeme) {
-    int length = strlen(lexeme);
-    unsigned int hash_index = hash_function(lexeme, length);
-
-    Lexeme* current = lexeme_table[hash_index];
-    while (current != NULL) {
-        if (strcmp(current->lexeme, lexeme) == 0) {
-            return current;
-        }
-        current = current->next;
-    }
-    return NULL;  // Lexeme not found
-}
 
 void print_lexeme_table() {
-    printf(COLOR_BOLD COLOR_BLUE "Lexeme Table:\n" COLOR_RESET);
-    for (int i = 0; i < HASH_TABLE_SIZE; i++) {
-        Lexeme* current = lexeme_table[i];
-        while (current != NULL) {
-            printf(COLOR_GREEN "Lexeme: " COLOR_RESET COLOR_YELLOW "%s" COLOR_RESET ", " 
-                   COLOR_GREEN "Length: " COLOR_RESET COLOR_YELLOW "%d" COLOR_RESET ", " 
-                   COLOR_GREEN "Lexicographic Code: " COLOR_RESET COLOR_YELLOW "%d" COLOR_RESET "\n", 
-                   current->lexeme, current->length, current->lexicographic_code);
-            current = current->next;
-        }
-    }
-}
+    const int col_width_index = 10;
+    const int col_width_lexeme = 20;
+    const int col_width_length = 10;
+    const int col_width_next = 10;
 
-void free_lexeme_table() {
-    for (int i = 0; i < HASH_TABLE_SIZE; i++) {
-        Lexeme* current = lexeme_table[i];
-        while (current != NULL) {
-            Lexeme* to_free = current;
-            current = current->next;
-            free(to_free);
-        }
-        lexeme_table[i] = NULL;
+    fprintf(stdout, COLOR_BOLD "\nLexeme Table:\n" COLOR_RESET);
+    print_table_separator(4, col_width_index, col_width_lexeme, col_width_length, col_width_next);
+    print_table_header(4, col_width_index, "Index", col_width_lexeme, "Lexeme", col_width_length, "Length", col_width_next, "Next");
+    print_table_separator(4, col_width_index, col_width_lexeme, col_width_length, col_width_next);
+
+    for (int i = 0; i < lexeme_table_size; i++) {
+        char length_str[10], next_str[10], index_str[10];
+        sprintf(length_str, "%d", lexeme_table[i].length);
+        sprintf(next_str, "%d", lexeme_table[i].next);
+        sprintf(index_str, "%d", i);
+
+        print_table_row(4, 
+                        col_width_index, index_str,
+                        col_width_lexeme, lexeme_table[i].lexeme,
+                        col_width_length, length_str,
+                        col_width_next, next_str
+                    );
     }
+
+    print_table_separator(4, col_width_index, col_width_lexeme, col_width_length, col_width_next);
 }
