@@ -38,7 +38,7 @@ int hash_function(const char* lexeme, int length);
  * @param index : The index to find the value.
  * @return int : The value at the given index.
  */
-int find_hash(int index);
+int get_hash_value(int index);
 
 /**
  * @brief Display the contents of the hash table.

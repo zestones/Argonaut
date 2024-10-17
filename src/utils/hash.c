@@ -33,7 +33,7 @@ static void new_hash_entry(int index, int value) {
     hash_table[index] = value;
 }
 
-int find_hash(int index) {
+int get_hash_value(int index) {
     if (index < 0 || index >= HASH_TABLE_SIZE) {
         fprintf(stderr, COLOR_RED "<Error>: Index %d out of bounds. Valid range is 0 to %d.\n" COLOR_RESET, index, HASH_TABLE_SIZE);
         exit(EXIT_FAILURE);

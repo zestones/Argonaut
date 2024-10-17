@@ -1,6 +1,7 @@
 PROG
 var aab : int;
 var baa : int;
+var aba : int;
 
 func fois_deux(a : int) -> int
 {
