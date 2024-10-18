@@ -37,7 +37,7 @@ void insert_lexeme(const char* lexeme) {
         hash_code = lexeme_table[hash_code].next;
     }
 
-    if (hash_code != -1) return hash_code;
+    if (hash_code != -1) return;
     else hash_code = lexeme_table_size;
 
     Lexeme new_lexeme = construct_lexeme(lexeme, length, -1);
@@ -45,8 +45,6 @@ void insert_lexeme(const char* lexeme) {
 
     if (prev_index != -1) lexeme_table[prev_index].next = hash_code;
     lexeme_table[lexeme_table_size++] = new_lexeme;
-
-    return hash_code;
 }
 
 

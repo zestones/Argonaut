@@ -15,6 +15,8 @@
 
     extern int error_line;
     extern char *yytext;
+
+    int current_lexeme_code;
 %}
 
 
