@@ -1,0 +1,7 @@
+PROG
+var a : notint;
+
+var b : int;
+
+var c : float;
+a := 1 + 2 * 3;

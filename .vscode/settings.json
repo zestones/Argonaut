@@ -1,0 +1,16 @@
+{
+    "files.associations": {
+        "*.embeddedhtml": "html",
+        "*.rmd": "markdown",
+        "string.h": "c",
+        "y.tab.h": "c",
+        "parser.h": "c",
+        "table_printer.h": "c",
+        "stdio.h": "c",
+        "hash.h": "c",
+        "colors.h": "c",
+        "stdlib.h": "c",
+        "lexeme_table.h": "c",
+        "string_view": "c"
+    }
+}

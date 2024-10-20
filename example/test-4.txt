@@ -1,0 +1,18 @@
+PROG
+var aab : int;
+var baa : int;
+var aba : int;
+
+func fois_deux(a : int) -> int
+{
+    a := a * 2;
+    return a;
+}
+
+func divise_par_deux(g : int) -> int
+{
+    g := g / 2;
+    return g;
+}
+
+a := 2;
