@@ -1,4 +1,5 @@
 PROG
+// doit renvoyer une erreur avec la table des déclarations
 var a : notint;
 
 var b : int;

@@ -1,5 +1,5 @@
 %%
 
-program: PROG declaration_list statement_list
+program: PROG declaration_list statement_list { init_declaration_table(); }
        | ;
 

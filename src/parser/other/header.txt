@@ -1,6 +1,7 @@
 %{
     #include "../lexer/lexeme_table.h"
     #include "../utils/hash.h"
+    #include "declaration_table/declaration_table.h"
 
     #include "parser.h"
 

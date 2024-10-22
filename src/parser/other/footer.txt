@@ -62,6 +62,7 @@ int main(int argc, char **argv) {
     if (verbose) {
         print_lexeme_table();
         print_hash_table();
+        print_declaration_table();
     }
 
     return 0;

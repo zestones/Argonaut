@@ -45,7 +45,7 @@ int get_hash_value(int index) {
 void print_hash_table() {
     fprintf(stdout, COLOR_BOLD "\nHash Table:\n" COLOR_RESET);
     print_table_separator(2, 10, 10);
-    print_table_header(2, 10, "Index", 10, "Value");
+    print_table_header(2, 10, "Value", 10, "Lex index");
     print_table_separator(2, 10, 10);
 
     for (int i = 0; i < HASH_TABLE_SIZE; i++) {
