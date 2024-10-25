@@ -1,5 +1,5 @@
-#include "../../../lib/table_printer.h"
-#include "../../../lib/colors.h"
+#include "../../lib/table_printer.h"
+#include "../../lib/colors.h"
 #include "declaration_table.h"
 
 static Declaration declaration_table[MAX_DECLARATION_COUNT];

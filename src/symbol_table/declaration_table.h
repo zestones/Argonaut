@@ -1,12 +1,14 @@
 #ifndef DECLARATION_TABLE_H
 #define DECLARATION_TABLE_H
 
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
-#define MAX_DECLARATION_COUNT 1000 
+
 #define MAX_NATURE_LENGTH 50
+#define MAX_DECLARATION_COUNT 1000 
 
 typedef struct {
     char nature[MAX_NATURE_LENGTH];                      
