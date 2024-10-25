@@ -11,10 +11,10 @@
 
 typedef enum
 {
-    TYPE_B,
-    TYPE_C,
-    TYPE_D,
-    TYPE_E
+    TYPE_BASE,
+    TYPE_VAR,
+    TYPE_STRUCT,
+    TYPE_ARRAY,
 } Nature;
 
 typedef struct {
@@ -36,14 +36,14 @@ static inline char *nature_to_string(Nature nature)
 {
     switch (nature)
     {
-    case TYPE_B:
-        return "TYPE_B";
-    case TYPE_C:
-        return "TYPE_C";
-    case TYPE_D:
-        return "TYPE_D";
-    case TYPE_E:
-        return "TYPE_E";
+    case TYPE_BASE:
+        return "TYPE_BASE";
+    case TYPE_VAR:
+        return "TYPE_VAR";
+    case TYPE_STRUCT:
+        return "TYPE_STRUCT";
+    case TYPE_ARRAY:
+        return "TYPE_ARRAY";
     default:
         return "UNKNOWN";
     }

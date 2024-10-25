@@ -1,11 +1,12 @@
 #include "../../lib/table_printer.h"
+#include "../../lib/colors.h" 
+
 #include "../../lib/colors.h"
 #include "declaration_table.h"
 #include "../utils/utils.h"
 
 static Declaration declaration_table[MAX_DECLARATION_COUNT];
 static int declaration_table_size = 0;
-static int declaration_buffer = MAX_DECLARATION_COUNT/2;
 
 Declaration construct_declaration(Nature nature, int next, int region, int description, int execution) {
     Declaration new_declaration;
@@ -23,13 +24,18 @@ void init_declaration_table()
 {
     memset(declaration_table, NULL_VALUE, sizeof(declaration_table));
 
-    insert_declaration(TYPE_B, NULL_VALUE, 0, 0, 1);
-    insert_declaration(TYPE_B, NULL_VALUE, 0, 1, 1);
-    insert_declaration(TYPE_B, NULL_VALUE, 0, 2, 1);
-    insert_declaration(TYPE_B, NULL_VALUE, 0, 3, 1);
+    insert_declaration(TYPE_BASE, NULL_VALUE, 0, 0, 1);
+    insert_declaration(TYPE_BASE, NULL_VALUE, 0, 1, 1);
+    insert_declaration(TYPE_BASE, NULL_VALUE, 0, 2, 1);
+    insert_declaration(TYPE_BASE, NULL_VALUE, 0, 3, 1);
 }
 
 void insert_declaration(Nature nature, int next, int region, int description, int execution) {
+    if (declaration_table_size >= MAX_DECLARATION_COUNT) {
+        fprintf(stderr, COLOR_RED "<Error> Declaration table is full\n" COLOR_RESET);
+        exit(EXIT_FAILURE);
+    }
+
     declaration_table[declaration_table_size] = construct_declaration(nature, next, region, description, execution);
     declaration_table_size++;
 }
