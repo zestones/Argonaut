@@ -1,5 +1,6 @@
 #include "../../lib/table_printer.h"
 #include "../../lib/colors.h"
+#include "../utils/utils.h"
 #include "../utils/hash.h"
 #include "lexeme_table.h"
 
@@ -17,7 +18,7 @@ Lexeme construct_lexeme(const char* lexeme, int length, int next) {
 }
 
 void init_lexeme_table() {
-    memset(lexeme_table, -1, sizeof(lexeme_table));
+    memset(lexeme_table, NULL_VALUE, sizeof(lexeme_table));
 
     insert_lexeme("int");
     insert_lexeme("float");
@@ -28,22 +29,22 @@ void init_lexeme_table() {
 void insert_lexeme(const char* lexeme) {
     int length = strlen(lexeme);
     int hash_code = get_hash_value(hash_function(lexeme, length));
-    int prev_index = -1;
+    int prev_index = NULL_VALUE;
 
-    while (hash_code != -1) {
+    while (hash_code != NULL_VALUE) {
         if (!strcmp(lexeme_table[hash_code].lexeme, lexeme)) break;
 
         prev_index = hash_code;
         hash_code = lexeme_table[hash_code].next;
     }
 
-    if (hash_code != -1) return;
+    if (hash_code != NULL_VALUE) return;
     else hash_code = lexeme_table_size;
 
-    Lexeme new_lexeme = construct_lexeme(lexeme, length, -1);
+    Lexeme new_lexeme = construct_lexeme(lexeme, length, NULL_VALUE);
     insert_hash(lexeme, hash_code);
 
-    if (prev_index != -1) lexeme_table[prev_index].next = hash_code;
+    if (prev_index != NULL_VALUE) lexeme_table[prev_index].next = hash_code;
     lexeme_table[lexeme_table_size++] = new_lexeme;
 }
 

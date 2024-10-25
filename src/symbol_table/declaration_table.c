@@ -1,6 +1,7 @@
 #include "../../lib/table_printer.h"
 #include "../../lib/colors.h"
 #include "declaration_table.h"
+#include "../utils/utils.h"
 
 static Declaration declaration_table[MAX_DECLARATION_COUNT];
 static int declaration_table_size = 0;
@@ -20,12 +21,12 @@ Declaration construct_declaration(Nature nature, int next, int region, int descr
 
 void init_declaration_table()
 {
-    memset(declaration_table, -1, sizeof(declaration_table));
+    memset(declaration_table, NULL_VALUE, sizeof(declaration_table));
 
-    insert_declaration(TYPE_B, -1, 0, 0, 1);
-    insert_declaration(TYPE_B, -1, 0, 1, 1);
-    insert_declaration(TYPE_B, -1, 0, 2, 1);
-    insert_declaration(TYPE_B, -1, 0, 3, 1);
+    insert_declaration(TYPE_B, NULL_VALUE, 0, 0, 1);
+    insert_declaration(TYPE_B, NULL_VALUE, 0, 1, 1);
+    insert_declaration(TYPE_B, NULL_VALUE, 0, 2, 1);
+    insert_declaration(TYPE_B, NULL_VALUE, 0, 3, 1);
 }
 
 void insert_declaration(Nature nature, int next, int region, int description, int execution) {
