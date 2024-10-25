@@ -122,6 +122,7 @@ type: INTEGER
     | BOOLEAN
     | CHARACTER
     | STRING OPEN_BRACKET INTEGER CLOSE_BRACKET 
+    | IDENTIFIER 
     ;
 
 complex_type_fields: type_field
@@ -132,7 +133,6 @@ type_field: IDENTIFIER TWO_POINTS type_name SEMICOLON
           ;
 
 type_name: type
-         | IDENTIFIER 
          ;
 
 function_call_expression: IDENTIFIER OPEN_PARENTHESIS argument_list CLOSE_PARENTHESIS 
