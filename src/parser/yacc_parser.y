@@ -1,7 +1,7 @@
 %{
+    #include "../symbol_table/declaration_table.h"
     #include "../lexer/lexeme_table.h"
     #include "../utils/hash.h"
-    #include "declaration_table/declaration_table.h"
 
     #include "parser.h"
 
@@ -107,31 +107,37 @@ expression: expression PLUS expression
           | expression MINUS expression
           | expression MULTIPLY expression
           | expression DIVIDE expression
-          | expression_atom ;
+          | expression_atom 
+          ;
 
 expression_atom: function_call_expression  
                | IDENTIFIER
                | INTEGER
                | FLOAT
-               | OPEN_PARENTHESIS expression CLOSE_PARENTHESIS ;
+               | OPEN_PARENTHESIS expression CLOSE_PARENTHESIS 
+               ;
 
 type: INTEGER
     | FLOAT
     | BOOLEAN
     | CHARACTER
     | STRING OPEN_BRACKET INTEGER CLOSE_BRACKET 
-    | IDENTIFIER 
     ;
 
 complex_type_fields: type_field
-                   | complex_type_fields type_field ;
+                   | complex_type_fields type_field 
+                   ;
 
-type_field: IDENTIFIER TWO_POINTS type_name SEMICOLON ;
+type_field: IDENTIFIER TWO_POINTS type_name SEMICOLON 
+          ;
 
 type_name: type
+         | IDENTIFIER 
          ;
 
-function_call_expression: IDENTIFIER OPEN_PARENTHESIS argument_list CLOSE_PARENTHESIS ;
+function_call_expression: IDENTIFIER OPEN_PARENTHESIS argument_list CLOSE_PARENTHESIS 
+                        ;
+
 
 // Statements
 statement_block: START statement_list END ;

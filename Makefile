@@ -27,8 +27,8 @@ parser.o: src/parser/parser.c
 lexeme_table.o: src/lexer/lexeme_table.c
 	$(CC) -c src/lexer/lexeme_table.c
 
-declaration_table.o: src/parser/declaration_table/declaration_table.c
-	$(CC) -c src/parser/declaration_table/declaration_table.c
+declaration_table.o: src/symbol_table/declaration_table.c
+	$(CC) -c src/symbol_table/declaration_table.c
 
 # -- UTILS -- #
 
