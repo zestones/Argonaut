@@ -19,14 +19,9 @@ Lexeme construct_lexeme(const char* lexeme, int length, int next) {
 
 void init_lexeme_table() {
     memset(lexeme_table, NULL_VALUE, sizeof(lexeme_table));
-
-    insert_lexeme("int");
-    insert_lexeme("float");
-    insert_lexeme("bool");
-    insert_lexeme("char");
 }
 
-void insert_lexeme(const char* lexeme) {
+int insert_lexeme(const char* lexeme) {
     int length = strlen(lexeme);
     int hash_code = get_hash_value(hash_function(lexeme, length));
     int prev_index = NULL_VALUE;
@@ -38,7 +33,8 @@ void insert_lexeme(const char* lexeme) {
         hash_code = lexeme_table[hash_code].next;
     }
 
-    if (hash_code != NULL_VALUE) return;
+
+    if (hash_code != NULL_VALUE) return hash_code;
     else hash_code = lexeme_table_size;
 
     Lexeme new_lexeme = construct_lexeme(lexeme, length, NULL_VALUE);
@@ -46,6 +42,8 @@ void insert_lexeme(const char* lexeme) {
 
     if (prev_index != NULL_VALUE) lexeme_table[prev_index].next = hash_code;
     lexeme_table[lexeme_table_size++] = new_lexeme;
+
+    return hash_code;
 }
 
 

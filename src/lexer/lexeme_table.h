@@ -18,7 +18,7 @@ typedef struct {
 
 void init_lexeme_table();
 
-void insert_lexeme(const char* lexeme);
+int insert_lexeme(const char* lexeme);
 
 void print_lexeme_table();
 

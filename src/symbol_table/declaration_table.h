@@ -15,6 +15,8 @@ typedef enum
     TYPE_VAR,
     TYPE_STRUCT,
     TYPE_ARRAY,
+    TYPE_PROC,
+    TYPE_FUNC
 } Nature;
 
 typedef struct {
@@ -28,7 +30,9 @@ typedef struct {
 
 void init_declaration_table();
 
-void insert_declaration(Nature nature, int next, int region, int description, int execution);
+void insert_declaration(int index, Nature nature, int region, int description, int execution);
+
+void insert_declaration_var(int lexeme_lexicographic_index, int type_lexicographic_index);
 
 void print_declaration_table();
 

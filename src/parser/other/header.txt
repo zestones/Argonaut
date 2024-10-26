@@ -20,3 +20,8 @@
     int current_lexeme_code;
 %}
 
+%union {
+	int lexicographic_index;
+    int ival;
+}
+
