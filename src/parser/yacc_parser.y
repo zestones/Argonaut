@@ -89,7 +89,8 @@ procedure_declaration: PROCEDURE IDENTIFIER OPEN_PARENTHESIS parameter_list CLOS
 
 type_declaration: TYPE IDENTIFIER TWO_POINTS STRUCT START complex_type_fields END FSTRUCT SEMICOLON
                   { insert_declaration_struct($2, $1); }
-                | TYPE IDENTIFIER TWO_POINTS ARRAY dimension OF type_name SEMICOLON 
+                | TYPE IDENTIFIER TWO_POINTS ARRAY dimension OF type SEMICOLON 
+                  { insert_declaration_array($2, $7); }
                 ;
 
 argument_list: argument_list COMMA expression
@@ -138,11 +139,8 @@ complex_type_fields: type_field
                    | complex_type_fields type_field 
                    ;
 
-type_field: IDENTIFIER TWO_POINTS type_name SEMICOLON 
+type_field: IDENTIFIER TWO_POINTS type SEMICOLON 
           ;
-
-type_name: type
-         ;
 
 function_call_expression: IDENTIFIER OPEN_PARENTHESIS argument_list CLOSE_PARENTHESIS 
                         ;
