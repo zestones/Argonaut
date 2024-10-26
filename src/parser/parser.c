@@ -34,7 +34,7 @@ void yyerror(const char *s) {
 
 static void initialize_tables() {
     int lexicographic_index = 0;
-    
+
     init_hash_table();
     init_lexeme_table();
     init_declaration_table();
@@ -60,7 +60,6 @@ static void initialize_parser() {
 int yyrun() {
     initialize_parser();
     int parse_result = yyparse(); 
-    // cleanup_parser();
 
     return parse_result;
 }

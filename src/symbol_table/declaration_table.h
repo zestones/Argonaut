@@ -34,6 +34,8 @@ void insert_declaration(int index, Nature nature, int region, int description, i
 
 void insert_declaration_var(int lexeme_lexicographic_index, int type_lexicographic_index);
 
+void insert_declaration_struct(int lexeme_lexicographic_index, int type_lexicographic_index);
+
 void print_declaration_table();
 
 static inline char *nature_to_string(Nature nature)

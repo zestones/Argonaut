@@ -20,8 +20,7 @@ Declaration construct_declaration(Nature nature, int next, int region, int descr
     return new_declaration;
 }
 
-void init_declaration_table()
-{
+void init_declaration_table() {
     memset(declaration_table, NULL_VALUE, sizeof(declaration_table));
 }
 
@@ -39,37 +38,32 @@ void insert_declaration_var(int lexeme_lexicographic_index, int type_lexicograph
     insert_declaration(lexeme_lexicographic_index, TYPE_VAR, NULL_VALUE, type_lexicographic_index, NULL_VALUE);  
 }
 
-void insert_declaration_struct(int next, int region, int description, int execution) {
-    insert_declaration(TYPE_STRUCT, next, region, description, execution);
-}
-
-void insert_declaration_array(int next, int region, int description, int execution) {
-    insert_declaration(TYPE_ARRAY, next, region, description, execution);
+void insert_declaration_struct(int lexeme_lexicographic_index, int type_lexicographic_index) {
+    insert_declaration(lexeme_lexicographic_index, TYPE_STRUCT, NULL_VALUE, type_lexicographic_index, NULL_VALUE);
 }
 
 void insert_declaration_fonc_or_proc(int next, int region, int description, int execution) {
-    insert_declaration(TYPE_FUNC, next, region, description, execution);
 }
-
 
 void print_declaration_table() {
     const int col_width_index = 10;
-    const int col_width_nature = 10;
+    const int col_width_nature = 15;
     const int col_width_next = 10;
-    const int col_width_region = 10;
-    const int col_width_description = 10;
-    const int col_width_execution = 10;
+    const int col_width_region = 15;
+    const int col_width_description = 15;
+    const int col_width_execution = 15;
 
-    fprintf(stdout, COLOR_BOLD "\nDeclaration table:\n" COLOR_RESET);
+    print_table_title("Declaration Table");
     print_table_separator(6, col_width_index, col_width_nature, col_width_next, col_width_region, col_width_description, col_width_execution);
     print_table_header(6, col_width_index, "Index", col_width_nature, "Nature", col_width_next, "Suivant", col_width_region, "Région", col_width_description, "Description", col_width_execution, "Exécution");
     print_table_separator(6, col_width_index, col_width_nature, col_width_next, col_width_region, col_width_description, col_width_execution);
 
     for (int i = 0; i < MAX_DECLARATION_COUNT; i++) {
         if (declaration_table[i].nature == NULL_VALUE) continue;
-
-        char region_str[10], next_str[10], index_str[10];
-        char description_str[10], execution_str[10], nature_str[10];
+        
+        int char_length = 20;
+        char region_str[char_length], next_str[char_length], index_str[char_length];
+        char description_str[char_length], execution_str[char_length], nature_str[char_length];
 
         sprintf(region_str, "%d", declaration_table[i].region);
         sprintf(next_str, "%d", declaration_table[i].next);

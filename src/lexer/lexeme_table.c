@@ -48,15 +48,12 @@ int insert_lexeme(const char* lexeme) {
 
 
 void print_lexeme_table() {
-    const int col_width_index = 10;
-    const int col_width_lexeme = 20;
-    const int col_width_length = 10;
-    const int col_width_next = 10;
+    const int cols_width[] = {10, 20, 10, 10};
 
-    fprintf(stdout, COLOR_BOLD "\nLexeme Table:\n" COLOR_RESET);
-    print_table_separator(4, col_width_index, col_width_lexeme, col_width_length, col_width_next);
-    print_table_header(4, col_width_index, "Index", col_width_lexeme, "Lexeme", col_width_length, "Length", col_width_next, "Next");
-    print_table_separator(4, col_width_index, col_width_lexeme, col_width_length, col_width_next);
+    print_table_title("Lexeme Table");
+    print_table_separator(4, cols_width[0], cols_width[1], cols_width[2], cols_width[3]);
+    print_table_header(4, cols_width[0], "Index", cols_width[1], "Lexeme", cols_width[2], "Length", cols_width[3], "Next");
+    print_table_separator(4, cols_width[0], cols_width[1], cols_width[2], cols_width[3]);
 
     for (int i = 0; i < lexeme_table_size; i++) {
         char length_str[10], next_str[10], index_str[10];
@@ -65,12 +62,12 @@ void print_lexeme_table() {
         sprintf(index_str, "%d", i);
 
         print_table_row(4, 
-                        col_width_index, index_str,
-                        col_width_lexeme, lexeme_table[i].lexeme,
-                        col_width_length, length_str,
-                        col_width_next, next_str
+                        cols_width[0], index_str,
+                        cols_width[1], lexeme_table[i].lexeme,
+                        cols_width[2], length_str,
+                        cols_width[3], next_str
                     );
     }
 
-    print_table_separator(4, col_width_index, col_width_lexeme, col_width_length, col_width_next);
+    print_table_separator(4, cols_width[0], cols_width[1], cols_width[2], cols_width[3]);
 }

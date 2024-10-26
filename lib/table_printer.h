@@ -4,7 +4,20 @@
 #include "colors.h"
 #include <stdarg.h>
 #include <stdio.h>
+#include <string.h>
 
+static inline void print_table_title(const char* title) {
+    int title_length = strlen(title);
+    int total_length = title_length + 4;
+
+    printf("\n+");
+    for (int i = 0; i < total_length; i++) {
+        printf("-");
+    }
+
+    printf("+\n");
+    printf("|" " %-*s " "|\n", total_length - 2, title);
+}
 
 static inline void print_table_separator(int num_columns, ...) {
     va_list args;
