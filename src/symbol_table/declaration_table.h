@@ -36,7 +36,7 @@ void insert_declaration_var(int lexeme_lexicographic_index, int type_lexicograph
 
 void insert_declaration_struct(int lexeme_lexicographic_index, int type_lexicographic_index);
 
-void insert_declaration_array(int lexeme_lexicographic_index, int type_lexicographic_index);
+void insert_declaration_array(int lexeme_lexicographic_index, int description);
 
 void print_declaration_table();
 

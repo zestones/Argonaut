@@ -1,5 +1,6 @@
 %{
     #include "../symbol_table/declaration_table.h"
+    #include "../table_management/array_manager.h"
     #include "../lexer/lexeme_table.h"
     #include "../utils/hash.h"
 

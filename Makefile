@@ -11,8 +11,8 @@ all: compilateur simple-clean
 
 install: sudo apt install flex bison
 
-compilateur: lexer parser parser.o hash.o lexeme_table.o declaration_table.o
-	$(CC) $(BIN_DIR)/lex.yy.c $(BIN_DIR)/y.tab.c parser.o hash.o lexeme_table.o declaration_table.o -I$(INCLUDE_DIR) -o compilateur.exe
+compilateur: lexer parser parser.o hash.o lexeme_table.o declaration_table.o representation_table.o array_manager.o
+	$(CC) $(BIN_DIR)/lex.yy.c $(BIN_DIR)/y.tab.c parser.o hash.o lexeme_table.o declaration_table.o representation_table.o array_manager.o -I$(INCLUDE_DIR) -o compilateur.exe
 
 lexer: src/lexer/lexer.l 
 	$(LEX) -o $(BIN_DIR)/lex.yy.c src/lexer/lexer.l
@@ -29,6 +29,12 @@ lexeme_table.o: src/lexer/lexeme_table.c
 
 declaration_table.o: src/symbol_table/declaration_table.c
 	$(CC) -c src/symbol_table/declaration_table.c
+
+representation_table.o: src/symbol_table/representation_table.c
+	$(CC) -c src/symbol_table/representation_table.c
+
+array_manager.o: src/table_management/array_manager.c
+	$(CC) -c src/table_management/array_manager.c
 
 # -- UTILS -- #
 

@@ -10,7 +10,7 @@
 #include "../utils/utils.h"
 #include "../lexer/lexeme_table.h"
 #include "../symbol_table/declaration_table.h"
-
+#include "../symbol_table/representation_table.h"
 
 
 extern int error_line;

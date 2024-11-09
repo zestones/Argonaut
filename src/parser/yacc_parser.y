@@ -1,5 +1,6 @@
 %{
     #include "../symbol_table/declaration_table.h"
+    #include "../table_management/array_manager.h"
     #include "../lexer/lexeme_table.h"
     #include "../utils/hash.h"
 
@@ -87,10 +88,11 @@ function_declaration: FUNCTION IDENTIFIER OPEN_PARENTHESIS parameter_list CLOSE_
 
 procedure_declaration: PROCEDURE IDENTIFIER OPEN_PARENTHESIS parameter_list CLOSE_PARENTHESIS START declaration_list statement_list END ;
 
+// TODO: fix the insertion of the struct and array types as the description is the lex index type !!
 type_declaration: TYPE IDENTIFIER TWO_POINTS STRUCT START complex_type_fields END FSTRUCT SEMICOLON
                   { insert_declaration_struct($2, $1); }
-                | TYPE IDENTIFIER TWO_POINTS ARRAY dimension OF type SEMICOLON 
-                  { insert_declaration_array($2, $7); }
+                | TYPE IDENTIFIER TWO_POINTS ARRAY { construct_array_manager_context($2); declaration_array_start(); } dimension OF type SEMICOLON { declaration_array_end(); }
+                  
                 ;
 
 argument_list: argument_list COMMA expression
@@ -109,7 +111,9 @@ dimension: OPEN_BRACKET list_dimensions CLOSE_BRACKET
 list_dimensions: one_dimension
                | list_dimensions COMMA one_dimension ;
 
-one_dimension: INTEGER DOT_DOT INTEGER ;
+one_dimension: INTEGER DOT_DOT INTEGER 
+              { array_add_dimension($1, $3); }
+              ;
 
 // Arithmetic expressions
 expression: expression PLUS expression

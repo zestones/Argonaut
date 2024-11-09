@@ -1,7 +1,6 @@
 #include "../../lib/table_printer.h"
 #include "../../lib/colors.h" 
 
-#include "../../lib/colors.h"
 #include "declaration_table.h"
 #include "../utils/utils.h"
 
@@ -30,6 +29,7 @@ void insert_declaration(int index, Nature nature, int region, int description, i
         exit(EXIT_FAILURE);
     }
 
+    // TODO: ZONE DE DEBORDEMENT NON GÉRÉE
     declaration_table[index] = construct_declaration(nature, NULL_VALUE, region, description, execution);
     declaration_table_size++;
 }
@@ -42,8 +42,8 @@ void insert_declaration_struct(int lexeme_lexicographic_index, int type_lexicogr
     insert_declaration(lexeme_lexicographic_index, TYPE_STRUCT, NULL_VALUE, type_lexicographic_index, NULL_VALUE);
 }
 
-void insert_declaration_array(int lexeme_lexicographic_index, int type_lexicographic_index) {
-    insert_declaration(lexeme_lexicographic_index, TYPE_ARRAY, NULL_VALUE, type_lexicographic_index, NULL_VALUE);
+void insert_declaration_array(int lexeme_lexicographic_index, int description) {
+    insert_declaration(lexeme_lexicographic_index, TYPE_ARRAY, NULL_VALUE, description, NULL_VALUE);
 }
 
 void insert_declaration_fonc_or_proc(int next, int region, int description, int execution) {
