@@ -25,7 +25,7 @@ void declaration_func_start() {
     insert_declaration_func(context.index_func_proc_name_lexicographic, context.index_number_of_parameters_representation);
 }
 
-void func_add_parameter(int index_lexeme_lexicographic, int index_type_lexicographic) {
+void func_proc_add_parameter(int index_lexeme_lexicographic, int index_type_lexicographic) {
     // * The Parameter is a base type (int, float, char, etc) thus tdec index = tlex index * //
     int index_type_declaration = index_lexeme_lexicographic;
     
@@ -35,14 +35,12 @@ void func_add_parameter(int index_lexeme_lexicographic, int index_type_lexicogra
     context.number_of_parameters++;
 
     // TODO: insert the type of the parameter in the declaration table (! NOT A VARIABLE)
-    insert_declaration_var(index_lexeme_lexicographic, index_type_lexicographic);
+    insert_declaration_param(index_lexeme_lexicographic, index_type_lexicographic);
 }
 
 void declaration_func_end(int index_return_type_lexicographic) {
     context.index_return_type_lexicographic = index_return_type_lexicographic;
     
-    update_representation(context.index_number_of_parameters_representation, context.number_of_parameters);
     update_representation(context.index_return_type_representation, context.index_return_type_lexicographic);
+    update_representation(context.index_number_of_parameters_representation, context.number_of_parameters);
 }
-
-// TODO: Procedure management

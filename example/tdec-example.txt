@@ -33,7 +33,7 @@ PROG
         }
     }
 
-    func myfunction(a : int, b : int) -> char
+    func myfunction(a : int, b : bool) -> char
     {
         var z : int;
         z := a + b;

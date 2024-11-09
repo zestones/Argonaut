@@ -16,7 +16,8 @@ typedef enum
     TYPE_STRUCT,
     TYPE_ARRAY,
     TYPE_PROC,
-    TYPE_FUNC
+    TYPE_FUNC,
+    TYPE_PARAM
 } Nature;
 
 typedef struct {
@@ -33,6 +34,8 @@ void init_declaration_table();
 void insert_declaration(int index, Nature nature, int region, int description, int execution);
 
 void insert_declaration_var(int lexeme_lexicographic_index, int type_lexicographic_index);
+
+void insert_declaration_param(int lexeme_lexicographic_index, int type_lexicographic_index);
 
 void insert_declaration_struct(int lexeme_lexicographic_index, int type_lexicographic_index);
 
@@ -54,6 +57,7 @@ static inline char *nature_to_string(Nature nature)
         case TYPE_ARRAY: return "TYPE_ARRAY";
         case TYPE_PROC: return "TYPE_PROC";
         case TYPE_FUNC: return "TYPE_FUNC";
+        case TYPE_PARAM: return "TYPE_PARAM";
 
         default: return "UNKNOWN";
     }

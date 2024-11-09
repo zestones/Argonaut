@@ -38,6 +38,10 @@ void insert_declaration_var(int lexeme_lexicographic_index, int type_lexicograph
     insert_declaration(lexeme_lexicographic_index, TYPE_VAR, NULL_VALUE, type_lexicographic_index, NULL_VALUE);  
 }
 
+void insert_declaration_param(int lexeme_lexicographic_index, int type_lexicographic_index) {
+    insert_declaration(lexeme_lexicographic_index, TYPE_PARAM, NULL_VALUE, type_lexicographic_index, NULL_VALUE);
+}
+
 void insert_declaration_struct(int lexeme_lexicographic_index, int type_lexicographic_index) {
     insert_declaration(lexeme_lexicographic_index, TYPE_STRUCT, NULL_VALUE, type_lexicographic_index, NULL_VALUE);
 }
