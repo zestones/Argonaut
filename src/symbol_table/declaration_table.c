@@ -1,11 +1,13 @@
 #include "../../lib/table_printer.h"
 #include "../../lib/colors.h" 
 
+#include "../lexer/lexeme_table.h"
 #include "declaration_table.h"
 #include "../utils/utils.h"
 
 static Declaration declaration_table[MAX_DECLARATION_COUNT];
 static int declaration_table_size = 0;
+static int overflow_zone_size = MAX_LEXEME_COUNT;
 
 Declaration construct_declaration(Nature nature, int next, int region, int description, int execution) {
     Declaration new_declaration;
@@ -23,15 +25,37 @@ void init_declaration_table() {
     memset(declaration_table, NULL_VALUE, sizeof(declaration_table));
 }
 
+static void insert_declaration_overflow_zone(int index, Nature nature, int region, int description, int execution) {
+    if (overflow_zone_size >= MAX_DECLARATION_COUNT) {
+        fprintf(stderr, COLOR_RED "<Error> Declaration table overflow zone is full\n" COLOR_RESET);
+        exit(EXIT_FAILURE);
+    }
+
+    int previous_index = index;
+    declaration_table[overflow_zone_size] = construct_declaration(nature, NULL_VALUE, region, description, execution);
+    
+    while (declaration_table[previous_index].next != NULL_VALUE) {
+        previous_index = declaration_table[previous_index].next;
+    }
+
+    declaration_table[previous_index].next = overflow_zone_size;
+    overflow_zone_size++;
+}
+
 void insert_declaration(int index, Nature nature, int region, int description, int execution) {
-    if (declaration_table_size >= MAX_DECLARATION_COUNT) {
+    if (declaration_table_size >= MAX_LEXEME_COUNT) {
         fprintf(stderr, COLOR_RED "<Error> Declaration table is full\n" COLOR_RESET);
         exit(EXIT_FAILURE);
     }
 
-    // TODO: ZONE DE DEBORDEMENT NON GÉRÉE
-    declaration_table[index] = construct_declaration(nature, NULL_VALUE, region, description, execution);
-    declaration_table_size++;
+    // If the index is empty, insert the declaration otherwise insert it in the overflow zone //
+    if (declaration_table[index].nature == NULL_VALUE) {
+        declaration_table[index] = construct_declaration(nature, NULL_VALUE, region, description, execution);
+        declaration_table_size++;
+    } 
+    else {
+        insert_declaration_overflow_zone(index, nature, region, description, execution);
+    }
 }
 
 void insert_declaration_var(int lexeme_lexicographic_index, int type_lexicographic_index) {

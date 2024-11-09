@@ -90,7 +90,6 @@ function_declaration: FUNCTION IDENTIFIER { construct_func_proc_manager_context(
 
 procedure_declaration: PROCEDURE IDENTIFIER { construct_func_proc_manager_context($2); declaration_proc_start(); } OPEN_PARENTHESIS parameter_list CLOSE_PARENTHESIS { declaration_proc_end(); } START declaration_list statement_list END ;
 
-// TODO: fix the insertion of the struct and array types as the description is the lex index type !!
 type_declaration: TYPE IDENTIFIER TWO_POINTS STRUCT START complex_type_fields END FSTRUCT SEMICOLON
                   { insert_declaration_struct($2, $1); }
                 | TYPE IDENTIFIER TWO_POINTS ARRAY { construct_array_manager_context($2); declaration_array_start(); } dimension OF type SEMICOLON { declaration_array_end(); }

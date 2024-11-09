@@ -18,15 +18,8 @@ void construct_func_proc_manager_context(int index_func_proc_name_lexicographic)
     context.index_func_proc_name_lexicographic = index_func_proc_name_lexicographic;
 }
 
-void declaration_func_start() {
-    context.index_number_of_parameters_representation = insert_representation(context.number_of_parameters);
-    context.index_return_type_representation = insert_representation(context.index_return_type_lexicographic);
-
-    insert_declaration_func(context.index_func_proc_name_lexicographic, context.index_number_of_parameters_representation);
-}
-
 void func_proc_add_parameter(int index_lexeme_lexicographic, int index_type_lexicographic) {
-    // * The Parameter is a base type (int, float, char, etc) thus tdec index = tlex index * //
+    // The Parameter is a base type (int, float, char, etc) thus tdec index = tlex index //
     int index_type_declaration = index_lexeme_lexicographic;
     
     insert_representation(index_type_lexicographic);
@@ -37,9 +30,25 @@ void func_proc_add_parameter(int index_lexeme_lexicographic, int index_type_lexi
     insert_declaration_param(index_lexeme_lexicographic, index_type_lexicographic);
 }
 
+void declaration_func_start() {
+    context.index_number_of_parameters_representation = insert_representation(context.number_of_parameters);
+    context.index_return_type_representation = insert_representation(context.index_return_type_lexicographic);
+
+    insert_declaration_func(context.index_func_proc_name_lexicographic, context.index_number_of_parameters_representation);
+}
+
 void declaration_func_end(int index_return_type_lexicographic) {
     context.index_return_type_lexicographic = index_return_type_lexicographic;
     
     update_representation(context.index_return_type_representation, context.index_return_type_lexicographic);
+    update_representation(context.index_number_of_parameters_representation, context.number_of_parameters);
+}
+
+void declaration_proc_start() {
+    context.index_number_of_parameters_representation = insert_representation(context.number_of_parameters);
+    insert_declaration_proc(context.index_func_proc_name_lexicographic, context.index_number_of_parameters_representation);
+}
+
+void declaration_proc_end() {
     update_representation(context.index_number_of_parameters_representation, context.number_of_parameters);
 }

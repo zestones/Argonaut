@@ -21,7 +21,7 @@ PROG
     var i : float;
     var j : int;
 
-    proc a() 
+    proc a(marwan: int) 
     {
         type personne : array[1 .. 10] of float;
         
@@ -32,13 +32,5 @@ PROG
             var T : int;
         }
     }
-
-    func myfunction(a : int, b : bool) -> char
-    {
-        var z : int;
-        z := a + b;
-
-        return z;
-    }
-
+    
 a();

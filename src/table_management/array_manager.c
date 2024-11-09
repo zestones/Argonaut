@@ -19,7 +19,7 @@ void construct_array_manager_context(int index_lexeme_lexicographic) {
 }
 
 void declaration_array_start() {
-    // TODO: index_type_declaration is WRONG, should the index type of the declaration table (! NOT THE LEXICOGRAPHIC INDEX) 
+    // TODO: index_type_declaration is WRONG, should be the index type of the declaration table (! NOT THE LEXICOGRAPHIC INDEX) 
     insert_declaration_array(context.index_lexeme_lexicographic, insert_representation(context.index_type_declaration));
     context.index_number_of_dimensions_representation = insert_representation(context.number_of_dimensions);
 }
