@@ -38,6 +38,10 @@ void insert_declaration_struct(int lexeme_lexicographic_index, int type_lexicogr
 
 void insert_declaration_array(int lexeme_lexicographic_index, int description);
 
+void insert_declaration_proc(int lexeme_lexicographic_index, int description);
+
+void insert_declaration_func(int lexeme_lexicographic_index, int description);
+
 void print_declaration_table();
 
 static inline char *nature_to_string(Nature nature)
@@ -48,7 +52,9 @@ static inline char *nature_to_string(Nature nature)
         case TYPE_VAR:  return "TYPE_VAR";
         case TYPE_STRUCT: return "TYPE_STRUCT";
         case TYPE_ARRAY: return "TYPE_ARRAY";
-        
+        case TYPE_PROC: return "TYPE_PROC";
+        case TYPE_FUNC: return "TYPE_FUNC";
+
         default: return "UNKNOWN";
     }
 }

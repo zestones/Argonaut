@@ -23,7 +23,7 @@ PROG
 
     proc a() 
     {
-        type personne : array[1 .. 10] of int;
+        type personne : array[1 .. 10] of float;
         
         proc b()
         {
@@ -31,6 +31,14 @@ PROG
             var p : personne;
             var T : int;
         }
+    }
+
+    func myfunction(a : int, b : int) -> char
+    {
+        var z : int;
+        z := a + b;
+
+        return z;
     }
 
 a();

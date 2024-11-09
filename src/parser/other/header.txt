@@ -1,6 +1,8 @@
 %{
-    #include "../symbol_table/declaration_table.h"
+    #include "../table_management/func_proc_manager.h"
     #include "../table_management/array_manager.h"
+
+    #include "../symbol_table/declaration_table.h"
     #include "../lexer/lexeme_table.h"
     #include "../utils/hash.h"
 

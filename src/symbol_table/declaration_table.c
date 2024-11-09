@@ -46,7 +46,12 @@ void insert_declaration_array(int lexeme_lexicographic_index, int description) {
     insert_declaration(lexeme_lexicographic_index, TYPE_ARRAY, NULL_VALUE, description, NULL_VALUE);
 }
 
-void insert_declaration_fonc_or_proc(int next, int region, int description, int execution) {
+void insert_declaration_proc(int lexeme_lexicographic_index, int description) {
+    insert_declaration(lexeme_lexicographic_index, TYPE_PROC, NULL_VALUE, description, NULL_VALUE);
+}
+
+void insert_declaration_func(int lexeme_lexicographic_index, int description) {
+    insert_declaration(lexeme_lexicographic_index, TYPE_FUNC, NULL_VALUE, description, NULL_VALUE);
 }
 
 void print_declaration_table() {

@@ -1,6 +1,8 @@
 %{
-    #include "../symbol_table/declaration_table.h"
+    #include "../table_management/func_proc_manager.h"
     #include "../table_management/array_manager.h"
+
+    #include "../symbol_table/declaration_table.h"
     #include "../lexer/lexeme_table.h"
     #include "../utils/hash.h"
 
@@ -84,9 +86,9 @@ variable_declaration: VARIABLE IDENTIFIER TWO_POINTS type SEMICOLON
                       { insert_declaration_var($2, $4); }
                     ;
 
-function_declaration: FUNCTION IDENTIFIER OPEN_PARENTHESIS parameter_list CLOSE_PARENTHESIS RETURN_TYPE type START declaration_list statement_list return_statement END ;
+function_declaration: FUNCTION IDENTIFIER { construct_func_proc_manager_context($2); declaration_func_start(); } OPEN_PARENTHESIS parameter_list CLOSE_PARENTHESIS RETURN_TYPE type { declaration_func_end($8); } START declaration_list statement_list return_statement END ;
 
-procedure_declaration: PROCEDURE IDENTIFIER OPEN_PARENTHESIS parameter_list CLOSE_PARENTHESIS START declaration_list statement_list END ;
+procedure_declaration: PROCEDURE IDENTIFIER { construct_func_proc_manager_context($2); } OPEN_PARENTHESIS parameter_list CLOSE_PARENTHESIS START declaration_list statement_list END ;
 
 // TODO: fix the insertion of the struct and array types as the description is the lex index type !!
 type_declaration: TYPE IDENTIFIER TWO_POINTS STRUCT START complex_type_fields END FSTRUCT SEMICOLON
@@ -103,7 +105,8 @@ parameter_list: parameter_list COMMA parameter
     | parameter
     | ;
 
-parameter: IDENTIFIER TWO_POINTS type ;
+parameter: IDENTIFIER TWO_POINTS type { func_add_parameter($1, $3); }
+         ;
 
 dimension: OPEN_BRACKET list_dimensions CLOSE_BRACKET 
          ;
