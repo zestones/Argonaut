@@ -12,9 +12,7 @@ typedef struct array_manager_context
     int index_current_type_lexicographic;
 
     int number_of_dimensions;
-    int index_start_representation;
-    int index_number_of_dimensions_representation;
-    int index_end_representation;
+    int index_number_of_dimensions_in_representation_table;
 } array_manager_context;
 
 void construct_array_manager_context(int current_lexeme_lexicographic_index);
