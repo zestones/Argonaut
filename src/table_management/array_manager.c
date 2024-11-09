@@ -25,8 +25,6 @@ void declaration_array_start() {
 }
 
 void array_add_dimension(int min, int max) {
-    // TODO: update the number of dimensions in the representation table
-    // TODO: insert the min and max values in the representation table 
     context.number_of_dimensions++;
 
     insert_representation(min);

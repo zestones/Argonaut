@@ -34,7 +34,6 @@ void func_proc_add_parameter(int index_lexeme_lexicographic, int index_type_lexi
     
     context.number_of_parameters++;
 
-    // TODO: insert the type of the parameter in the declaration table (! NOT A VARIABLE)
     insert_declaration_param(index_lexeme_lexicographic, index_type_lexicographic);
 }
 
