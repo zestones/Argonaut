@@ -7,10 +7,7 @@
 typedef struct array_manager_context
 {
     int array_size;
-
     int index_array_name_lexicographic;
-    int index_type_lexicographic;
-    int index_type_declaration;
 
     int number_of_dimensions;
     int index_number_of_dimensions_representation;

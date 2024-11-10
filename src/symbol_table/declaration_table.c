@@ -82,7 +82,7 @@ void insert_declaration_func(int index, int region, int description) {
     insert_declaration(index, TYPE_FUNC, region, description, region);
 }
 
-static int is_nature_defined(int nature) {
+static int is_nature_defined(Nature nature) {
     return (nature == TYPE_FUNC || nature == TYPE_PROC || nature == TYPE_BASE || nature == TYPE_STRUCT || nature == TYPE_ARRAY || nature == TYPE_VAR);
 }
 
@@ -90,11 +90,11 @@ static int is_base_type(int tlex_index) {
     return (declaration_table[tlex_index].nature == TYPE_BASE);
 }
 
+// ! FIXME: The search should search for current region first and then check all enclosing regions
 int find_declaration_index(int tlex_index, int region) {
     int index = tlex_index;
 
     if (is_base_type(tlex_index)) return tlex_index;
-
     while (index != NULL_VALUE) {
         if (declaration_table[index].region == region && is_nature_defined(declaration_table[index].nature)) {
             return index;
@@ -103,6 +103,7 @@ int find_declaration_index(int tlex_index, int region) {
         index = declaration_table[index].next;
     }
 
+    // TODO: Use error handling instead of printing to stderr (yyerror)
     fprintf(stderr, COLOR_RED "<Error> Declaration not found for tlex_index %d in region %d\n" COLOR_RESET, tlex_index, region);
     return NULL_VALUE;
 }

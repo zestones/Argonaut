@@ -93,7 +93,7 @@ function_declaration: FUNCTION IDENTIFIER { construct_func_proc_manager_context(
 procedure_declaration: PROCEDURE IDENTIFIER { construct_func_proc_manager_context($2); declaration_proc_start(); } OPEN_PARENTHESIS parameter_list CLOSE_PARENTHESIS START declaration_list statement_list END { declaration_proc_end(); } ;
 
 type_declaration: TYPE IDENTIFIER TWO_POINTS STRUCT { construct_structure_manager_context($2); } START { declaration_structure_start(); } complex_type_fields END FSTRUCT SEMICOLON { declaration_structure_end(); }
-                | TYPE IDENTIFIER TWO_POINTS ARRAY { construct_array_manager_context($2); } dimension OF type { declaration_array_start($8); } SEMICOLON { declaration_array_end(); }
+                | TYPE IDENTIFIER TWO_POINTS ARRAY { construct_array_manager_context($2); declaration_array_start(); } dimension OF type SEMICOLON { declaration_array_end($8); }
                 ;
 
 argument_list: argument_list COMMA expression

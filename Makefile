@@ -5,7 +5,7 @@
 # ---------------------------------------------------- #
 
 CC = gcc
-CFLAGS = -W -Wall -pedantic -std=c99 -O3
+CFLAGS = -g -W -Wall -pedantic -std=c99 -O3
 LEX = lex
 YACC = yacc
 
