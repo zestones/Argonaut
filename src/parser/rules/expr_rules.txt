@@ -3,27 +3,33 @@ expression: expression PLUS expression
           | expression MINUS expression
           | expression MULTIPLY expression
           | expression DIVIDE expression
-          | expression_atom ;
+          | expression_atom 
+          ;
 
 expression_atom: function_call_expression  
                | IDENTIFIER
                | INTEGER
                | FLOAT
-               | OPEN_PARENTHESIS expression CLOSE_PARENTHESIS ;
+               | OPEN_PARENTHESIS expression CLOSE_PARENTHESIS 
+               ;
 
-type: INTEGER
-    | FLOAT
-    | BOOLEAN
-    | CHARACTER
-    | STRING OPEN_BRACKET INTEGER CLOSE_BRACKET ;
+// TODO : is there a better way to assign the lexicographic_index to the base type?
+type: INTEGER { $$ = 0;}
+    | FLOAT   { $$ = 1;}
+    | BOOLEAN { $$ = 2;}
+    | CHARACTER { $$ = 3;}
+    | STRING OPEN_BRACKET INTEGER CLOSE_BRACKET // HELP I DONT KNOW HOW TO HANDLE THIS
+    | IDENTIFIER 
+    ;
 
 complex_type_fields: type_field
-                   | complex_type_fields type_field ;
+                   | complex_type_fields type_field 
+                   ;
 
-type_field: IDENTIFIER TWO_POINTS type_name SEMICOLON ;
+type_field: IDENTIFIER TWO_POINTS type SEMICOLON 
+          ;
 
-type_name: type
-         | IDENTIFIER ;
+function_call_expression: IDENTIFIER OPEN_PARENTHESIS argument_list CLOSE_PARENTHESIS 
+                        ;
 
-function_call_expression: IDENTIFIER OPEN_PARENTHESIS argument_list CLOSE_PARENTHESIS ;
 

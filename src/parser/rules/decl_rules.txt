@@ -9,16 +9,18 @@ declaration: variable_declaration
            ;
 
 variable_declaration: VARIABLE IDENTIFIER TWO_POINTS type SEMICOLON 
-                     ;
+                      { insert_declaration_var($2, $4); }
+                    ;
 
-function_declaration: FUNCTION IDENTIFIER OPEN_PARENTHESIS parameter_list CLOSE_PARENTHESIS RETURN_TYPE type START declaration_list statement_list return_statement END ;
+function_declaration: FUNCTION IDENTIFIER { construct_func_proc_manager_context($2); declaration_func_start(); } OPEN_PARENTHESIS parameter_list CLOSE_PARENTHESIS RETURN_TYPE type { declaration_func_end($8); } START declaration_list statement_list return_statement END ;
 
-procedure_declaration: PROCEDURE IDENTIFIER OPEN_PARENTHESIS parameter_list CLOSE_PARENTHESIS START declaration_list statement_list END ;
+procedure_declaration: PROCEDURE IDENTIFIER { construct_func_proc_manager_context($2); declaration_proc_start(); } OPEN_PARENTHESIS parameter_list CLOSE_PARENTHESIS { declaration_proc_end(); } START declaration_list statement_list END ;
 
 type_declaration: TYPE IDENTIFIER TWO_POINTS STRUCT START complex_type_fields END FSTRUCT SEMICOLON
-                | TYPE IDENTIFIER TWO_POINTS ARRAY dimension OF type_name SEMICOLON ;
-
-
+                  { insert_declaration_struct($2, $1); }
+                | TYPE IDENTIFIER TWO_POINTS ARRAY { construct_array_manager_context($2); declaration_array_start(); } dimension OF type SEMICOLON { declaration_array_end(); }
+                  
+                ;
 
 argument_list: argument_list COMMA expression
     | expression
@@ -28,14 +30,16 @@ parameter_list: parameter_list COMMA parameter
     | parameter
     | ;
 
-parameter: IDENTIFIER TWO_POINTS type ;
+parameter: IDENTIFIER TWO_POINTS type { func_proc_add_parameter($1, $3); }
+         ;
 
-
-
-dimension: OPEN_BRACKET list_dimensions CLOSE_BRACKET ;
+dimension: OPEN_BRACKET list_dimensions CLOSE_BRACKET 
+         ;
 
 list_dimensions: one_dimension
                | list_dimensions COMMA one_dimension ;
 
-one_dimension: INTEGER DOT_DOT INTEGER ;
+one_dimension: INTEGER DOT_DOT INTEGER 
+              { array_add_dimension($1, $3); }
+              ;
 

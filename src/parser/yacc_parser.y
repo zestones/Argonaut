@@ -1,4 +1,8 @@
 %{
+    #include "../table_management/func_proc_manager.h"
+    #include "../table_management/array_manager.h"
+
+    #include "../symbol_table/declaration_table.h"
     #include "../lexer/lexeme_table.h"
     #include "../utils/hash.h"
 
@@ -19,14 +23,19 @@
     int current_lexeme_code;
 %}
 
+%union {
+	int lexicographic_index;
+    int ival;
+}
+
 
 %token PROG
 %token SEMICOLON TWO_POINTS COMMA DOT_DOT OPEN_PARENTHESIS CLOSE_PARENTHESIS
 %token START END
 %token ARRAY OF OPEN_BRACKET CLOSE_BRACKET
-%token IDENTIFIER VARIABLE OPAFF
+%token VARIABLE OPAFF
 %token STRUCT FSTRUCT
-%token TYPE INTEGER FLOAT BOOLEAN CHARACTER STRING 
+%token <lexicographic_index> IDENTIFIER INTEGER TYPE FLOAT BOOLEAN CHARACTER STRING
 %token PROCEDURE FUNCTION RETURN_TYPE RETURN_VALUE
 %token IF ELSE WHILE
 %token EQUAL NOT_EQUAL LESS_THAN GREATER_THAN LESS_EQUAL GREATER_EQUAL
@@ -36,10 +45,13 @@
 
 %left PLUS MINUS
 %left MULTIPLY DIVIDE
+
+%type <lexicographic_index> type
 %%
 
 program: PROG declaration_list statement_list
-       | ;
+       | 
+       ;
 
 // Conditions and boolean expressions
 condition: OPEN_PARENTHESIS expression comparison_operator expression CLOSE_PARENTHESIS
@@ -71,16 +83,18 @@ declaration: variable_declaration
            ;
 
 variable_declaration: VARIABLE IDENTIFIER TWO_POINTS type SEMICOLON 
-                     ;
+                      { insert_declaration_var($2, $4); }
+                    ;
 
-function_declaration: FUNCTION IDENTIFIER OPEN_PARENTHESIS parameter_list CLOSE_PARENTHESIS RETURN_TYPE type START declaration_list statement_list return_statement END ;
+function_declaration: FUNCTION IDENTIFIER { construct_func_proc_manager_context($2); declaration_func_start(); } OPEN_PARENTHESIS parameter_list CLOSE_PARENTHESIS RETURN_TYPE type { declaration_func_end($8); } START declaration_list statement_list return_statement END ;
 
-procedure_declaration: PROCEDURE IDENTIFIER OPEN_PARENTHESIS parameter_list CLOSE_PARENTHESIS START declaration_list statement_list END ;
+procedure_declaration: PROCEDURE IDENTIFIER { construct_func_proc_manager_context($2); declaration_proc_start(); } OPEN_PARENTHESIS parameter_list CLOSE_PARENTHESIS { declaration_proc_end(); } START declaration_list statement_list END ;
 
 type_declaration: TYPE IDENTIFIER TWO_POINTS STRUCT START complex_type_fields END FSTRUCT SEMICOLON
-                | TYPE IDENTIFIER TWO_POINTS ARRAY dimension OF type_name SEMICOLON ;
-
-
+                  { insert_declaration_struct($2, $1); }
+                | TYPE IDENTIFIER TWO_POINTS ARRAY { construct_array_manager_context($2); declaration_array_start(); } dimension OF type SEMICOLON { declaration_array_end(); }
+                  
+                ;
 
 argument_list: argument_list COMMA expression
     | expression
@@ -90,45 +104,53 @@ parameter_list: parameter_list COMMA parameter
     | parameter
     | ;
 
-parameter: IDENTIFIER TWO_POINTS type ;
+parameter: IDENTIFIER TWO_POINTS type { func_proc_add_parameter($1, $3); }
+         ;
 
-
-
-dimension: OPEN_BRACKET list_dimensions CLOSE_BRACKET ;
+dimension: OPEN_BRACKET list_dimensions CLOSE_BRACKET 
+         ;
 
 list_dimensions: one_dimension
                | list_dimensions COMMA one_dimension ;
 
-one_dimension: INTEGER DOT_DOT INTEGER ;
+one_dimension: INTEGER DOT_DOT INTEGER 
+              { array_add_dimension($1, $3); }
+              ;
 
 // Arithmetic expressions
 expression: expression PLUS expression
           | expression MINUS expression
           | expression MULTIPLY expression
           | expression DIVIDE expression
-          | expression_atom ;
+          | expression_atom 
+          ;
 
 expression_atom: function_call_expression  
                | IDENTIFIER
                | INTEGER
                | FLOAT
-               | OPEN_PARENTHESIS expression CLOSE_PARENTHESIS ;
+               | OPEN_PARENTHESIS expression CLOSE_PARENTHESIS 
+               ;
 
-type: INTEGER
-    | FLOAT
-    | BOOLEAN
-    | CHARACTER
-    | STRING OPEN_BRACKET INTEGER CLOSE_BRACKET ;
+// TODO : is there a better way to assign the lexicographic_index to the base type?
+type: INTEGER { $$ = 0;}
+    | FLOAT   { $$ = 1;}
+    | BOOLEAN { $$ = 2;}
+    | CHARACTER { $$ = 3;}
+    | STRING OPEN_BRACKET INTEGER CLOSE_BRACKET // HELP I DONT KNOW HOW TO HANDLE THIS
+    | IDENTIFIER 
+    ;
 
 complex_type_fields: type_field
-                   | complex_type_fields type_field ;
+                   | complex_type_fields type_field 
+                   ;
 
-type_field: IDENTIFIER TWO_POINTS type_name SEMICOLON ;
+type_field: IDENTIFIER TWO_POINTS type SEMICOLON 
+          ;
 
-type_name: type
-         | IDENTIFIER ;
+function_call_expression: IDENTIFIER OPEN_PARENTHESIS argument_list CLOSE_PARENTHESIS 
+                        ;
 
-function_call_expression: IDENTIFIER OPEN_PARENTHESIS argument_list CLOSE_PARENTHESIS ;
 
 // Statements
 statement_block: START statement_list END ;
@@ -194,11 +216,7 @@ int main(int argc, char **argv) {
                 }
                 
                 yyin = file;
-        
-                init_hash_table();
-                init_lexeme_table();
-                
-                yyparse();
+                yyrun();
 
                 fclose(file);
                 break;
@@ -214,10 +232,6 @@ int main(int argc, char **argv) {
         }
     }
 
-    if (verbose) {
-        print_lexeme_table();
-        print_hash_table();
-    }
-
+    yydebug(verbose);
     return 0;
 }

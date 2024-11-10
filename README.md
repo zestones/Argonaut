@@ -72,7 +72,7 @@
 1. **`/lexer`**: This directory contains code for lexical analysis and lexeme management using a hash table.
 2. **`/parser`**: This holds the YACC grammar file and parser implementation.
 3. **`/ast`**: Implements the abstract syntax tree (AST) to represent the parsed program structure.
-4. **`/symbol_table`**: Manages the declaration table and type representation (for variables, functions, structures).
+4. **`/symbol_table`**: Symbol table is used to store information about the identifiers (symbols).
 5. **`/virtual_machine`**: Implements the virtual machine, which interprets the AST and manages the stack.
 6. **`/data`**: Contains the region table for tracking program regions and their associated data.
 7. **`/utils`**: Utility functions such as hashing and error handling.

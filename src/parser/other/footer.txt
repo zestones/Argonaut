@@ -39,11 +39,7 @@ int main(int argc, char **argv) {
                 }
                 
                 yyin = file;
-        
-                init_hash_table();
-                init_lexeme_table();
-                
-                yyparse();
+                yyrun();
 
                 fclose(file);
                 break;
@@ -59,10 +55,6 @@ int main(int argc, char **argv) {
         }
     }
 
-    if (verbose) {
-        print_lexeme_table();
-        print_hash_table();
-    }
-
+    yydebug(verbose);
     return 0;
 }

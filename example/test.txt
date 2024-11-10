@@ -1,0 +1,6 @@
+PROG 
+var aab : int;
+var baa : int;
+var aba : int;
+
+var aab : float;

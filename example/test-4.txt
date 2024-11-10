@@ -16,3 +16,4 @@ func divise_par_deux(g : int) -> int
 }
 
 a := 2;
+a := fois_deux(a) + divise_par_deux(a);

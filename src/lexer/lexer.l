@@ -75,22 +75,22 @@ letter [a-zA-Z]
 ")"                             { error_column += yyleng; return CLOSE_PARENTHESIS; }
 
 0|[1-9][0-9]* { 
-    yylval = atoi(yytext);
+    yylval.ival = atoi(yytext);
     error_column += yyleng;
     return INTEGER; 
 }
 
 {number}+","{number}+ { 
-    yylval = atof(yytext);
+    yylval.ival = atoi(yytext);
     error_column += yyleng;
     return FLOAT; 
 }
 
 {letter}+({letter}|{number}|"_"|"-")* { 
-    yylval = yytext[0] - 'a';
+    yylval.ival = yytext[0] - 'a';
     error_column += yyleng;
     
-    insert_lexeme(yytext);
+    yylval.lexicographic_index = insert_lexeme(yytext);
     return IDENTIFIER;
 }
 
