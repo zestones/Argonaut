@@ -74,12 +74,12 @@ void insert_declaration_array(int lexeme_lexicographic_index, int description) {
     insert_declaration(lexeme_lexicographic_index, TYPE_ARRAY, NULL_VALUE, description, NULL_VALUE);
 }
 
-void insert_declaration_proc(int lexeme_lexicographic_index, int description) {
-    insert_declaration(lexeme_lexicographic_index, TYPE_PROC, NULL_VALUE, description, NULL_VALUE);
+void insert_declaration_proc(int lexeme_lexicographic_index, int description, int execution) {
+    insert_declaration(lexeme_lexicographic_index, TYPE_PROC, NULL_VALUE, description, execution);
 }
 
-void insert_declaration_func(int lexeme_lexicographic_index, int description) {
-    insert_declaration(lexeme_lexicographic_index, TYPE_FUNC, NULL_VALUE, description, NULL_VALUE);
+void insert_declaration_func(int lexeme_lexicographic_index, int description, int execution) {
+    insert_declaration(lexeme_lexicographic_index, TYPE_FUNC, NULL_VALUE, description, execution);
 }
 
 void print_declaration_table() {
@@ -97,7 +97,11 @@ void print_declaration_table() {
 
     for (int i = 0; i < MAX_DECLARATION_COUNT; i++) {
         if (declaration_table[i].nature == NULL_VALUE) continue;
-        
+        if (i == MAX_LEXEME_COUNT) {
+            print_table_separator(6, col_width_index, col_width_nature, col_width_next, col_width_region, col_width_description, col_width_execution);
+            print_table_separator(6, col_width_index, col_width_nature, col_width_next, col_width_region, col_width_description, col_width_execution);
+        }
+
         int char_length = 20;
         char region_str[char_length], next_str[char_length], index_str[char_length];
         char description_str[char_length], execution_str[char_length], nature_str[char_length];

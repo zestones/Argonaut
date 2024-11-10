@@ -10,6 +10,8 @@ void yydebug(int debug) {
     
     print_declaration_table();
     print_representation_table();
+
+    print_region_table();
 }
 
 void yywarn(const char *s) {
@@ -39,8 +41,11 @@ static void initialize_tables() {
 
     init_hash_table();
     init_lexeme_table();
+    
     init_declaration_table();
     init_representation_table();
+
+    init_region_table();
 
     lexicographic_index = insert_lexeme("int");
     insert_declaration(lexicographic_index, TYPE_BASE, 0, lexicographic_index, 1);
@@ -53,6 +58,8 @@ static void initialize_tables() {
 
     lexicographic_index = insert_lexeme("char");
     insert_declaration(lexicographic_index, TYPE_BASE, 0, lexicographic_index, 1);
+
+    insert_region(0);
 }
 
 static void initialize_parser() {
