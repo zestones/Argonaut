@@ -6,6 +6,7 @@
 
 static Region region_table[MAX_REGION_COUNT];
 static int region_table_size = 0;
+static int current_nis = 0;
 
 Region construct_region(int size, int nis) {
     Region new_region;
@@ -29,6 +30,30 @@ void insert_region(int nis) {
 
     region_table[region_table_size] = construct_region(NULL_VALUE, nis);
     region_table_size++;
+}
+
+int get_current_nis() { return current_nis; }
+
+int increment_current_nis() { return ++current_nis; }
+
+int decrement_current_nis() { return --current_nis; }
+
+int get_region_size(int index) {
+    if (index >= MAX_REGION_COUNT) {
+        fprintf(stderr, COLOR_RED "<Error> Get Region Size index out of bounds\n" COLOR_RESET);
+        exit(EXIT_FAILURE);
+    }
+
+    return region_table[index].size;
+}
+
+void update_region_size(int index, int size) {
+   if (index >= MAX_REGION_COUNT) {
+        fprintf(stderr, COLOR_RED "<Error> Update Region Size index out of bounds\n" COLOR_RESET);
+        exit(EXIT_FAILURE);
+    }
+
+    region_table[index].size = size;
 }
 
 void print_region_table() {

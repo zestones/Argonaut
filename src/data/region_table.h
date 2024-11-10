@@ -16,9 +16,22 @@ Region construct_region(int size, int nis);
 
 void init_region_table();
 
+int get_region_size(int index);
+
 void insert_region(int nis);
 
+void update_region_size(int index, int size);
+
+
+int get_current_nis();
+
+int increment_current_nis();
+
+int decrement_current_nis();
+
+
 void print_region_table();
+
 
 #endif // __REGION_TABLE_H__
 

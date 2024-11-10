@@ -16,9 +16,6 @@ typedef struct func_proc_manager_context
 } func_proc_manager_context;
 
 
-extern int current_nis;
-
-
 void construct_func_proc_manager_context(int index_func_proc_name_lexicographic);
 
 void func_proc_add_parameter(int index_lexeme_lexicographic, int index_type_lexicographic);

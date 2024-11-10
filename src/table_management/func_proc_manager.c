@@ -25,15 +25,15 @@ void func_proc_add_parameter(int index_lexeme_lexicographic, int index_type_lexi
     
     context.number_of_parameters++;
 
-    insert_declaration_param(index_lexeme_lexicographic, current_nis, index_type_lexicographic);
+    insert_declaration_param(index_lexeme_lexicographic, get_current_nis(), index_type_lexicographic);
 }
 
 void declaration_func_start() {
     context.index_number_of_parameters_representation = insert_representation(context.number_of_parameters);
     context.index_return_type_representation = insert_representation(context.index_return_type_lexicographic);
 
-    insert_declaration_func(context.index_func_proc_name_lexicographic, current_nis, context.index_number_of_parameters_representation);
-    insert_region(++current_nis);
+    insert_declaration_func(context.index_func_proc_name_lexicographic, get_current_nis(), context.index_number_of_parameters_representation);
+    insert_region(increment_current_nis());
 }
 
 void declaration_func_end(int index_return_type_lexicographic) {
@@ -42,17 +42,17 @@ void declaration_func_end(int index_return_type_lexicographic) {
     update_representation(context.index_return_type_representation, context.index_return_type_lexicographic);
     update_representation(context.index_number_of_parameters_representation, context.number_of_parameters);
 
-    current_nis--;
+    decrement_current_nis();
 }
 
 void declaration_proc_start() {
     context.index_number_of_parameters_representation = insert_representation(context.number_of_parameters);
-    insert_declaration_proc(context.index_func_proc_name_lexicographic, current_nis, context.index_number_of_parameters_representation);
+    insert_declaration_proc(context.index_func_proc_name_lexicographic, get_current_nis(), context.index_number_of_parameters_representation);
 
-    insert_region(++current_nis);
+    insert_region(increment_current_nis());
 }
 
 void declaration_proc_end() {
     update_representation(context.index_number_of_parameters_representation, context.number_of_parameters);
-    current_nis--;
+    decrement_current_nis();
 }
