@@ -9,7 +9,7 @@
 typedef struct Region {
     int size;
     int nis;
-    // TODO: ast tree
+    int ast; // TODO: Abstract Syntax Tree
 } Region;
 
 Region construct_region(int size, int nis);
