@@ -24,7 +24,6 @@ void func_proc_add_parameter(int index_lexeme_lexicographic, int index_type_lexi
     insert_representation(index_type_declaration); 
     
     context.number_of_parameters++;
-
     insert_declaration_param(index_lexeme_lexicographic, get_current_nis(), index_type_lexicographic);
 }
 
@@ -34,6 +33,7 @@ void declaration_func_start() {
 
     insert_region(increment_current_nis());
     insert_declaration_func(context.index_func_proc_name_lexicographic, get_current_nis(), context.index_number_of_parameters_representation);
+    update_region_size(get_current_nis(), get_region_size(get_current_nis()) + 1);
 }
 
 void declaration_func_end(int index_return_type_lexicographic) {
