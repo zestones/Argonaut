@@ -21,6 +21,7 @@ int insert_representation(int value) {
 
     representation_table[representation_table_size] = value;
     representation_table_size++;
+    
     return current_index;
 }
 

@@ -58,16 +58,16 @@ void insert_declaration(int index, Nature nature, int region, int description, i
     }
 }
 
-void insert_declaration_var(int index, int region, int description) {
-    insert_declaration(index, TYPE_VAR, region, description, NULL_VALUE);  
+void insert_declaration_var(int index, int region, int description, int execution) {
+    insert_declaration(index, TYPE_VAR, region, description, execution);  
 }
 
 void insert_declaration_param(int index, int region, int description) {
     insert_declaration(index, TYPE_PARAM, region, description, NULL_VALUE);
 }
 
-void insert_declaration_struct(int index, int description) {
-    insert_declaration(index, TYPE_STRUCT, NULL_VALUE, description, NULL_VALUE);
+void insert_declaration_struct(int index, int region, int description) {
+    insert_declaration(index, TYPE_STRUCT, region, description, NULL_VALUE);
 }
 
 void insert_declaration_array(int index, int region, int description) {
@@ -80,6 +80,50 @@ void insert_declaration_proc(int index, int region, int description) {
 
 void insert_declaration_func(int index, int region, int description) {
     insert_declaration(index, TYPE_FUNC, region, description, region);
+}
+
+static int is_nature_defined(Nature nature) {
+    return (nature == TYPE_FUNC || nature == TYPE_PROC || nature == TYPE_BASE || nature == TYPE_STRUCT || nature == TYPE_ARRAY || nature == TYPE_VAR);
+}
+
+static int is_base_type(int tlex_index) {
+    return (declaration_table[tlex_index].nature == TYPE_BASE);
+}
+
+// ! FIXME: The search should search for current region first and then check all enclosing regions
+int find_declaration_index(int tlex_index, int region) {
+    int index = tlex_index;
+
+    if (is_base_type(tlex_index)) return tlex_index;
+    while (index != NULL_VALUE) {
+        if (declaration_table[index].region == region && is_nature_defined(declaration_table[index].nature)) {
+            return index;
+        }
+
+        index = declaration_table[index].next;
+    }
+
+    // TODO: Use error handling instead of printing to stderr (yyerror)
+    fprintf(stderr, COLOR_RED "<Error> Declaration not found for tlex_index %d in region %d\n" COLOR_RESET, tlex_index, region);
+    return NULL_VALUE;
+}
+
+int get_declaration_execution(int index) {
+    if (index >= MAX_DECLARATION_COUNT) {
+        fprintf(stderr, COLOR_RED "<Error> Declaration index out of bounds\n" COLOR_RESET);
+        exit(EXIT_FAILURE);
+    }
+
+    return declaration_table[index].execution;
+}
+
+void update_declaration_execution(int index, int execution) {
+    if (index >= MAX_DECLARATION_COUNT) {
+        fprintf(stderr, COLOR_RED "<Error> Update Declaration Execution index out of bounds\n" COLOR_RESET);
+        exit(EXIT_FAILURE);
+    }
+
+    declaration_table[index].execution = execution;
 }
 
 void print_declaration_table() {
