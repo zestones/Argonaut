@@ -26,7 +26,7 @@ complex_type_fields: type_field
                    | complex_type_fields type_field 
                    ;
 
-type_field: IDENTIFIER TWO_POINTS type SEMICOLON 
+type_field: IDENTIFIER TWO_POINTS type SEMICOLON { structure_add_field($1, $3); }
           ;
 
 function_call_expression: IDENTIFIER OPEN_PARENTHESIS argument_list CLOSE_PARENTHESIS 

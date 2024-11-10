@@ -1,5 +1,7 @@
 %{
     #include "../table_management/func_proc_manager.h"
+    #include "../table_management/structure_manager.h"
+    #include "../table_management/variable_manager.h"
     #include "../table_management/array_manager.h"
 
     #include "../symbol_table/declaration_table.h"
@@ -83,17 +85,15 @@ declaration: variable_declaration
            ;
 
 variable_declaration: VARIABLE IDENTIFIER TWO_POINTS type SEMICOLON 
-                      { insert_declaration_var($2, $4); }
+                      { declaration_variable_start($2, $4); }
                     ;
 
 function_declaration: FUNCTION IDENTIFIER { construct_func_proc_manager_context($2); declaration_func_start(); } OPEN_PARENTHESIS parameter_list CLOSE_PARENTHESIS RETURN_TYPE type START declaration_list statement_list return_statement END { declaration_func_end($8); } ;
 
 procedure_declaration: PROCEDURE IDENTIFIER { construct_func_proc_manager_context($2); declaration_proc_start(); } OPEN_PARENTHESIS parameter_list CLOSE_PARENTHESIS START declaration_list statement_list END { declaration_proc_end(); } ;
 
-type_declaration: TYPE IDENTIFIER TWO_POINTS STRUCT START complex_type_fields END FSTRUCT SEMICOLON
-                  { insert_declaration_struct($2, $1); }
-                | TYPE IDENTIFIER TWO_POINTS ARRAY { construct_array_manager_context($2); declaration_array_start(); } dimension OF type SEMICOLON { declaration_array_end(); }
-                  
+type_declaration: TYPE IDENTIFIER TWO_POINTS STRUCT { construct_structure_manager_context($2); } START { declaration_structure_start(); } complex_type_fields END FSTRUCT SEMICOLON { declaration_structure_end(); }
+                | TYPE IDENTIFIER TWO_POINTS ARRAY { construct_array_manager_context($2); declaration_array_start(); } dimension OF type SEMICOLON { declaration_array_end($8); }
                 ;
 
 argument_list: argument_list COMMA expression
@@ -145,7 +145,7 @@ complex_type_fields: type_field
                    | complex_type_fields type_field 
                    ;
 
-type_field: IDENTIFIER TWO_POINTS type SEMICOLON 
+type_field: IDENTIFIER TWO_POINTS type SEMICOLON { structure_add_field($1, $3); }
           ;
 
 function_call_expression: IDENTIFIER OPEN_PARENTHESIS argument_list CLOSE_PARENTHESIS 
