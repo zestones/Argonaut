@@ -8,7 +8,6 @@
 #include "../utils/utils.h"
 
 static func_proc_manager_context context;
-static int current_nis = 0;
 
 void construct_func_proc_manager_context(int index_func_proc_name_lexicographic) {
     context.index_return_type_representation = NULL_VALUE;
@@ -33,12 +32,11 @@ void func_proc_add_parameter(int index_lexeme_lexicographic, int index_type_lexi
 }
 
 void declaration_func_start() {
-    insert_region(++current_nis);
-
     context.index_number_of_parameters_representation = insert_representation(context.number_of_parameters);
     context.index_return_type_representation = insert_representation(context.index_return_type_lexicographic);
 
     insert_declaration_func(context.index_func_proc_name_lexicographic, context.index_number_of_parameters_representation, current_nis);
+    insert_region(++current_nis);
 }
 
 void declaration_func_end(int index_return_type_lexicographic) {
@@ -51,10 +49,10 @@ void declaration_func_end(int index_return_type_lexicographic) {
 }
 
 void declaration_proc_start() {
-    insert_region(++current_nis);
-
     context.index_number_of_parameters_representation = insert_representation(context.number_of_parameters);
     insert_declaration_proc(context.index_func_proc_name_lexicographic, context.index_number_of_parameters_representation, current_nis);
+
+    insert_region(++current_nis);
 }
 
 void declaration_proc_end() {

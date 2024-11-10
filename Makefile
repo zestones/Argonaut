@@ -25,7 +25,7 @@ PARSER = parser.o
 SYMBOL_TABLE = declaration_table.o representation_table.o
 TABLE_MANAGEMENT = array_manager.o func_proc_manager.o
 DATA = region_table.o
-UTILS = hash.o
+UTILS = hash.o utils.o
 
 
 all: compilateur simple-clean
@@ -100,6 +100,8 @@ region_table.o: src/data/region_table.c
 hash.o: src/utils/hash.c
 	$(CC) -c src/utils/hash.c
 
+utils.o: src/utils/utils.c
+	$(CC) -c src/utils/utils.c
 
 
 # ==================================================== #
