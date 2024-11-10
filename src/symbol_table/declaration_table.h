@@ -33,17 +33,17 @@ void init_declaration_table();
 
 void insert_declaration(int index, Nature nature, int region, int description, int execution);
 
-void insert_declaration_var(int lexeme_lexicographic_index, int type_lexicographic_index);
+void insert_declaration_var(int index, int region, int description);
 
-void insert_declaration_param(int lexeme_lexicographic_index, int type_lexicographic_index);
+void insert_declaration_param(int index, int region, int description);
 
-void insert_declaration_struct(int lexeme_lexicographic_index, int type_lexicographic_index);
+void insert_declaration_struct(int index, int description);
 
-void insert_declaration_array(int lexeme_lexicographic_index, int region, int description);
+void insert_declaration_array(int index, int region, int description);
 
-void insert_declaration_proc(int lexeme_lexicographic_index, int description, int region);
+void insert_declaration_proc(int index, int region, int description);
 
-void insert_declaration_func(int lexeme_lexicographic_index, int description, int region);
+void insert_declaration_func(int index, int region, int description);
 
 void print_declaration_table();
 

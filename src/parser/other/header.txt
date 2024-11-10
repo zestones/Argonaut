@@ -1,5 +1,6 @@
 %{
     #include "../table_management/func_proc_manager.h"
+    #include "../table_management/variable_manager.h"
     #include "../table_management/array_manager.h"
 
     #include "../symbol_table/declaration_table.h"

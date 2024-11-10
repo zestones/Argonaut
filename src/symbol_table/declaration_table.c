@@ -58,28 +58,28 @@ void insert_declaration(int index, Nature nature, int region, int description, i
     }
 }
 
-void insert_declaration_var(int lexeme_lexicographic_index, int type_lexicographic_index) {
-    insert_declaration(lexeme_lexicographic_index, TYPE_VAR, NULL_VALUE, type_lexicographic_index, NULL_VALUE);  
+void insert_declaration_var(int index, int region, int description) {
+    insert_declaration(index, TYPE_VAR, region, description, NULL_VALUE);  
 }
 
-void insert_declaration_param(int lexeme_lexicographic_index, int type_lexicographic_index) {
-    insert_declaration(lexeme_lexicographic_index, TYPE_PARAM, NULL_VALUE, type_lexicographic_index, NULL_VALUE);
+void insert_declaration_param(int index, int region, int description) {
+    insert_declaration(index, TYPE_PARAM, region, description, NULL_VALUE);
 }
 
-void insert_declaration_struct(int lexeme_lexicographic_index, int type_lexicographic_index) {
-    insert_declaration(lexeme_lexicographic_index, TYPE_STRUCT, NULL_VALUE, type_lexicographic_index, NULL_VALUE);
+void insert_declaration_struct(int index, int description) {
+    insert_declaration(index, TYPE_STRUCT, NULL_VALUE, description, NULL_VALUE);
 }
 
-void insert_declaration_array(int lexeme_lexicographic_index, int region, int description) {
-    insert_declaration(lexeme_lexicographic_index, TYPE_ARRAY, region, description, NULL_VALUE);
+void insert_declaration_array(int index, int region, int description) {
+    insert_declaration(index, TYPE_ARRAY, region, description, NULL_VALUE);
 }
 
-void insert_declaration_proc(int lexeme_lexicographic_index, int description, int region) {
-    insert_declaration(lexeme_lexicographic_index, TYPE_PROC, region, description, region);
+void insert_declaration_proc(int index, int region, int description) {
+    insert_declaration(index, TYPE_PROC, region, description, region);
 }
 
-void insert_declaration_func(int lexeme_lexicographic_index, int description, int region) {
-    insert_declaration(lexeme_lexicographic_index, TYPE_FUNC, region, description, region);
+void insert_declaration_func(int index, int region, int description) {
+    insert_declaration(index, TYPE_FUNC, region, description, region);
 }
 
 void print_declaration_table() {

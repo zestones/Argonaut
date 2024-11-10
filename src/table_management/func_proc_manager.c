@@ -1,6 +1,3 @@
-#include "../../lib/table_printer.h"
-#include "../../lib/colors.h" 
-
 #include "../symbol_table/representation_table.h"
 #include "../symbol_table/declaration_table.h"
 #include "../data/region_table.h"
@@ -28,14 +25,14 @@ void func_proc_add_parameter(int index_lexeme_lexicographic, int index_type_lexi
     
     context.number_of_parameters++;
 
-    insert_declaration_param(index_lexeme_lexicographic, index_type_lexicographic);
+    insert_declaration_param(index_lexeme_lexicographic, current_nis, index_type_lexicographic);
 }
 
 void declaration_func_start() {
     context.index_number_of_parameters_representation = insert_representation(context.number_of_parameters);
     context.index_return_type_representation = insert_representation(context.index_return_type_lexicographic);
 
-    insert_declaration_func(context.index_func_proc_name_lexicographic, context.index_number_of_parameters_representation, current_nis);
+    insert_declaration_func(context.index_func_proc_name_lexicographic, current_nis, context.index_number_of_parameters_representation);
     insert_region(++current_nis);
 }
 
@@ -50,7 +47,7 @@ void declaration_func_end(int index_return_type_lexicographic) {
 
 void declaration_proc_start() {
     context.index_number_of_parameters_representation = insert_representation(context.number_of_parameters);
-    insert_declaration_proc(context.index_func_proc_name_lexicographic, context.index_number_of_parameters_representation, current_nis);
+    insert_declaration_proc(context.index_func_proc_name_lexicographic, current_nis, context.index_number_of_parameters_representation);
 
     insert_region(++current_nis);
 }

@@ -1,6 +1,3 @@
-#include "../../lib/table_printer.h"
-#include "../../lib/colors.h" 
-
 #include "../symbol_table/representation_table.h"
 #include "../symbol_table/declaration_table.h"
 #include "../utils/utils.h"
