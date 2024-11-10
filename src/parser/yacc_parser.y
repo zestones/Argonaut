@@ -88,9 +88,11 @@ variable_declaration: VARIABLE IDENTIFIER TWO_POINTS type SEMICOLON
                       { declaration_variable_start($2, $4); }
                     ;
 
-function_declaration: FUNCTION IDENTIFIER { construct_func_proc_manager_context($2); declaration_func_start(); } OPEN_PARENTHESIS parameter_list CLOSE_PARENTHESIS RETURN_TYPE type START declaration_list statement_list return_statement END { declaration_func_end($8); } ;
+function_declaration: FUNCTION IDENTIFIER { construct_func_proc_manager_context($2); declaration_func_start(); } OPEN_PARENTHESIS parameter_list CLOSE_PARENTHESIS RETURN_TYPE type START declaration_list statement_list return_statement END { declaration_func_end($8); } 
+                    ;
 
-procedure_declaration: PROCEDURE IDENTIFIER { construct_func_proc_manager_context($2); declaration_proc_start(); } OPEN_PARENTHESIS parameter_list CLOSE_PARENTHESIS START declaration_list statement_list END { declaration_proc_end(); } ;
+procedure_declaration: PROCEDURE IDENTIFIER { construct_func_proc_manager_context($2); declaration_proc_start(); } OPEN_PARENTHESIS parameter_list CLOSE_PARENTHESIS START declaration_list statement_list END { declaration_proc_end(); } 
+                     ;
 
 type_declaration: TYPE IDENTIFIER TWO_POINTS STRUCT { construct_structure_manager_context($2); } START { declaration_structure_start(); } complex_type_fields END FSTRUCT SEMICOLON { declaration_structure_end(); }
                 | TYPE IDENTIFIER TWO_POINTS ARRAY { construct_array_manager_context($2); declaration_array_start(); } dimension OF type SEMICOLON { declaration_array_end($8); }
@@ -98,11 +100,13 @@ type_declaration: TYPE IDENTIFIER TWO_POINTS STRUCT { construct_structure_manage
 
 argument_list: argument_list COMMA expression
     | expression
-    | ;
+    | 
+    ;
 
 parameter_list: parameter_list COMMA parameter
     | parameter
-    | ;
+    | 
+    ;
 
 parameter: IDENTIFIER TWO_POINTS type { func_proc_add_parameter($1, $3); }
          ;
@@ -111,10 +115,10 @@ dimension: OPEN_BRACKET list_dimensions CLOSE_BRACKET
          ;
 
 list_dimensions: one_dimension
-               | list_dimensions COMMA one_dimension ;
+               | list_dimensions COMMA one_dimension 
+               ;
 
-one_dimension: INTEGER DOT_DOT INTEGER 
-              { array_add_dimension($1, $3); }
+one_dimension: INTEGER DOT_DOT INTEGER { array_add_dimension($1, $3); }
               ;
 
 // Arithmetic expressions
@@ -132,12 +136,12 @@ expression_atom: function_call_expression
                | OPEN_PARENTHESIS expression CLOSE_PARENTHESIS 
                ;
 
-// TODO : is there a better way to assign the lexicographic_index to the base type?
+// TODO : is there a better way to assign the lexicographic_index to the base type ?
 type: INTEGER { $$ = 0;}
     | FLOAT   { $$ = 1;}
     | BOOLEAN { $$ = 2;}
     | CHARACTER { $$ = 3;}
-    | STRING OPEN_BRACKET INTEGER CLOSE_BRACKET // HELP I DONT KNOW HOW TO HANDLE THIS
+    | STRING OPEN_BRACKET INTEGER CLOSE_BRACKET // FIXME: HELP I DONT KNOW HOW TO HANDLE THIS
     | IDENTIFIER 
     ;
 
@@ -166,7 +170,8 @@ statement: assignment_statement
 assignment_statement: IDENTIFIER OPAFF expression SEMICOLON 
                     ;
 
-return_statement: RETURN_VALUE IDENTIFIER SEMICOLON;
+return_statement: RETURN_VALUE expression SEMICOLON
+                ;
 
 if_statement: IF condition statement_block
             | IF condition statement_block ELSE statement_block;

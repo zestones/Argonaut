@@ -13,12 +13,12 @@ expression_atom: function_call_expression
                | OPEN_PARENTHESIS expression CLOSE_PARENTHESIS 
                ;
 
-// TODO : is there a better way to assign the lexicographic_index to the base type?
+// TODO : is there a better way to assign the lexicographic_index to the base type ?
 type: INTEGER { $$ = 0;}
     | FLOAT   { $$ = 1;}
     | BOOLEAN { $$ = 2;}
     | CHARACTER { $$ = 3;}
-    | STRING OPEN_BRACKET INTEGER CLOSE_BRACKET // HELP I DONT KNOW HOW TO HANDLE THIS
+    | STRING OPEN_BRACKET INTEGER CLOSE_BRACKET // FIXME: HELP I DONT KNOW HOW TO HANDLE THIS
     | IDENTIFIER 
     ;
 

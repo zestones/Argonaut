@@ -12,7 +12,8 @@ statement: assignment_statement
 assignment_statement: IDENTIFIER OPAFF expression SEMICOLON 
                     ;
 
-return_statement: RETURN_VALUE IDENTIFIER SEMICOLON;
+return_statement: RETURN_VALUE expression SEMICOLON
+                ;
 
 if_statement: IF condition statement_block
             | IF condition statement_block ELSE statement_block;
