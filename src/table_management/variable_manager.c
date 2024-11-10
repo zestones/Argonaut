@@ -3,6 +3,6 @@
 #include "../utils/utils.h"
 
 
-void declaration_variab_start(int index_lexeme_lexicographic, int index_type_lexicographic) {
+void declaration_variable_start(int index_lexeme_lexicographic, int index_type_lexicographic) {
     insert_declaration_var(index_lexeme_lexicographic, current_nis, index_type_lexicographic);
 }
