@@ -28,15 +28,14 @@ void insert_region(int nis) {
         exit(EXIT_FAILURE);
     }
 
-    region_table[region_table_size] = construct_region(NULL_VALUE, nis);
+    int size = 0;
+    if (region_table_size > 0) {
+        size = 1 + nis;
+    }
+
+    region_table[region_table_size] = construct_region(size, nis);
     region_table_size++;
 }
-
-int get_current_nis() { return current_nis; }
-
-int increment_current_nis() { return ++current_nis; }
-
-int decrement_current_nis() { return --current_nis; }
 
 int get_region_size(int index) {
     if (index >= MAX_REGION_COUNT) {
@@ -55,6 +54,12 @@ void update_region_size(int index, int size) {
 
     region_table[index].size = size;
 }
+
+int get_current_nis() { return current_nis; }
+
+int increment_current_nis() { return ++current_nis; }
+
+int decrement_current_nis() { return --current_nis; }
 
 void print_region_table() {
     const int col_width_size = 10;

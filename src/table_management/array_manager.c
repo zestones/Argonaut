@@ -6,19 +6,21 @@
 
 static array_manager_context context;
 
-void construct_array_manager_context(int index_lexeme_lexicographic) {
+void construct_array_manager_context(int index_array_name_lexicographic) {
     context.array_size = 0;
     
-    context.index_lexeme_lexicographic = index_lexeme_lexicographic;
+    context.index_array_name_lexicographic = index_array_name_lexicographic;
+    context.index_type_lexicographic = NULL_VALUE;
     context.index_type_declaration = NULL_VALUE;
 
     context.number_of_dimensions = 0;
     context.index_number_of_dimensions_representation = NULL_VALUE;
 }
 
-void declaration_array_start() {
-    // TODO: index_type_declaration is WRONG, should be the index type of the declaration table (! NOT THE LEXICOGRAPHIC INDEX) 
-    insert_declaration_array(context.index_lexeme_lexicographic, get_current_nis(), insert_representation(context.index_type_declaration));
+void declaration_array_start(int index_type_lexicographic) {
+    context.index_type_lexicographic = index_type_lexicographic;
+    
+    insert_declaration_array(context.index_array_name_lexicographic, get_current_nis(), insert_representation(find_declaration_index(context.index_type_lexicographic, get_current_nis())));
     context.index_number_of_dimensions_representation = insert_representation(context.number_of_dimensions);
 }
 
@@ -27,8 +29,18 @@ void array_add_dimension(int min, int max) {
 
     insert_representation(min);
     insert_representation(max);
+
+    if (context.array_size == 0) context.array_size = max - min + 1;
+    else context.array_size *= (max - min + 1);
 }   
 
 void declaration_array_end() {
     update_representation(context.index_number_of_dimensions_representation, context.number_of_dimensions);
+
+    int index_array_name_type_declaration = find_declaration_index(context.index_array_name_lexicographic, get_current_nis());
+    int index_type_of_array_declaration = find_declaration_index(context.index_type_lexicographic, get_current_nis());
+
+    int execution = get_declaration_execution(index_type_of_array_declaration);
+    update_declaration_execution(index_array_name_type_declaration, context.array_size * execution);
+
 }

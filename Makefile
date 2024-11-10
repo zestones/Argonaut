@@ -23,7 +23,7 @@ GRAMMAR = lexer parser
 LEXER = lexeme_table.o 
 PARSER = parser.o
 SYMBOL_TABLE = declaration_table.o representation_table.o
-TABLE_MANAGEMENT = variable_manager.o array_manager.o func_proc_manager.o
+TABLE_MANAGEMENT = variable_manager.o array_manager.o func_proc_manager.o structure_manager.o
 DATA = region_table.o
 UTILS = hash.o
 
@@ -87,6 +87,9 @@ array_manager.o: src/table_management/array_manager.c
 
 func_proc_manager.o: src/table_management/func_proc_manager.c
 	$(CC) -c src/table_management/func_proc_manager.c
+
+structure_manager.o: src/table_management/structure_manager.c
+	$(CC) -c src/table_management/structure_manager.c
 
 
 # ----------- #
