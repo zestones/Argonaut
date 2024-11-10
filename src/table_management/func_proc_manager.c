@@ -38,7 +38,7 @@ void declaration_func_start() {
     context.index_number_of_parameters_representation = insert_representation(context.number_of_parameters);
     context.index_return_type_representation = insert_representation(context.index_return_type_lexicographic);
 
-    insert_declaration_func(context.index_func_proc_name_lexicographic, context.index_number_of_parameters_representation);
+    insert_declaration_func(context.index_func_proc_name_lexicographic, context.index_number_of_parameters_representation, current_nis);
 }
 
 void declaration_func_end(int index_return_type_lexicographic) {
@@ -54,7 +54,7 @@ void declaration_proc_start() {
     insert_region(++current_nis);
 
     context.index_number_of_parameters_representation = insert_representation(context.number_of_parameters);
-    insert_declaration_proc(context.index_func_proc_name_lexicographic, context.index_number_of_parameters_representation);
+    insert_declaration_proc(context.index_func_proc_name_lexicographic, context.index_number_of_parameters_representation, current_nis);
 }
 
 void declaration_proc_end() {
