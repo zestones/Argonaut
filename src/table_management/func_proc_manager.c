@@ -3,10 +3,12 @@
 
 #include "../symbol_table/representation_table.h"
 #include "../symbol_table/declaration_table.h"
+#include "../data/region_table.h"
 #include "func_proc_manager.h"
 #include "../utils/utils.h"
 
 static func_proc_manager_context context;
+static int current_nis = 0;
 
 void construct_func_proc_manager_context(int index_func_proc_name_lexicographic) {
     context.index_return_type_representation = NULL_VALUE;
@@ -31,6 +33,9 @@ void func_proc_add_parameter(int index_lexeme_lexicographic, int index_type_lexi
 }
 
 void declaration_func_start() {
+    current_nis++;
+    insert_region(current_nis);
+
     context.index_number_of_parameters_representation = insert_representation(context.number_of_parameters);
     context.index_return_type_representation = insert_representation(context.index_return_type_lexicographic);
 
@@ -42,13 +47,19 @@ void declaration_func_end(int index_return_type_lexicographic) {
     
     update_representation(context.index_return_type_representation, context.index_return_type_lexicographic);
     update_representation(context.index_number_of_parameters_representation, context.number_of_parameters);
+
+    current_nis--;
 }
 
 void declaration_proc_start() {
+    current_nis++;
+    insert_region(current_nis);
+
     context.index_number_of_parameters_representation = insert_representation(context.number_of_parameters);
     insert_declaration_proc(context.index_func_proc_name_lexicographic, context.index_number_of_parameters_representation);
 }
 
 void declaration_proc_end() {
     update_representation(context.index_number_of_parameters_representation, context.number_of_parameters);
+    current_nis--;
 }

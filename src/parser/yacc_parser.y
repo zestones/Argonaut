@@ -86,9 +86,9 @@ variable_declaration: VARIABLE IDENTIFIER TWO_POINTS type SEMICOLON
                       { insert_declaration_var($2, $4); }
                     ;
 
-function_declaration: FUNCTION IDENTIFIER { construct_func_proc_manager_context($2); declaration_func_start(); } OPEN_PARENTHESIS parameter_list CLOSE_PARENTHESIS RETURN_TYPE type { declaration_func_end($8); } START declaration_list statement_list return_statement END ;
+function_declaration: FUNCTION IDENTIFIER { construct_func_proc_manager_context($2); declaration_func_start(); } OPEN_PARENTHESIS parameter_list CLOSE_PARENTHESIS RETURN_TYPE type START declaration_list statement_list return_statement END { declaration_func_end($8); } ;
 
-procedure_declaration: PROCEDURE IDENTIFIER { construct_func_proc_manager_context($2); declaration_proc_start(); } OPEN_PARENTHESIS parameter_list CLOSE_PARENTHESIS { declaration_proc_end(); } START declaration_list statement_list END ;
+procedure_declaration: PROCEDURE IDENTIFIER { construct_func_proc_manager_context($2); declaration_proc_start(); } OPEN_PARENTHESIS parameter_list CLOSE_PARENTHESIS START declaration_list statement_list END { declaration_proc_end(); } ;
 
 type_declaration: TYPE IDENTIFIER TWO_POINTS STRUCT START complex_type_fields END FSTRUCT SEMICOLON
                   { insert_declaration_struct($2, $1); }
