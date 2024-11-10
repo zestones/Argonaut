@@ -18,5 +18,7 @@ void init_region_table();
 
 void insert_region(int nis);
 
+void print_region_table();
+
 #endif // __REGION_TABLE_H__
 
