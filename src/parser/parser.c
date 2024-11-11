@@ -61,7 +61,7 @@ static void initialize_tables() {
     lexicographic_index = insert_lexeme("char");
     insert_declaration(lexicographic_index, TYPE_BASE, 0, lexicographic_index, 1);
 
-    insert_region(0);
+    start_region();
 }
 
 static void initialize_parser() {

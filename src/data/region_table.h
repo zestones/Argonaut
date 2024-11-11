@@ -19,23 +19,19 @@ Region construct_region(int size, int nis);
 
 void init_region_table();
 
+void start_region();
+
+void end_region();
+
+
 int get_region_size(int index);
 
-int get_nis(int index);
-
-void insert_region(int nis);
+int get_region_nis();
 
 void update_region_size(int index, int size);
 
-int get_current_nis();
-
 int get_current_region_index();
 
-int increment_current_nis();
-
-int decrement_current_nis();
-
-void end_region();
 
 void print_region_table();
 

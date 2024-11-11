@@ -11,7 +11,7 @@ void push_region(int region_index);
 
 int pop_region();
 
-int get_current_region();
+int peek_region();
 
 #endif // __STACK_REGION_H__
 

@@ -6,7 +6,7 @@
 
 static Region region_table[MAX_REGION_COUNT];
 static int region_table_size = 0;
-static int current_nis = 0;
+static int current_nis = NULL_VALUE; // init to -1, so that the first region will have nis = 0
 
 
 Region construct_region(int size, int nis) {
@@ -24,13 +24,19 @@ void init_region_table() {
     init_stack_region();
 }
 
-void insert_region(int nis) {
+int increment_current_nis() { return ++current_nis; }
+
+static int decrement_current_nis() { return --current_nis; }
+
+void start_region() {
     if (region_table_size >= MAX_REGION_COUNT) {
         fprintf(stderr, COLOR_RED "<Error> Region table is full\n" COLOR_RESET);
         exit(EXIT_FAILURE);
     }
 
+    int nis = increment_current_nis();
     int size = (region_table_size > 0) ? nis + 1 : 0;
+
     region_table[region_table_size] = construct_region(size, nis);
     push_region(region_table_size);
 
@@ -39,6 +45,7 @@ void insert_region(int nis) {
 
 void end_region() {
     pop_region();
+    decrement_current_nis();
 }
 
 int get_region_size(int index) {
@@ -50,7 +57,7 @@ int get_region_size(int index) {
     return region_table[index].size;
 }
 
-int get_nis(int index) {
+int get_region_nis(int index) {
     if (index >= MAX_REGION_COUNT) {
         fprintf(stderr, COLOR_RED "<Error> Get NIS index out of bounds\n" COLOR_RESET);
         exit(EXIT_FAILURE);
@@ -68,13 +75,7 @@ void update_region_size(int index, int size) {
     region_table[index].size = size;
 }
 
-int get_current_nis() { return current_nis; }
-
 int get_current_region_index() { return region_table_size - 1; }
-
-int increment_current_nis() { return ++current_nis; }
-
-int decrement_current_nis() { return --current_nis; }
 
 void print_region_table() {
     const int col_width_index = 10;

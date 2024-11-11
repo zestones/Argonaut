@@ -30,8 +30,8 @@ int pop_region() {
     return region_stack[--region_stack_size];
 }
 
-int get_current_region() {
-    if (region_stack_size < 0) {
+int peek_region() {
+    if (region_stack_size <= 0) {
         return 0;
     }
 

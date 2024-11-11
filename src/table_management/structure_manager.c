@@ -16,11 +16,11 @@ void construct_structure_manager_context(int index_struct_name_lexicographic) {
 
 void declaration_structure_start() {
     context.index_number_of_fields_representation = insert_representation(context.number_of_fields);
-    insert_declaration_struct(context.index_struct_name_lexicographic, get_current_nis(), context.index_number_of_fields_representation);
+    insert_declaration_struct(context.index_struct_name_lexicographic, get_region_nis(peek_region()), context.index_number_of_fields_representation);
 }
 
 void structure_add_field(int index_lexeme_lexicographic, int index_type_lexicographic) {
-    int index_type_declaration = find_declaration_index(index_type_lexicographic, get_current_nis());
+    int index_type_declaration = find_declaration_index(index_type_lexicographic, get_region_nis(peek_region()));
 
     insert_representation(index_lexeme_lexicographic);
     insert_representation(index_type_declaration);
@@ -31,7 +31,7 @@ void structure_add_field(int index_lexeme_lexicographic, int index_type_lexicogr
 }
 
 void declaration_structure_end() {
-    int index_struct_name_declaration = find_declaration_index(context.index_struct_name_lexicographic, get_current_nis());
+    int index_struct_name_declaration = find_declaration_index(context.index_struct_name_lexicographic, get_region_nis(peek_region()));
 
     update_representation(context.index_number_of_fields_representation, context.number_of_fields);
     update_declaration_execution(index_struct_name_declaration, context.execution_offset);
