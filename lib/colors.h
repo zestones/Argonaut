@@ -1,6 +1,16 @@
+/**
+ * @file colors.h
+ * @brief Header file for defining colors for terminal output.
+ * 
+ * This file contains the definitions for colors and text formatting
+ * for terminal output. It provides macros for text colors, background
+ * colors, and text formatting.
+ */
+
 #ifndef __COLORS_H__
 #define __COLORS_H__
 
+// Text Colors
 #define COLOR_RESET   "\033[0m"
 #define COLOR_RED     "\033[31m"
 #define COLOR_GREEN   "\033[32m"
@@ -11,7 +21,7 @@
 #define COLOR_WHITE   "\033[37m"
 #define COLOR_BOLD_YELLOW "\033[1;33m"
 
-
+// Text formatting
 #define COLOR_BOLD    "\033[1m"
 #define COLOR_UNDERLINE "\033[4m"
 
