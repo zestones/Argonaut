@@ -50,6 +50,13 @@ int peek(const Stack stack) {
     return stack.data[stack.top - 1];
 }
 
+void stack_cpy(Stack *dest, const Stack src) {
+    dest->top = src.top;
+    for (int i = 0; i < src.top; i++) {
+        dest->data[i] = src.data[i];
+    }
+}
+
 void print_stack(const Stack stack) {
     const int col_width_index = 10;
     const int col_width_value = 15;

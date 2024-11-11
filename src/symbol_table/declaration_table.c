@@ -5,6 +5,7 @@
 #include "../data/region_table.h"
 #include "declaration_table.h"
 #include "../utils/utils.h"
+#include "../utils/stack.h"
 
 static Declaration declaration_table[MAX_DECLARATION_COUNT];
 static int declaration_table_size = 0;
@@ -83,29 +84,38 @@ void insert_declaration_param(int index, int region, int description, int execut
     insert_declaration(index, TYPE_PARAM, get_current_region_id(), description, execution);
 }
 
-static int is_nature_defined(Nature nature) {
-    return (nature == TYPE_FUNC || nature == TYPE_PROC || nature == TYPE_BASE || nature == TYPE_STRUCT || nature == TYPE_ARRAY || nature == TYPE_VAR);
-}
-
 static int is_base_type(int tlex_index) {
     return (declaration_table[tlex_index].nature == TYPE_BASE);
 }
 
-// ! FIXME: The search should search for current region first and then check all enclosing regions
-int find_declaration_index(int tlex_index, int region) {
+static int find_declaration_index_in_region(int tlex_index, int region) {
     int index = tlex_index;
-
-    if (is_base_type(tlex_index)) return tlex_index;
     while (index != NULL_VALUE) {
-        if (declaration_table[index].region == region && is_nature_defined(declaration_table[index].nature)) {
-            return index;
-        }
-
+        if (declaration_table[index].region == region) return index;
         index = declaration_table[index].next;
     }
 
+    return NULL_VALUE;
+}
+
+int find_declaration_index(int tlex_index) {
+    int index = tlex_index;
+    if (is_base_type(tlex_index)) return index;
+
+    Stack tmp_stack = construct_stack();
+    stack_cpy(&tmp_stack, get_region_stack());
+
+    while (!is_empty(tmp_stack)) {
+        int current_region = pop(&tmp_stack);
+        index = find_declaration_index_in_region(tlex_index, current_region);
+
+        // TODO: check that the nature of the declaration is not NULL_VALUE or TYPE_FUNC/TYPE_PROC
+        if (index != NULL_VALUE) return index;
+    }
+
     // TODO: Use error handling instead of printing to stderr (yyerror)
-    fprintf(stderr, COLOR_RED "<Error> Declaration not found for tlex_index %d in region %d\n" COLOR_RESET, tlex_index, region);
+    // TODO: Do not exit the program on error (yyerror), this enables the user to see all the errors at once
+    fprintf(stderr, COLOR_RED "<Error> Declaration not found for tlex_index %d in region %d\n" COLOR_RESET, tlex_index, get_current_region_id());
     return NULL_VALUE;
 }
 

@@ -28,6 +28,8 @@ int pop(Stack *stack);
 
 int peek(const Stack stack);
 
+void stack_cpy(Stack *dest, const Stack src);
+
 void print_stack(const Stack stack);
 
 

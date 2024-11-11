@@ -5,6 +5,9 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+#include "../utils/stack.h"
+
+
 void init_stack_region();
 
 void push_region(int region_index);
@@ -14,6 +17,8 @@ int pop_region();
 int peek_region();
 
 int get_region_stack_size();
+
+Stack get_region_stack();
 
 void print_stack_region() ;
 

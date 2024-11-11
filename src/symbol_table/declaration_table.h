@@ -45,7 +45,7 @@ void insert_declaration_proc(int index, int region, int description);
 
 void insert_declaration_param(int index, int region, int description, int execution);
 
-int find_declaration_index(int index, int region);
+int find_declaration_index(int index);
 
 int get_declaration_execution(int index);
 
