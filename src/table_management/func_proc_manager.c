@@ -2,6 +2,7 @@
 #include "../symbol_table/declaration_table.h"
 #include "../data/region_table.h"
 #include "func_proc_manager.h"
+#include "variable_manager.h"
 #include "../utils/utils.h"
 
 static func_proc_manager_context context;
@@ -24,7 +25,9 @@ void func_proc_add_parameter(int index_lexeme_lexicographic, int index_type_lexi
     insert_representation(index_type_declaration); 
     
     context.number_of_parameters++;
-    insert_declaration_param(index_lexeme_lexicographic, get_current_nis(), index_type_lexicographic);
+    
+    // TODO: call this in YACC
+    declaration_param_start(index_type_declaration, index_type_lexicographic);
 }
 
 void declaration_func_start() {
@@ -33,7 +36,7 @@ void declaration_func_start() {
 
     insert_region(increment_current_nis());
     insert_declaration_func(context.index_func_proc_name_lexicographic, get_current_nis(), context.index_number_of_parameters_representation);
-    update_region_size(get_current_nis(), get_region_size(get_current_nis()) + 1);
+    update_region_size(get_current_region_index(), get_region_size(get_current_region_index()) + 1);
 }
 
 void declaration_func_end(int index_return_type_lexicographic) {

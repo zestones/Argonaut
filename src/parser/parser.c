@@ -34,6 +34,8 @@ void yyerror(const char *s) {
     if (yychar) {
         fprintf(stderr, COLOR_RED "<%s> At line %d, column %d: %s near token '%s'\n" COLOR_RESET, type, error_line, error_column, s, yytext);
     } 
+
+    exit(EXIT_FAILURE);
 }
 
 static void initialize_tables() {

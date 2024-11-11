@@ -1,0 +1,24 @@
+PROG
+
+func a() -> int 
+{
+    return 0;
+}
+
+proc zero()
+{
+    var x : int;
+}
+
+proc test(param: int) {
+    var monvar : int;
+    proc n(param1: int, param2: int, param3: int) {
+        var monvar : int;
+        var monvar2 : int;
+
+        func m(param1: int, param2: int) -> int {
+            var monvar : int;
+            return 0;
+        }
+    }
+}

@@ -63,7 +63,7 @@ void insert_declaration_var(int index, int region, int description, int executio
 }
 
 void insert_declaration_param(int index, int region, int description) {
-    insert_declaration(index, TYPE_PARAM, region, description, NULL_VALUE);
+    insert_declaration(index, TYPE_PARAM, region, description, region);
 }
 
 void insert_declaration_struct(int index, int region, int description) {

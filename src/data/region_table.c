@@ -30,7 +30,7 @@ void insert_region(int nis) {
 
     int size = 0;
     if (region_table_size > 0) {
-        size = 1 + nis;
+        size = nis + 1;
     }
 
     region_table[region_table_size] = construct_region(size, nis);
@@ -56,6 +56,8 @@ void update_region_size(int index, int size) {
 }
 
 int get_current_nis() { return current_nis; }
+
+int get_current_region_index() { return region_table_size - 1; }
 
 int increment_current_nis() { return ++current_nis; }
 

@@ -25,6 +25,8 @@ void update_region_size(int index, int size);
 
 int get_current_nis();
 
+int get_current_region_index();
+
 int increment_current_nis();
 
 int decrement_current_nis();
