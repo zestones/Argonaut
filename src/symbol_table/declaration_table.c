@@ -2,6 +2,7 @@
 #include "../../lib/colors.h" 
 
 #include "../lexer/lexeme_table.h"
+#include "../data/region_table.h"
 #include "declaration_table.h"
 #include "../utils/utils.h"
 
@@ -59,27 +60,27 @@ void insert_declaration(int index, Nature nature, int region, int description, i
 }
 
 void insert_declaration_var(int index, int region, int description, int execution) {
-    insert_declaration(index, TYPE_VAR, region, description, execution);  
-}
-
-void insert_declaration_param(int index, int region, int description) {
-    insert_declaration(index, TYPE_PARAM, region, description, region);
-}
-
-void insert_declaration_struct(int index, int region, int description) {
-    insert_declaration(index, TYPE_STRUCT, region, description, NULL_VALUE);
+    insert_declaration(index, TYPE_VAR, get_current_region_index(), description, execution);  
 }
 
 void insert_declaration_array(int index, int region, int description) {
-    insert_declaration(index, TYPE_ARRAY, region, description, NULL_VALUE);
+    insert_declaration(index, TYPE_ARRAY, get_current_region_index(), description, NULL_VALUE);
 }
 
-void insert_declaration_proc(int index, int region, int description) {
-    insert_declaration(index, TYPE_PROC, region, description, region);
+void insert_declaration_struct(int index, int region, int description) {
+    insert_declaration(index, TYPE_STRUCT, get_current_region_index(), description, NULL_VALUE);
 }
 
 void insert_declaration_func(int index, int region, int description) {
-    insert_declaration(index, TYPE_FUNC, region, description, region);
+    insert_declaration(index, TYPE_FUNC, region, description, get_current_region_index());
+}
+
+void insert_declaration_proc(int index, int region, int description) {
+    insert_declaration(index, TYPE_PROC, region, description, get_current_region_index());
+}
+
+void insert_declaration_param(int index, int region, int description, int execution) {
+    insert_declaration(index, TYPE_PARAM, get_current_region_index(), description, execution);
 }
 
 static int is_nature_defined(Nature nature) {
@@ -165,6 +166,11 @@ void print_declaration_table() {
                         col_width_description, description_str,
                         col_width_execution, execution_str
                     );
+
+        // Print separator after the base types
+        if (i == 3) {
+            print_table_separator(6, col_width_index, col_width_nature, col_width_next, col_width_region, col_width_description, col_width_execution);
+        }
     }
 
     print_table_separator(6, col_width_index, col_width_nature, col_width_next, col_width_region, col_width_description, col_width_execution);

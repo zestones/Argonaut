@@ -11,16 +11,16 @@ void declaration_variable_start(int index_lexeme_lexicographic, int index_type_l
     int index_type_declaration = find_declaration_index(index_type_lexicographic, current_nis);
     int execution = get_declaration_execution(index_type_declaration); 
     
-    insert_declaration_var(index_lexeme_lexicographic, current_nis, index_type_declaration, get_region_size(get_current_region_index()));
+    insert_declaration_var(index_lexeme_lexicographic, get_current_region_index(), index_type_declaration, get_region_size(get_current_region_index()));
     update_region_size(get_current_region_index(), get_region_size(get_current_region_index()) + execution);
 }
 
 void declaration_param_start(int index_lexeme_lexicographic, int index_type_lexicographic) {
     int current_nis = get_current_nis();
 
-    int index_type_declaration = find_declaration_index(index_type_lexicographic, current_nis);
+    int index_type_declaration = find_declaration_index(index_type_lexicographic, get_current_region_index());
     int execution = get_declaration_execution(index_type_declaration); 
     
-    insert_declaration_param(index_lexeme_lexicographic, current_nis, index_type_declaration);
+    insert_declaration_param(index_lexeme_lexicographic, get_current_region_index(), index_type_declaration, get_region_size(get_current_region_index()));
     update_region_size(get_current_region_index(), get_region_size(get_current_region_index()) + execution);
 }

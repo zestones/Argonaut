@@ -5,20 +5,24 @@ func a() -> int
     return 0;
 }
 
-proc zero()
+func zero() -> int
 {
     var x : int;
+    return 0;
 }
 
-proc test(param: int) {
-    var monvar : int;
+func test(param: int) -> int {
+    var monvar1 : int;
     proc n(param1: int, param2: int, param3: int) {
-        var monvar : int;
         var monvar2 : int;
+        var monvar3 : int;
 
-        func m(param1: int, param2: int) -> int {
-            var monvar : int;
+        func m(param4: int, param5: int) -> int {
+            var monvar4 : int;
+
             return 0;
         }
     }
+
+    return 0;
 }

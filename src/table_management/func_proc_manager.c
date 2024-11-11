@@ -1,5 +1,6 @@
 #include "../symbol_table/representation_table.h"
 #include "../symbol_table/declaration_table.h"
+#include "../data/stack_region.h"
 #include "../data/region_table.h"
 #include "func_proc_manager.h"
 #include "variable_manager.h"
@@ -34,8 +35,11 @@ void declaration_func_start() {
     context.index_number_of_parameters_representation = insert_representation(context.number_of_parameters);
     context.index_return_type_representation = insert_representation(context.index_return_type_lexicographic);
 
+    int parent_index = get_current_region();
+
     insert_region(increment_current_nis());
-    insert_declaration_func(context.index_func_proc_name_lexicographic, get_current_nis(), context.index_number_of_parameters_representation);
+    insert_declaration_func(context.index_func_proc_name_lexicographic, parent_index, context.index_number_of_parameters_representation);
+    
     update_region_size(get_current_region_index(), get_region_size(get_current_region_index()) + 1);
 }
 
@@ -45,17 +49,21 @@ void declaration_func_end(int index_return_type_lexicographic) {
     update_representation(context.index_return_type_representation, context.index_return_type_lexicographic);
     update_representation(context.index_number_of_parameters_representation, context.number_of_parameters);
 
+    end_region();
     decrement_current_nis();
 }
 
 void declaration_proc_start() {
     context.index_number_of_parameters_representation = insert_representation(context.number_of_parameters);
+    int parent_index = get_current_region();
 
     insert_region(increment_current_nis());
-    insert_declaration_proc(context.index_func_proc_name_lexicographic, get_current_nis(), context.index_number_of_parameters_representation);
+    insert_declaration_proc(context.index_func_proc_name_lexicographic, parent_index, context.index_number_of_parameters_representation);
 }
 
 void declaration_proc_end() {
     update_representation(context.index_number_of_parameters_representation, context.number_of_parameters);
+    
+    end_region();
     decrement_current_nis();
 }

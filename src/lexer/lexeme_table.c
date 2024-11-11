@@ -67,6 +67,11 @@ void print_lexeme_table() {
                         cols_width[2], length_str,
                         cols_width[3], next_str
                     );
+
+        // Print separator after the base types
+        if (i == 3) {
+            print_table_separator(4, cols_width[0], cols_width[1], cols_width[2], cols_width[3]);
+        }
     }
 
     print_table_separator(4, cols_width[0], cols_width[1], cols_width[2], cols_width[3]);

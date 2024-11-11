@@ -35,15 +35,15 @@ void insert_declaration(int index, Nature nature, int region, int description, i
 
 void insert_declaration_var(int index, int region, int description, int execution);
 
-void insert_declaration_param(int index, int region, int description);
+void insert_declaration_array(int index, int region, int description);
 
 void insert_declaration_struct(int index, int region, int description);
 
-void insert_declaration_array(int index, int region, int description);
+void insert_declaration_func(int index, int region, int description);
 
 void insert_declaration_proc(int index, int region, int description);
 
-void insert_declaration_func(int index, int region, int description);
+void insert_declaration_param(int index, int region, int description, int execution);
 
 int find_declaration_index(int index, int region);
 
