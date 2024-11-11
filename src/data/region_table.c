@@ -59,12 +59,9 @@ int get_region_nis(int index) {
 }
 
 int get_current_region_nis() { 
-    // The current region is the size of the stack (each region is pushed and popped)
-    // We could also retrieve the current region by peeking the stack and with the returned value
-    // we could get the nis of the region by calling get_region_nis(peek_region())
-    // But it is more efficient to just return the size of the stack
-    // Complexity: O(1) vs O(2)
-    return get_region_stack_size();
+    // To get the current region NIS, we need to peek the region stack to retrieve the current region index
+    // Then we can use the region index to get the NIS from the region table
+    return get_region_nis(peek_region());
 }
 
 void update_region_size(int index, int size) {
