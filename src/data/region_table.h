@@ -30,8 +30,9 @@ int get_region_nis();
 
 void update_region_size(int index, int size);
 
-int get_current_region_index();
+int get_current_region_id();
 
+int get_current_region_nis();
 
 void print_region_table();
 

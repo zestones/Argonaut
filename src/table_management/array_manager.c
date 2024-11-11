@@ -15,7 +15,7 @@ void construct_array_manager_context(int index_array_name_lexicographic) {
 }
 
 void declaration_array_start() {
-    insert_declaration_array(context.index_array_name_lexicographic, get_region_nis(peek_region()), insert_representation(NULL_VALUE));
+    insert_declaration_array(context.index_array_name_lexicographic, get_current_region_nis(), insert_representation(NULL_VALUE));
     context.index_number_of_dimensions_representation = insert_representation(context.number_of_dimensions);
 }
 
@@ -30,7 +30,7 @@ void array_add_dimension(int min, int max) {
 }   
 
 void declaration_array_end(int index_type_lexicographic) {
-    int current_nis = get_region_nis(peek_region());
+    int current_nis = get_current_region_nis();
     update_representation(context.index_number_of_dimensions_representation, context.number_of_dimensions);
 
     int index_array_name_type_declaration = find_declaration_index(context.index_array_name_lexicographic, current_nis);

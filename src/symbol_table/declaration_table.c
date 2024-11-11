@@ -60,27 +60,27 @@ void insert_declaration(int index, Nature nature, int region, int description, i
 }
 
 void insert_declaration_var(int index, int region, int description, int execution) {
-    insert_declaration(index, TYPE_VAR, get_current_region_index(), description, execution);  
+    insert_declaration(index, TYPE_VAR, get_current_region_id(), description, execution);  
 }
 
 void insert_declaration_array(int index, int region, int description) {
-    insert_declaration(index, TYPE_ARRAY, get_current_region_index(), description, NULL_VALUE);
+    insert_declaration(index, TYPE_ARRAY, get_current_region_id(), description, NULL_VALUE);
 }
 
 void insert_declaration_struct(int index, int region, int description) {
-    insert_declaration(index, TYPE_STRUCT, get_current_region_index(), description, NULL_VALUE);
+    insert_declaration(index, TYPE_STRUCT, get_current_region_id(), description, NULL_VALUE);
 }
 
 void insert_declaration_func(int index, int region, int description) {
-    insert_declaration(index, TYPE_FUNC, region, description, get_current_region_index());
+    insert_declaration(index, TYPE_FUNC, region, description, get_current_region_id());
 }
 
 void insert_declaration_proc(int index, int region, int description) {
-    insert_declaration(index, TYPE_PROC, region, description, get_current_region_index());
+    insert_declaration(index, TYPE_PROC, region, description, get_current_region_id());
 }
 
 void insert_declaration_param(int index, int region, int description, int execution) {
-    insert_declaration(index, TYPE_PARAM, get_current_region_index(), description, execution);
+    insert_declaration(index, TYPE_PARAM, get_current_region_id(), description, execution);
 }
 
 static int is_nature_defined(Nature nature) {

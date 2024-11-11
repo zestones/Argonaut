@@ -13,5 +13,9 @@ int pop_region();
 
 int peek_region();
 
+int get_region_stack_size();
+
+void print_stack_region() ;
+
 #endif // __STACK_REGION_H__
 
