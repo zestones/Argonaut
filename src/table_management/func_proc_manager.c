@@ -1,6 +1,6 @@
 #include "../symbol_table/representation_table.h"
 #include "../symbol_table/declaration_table.h"
-#include "../data/stack_region.h"
+#include "../data/region_stack.h"
 #include "../data/region_table.h"
 #include "func_proc_manager.h"
 #include "variable_manager.h"

@@ -24,8 +24,8 @@ LEXER = lexeme_table.o
 PARSER = parser.o
 SYMBOL_TABLE = declaration_table.o representation_table.o
 TABLE_MANAGEMENT = variable_manager.o array_manager.o func_proc_manager.o structure_manager.o
-DATA = region_table.o stack_region.o
-UTILS = hash.o
+DATA = region_table.o region_stack.o
+UTILS = hash.o stack.o
 
 
 all: compilateur simple-clean
@@ -99,8 +99,8 @@ structure_manager.o: src/table_management/structure_manager.c
 region_table.o: src/data/region_table.c
 	$(CC) -c src/data/region_table.c
 
-stack_region.o: src/data/stack_region.c
-	$(CC) -c src/data/stack_region.c
+region_stack.o: src/data/region_stack.c
+	$(CC) -c src/data/region_stack.c
 
 # ----------- #
 # UTILS
@@ -109,6 +109,8 @@ stack_region.o: src/data/stack_region.c
 hash.o: src/utils/hash.c
 	$(CC) -c src/utils/hash.c
 
+stack.o: src/utils/stack.c
+	$(CC) -c src/utils/stack.c
 
 # ==================================================== #
 #                        C L E A N                     #
