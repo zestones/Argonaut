@@ -28,9 +28,8 @@
     int current_lexeme_code;
 
     void yyerror(const char *s) {
-        Error error;
-        init_error(&error, SYNTAX_ERROR, error_line, error_column, "Unexpected token '%s' encountered. '%s'", s, yytext);
-        yerror(&error);
+        Error error = construct_error(SYNTAX_ERROR, error_line, error_column, "Unexpected token '%s' encountered. '%s'", s, yytext);
+        yerror(error);
     }
 %}
 
@@ -139,7 +138,7 @@ expression: expression PLUS expression
           ;
 
 expression_atom: function_call_expression  
-               | IDENTIFIER
+               | IDENTIFIER 
                | INTEGER
                | FLOAT
                | OPEN_PARENTHESIS expression CLOSE_PARENTHESIS 

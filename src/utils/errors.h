@@ -30,29 +30,29 @@ typedef struct {
 } Error;
 
 /**
- * @brief Initializes an Error struct with the given type, line, column, and formatted message.
+ * @brief Constructs an Error struct with the provided details.
  * 
- * @param error The Error struct to initialize.
  * @param type The type of the error.
  * @param line The line number where the error occurred.
  * @param column The column number where the error occurred.
- * @param format The format string (similar to printf).
- * @param ... The arguments for the format string.
+ * @param format The format string for the error message.
+ * @param ... The arguments to be formatted into the error message.
+ * @return The constructed Error struct.
  */
-void init_error(Error *error, ErrorType type, int line, int column, const char *format, ...);
+Error construct_error(ErrorType type, int line, int column, const char *format, ...);
 
 /**
  * @brief Prints a formatted warning message based on the provided Error struct.
  * 
  * @param error The Error struct containing warning details.
  */
-void yywarn(const Error *error);
+void yywarn(const Error error);
 
 /**
  * @brief Prints a formatted error message based on the provided Error struct and exits the program.
  * 
  * @param error The Error struct containing error details.
  */
-void yerror(const Error *error);
+void yerror(const Error error);
 
 #endif // __ERRORS_H__

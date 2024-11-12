@@ -1,3 +1,4 @@
 PROG
 @
+a := 5;
 bonjour

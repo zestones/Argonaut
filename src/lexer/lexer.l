@@ -97,9 +97,8 @@ letter [a-zA-Z]
 }
 
 . { 
-    Error error;
-    init_error(&error, SYNTAX_ERROR, error_line, error_column, "Unknown character '%s'", yytext);
-    yerror(&error);  
+    Error error = construct_error(SYNTAX_ERROR, error_line, error_column, "Unknown character '%s'", yytext);
+    yerror(error);  
     error_column += yyleng;
 } 
 
