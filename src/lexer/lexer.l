@@ -1,6 +1,8 @@
 %{
     #include "../lexer/lexeme_table.h"
     #include "../parser/parser.h"
+
+    #include "../utils/errors.h"
     #include "y.tab.h"
 
     int error_line = 1; 
@@ -94,7 +96,12 @@ letter [a-zA-Z]
     return IDENTIFIER;
 }
 
-.                               { yywarn(yytext); error_column += yyleng; } 
+. { 
+    Error error;
+    init_error(&error, SYNTAX_ERROR, error_line, error_column, "Unknown character '%s'", yytext);
+    yerror(&error);  
+    error_column += yyleng;
+} 
 
 %%
 

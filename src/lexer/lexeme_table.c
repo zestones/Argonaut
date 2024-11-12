@@ -3,8 +3,8 @@
 
 #include "../utils/utils.h"
 
+#include "../symbol_table/hash_table.h"
 #include "lexeme_table.h"
-#include "hash_table.h"
 
 static Lexeme lexeme_table[MAX_LEXEME_COUNT];
 static int lexeme_table_size = 0;

@@ -5,10 +5,12 @@
     #include "../table_management/array_manager.h"
 
     #include "../symbol_table/declaration_table.h"
-    #include "../lexer/lexeme_table.h"
-    #include "../utils/hash_table.h"
+    #include "../symbol_table/hash_table.h"
 
+    #include "../lexer/lexeme_table.h"
     #include "parser.h"
+
+    #include "../utils/errors.h"
 
     #include <stdio.h>
     #include <stdlib.h>
@@ -18,11 +20,18 @@
 
     extern FILE *yyin;
     extern FILE *yyout;
-
-    extern int error_line;
     extern char *yytext;
 
+    extern int error_line;
+    extern int error_column;
+
     int current_lexeme_code;
+
+    void yyerror(const char *s) {
+        Error error;
+        init_error(&error, SYNTAX_ERROR, error_line, error_column, "Unexpected token '%s' encountered. '%s'", s, yytext);
+        yerror(&error);
+    }
 %}
 
 %union {

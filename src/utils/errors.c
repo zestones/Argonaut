@@ -1,0 +1,39 @@
+#include "errors.h"
+
+void init_error(Error *error, ErrorType type, int line, int column, const char *format, ...) {
+    error->type = type;
+    error->line = line;
+    error->column = column;
+
+    va_list args;
+    va_start(args, format);
+    vsnprintf(error->message, sizeof(error->message), format, args);
+    va_end(args);
+}
+
+void yywarn(const Error *error) {
+    printf(COLOR_YELLOW "[Warning] ");
+    switch (error->type) {
+        case SYNTAX_ERROR:        printf("Syntax Warning");           break;
+        case SEMANTIC_ERROR:      printf("Semantic Warning");         break;
+        case TYPE_ERROR:          printf("Type Warning");             break;
+        case INVALID_INPUT_ERROR: printf("Invalid Input Warning");    break;
+        default:                  printf("Unknown Warning");          break;
+    }
+
+    printf(" at line %d, column %d: %s" COLOR_RESET "\n", error->line, error->column, error->message);
+}
+
+void yerror(const Error *error) {
+    fprintf(stderr, COLOR_RED "[Error] ");
+    switch (error->type) {
+        case SYNTAX_ERROR:        fprintf(stderr, "Syntax Error");         break;
+        case SEMANTIC_ERROR:      fprintf(stderr, "Semantic Error");       break;
+        case TYPE_ERROR:          fprintf(stderr, "Type Error");           break;
+        case INVALID_INPUT_ERROR: fprintf(stderr, "Invalid Input Error");  break;
+        default:                  fprintf(stderr, "Unknown Error");        break;
+    }
+
+    fprintf(stderr, " at line %d, column %d: %s" COLOR_RESET "\n", error->line, error->column, error->message);
+    // exit(EXIT_FAILURE);
+}
