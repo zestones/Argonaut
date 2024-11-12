@@ -1,5 +1,5 @@
 #include "../../lib/table_printer.h"
-#include "hash.h"
+#include "hash_table.h"
 
 static int hash_table[HASH_TABLE_SIZE];
 

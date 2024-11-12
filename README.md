@@ -1,6 +1,6 @@
 # Folder Structure
 
-```
+```bash
 /cpyrr_compiler_project
 │
 ├── /src
@@ -21,6 +21,8 @@
 │   ├── /symbol_table
 │   │   ├── declaration_table.c        # Declaration table implementation (for types, variables, functions)
 │   │   ├── declaration_table.h        # Header file for declaration table definitions
+│   │   ├── hash_table.c               # Hashing utility for lexeme table
+│   │   ├── hash_table.h               # Header file for hashing functions
 │   │   ├── type_representation.c      # Type representation table (structures, arrays, functions)
 │   │   ├── type_representation.h      # Header file for type table
 │   │
@@ -35,10 +37,9 @@
 │   │   ├── region_table.h             # Header file for region table definitions
 │   │
 │   ├── /utils
-│   │   ├── hash.c                     # Hashing utility for lexeme table
-│   │   ├── hash.h                     # Header file for hashing functions
 │   │   ├── errors.c                   # Error handling utilities
 │   │   ├── errors.h                   # Header file for error handling
+│   │   ├── utils.h                    # Utility macros and functions (NULL_VALUE definition)
 │   │
 │   ├── /bin
 │   │   ├── intermediate_text.c        # Functions for generating and saving intermediate code
@@ -46,28 +47,12 @@
 │   │
 │   └── main.c                         # Main entry point for the compiler
 │
-├── /include
-│   ├── lexer.h                        # Common header files for all components
-│   ├── parser.h
-│   ├── ast.h
-│   ├── virtual_machine.h
-│   ├── declaration_table.h
-│   ├── hash.h
-│   ├── errors.h
-│
-├── /test
-│   ├── test_lexer.c                   # Unit tests for lexer functionality
-│   ├── test_parser.c                  # Unit tests for parser functionality
-│   ├── test_virtual_machine.c         # Unit tests for VM functionality
-│   ├── test_declaration_table.c       # Unit tests for declaration table
-│   ├── Makefile                       # Makefile for building and running tests
-│
 ├── Makefile                           # Main Makefile to build the project
 ├── README.md                          # Project documentation
 └── intermediate_files/                # Folder to store intermediate representation files for later interpretation
 ```
 
-### Key Components:
+## Key Components
 
 1. **`/lexer`**: This directory contains code for lexical analysis and lexeme management using a hash table.
 2. **`/parser`**: This holds the YACC grammar file and parser implementation.

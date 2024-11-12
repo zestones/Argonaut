@@ -1,8 +1,10 @@
 #include "../../lib/table_printer.h"
 #include "../../lib/colors.h"
+
 #include "../utils/utils.h"
-#include "../utils/hash.h"
+
 #include "lexeme_table.h"
+#include "hash_table.h"
 
 static Lexeme lexeme_table[MAX_LEXEME_COUNT];
 static int lexeme_table_size = 0;

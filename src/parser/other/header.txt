@@ -5,9 +5,9 @@
     #include "../table_management/array_manager.h"
 
     #include "../symbol_table/declaration_table.h"
-    #include "../lexer/lexeme_table.h"
-    #include "../utils/hash.h"
+    #include "../symbol_table/hash_table.h"
 
+    #include "../lexer/lexeme_table.h"
     #include "parser.h"
 
     #include <stdio.h>

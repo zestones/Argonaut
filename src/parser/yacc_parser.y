@@ -6,7 +6,7 @@
 
     #include "../symbol_table/declaration_table.h"
     #include "../lexer/lexeme_table.h"
-    #include "../utils/hash.h"
+    #include "../utils/hash_table.h"
 
     #include "parser.h"
 
