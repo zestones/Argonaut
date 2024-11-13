@@ -44,6 +44,6 @@ void declaration_param_start(int index_lexeme_lexicographic, int index_type_lexi
  *
  * @param index_lexeme_lexicographic The lexicographic index of the variable's name.
  */
-int validate_variable_definition(int index_lexeme_lexicographic);
+void validate_variable_definition(int index_lexeme_lexicographic);
 
 #endif // __VARIABLE_MANAGER_H__
