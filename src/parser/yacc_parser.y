@@ -173,7 +173,7 @@ statement: assignment_statement
     | standalone_function_call_statement
     | loop_statement ;
 
-assignment_statement: IDENTIFIER { is_variable_defined($1); } OPAFF expression SEMICOLON 
+assignment_statement: IDENTIFIER { validate_variable_definition($1); } OPAFF expression SEMICOLON 
                     ;
 
 return_statement: RETURN_VALUE expression SEMICOLON

@@ -95,6 +95,7 @@ letter [a-zA-Z]
 }
 
 . { 
+    set_error_type(&error, LEXICAL_ERROR);
     set_error_message(&error, "Unknown character '%s'", yytext);
     yerror(error);  
     error.column += yyleng;

@@ -20,6 +20,7 @@ void yywarn(const Error error) {
         case SYNTAX_ERROR:        printf("Syntax Warning");           break;
         case SEMANTIC_ERROR:      printf("Semantic Warning");         break;
         case TYPE_ERROR:          printf("Type Warning");             break;
+        case LEXICAL_ERROR:      printf("Lexical Warning");          break;
         case INVALID_INPUT_ERROR: printf("Invalid Input Warning");    break;
         default:                  printf("Unknown Warning");          break;
     }
@@ -33,6 +34,7 @@ void yerror(const Error error) {
         case SYNTAX_ERROR:        fprintf(stderr, "Syntax Error");         break;
         case SEMANTIC_ERROR:      fprintf(stderr, "Semantic Error");       break;
         case TYPE_ERROR:          fprintf(stderr, "Type Error");           break;
+        case LEXICAL_ERROR:       fprintf(stderr, "Lexical Error");        break;
         case INVALID_INPUT_ERROR: fprintf(stderr, "Invalid Input Error");  break;
         default:                  fprintf(stderr, "Unknown Error");        break;
     }

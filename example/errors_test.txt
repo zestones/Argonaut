@@ -1,3 +1,4 @@
 PROG
-@
+var b : pooo;
 a := 5;
+@
