@@ -37,6 +37,16 @@ void declaration_variable_start(int index_lexeme_lexicographic, int index_type_l
 void declaration_param_start(int index_lexeme_lexicographic, int index_type_lexicographic);
 
 /**
+ * @brief Validates the definition of a type.
+ *
+ * This function checks if a type has been defined in the current scope.
+ * If the type has not been defined, an error is thrown.
+ *
+ * @param index_type_lexicographic The lexicographic index of the type's name.
+ */
+void validate_type_definition(int index_type_lexicographic);
+
+/**
  * @brief Validates the definition of a variable.
  *
  * This function checks if a variable has been defined in the current scope.

@@ -1,4 +1,9 @@
 PROG
-var b : pooo;
+
+var a : int;
 a := 5;
-@
+
+var n : int;
+
+// a := 5;
+// @

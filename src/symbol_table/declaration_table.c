@@ -84,8 +84,8 @@ void insert_declaration_param(int index, int region, int description, int execut
     insert_declaration(index, TYPE_PARAM, get_current_region_id(), description, execution);
 }
 
-static int is_base_type(int tlex_index) {
-    return (declaration_table[tlex_index].nature == TYPE_BASE);
+int is_declaration_base_type(int index) {
+    return (declaration_table[index].nature == TYPE_BASE);
 }
 
 static int find_declaration_index_in_region(int tlex_index, int region) {
@@ -100,7 +100,7 @@ static int find_declaration_index_in_region(int tlex_index, int region) {
 
 int find_declaration_index(int tlex_index) {
     int index = tlex_index;
-    if (is_base_type(tlex_index)) return index;
+    if (is_declaration_base_type(tlex_index)) return index;
 
     Stack tmp_stack = construct_stack();
     stack_cpy(&tmp_stack, get_region_stack());

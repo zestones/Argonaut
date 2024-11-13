@@ -15,7 +15,7 @@
 
 #include "../data/region_table.h"
 
-void yydebug(int debug);
+void ydebug(int debug);
 
 int yyrun();
 

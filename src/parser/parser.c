@@ -2,7 +2,7 @@
 #include "parser.h"
 
 
-void yydebug(int debug) {
+void ydebug(int debug) {
     if (!debug) return;
 
     print_lexeme_table();

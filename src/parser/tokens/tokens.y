@@ -13,7 +13,14 @@
 %left AND OR 
 %right NOT
 
+%left IDENTIFIER INTEGER FLOAT BOOLEAN CHARACTER STRING
+%right RETURN_TYPE RETURN_VALUE
+%left SEMICOLON COMMA
+
 %left PLUS MINUS
 %left MULTIPLY DIVIDE
 
 %type <lexicographic_index> type
+
+%start program
+%debug

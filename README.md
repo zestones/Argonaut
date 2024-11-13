@@ -63,3 +63,36 @@
 7. **`/utils`**: Utility functions such as hashing and error handling.
 8. **`/output`**: Handles saving the intermediate code/text needed for future interpretation.
 9. **`/test`**: Unit tests for each major component of the project to ensure proper functionality.
+
+## Error Handling
+
+- **Undeclared Variable:** Using a variable without declaring it (e.g., x = 5; when x has not been declared).
+
+- **Type Mismatch:** Assigning a string to an integer variable (e.g., int x = "hello";).
+
+- **Function Argument Mismatch:** Calling a function with the wrong number of arguments or argument types.
+
+- **Invalid Operation on Types:** Trying to multiply two pointers, access a property of a non-struct type, etc.
+
+- **Variable Redefinition:** Declaring a variable in the same scope with a duplicate name.
+
+---
+
+**VARIABLES (IDF) DECLARATION:**
+
+- Type Undefined
+- Variable Redefinition
+
+**VARIABLES (IDF) ASSIGNMENT:**
+
+- Variable Not Declared
+- Type Mismatch
+
+**EXPRESSIONS:**
+
+- Type Mismatch (Arithmetic) (int + string)
+- Type Mismatch (Logical) (int && string)
+
+**PARAMETERS:**
+
+- Base type

@@ -27,6 +27,7 @@
 
     void yyerror(const char *s) {
         error = construct_error(SYNTAX_ERROR, 1, 1, "Unexpected token '%s' encountered. '%s'", s, yytext);
+        // set_error_type(&error, SYNTAX_ERROR);
         yerror(error);
     }
 %}

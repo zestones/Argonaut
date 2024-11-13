@@ -180,4 +180,12 @@ static inline char *nature_to_string(Nature nature)
     }
 }
 
+/**
+ * @brief Checks if a declaration is a base type.
+ * 
+ * @param index Index of the declaration.
+ * @return 1 if the declaration is a base type, otherwise 0.
+ */
+int is_declaration_base_type(int index);
+
 #endif // DECLARATION_TABLE_H

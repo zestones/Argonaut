@@ -27,6 +27,7 @@
 
     void yyerror(const char *s) {
         error = construct_error(SYNTAX_ERROR, 1, 1, "Unexpected token '%s' encountered. '%s'", s, yytext);
+        // set_error_type(&error, SYNTAX_ERROR);
         yerror(error);
     }
 %}
@@ -51,17 +52,22 @@
 %left AND OR 
 %right NOT
 
+%left IDENTIFIER INTEGER FLOAT BOOLEAN CHARACTER STRING
+%right RETURN_TYPE RETURN_VALUE
+%left SEMICOLON COMMA
+
 %left PLUS MINUS
 %left MULTIPLY DIVIDE
 
 %type <lexicographic_index> type
+
+%start program
+%debug
 %%
 
 program: PROG declaration_list statement_list
        | 
-       ;
-
-// Conditions and boolean expressions
+       ;// Conditions and boolean expressions
 condition: OPEN_PARENTHESIS expression comparison_operator expression CLOSE_PARENTHESIS
          | OPEN_PARENTHESIS condition CLOSE_PARENTHESIS
          | condition AND condition
@@ -136,7 +142,7 @@ expression: expression PLUS expression
           ;
 
 expression_atom: function_call_expression  
-               | IDENTIFIER 
+               | IDENTIFIER  { validate_variable_definition($1); }
                | INTEGER
                | FLOAT
                | OPEN_PARENTHESIS expression CLOSE_PARENTHESIS 
@@ -246,6 +252,6 @@ int main(int argc, char **argv) {
         }
     }
 
-    yydebug(verbose);
+    ydebug(verbose);
     return 0;
 }

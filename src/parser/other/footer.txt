@@ -58,6 +58,6 @@ int main(int argc, char **argv) {
         }
     }
 
-    yydebug(verbose);
+    ydebug(verbose);
     return 0;
 }

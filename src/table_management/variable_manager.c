@@ -6,17 +6,8 @@
 #include "variable_manager.h"
 #include "../utils/utils.h"
 
-static void validate_variable_type(int index_type_lexicographic) {
-    if (find_declaration_index(index_type_lexicographic) == NULL_VALUE) {
-        set_error_type(&error, SEMANTIC_ERROR);
-        set_error_message(&error, "Type '%s' is not defined.", get_lexeme(index_type_lexicographic));
-
-        yerror(error);
-    }
-}
-
 void declaration_variable_start(int index_lexeme_lexicographic, int index_type_lexicographic) {
-    validate_variable_type(index_type_lexicographic);
+    validate_type_definition(index_type_lexicographic);
     
     int index_type_declaration = find_declaration_index(index_type_lexicographic);
     int execution = get_declaration_execution(index_type_declaration); 
@@ -26,13 +17,29 @@ void declaration_variable_start(int index_lexeme_lexicographic, int index_type_l
 }
 
 void declaration_param_start(int index_lexeme_lexicographic, int index_type_lexicographic) {
-    validate_variable_type(index_type_lexicographic);
-    
+    validate_type_definition(index_type_lexicographic);
+
     int index_type_declaration = find_declaration_index(index_type_lexicographic);
     int execution = get_declaration_execution(index_type_declaration); 
-    
+
+    if(!is_declaration_base_type(index_type_declaration)) {
+        set_error_type(&error, SEMANTIC_ERROR);
+        set_error_message(&error, "Parameter type '%s' should be a base type.", get_lexeme(index_type_lexicographic));
+
+        yerror(error);
+    }
+
     insert_declaration_param(index_lexeme_lexicographic, get_current_region_id(), index_type_declaration, get_region_size(get_current_region_id()));
     update_region_size(get_current_region_id(), get_region_size(get_current_region_id()) + execution);
+}
+
+void validate_type_definition(int index_type_lexicographic) {
+    if (find_declaration_index(index_type_lexicographic) == NULL_VALUE) {
+        set_error_type(&error, SEMANTIC_ERROR);
+        set_error_message(&error, "Type '%s' is not defined.", get_lexeme(index_type_lexicographic));
+
+        yerror(error);
+    }
 }
 
 void validate_variable_definition(int index_lexeme_lexicographic) {
