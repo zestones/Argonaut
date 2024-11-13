@@ -26,10 +26,9 @@
     int current_lexeme_code;
 
     void yyerror(const char *s) {
-        // FIXME: Dont display default error message 
-        set_error_message(&error, "Unexpected token found: %s", yytext);
+        set_error_message(&error, "Unexpected token found: '%s'", yytext);
         set_error_type(&error, SYNTAX_ERROR);
-        // yerror(error);
+        yerror(error);
     }
 %}
 
@@ -67,8 +66,10 @@
 %%
 
 program: PROG declaration_list statement_list
-       | 
-       ;// Conditions and boolean expressions
+       |
+       ;
+     
+// Conditions and boolean expressions
 condition: OPEN_PARENTHESIS expression comparison_operator expression CLOSE_PARENTHESIS
          | OPEN_PARENTHESIS condition CLOSE_PARENTHESIS
          | condition AND condition
@@ -76,8 +77,6 @@ condition: OPEN_PARENTHESIS expression comparison_operator expression CLOSE_PARE
          | NOT condition
          | NOT expression
          ;
-
-loop: WHILE condition statement_block ;
 
 comparison_operator: EQUAL
                    | NOT_EQUAL
@@ -175,7 +174,8 @@ statement_block: START statement_list END ;
 
 
 statement_list: statement statement_list
-              | statement declaration {
+                // FIXME: This only works for the first declaration
+              | statement declaration { 
                 set_error_type(&error, SYNTAX_ERROR);
                 set_error_message(&error, "Do not mix declarations and statements! All declarations must be at the beginning of the block.");
                 yerror(error);
@@ -198,7 +198,7 @@ return_statement: RETURN_VALUE expression SEMICOLON
 if_statement: IF condition statement_block
             | IF condition statement_block ELSE statement_block;
 
-loop_statement: loop;
+loop_statement: WHILE condition statement_block ;
 
 standalone_function_call_statement: function_call_expression SEMICOLON ;
 

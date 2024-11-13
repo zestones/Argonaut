@@ -80,7 +80,7 @@
 
 **VARIABLES (IDF) DECLARATION:**
 
-- Type Undefined
+- ✔️ Type Undefined
 - Variable Redefinition
 
 **VARIABLES (IDF) ASSIGNMENT:**

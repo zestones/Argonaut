@@ -26,10 +26,9 @@
     int current_lexeme_code;
 
     void yyerror(const char *s) {
-        // FIXME: Dont display default error message 
-        set_error_message(&error, "Unexpected token found: %s", yytext);
+        set_error_message(&error, "Unexpected token found: '%s'", yytext);
         set_error_type(&error, SYNTAX_ERROR);
-        // yerror(error);
+        yerror(error);
     }
 %}
 

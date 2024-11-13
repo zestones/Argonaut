@@ -1,9 +1,10 @@
 PROG
-
+var b : poo;
 var a : int;
+var b : int;
 a := 5;
 
+a := @;
 var n : int;
 
-// a := 5;
-// @
+a := 5;
