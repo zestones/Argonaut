@@ -48,6 +48,9 @@ int insert_lexeme(const char* lexeme) {
     return hash_code;
 }
 
+char *get_lexeme(int index) {
+    return lexeme_table[index].lexeme;
+}
 
 void print_lexeme_table() {
     const int cols_width[] = {10, 20, 10, 10};

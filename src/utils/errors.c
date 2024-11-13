@@ -40,3 +40,14 @@ void yerror(const Error error) {
     fprintf(stderr, " at line %d, column %d: %s" COLOR_RESET "\n", error.line, error.column, error.message);
     // exit(EXIT_FAILURE);
 }
+
+void set_error_message(Error *error, const char *format, ...) {
+    va_list args;
+    va_start(args, format);
+    vsnprintf(error->message, sizeof(error->message), format, args);
+    va_end(args);
+}
+
+void set_error_type(Error *error, ErrorType type) {
+    error->type = type;
+}

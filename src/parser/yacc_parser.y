@@ -22,13 +22,11 @@
     extern FILE *yyout;
     extern char *yytext;
 
-    extern int error_line;
-    extern int error_column;
-
+    Error error;
     int current_lexeme_code;
 
     void yyerror(const char *s) {
-        Error error = construct_error(SYNTAX_ERROR, error_line, error_column, "Unexpected token '%s' encountered. '%s'", s, yytext);
+        error = construct_error(SYNTAX_ERROR, 1, 1, "Unexpected token '%s' encountered. '%s'", s, yytext);
         yerror(error);
     }
 %}
@@ -175,7 +173,7 @@ statement: assignment_statement
     | standalone_function_call_statement
     | loop_statement ;
 
-assignment_statement: IDENTIFIER OPAFF expression SEMICOLON 
+assignment_statement: IDENTIFIER { is_variable_defined($1); } OPAFF expression SEMICOLON 
                     ;
 
 return_statement: RETURN_VALUE expression SEMICOLON
@@ -213,6 +211,9 @@ static void print_usage(const char *program_name) {
 
 int main(int argc, char **argv) {
     int opt, verbose = 0;
+    
+    error.line = 1;
+    error.column = 1;
     
     if (argc == 1) {
         // No arguments provided

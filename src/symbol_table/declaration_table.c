@@ -115,7 +115,7 @@ int find_declaration_index(int tlex_index) {
 
     // TODO: Use error handling instead of printing to stderr (yyerror)
     // TODO: Do not exit the program on error (yyerror), this enables the user to see all the errors at once
-    fprintf(stderr, COLOR_RED "<Error> Declaration not found for tlex_index %d in region %d\n" COLOR_RESET, tlex_index, get_current_region_id());
+    fprintf(stderr, COLOR_YELLOW "<Error> Declaration not found for tlex_index %d in region %d\n" COLOR_RESET, tlex_index, get_current_region_id());
     return NULL_VALUE;
 }
 

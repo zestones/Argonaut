@@ -30,6 +30,11 @@ typedef struct {
 } Error;
 
 /**
+ * @brief The global Error struct to hold the current error details.
+ */
+extern Error error;
+
+/**
  * @brief Constructs an Error struct with the provided details.
  * 
  * @param type The type of the error.
@@ -54,5 +59,22 @@ void yywarn(const Error error);
  * @param error The Error struct containing error details.
  */
 void yerror(const Error error);
+
+/**
+ * @brief Sets the error message of the provided Error struct.
+ * 
+ * @param error The Error struct to set the message for.
+ * @param format The format string for the error message.
+ * @param ... The arguments to be formatted into the error message.
+ */
+void set_error_message(Error *error, const char *format, ...);
+
+/**
+ * @brief Sets the error type of the provided Error struct.
+ * 
+ * @param error The Error struct to set the type for.
+ * @param type The type of the error.
+ */
+void set_error_type(Error *error, ErrorType type);
 
 #endif // __ERRORS_H__
