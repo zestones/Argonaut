@@ -26,9 +26,10 @@
     int current_lexeme_code;
 
     void yyerror(const char *s) {
-        error = construct_error(SYNTAX_ERROR, 1, 1, "Unexpected token '%s' encountered. '%s'", s, yytext);
-        // set_error_type(&error, SYNTAX_ERROR);
-        yerror(error);
+        // FIXME: Dont display default error message 
+        set_error_message(&error, "Unexpected token found: %s", yytext);
+        set_error_type(&error, SYNTAX_ERROR);
+        // yerror(error);
     }
 %}
 
@@ -87,8 +88,9 @@ comparison_operator: EQUAL
                    ;
 
 // Declarations
-declaration_list: declaration_list declaration
-                | ;
+declaration_list: declaration declaration_list 
+                | 
+                ;
 
 declaration: variable_declaration 
            | function_declaration 
@@ -171,8 +173,16 @@ function_call_expression: IDENTIFIER OPEN_PARENTHESIS argument_list CLOSE_PARENT
 // Statements
 statement_block: START statement_list END ;
 
-statement_list: statement_list statement
-              | ;
+
+statement_list: statement statement_list
+              | statement declaration {
+                set_error_type(&error, SYNTAX_ERROR);
+                set_error_message(&error, "Do not mix declarations and statements! All declarations must be at the beginning of the block.");
+                yerror(error);
+              }
+              | 
+              ;
+
 
 statement: assignment_statement
     | if_statement

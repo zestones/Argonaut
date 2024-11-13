@@ -1,6 +1,7 @@
 // Declarations
-declaration_list: declaration_list declaration
-                | ;
+declaration_list: declaration declaration_list 
+                | 
+                ;
 
 declaration: variable_declaration 
            | function_declaration 
