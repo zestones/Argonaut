@@ -44,6 +44,8 @@ proc myproc(a : float, b : int) {
         var x : int;
         return 0;
     }
+
+    zero();
 }
 
 

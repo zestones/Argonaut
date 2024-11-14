@@ -14,10 +14,10 @@ expression_atom: function_call_expression
                ;
 
 // TODO : is there a better way to assign the lexicographic_index to the base type ?
-type: INTEGER { $$ = 0;}
-    | FLOAT   { $$ = 1;}
-    | BOOLEAN { $$ = 2;}
-    | CHARACTER { $$ = 3;}
+type: INTEGER { $$ = 0; }
+    | FLOAT   { $$ = 1; }
+    | BOOLEAN { $$ = 2; }
+    | CHARACTER { $$ = 3; }
     | STRING OPEN_BRACKET INTEGER CLOSE_BRACKET // FIXME: HELP I DONT KNOW HOW TO HANDLE THIS
     | IDENTIFIER 
     ;
@@ -29,7 +29,7 @@ complex_type_fields: type_field
 type_field: IDENTIFIER TWO_POINTS type SEMICOLON { structure_add_field($1, $3); }
           ;
 
-function_call_expression: IDENTIFIER OPEN_PARENTHESIS argument_list CLOSE_PARENTHESIS 
+function_call_expression: IDENTIFIER { check_func_proc_definition($1); } OPEN_PARENTHESIS argument_list CLOSE_PARENTHESIS 
                         ;
 
 
