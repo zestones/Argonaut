@@ -65,7 +65,8 @@ void check_type_redefinition(int index_lexeme_lexicographic) {
 
 void check_func_proc_redefinition(int index_lexeme_lexicographic, char *type) {
     // FIXME: Should check in all stack regions or only in the current region?
-    if (find_declaration_index(index_lexeme_lexicographic) != NULL_VALUE) {
+    if (find_declaration_index_by_nature(index_lexeme_lexicographic, TYPE_FUNC) != NULL_VALUE &&
+        find_declaration_index_by_nature(index_lexeme_lexicographic, TYPE_PROC) != NULL_VALUE) {
         set_error_type(&error, SEMANTIC_ERROR);
         set_error_message(&error, "Redefinition of %s '%s'.", type, get_lexeme(index_lexeme_lexicographic));
 

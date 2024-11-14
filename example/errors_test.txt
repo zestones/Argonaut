@@ -40,4 +40,5 @@ proc myproc(a : float, a : int) {
 
 zero();
 
-@*/
+@
+var n : int;
