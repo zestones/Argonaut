@@ -58,4 +58,16 @@ void check_variable_redefinition(int index_lexeme_lexicographic);
  * @param column The column where the error occurred.
  */
 void check_type_redefinition(int index_lexeme_lexicographic);
+
+/**
+ * @brief Checks if a function or procedure has been redefined.
+ *
+ * This function checks if a function or procedure has been redefined in the current scope.
+ * If the function or procedure has been redefined, a warning is thrown.
+ *
+ * @param index_lexeme_lexicographic The lexicographic index of the function or procedure's name.
+ * @param type The type of the function or procedure.
+ */
+void check_func_proc_redefinition(int index_lexeme_lexicographic, char *type);
+
 #endif // __VALIDATION_H__

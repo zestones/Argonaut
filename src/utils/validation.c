@@ -21,7 +21,6 @@ void check_variable_definition(int index_lexeme_lexicographic) {
     }
 }
 
-
 void check_variable_redefinition(int index_lexeme_lexicographic) {
     // FIXME: Should check in all stack regions or only in the current region?
     if (find_declaration_index(index_lexeme_lexicographic) != NULL_VALUE) {
@@ -37,6 +36,16 @@ void check_type_redefinition(int index_lexeme_lexicographic) {
     if (find_declaration_index(index_lexeme_lexicographic) != NULL_VALUE) {
         set_error_type(&error, SEMANTIC_ERROR);
         set_error_message(&error, "Redefinition of type '%s'.", get_lexeme(index_lexeme_lexicographic));
+
+        yywarn(error);
+    }
+}
+
+void check_func_proc_redefinition(int index_lexeme_lexicographic, char *type) {
+    // FIXME: Should check in all stack regions or only in the current region?
+    if (find_declaration_index(index_lexeme_lexicographic) != NULL_VALUE) {
+        set_error_type(&error, SEMANTIC_ERROR);
+        set_error_message(&error, "Redefinition of %s '%s'.", type, get_lexeme(index_lexeme_lexicographic));
 
         yywarn(error);
     }
