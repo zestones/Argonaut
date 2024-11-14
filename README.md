@@ -82,10 +82,10 @@
 
 - ✔️ Type Undefined
 - Variable Redefinition
-
-**VARIABLES (IDF) ASSIGNMENT:**
-
 - Variable Not Declared
+
+**ASSIGNMENT:**
+
 - Type Mismatch
 
 **EXPRESSIONS:**
@@ -96,3 +96,4 @@
 **PARAMETERS:**
 
 - Base type
+- ✔️ Type Undefined

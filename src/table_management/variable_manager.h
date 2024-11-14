@@ -56,4 +56,14 @@ void validate_type_definition(int index_type_lexicographic);
  */
 void validate_variable_definition(int index_lexeme_lexicographic);
 
+/**
+ * @brief Checks if a variable has been redefined.
+ *
+ * This function checks if a variable has been redefined in the current scope.
+ * If the variable has been redefined, an error is thrown.
+ *
+ * @param index_lexeme_lexicographic The lexicographic index of the variable's name.
+ */
+void check_variable_redefinition(int index_lexeme_lexicographic);
+
 #endif // __VARIABLE_MANAGER_H__
