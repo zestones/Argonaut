@@ -34,9 +34,9 @@ void declaration_array_end(int index_type_lexicographic) {
     check_type_definition(index_type_lexicographic);
     update_representation(context.index_number_of_dimensions_representation, context.number_of_dimensions);
 
-    int index_array_name_type_declaration = find_declaration_index(context.index_array_name_lexicographic);
+    int index_array_name_declaration = find_declaration_index(context.index_array_name_lexicographic);
     int index_type_of_array_declaration = find_declaration_index(index_type_lexicographic);
 
     int execution = get_declaration_execution(index_type_of_array_declaration);
-    update_declaration_execution(index_array_name_type_declaration, context.array_size * execution);
+    update_declaration_execution(index_array_name_declaration, context.array_size * execution);
 }
