@@ -1,5 +1,6 @@
 #include "../symbol_table/declaration_table.h" 
 #include "../lexer/lexeme_table.h"
+#include "scope_tracker.h"
 #include "validation.h"
 
 
@@ -67,6 +68,15 @@ void check_func_proc_redefinition(int index_lexeme_lexicographic, char *type) {
     if (find_declaration_index(index_lexeme_lexicographic) != NULL_VALUE) {
         set_error_type(&error, SEMANTIC_ERROR);
         set_error_message(&error, "Redefinition of %s '%s'.", type, get_lexeme(index_lexeme_lexicographic));
+
+        yywarn(error);
+    }
+}
+
+void check_scope_redefinition(int index_lexeme_lexicographic, char *entity_type) {
+    if (is_identifier_already_tracked(index_lexeme_lexicographic)) {
+        set_error_type(&error, SEMANTIC_ERROR);
+        set_error_message(&error, "Redefinition of %s '%s'.", entity_type, get_lexeme(index_lexeme_lexicographic));
 
         yywarn(error);
     }

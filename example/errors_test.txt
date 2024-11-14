@@ -6,6 +6,7 @@ var n : int;
 
 type date : struct 
 {
+    jour : int;    
     jour : int;
     mois : int;
     annee : float;

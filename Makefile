@@ -25,7 +25,7 @@ PARSER = parser.o
 SYMBOL_TABLE = declaration_table.o representation_table.o hash_table.o
 TABLE_MANAGEMENT = variable_manager.o array_manager.o func_proc_manager.o structure_manager.o
 DATA = region_table.o region_stack.o
-UTILS = stack.o errors.o validation.o
+UTILS = stack.o errors.o validation.o scope_tracker.o
 
 
 all: compilateur simple-clean
@@ -117,6 +117,9 @@ errors.o: src/utils/errors.c
 
 validation.o: src/utils/validation.c
 	$(CC) -c src/utils/validation.c
+
+scope_tracker.o: src/utils/scope_tracker.c
+	$(CC) -c src/utils/scope_tracker.c
 
 # ==================================================== #
 #                        C L E A N                     #

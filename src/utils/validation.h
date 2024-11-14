@@ -92,4 +92,15 @@ void check_type_redefinition(int index_lexeme_lexicographic);
  */
 void check_func_proc_redefinition(int index_lexeme_lexicographic, char *type);
 
+/**
+ * @brief Checks if a scope entity has been redefined.
+ *
+ * This function checks if a scope entity has been redefined in the current scope.
+ * If the scope entity has been redefined, a warning is thrown.
+ *
+ * @param index_lexeme_lexicographic The lexicographic index of the scope entity's name.
+ * @param entity_type The type of the scope entity. (function/procedure parameter, structure field)
+ */
+void check_scope_redefinition(int index_lexeme_lexicographic, char *entity_type);
+
 #endif // __VALIDATION_H__
