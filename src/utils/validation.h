@@ -47,4 +47,15 @@ void check_variable_definition(int index_lexeme_lexicographic);
  */
 void check_variable_redefinition(int index_lexeme_lexicographic);
 
+/**
+ * @brief Checks if a type has been redefined.
+ *
+ * This function checks if a type has been redefined in the current scope.
+ * If the type has been redefined, an error is thrown.
+ *
+ * @param index_lexeme_lexicographic The lexicographic index of the type's name.
+ * @param line The line where the error occurred.
+ * @param column The column where the error occurred.
+ */
+void check_type_redefinition(int index_lexeme_lexicographic);
 #endif // __VALIDATION_H__

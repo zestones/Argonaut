@@ -4,9 +4,27 @@ var e : int;
 var b : int;
 var n : int;
 
+type date : struct 
+{
+    jour : int;
+    mois : int;
+    annee : float;
+} fstruct;
+
+type personne : struct 
+{
+    numero : int;
+    naissance : date;
+    age : int;
+} fstruct;
+
 type equipe : array[1..3 , 1..2] of personne;
 
-proc myproc(a : personne, b : int) {
+var a : personne;
+
+proc myproc(a : float, b : int) {
+    type equipe : array[1..3 , 1..2] of personne;
     var c : int;
     var d : int;
 }
+
