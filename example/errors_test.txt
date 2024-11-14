@@ -39,3 +39,4 @@ proc myproc(a : float, b : int) {
 
 zero();
 
+@*/

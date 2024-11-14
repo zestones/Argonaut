@@ -20,7 +20,7 @@ void yywarn(const Error error) {
         case SYNTAX_ERROR:        printf("Syntax Warning");           break;
         case SEMANTIC_ERROR:      printf("Semantic Warning");         break;
         case TYPE_ERROR:          printf("Type Warning");             break;
-        case LEXICAL_ERROR:      printf("Lexical Warning");          break;
+        case LEXICAL_ERROR:       printf("Lexical Warning");          break;
         case INVALID_INPUT_ERROR: printf("Invalid Input Warning");    break;
         default:                  printf("Unknown Warning");          break;
     }
