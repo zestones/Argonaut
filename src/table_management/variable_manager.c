@@ -5,11 +5,10 @@
 #include "../data/region_table.h"
 #include "variable_manager.h"
 
-#include "../utils/validation.h"
 #include "../utils/utils.h"
 
 void declaration_variable_start(int index_lexeme_lexicographic, int index_type_lexicographic) {
-    validate_type_definition(index_type_lexicographic);
+    check_type_definition(index_type_lexicographic);
     check_variable_redefinition(index_lexeme_lexicographic);
     
     int index_type_declaration = find_declaration_index(index_type_lexicographic);
@@ -20,7 +19,7 @@ void declaration_variable_start(int index_lexeme_lexicographic, int index_type_l
 }
 
 void declaration_param_start(int index_lexeme_lexicographic, int index_type_lexicographic) {
-    validate_type_definition(index_type_lexicographic);
+    check_type_definition(index_type_lexicographic);
 
     int index_type_declaration = find_declaration_index(index_type_lexicographic);
     int execution = get_declaration_execution(index_type_declaration); 

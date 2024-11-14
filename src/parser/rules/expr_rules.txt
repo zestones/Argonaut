@@ -7,7 +7,7 @@ expression: expression PLUS expression
           ;
 
 expression_atom: function_call_expression  
-               | IDENTIFIER  { validate_variable_definition($1); }
+               | IDENTIFIER  { check_variable_definition($1); }
                | INTEGER
                | FLOAT
                | OPEN_PARENTHESIS expression CLOSE_PARENTHESIS 

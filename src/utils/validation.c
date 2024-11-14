@@ -2,7 +2,8 @@
 #include "../lexer/lexeme_table.h"
 #include "validation.h"
 
-void validate_type_definition(int index_type_lexicographic) {
+
+void check_type_definition(int index_type_lexicographic) {
     if (find_declaration_index(index_type_lexicographic) == NULL_VALUE) {
         set_error_type(&error, SEMANTIC_ERROR);
         set_error_message(&error, "Type '%s' is not defined.", get_lexeme(index_type_lexicographic));
@@ -11,7 +12,7 @@ void validate_type_definition(int index_type_lexicographic) {
     }
 }
 
-void validate_variable_definition(int index_lexeme_lexicographic) {
+void check_variable_definition(int index_lexeme_lexicographic) {
     if (find_declaration_index(index_lexeme_lexicographic) == NULL_VALUE) {
         set_error_type(&error, SEMANTIC_ERROR);
         set_error_message(&error, "Variable '%s' is not defined.", get_lexeme(index_lexeme_lexicographic));

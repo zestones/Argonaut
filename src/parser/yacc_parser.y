@@ -26,9 +26,17 @@
     int current_lexeme_code;
 
     void yyerror(const char *s) {
-        set_error_message(&error, "Unexpected token found: '%s'", yytext);
+        if (error.type == NO_ERROR) return;
+
+        set_error_message(&error, 
+            "Unexpected token found: '%s'.\n"
+            "\t> This error is critical and will cause the program to terminate.\n"
+            "\t> Exiting due to a syntax error..", yytext);
+        
         set_error_type(&error, SYNTAX_ERROR);
         yerror(error);
+        
+        exit(EXIT_FAILURE);
     }
 %}
 
@@ -143,7 +151,7 @@ expression: expression PLUS expression
           ;
 
 expression_atom: function_call_expression  
-               | IDENTIFIER  { validate_variable_definition($1); }
+               | IDENTIFIER  { check_variable_definition($1); }
                | INTEGER
                | FLOAT
                | OPEN_PARENTHESIS expression CLOSE_PARENTHESIS 
@@ -177,8 +185,12 @@ statement_list: statement statement_list
                 // FIXME: This only works for the first declaration
               | statement declaration { 
                 set_error_type(&error, SYNTAX_ERROR);
-                set_error_message(&error, "Do not mix declarations and statements! All declarations must be at the beginning of the block.");
+                set_error_message(&error,
+                    "Do not mix declarations and statements! All declarations must be at the beginning of the block.\n\t> This error is critical and will cause the program to terminate.\n"
+                    "\t> Exiting due to a syntax error..");
+                
                 yerror(error);
+                exit(EXIT_FAILURE);
               }
               | 
               ;
@@ -189,7 +201,7 @@ statement: assignment_statement
     | standalone_function_call_statement
     | loop_statement ;
 
-assignment_statement: IDENTIFIER { validate_variable_definition($1); } OPAFF expression SEMICOLON 
+assignment_statement: IDENTIFIER { check_variable_definition($1); } OPAFF expression SEMICOLON 
                     ;
 
 return_statement: RETURN_VALUE expression SEMICOLON

@@ -26,9 +26,17 @@
     int current_lexeme_code;
 
     void yyerror(const char *s) {
-        set_error_message(&error, "Unexpected token found: '%s'", yytext);
+        if (error.type == NO_ERROR) return;
+
+        set_error_message(&error, 
+            "Unexpected token found: '%s'.\n"
+            "\t> This error is critical and will cause the program to terminate.\n"
+            "\t> Exiting due to a syntax error..", yytext);
+        
         set_error_type(&error, SYNTAX_ERROR);
         yerror(error);
+        
+        exit(EXIT_FAILURE);
     }
 %}
 

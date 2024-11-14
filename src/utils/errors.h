@@ -12,6 +12,7 @@
  * @brief Enumeration of error types.
  */
 typedef enum {
+    NO_ERROR,
     SYNTAX_ERROR,
     SEMANTIC_ERROR,
     TYPE_ERROR,

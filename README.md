@@ -81,8 +81,8 @@
 **VARIABLES (IDF) DECLARATION:**
 
 - ✔️ Type Undefined
-- Variable Redefinition
-- Variable Not Declared
+- ✔️ Variable Redefinition
+- ✔️ Variable Not Declared
 
 **ASSIGNMENT:**
 
@@ -95,5 +95,5 @@
 
 **PARAMETERS:**
 
-- Base type
+- ✔️ Base type
 - ✔️ Type Undefined
