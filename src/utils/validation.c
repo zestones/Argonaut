@@ -2,6 +2,16 @@
 #include "../lexer/lexeme_table.h"
 #include "validation.h"
 
+
+void check_base_type(int index_lexeme_lexicographic) {
+       if(!is_declaration_base_type(index_lexeme_lexicographic)) {
+        set_error_type(&error, SEMANTIC_ERROR);
+        set_error_message(&error, "Type '%s' should be a base type (int, float, bool, char).", get_lexeme(index_lexeme_lexicographic));
+
+        yerror(error);
+    }   
+}
+
 void check_variable_definition(int index_lexeme_lexicographic) {
     if (find_declaration_index(index_lexeme_lexicographic) == NULL_VALUE) {
         set_error_type(&error, SEMANTIC_ERROR);

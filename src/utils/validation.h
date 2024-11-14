@@ -13,6 +13,15 @@
 #include "errors.h"
 #include "utils.h"
 
+/**
+ * @brief Validates that the lexicographic index is a base type.
+ * 
+ * This function checks if the lexicographic index corresponds to a base type.
+ * If the lexicographic index does not correspond to a base type, an error is thrown.
+ * 
+ * @param index_lexeme_lexicographic The lexicographic index of the base type's name.
+ */
+void check_base_type(int index_lexeme_lexicographic);
 
 /**
  * @brief Validates the definition of a variable.
