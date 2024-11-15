@@ -1,8 +1,8 @@
 PROG 
-type personne : struct 
-{
-    numero : int;
-    age : int;
-} fstruct;
+var aab : int;
+var baa : int;
+var aba : int;
+var aab : float; // shouldn't work
 
-var p : personne;
+
+baa := 3; // shouldn't generate an error

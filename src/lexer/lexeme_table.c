@@ -35,32 +35,21 @@ static int get_lexeme_index(const char* lexeme) {
 
 int insert_lexeme(const char* lexeme) {
     int length = strlen(lexeme);
-    
-    int hash_code = hash_function(lexeme, length);
-    int index = get_hash_value(hash_code);
-    int prev_index = NULL_VALUE;
+    int index = get_hash_value(hash_function(lexeme, length));
 
     // We first check if the lexeme is already in the table
     int index_duplicate_lexeme = get_lexeme_index(lexeme);
     if (index_duplicate_lexeme != NULL_VALUE) return index_duplicate_lexeme;
 
-    while (index != NULL_VALUE) {
-        if (!strcmp(lexeme_table[index].lexeme, lexeme)) break;
-
-        prev_index = index;
-        index = lexeme_table[index].next;
-    }
-
-    if (index != NULL_VALUE) return index;
-    else index = lexeme_table_size;
-
+    // If the lexeme is not in the table, we insert it
     Lexeme new_lexeme = construct_lexeme(lexeme, length, NULL_VALUE);
-    insert_hash(lexeme, hash_code);
+    insert_hash(lexeme, lexeme_table_size);
 
-    if (prev_index != NULL_VALUE) lexeme_table[prev_index].next = index;
-    lexeme_table[lexeme_table_size++] = new_lexeme;
-
-    return index;
+    // If there is a collision, we link the new lexeme to the previous one
+    if (index != NULL_VALUE) lexeme_table[index].next = lexeme_table_size;
+    lexeme_table[lexeme_table_size] = new_lexeme;
+    
+    return lexeme_table_size++;
 }
 
 char *get_lexeme(int index) {
