@@ -25,27 +25,29 @@ void init_lexeme_table() {
 
 int insert_lexeme(const char* lexeme) {
     int length = strlen(lexeme);
-    int hash_code = get_hash_value(hash_function(lexeme, length));
+    
+    int hash_index = hash_function(lexeme, length);
+    int index = get_hash_value(hash_index);
     int prev_index = NULL_VALUE;
 
-    while (hash_code != NULL_VALUE) {
-        if (!strcmp(lexeme_table[hash_code].lexeme, lexeme)) break;
+    while (index != NULL_VALUE) {
+        if (!strcmp(lexeme_table[index].lexeme, lexeme)) break;
 
-        prev_index = hash_code;
-        hash_code = lexeme_table[hash_code].next;
+        prev_index = index;
+        index = lexeme_table[index].next;
     }
 
 
-    if (hash_code != NULL_VALUE) return hash_code;
-    else hash_code = lexeme_table_size;
+    if (index != NULL_VALUE) return index;
+    else index = lexeme_table_size;
 
     Lexeme new_lexeme = construct_lexeme(lexeme, length, NULL_VALUE);
-    insert_hash(lexeme, hash_code);
+    insert_hash(lexeme, hash_index);
 
-    if (prev_index != NULL_VALUE) lexeme_table[prev_index].next = hash_code;
+    if (prev_index != NULL_VALUE) lexeme_table[prev_index].next = index;
     lexeme_table[lexeme_table_size++] = new_lexeme;
 
-    return hash_code;
+    return index;
 }
 
 char *get_lexeme(int index) {

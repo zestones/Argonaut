@@ -9,8 +9,7 @@ declaration: variable_declaration
            | procedure_declaration 
            ;
 
-variable_declaration: VARIABLE IDENTIFIER TWO_POINTS type SEMICOLON 
-                      { declaration_variable_start($2, $4); }
+variable_declaration: VARIABLE IDENTIFIER TWO_POINTS type SEMICOLON { declaration_variable_start($2, $4); }
                     ;
 
 function_declaration: FUNCTION IDENTIFIER { construct_func_proc_manager_context($2); declaration_func_start(); } OPEN_PARENTHESIS parameter_list CLOSE_PARENTHESIS RETURN_TYPE type START declaration_list statement_list return_statement END { declaration_func_end($8); } 
