@@ -23,12 +23,26 @@ void init_lexeme_table() {
     memset(lexeme_table, NULL_VALUE, sizeof(lexeme_table));
 }
 
+static int get_lexeme_index(const char* lexeme) {
+    for (int i = 0; i < lexeme_table_size; i++) {
+        if (strcmp(lexeme_table[i].lexeme, lexeme) == 0) {
+            return i;
+        }
+    }
+
+    return NULL_VALUE;
+}
+
 int insert_lexeme(const char* lexeme) {
     int length = strlen(lexeme);
     
-    int hash_index = hash_function(lexeme, length);
-    int index = get_hash_value(hash_index);
+    int hash_code = hash_function(lexeme, length);
+    int index = get_hash_value(hash_code);
     int prev_index = NULL_VALUE;
+
+    // We first check if the lexeme is already in the table
+    int index_duplicate_lexeme = get_lexeme_index(lexeme);
+    if (index_duplicate_lexeme != NULL_VALUE) return index_duplicate_lexeme;
 
     while (index != NULL_VALUE) {
         if (!strcmp(lexeme_table[index].lexeme, lexeme)) break;
@@ -37,12 +51,11 @@ int insert_lexeme(const char* lexeme) {
         index = lexeme_table[index].next;
     }
 
-
     if (index != NULL_VALUE) return index;
     else index = lexeme_table_size;
 
     Lexeme new_lexeme = construct_lexeme(lexeme, length, NULL_VALUE);
-    insert_hash(lexeme, hash_index);
+    insert_hash(lexeme, hash_code);
 
     if (prev_index != NULL_VALUE) lexeme_table[prev_index].next = index;
     lexeme_table[lexeme_table_size++] = new_lexeme;
