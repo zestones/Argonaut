@@ -31,8 +31,8 @@ void func_proc_add_parameter(int index_lexeme_lexicographic, int index_type_lexi
     check_scope_redefinition(index_lexeme_lexicographic, "parameter");
     add_identifier_to_scope_tracker(index_lexeme_lexicographic);
     
-    insert_representation(index_type_lexicographic);
     insert_representation(index_type_declaration); 
+    insert_representation(index_type_lexicographic);
     
     context.number_of_parameters++;
     
