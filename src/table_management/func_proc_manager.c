@@ -49,7 +49,6 @@ void declaration_func_start() {
     start_region();
 
     insert_declaration_func(context.index_func_proc_name_lexicographic, parent_index, context.index_number_of_parameters_representation);
-    update_region_size(get_current_region_id(), get_region_size(get_current_region_id()) + 1);
 }
 
 void declaration_func_end(int index_return_type_lexicographic) {
