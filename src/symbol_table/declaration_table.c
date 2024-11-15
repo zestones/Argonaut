@@ -84,39 +84,46 @@ void insert_declaration_param(int index, int region, int description, int execut
     insert_declaration(index, TYPE_PARAM, get_current_region_id(), description, execution);
 }
 
-static int is_base_type(int tlex_index) {
-    return (declaration_table[tlex_index].nature == TYPE_BASE);
+int is_declaration_base_type(int index) {
+    return (declaration_table[index].nature == TYPE_BASE);
 }
 
-static int find_declaration_index_in_region(int tlex_index, int region) {
+static int find_declaration_index_in_region_by_nature(int tlex_index, int region, int nature_filter) {
     int index = tlex_index;
     while (index != NULL_VALUE) {
-        if (declaration_table[index].region == region) return index;
+        if (declaration_table[index].region == region && 
+            (nature_filter == NULL_VALUE || declaration_table[index].nature == nature_filter)
+        ) {
+            return index;
+        }
+        
         index = declaration_table[index].next;
     }
-
     return NULL_VALUE;
 }
 
-int find_declaration_index(int tlex_index) {
+static int find_declaration_in_stack(int tlex_index, int nature_filter) {
     int index = tlex_index;
-    if (is_base_type(tlex_index)) return index;
+    if (is_declaration_base_type(tlex_index)) return index;
 
     Stack tmp_stack = construct_stack();
     stack_cpy(&tmp_stack, get_region_stack());
 
     while (!is_empty(tmp_stack)) {
         int current_region = pop(&tmp_stack);
-        index = find_declaration_index_in_region(tlex_index, current_region);
-
-        // TODO: check that the nature of the declaration is not NULL_VALUE or TYPE_FUNC/TYPE_PROC
+        index = find_declaration_index_in_region_by_nature(tlex_index, current_region, nature_filter);
         if (index != NULL_VALUE) return index;
     }
 
-    // TODO: Use error handling instead of printing to stderr (yyerror)
-    // TODO: Do not exit the program on error (yyerror), this enables the user to see all the errors at once
-    fprintf(stderr, COLOR_RED "<Error> Declaration not found for tlex_index %d in region %d\n" COLOR_RESET, tlex_index, get_current_region_id());
     return NULL_VALUE;
+}
+
+int find_declaration_index(int tlex_index) {
+    return find_declaration_in_stack(tlex_index, NULL_VALUE);
+}
+
+int find_declaration_index_by_nature(int tlex_index, Nature nature) {
+    return find_declaration_in_stack(tlex_index, nature);
 }
 
 int get_declaration_execution(int index) {

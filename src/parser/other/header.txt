@@ -10,6 +10,8 @@
     #include "../lexer/lexeme_table.h"
     #include "parser.h"
 
+    #include "../utils/errors.h"
+
     #include <stdio.h>
     #include <stdlib.h>
     #include <unistd.h>
@@ -18,11 +20,24 @@
 
     extern FILE *yyin;
     extern FILE *yyout;
-
-    extern int error_line;
     extern char *yytext;
 
+    Error error;
     int current_lexeme_code;
+
+    void yyerror(const char *s) {
+        if (error.type == NO_ERROR) return;
+
+        set_error_message(&error, 
+            "Unexpected token found: '%s'.\n"
+            "\t> This error is critical and will cause the program to terminate.\n"
+            "\t> Exiting due to a syntax error..", yytext);
+        
+        set_error_type(&error, SYNTAX_ERROR);
+        yerror(error);
+        
+        exit(EXIT_FAILURE);
+    }
 %}
 
 %union {

@@ -3,8 +3,8 @@
 
 #include "../utils/utils.h"
 
+#include "../symbol_table/hash_table.h"
 #include "lexeme_table.h"
-#include "hash_table.h"
 
 static Lexeme lexeme_table[MAX_LEXEME_COUNT];
 static int lexeme_table_size = 0;
@@ -23,31 +23,38 @@ void init_lexeme_table() {
     memset(lexeme_table, NULL_VALUE, sizeof(lexeme_table));
 }
 
-int insert_lexeme(const char* lexeme) {
-    int length = strlen(lexeme);
-    int hash_code = get_hash_value(hash_function(lexeme, length));
-    int prev_index = NULL_VALUE;
-
-    while (hash_code != NULL_VALUE) {
-        if (!strcmp(lexeme_table[hash_code].lexeme, lexeme)) break;
-
-        prev_index = hash_code;
-        hash_code = lexeme_table[hash_code].next;
+static int get_lexeme_index(const char* lexeme) {
+    for (int i = 0; i < lexeme_table_size; i++) {
+        if (strcmp(lexeme_table[i].lexeme, lexeme) == 0) {
+            return i;
+        }
     }
 
-
-    if (hash_code != NULL_VALUE) return hash_code;
-    else hash_code = lexeme_table_size;
-
-    Lexeme new_lexeme = construct_lexeme(lexeme, length, NULL_VALUE);
-    insert_hash(lexeme, hash_code);
-
-    if (prev_index != NULL_VALUE) lexeme_table[prev_index].next = hash_code;
-    lexeme_table[lexeme_table_size++] = new_lexeme;
-
-    return hash_code;
+    return NULL_VALUE;
 }
 
+int insert_lexeme(const char* lexeme) {
+    int length = strlen(lexeme);
+    int index = get_hash_value(hash_function(lexeme, length));
+
+    // We first check if the lexeme is already in the table
+    int index_duplicate_lexeme = get_lexeme_index(lexeme);
+    if (index_duplicate_lexeme != NULL_VALUE) return index_duplicate_lexeme;
+
+    // If the lexeme is not in the table, we insert it
+    Lexeme new_lexeme = construct_lexeme(lexeme, length, NULL_VALUE);
+    insert_hash(lexeme, lexeme_table_size);
+
+    // If there is a collision, we link the new lexeme to the previous one
+    if (index != NULL_VALUE) lexeme_table[index].next = lexeme_table_size;
+    lexeme_table[lexeme_table_size] = new_lexeme;
+    
+    return lexeme_table_size++;
+}
+
+char *get_lexeme(int index) {
+    return lexeme_table[index].lexeme;
+}
 
 void print_lexeme_table() {
     const int cols_width[] = {10, 20, 10, 10};

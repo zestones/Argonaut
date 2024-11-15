@@ -36,4 +36,5 @@ void declaration_variable_start(int index_lexeme_lexicographic, int index_type_l
  */
 void declaration_param_start(int index_lexeme_lexicographic, int index_type_lexicographic);
 
+
 #endif // __VARIABLE_MANAGER_H__

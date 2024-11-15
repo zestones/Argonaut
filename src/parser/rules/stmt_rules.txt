@@ -1,15 +1,28 @@
 // Statements
 statement_block: START statement_list END ;
 
-statement_list: statement_list statement
-              | ;
+
+statement_list: statement statement_list
+                // FIXME: This only works for the first declaration
+              | statement declaration { 
+                set_error_type(&error, SYNTAX_ERROR);
+                set_error_message(&error,
+                    "Do not mix declarations and statements! All declarations must be at the beginning of the block.\n\t> This error is critical and will cause the program to terminate.\n"
+                    "\t> Exiting due to a syntax error..");
+                
+                yerror(error);
+                exit(EXIT_FAILURE);
+              }
+              | 
+              ;
+
 
 statement: assignment_statement
     | if_statement
     | standalone_function_call_statement
     | loop_statement ;
 
-assignment_statement: IDENTIFIER OPAFF expression SEMICOLON 
+assignment_statement: IDENTIFIER { check_variable_definition($1); } OPAFF expression SEMICOLON 
                     ;
 
 return_statement: RETURN_VALUE expression SEMICOLON
@@ -18,7 +31,7 @@ return_statement: RETURN_VALUE expression SEMICOLON
 if_statement: IF condition statement_block
             | IF condition statement_block ELSE statement_block;
 
-loop_statement: loop;
+loop_statement: WHILE condition statement_block ;
 
 standalone_function_call_statement: function_call_expression SEMICOLON ;
 

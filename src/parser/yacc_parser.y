@@ -5,10 +5,12 @@
     #include "../table_management/array_manager.h"
 
     #include "../symbol_table/declaration_table.h"
-    #include "../lexer/lexeme_table.h"
-    #include "../utils/hash_table.h"
+    #include "../symbol_table/hash_table.h"
 
+    #include "../lexer/lexeme_table.h"
     #include "parser.h"
+
+    #include "../utils/errors.h"
 
     #include <stdio.h>
     #include <stdlib.h>
@@ -18,11 +20,24 @@
 
     extern FILE *yyin;
     extern FILE *yyout;
-
-    extern int error_line;
     extern char *yytext;
 
+    Error error;
     int current_lexeme_code;
+
+    void yyerror(const char *s) {
+        if (error.type == NO_ERROR) return;
+
+        set_error_message(&error, 
+            "Unexpected token found: '%s'.\n"
+            "\t> This error is critical and will cause the program to terminate.\n"
+            "\t> Exiting due to a syntax error..", yytext);
+        
+        set_error_type(&error, SYNTAX_ERROR);
+        yerror(error);
+        
+        exit(EXIT_FAILURE);
+    }
 %}
 
 %union {
@@ -45,16 +60,23 @@
 %left AND OR 
 %right NOT
 
+%left IDENTIFIER INTEGER FLOAT BOOLEAN CHARACTER STRING
+%right RETURN_TYPE RETURN_VALUE
+%left SEMICOLON COMMA
+
 %left PLUS MINUS
 %left MULTIPLY DIVIDE
 
 %type <lexicographic_index> type
+
+%start program
+%debug
 %%
 
 program: PROG declaration_list statement_list
-       | 
+       |
        ;
-
+     
 // Conditions and boolean expressions
 condition: OPEN_PARENTHESIS expression comparison_operator expression CLOSE_PARENTHESIS
          | OPEN_PARENTHESIS condition CLOSE_PARENTHESIS
@@ -63,8 +85,6 @@ condition: OPEN_PARENTHESIS expression comparison_operator expression CLOSE_PARE
          | NOT condition
          | NOT expression
          ;
-
-loop: WHILE condition statement_block ;
 
 comparison_operator: EQUAL
                    | NOT_EQUAL
@@ -75,8 +95,9 @@ comparison_operator: EQUAL
                    ;
 
 // Declarations
-declaration_list: declaration_list declaration
-                | ;
+declaration_list: declaration declaration_list 
+                | 
+                ;
 
 declaration: variable_declaration 
            | function_declaration 
@@ -84,8 +105,7 @@ declaration: variable_declaration
            | procedure_declaration 
            ;
 
-variable_declaration: VARIABLE IDENTIFIER TWO_POINTS type SEMICOLON 
-                      { declaration_variable_start($2, $4); }
+variable_declaration: VARIABLE IDENTIFIER TWO_POINTS type SEMICOLON { declaration_variable_start($2, $4); }
                     ;
 
 function_declaration: FUNCTION IDENTIFIER { construct_func_proc_manager_context($2); declaration_func_start(); } OPEN_PARENTHESIS parameter_list CLOSE_PARENTHESIS RETURN_TYPE type START declaration_list statement_list return_statement END { declaration_func_end($8); } 
@@ -130,17 +150,17 @@ expression: expression PLUS expression
           ;
 
 expression_atom: function_call_expression  
-               | IDENTIFIER
+               | IDENTIFIER  { check_variable_definition($1); }
                | INTEGER
                | FLOAT
                | OPEN_PARENTHESIS expression CLOSE_PARENTHESIS 
                ;
 
 // TODO : is there a better way to assign the lexicographic_index to the base type ?
-type: INTEGER { $$ = 0;}
-    | FLOAT   { $$ = 1;}
-    | BOOLEAN { $$ = 2;}
-    | CHARACTER { $$ = 3;}
+type: INTEGER { $$ = 0; }
+    | FLOAT   { $$ = 1; }
+    | BOOLEAN { $$ = 2; }
+    | CHARACTER { $$ = 3; }
     | STRING OPEN_BRACKET INTEGER CLOSE_BRACKET // FIXME: HELP I DONT KNOW HOW TO HANDLE THIS
     | IDENTIFIER 
     ;
@@ -152,22 +172,35 @@ complex_type_fields: type_field
 type_field: IDENTIFIER TWO_POINTS type SEMICOLON { structure_add_field($1, $3); }
           ;
 
-function_call_expression: IDENTIFIER OPEN_PARENTHESIS argument_list CLOSE_PARENTHESIS 
+function_call_expression: IDENTIFIER { check_func_proc_definition($1); } OPEN_PARENTHESIS argument_list CLOSE_PARENTHESIS 
                         ;
 
 
 // Statements
 statement_block: START statement_list END ;
 
-statement_list: statement_list statement
-              | ;
+
+statement_list: statement statement_list
+                // FIXME: This only works for the first declaration
+              | statement declaration { 
+                set_error_type(&error, SYNTAX_ERROR);
+                set_error_message(&error,
+                    "Do not mix declarations and statements! All declarations must be at the beginning of the block.\n\t> This error is critical and will cause the program to terminate.\n"
+                    "\t> Exiting due to a syntax error..");
+                
+                yerror(error);
+                exit(EXIT_FAILURE);
+              }
+              | 
+              ;
+
 
 statement: assignment_statement
     | if_statement
     | standalone_function_call_statement
     | loop_statement ;
 
-assignment_statement: IDENTIFIER OPAFF expression SEMICOLON 
+assignment_statement: IDENTIFIER { check_variable_definition($1); } OPAFF expression SEMICOLON 
                     ;
 
 return_statement: RETURN_VALUE expression SEMICOLON
@@ -176,7 +209,7 @@ return_statement: RETURN_VALUE expression SEMICOLON
 if_statement: IF condition statement_block
             | IF condition statement_block ELSE statement_block;
 
-loop_statement: loop;
+loop_statement: WHILE condition statement_block ;
 
 standalone_function_call_statement: function_call_expression SEMICOLON ;
 
@@ -205,6 +238,9 @@ static void print_usage(const char *program_name) {
 
 int main(int argc, char **argv) {
     int opt, verbose = 0;
+    
+    error.line = 1;
+    error.column = 1;
     
     if (argc == 1) {
         // No arguments provided
@@ -237,6 +273,6 @@ int main(int argc, char **argv) {
         }
     }
 
-    yydebug(verbose);
+    ydebug(verbose);
     return 0;
 }

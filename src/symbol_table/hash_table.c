@@ -47,7 +47,7 @@ void print_hash_table() {
 
     print_table_title("Hash Table");
     print_table_separator(2, cols_width[0], cols_width[1]);
-    print_table_header(2, cols_width[0], "Index", cols_width[1], "Value / Index Lexeme");
+    print_table_header(2, cols_width[0], "Hash", cols_width[1], "Lexicographic Index");
     print_table_separator(2, cols_width[0], cols_width[1]);
 
     for (int i = 0; i < HASH_TABLE_SIZE; i++) {

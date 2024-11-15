@@ -138,6 +138,23 @@ void insert_declaration_param(int index, int region, int description, int execut
 int find_declaration_index(int index);
 
 /**
+ * @brief Finds the index of a declaration with the specified lexicographic index and nature.
+ * This function is used to ensure that a declaration with the specified lexicographic
+ * index and nature exists in the table.
+ * 
+ * If the declaration does not exist, it means that the declaration is using an undeclared
+ * variable, type, which is an error.
+ * 
+ * The search is performed by exploring the stack of regions and checking each region for
+ * the declaration.
+ * 
+ * @param index Index to search for.
+ * @param nature Nature of the declaration.
+ * @return Index of the declaration if found, otherwise -1.
+ */
+int find_declaration_index_by_nature(int tlex_index, Nature nature);
+
+/**
  * @brief Gets the execution information of a declaration.
  * 
  * @param index Index of the declaration.
@@ -179,5 +196,13 @@ static inline char *nature_to_string(Nature nature)
         default: return "UNKNOWN";
     }
 }
+
+/**
+ * @brief Checks if a declaration is a base type.
+ * 
+ * @param index Index of the declaration.
+ * @return 1 if the declaration is a base type, otherwise 0.
+ */
+int is_declaration_base_type(int index);
 
 #endif // DECLARATION_TABLE_H

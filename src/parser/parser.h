@@ -15,18 +15,7 @@
 
 #include "../data/region_table.h"
 
-
-extern int error_line;
-extern int error_column;
-
-extern char *yytext;
-extern int yychar;
-
-void yydebug(int debug);
-
-void yywarn(const char *s);
-
-void yyerror(const char *s);
+void ydebug(int debug);
 
 int yyrun();
 

@@ -63,6 +63,16 @@ void init_lexeme_table();
 int insert_lexeme(const char* lexeme);
 
 /**
+ * @brief Retrieves the lexeme at the given index.
+ *
+ * This function returns the lexeme stored at the specified index in the lexeme table.
+ *
+ * @param index The index of the lexeme to retrieve.
+ * @return The lexeme at the given index.
+ */
+char *get_lexeme(int index);
+
+/**
  * @brief Prints the contents of the lexeme table.
  *
  * This function outputs the current state of the lexeme table, displaying
