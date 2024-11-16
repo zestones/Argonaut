@@ -57,11 +57,11 @@ void func_proc_add_parameter(int index_lexeme_lexicographic, int index_type_lexi
 void declaration_func_start();
 
 /**
- * @brief Ends the declaration of a function.
+ * @brief Updates the return type of the current function.
  *
  * @param index_return_type_lexicographic Index representing the lexicographic order of the return type.
  */
-void declaration_func_end(int index_return_type_lexicographic);
+void update_declaration_func_return_type(int index_return_type_lexicographic);
 
 /**
  * @brief Starts the declaration of a procedure.
@@ -69,8 +69,8 @@ void declaration_func_end(int index_return_type_lexicographic);
 void declaration_proc_start();
 
 /**
- * @brief Ends the declaration of a procedure.
+ * @brief Ends the declaration of a function or procedure.
  */
-void declaration_proc_end();
+void declaration_func_proc_end();
 
 #endif // __FUNC_PROC_MANAGER_H__
