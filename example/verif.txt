@@ -1,8 +1,26 @@
 PROG
+func outer_func(a : int) -> float {
+    var outer_func_var : int;
 
-proc proc1(a : int, b : int) {
+    proc p1() {
+        var x : int;
+    }
+
+    func f() -> int {
+        return 0;
+    }
+
+    proc p2() {
+        var y : int;
+    }
+
+    func f2() -> int {
+        return 0;
+    }
+
+    proc p3() {
+        var z : float;
+    }
+
+    return 3,0;
 }
-
-type recursive_array : array[1..10] of int;
-
-var myvar : recursive_array;
