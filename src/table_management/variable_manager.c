@@ -14,9 +14,7 @@ void declaration_variable_start(int index_lexeme_lexicographic, int index_type_l
     int index_type_declaration = find_declaration_index(index_type_lexicographic);
     int execution = get_declaration_execution(index_type_declaration); 
 
-    printf("lexeme: %s - id: %d - peek: %d\n", get_lexeme(index_lexeme_lexicographic), get_current_region_id(), peek_region());
-    
-    insert_declaration_var(index_lexeme_lexicographic, get_current_region_id(), index_type_declaration, get_region_size(get_current_region_id()));
+    insert_declaration_var(index_lexeme_lexicographic, peek_region(), index_type_declaration, get_region_size(get_current_region_id()));
     update_region_size(get_current_region_id(), get_region_size(get_current_region_id()) + execution);
 }
 

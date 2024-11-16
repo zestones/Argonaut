@@ -22,7 +22,7 @@ void construct_structure_manager_context(int index_struct_name_lexicographic) {
 void declaration_structure_start() {
     check_type_redefinition(context.index_struct_name_lexicographic);
     context.index_number_of_fields_representation = insert_representation(context.number_of_fields);
-    insert_declaration_struct(context.index_struct_name_lexicographic, get_current_region_nis(), context.index_number_of_fields_representation);
+    insert_declaration_struct(context.index_struct_name_lexicographic, peek_region(), context.index_number_of_fields_representation);
 }
 
 void structure_add_field(int index_lexeme_lexicographic, int index_type_lexicographic) {

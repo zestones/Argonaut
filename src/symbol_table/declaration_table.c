@@ -61,15 +61,15 @@ void insert_declaration(int index, Nature nature, int region, int description, i
 }
 
 void insert_declaration_var(int index, int region, int description, int execution) {
-    insert_declaration(index, TYPE_VAR, get_current_region_id(), description, execution);  
+    insert_declaration(index, TYPE_VAR, region, description, execution);  
 }
 
 void insert_declaration_array(int index, int region, int description) {
-    insert_declaration(index, TYPE_ARRAY, get_current_region_id(), description, NULL_VALUE);
+    insert_declaration(index, TYPE_ARRAY, region, description, NULL_VALUE);
 }
 
 void insert_declaration_struct(int index, int region, int description) {
-    insert_declaration(index, TYPE_STRUCT, get_current_region_id(), description, NULL_VALUE);
+    insert_declaration(index, TYPE_STRUCT, region, description, NULL_VALUE);
 }
 
 void insert_declaration_func(int index, int region, int description) {
@@ -81,7 +81,7 @@ void insert_declaration_proc(int index, int region, int description) {
 }
 
 void insert_declaration_param(int index, int region, int description, int execution) {
-    insert_declaration(index, TYPE_PARAM, get_current_region_id(), description, execution);
+    insert_declaration(index, TYPE_PARAM, region, description, execution);
 }
 
 int is_declaration_base_type(int index) {
