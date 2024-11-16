@@ -21,7 +21,7 @@ proc p2(a : int, b : int) {
             return 0;
         } // fin de la fonction x
 
-        proc g(x : int) {
+        proc g(x : bool) {
             var c : int;
 
             c := 88;
