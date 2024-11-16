@@ -1,26 +1,11 @@
 PROG
-func outer_func(a : int) -> float {
-    var outer_func_var : int;
+var x : int;
+x := 3,5;
 
-    proc p1() {
-        var x : int;
-    }
+proc p1(x : float, y : float) {
+    x := 3.5 ;
+} // fin de la procédure p1
 
-    func f() -> int {
-        return 0;
-    }
+x := 4.2;
 
-    proc p2() {
-        var y : int;
-    }
-
-    func f2() -> int {
-        return 0;
-    }
-
-    proc p3() {
-        var z : float;
-    }
-
-    return 3,0;
-}
+p1(3.14, 2.71);

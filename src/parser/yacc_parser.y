@@ -28,10 +28,22 @@
     void yyerror(const char *s) {
         if (error.type == NO_ERROR) return;
 
-        set_error_message(&error, 
-            "Unexpected token found: '%s'.\n"
-            "\t> This error is critical and will cause the program to terminate.\n"
-            "\t> Exiting due to a syntax error..", yytext);
+        if (!strcmp(s, "syntax error")) {
+            set_error_message(&error,
+                "Unexpected token found: '%s'.\n"
+                "\t> This error is critical and will cause the program to terminate.\n"
+                "\t> Exiting due to a syntax error.",
+                yytext);
+        } 
+        else {
+            set_error_message(&error,
+                "Unexpected token found: '%s'.\n"
+                "\t> %s\n"
+                "\t> This error is critical and will cause the program to terminate.\n"
+                "\t> Exiting due to a syntax error.",
+                yytext, s);
+        }
+
         
         set_error_type(&error, SYNTAX_ERROR);
         yerror(error);
@@ -43,6 +55,7 @@
 %union {
 	int lexicographic_index;
     int ival;
+    double fval;
 }
 
 
@@ -52,15 +65,18 @@
 %token ARRAY OF OPEN_BRACKET CLOSE_BRACKET
 %token VARIABLE OPAFF
 %token STRUCT FSTRUCT
-%token <lexicographic_index> IDENTIFIER INTEGER TYPE FLOAT BOOLEAN CHARACTER STRING
+%token <lexicographic_index> IDENTIFIER TYPE INTEGER_TYPE FLOAT_TYPE BOOLEAN_TYPE CHARACTER_TYPE STRING_TYPE
 %token PROCEDURE FUNCTION RETURN_TYPE RETURN_VALUE
 %token IF ELSE WHILE
 %token EQUAL NOT_EQUAL LESS_THAN GREATER_THAN LESS_EQUAL GREATER_EQUAL
 
+%token <ival> INTEGER_VALUE CHARACTER_VALUE
+%token <fval> FLOAT_VALUE
+%token <lexicographic_index> BOOLEAN_VALUE STRING_VALUE
+
 %left AND OR 
 %right NOT
 
-%left IDENTIFIER INTEGER FLOAT BOOLEAN CHARACTER STRING
 %right RETURN_TYPE RETURN_VALUE
 %left SEMICOLON COMMA
 
@@ -138,7 +154,7 @@ list_dimensions: one_dimension
                | list_dimensions COMMA one_dimension 
                ;
 
-one_dimension: INTEGER DOT_DOT INTEGER { array_add_dimension($1, $3); }
+one_dimension: INTEGER_VALUE DOT_DOT INTEGER_VALUE { array_add_dimension($1, $3); }
               ;
 
 // Arithmetic expressions
@@ -147,21 +163,28 @@ expression: expression PLUS expression
           | expression MULTIPLY expression
           | expression DIVIDE expression
           | expression_atom 
+          | error { 
+               set_error_type(&error, SYNTAX_ERROR);
+               yyerror("syntax error");
+           }
           ;
 
 expression_atom: function_call_expression  
                | IDENTIFIER  { check_variable_definition($1); }
-               | INTEGER
-               | FLOAT
+               | INTEGER_VALUE
+               | FLOAT_VALUE
+               | BOOLEAN_VALUE
+               | CHARACTER_VALUE
+               | STRING_VALUE
                | OPEN_PARENTHESIS expression CLOSE_PARENTHESIS 
                ;
 
 // TODO : is there a better way to assign the lexicographic_index to the base type ?
-type: INTEGER { $$ = 0; }
-    | FLOAT   { $$ = 1; }
-    | BOOLEAN { $$ = 2; }
-    | CHARACTER { $$ = 3; }
-    | STRING OPEN_BRACKET INTEGER CLOSE_BRACKET // FIXME: HELP I DONT KNOW HOW TO HANDLE THIS
+type: INTEGER_TYPE { $$ = 0; }
+    | FLOAT_TYPE   { $$ = 1; }
+    | BOOLEAN_TYPE { $$ = 2; }
+    | CHARACTER_TYPE { $$ = 3; }
+    | STRING_TYPE OPEN_BRACKET INTEGER_VALUE CLOSE_BRACKET // FIXME: HELP I DONT KNOW HOW TO HANDLE THIS
     | IDENTIFIER 
     ;
 
@@ -181,14 +204,9 @@ statement_block: START statement_list END ;
 
 
 statement_list: statement statement_list
-                // FIXME: This only works for the first declaration
               | statement declaration { 
                 set_error_type(&error, SYNTAX_ERROR);
-                set_error_message(&error,
-                    "Do not mix declarations and statements! All declarations must be at the beginning of the block.\n\t> This error is critical and will cause the program to terminate.\n"
-                    "\t> Exiting due to a syntax error..");
-                
-                yerror(error);
+                yyerror("Do not mix declarations and statements! All declarations must be at the beginning of the block.");
                 exit(EXIT_FAILURE);
               }
               | 
@@ -241,6 +259,7 @@ int main(int argc, char **argv) {
     
     error.line = 1;
     error.column = 1;
+    error.type = NO_ERROR;
     
     if (argc == 1) {
         // No arguments provided

@@ -26,6 +26,7 @@ int main(int argc, char **argv) {
     
     error.line = 1;
     error.column = 1;
+    error.type = NO_ERROR;
     
     if (argc == 1) {
         // No arguments provided

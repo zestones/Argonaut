@@ -3,7 +3,7 @@ PROG
 var x : int;
 
 proc p1(x : float, y : float) {
-    x := 3,5 ;
+    x := 3.5 ;
 } // fin de la procédure p1
 
 proc p2(a : int, b : int) {
@@ -41,7 +41,7 @@ proc p2(a : int, b : int) {
 proc p5(a : int, c : int) {
     var x : float;
 
-    x := 2,718;
+    x := 2.718;
     c := 77;
 } // fin de la procédure p5
 

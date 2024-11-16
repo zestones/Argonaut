@@ -7,6 +7,7 @@
 
     extern Error error;
     extern char *yytext;
+    extern int yyerror(const char *s);
 %}
 
 number [0-9]
@@ -41,11 +42,11 @@ letter [a-zA-Z]
 "else"                          { error.column += yyleng; return ELSE; }
 "while"                         { error.column += yyleng; return WHILE; }
 
-"int"                           { error.column += yyleng; return INTEGER; }
-"float"                         { error.column += yyleng; return FLOAT; }
-"bool"                          { error.column += yyleng; return BOOLEAN; }
-"char"                          { error.column += yyleng; return CHARACTER; }
-"string"                        { error.column += yyleng; return STRING; }
+"int"                           { error.column += yyleng; return INTEGER_TYPE; }
+"float"                         { error.column += yyleng; return FLOAT_TYPE; }
+"bool"                          { error.column += yyleng; return BOOLEAN_TYPE; }
+"char"                          { error.column += yyleng; return CHARACTER_TYPE; }
+"string"                        { error.column += yyleng; return STRING_TYPE; }
 
 "=="                            { error.column += yyleng; return EQUAL; }
 "!="                            { error.column += yyleng; return NOT_EQUAL; }
@@ -74,19 +75,44 @@ letter [a-zA-Z]
 "("                             { error.column += yyleng; return OPEN_PARENTHESIS; }
 ")"                             { error.column += yyleng; return CLOSE_PARENTHESIS; }
 
+
+"true" { 
+    yylval.ival = 1;
+    error.column += yyleng;
+    return BOOLEAN_VALUE; 
+}
+
+"false" { 
+    yylval.ival = 0;
+    error.column += yyleng;
+    return BOOLEAN_VALUE; 
+}
+
+"'"{letter}"'"                 { 
+    yylval.ival = yytext[1] - 'a';
+    error.column += yyleng;
+    return CHARACTER_VALUE; 
+}
+
+"\"".*"\""                     { 
+    yylval.lexicographic_index = insert_lexeme(yytext);
+    error.column += yyleng;
+    return STRING_VALUE; 
+}
+
+{number}+"."{number}* { 
+    yylval.fval = atof(yytext);
+    error.column += yyleng;
+    return FLOAT_VALUE; 
+}
+
 0|[1-9][0-9]* { 
     yylval.ival = atoi(yytext);
     error.column += yyleng;
-    return INTEGER; 
+    return INTEGER_VALUE; 
 }
 
-{number}+","{number}+ { 
-    yylval.ival = atoi(yytext);
-    error.column += yyleng;
-    return FLOAT; 
-}
-
-{letter}+({letter}|{number}|"_"|"-")* { 
+{letter}+({letter}|{number}|"_"|"-")* {
     yylval.ival = yytext[0] - 'a';
     error.column += yyleng;
     

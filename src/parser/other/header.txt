@@ -28,10 +28,22 @@
     void yyerror(const char *s) {
         if (error.type == NO_ERROR) return;
 
-        set_error_message(&error, 
-            "Unexpected token found: '%s'.\n"
-            "\t> This error is critical and will cause the program to terminate.\n"
-            "\t> Exiting due to a syntax error..", yytext);
+        if (!strcmp(s, "syntax error")) {
+            set_error_message(&error,
+                "Unexpected token found: '%s'.\n"
+                "\t> This error is critical and will cause the program to terminate.\n"
+                "\t> Exiting due to a syntax error.",
+                yytext);
+        } 
+        else {
+            set_error_message(&error,
+                "Unexpected token found: '%s'.\n"
+                "\t> %s\n"
+                "\t> This error is critical and will cause the program to terminate.\n"
+                "\t> Exiting due to a syntax error.",
+                yytext, s);
+        }
+
         
         set_error_type(&error, SYNTAX_ERROR);
         yerror(error);
@@ -43,5 +55,6 @@
 %union {
 	int lexicographic_index;
     int ival;
+    double fval;
 }
 

@@ -3,14 +3,9 @@ statement_block: START statement_list END ;
 
 
 statement_list: statement statement_list
-                // FIXME: This only works for the first declaration
               | statement declaration { 
                 set_error_type(&error, SYNTAX_ERROR);
-                set_error_message(&error,
-                    "Do not mix declarations and statements! All declarations must be at the beginning of the block.\n\t> This error is critical and will cause the program to terminate.\n"
-                    "\t> Exiting due to a syntax error..");
-                
-                yerror(error);
+                yyerror("Do not mix declarations and statements! All declarations must be at the beginning of the block.");
                 exit(EXIT_FAILURE);
               }
               | 
