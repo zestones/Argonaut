@@ -1,8 +1,8 @@
-PROG 
-var aab : int;
-var baa : int;
-var aba : int;
-var aab : float; // shouldn't work
+PROG
 
+proc proc1(a : int, b : int) {
+}
 
-baa := 3; // shouldn't generate an error
+type recursive_array : array[1..10] of int;
+
+var myvar : recursive_array;

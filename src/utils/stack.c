@@ -73,4 +73,6 @@ void print_stack(const Stack stack) {
 
         print_table_row(2, col_width_index, index_str, col_width_value, value_str);
     }
+
+    print_table_separator(2, col_width_index, col_width_value);
 }
