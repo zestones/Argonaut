@@ -68,6 +68,7 @@ letter [a-zA-Z]
 
 ";"                             { error.column += yyleng; return SEMICOLON; }
 ":"                             { error.column += yyleng; return TWO_POINTS; }
+"."                             { error.column += yyleng; return DOT; }
 ","                             { error.column += yyleng; return COMMA; }
 "["                             { error.column += yyleng; return OPEN_BRACKET; }
 "]"                             { error.column += yyleng; return CLOSE_BRACKET; }

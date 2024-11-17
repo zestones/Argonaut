@@ -7,6 +7,8 @@ expression: expression PLUS expression
           ;
 
 expression_atom: function_call_expression  
+               | array_access_statement
+               | struct_access_statement
                | IDENTIFIER  { check_variable_definition($1); }
                | INTEGER_VALUE
                | FLOAT_VALUE
