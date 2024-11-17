@@ -4,6 +4,7 @@
 #include "../lexer/lexeme_table.h"
 #include "../data/region_table.h"
 #include "declaration_table.h"
+
 #include "../utils/utils.h"
 #include "../utils/stack.h"
 
@@ -124,6 +125,15 @@ int find_declaration_index(int tlex_index) {
 
 int find_declaration_index_by_nature(int tlex_index, Nature nature) {
     return find_declaration_in_stack(tlex_index, nature);
+}
+
+int get_declaration_region(int index) {
+    if (index >= MAX_DECLARATION_COUNT) {
+        fprintf(stderr, COLOR_RED "<Error> Declaration index out of bounds\n" COLOR_RESET);
+        exit(EXIT_FAILURE);
+    }
+
+    return declaration_table[index].region;
 }
 
 int get_declaration_execution(int index) {
