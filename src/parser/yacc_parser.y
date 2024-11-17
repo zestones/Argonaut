@@ -26,7 +26,9 @@
     int current_lexeme_code;
 
     void yyerror(const char *s) {
-        if (error.type == NO_ERROR) return;
+        // TODO: Uncomment this line to prevent the program from exiting on syntax errors
+        // TODO: Uncomment only if syntax errors are all handled properly in grammar rules
+        // if (error.type == NO_ERROR) return;
 
         if (!strcmp(s, "syntax error")) {
             set_error_message(&error,
@@ -60,7 +62,7 @@
 
 
 %token PROG
-%token SEMICOLON TWO_POINTS COMMA DOT_DOT OPEN_PARENTHESIS CLOSE_PARENTHESIS
+%token SEMICOLON TWO_POINTS COMMA OPEN_PARENTHESIS CLOSE_PARENTHESIS
 %token START END
 %token ARRAY OF OPEN_BRACKET CLOSE_BRACKET
 %token VARIABLE OPAFF
