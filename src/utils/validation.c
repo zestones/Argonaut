@@ -1,5 +1,6 @@
 #include "../symbol_table/declaration_table.h" 
 #include "../lexer/lexeme_table.h"
+#include "../data/region_table.h"
 #include "scope_tracker.h"
 #include "validation.h"
 
@@ -44,33 +45,39 @@ void check_func_proc_definition(int index_lexeme_lexicographic) {
 }
 
 void check_variable_redefinition(int index_lexeme_lexicographic) {
-    // FIXME: Should check in all stack regions or only in the current region?
-    if (find_declaration_index(index_lexeme_lexicographic) != NULL_VALUE) {
+    int index_lexeme_declaration = find_declaration_index(index_lexeme_lexicographic);
+    if (index_lexeme_declaration != NULL_VALUE) {
         set_error_type(&error, SEMANTIC_ERROR);
         set_error_message(&error, "Redefinition of variable '%s'.", get_lexeme(index_lexeme_lexicographic));
+        
+        int declaration_region = get_declaration_region(index_lexeme_declaration);
+        int current_region = get_current_region_id();
 
-        yywarn(error);
+        declaration_region == current_region ? yerror(error) : yywarn(error);
     }
 }
 
 void check_type_redefinition(int index_lexeme_lexicographic) {
-    // FIXME: Should check in all stack regions or only in the current region?
-    if (find_declaration_index(index_lexeme_lexicographic) != NULL_VALUE) {
+    int index_lexeme_declaration = find_declaration_index(index_lexeme_lexicographic);
+    if (index_lexeme_declaration != NULL_VALUE) {
         set_error_type(&error, TYPE_ERROR);
         set_error_message(&error, "Redefinition of type '%s'.", get_lexeme(index_lexeme_lexicographic));
 
-        yywarn(error);
+        int declaration_region = get_declaration_region(index_lexeme_declaration);
+        int current_region = get_current_region_id();
+
+        declaration_region == current_region ? yerror(error) : yywarn(error);
     }
 }
 
 void check_func_proc_redefinition(int index_lexeme_lexicographic, char *type) {
-    // FIXME: Should check in all stack regions or only in the current region?
+    // TODO: Change condition to 'OR' if we don't want to allow function and procedure with the same name 
     if (find_declaration_index_by_nature(index_lexeme_lexicographic, TYPE_FUNC) != NULL_VALUE &&
         find_declaration_index_by_nature(index_lexeme_lexicographic, TYPE_PROC) != NULL_VALUE) {
         set_error_type(&error, SEMANTIC_ERROR);
         set_error_message(&error, "Redefinition of %s '%s'.", type, get_lexeme(index_lexeme_lexicographic));
 
-        yywarn(error);
+        yerror(error);
     }
 }
 

@@ -1,11 +1,27 @@
 PROG
 var x : int;
-x := 3,5;
+var a : int;
 
-proc p1(x : float, y : float) {
+type personne : array[1:10] of int;
+
+func p1() -> int {
+    type personne : array[1:10] of int;
+
+    return 0;
+}
+
+
+proc p1() {
+
+    proc p1() {
+        type personne : array[1:10] of int;
+        x := 3.5 ;
+    }
+
     x := 3.5 ;
-} // fin de la procédure p1
+}
 
+x := 3.5;
 x := 4.2;
 
 p1(3.14, 2.71);
