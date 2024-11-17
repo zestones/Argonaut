@@ -13,7 +13,7 @@ type mytype : struct
     c : float;
 } fstruct;
 
-type my_array : array[1..10] of mytype;
+type my_array : array[1:10] of mytype;
 
 func myfunction(a : int, b : int) -> int 
 {

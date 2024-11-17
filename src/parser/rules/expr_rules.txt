@@ -7,18 +7,21 @@ expression: expression PLUS expression
           ;
 
 expression_atom: function_call_expression  
-               | IDENTIFIER
-               | INTEGER
-               | FLOAT
+               | IDENTIFIER  { check_variable_definition($1); }
+               | INTEGER_VALUE
+               | FLOAT_VALUE
+               | BOOLEAN_VALUE
+               | CHARACTER_VALUE
+               | STRING_VALUE
                | OPEN_PARENTHESIS expression CLOSE_PARENTHESIS 
                ;
 
 // TODO : is there a better way to assign the lexicographic_index to the base type ?
-type: INTEGER { $$ = 0;}
-    | FLOAT   { $$ = 1;}
-    | BOOLEAN { $$ = 2;}
-    | CHARACTER { $$ = 3;}
-    | STRING OPEN_BRACKET INTEGER CLOSE_BRACKET // FIXME: HELP I DONT KNOW HOW TO HANDLE THIS
+type: INTEGER_TYPE { $$ = 0; }
+    | FLOAT_TYPE   { $$ = 1; }
+    | BOOLEAN_TYPE { $$ = 2; }
+    | CHARACTER_TYPE { $$ = 3; }
+    | STRING_TYPE OPEN_BRACKET INTEGER_VALUE CLOSE_BRACKET // FIXME: HELP I DONT KNOW HOW TO HANDLE THIS
     | IDENTIFIER 
     ;
 
@@ -29,7 +32,7 @@ complex_type_fields: type_field
 type_field: IDENTIFIER TWO_POINTS type SEMICOLON { structure_add_field($1, $3); }
           ;
 
-function_call_expression: IDENTIFIER OPEN_PARENTHESIS argument_list CLOSE_PARENTHESIS 
+function_call_expression: IDENTIFIER { check_func_proc_definition($1); } OPEN_PARENTHESIS argument_list CLOSE_PARENTHESIS 
                         ;
 
 

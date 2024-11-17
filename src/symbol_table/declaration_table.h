@@ -1,3 +1,12 @@
+/**
+ * @file declaration_table.h
+ * @brief Header file for managing a table of declarations in a compiler.
+ * 
+ * This file contains the definitions and function prototypes for managing
+ * a table of declarations, which includes various types such as variables,
+ * structures, arrays, procedures, functions, and parameters.
+ */
+
 #ifndef DECLARATION_TABLE_H
 #define DECLARATION_TABLE_H
 
@@ -7,52 +16,171 @@
 #include <string.h>
 
 
-#define MAX_DECLARATION_COUNT 1000
+#define MAX_DECLARATION_COUNT 1000 // Maximum number of declarations allowed in the table
 
+/**
+ * @enum Nature
+ * @brief Enumeration for the nature of a declaration. The nature of a declaration
+ * determines the type of the declaration, such as a variable, structure, array,
+ * procedure, function, or parameter.
+ */
 typedef enum
 {
-    TYPE_BASE,
-    TYPE_VAR,
-    TYPE_STRUCT,
-    TYPE_ARRAY,
-    TYPE_PROC,
-    TYPE_FUNC,
-    TYPE_PARAM
+    TYPE_BASE,   // Base type
+    TYPE_VAR,    // Variable type
+    TYPE_STRUCT, // Structure type
+    TYPE_ARRAY,  // Array type
+    TYPE_PROC,   // Procedure type
+    TYPE_FUNC,   // Function type
+    TYPE_PARAM   // Parameter type
 } Nature;
 
+/**
+ * @struct Declaration
+ * @brief Structure representing a declaration. A declaration includes information
+ * about its nature, the index of the next declaration, the region of the declaration,
+ * the description of the declaration, and the execution information of the declaration.
+ */
 typedef struct {
-    Nature nature;
-    int next;             
-    int region;
-    int description;
-    int execution;
+    Nature nature;      // Nature of the declaration
+    int next;           // Index of the next declaration
+    int region;         // Region of the declaration
+    int description;    // Description of the declaration
+    int execution;      // Execution information of the declaration
 } Declaration;
 
-
+/**
+ * @brief Initializes the declaration table.
+ */
 void init_declaration_table();
 
+/**
+ * @brief Inserts a declaration into the table.
+ * 
+ * @param index Index at which to insert the declaration.
+ * @param nature Nature of the declaration.
+ * @param region Region of the declaration.
+ * @param description Description of the declaration.
+ * @param execution Execution information of the declaration.
+ */
 void insert_declaration(int index, Nature nature, int region, int description, int execution);
 
+/**
+ * @brief Inserts a variable declaration into the table.
+ * 
+ * @param index Index at which to insert the declaration.
+ * @param region Region of the declaration.
+ * @param description Description of the declaration.
+ * @param execution Execution information of the declaration.
+ */
 void insert_declaration_var(int index, int region, int description, int execution);
 
+/**
+ * @brief Inserts an array declaration into the table.
+ * 
+ * @param index Index at which to insert the declaration.
+ * @param region Region of the declaration.
+ * @param description Description of the declaration.
+ */
 void insert_declaration_array(int index, int region, int description);
 
+/**
+ * @brief Inserts a structure declaration into the table.
+ * 
+ * @param index Index at which to insert the declaration.
+ * @param region Region of the declaration.
+ * @param description Description of the declaration.
+ */
 void insert_declaration_struct(int index, int region, int description);
 
+/**
+ * @brief Inserts a function declaration into the table.
+ * 
+ * @param index Index at which to insert the declaration.
+ * @param region Region of the declaration.
+ * @param description Description of the declaration.
+ */
 void insert_declaration_func(int index, int region, int description);
 
+/**
+ * @brief Inserts a procedure declaration into the table.
+ * 
+ * @param index Index at which to insert the declaration.
+ * @param region Region of the declaration.
+ * @param description Description of the declaration.
+ */
 void insert_declaration_proc(int index, int region, int description);
 
+/**
+ * @brief Inserts a parameter declaration into the table.
+ * 
+ * @param index Index at which to insert the declaration.
+ * @param region Region of the declaration.
+ * @param description Description of the declaration.
+ * @param execution Execution information of the declaration.
+ */
 void insert_declaration_param(int index, int region, int description, int execution);
 
-int find_declaration_index(int index, int region);
+/**
+ * @brief Finds the index of a declaration with the specified lexicographic index.
+ * This function is used to ensure that a declaration with the specified lexicographic
+ * index exists in the table.
+ * 
+ * If the declaration does not exist, it means that the declaration is using an undeclared
+ * variable, type, which is an error.
+ * 
+ * The search is performed by exploring the stack of regions and checking each region for
+ * the declaration.
+ * 
+ * @param index Index to search for.
+ * @return Index of the declaration if found, otherwise -1.
+ */
+int find_declaration_index(int index);
 
+/**
+ * @brief Finds the index of a declaration with the specified lexicographic index and nature.
+ * This function is used to ensure that a declaration with the specified lexicographic
+ * index and nature exists in the table.
+ * 
+ * If the declaration does not exist, it means that the declaration is using an undeclared
+ * variable, type, which is an error.
+ * 
+ * The search is performed by exploring the stack of regions and checking each region for
+ * the declaration.
+ * 
+ * @param index Index to search for.
+ * @param nature Nature of the declaration.
+ * @return Index of the declaration if found, otherwise -1.
+ */
+int find_declaration_index_by_nature(int tlex_index, Nature nature);
+
+/**
+ * @brief Gets the execution information of a declaration.
+ * 
+ * @param index Index of the declaration.
+ * @return Execution information of the declaration.
+ */
 int get_declaration_execution(int index);
 
+/**
+ * @brief Updates the execution information of a declaration.
+ * 
+ * @param index Index of the declaration.
+ * @param execution New execution information.
+ */
 void update_declaration_execution(int index, int execution);
 
+/**
+ * @brief Prints the declaration table.
+ */
 void print_declaration_table();
 
+/**
+ * @brief Converts a nature to a string representation.
+ * 
+ * @param nature Nature to convert.
+ * @return String representation of the nature.
+ */
 static inline char *nature_to_string(Nature nature)
 {
     switch (nature)
@@ -68,5 +196,13 @@ static inline char *nature_to_string(Nature nature)
         default: return "UNKNOWN";
     }
 }
+
+/**
+ * @brief Checks if a declaration is a base type.
+ * 
+ * @param index Index of the declaration.
+ * @return 1 if the declaration is a base type, otherwise 0.
+ */
+int is_declaration_base_type(int index);
 
 #endif // DECLARATION_TABLE_H

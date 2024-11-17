@@ -1,12 +1,13 @@
 %{
     #include "../lexer/lexeme_table.h"
     #include "../parser/parser.h"
+
+    #include "../utils/errors.h"
     #include "y.tab.h"
 
-    int error_line = 1; 
-    int error_column = 1; 
-
+    extern Error error;
     extern char *yytext;
+    extern int yyerror(const char *s);
 %}
 
 number [0-9]
@@ -14,87 +15,116 @@ letter [a-zA-Z]
 
 %%
 
-[ \t]+                          { error_column += yyleng; }  
+[ \t]+                          { error.column += yyleng; }  
 
-"//".*						    { error_column += yyleng; }  
+"//".*						    { error.column += yyleng; }  
 
-\n                              { error_line++; error_column = 1; } // Reset column number on new line
+\n                              { error.line++; error.column = 1; } // Reset column number on new line
 
-"PROG"                          { error_column += yyleng; return PROG; }
-"{"                             { error_column += yyleng; return START; }
-"}"                             { error_column += yyleng; return END; }
+"PROG"                          { error.column += yyleng; return PROG; }
+"{"                             { error.column += yyleng; return START; }
+"}"                             { error.column += yyleng; return END; }
 
-"var"                           { error_column += yyleng; return VARIABLE; }
-"proc"                          { error_column += yyleng; return PROCEDURE; }
-"func"                          { error_column += yyleng; return FUNCTION; }
+"var"                           { error.column += yyleng; return VARIABLE; }
+"proc"                          { error.column += yyleng; return PROCEDURE; }
+"func"                          { error.column += yyleng; return FUNCTION; }
 
-"return"                        { error_column += yyleng; return RETURN_VALUE; }
-"->"                            { error_column += yyleng; return RETURN_TYPE; }
+"return"                        { error.column += yyleng; return RETURN_VALUE; }
+"->"                            { error.column += yyleng; return RETURN_TYPE; }
 
-"type"                          { error_column += yyleng; return TYPE; }
-"struct"                        { error_column += yyleng; return STRUCT; }
-"fstruct"                       { error_column += yyleng; return FSTRUCT; }
-"array"                         { error_column += yyleng; return ARRAY; }
-"of"                            { error_column += yyleng; return OF; }
+"type"                          { error.column += yyleng; return TYPE; }
+"struct"                        { error.column += yyleng; return STRUCT; }
+"fstruct"                       { error.column += yyleng; return FSTRUCT; }
+"array"                         { error.column += yyleng; return ARRAY; }
+"of"                            { error.column += yyleng; return OF; }
 
-"if"                            { error_column += yyleng; return IF; }
-"else"                          { error_column += yyleng; return ELSE; }
-"while"                         { error_column += yyleng; return WHILE; }
+"if"                            { error.column += yyleng; return IF; }
+"else"                          { error.column += yyleng; return ELSE; }
+"while"                         { error.column += yyleng; return WHILE; }
 
-"int"                           { error_column += yyleng; return INTEGER; }
-"float"                         { error_column += yyleng; return FLOAT; }
-"bool"                          { error_column += yyleng; return BOOLEAN; }
-"char"                          { error_column += yyleng; return CHARACTER; }
-"string"                        { error_column += yyleng; return STRING; }
+"int"                           { error.column += yyleng; return INTEGER_TYPE; }
+"float"                         { error.column += yyleng; return FLOAT_TYPE; }
+"bool"                          { error.column += yyleng; return BOOLEAN_TYPE; }
+"char"                          { error.column += yyleng; return CHARACTER_TYPE; }
+"string"                        { error.column += yyleng; return STRING_TYPE; }
 
-"=="                            { error_column += yyleng; return EQUAL; }
-"!="                            { error_column += yyleng; return NOT_EQUAL; }
-"<"                             { error_column += yyleng; return LESS_THAN; }
-">"                             { error_column += yyleng; return GREATER_THAN; }
-"<="                            { error_column += yyleng; return LESS_EQUAL; }
-">="                            { error_column += yyleng; return GREATER_EQUAL; }
+"=="                            { error.column += yyleng; return EQUAL; }
+"!="                            { error.column += yyleng; return NOT_EQUAL; }
+"<"                             { error.column += yyleng; return LESS_THAN; }
+">"                             { error.column += yyleng; return GREATER_THAN; }
+"<="                            { error.column += yyleng; return LESS_EQUAL; }
+">="                            { error.column += yyleng; return GREATER_EQUAL; }
 
-"&&"                            { error_column += yyleng; return AND; }
-"||"                            { error_column += yyleng; return OR; }
-"!"                             { error_column += yyleng; return NOT; }
+"&&"                            { error.column += yyleng; return AND; }
+"||"                            { error.column += yyleng; return OR; }
+"!"                             { error.column += yyleng; return NOT; }
 
-"+"                             { error_column += yyleng; return PLUS; }
-"-"                             { error_column += yyleng; return MINUS; }
-"*"                             { error_column += yyleng; return MULTIPLY; }
-"/"                             { error_column += yyleng; return DIVIDE; }
+"+"                             { error.column += yyleng; return PLUS; }
+"-"                             { error.column += yyleng; return MINUS; }
+"*"                             { error.column += yyleng; return MULTIPLY; }
+"/"                             { error.column += yyleng; return DIVIDE; }
 
-":="                            { error_column += yyleng; return OPAFF; }
+":="                            { error.column += yyleng; return OPAFF; }
 
-";"                             { error_column += yyleng; return SEMICOLON; }
-":"                             { error_column += yyleng; return TWO_POINTS; }
-","                             { error_column += yyleng; return COMMA; }
-".."                            { error_column += yyleng; return DOT_DOT; }
-"["                             { error_column += yyleng; return OPEN_BRACKET; }
-"]"                             { error_column += yyleng; return CLOSE_BRACKET; }
-"("                             { error_column += yyleng; return OPEN_PARENTHESIS; }
-")"                             { error_column += yyleng; return CLOSE_PARENTHESIS; }
+";"                             { error.column += yyleng; return SEMICOLON; }
+":"                             { error.column += yyleng; return TWO_POINTS; }
+","                             { error.column += yyleng; return COMMA; }
+"["                             { error.column += yyleng; return OPEN_BRACKET; }
+"]"                             { error.column += yyleng; return CLOSE_BRACKET; }
+"("                             { error.column += yyleng; return OPEN_PARENTHESIS; }
+")"                             { error.column += yyleng; return CLOSE_PARENTHESIS; }
+
+
+"true" { 
+    yylval.ival = 1;
+    error.column += yyleng;
+    return BOOLEAN_VALUE; 
+}
+
+"false" { 
+    yylval.ival = 0;
+    error.column += yyleng;
+    return BOOLEAN_VALUE; 
+}
+
+"'"{letter}"'"                 { 
+    yylval.ival = yytext[1] - 'a';
+    error.column += yyleng;
+    return CHARACTER_VALUE; 
+}
+
+"\"".*"\""                     { 
+    yylval.lexicographic_index = insert_lexeme(yytext);
+    error.column += yyleng;
+    return STRING_VALUE; 
+}
+
+{number}+"."{number}* { 
+    yylval.fval = atof(yytext);
+    error.column += yyleng;
+    return FLOAT_VALUE; 
+}
 
 0|[1-9][0-9]* { 
     yylval.ival = atoi(yytext);
-    error_column += yyleng;
-    return INTEGER; 
+    error.column += yyleng;
+    return INTEGER_VALUE; 
 }
 
-{number}+","{number}+ { 
-    yylval.ival = atoi(yytext);
-    error_column += yyleng;
-    return FLOAT; 
-}
-
-{letter}+({letter}|{number}|"_"|"-")* { 
+{letter}+({letter}|{number}|"_"|"-")* {
     yylval.ival = yytext[0] - 'a';
-    error_column += yyleng;
+    error.column += yyleng;
     
     yylval.lexicographic_index = insert_lexeme(yytext);
     return IDENTIFIER;
 }
 
-.                               { yywarn(yytext); error_column += yyleng; } 
+. { 
+    set_error_type(&error, LEXICAL_ERROR);
+    set_error_message(&error, "Unknown character '%s'", yytext);
+    yerror(error);  
+    error.column += yyleng;
+} 
 
 %%
 

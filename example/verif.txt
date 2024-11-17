@@ -1,0 +1,11 @@
+PROG
+var x : int;
+x := 3,5;
+
+proc p1(x : float, y : float) {
+    x := 3.5 ;
+} // fin de la procédure p1
+
+x := 4.2;
+
+p1(3.14, 2.71);

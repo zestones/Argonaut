@@ -5,10 +5,12 @@
     #include "../table_management/array_manager.h"
 
     #include "../symbol_table/declaration_table.h"
-    #include "../lexer/lexeme_table.h"
-    #include "../utils/hash.h"
+    #include "../symbol_table/hash_table.h"
 
+    #include "../lexer/lexeme_table.h"
     #include "parser.h"
+
+    #include "../utils/errors.h"
 
     #include <stdio.h>
     #include <stdlib.h>
@@ -18,43 +20,81 @@
 
     extern FILE *yyin;
     extern FILE *yyout;
-
-    extern int error_line;
     extern char *yytext;
 
+    Error error;
     int current_lexeme_code;
+
+    void yyerror(const char *s) {
+        // TODO: Uncomment this line to prevent the program from exiting on syntax errors
+        // TODO: Uncomment only if syntax errors are all handled properly in grammar rules
+        // if (error.type == NO_ERROR) return;
+
+        if (!strcmp(s, "syntax error")) {
+            set_error_message(&error,
+                "Unexpected token found: '%s'.\n"
+                "\t> This error is critical and will cause the program to terminate.\n"
+                "\t> Exiting due to a syntax error.",
+                yytext);
+        } 
+        else {
+            set_error_message(&error,
+                "Unexpected token found: '%s'.\n"
+                "\t> %s\n"
+                "\t> This error is critical and will cause the program to terminate.\n"
+                "\t> Exiting due to a syntax error.",
+                yytext, s);
+        }
+
+        
+        set_error_type(&error, SYNTAX_ERROR);
+        yerror(error);
+        
+        exit(EXIT_FAILURE);
+    }
 %}
 
 %union {
 	int lexicographic_index;
     int ival;
+    double fval;
 }
 
 
 %token PROG
-%token SEMICOLON TWO_POINTS COMMA DOT_DOT OPEN_PARENTHESIS CLOSE_PARENTHESIS
+%token SEMICOLON TWO_POINTS COMMA OPEN_PARENTHESIS CLOSE_PARENTHESIS
 %token START END
 %token ARRAY OF OPEN_BRACKET CLOSE_BRACKET
 %token VARIABLE OPAFF
 %token STRUCT FSTRUCT
-%token <lexicographic_index> IDENTIFIER INTEGER TYPE FLOAT BOOLEAN CHARACTER STRING
+%token <lexicographic_index> IDENTIFIER TYPE INTEGER_TYPE FLOAT_TYPE BOOLEAN_TYPE CHARACTER_TYPE STRING_TYPE
 %token PROCEDURE FUNCTION RETURN_TYPE RETURN_VALUE
 %token IF ELSE WHILE
 %token EQUAL NOT_EQUAL LESS_THAN GREATER_THAN LESS_EQUAL GREATER_EQUAL
 
+%token <ival> INTEGER_VALUE CHARACTER_VALUE
+%token <fval> FLOAT_VALUE
+%token <lexicographic_index> BOOLEAN_VALUE STRING_VALUE
+
 %left AND OR 
 %right NOT
+
+%right RETURN_TYPE RETURN_VALUE
+%left SEMICOLON COMMA
 
 %left PLUS MINUS
 %left MULTIPLY DIVIDE
 
 %type <lexicographic_index> type
+
+%start program
+%debug
 %%
 
 program: PROG declaration_list statement_list
-       | 
+       |
        ;
-
+     
 // Conditions and boolean expressions
 condition: OPEN_PARENTHESIS expression comparison_operator expression CLOSE_PARENTHESIS
          | OPEN_PARENTHESIS condition CLOSE_PARENTHESIS
@@ -63,8 +103,6 @@ condition: OPEN_PARENTHESIS expression comparison_operator expression CLOSE_PARE
          | NOT condition
          | NOT expression
          ;
-
-loop: WHILE condition statement_block ;
 
 comparison_operator: EQUAL
                    | NOT_EQUAL
@@ -75,8 +113,9 @@ comparison_operator: EQUAL
                    ;
 
 // Declarations
-declaration_list: declaration_list declaration
-                | ;
+declaration_list: declaration declaration_list 
+                | 
+                ;
 
 declaration: variable_declaration 
            | function_declaration 
@@ -84,14 +123,13 @@ declaration: variable_declaration
            | procedure_declaration 
            ;
 
-variable_declaration: VARIABLE IDENTIFIER TWO_POINTS type SEMICOLON 
-                      { declaration_variable_start($2, $4); }
+variable_declaration: VARIABLE IDENTIFIER TWO_POINTS type SEMICOLON { declaration_variable_start($2, $4); }
                     ;
 
-function_declaration: FUNCTION IDENTIFIER { construct_func_proc_manager_context($2); declaration_func_start(); } OPEN_PARENTHESIS parameter_list CLOSE_PARENTHESIS RETURN_TYPE type START declaration_list statement_list return_statement END { declaration_func_end($8); } 
+function_declaration: FUNCTION IDENTIFIER { construct_func_proc_manager_context($2); declaration_func_start(); } OPEN_PARENTHESIS parameter_list CLOSE_PARENTHESIS RETURN_TYPE type { update_declaration_func_return_type($8); } START declaration_list statement_list return_statement END { declaration_func_proc_end(); } 
                     ;
 
-procedure_declaration: PROCEDURE IDENTIFIER { construct_func_proc_manager_context($2); declaration_proc_start(); } OPEN_PARENTHESIS parameter_list CLOSE_PARENTHESIS START declaration_list statement_list END { declaration_proc_end(); } 
+procedure_declaration: PROCEDURE IDENTIFIER { construct_func_proc_manager_context($2); declaration_proc_start(); } OPEN_PARENTHESIS parameter_list CLOSE_PARENTHESIS START declaration_list statement_list END { declaration_func_proc_end(); } 
                      ;
 
 type_declaration: TYPE IDENTIFIER TWO_POINTS STRUCT { construct_structure_manager_context($2); } START { declaration_structure_start(); } complex_type_fields END FSTRUCT SEMICOLON { declaration_structure_end(); }
@@ -118,7 +156,7 @@ list_dimensions: one_dimension
                | list_dimensions COMMA one_dimension 
                ;
 
-one_dimension: INTEGER DOT_DOT INTEGER { array_add_dimension($1, $3); }
+one_dimension: INTEGER_VALUE TWO_POINTS INTEGER_VALUE { array_add_dimension($1, $3); }
               ;
 
 // Arithmetic expressions
@@ -130,18 +168,21 @@ expression: expression PLUS expression
           ;
 
 expression_atom: function_call_expression  
-               | IDENTIFIER
-               | INTEGER
-               | FLOAT
+               | IDENTIFIER  { check_variable_definition($1); }
+               | INTEGER_VALUE
+               | FLOAT_VALUE
+               | BOOLEAN_VALUE
+               | CHARACTER_VALUE
+               | STRING_VALUE
                | OPEN_PARENTHESIS expression CLOSE_PARENTHESIS 
                ;
 
 // TODO : is there a better way to assign the lexicographic_index to the base type ?
-type: INTEGER { $$ = 0;}
-    | FLOAT   { $$ = 1;}
-    | BOOLEAN { $$ = 2;}
-    | CHARACTER { $$ = 3;}
-    | STRING OPEN_BRACKET INTEGER CLOSE_BRACKET // FIXME: HELP I DONT KNOW HOW TO HANDLE THIS
+type: INTEGER_TYPE { $$ = 0; }
+    | FLOAT_TYPE   { $$ = 1; }
+    | BOOLEAN_TYPE { $$ = 2; }
+    | CHARACTER_TYPE { $$ = 3; }
+    | STRING_TYPE OPEN_BRACKET INTEGER_VALUE CLOSE_BRACKET // FIXME: HELP I DONT KNOW HOW TO HANDLE THIS
     | IDENTIFIER 
     ;
 
@@ -152,22 +193,30 @@ complex_type_fields: type_field
 type_field: IDENTIFIER TWO_POINTS type SEMICOLON { structure_add_field($1, $3); }
           ;
 
-function_call_expression: IDENTIFIER OPEN_PARENTHESIS argument_list CLOSE_PARENTHESIS 
+function_call_expression: IDENTIFIER { check_func_proc_definition($1); } OPEN_PARENTHESIS argument_list CLOSE_PARENTHESIS 
                         ;
 
 
 // Statements
 statement_block: START statement_list END ;
 
-statement_list: statement_list statement
-              | ;
+
+statement_list: statement statement_list
+              | statement declaration { 
+                set_error_type(&error, SYNTAX_ERROR);
+                yyerror("Do not mix declarations and statements! All declarations must be at the beginning of the block.");
+                exit(EXIT_FAILURE);
+              }
+              | 
+              ;
+
 
 statement: assignment_statement
     | if_statement
     | standalone_function_call_statement
     | loop_statement ;
 
-assignment_statement: IDENTIFIER OPAFF expression SEMICOLON 
+assignment_statement: IDENTIFIER { check_variable_definition($1); } OPAFF expression SEMICOLON 
                     ;
 
 return_statement: RETURN_VALUE expression SEMICOLON
@@ -176,7 +225,7 @@ return_statement: RETURN_VALUE expression SEMICOLON
 if_statement: IF condition statement_block
             | IF condition statement_block ELSE statement_block;
 
-loop_statement: loop;
+loop_statement: WHILE condition statement_block ;
 
 standalone_function_call_statement: function_call_expression SEMICOLON ;
 
@@ -205,6 +254,10 @@ static void print_usage(const char *program_name) {
 
 int main(int argc, char **argv) {
     int opt, verbose = 0;
+    
+    error.line = 1;
+    error.column = 1;
+    error.type = NO_ERROR;
     
     if (argc == 1) {
         // No arguments provided
@@ -237,6 +290,6 @@ int main(int argc, char **argv) {
         }
     }
 
-    yydebug(verbose);
+    ydebug(verbose);
     return 0;
 }
