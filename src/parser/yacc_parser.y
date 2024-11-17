@@ -62,7 +62,7 @@
 
 
 %token PROG
-%token SEMICOLON TWO_POINTS COMMA OPEN_PARENTHESIS CLOSE_PARENTHESIS
+%token SEMICOLON TWO_POINTS COMMA OPEN_PARENTHESIS CLOSE_PARENTHESIS DOT
 %token START END
 %token ARRAY OF OPEN_BRACKET CLOSE_BRACKET
 %token VARIABLE OPAFF
@@ -168,6 +168,8 @@ expression: expression PLUS expression
           ;
 
 expression_atom: function_call_expression  
+               | array_access_statement
+               | struct_access_statement
                | IDENTIFIER  { check_variable_definition($1); }
                | INTEGER_VALUE
                | FLOAT_VALUE
@@ -214,9 +216,12 @@ statement_list: statement statement_list
 statement: assignment_statement
     | if_statement
     | standalone_function_call_statement
-    | loop_statement ;
+    | loop_statement 
+    ;
 
 assignment_statement: IDENTIFIER { check_variable_definition($1); } OPAFF expression SEMICOLON 
+                    | array_access_statement OPAFF expression SEMICOLON
+                    | struct_access_statement OPAFF expression SEMICOLON
                     ;
 
 return_statement: RETURN_VALUE expression SEMICOLON
@@ -229,6 +234,15 @@ loop_statement: WHILE condition statement_block ;
 
 standalone_function_call_statement: function_call_expression SEMICOLON ;
 
+array_access_statement: IDENTIFIER OPEN_BRACKET array_indices CLOSE_BRACKET;
+
+array_indices: expression
+             | expression COMMA array_indices;
+
+struct_access_statement: IDENTIFIER DOT IDENTIFIER
+                       | struct_access_statement DOT IDENTIFIER
+                       | array_access_statement DOT IDENTIFIER
+                       ;
 
 
 %%
