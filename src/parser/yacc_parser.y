@@ -154,7 +154,7 @@ list_dimensions: one_dimension
                | list_dimensions COMMA one_dimension 
                ;
 
-one_dimension: INTEGER_VALUE DOT_DOT INTEGER_VALUE { array_add_dimension($1, $3); }
+one_dimension: INTEGER_VALUE TWO_POINTS INTEGER_VALUE { array_add_dimension($1, $3); }
               ;
 
 // Arithmetic expressions
@@ -163,10 +163,6 @@ expression: expression PLUS expression
           | expression MULTIPLY expression
           | expression DIVIDE expression
           | expression_atom 
-          | error { 
-               set_error_type(&error, SYNTAX_ERROR);
-               yyerror("syntax error");
-           }
           ;
 
 expression_atom: function_call_expression  

@@ -1,10 +1,4 @@
 PROG
-var b : poo;
-var e : int;
-var b : int;
-var n : int;
-var s : st;
-
 type date : struct 
 {
     jour : int;    
@@ -20,12 +14,12 @@ type personne : struct
     age : int;
 } fstruct;
 
-type equipe : array[1..3 , 1..2] of personne;
+type equipe : array[1:3 , 1:2] of personne;
 
 var a : personne;
 
 proc myproc(a : float, a : int) {
-    type equipe : array[1..3 , 1..2] of personne;
+    type equipe : array[1:3 , 1:2] of personne;
     var c : int;
     var d : int;
 

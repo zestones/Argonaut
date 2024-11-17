@@ -4,10 +4,6 @@ expression: expression PLUS expression
           | expression MULTIPLY expression
           | expression DIVIDE expression
           | expression_atom 
-          | error { 
-               set_error_type(&error, SYNTAX_ERROR);
-               yyerror("syntax error");
-           }
           ;
 
 expression_atom: function_call_expression  

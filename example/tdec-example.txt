@@ -13,7 +13,7 @@ type personne : struct
     age : int;
 } fstruct;
 
-type equipe : array[1..3 , 1..2] of personne;
+type equipe : array[1:3 , 1:2] of personne;
 
 var p : personne;
 var te : equipe;
@@ -23,11 +23,11 @@ var j : int;
 
 proc a(marwan: int) 
 {
-    type personne : array[1 .. 10] of int;
+    type personne : array[1 : 10] of int;
     
     proc b()
     {
-        type equipe : array[1..3 ,  1..2] of int;
+        type equipe : array[1:3, 1:2] of int;
         var p : personne;
         var T : int;
     }

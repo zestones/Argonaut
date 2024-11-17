@@ -77,8 +77,8 @@ void check_func_proc_redefinition(int index_lexeme_lexicographic, char *type) {
 void check_scope_redefinition(int index_lexeme_lexicographic, char *entity_type) {
     if (is_identifier_already_tracked(index_lexeme_lexicographic)) {
         set_error_type(&error, SEMANTIC_ERROR);
-        set_error_message(&error, "Redefinition of %s '%s'.", entity_type, get_lexeme(index_lexeme_lexicographic));
+        set_error_message(&error, "Identifier '%s' is already defined in the current scope as a %s.", get_lexeme(index_lexeme_lexicographic), entity_type);
 
-        yywarn(error);
+        yerror(error);
     }
 }
