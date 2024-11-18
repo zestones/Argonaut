@@ -1,15 +1,28 @@
 // Statements
 statement_block: START statement_list END ;
 
-statement_list: statement_list statement
-              | ;
+
+statement_list: statement statement_list
+              | statement declaration { 
+                set_error_type(&error, SYNTAX_ERROR);
+                yyerror("Do not mix declarations and statements! All declarations must be at the beginning of the block.");
+                exit(EXIT_FAILURE);
+              }
+              | 
+              ;
+
 
 statement: assignment_statement
     | if_statement
     | standalone_function_call_statement
-    | loop_statement ;
+    | loop_statement 
+    | print_statement
+    | input_statement
+    ;
 
-assignment_statement: IDENTIFIER OPAFF expression SEMICOLON 
+assignment_statement: IDENTIFIER { check_variable_definition($1); } OPAFF expression SEMICOLON 
+                    | array_access_statement OPAFF expression SEMICOLON
+                    | struct_access_statement OPAFF expression SEMICOLON
                     ;
 
 return_statement: RETURN_VALUE expression SEMICOLON
@@ -18,7 +31,28 @@ return_statement: RETURN_VALUE expression SEMICOLON
 if_statement: IF condition statement_block
             | IF condition statement_block ELSE statement_block;
 
-loop_statement: loop;
+loop_statement: WHILE condition statement_block ;
 
 standalone_function_call_statement: function_call_expression SEMICOLON ;
 
+array_access_statement: IDENTIFIER OPEN_BRACKET array_indices CLOSE_BRACKET;
+
+array_indices: expression
+             | expression COMMA array_indices;
+
+struct_access_statement: IDENTIFIER DOT IDENTIFIER
+                       | struct_access_statement DOT IDENTIFIER
+                       | array_access_statement DOT IDENTIFIER
+                       ;
+
+print_statement: PRINT OPEN_PARENTHESIS argument_list CLOSE_PARENTHESIS SEMICOLON
+               ;
+
+input_statement: INPUT OPEN_PARENTHESIS assignable_entity CLOSE_PARENTHESIS SEMICOLON
+               ;
+
+assignable_entity: IDENTIFIER
+  | array_access_statement
+  | struct_access_statement
+  | assignable_entity COMMA assignable_entity
+  ;

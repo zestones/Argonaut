@@ -24,6 +24,10 @@ static void print_usage(const char *program_name) {
 int main(int argc, char **argv) {
     int opt, verbose = 0;
     
+    error.line = 1;
+    error.column = 1;
+    error.type = NO_ERROR;
+    
     if (argc == 1) {
         // No arguments provided
         print_usage(argv[0]);
@@ -55,6 +59,6 @@ int main(int argc, char **argv) {
         }
     }
 
-    yydebug(verbose);
+    ydebug(verbose);
     return 0;
 }

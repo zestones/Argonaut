@@ -1,5 +1,5 @@
 #include "../../lib/table_printer.h"
-#include "hash.h"
+#include "hash_table.h"
 
 static int hash_table[HASH_TABLE_SIZE];
 
@@ -26,7 +26,7 @@ int hash_function(const char* lexeme, int length) {
 
 static void new_hash_entry(int index, int value) {
     if (index < 0 || index >= HASH_TABLE_SIZE) {
-        fprintf(stderr, COLOR_RED "<Error>: Index %d out of bounds. Valid range is 0 to %d.\n" COLOR_RESET, index, HASH_TABLE_SIZE);
+        fprintf(stderr, COLOR_RED "<Error>: Hash Table Index %d out of bounds. Valid range is 0 to %d.\n" COLOR_RESET, index, HASH_TABLE_SIZE);
         exit(EXIT_FAILURE);
     }
 
@@ -35,7 +35,7 @@ static void new_hash_entry(int index, int value) {
 
 int get_hash_value(int index) {
     if (index < 0 || index >= HASH_TABLE_SIZE) {
-        fprintf(stderr, COLOR_RED "<Error>: Index %d out of bounds. Valid range is 0 to %d.\n" COLOR_RESET, index, HASH_TABLE_SIZE);
+        fprintf(stderr, COLOR_RED "<Error>: Hash Table Index %d out of bounds. Valid range is 0 to %d.\n" COLOR_RESET, index, HASH_TABLE_SIZE);
         exit(EXIT_FAILURE);
     }
 
@@ -47,7 +47,7 @@ void print_hash_table() {
 
     print_table_title("Hash Table");
     print_table_separator(2, cols_width[0], cols_width[1]);
-    print_table_header(2, cols_width[0], "Index", cols_width[1], "Value / Index Lexeme");
+    print_table_header(2, cols_width[0], "Hash", cols_width[1], "Lexicographic Index");
     print_table_separator(2, cols_width[0], cols_width[1]);
 
     for (int i = 0; i < HASH_TABLE_SIZE; i++) {

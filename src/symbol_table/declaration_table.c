@@ -4,7 +4,9 @@
 #include "../lexer/lexeme_table.h"
 #include "../data/region_table.h"
 #include "declaration_table.h"
+
 #include "../utils/utils.h"
+#include "../utils/stack.h"
 
 static Declaration declaration_table[MAX_DECLARATION_COUNT];
 static int declaration_table_size = 0;
@@ -60,53 +62,78 @@ void insert_declaration(int index, Nature nature, int region, int description, i
 }
 
 void insert_declaration_var(int index, int region, int description, int execution) {
-    insert_declaration(index, TYPE_VAR, get_current_region_index(), description, execution);  
+    insert_declaration(index, TYPE_VAR, region, description, execution);  
 }
 
 void insert_declaration_array(int index, int region, int description) {
-    insert_declaration(index, TYPE_ARRAY, get_current_region_index(), description, NULL_VALUE);
+    insert_declaration(index, TYPE_ARRAY, region, description, NULL_VALUE);
 }
 
 void insert_declaration_struct(int index, int region, int description) {
-    insert_declaration(index, TYPE_STRUCT, get_current_region_index(), description, NULL_VALUE);
+    insert_declaration(index, TYPE_STRUCT, region, description, NULL_VALUE);
 }
 
 void insert_declaration_func(int index, int region, int description) {
-    insert_declaration(index, TYPE_FUNC, region, description, get_current_region_index());
+    insert_declaration(index, TYPE_FUNC, region, description, get_current_region_id());
 }
 
 void insert_declaration_proc(int index, int region, int description) {
-    insert_declaration(index, TYPE_PROC, region, description, get_current_region_index());
+    insert_declaration(index, TYPE_PROC, region, description, get_current_region_id());
 }
 
 void insert_declaration_param(int index, int region, int description, int execution) {
-    insert_declaration(index, TYPE_PARAM, get_current_region_index(), description, execution);
+    insert_declaration(index, TYPE_PARAM, region, description, execution);
 }
 
-static int is_nature_defined(Nature nature) {
-    return (nature == TYPE_FUNC || nature == TYPE_PROC || nature == TYPE_BASE || nature == TYPE_STRUCT || nature == TYPE_ARRAY || nature == TYPE_VAR);
+int is_declaration_base_type(int index) {
+    return (declaration_table[index].nature == TYPE_BASE);
 }
 
-static int is_base_type(int tlex_index) {
-    return (declaration_table[tlex_index].nature == TYPE_BASE);
-}
-
-// ! FIXME: The search should search for current region first and then check all enclosing regions
-int find_declaration_index(int tlex_index, int region) {
+static int find_declaration_index_in_region_by_nature(int tlex_index, int region, int nature_filter) {
     int index = tlex_index;
-
-    if (is_base_type(tlex_index)) return tlex_index;
     while (index != NULL_VALUE) {
-        if (declaration_table[index].region == region && is_nature_defined(declaration_table[index].nature)) {
+        if (declaration_table[index].region == region && 
+            (nature_filter == NULL_VALUE || declaration_table[index].nature == nature_filter)
+        ) {
             return index;
         }
-
+        
         index = declaration_table[index].next;
     }
-
-    // TODO: Use error handling instead of printing to stderr (yyerror)
-    fprintf(stderr, COLOR_RED "<Error> Declaration not found for tlex_index %d in region %d\n" COLOR_RESET, tlex_index, region);
     return NULL_VALUE;
+}
+
+static int find_declaration_in_stack(int tlex_index, int nature_filter) {
+    int index = tlex_index;
+    if (is_declaration_base_type(tlex_index)) return index;
+
+    Stack tmp_stack = construct_stack();
+    stack_cpy(&tmp_stack, get_region_stack());
+
+    while (!is_empty(tmp_stack)) {
+        int current_region = pop(&tmp_stack);
+        index = find_declaration_index_in_region_by_nature(tlex_index, current_region, nature_filter);
+        if (index != NULL_VALUE) return index;
+    }
+
+    return NULL_VALUE;
+}
+
+int find_declaration_index(int tlex_index) {
+    return find_declaration_in_stack(tlex_index, NULL_VALUE);
+}
+
+int find_declaration_index_by_nature(int tlex_index, Nature nature) {
+    return find_declaration_in_stack(tlex_index, nature);
+}
+
+int get_declaration_region(int index) {
+    if (index >= MAX_DECLARATION_COUNT) {
+        fprintf(stderr, COLOR_RED "<Error> Declaration index out of bounds\n" COLOR_RESET);
+        exit(EXIT_FAILURE);
+    }
+
+    return declaration_table[index].region;
 }
 
 int get_declaration_execution(int index) {

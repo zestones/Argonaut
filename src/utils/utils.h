@@ -1,6 +1,10 @@
 #ifndef __UTILS_H__
 #define __UTILS_H__
 
+#include "validation.h"
+#include "errors.h"
+
+extern Error error;
 
 #define NULL_VALUE -1
 
