@@ -71,6 +71,7 @@
 %token PROCEDURE FUNCTION RETURN_TYPE RETURN_VALUE
 %token IF ELSE WHILE
 %token EQUAL NOT_EQUAL LESS_THAN GREATER_THAN LESS_EQUAL GREATER_EQUAL
+%token PRINT INPUT
 
 %token <ival> INTEGER_VALUE CHARACTER_VALUE
 %token <fval> FLOAT_VALUE
@@ -217,6 +218,8 @@ statement: assignment_statement
     | if_statement
     | standalone_function_call_statement
     | loop_statement 
+    | print_statement
+    | input_statement
     ;
 
 assignment_statement: IDENTIFIER { check_variable_definition($1); } OPAFF expression SEMICOLON 
@@ -244,6 +247,17 @@ struct_access_statement: IDENTIFIER DOT IDENTIFIER
                        | array_access_statement DOT IDENTIFIER
                        ;
 
+print_statement: PRINT OPEN_PARENTHESIS argument_list CLOSE_PARENTHESIS SEMICOLON
+               ;
+
+input_statement: INPUT OPEN_PARENTHESIS assignable_entity CLOSE_PARENTHESIS SEMICOLON
+               ;
+
+assignable_entity: IDENTIFIER
+  | array_access_statement
+  | struct_access_statement
+  | assignable_entity COMMA assignable_entity
+  ;
 
 %%
 

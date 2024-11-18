@@ -25,7 +25,9 @@ func zero() -> int
     return 0;
 }
 
-i := 0;
+print("Entrez un entier: ");
+input(i);
+
 j := 0;
 
 while (i < 3)
@@ -41,6 +43,7 @@ while (i < 3)
 
         x[x[j, zero() + 5].numero, j].age := i;
         j := j + 1;
+        print("j: ", j, " - x[i, j].numero: ", x[i, j].numero);
     }
     
     i := i + 1;
