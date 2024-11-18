@@ -27,3 +27,4 @@ x := 4.2;
 p1(3.14, 2.71);
  
 print("ici mon programme. x vaut: ", x, "et a: ", a);
+input(x);
