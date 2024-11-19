@@ -1,4 +1,7 @@
 PROG
 var a : int;
+var b : float;
 
-a := 1 + 2;
+b := 1.0;
+
+a := 1 + b;

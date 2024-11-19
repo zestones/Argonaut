@@ -87,12 +87,12 @@
 %left PLUS MINUS
 %left MULTIPLY DIVIDE
 
-%type <lexicographic_index> type variable_declaration function_declaration procedure_declaration type_declaration
+%type <lexicographic_index> type function_declaration procedure_declaration type_declaration
 
 %type <ast> assignment_statement if_statement loop_statement standalone_function_call_statement function_call_expression
 %type <ast> array_access_statement array_indices struct_access_statement assignable_entity print_statement input_statement
 
-%type <ast> parameter_list parameter argument_list
+%type <ast> parameter_list parameter argument_list variable_declaration
 
 %type <ast> program declaration_list statement_list statement_block declaration statement expression expression_atom
 %type <ast> condition comparison_operator
@@ -157,9 +157,7 @@ declaration_list: declaration declaration_list {
                 | { $$ = NULL; } 
                 ;
 
-declaration: variable_declaration {
-                $$ = construct_node(A_VARIABLE_DECLARATION, $1, find_declaration_index($1));
-           }
+declaration: variable_declaration { $$ = $1; }
            | function_declaration {
                 $$ = construct_node(A_FUNCTION_DECLARATION, $1, find_declaration_index_by_nature($1, TYPE_FUNC));
            }
@@ -171,7 +169,10 @@ declaration: variable_declaration {
            }
            ;
 
-variable_declaration: VARIABLE IDENTIFIER TWO_POINTS type SEMICOLON { declaration_variable_start($2, $4); }
+variable_declaration: VARIABLE IDENTIFIER TWO_POINTS type SEMICOLON { 
+                        declaration_variable_start($2, $4);
+                        $$ = construct_node(A_VARIABLE_DECLARATION, $2, find_declaration_index($4));
+                    }
                     ;
 
 function_declaration: FUNCTION IDENTIFIER { construct_func_proc_manager_context($2); declaration_func_start(); } OPEN_PARENTHESIS parameter_list CLOSE_PARENTHESIS RETURN_TYPE type { update_declaration_func_return_type($8); } START declaration_list statement_list return_statement END { declaration_func_proc_end(); } 

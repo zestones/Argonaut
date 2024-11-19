@@ -1,3 +1,4 @@
+#include "../../lib/colors.h"
 #include "ast.h"
 
 
@@ -104,37 +105,42 @@ static const char* node_type_to_string(NodeType type) {
 static void print_ast_helper(Node* node, int depth, int is_sibling) {
     if (!node) return;
 
-    // Print indentation
-    for (int i = 0; i < depth; i++) printf("│   ");
+    // Print indentation with appropriate color
+    for (int i = 0; i < depth; i++) printf(COLOR_CYAN "│   " COLOR_RESET);
 
     // Mark the current node and print its type and index info
     if (is_sibling) {
-        printf("└── ");
+        printf(COLOR_YELLOW "└── " COLOR_RESET);  // Sibling node
     } else {
-        printf("├── ");
+        printf(COLOR_YELLOW "├── " COLOR_RESET);  // Non-sibling node
     }
 
-    // Print the type of the node and its indices
-    printf("Type: %s, Lexico Index: %d, Decl Index: %d\n", 
-           node_type_to_string(node->type), 
-           node->index_lexicographic, 
-           node->index_declaration);
+    // Print the type of the node in bold and colored for clarity
+    printf(COLOR_BOLD "%s" COLOR_RESET, node_type_to_string(node->type));
 
-    // Recursively print the child (if exists)
+    // Print the Lexico and Decl Index in different colors for easy distinction
+    printf(", " COLOR_GREEN "Lexico Idx: %d" COLOR_RESET, node->index_lexicographic);
+    printf(", " COLOR_BLUE "Decl Idx: %d" COLOR_RESET, node->index_declaration);
+
+    // Move to the next line after printing the current node information
+    printf("\n");
+
+    // Recursively print the child (if exists) with indentation
     if (node->child) {
         print_ast_helper(node->child, depth + 1, 0);  // First child, marked with ├──
     }
 
-    // Recursively print the sibling (if exists)
+    // Recursively print the sibling (if exists) without increasing indentation
     if (node->sibling) {
         print_ast_helper(node->sibling, depth, 1);  // Sibling node, marked with └──
     }
 }
 
 void print_ast(AST ast) {
-    printf("Root of the AST:\n");
+    printf(COLOR_BOLD "Root of the AST:\n" COLOR_RESET);
     print_ast_helper(ast, 0, 0);
 }
+
 
 void free_ast_helper(Node* node) {
     if (!node) return;

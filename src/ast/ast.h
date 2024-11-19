@@ -80,7 +80,7 @@ typedef struct Node {
     struct Node* child;            // Pointer to the leftmost child
     struct Node* sibling;          // Pointer to the right sibling
     
-    NodeType type;                      // Node type (operator, variable, literal, etc.)
+    NodeType type;                 // Node type (operator, variable, literal, etc.)
     int index_lexicographic;       // Index in the lexicographic table
     int index_declaration;         // Index in the declaration table
 } Node;
