@@ -55,6 +55,7 @@
 %}
 
 %union {
+    AST ast;
 	int lexicographic_index;
     int ival;
     double fval;
@@ -86,42 +87,88 @@
 %left PLUS MINUS
 %left MULTIPLY DIVIDE
 
-%type <lexicographic_index> type
+%type <lexicographic_index> type variable_declaration function_declaration procedure_declaration type_declaration
+
+%type <ast> assignment_statement if_statement loop_statement standalone_function_call_statement function_call_expression
+%type <ast> array_access_statement array_indices struct_access_statement assignable_entity print_statement input_statement
+
+%type <ast> parameter_list parameter argument_list
+
+%type <ast> program declaration_list statement_list statement_block declaration statement expression expression_atom
+%type <ast> condition comparison_operator
 
 %start program
 %debug
 %%
 
-program: PROG declaration_list statement_list
-       |
+program: PROG declaration_list statement_list { 
+            $$ = construct_node(A_PROGRAM, NULL_VALUE, NULL_VALUE); 
+            add_child($$, $2); 
+            add_sibling($2, $3);
+
+            print_ast($$);
+        }
        ;
      
 // Conditions and boolean expressions
-condition: OPEN_PARENTHESIS expression comparison_operator expression CLOSE_PARENTHESIS
-         | OPEN_PARENTHESIS condition CLOSE_PARENTHESIS
-         | condition AND condition
-         | condition OR condition
-         | NOT condition
-         | NOT expression
+condition: OPEN_PARENTHESIS expression comparison_operator expression CLOSE_PARENTHESIS {
+            $$ = construct_node(A_CONDITION, NULL_VALUE, NULL_VALUE);
+            add_child($$, $2);
+            add_sibling($2, $4);
+         }
+         | OPEN_PARENTHESIS condition CLOSE_PARENTHESIS {
+            $$ = construct_node(A_CONDITION, NULL_VALUE, NULL_VALUE);
+            add_child($$, $2);
+         }
+         | condition AND condition {
+            $$ = construct_node(A_AND_CONDITION, NULL_VALUE, NULL_VALUE);
+            add_child($$, $1);
+            add_sibling($1, $3);
+         }
+         | condition OR condition {
+            $$ = construct_node(A_OR_CONDITION, NULL_VALUE, NULL_VALUE);
+            add_child($$, $1);
+            add_sibling($1, $3);
+         }
+         | NOT condition {
+            $$ = construct_node(A_NOT_CONDITION, NULL_VALUE, NULL_VALUE);
+            add_child($$, $2);
+         }
+         | NOT expression {
+            $$ = construct_node(A_NOT_EXPRESSION, NULL_VALUE, NULL_VALUE);
+            add_child($$, $2);
+         }
          ;
 
-comparison_operator: EQUAL
-                   | NOT_EQUAL
-                   | LESS_THAN
-                   | GREATER_THAN
-                   | LESS_EQUAL
-                   | GREATER_EQUAL
+comparison_operator: EQUAL { $$ = construct_node(A_EQUAL_OP, NULL_VALUE, NULL_VALUE); }
+                   | NOT_EQUAL { $$ = construct_node(A_NOT_EQUAL_OP, NULL_VALUE, NULL_VALUE); }
+                   | LESS_THAN { $$ = construct_node(A_LESS_THAN_OP, NULL_VALUE, NULL_VALUE); }
+                   | GREATER_THAN { $$ = construct_node(A_GREATER_THAN_OP, NULL_VALUE, NULL_VALUE); }
+                   | LESS_EQUAL { $$ = construct_node(A_LESS_EQUAL_OP, NULL_VALUE, NULL_VALUE); }
+                   | GREATER_EQUAL { $$ = construct_node(A_GREATER_EQUAL_OP, NULL_VALUE, NULL_VALUE); }
                    ;
 
 // Declarations
-declaration_list: declaration declaration_list 
-                | 
+declaration_list: declaration declaration_list {
+                    $$ = construct_node(A_DECLARATION_LIST, NULL_VALUE, NULL_VALUE);
+                    add_child($$, $1);  
+                    add_sibling($1, $2);
+                }
+                | { $$ = NULL; } 
                 ;
 
-declaration: variable_declaration 
-           | function_declaration 
-           | type_declaration
-           | procedure_declaration 
+declaration: variable_declaration {
+                $$ = construct_node(A_VARIABLE_DECLARATION, $1, find_declaration_index($1));
+           }
+           | function_declaration {
+                $$ = construct_node(A_FUNCTION_DECLARATION, $1, find_declaration_index_by_nature($1, TYPE_FUNC));
+           }
+           | type_declaration {
+                $$ = construct_node(A_TYPE_DECLARATION, NULL_VALUE, NULL_VALUE);
+           }
+           | procedure_declaration {
+                $$ = construct_node(A_PROCEDURE_DECLARATION, $1, find_declaration_index_by_nature($1, TYPE_PROC));
+           }
            ;
 
 variable_declaration: VARIABLE IDENTIFIER TWO_POINTS type SEMICOLON { declaration_variable_start($2, $4); }
@@ -137,17 +184,28 @@ type_declaration: TYPE IDENTIFIER TWO_POINTS STRUCT { construct_structure_manage
                 | TYPE IDENTIFIER TWO_POINTS ARRAY { construct_array_manager_context($2); declaration_array_start(); } dimension OF type SEMICOLON { declaration_array_end($8); }
                 ;
 
-argument_list: argument_list COMMA expression
-    | expression
-    | 
-    ;
+argument_list: argument_list COMMA expression {
+                $$ = construct_node(A_ARGUMENT_LIST, NULL_VALUE, NULL_VALUE);
+                add_child($$, $1);
+                add_sibling($1, $3);
+             }
+             | expression { $$ = $1; }
+             | { $$ = NULL; } 
+             ;
 
-parameter_list: parameter_list COMMA parameter
-    | parameter
-    | 
-    ;
+parameter_list: parameter_list COMMA parameter { 
+                $$ = construct_node(A_PARAMETER_LIST, NULL_VALUE, NULL_VALUE);
+                add_child($$, $1);
+                add_sibling($1, $3);
+             }
+             | parameter { $$ = $1; }
+             | { $$ = NULL; } 
+             ;
 
-parameter: IDENTIFIER TWO_POINTS type { func_proc_add_parameter($1, $3); }
+parameter: IDENTIFIER TWO_POINTS type { 
+            func_proc_add_parameter($1, $3);
+            $$ = construct_node(A_PARAMETER, $1, find_declaration_index($1));    
+        }
          ;
 
 dimension: OPEN_BRACKET list_dimensions CLOSE_BRACKET 
@@ -161,23 +219,39 @@ one_dimension: INTEGER_VALUE TWO_POINTS INTEGER_VALUE { array_add_dimension($1, 
               ;
 
 // Arithmetic expressions
-expression: expression PLUS expression
-          | expression MINUS expression
-          | expression MULTIPLY expression
-          | expression DIVIDE expression
-          | expression_atom 
+expression: expression PLUS expression {
+                $$ = construct_node(A_ADD_OP, NULL_VALUE, NULL_VALUE);
+                add_child($$, $1);
+                add_sibling($1, $3);
+           }
+          | expression MINUS expression {
+                $$ = construct_node(A_SUB_OP, NULL_VALUE, NULL_VALUE);
+                add_child($$, $1);
+                add_sibling($1, $3);
+          }
+          | expression MULTIPLY expression {
+                $$ = construct_node(A_MUL_OP, NULL_VALUE, NULL_VALUE);
+                add_child($$, $1);
+                add_sibling($1, $3);
+          }
+          | expression DIVIDE expression {
+                $$ = construct_node(A_DIV_OP, NULL_VALUE, NULL_VALUE);
+                add_child($$, $1);
+                add_sibling($1, $3);
+          }
+          | expression_atom { $$ = $1; }
           ;
 
-expression_atom: function_call_expression  
-               | array_access_statement
-               | struct_access_statement
-               | IDENTIFIER  { check_variable_definition($1); }
-               | INTEGER_VALUE
-               | FLOAT_VALUE
-               | BOOLEAN_VALUE
-               | CHARACTER_VALUE
-               | STRING_VALUE
-               | OPEN_PARENTHESIS expression CLOSE_PARENTHESIS 
+expression_atom: function_call_expression { $$ = $1; }  
+               | array_access_statement { $$ = $1; }
+               | struct_access_statement { $$ = $1; }
+               | IDENTIFIER  { check_variable_definition($1); $$ = construct_node(A_IDENTIFIER, $1, find_declaration_index($1)); }
+               | INTEGER_VALUE { $$ = construct_node(A_INTEGER_LITERAL, $1, $1); }
+               | FLOAT_VALUE { $$ = construct_node(A_FLOAT_LITERAL, $1, $1); }
+               | BOOLEAN_VALUE { $$ = construct_node(A_BOOLEAN_LITERAL, $1, $1); }
+               | CHARACTER_VALUE { $$ = construct_node(A_CHARACTER_LITERAL, $1, $1); }
+               | STRING_VALUE { $$ = construct_node(A_STRING_LITERAL, $1, NULL_VALUE); }
+               | OPEN_PARENTHESIS expression CLOSE_PARENTHESIS { $$ = $2; }
                ;
 
 // TODO : is there a better way to assign the lexicographic_index to the base type ?
@@ -196,68 +270,167 @@ complex_type_fields: type_field
 type_field: IDENTIFIER TWO_POINTS type SEMICOLON { structure_add_field($1, $3); }
           ;
 
-function_call_expression: IDENTIFIER { check_func_proc_definition($1); } OPEN_PARENTHESIS argument_list CLOSE_PARENTHESIS 
+function_call_expression: IDENTIFIER { check_func_proc_definition($1); } OPEN_PARENTHESIS argument_list CLOSE_PARENTHESIS {
+                            $$ = construct_node(A_FUNCTION_CALL, $1, find_declaration_index($1));
+                            add_child($$, $4);
+                        }
                         ;
 
 
 // Statements
-statement_block: START statement_list END ;
+statement_block: START statement_list END { $$ = $2; }
+               ;
 
 
-statement_list: statement statement_list
+statement_list: statement statement_list {
+                    $$ = construct_node(A_STATEMENT_LIST, NULL_VALUE, NULL_VALUE);
+                    add_child($$, $1);
+                    add_sibling($1, $2);
+              }
               | statement declaration { 
                 set_error_type(&error, SYNTAX_ERROR);
                 yyerror("Do not mix declarations and statements! All declarations must be at the beginning of the block.");
                 exit(EXIT_FAILURE);
               }
-              | 
+              | { $$ = NULL; } 
               ;
 
 
-statement: assignment_statement
-    | if_statement
-    | standalone_function_call_statement
-    | loop_statement 
-    | print_statement
-    | input_statement
-    ;
+statement: assignment_statement {
+            $$ = construct_node(A_ASSIGNMENT_STATEMENT, NULL_VALUE, NULL_VALUE);
+            add_child($$, $1);
+        }
+        | if_statement {
+            $$ = construct_node(A_IF, NULL_VALUE, NULL_VALUE);
+            add_child($$, $1);
+        }
+        | standalone_function_call_statement {
+            $$ = construct_node(A_FUNCTION_CALL_STATEMENT, NULL_VALUE, NULL_VALUE);
+            add_child($$, $1);
+        }
+        | loop_statement {
+            $$ = construct_node(A_WHILE, NULL_VALUE, NULL_VALUE);
+            add_child($$, $1);
+        }
+        | print_statement {
+            $$ = construct_node(A_PRINT_STATEMENT, NULL_VALUE, NULL_VALUE);
+            add_child($$, $1);
+        }
+        | input_statement {
+            $$ = construct_node(A_INPUT_STATEMENT, NULL_VALUE, NULL_VALUE);
+            add_child($$, $1);
+        }
+        ;
 
-assignment_statement: IDENTIFIER { check_variable_definition($1); } OPAFF expression SEMICOLON 
-                    | array_access_statement OPAFF expression SEMICOLON
-                    | struct_access_statement OPAFF expression SEMICOLON
+assignment_statement: IDENTIFIER { check_variable_definition($1); } OPAFF expression SEMICOLON {
+                        $$ = construct_node(A_VARIABLE_ASSIGNMENT, $1, find_declaration_index($1));
+                        add_child($$, $4);
+                    }
+                    | array_access_statement OPAFF expression SEMICOLON {
+                        $$ = construct_node(A_ARRAY_ASSIGNMENT, NULL_VALUE, NULL_VALUE);
+                        add_child($$, $1);  
+                        add_sibling($1, $3);
+                    }
+                    | struct_access_statement OPAFF expression SEMICOLON {
+                        $$ = construct_node(A_STRUCT_ASSIGNMENT, NULL_VALUE, NULL_VALUE);
+                        add_child($$, $1);  
+                        add_sibling($1, $3);
+                    }
                     ;
 
 return_statement: RETURN_VALUE expression SEMICOLON
                 ;
 
-if_statement: IF condition statement_block
-            | IF condition statement_block ELSE statement_block;
+if_statement: IF condition statement_block {
+                $$ = construct_node(A_IF, NULL_VALUE, NULL_VALUE); 
+                add_child($$, $2); 
+                add_sibling($2, $3);
+            }
+            | IF condition statement_block ELSE statement_block {
+                $$ = construct_node(A_IF_ELSE, NULL_VALUE, NULL_VALUE); 
+                add_child($$, $2); 
+                add_sibling($2, $3);
+                add_sibling($3, $5);
+            }
+            ;
 
-loop_statement: WHILE condition statement_block ;
+loop_statement: WHILE condition statement_block {
+                $$ = construct_node(A_WHILE, NULL_VALUE, NULL_VALUE); 
+                add_child($$, $2); 
+                add_sibling($2, $3);
+            }
+            ;
 
-standalone_function_call_statement: function_call_expression SEMICOLON ;
+standalone_function_call_statement: function_call_expression SEMICOLON {
+                                        $$ = construct_node(A_FUNCTION_CALL, NULL_VALUE, NULL_VALUE);
+                                        add_child($$, $1);
+                                  }
+                                  ;
 
-array_access_statement: IDENTIFIER OPEN_BRACKET array_indices CLOSE_BRACKET;
+array_access_statement: IDENTIFIER OPEN_BRACKET array_indices CLOSE_BRACKET {
+                            $$ = construct_node(A_ARRAY_ACCESS, $1, find_declaration_index($1));
+                            add_child($$, $3);
+                    }
+                    ;
 
-array_indices: expression
-             | expression COMMA array_indices;
+array_indices: expression {
+                    $$ = construct_node(A_ARRAY_INDEX, NULL_VALUE, NULL_VALUE);
+                    add_child($$, $1);
+             }
+             | expression COMMA array_indices {
+                    $$ = construct_node(A_ARRAY_INDEX_LIST, NULL_VALUE, NULL_VALUE);
+                    add_child($$, $1); 
+                    add_sibling($1, $3);
+             }
+             ;
 
-struct_access_statement: IDENTIFIER DOT IDENTIFIER
-                       | struct_access_statement DOT IDENTIFIER
-                       | array_access_statement DOT IDENTIFIER
+struct_access_statement: IDENTIFIER DOT IDENTIFIER {
+                            $$ = construct_node(A_STRUCT_FIELD_ACCESS, NULL_VALUE, NULL_VALUE);
+                            // FIXME:
+                            // add_child($$, $1);
+                            // add_sibling($1, $3);
+                       }
+                       | struct_access_statement DOT IDENTIFIER {
+                            $$ = construct_node(A_STRUCT_FIELD_ACCESS, NULL_VALUE, NULL_VALUE);
+                            // add_child($$, $1); 
+                            // add_sibling($1, $3);
+                       }
+                       | array_access_statement DOT IDENTIFIER {
+                            $$ = construct_node(A_STRUCT_ARRAY_ACCESS, NULL_VALUE, NULL_VALUE);
+                            // add_child($$, $1); 
+                            // add_sibling($1, $3);
+                       }
                        ;
 
-print_statement: PRINT OPEN_PARENTHESIS argument_list CLOSE_PARENTHESIS SEMICOLON
+print_statement: PRINT OPEN_PARENTHESIS argument_list CLOSE_PARENTHESIS SEMICOLON {
+                    $$ = construct_node(A_PRINT_STATEMENT, NULL_VALUE, NULL_VALUE);
+                    add_child($$, $3);
+               }
                ;
 
-input_statement: INPUT OPEN_PARENTHESIS assignable_entity CLOSE_PARENTHESIS SEMICOLON
+input_statement: INPUT OPEN_PARENTHESIS assignable_entity CLOSE_PARENTHESIS SEMICOLON {
+                    $$ = construct_node(A_INPUT_STATEMENT, NULL_VALUE, NULL_VALUE);
+                    add_child($$, $3);
+               }
                ;
 
-assignable_entity: IDENTIFIER
-  | array_access_statement
-  | struct_access_statement
-  | assignable_entity COMMA assignable_entity
-  ;
+assignable_entity: IDENTIFIER {
+                        $$ = construct_node(A_ASSIGNABLE_ENTITY, $1, find_declaration_index($1));
+                 }
+                 | array_access_statement {
+                        $$ = construct_node(A_ARRAY_ASSIGNABLE_ENTITY, NULL_VALUE, NULL_VALUE);
+                        add_child($$, $1);
+                 }
+                 | struct_access_statement {
+                        $$ = construct_node(A_STRUCT_ASSIGNABLE_ENTITY, NULL_VALUE, NULL_VALUE);
+                        add_child($$, $1);
+                 }
+                 | assignable_entity COMMA assignable_entity {
+                        $$ = construct_node(A_ASSIGNABLE_ENTITY_LIST, NULL_VALUE, NULL_VALUE);
+                        add_child($$, $1); 
+                        add_sibling($1, $3);
+                 }
+                 ;
 
 %%
 

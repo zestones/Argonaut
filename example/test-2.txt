@@ -1,8 +1,4 @@
 PROG
-// doit renvoyer une erreur avec la table des déclarations
-var a : notint;
+var a : int;
 
-var b : int;
-
-var c : float;
-a := 1 + 2 * 3;
+a := 1 + 2;

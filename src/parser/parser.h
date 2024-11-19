@@ -4,6 +4,8 @@
 #include <stdio.h>
 #include <string.h>
 
+#include "../ast/ast.h"
+
 #include "../../lib/colors.h"
 #include "../utils/utils.h"
 
