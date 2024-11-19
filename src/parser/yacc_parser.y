@@ -108,6 +108,12 @@ program: PROG declaration_list statement_list {
 
             print_ast($$);
         }
+        | PROG statement_list { 
+            $$ = construct_node(A_PROGRAM, NULL_VALUE, NULL_VALUE); 
+            add_child($$, $2); 
+
+            print_ast($$);
+        }
        ;
      
 // Conditions and boolean expressions
@@ -149,12 +155,17 @@ comparison_operator: EQUAL { $$ = construct_node(A_EQUAL_OP, NULL_VALUE, NULL_VA
                    ;
 
 // Declarations
-declaration_list: declaration declaration_list {
-                    $$ = construct_node(A_DECLARATION_LIST, NULL_VALUE, NULL_VALUE);
-                    add_child($$, $1);  
-                    add_sibling($1, $2);
+declaration_list: declaration declaration_list {    
+                    if ($2 != NULL) {
+                        $$ = $2;
+                        add_sibling($1, $2);
+                        add_child($$, $1);
+                    } 
                 }
-                | { $$ = NULL; } 
+                | declaration {
+                    $$ = construct_node(A_DECLARATION_LIST, NULL_VALUE, NULL_VALUE);
+                    add_child($$, $1);
+                }
                 ;
 
 declaration: variable_declaration { $$ = $1; }
@@ -284,16 +295,21 @@ statement_block: START statement_list END { $$ = $2; }
 
 
 statement_list: statement statement_list {
+                    if ($2 != NULL) {
+                        $$ = $2;
+                        add_sibling($1, $2);
+                        add_child($$, $1);
+                    }  
+              }
+              | statement {
                     $$ = construct_node(A_STATEMENT_LIST, NULL_VALUE, NULL_VALUE);
                     add_child($$, $1);
-                    add_sibling($1, $2);
               }
               | statement declaration { 
                 set_error_type(&error, SYNTAX_ERROR);
                 yyerror("Do not mix declarations and statements! All declarations must be at the beginning of the block.");
                 exit(EXIT_FAILURE);
               }
-              | { $$ = NULL; } 
               ;
 
 

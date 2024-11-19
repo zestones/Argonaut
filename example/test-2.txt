@@ -3,5 +3,4 @@ var a : int;
 var b : float;
 
 b := 1.0;
-
 a := 1 + b;
