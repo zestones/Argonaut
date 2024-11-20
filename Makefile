@@ -25,7 +25,7 @@ PARSER = parser.o
 SYMBOL_TABLE = declaration_table.o representation_table.o hash_table.o
 TABLE_MANAGEMENT = variable_manager.o array_manager.o func_proc_manager.o structure_manager.o
 DATA = region_table.o region_stack.o
-AST = ast.o
+AST = ast.o lcrs.o
 UTILS = stack.o errors.o validation.o scope_tracker.o
 
 
@@ -112,6 +112,9 @@ region_stack.o: src/data/region_stack.c
 
 ast.o: src/ast/ast.c
 	$(CC) -c src/ast/ast.c
+
+lcrs.o: src/ast/lcrs.c
+	$(CC) -c src/ast/lcrs.c
 
 # ----------- #
 # UTILS
