@@ -108,12 +108,7 @@ program: PROG declaration_list statement_list {
 
             print_ast($$);
         }
-        | PROG statement_list { 
-            $$ = construct_node(A_PROGRAM, NULL_VALUE, NULL_VALUE); 
-            add_child($$, $2); 
-
-            print_ast($$);
-        }
+        | { $$ = NULL; }
        ;
      
 // Conditions and boolean expressions
@@ -160,12 +155,12 @@ declaration_list: declaration declaration_list {
                         $$ = $2;
                         add_sibling($1, $2);
                         add_child($$, $1);
-                    } 
+                    } else {
+                        $$ = construct_node(A_DECLARATION_LIST, NULL_VALUE, NULL_VALUE);
+                        add_child($$, $1);
+                    }
                 }
-                | declaration {
-                    $$ = construct_node(A_DECLARATION_LIST, NULL_VALUE, NULL_VALUE);
-                    add_child($$, $1);
-                }
+                | { $$ = NULL; }
                 ;
 
 declaration: variable_declaration { $$ = $1; }
@@ -299,17 +294,17 @@ statement_list: statement statement_list {
                         $$ = $2;
                         add_sibling($1, $2);
                         add_child($$, $1);
-                    }  
-              }
-              | statement {
-                    $$ = construct_node(A_STATEMENT_LIST, NULL_VALUE, NULL_VALUE);
-                    add_child($$, $1);
+                    } else {
+                        $$ = construct_node(A_STATEMENT_LIST, NULL_VALUE, NULL_VALUE);
+                        add_child($$, $1);
+                    }
               }
               | statement declaration { 
                 set_error_type(&error, SYNTAX_ERROR);
                 yyerror("Do not mix declarations and statements! All declarations must be at the beginning of the block.");
                 exit(EXIT_FAILURE);
-              }
+              } 
+              | { $$ = NULL; }
               ;
 
 
