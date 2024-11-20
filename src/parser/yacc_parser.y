@@ -6,6 +6,7 @@
 
     #include "../symbol_table/declaration_table.h"
     #include "../symbol_table/hash_table.h"
+    #include "../data/region_table.h"
 
     #include "../lexer/lexeme_table.h"
     #include "parser.h"
@@ -87,12 +88,12 @@
 %left PLUS MINUS
 %left MULTIPLY DIVIDE
 
-%type <lexicographic_index> type function_declaration procedure_declaration type_declaration
+%type <lexicographic_index> type type_declaration
 
 %type <ast> assignment_statement if_statement loop_statement standalone_function_call_statement function_call_expression
 %type <ast> array_access_statement array_indices struct_access_statement assignable_entity print_statement input_statement
 
-%type <ast> parameter_list parameter argument_list variable_declaration
+%type <ast> parameter_list parameter argument_list variable_declaration function_declaration procedure_declaration return_statement
 
 %type <ast> program declaration_list statement_list statement_block declaration statement expression expression_atom
 %type <ast> condition comparison_operator
@@ -106,7 +107,8 @@ program: PROG declaration_list statement_list {
             add_child($$, $2); 
             add_sibling($2, $3);
 
-            print_ast($$);
+            update_region_ast(peek_region(), $$);
+            // print_ast($$);
         }
         | { $$ = NULL; }
        ;
@@ -165,13 +167,14 @@ declaration_list: declaration declaration_list {
 
 declaration: variable_declaration { $$ = $1; }
            | function_declaration {
-                $$ = construct_node(A_FUNCTION_DECLARATION, $1, find_declaration_index_by_nature($1, TYPE_FUNC));
+                $$ = $1;
+                // update_region_ast(peek_region(), $$);
            }
            | type_declaration {
                 $$ = construct_node(A_TYPE_DECLARATION, NULL_VALUE, NULL_VALUE);
            }
            | procedure_declaration {
-                $$ = construct_node(A_PROCEDURE_DECLARATION, $1, find_declaration_index_by_nature($1, TYPE_PROC));
+                $$ = $1;
            }
            ;
 
@@ -181,10 +184,55 @@ variable_declaration: VARIABLE IDENTIFIER TWO_POINTS type SEMICOLON {
                     }
                     ;
 
-function_declaration: FUNCTION IDENTIFIER { construct_func_proc_manager_context($2); declaration_func_start(); } OPEN_PARENTHESIS parameter_list CLOSE_PARENTHESIS RETURN_TYPE type { update_declaration_func_return_type($8); } START declaration_list statement_list return_statement END { declaration_func_proc_end(); } 
+function_declaration: FUNCTION IDENTIFIER {
+                        construct_func_proc_manager_context($2);
+                        declaration_func_start();
+                    } OPEN_PARENTHESIS parameter_list CLOSE_PARENTHESIS RETURN_TYPE type {
+                        update_declaration_func_return_type($8);
+                    } START declaration_list statement_list return_statement END {
+                        $$ = construct_node(A_FUNCTION_DECLARATION, $2, find_declaration_index_by_nature($2, TYPE_FUNC));
+                         // FIXME: introduce empty Node to the tree to avoid NULL checks
+                        if ($5 != NULL) {
+                            add_child($$, $5); 
+                            add_sibling($5, $11); 
+                            add_sibling($11, $12);
+                            add_sibling($12, $13); 
+                        } else {
+                            add_child($$, $11); 
+                            add_sibling($11, $12);
+                            add_sibling($12, $13);
+                        }
+
+                        update_region_ast(peek_region(), $$);
+                        declaration_func_proc_end();
+
+                        // Keep the declaration in the region
+                        $$ = construct_node(A_FUNCTION_DECLARATION, $2, find_declaration_index_by_nature($2, TYPE_FUNC));
+                    } 
                     ;
 
-procedure_declaration: PROCEDURE IDENTIFIER { construct_func_proc_manager_context($2); declaration_proc_start(); } OPEN_PARENTHESIS parameter_list CLOSE_PARENTHESIS START declaration_list statement_list END { declaration_func_proc_end(); } 
+procedure_declaration: PROCEDURE IDENTIFIER { 
+                        construct_func_proc_manager_context($2);
+                        declaration_proc_start(); 
+                     } OPEN_PARENTHESIS parameter_list CLOSE_PARENTHESIS START declaration_list statement_list END {
+                        $$ = construct_node(A_PROCEDURE_DECLARATION, $2, find_declaration_index_by_nature($2, TYPE_PROC));
+
+                        // FIXME: introduce empty Node to the tree to avoid NULL checks
+                        if ($5 != NULL) {
+                            add_child($$, $5); 
+                            add_sibling($5, $8); 
+                            add_sibling($5, $9); 
+                        } else {
+                            add_child($$, $8); 
+                            add_sibling($8, $9); 
+                        }
+
+                        update_region_ast(peek_region(), $$);
+                        declaration_func_proc_end();
+
+                        // Keep the declaration in the region
+                        $$ = construct_node(A_PROCEDURE_DECLARATION, $2, find_declaration_index_by_nature($2, TYPE_PROC));
+                     } 
                      ;
 
 type_declaration: TYPE IDENTIFIER TWO_POINTS STRUCT { construct_structure_manager_context($2); } START { declaration_structure_start(); } complex_type_fields END FSTRUCT SEMICOLON { declaration_structure_end(); }
@@ -350,7 +398,10 @@ assignment_statement: IDENTIFIER { check_variable_definition($1); } OPAFF expres
                     }
                     ;
 
-return_statement: RETURN_VALUE expression SEMICOLON
+return_statement: RETURN_VALUE expression SEMICOLON { 
+                    $$ = construct_node(A_RETURN_STATEMENT, NULL_VALUE, NULL_VALUE);
+                    add_child($$, $2);
+                }
                 ;
 
 if_statement: IF condition statement_block {
