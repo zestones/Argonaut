@@ -45,8 +45,8 @@ typedef enum {
 
     A_STATEMENT_LIST,
     A_ASSIGNMENT_STATEMENT,
-    A_FUNCTION_CALL_STATEMENT,
     A_LOOP_STATEMENT,
+    A_FUNCTION_CALL_STATEMENT,
     A_RETURN_STATEMENT, 
 
     A_VARIABLE_ASSIGNMENT,
@@ -57,7 +57,6 @@ typedef enum {
     A_IF_ELSE,
     A_WHILE,
 
-    A_FUNCTION_CALL,
     A_ARRAY_ACCESS,
     A_ARRAY_INDEX_LIST,
     A_ARRAY_INDEX,
@@ -107,6 +106,14 @@ AST construct_ast();
 Node* construct_node(NodeType type, int index_lexicographic, int index_declaration);
 
 /**
+ * @brief Creates a new AST node with default indices.
+ * 
+ * @param type Type of the node.
+ * @return A pointer to the newly created node.
+ */
+Node* construct_node_default(NodeType type);
+
+/**
  * @brief Adds a child node to the given parent node.
  * 
  * @param parent The parent node to which the child will be added.
@@ -121,6 +128,14 @@ void add_child(Node* parent, Node* child);
  * @param sibling The sibling node to add.
  */
 void add_sibling(Node* node, Node* sibling);
+
+/**
+ * @brief Checks if the given node is NULL.
+ * 
+ * @param node The node to check.
+ * @return 1 if the node is NULL, 0 otherwise.
+ */
+int is_node_null(Node* node);
 
 /**
  * @brief Prints the AST in a human-readable format.

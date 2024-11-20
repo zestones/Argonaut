@@ -1,4 +1,5 @@
 #include "../../lib/colors.h"
+#include "../utils/utils.h"
 #include "ast.h"
 
 
@@ -24,6 +25,10 @@ Node* construct_node(NodeType type, int index_lexicographic, int index_declarati
     return new_node;
 }
 
+Node* construct_node_default(NodeType type) {
+    return construct_node(type, NULL_VALUE, NULL_VALUE);
+}
+
 void add_child(Node* parent, Node* child) {
     if (!parent || !child) return;
     child->sibling = parent->child;
@@ -37,6 +42,10 @@ void add_sibling(Node* node, Node* sibling) {
     }
 
     node->sibling = sibling;
+}
+
+int is_node_null(Node* node) {
+    return node == NULL;
 }
 
 static const char* node_type_to_string(NodeType type) {
@@ -82,7 +91,6 @@ static const char* node_type_to_string(NodeType type) {
         case A_IF: return "If";
         case A_IF_ELSE: return "If Else";
         case A_WHILE: return "While";
-        case A_FUNCTION_CALL: return "Function Call";
         case A_ARRAY_ACCESS: return "Array Access";
         case A_ARRAY_INDEX_LIST: return "Array Index List";
         case A_ARRAY_INDEX: return "Array Index";
