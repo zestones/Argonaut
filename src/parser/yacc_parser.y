@@ -246,11 +246,14 @@ argument_list: argument_list COMMA expression {
 ;
 
 parameter_list: parameter_list COMMA parameter { 
+                if (!is_node_null($1)) {
+                    add_child($1, $3);
+                }
+             }
+             | parameter {
                 $$ = construct_node_default(A_PARAMETER_LIST);
                 add_child($$, $1);
-                add_sibling($1, $3);
              }
-             | parameter { $$ = $1; }
              | { $$ = NULL; } 
              ;
 

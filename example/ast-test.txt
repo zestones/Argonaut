@@ -1,18 +1,20 @@
 PROG
+var x : char;
 var b : bool;
 var i : float;
 var j : int;
 
-proc a(marwan: int) 
+proc a(marwan: int, z: int, x: int) 
 {
-    var x : int;
 
-    proc b()
-    {
-        var z : int;
-    }
-
-    marwan := x + 1;
 }
 
-a();
+proc aaav(test: int) 
+{
+
+}
+
+proc aaav(test: int, test2: int) 
+{
+
+}
