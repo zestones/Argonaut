@@ -164,7 +164,7 @@ declaration_list: declaration declaration_list {
                     }
                 }
                 | { $$ = NULL; }
-                ;
+;
 
 declaration: variable_declaration  { $$ = $1; }
            | function_declaration  { $$ = $1; }
@@ -185,17 +185,9 @@ function_declaration: FUNCTION IDENTIFIER {
                         update_declaration_func_return_type($8);
                     } START declaration_list statement_list return_statement END {
                         $$ = construct_node(A_FUNCTION_DECLARATION, $2, find_declaration_index_by_nature($2, TYPE_FUNC));
-                         // FIXME: find a way to avoid NULL checks
-                        if (!is_node_null($5)) {
-                            add_child($$, $5); 
-                            add_sibling($5, $11); 
-                            add_sibling($11, $12);
-                            add_sibling($12, $13); 
-                        } else {
-                            add_child($$, $11); 
-                            add_sibling($11, $12);
-                            add_sibling($12, $13);
-                        }
+
+                        Node *nodes[] = { $5, $11, $12, $13 };
+                        add_chain($$, nodes, 4);
 
                         update_region_ast(peek_region(), $$);
                         declaration_func_proc_end();
@@ -210,16 +202,9 @@ procedure_declaration: PROCEDURE IDENTIFIER {
                         declaration_proc_start(); 
                      } OPEN_PARENTHESIS parameter_list CLOSE_PARENTHESIS START declaration_list statement_list END {
                         $$ = construct_node(A_PROCEDURE_DECLARATION, $2, find_declaration_index_by_nature($2, TYPE_PROC));
-
-                        // FIXME: find a way to avoid NULL checks
-                        if (!is_node_null($5)) {
-                            add_child($$, $5); 
-                            add_sibling($5, $8); 
-                            add_sibling($5, $9); 
-                        } else {
-                            add_child($$, $8); 
-                            add_sibling($8, $9); 
-                        }
+                        
+                        Node *nodes[] = { $5, $8, $9 };
+                        add_chain($$, nodes, 3);
 
                         update_region_ast(peek_region(), $$);
                         declaration_func_proc_end();
