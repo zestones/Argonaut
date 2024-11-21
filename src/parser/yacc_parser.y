@@ -367,10 +367,7 @@ statement: assignment_statement {
         }
         | if_statement { $$ = $1; }
         | standalone_function_call_statement { $$ = $1; }
-        | loop_statement {
-            $$ = construct_node_default(A_WHILE);
-            add_child($$, $1);
-        }
+        | loop_statement { $$ = $1; }
         | print_statement {
             $$ = construct_node_default(A_PRINT_STATEMENT);
             add_child($$, $1);

@@ -6,9 +6,10 @@ var j : int;
 
 x := 'a' + 1;
 
-if (!(!(x == 'a') && (b == true) || (i < 1.0))) {
+while (!(!(x == 'a') && (b == true) || (i < 1.0))) {
     x := 'b';
 }
+
 
 // func myfunction(z: float) -> int {
 //
