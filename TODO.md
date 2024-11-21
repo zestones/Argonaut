@@ -120,8 +120,8 @@ These error handling mechanisms have been successfully implemented:
 
 ### **Variable Declarations:**
 - ✔️ **Type Undefined**
-- ✔️ **Variable Redefinition**
 - ✔️ **Variable Not Declared**
+- ✔️ **Variable Redefinition:** Declaring a variable in the same scope with a duplicate name.
 
 ### **Parameters:**
 - ✔️ **Base Type**
@@ -135,18 +135,15 @@ These error handling mechanisms have been successfully implemented:
 These error handling mechanisms are yet to be implemented:
 
 ##### **General Errors:**
-- ❌ **Undeclared Variable:** Using a variable without declaring it (e.g., `x = 5;` when `x` has not been declared).
-- ❌ **Type Mismatch:** Assigning a string to an integer variable (e.g., `int x = "hello";`).
 - ❌ **Function Argument Mismatch:** Calling a function with the wrong number of arguments or argument types.
 - ❌ **Invalid Operation on Types:** Trying to multiply two pointers, access a property of a non-struct type, etc.
-- ❌ **Variable Redefinition:** Declaring a variable in the same scope with a duplicate name.
+
 
 ##### **Assignments:**
-- ❌ **Type Mismatch**
+- ❌ **Type Mismatch:** Assigning a string to an integer variable (e.g., `int x = "hello";`).
 
 ##### **Expressions:**
 - ❌ **Type Mismatch (Arithmetic):** (e.g., `int + string`)
 - ❌ **Type Mismatch (Logical):** (e.g., `int && string`)
 
 </details>
-
