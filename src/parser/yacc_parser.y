@@ -88,12 +88,13 @@
 %left PLUS MINUS
 %left MULTIPLY DIVIDE
 
-%type <lexicographic_index> type type_declaration
+%type <lexicographic_index> type 
 
 %type <ast> assignment_statement if_statement loop_statement standalone_function_call_statement function_call_expression
 %type <ast> array_access_statement array_indices struct_access_statement assignable_entity print_statement input_statement
 
-%type <ast> parameter_list parameter argument_list variable_declaration function_declaration procedure_declaration return_statement
+%type <ast> variable_declaration type_declaration complex_type_fields type_field
+%type <ast> function_declaration return_statement procedure_declaration parameter_list parameter argument_list
 
 %type <ast> program declaration_list statement_list statement_block declaration statement expression expression_atom
 %type <ast> condition comparison_operator
@@ -165,14 +166,10 @@ declaration_list: declaration declaration_list {
                 | { $$ = NULL; }
                 ;
 
-declaration: variable_declaration { $$ = $1; }
-           | function_declaration { $$ = $1; }
-           | type_declaration {
-                $$ = construct_node_default(A_TYPE_DECLARATION);
-           }
-           | procedure_declaration {
-                $$ = $1;
-           }
+declaration: variable_declaration  { $$ = $1; }
+           | function_declaration  { $$ = $1; }
+           | type_declaration      { $$ = $1; }
+           | procedure_declaration { $$ = $1; }
 ;
 
 variable_declaration: VARIABLE IDENTIFIER TWO_POINTS type SEMICOLON { 
@@ -188,7 +185,7 @@ function_declaration: FUNCTION IDENTIFIER {
                         update_declaration_func_return_type($8);
                     } START declaration_list statement_list return_statement END {
                         $$ = construct_node(A_FUNCTION_DECLARATION, $2, find_declaration_index_by_nature($2, TYPE_FUNC));
-                         // FIXME: introduce empty Node to the tree to avoid NULL checks
+                         // FIXME: find a way to avoid NULL checks
                         if (!is_node_null($5)) {
                             add_child($$, $5); 
                             add_sibling($5, $11); 
@@ -214,8 +211,8 @@ procedure_declaration: PROCEDURE IDENTIFIER {
                      } OPEN_PARENTHESIS parameter_list CLOSE_PARENTHESIS START declaration_list statement_list END {
                         $$ = construct_node(A_PROCEDURE_DECLARATION, $2, find_declaration_index_by_nature($2, TYPE_PROC));
 
-                        // FIXME: introduce empty Node to the tree to avoid NULL checks
-                        if ($5 != NULL) {
+                        // FIXME: find a way to avoid NULL checks
+                        if (!is_node_null($5)) {
                             add_child($$, $5); 
                             add_sibling($5, $8); 
                             add_sibling($5, $9); 
@@ -232,8 +229,22 @@ procedure_declaration: PROCEDURE IDENTIFIER {
                      } 
 ;
 
-type_declaration: TYPE IDENTIFIER TWO_POINTS STRUCT { construct_structure_manager_context($2); } START { declaration_structure_start(); } complex_type_fields END FSTRUCT SEMICOLON { declaration_structure_end(); }
-                | TYPE IDENTIFIER TWO_POINTS ARRAY { construct_array_manager_context($2); declaration_array_start(); } dimension OF type SEMICOLON { declaration_array_end($8); }
+type_declaration: TYPE IDENTIFIER TWO_POINTS STRUCT { 
+                    construct_structure_manager_context($2);
+                } START {
+                    declaration_structure_start();
+                } complex_type_fields END FSTRUCT SEMICOLON {
+                    declaration_structure_end();
+                    $$ = construct_node(A_TYPE_STRUCT_DECLARATION, $2, find_declaration_index($2));
+                    add_child($$, $8);
+                }
+                | TYPE IDENTIFIER TWO_POINTS ARRAY {
+                    construct_array_manager_context($2);
+                    declaration_array_start();
+                } dimension OF type SEMICOLON {
+                    declaration_array_end($8);
+                    $$ = construct_node(A_TYPE_ARRAY_DECLARATION, $2, find_declaration_index($2));
+                }
 ;
 
 argument_list: argument_list COMMA expression {
@@ -318,11 +329,25 @@ type: INTEGER_TYPE { $$ = 0; }
     | IDENTIFIER 
 ;
 
-complex_type_fields: type_field
-                   | complex_type_fields type_field 
+complex_type_fields: type_field { 
+                        $$ = construct_node_default(A_STRUCT_FIELD_LIST);
+                        add_child($$, $1);
+                    }
+                   | complex_type_fields type_field {
+                        if (!is_node_null($1)) {
+                            $$ = $1;
+                            add_sibling($2, $1);
+                            add_child($$, $2);
+                        }
+                   };
 ;
 
-type_field: IDENTIFIER TWO_POINTS type SEMICOLON { structure_add_field($1, $3); }
+type_field: IDENTIFIER TWO_POINTS type SEMICOLON { 
+                structure_add_field($1, $3);
+                // TODO: struct fields are not added to the declaration table
+                // TODO: should we insert in the ast the declaration type ?
+                $$ = construct_node(A_STRUCT_FIELD, $1, find_declaration_index($3));
+            }
 ;
 
 function_call_expression: IDENTIFIER { check_func_proc_definition($1); } OPEN_PARENTHESIS argument_list CLOSE_PARENTHESIS {

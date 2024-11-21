@@ -28,6 +28,10 @@
     NODE(A_FUNCTION_DECLARATION)            \
     NODE(A_PROCEDURE_DECLARATION)           \
     NODE(A_TYPE_DECLARATION)                \
+    NODE(A_TYPE_ARRAY_DECLARATION)          \
+    NODE(A_TYPE_STRUCT_DECLARATION)         \
+    NODE(A_STRUCT_FIELD_LIST)               \
+    NODE(A_STRUCT_FIELD)                    \
     NODE(A_INTEGER_LITERAL)                 \
     NODE(A_FLOAT_LITERAL)                   \
     NODE(A_BOOLEAN_LITERAL)                 \
