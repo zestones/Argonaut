@@ -4,8 +4,9 @@ var b : bool;
 var i : float;
 var j : int;
 
+x := 'a' + 1;
 
-if (x == 'a') {
+if (!(!(x == 'a') && (b == true) || (i < 1.0))) {
     x := 'b';
 }
 

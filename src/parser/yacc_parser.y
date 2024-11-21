@@ -114,44 +114,6 @@ program: PROG declaration_list statement_list {
         | { $$ = NULL; }
        ;
      
-// Conditions and boolean expressions
-condition: OPEN_PARENTHESIS expression comparison_operator expression CLOSE_PARENTHESIS {
-            $$ = construct_node_default(A_CONDITION);
-            add_child($$, $2);
-            add_sibling($2, $4);
-         }
-         | OPEN_PARENTHESIS condition CLOSE_PARENTHESIS {
-            $$ = construct_node_default(A_CONDITION);
-            add_child($$, $2);
-         }
-         | condition AND condition {
-            $$ = construct_node_default(A_AND_CONDITION);
-            add_child($$, $1);
-            add_sibling($1, $3);
-         }
-         | condition OR condition {
-            $$ = construct_node_default(A_OR_CONDITION);
-            add_child($$, $1);
-            add_sibling($1, $3);
-         }
-         | NOT condition {
-            $$ = construct_node_default(A_NOT_CONDITION);
-            add_child($$, $2);
-         }
-         | NOT expression {
-            $$ = construct_node_default(A_NOT_EXPRESSION);
-            add_child($$, $2);
-         }
-         ;
-
-comparison_operator: EQUAL { $$ = construct_node_default(A_EQUAL_OP); }
-                   | NOT_EQUAL { $$ = construct_node_default(A_NOT_EQUAL_OP); }
-                   | LESS_THAN { $$ = construct_node_default(A_LESS_THAN_OP); }
-                   | GREATER_THAN { $$ = construct_node_default(A_GREATER_THAN_OP); }
-                   | LESS_EQUAL { $$ = construct_node_default(A_LESS_EQUAL_OP); }
-                   | GREATER_EQUAL { $$ = construct_node_default(A_GREATER_EQUAL_OP); }
-                   ;
-
 // Declarations
 declaration_list: declaration declaration_list {    
                     if (!is_node_null($2)) {
@@ -251,7 +213,7 @@ parameter_list: parameter_list COMMA parameter {
                 add_child($$, $1);
              }
              | { $$ = NULL; } 
-             ;
+;
 
 parameter: IDENTIFIER TWO_POINTS type { 
             func_proc_add_parameter($1, $3);
@@ -341,11 +303,45 @@ function_call_expression: IDENTIFIER { check_func_proc_definition($1); } OPEN_PA
                         }
 ;
 
+// Conditions and boolean expressions
+condition: OPEN_PARENTHESIS expression comparison_operator expression CLOSE_PARENTHESIS {
+            $$ = construct_node_default(A_CONDITION);
+            add_child($$, $3);
+            add_child($3, $2);
+            add_sibling($2, $4);
+         }
+         | OPEN_PARENTHESIS condition CLOSE_PARENTHESIS { $$ = $2; }
+         | condition AND condition {
+            $$ = construct_node_default(A_AND_CONDITION);
+            add_child($$, $1);
+            add_sibling($1, $3);
+         }
+         | condition OR condition {
+            $$ = construct_node_default(A_OR_CONDITION);
+            add_child($$, $1);
+            add_sibling($1, $3);
+         }
+         | NOT condition {
+            $$ = construct_node_default(A_NOT_CONDITION);
+            add_child($$, $2);
+         }
+         | NOT expression {
+            $$ = construct_node_default(A_NOT_EXPRESSION);
+            add_child($$, $2);
+         }
+;
+
+comparison_operator: EQUAL { $$ = construct_node_default(A_EQUAL_OP); }
+                   | NOT_EQUAL { $$ = construct_node_default(A_NOT_EQUAL_OP); }
+                   | LESS_THAN { $$ = construct_node_default(A_LESS_THAN_OP); }
+                   | GREATER_THAN { $$ = construct_node_default(A_GREATER_THAN_OP); }
+                   | LESS_EQUAL { $$ = construct_node_default(A_LESS_EQUAL_OP); }
+                   | GREATER_EQUAL { $$ = construct_node_default(A_GREATER_EQUAL_OP); }
+;
 
 // Statements
 statement_block: START statement_list END { $$ = $2; }
 ;
-
 
 statement_list: statement statement_list {
                     if (!is_node_null($2)) {
@@ -365,18 +361,12 @@ statement_list: statement statement_list {
               | { $$ = NULL; }
 ;
 
-
 statement: assignment_statement {
             $$ = construct_node_default(A_ASSIGNMENT_STATEMENT);
             add_child($$, $1);
         }
-        | if_statement {
-            $$ = construct_node_default(A_IF);
-            add_child($$, $1);
-        }
-        | standalone_function_call_statement {
-            $$ = $1;
-        }
+        | if_statement { $$ = $1; }
+        | standalone_function_call_statement { $$ = $1; }
         | loop_statement {
             $$ = construct_node_default(A_WHILE);
             add_child($$, $1);
@@ -414,9 +404,8 @@ return_statement: RETURN_VALUE expression SEMICOLON {
 ;
 
 if_statement: IF condition statement_block {
-                $$ = construct_node_default(A_IF); 
-                add_child($$, $2); 
-                add_sibling($2, $3);
+                $$ = construct_node_default(A_IF);
+                add_child($$, $2);
             }
             | IF condition statement_block ELSE statement_block {
                 $$ = construct_node_default(A_IF_ELSE); 
@@ -431,7 +420,7 @@ loop_statement: WHILE condition statement_block {
                 add_child($$, $2); 
                 add_sibling($2, $3);
             }
-            ;
+;
 
 standalone_function_call_statement: function_call_expression SEMICOLON { $$ = $1; }
 ;
