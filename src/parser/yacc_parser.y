@@ -253,6 +253,7 @@ expression: expression PLUS expression {
                 add_sibling($1, $3);
           }
           | expression_atom { $$ = $1; }
+          | OPEN_PARENTHESIS expression CLOSE_PARENTHESIS { $$ = $2; }
 ;
 
 expression_atom: function_call_expression { $$ = $1; }  
@@ -264,7 +265,6 @@ expression_atom: function_call_expression { $$ = $1; }
                | BOOLEAN_VALUE { $$ = construct_node(A_BOOLEAN_LITERAL, $1, $1); }
                | CHARACTER_VALUE { $$ = construct_node(A_CHARACTER_LITERAL, $1, $1); }
                | STRING_VALUE { $$ = construct_node(A_STRING_LITERAL, $1, NULL_VALUE); }
-               | OPEN_PARENTHESIS expression CLOSE_PARENTHESIS { $$ = $2; }
 ;
 
 // TODO : is there a better way to assign the lexicographic_index to the base type ?
@@ -304,7 +304,7 @@ function_call_expression: IDENTIFIER { check_func_proc_definition($1); } OPEN_PA
 ;
 
 // Conditions and boolean expressions
-condition: OPEN_PARENTHESIS expression comparison_operator expression CLOSE_PARENTHESIS {
+condition: OPEN_PARENTHESIS expression_atom comparison_operator expression_atom CLOSE_PARENTHESIS {
             $$ = construct_node_default(A_CONDITION);
             add_child($$, $3);
             add_child($3, $2);
@@ -323,10 +323,6 @@ condition: OPEN_PARENTHESIS expression comparison_operator expression CLOSE_PARE
          }
          | NOT condition {
             $$ = construct_node_default(A_NOT_CONDITION);
-            add_child($$, $2);
-         }
-         | NOT expression {
-            $$ = construct_node_default(A_NOT_EXPRESSION);
             add_child($$, $2);
          }
 ;

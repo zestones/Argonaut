@@ -43,13 +43,16 @@ These nodes have been successfully implemented and are ready to be used:
 - ✔️ **A_EQUAL_OP**  
 - ✔️ **A_LESS_THAN_OP**  
 
+##### **Control Flow Nodes:**
+- ✔️ **A_IF**
+- ✔️ **A_WHILE**
+
 </details>
 
 <details>
 <summary style="font-weight: bold; font-size: 1.2em;">🚧 Pending Nodes (❌)</summary>
 
 ##### **Expression and Condition Nodes:**
-- ❌ **A_NOT_EXPRESSION**  
 - ❌ **A_ADDITION**  
 - ❌ **A_SUBTRACTION**  
 - ❌ **A_MULTIPLICATION**  
@@ -75,7 +78,6 @@ These nodes have been successfully implemented and are ready to be used:
 
 ##### **Statement Nodes:**
 - ❌ **A_ASSIGNMENT_STATEMENT**  
-- ❌ **A_LOOP_STATEMENT**  
 - ❌ **A_FUNCTION_CALL_STATEMENT**  
 
 ##### **Assignment Nodes:**
@@ -84,9 +86,7 @@ These nodes have been successfully implemented and are ready to be used:
 - ❌ **A_STRUCT_ASSIGNMENT**  
 
 ##### **Control Flow Nodes:**
-- ❌ **A_IF**  
 - ❌ **A_IF_ELSE**  
-- ❌ **A_WHILE**  
 
 ##### **Access Nodes:**
 - ❌ **A_ARRAY_ACCESS**  

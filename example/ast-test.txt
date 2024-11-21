@@ -4,6 +4,14 @@ var b : bool;
 var i : float;
 var j : int;
 
+func myfunction(z: float) -> int {
+    if (!(z == 1.0)) {
+        x := 'c';
+    }
+
+    return x + 1;
+}
+
 x := 'a' + 1;
 
 while (!(!(x == 'a') && (b == true) || (i < 1.0))) {
@@ -11,10 +19,8 @@ while (!(!(x == 'a') && (b == true) || (i < 1.0))) {
 }
 
 
-// func myfunction(z: float) -> int {
-//
-//    return x + 1;
-// }
+
+
 
 // proc a(marwan: int, z: int, x: int) 
 // {
