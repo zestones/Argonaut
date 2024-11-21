@@ -5,12 +5,14 @@ var i : float;
 var j : int;
 
 
-func myfunction() -> int {
-    x := 'a' + 'b';
-    b := true;
-    i := 1.0 + 2.0 * 3.0 / 4.0; 
-    return 0;
+if (x == 'a') {
+    x := 'b';
 }
+
+// func myfunction(z: float) -> int {
+//
+//    return x + 1;
+// }
 
 // proc a(marwan: int, z: int, x: int) 
 // {

@@ -18,6 +18,7 @@ These nodes have been successfully implemented and are ready to be used:
 - ✔️ **A_DECLARATION_LIST**  
 - ✔️ **A_VARIABLE_DECLARATION**  
 - ✔️ **A_PROCEDURE_DECLARATION**  
+- ✔️ **A_FUNCTION_DECLARATION**  
 - ✔️ **A_TYPE_DECLARATION**  
 - ✔️ **A_TYPE_ARRAY_DECLARATION**  
 - ✔️ **A_TYPE_STRUCT_DECLARATION**  
@@ -58,9 +59,6 @@ These nodes have been successfully implemented and are ready to be used:
 - ❌ **A_SUB_OP**  
 - ❌ **A_MUL_OP**  
 - ❌ **A_DIV_OP**  
-
-##### **Declaration Nodes:**
-- ❌ **A_FUNCTION_DECLARATION**  
 
 ##### **Literal Nodes:**
 - ❌ **A_INTEGER_LITERAL**  
