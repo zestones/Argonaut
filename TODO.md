@@ -31,6 +31,17 @@ These nodes have been successfully implemented and are ready to be used:
 
 ### **Statements:**
 - ✔️ **A_STATEMENT_LIST**  
+- ✔️ **A_RETURN_STATEMENT**  
+
+##### **Expression and Condition Nodes:**
+- ✔️ **A_CONDITION**  
+- ✔️ **A_AND_CONDITION**  
+- ✔️ **A_OR_CONDITION**  
+- ✔️ **A_NOT_CONDITION**  
+
+##### **Operator Nodes:**
+- ✔️ **A_EQUAL_OP**  
+- ✔️ **A_LESS_THAN_OP**  
 
 </details>
 
@@ -38,10 +49,6 @@ These nodes have been successfully implemented and are ready to be used:
 <summary style="font-weight: bold; font-size: 1.2em;">🚧 Pending Nodes (❌)</summary>
 
 ##### **Expression and Condition Nodes:**
-- ❌ **A_CONDITION**  
-- ❌ **A_AND_CONDITION**  
-- ❌ **A_OR_CONDITION**  
-- ❌ **A_NOT_CONDITION**  
 - ❌ **A_NOT_EXPRESSION**  
 - ❌ **A_ADDITION**  
 - ❌ **A_SUBTRACTION**  
@@ -49,9 +56,7 @@ These nodes have been successfully implemented and are ready to be used:
 - ❌ **A_DIVISION**  
 
 ##### **Operator Nodes:**
-- ❌ **A_EQUAL_OP**  
 - ❌ **A_NOT_EQUAL_OP**  
-- ❌ **A_LESS_THAN_OP**  
 - ❌ **A_GREATER_THAN_OP**  
 - ❌ **A_LESS_EQUAL_OP**  
 - ❌ **A_GREATER_EQUAL_OP**  
@@ -72,7 +77,6 @@ These nodes have been successfully implemented and are ready to be used:
 - ❌ **A_ASSIGNMENT_STATEMENT**  
 - ❌ **A_LOOP_STATEMENT**  
 - ❌ **A_FUNCTION_CALL_STATEMENT**  
-- ❌ **A_RETURN_STATEMENT**  
 
 ##### **Assignment Nodes:**
 - ❌ **A_VARIABLE_ASSIGNMENT**  
