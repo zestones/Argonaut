@@ -121,9 +121,14 @@ void print_region_table() {
     for (int i = 0; i < MAX_REGION_COUNT; i++) {
         if (region_table[i].nis == NULL_VALUE) continue;
 
-        fprintf(stdout, COLOR_BLUE "Region %d AST:\n" COLOR_RESET, i);
+        char title[50];
+        sprintf(title, "Region %d AST", i);
+        print_table_title(title);
+        
+        print_table_separator(1, 70);
         print_ast(region_table[i].ast);
-
+        print_table_separator(1, 70);
+        
         fprintf(stdout, "\n");
     }
 }
