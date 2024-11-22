@@ -210,17 +210,20 @@ argument_list: expression {
 ;
 
 
-parameter_list: parameter_list COMMA parameter { 
-                if (!is_node_null($1)) {
-                    add_child($1, $3);
+parameter_list: parameter {
+                    $$ = construct_node_default(A_PARAMETER_LIST);
+                    add_child($$, $1); 
                 }
-             }
-             | parameter {
-                $$ = construct_node_default(A_PARAMETER_LIST);
-                add_child($$, $1);
-             }
-             | { $$ = NULL; } 
+                | parameter_list COMMA parameter {
+                    if (!is_node_null($1)) {
+                        add_sibling($1->child, $3);
+                    }
+
+                    $$ = $1;
+                }
+                | { $$ = NULL; }
 ;
+
 
 parameter: IDENTIFIER TWO_POINTS type { 
             func_proc_add_parameter($1, $3);
