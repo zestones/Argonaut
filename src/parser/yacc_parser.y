@@ -194,14 +194,21 @@ type_declaration: TYPE IDENTIFIER TWO_POINTS STRUCT {
                 }
 ;
 
-argument_list: argument_list COMMA expression {
+argument_list: expression {
                 $$ = construct_node_default(A_ARGUMENT_LIST);
-                add_child($$, $1);
-                add_sibling($1, $3);
-             }
-             | expression { $$ = $1; }
-             | { $$ = NULL; } 
+                Node* single_argument = construct_node_default(A_ARGUMENT);
+                add_child(single_argument, $1);
+                add_child($$, single_argument);
+            }
+            | argument_list COMMA expression {
+                Node* single_argument = construct_node_default(A_ARGUMENT);
+                add_child(single_argument, $3); 
+                add_sibling($1->child, single_argument);
+                $$ = $1;
+            }
+            | { $$ = NULL; }
 ;
+
 
 parameter_list: parameter_list COMMA parameter { 
                 if (!is_node_null($1)) {

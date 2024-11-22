@@ -62,6 +62,7 @@
     NODE(A_STRUCT_ASSIGNABLE_ENTITY)        \
     NODE(A_ASSIGNABLE_ENTITY_LIST)          \
     NODE(A_ARGUMENT_LIST)                   \
+    NODE(A_ARGUMENT)                        \
     NODE(A_PARAMETER_LIST)                  \
     NODE(A_PARAMETER)
 

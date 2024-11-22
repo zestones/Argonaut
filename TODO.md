@@ -25,10 +25,6 @@ These nodes have been successfully implemented and are ready to be used:
 - ✔️ **A_STRUCT_FIELD_LIST**  
 - ✔️ **A_STRUCT_FIELD**  
 
-### **Parameters:**
-- ✔️ **A_PARAMETER_LIST**  
-- ✔️ **A_PARAMETER**  
-
 ### **Statements:**
 - ✔️ **A_STATEMENT_LIST**  
 - ✔️ **A_RETURN_STATEMENT**
@@ -61,17 +57,16 @@ These nodes have been successfully implemented and are ready to be used:
 - ✔️ **A_ARRAY_INDEX_LIST**  
 - ✔️ **A_ARRAY_INDEX**  
 
+##### **Function Argument Nodes:**
+- ✔️ **A_ARGUMENT_LIST**
+- ✔️ **A_ARGUMENT**
+- ✔️ **A_PARAMETER_LIST**
+- ✔️ **A_PARAMETER**  
 
 </details>
 
 <details>
 <summary style="font-weight: bold; font-size: 1.2em;">🚧 Pending Nodes (❌)</summary>
-
-##### **Expression and Condition Nodes:**
-- ❌ **A_ADDITION**  
-- ❌ **A_SUBTRACTION**  
-- ❌ **A_MULTIPLICATION**  
-- ❌ **A_DIVISION**  
 
 ##### **Operator Nodes:**
 - ❌ **A_NOT_EQUAL_OP**  
@@ -105,9 +100,6 @@ These nodes have been successfully implemented and are ready to be used:
 - ❌ **A_ARRAY_ASSIGNABLE_ENTITY**  
 - ❌ **A_STRUCT_ASSIGNABLE_ENTITY**  
 - ❌ **A_ASSIGNABLE_ENTITY_LIST**  
-
-##### **Function Argument Nodes:**
-- ❌ **A_ARGUMENT_LIST**
 
 </details>
 

@@ -86,21 +86,7 @@ proc arrayOfStructListIndices() {
     arr[1] := 1;
 }
 
-// proc sdvdv() 
-// {
-//     type date : struct 
-//     {
-//         jour : int;
-//         mois : int;
-//         annee : float;
-//     } fstruct;
-
-//     type personne : struct 
-//     {
-//         numero : int;
-//         naissance : date;
-//         age : int;
-//     } fstruct;
-
-//     type arrOfInt : array [1:10] of int;
-// }
+proc argument_list() {
+    loop(1, 2, x+1, g());
+    function();
+}
