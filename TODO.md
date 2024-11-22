@@ -31,7 +31,9 @@ These nodes have been successfully implemented and are ready to be used:
 
 ### **Statements:**
 - ✔️ **A_STATEMENT_LIST**  
-- ✔️ **A_RETURN_STATEMENT**  
+- ✔️ **A_RETURN_STATEMENT**
+- ✔️ **A_ASSIGNMENT_STATEMENT**  
+- ❌ **A_FUNCTION_CALL_STATEMENT**  
 
 ##### **Expression and Condition Nodes:**
 - ✔️ **A_CONDITION**  
@@ -45,7 +47,17 @@ These nodes have been successfully implemented and are ready to be used:
 
 ##### **Control Flow Nodes:**
 - ✔️ **A_IF**
+- ✔️ **A_IF_ELSE**  
 - ✔️ **A_WHILE**
+
+##### **Assignment Nodes:**
+- ✔️ **A_VARIABLE_ASSIGNMENT**  
+- ✔️ **A_ARRAY_ASSIGNMENT**  
+- ✔️ **A_STRUCT_ASSIGNMENT**  
+
+##### **Access Nodes:**
+- ✔️ **A_STRUCT_FIELD_ACCESS**
+
 
 </details>
 
@@ -76,17 +88,7 @@ These nodes have been successfully implemented and are ready to be used:
 - ❌ **A_STRING_LITERAL**  
 - ❌ **A_IDENTIFIER**  
 
-##### **Statement Nodes:**
-- ❌ **A_ASSIGNMENT_STATEMENT**  
-- ❌ **A_FUNCTION_CALL_STATEMENT**  
 
-##### **Assignment Nodes:**
-- ❌ **A_VARIABLE_ASSIGNMENT**  
-- ❌ **A_ARRAY_ASSIGNMENT**  
-- ❌ **A_STRUCT_ASSIGNMENT**  
-
-##### **Control Flow Nodes:**
-- ❌ **A_IF_ELSE**  
 
 ##### **Access Nodes:**
 - ❌ **A_ARRAY_ACCESS**  
@@ -94,7 +96,6 @@ These nodes have been successfully implemented and are ready to be used:
 - ❌ **A_ARRAY_INDEX**  
 - ❌ **A_ARRAY_FIELD_ACCESS**  
 - ❌ **A_STRUCT_ARRAY_ACCESS**  
-- ❌ **A_STRUCT_FIELD_ACCESS**  
 
 ##### **I/O Nodes:**
 - ❌ **A_PRINT_STATEMENT**  

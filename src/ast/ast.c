@@ -1,4 +1,8 @@
 #include "../../lib/colors.h"
+
+#include "../lexer/lexeme_table.h"
+#include "../utils/utils.h"
+
 #include "ast.h"
 
 AST construct_ast() {
@@ -16,6 +20,10 @@ static void print_ast_helper(Node* node, int depth, int is_sibling) {
 
     printf(", " COLOR_GREEN "Lexico Idx: %d" COLOR_RESET, node->index_lexicographic);
     printf(", " COLOR_BLUE "Decl Idx: %d" COLOR_RESET, node->index_declaration);
+    if (node->index_lexicographic != NULL_VALUE) {
+        printf(" -- " COLOR_MAGENTA "Lexeme: '%s'" COLOR_RESET, get_lexeme(node->index_lexicographic));
+    }
+
     printf("\n");
 
     // Recursively print the child (if exists) with indentation

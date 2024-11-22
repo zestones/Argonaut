@@ -5,32 +5,45 @@ var i : float;
 var j : int;
 
 func myfunction(z: float) -> int {
-    if (!(z == 1.0)) {
-        x := 'c';
-    }
-
     return x + 1;
 }
 
-x := 'a' + 1;
-
-while (!(!(x == 'a') && (b == true) || (i < 1.0))) {
-    x := 'b';
+proc loop(marwan: int, z: int, x: int) {
+    while (!(!(x == 'a') && (b == true) || (i < 1.0))) {
+        x := 'b';
+    }
 }
 
+proc ifelse(test: int) {
+    if (test == 1) {
+        x := 'a';
+    } else {
+        x := 'b';
+    }
+}
 
+proc assignement() {
+    type arrOfInt : array [1:10] of int;
+    type oui : struct 
+    {
+        arr : arrOfInt;
+        mar : int;
+    } fstruct;
 
+    type date : struct 
+    {
+        jour : int;
+        mois : int;
+        annee : float;
+        test : oui;
+    } fstruct;
 
+    var d : date;
+    d.test.mar := 1;
+    d.test.arr[1] := 1;
 
-// proc a(marwan: int, z: int, x: int) 
-// {
-
-// }
-
-// proc aaav(test: int) 
-// {
-
-// }
+    d.jour := 1;
+}
 
 // proc sdvdv() 
 // {

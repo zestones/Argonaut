@@ -260,10 +260,10 @@ expression_atom: function_call_expression { $$ = $1; }
                | array_access_statement { $$ = $1; }
                | struct_access_statement { $$ = $1; }
                | IDENTIFIER  { check_variable_definition($1); $$ = construct_node(A_IDENTIFIER, $1, find_declaration_index($1)); }
-               | INTEGER_VALUE { $$ = construct_node(A_INTEGER_LITERAL, $1, $1); }
-               | FLOAT_VALUE { $$ = construct_node(A_FLOAT_LITERAL, $1, $1); }
-               | BOOLEAN_VALUE { $$ = construct_node(A_BOOLEAN_LITERAL, $1, $1); }
-               | CHARACTER_VALUE { $$ = construct_node(A_CHARACTER_LITERAL, $1, $1); }
+               | INTEGER_VALUE { $$ = construct_node(A_INTEGER_LITERAL, NULL_VALUE, NULL_VALUE); }
+               | FLOAT_VALUE { $$ = construct_node(A_FLOAT_LITERAL, NULL_VALUE, NULL_VALUE); }
+               | BOOLEAN_VALUE { $$ = construct_node(A_BOOLEAN_LITERAL, NULL_VALUE, NULL_VALUE); }
+               | CHARACTER_VALUE { $$ = construct_node(A_CHARACTER_LITERAL, NULL_VALUE, NULL_VALUE); }
                | STRING_VALUE { $$ = construct_node(A_STRING_LITERAL, $1, NULL_VALUE); }
 ;
 
@@ -436,15 +436,17 @@ array_indices: expression {
 ;
 
 struct_access_statement: IDENTIFIER DOT IDENTIFIER {
-                            $$ = construct_node(A_STRUCT_FIELD_ACCESS, $3, find_declaration_index($1));
+                            $$ = construct_node(A_STRUCT_FIELD_ACCESS, $1, find_declaration_index($1));
+                            Node *field = construct_node(A_STRUCT_FIELD_ACCESS, $3, find_declaration_index($3));
+                            add_child($$, field);
                        }
-                       | struct_access_statement DOT IDENTIFIER {
-                            // FIXME: The declaration index is not correct (as it should be the index of the first idf)
-                            $$ = construct_node(A_STRUCT_FIELD_ACCESS, $3, find_declaration_index($3));
+                       | IDENTIFIER DOT struct_access_statement {
+                            $$ = construct_node(A_STRUCT_FIELD_ACCESS, $1, find_declaration_index($1));
+                            add_child($$, $3);
                        }
-                       | array_access_statement DOT IDENTIFIER {
-                            // FIXME: The declaration index is not correct (as it should be the index of the first idf)
-                            $$ = construct_node(A_STRUCT_ARRAY_ACCESS, $3, find_declaration_index($3));
+                       | IDENTIFIER DOT array_access_statement {
+                            $$ = construct_node(A_STRUCT_FIELD_ACCESS, $1, find_declaration_index($1));
+                            add_child($$, $3);
                        }
 ;
 
