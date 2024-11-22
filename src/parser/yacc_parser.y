@@ -436,14 +436,20 @@ array_access_statement: IDENTIFIER OPEN_BRACKET array_indices CLOSE_BRACKET {
 ;
 
 array_indices: expression {
-                    $$ = construct_node_default(A_ARRAY_INDEX);
-                    add_child($$, $1);
-             }
-             | expression COMMA array_indices {
-                    $$ = construct_node_default(A_ARRAY_INDEX_LIST);
-                    add_child($$, $1); 
-                    add_sibling($1, $3);
-             }
+                $$ = construct_node_default(A_ARRAY_INDEX_LIST);
+                Node* single_index = construct_node_default(A_ARRAY_INDEX);
+            
+                add_child($$, single_index);
+                add_child(single_index, $1);
+            }
+            | array_indices COMMA expression {
+                Node* single_index = construct_node_default(A_ARRAY_INDEX);
+
+                add_child(single_index, $3);  
+                add_sibling($1->child, single_index);
+                
+                $$ = $1; // Preserve the existing list structure
+            }
 ;
 
 struct_access_statement: IDENTIFIER DOT IDENTIFIER {

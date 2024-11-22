@@ -57,7 +57,9 @@ These nodes have been successfully implemented and are ready to be used:
 
 ##### **Access Nodes:**
 - ✔️ **A_STRUCT_FIELD_ACCESS**
-- ✔️ **A_ARRAY_ACCESS**  
+- ✔️ **A_ARRAY_ACCESS**
+- ✔️ **A_ARRAY_INDEX_LIST**  
+- ✔️ **A_ARRAY_INDEX**  
 
 
 </details>
@@ -90,8 +92,6 @@ These nodes have been successfully implemented and are ready to be used:
 - ❌ **A_IDENTIFIER**  
 
 ##### **Access Nodes:**
-- ❌ **A_ARRAY_INDEX_LIST**  
-- ❌ **A_ARRAY_INDEX**  
 <!-- NOT NEEDED ? -->
 - ❌ **A_ARRAY_FIELD_ACCESS**  
 - ❌ **A_STRUCT_ARRAY_ACCESS**  

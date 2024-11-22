@@ -65,6 +65,27 @@ proc arrayOfStruct() {
     arr[1].jour := 1;
 }
 
+proc arrayOfStructListIndices() {
+    type date : struct 
+    {
+        jour : int;
+        mois : int;
+        annee : float;
+    } fstruct;
+
+    type personne : struct 
+    {
+        numero : int;
+        naissance : date;
+        age : int;
+    } fstruct;
+
+    type arrOfPersonne : array [1:10, 1:5] of personne;
+    var arr : arrOfPersonne;
+    arr[1, a, x+1, e, f()] := 1;
+    arr[1] := 1;
+}
+
 // proc sdvdv() 
 // {
 //     type date : struct 

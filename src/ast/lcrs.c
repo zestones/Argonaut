@@ -54,7 +54,6 @@ void add_chain(Node *parent, Node *nodes[], int count) {
     }
 }
 
-
 int is_node_null(Node* node) {
     return node == NULL;
 }
