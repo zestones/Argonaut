@@ -422,6 +422,17 @@ array_access_statement: IDENTIFIER OPEN_BRACKET array_indices CLOSE_BRACKET {
                             $$ = construct_node(A_ARRAY_ACCESS, $1, find_declaration_index($1));
                             add_child($$, $3);
                     }
+                    | IDENTIFIER OPEN_BRACKET array_indices CLOSE_BRACKET DOT IDENTIFIER {
+                            $$ = construct_node(A_ARRAY_ACCESS, $1, find_declaration_index($1));
+                            Node *field = construct_node(A_STRUCT_FIELD_ACCESS, $6, find_declaration_index($6));
+                            add_child($$, $3);
+                            add_sibling($3, field);
+                    }
+                    | IDENTIFIER OPEN_BRACKET array_indices CLOSE_BRACKET DOT struct_access_statement {
+                            $$ = construct_node(A_ARRAY_ACCESS, $1, find_declaration_index($1));
+                            add_child($$, $3);
+                            add_sibling($3, $6);
+                    }
 ;
 
 array_indices: expression {

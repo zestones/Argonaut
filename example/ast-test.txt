@@ -45,6 +45,26 @@ proc assignement() {
     d.jour := 1;
 }
 
+proc arrayOfStruct() {
+    type date : struct 
+    {
+        jour : int;
+        mois : int;
+        annee : float;
+    } fstruct;
+
+    type personne : struct 
+    {
+        numero : int;
+        naissance : date;
+        age : int;
+    } fstruct;
+
+    type arrOfPersonne : array [1:10] of personne;
+    var arr : arrOfPersonne;
+    arr[1].jour := 1;
+}
+
 // proc sdvdv() 
 // {
 //     type date : struct 
