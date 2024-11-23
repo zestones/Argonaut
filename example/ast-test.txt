@@ -93,8 +93,6 @@ proc argument_list() {
 
 func print_statement() -> int {
     
-    print("Hello World");
-
-    print("Mon texte", 6, "deuxieme texte", x+1);
+    print("Mon texte", f(x, y), "deuxieme texte", x+1);
     return 1;
 }
