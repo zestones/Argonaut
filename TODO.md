@@ -63,6 +63,13 @@ These nodes have been successfully implemented and are ready to be used:
 - ✔️ **A_PARAMETER_LIST**
 - ✔️ **A_PARAMETER**  
 
+##### **Literal Nodes:**
+- ✔️ **A_INTEGER_LITERAL**  
+- ✔️ **A_FLOAT_LITERAL**  
+- ✔️ **A_BOOLEAN_LITERAL**  
+- ✔️ **A_CHARACTER_LITERAL**  
+- ✔️ **A_IDENTIFIER**
+
 </details>
 
 <details>
@@ -78,18 +85,8 @@ These nodes have been successfully implemented and are ready to be used:
 - ❌ **A_MUL_OP**  
 - ❌ **A_DIV_OP**  
 
-##### **Literal Nodes:**
-- ❌ **A_INTEGER_LITERAL**  
-- ❌ **A_FLOAT_LITERAL**  
-- ❌ **A_BOOLEAN_LITERAL**  
-- ❌ **A_CHARACTER_LITERAL**  
+##### **Literal Nodes:**  
 - ❌ **A_STRING_LITERAL**  
-- ❌ **A_IDENTIFIER**  
-
-##### **Access Nodes:**
-<!-- NOT NEEDED ? -->
-- ❌ **A_ARRAY_FIELD_ACCESS**  
-- ❌ **A_STRUCT_ARRAY_ACCESS**  
 
 ##### **I/O Nodes:**
 - ❌ **A_PRINT_STATEMENT**  
