@@ -69,6 +69,10 @@ These nodes have been successfully implemented and are ready to be used:
 - ✔️ **A_BOOLEAN_LITERAL**  
 - ✔️ **A_CHARACTER_LITERAL**  
 - ✔️ **A_IDENTIFIER**
+- ❌ **A_STRING_LITERAL**  
+
+##### **I/O Nodes:**
+- ✔️ **A_PRINT_STATEMENT**
 
 </details>
 
@@ -85,11 +89,7 @@ These nodes have been successfully implemented and are ready to be used:
 - ❌ **A_MUL_OP**  
 - ❌ **A_DIV_OP**  
 
-##### **Literal Nodes:**  
-- ❌ **A_STRING_LITERAL**  
-
 ##### **I/O Nodes:**
-- ❌ **A_PRINT_STATEMENT**  
 - ❌ **A_INPUT_STATEMENT**  
 
 ##### **Assignable Entity Nodes:**
