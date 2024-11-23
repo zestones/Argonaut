@@ -74,6 +74,10 @@ These nodes have been successfully implemented and are ready to be used:
 ##### **I/O Nodes:**
 - ✔️ **A_PRINT_STATEMENT**
 
+##### **Assignable Entity Nodes:**
+- ❌ **A_ASSIGNABLE_ENTITY**  
+- ❌ **A_ASSIGNABLE_ENTITY_LIST**  
+
 </details>
 
 <details>
@@ -92,11 +96,7 @@ These nodes have been successfully implemented and are ready to be used:
 ##### **I/O Nodes:**
 - ❌ **A_INPUT_STATEMENT**  
 
-##### **Assignable Entity Nodes:**
-- ❌ **A_ASSIGNABLE_ENTITY**  
-- ❌ **A_ARRAY_ASSIGNABLE_ENTITY**  
-- ❌ **A_STRUCT_ASSIGNABLE_ENTITY**  
-- ❌ **A_ASSIGNABLE_ENTITY_LIST**  
+
 
 </details>
 

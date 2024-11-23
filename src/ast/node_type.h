@@ -58,8 +58,6 @@
     NODE(A_PRINT_STATEMENT)                 \
     NODE(A_INPUT_STATEMENT)                 \
     NODE(A_ASSIGNABLE_ENTITY)               \
-    NODE(A_ARRAY_ASSIGNABLE_ENTITY)         \
-    NODE(A_STRUCT_ASSIGNABLE_ENTITY)        \
     NODE(A_ASSIGNABLE_ENTITY_LIST)          \
     NODE(A_ARGUMENT_LIST)                   \
     NODE(A_ARGUMENT)                        \

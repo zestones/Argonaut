@@ -487,22 +487,34 @@ input_statement: INPUT OPEN_PARENTHESIS assignable_entity CLOSE_PARENTHESIS SEMI
 ;
 
 assignable_entity: IDENTIFIER {
-                        $$ = construct_node(A_ASSIGNABLE_ENTITY, $1, find_declaration_index($1));
+                        $$ = construct_node_default(A_ASSIGNABLE_ENTITY_LIST);
+                        Node *entity_node = construct_node_default(A_ASSIGNABLE_ENTITY);
+                        
+                        add_child(entity_node, construct_node(A_IDENTIFIER, $1, find_declaration_index($1)));
+                        add_child($$, entity_node);
                  }
                  | array_access_statement {
-                        $$ = construct_node_default(A_ARRAY_ASSIGNABLE_ENTITY);
-                        add_child($$, $1);
+                        $$ = construct_node_default(A_ASSIGNABLE_ENTITY_LIST);
+                        Node *entity_node = construct_node_default(A_ASSIGNABLE_ENTITY);
+
+                        add_child(entity_node, $1);
+                        add_child($$, entity_node);
                  }
                  | struct_access_statement {
-                        $$ = construct_node_default(A_STRUCT_ASSIGNABLE_ENTITY);
-                        add_child($$, $1);
+                        $$ = construct_node_default(A_ASSIGNABLE_ENTITY_LIST);
+                        Node *entity_node = construct_node_default(A_ASSIGNABLE_ENTITY);
+
+                        add_child(entity_node, $1);
+                        add_child($$, entity_node);
                  }
                  | assignable_entity COMMA assignable_entity {
-                        $$ = construct_node_default(A_ASSIGNABLE_ENTITY_LIST);
-                        add_child($$, $1); 
-                        add_sibling($1, $3);
+                        $$ = $1;  
+
+                        add_sibling($1->child, $3->child);
+                        // free($3);
                  }
 ;
+
 
 %%
 

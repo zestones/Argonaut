@@ -100,7 +100,6 @@ letter [a-zA-Z]
 
 \"[^\"]*\" { 
     yylval.lexicographic_index = insert_lexeme(yytext);
-    printf("lexeme: %s\n", yytext);
     error.column += yyleng;
     return STRING_VALUE; 
 }
