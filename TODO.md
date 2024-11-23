@@ -40,6 +40,10 @@ These nodes have been successfully implemented and are ready to be used:
 ##### **Operator Nodes:**
 - ✔️ **A_EQUAL_OP**  
 - ✔️ **A_LESS_THAN_OP**  
+- ✔️ **A_ADD_OP**  
+- ✔️ **A_SUB_OP**  
+- ✔️ **A_MUL_OP**  
+- ✔️ **A_DIV_OP**  
 
 ##### **Control Flow Nodes:**
 - ✔️ **A_IF**
@@ -73,10 +77,11 @@ These nodes have been successfully implemented and are ready to be used:
 
 ##### **I/O Nodes:**
 - ✔️ **A_PRINT_STATEMENT**
+- ✔️ **A_INPUT_STATEMENT**  
 
 ##### **Assignable Entity Nodes:**
-- ❌ **A_ASSIGNABLE_ENTITY**  
-- ❌ **A_ASSIGNABLE_ENTITY_LIST**  
+- ✔️ **A_ASSIGNABLE_ENTITY**  
+- ✔️ **A_ASSIGNABLE_ENTITY_LIST**  
 
 </details>
 
@@ -88,14 +93,6 @@ These nodes have been successfully implemented and are ready to be used:
 - ❌ **A_GREATER_THAN_OP**  
 - ❌ **A_LESS_EQUAL_OP**  
 - ❌ **A_GREATER_EQUAL_OP**  
-- ❌ **A_ADD_OP**  
-- ❌ **A_SUB_OP**  
-- ❌ **A_MUL_OP**  
-- ❌ **A_DIV_OP**  
-
-##### **I/O Nodes:**
-- ❌ **A_INPUT_STATEMENT**  
-
 
 
 </details>

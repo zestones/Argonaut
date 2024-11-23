@@ -101,3 +101,7 @@ proc input_statement() {
     j := 1;
     input(x, y, a[5, 2], b[1].c.d);
 }
+
+proc operator() {
+    j := x + y * z;
+}
