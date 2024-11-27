@@ -1,0 +1,84 @@
+PROG
+type date : struct 
+{
+    jour : int;
+    mois : int;
+    annee : int;
+} fstruct;
+
+type personne : struct 
+{
+    numero : int;
+    naissance : date;
+    age : int;
+} fstruct;
+
+type equipe : array[1:3, 1:2] of personne;
+
+var p : personne;
+var te : equipe;
+var b : bool;
+var i : float;
+var j : int;
+
+proc a() 
+{
+    proc b()
+    {
+        var T : int;
+
+        proc c() 
+        {
+            // Code de la procédure c
+        }
+
+        proc saisie() 
+        {
+            var i : int;
+            i := 0;
+            j := 0;
+            while (i < 3) {
+                i := i + 1;
+                while (j < 2) {
+                    j := j + 1;
+                    print("\nNumero de securite sociale : ");
+                    input(te[i, j].numero);
+                }
+            }
+            T := j;
+        }
+
+        saisie();
+    }
+
+    b();
+}
+
+proc e() 
+{
+    proc f() 
+    {
+        proc g() 
+        {
+            a();
+        }
+
+        g();
+    }
+
+    proc h() 
+    {
+        f();
+    }
+
+    h();
+}
+
+proc i() 
+{
+    var T : int;
+    e();
+    T := j;
+}
+
+i();
