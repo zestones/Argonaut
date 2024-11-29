@@ -30,6 +30,7 @@ typedef struct array_manager_context
 
     int number_of_dimensions;                       // Number of dimensions of the array.
     int index_number_of_dimensions_representation;  // Index representation of the number of dimensions.
+    int index_array_type_representation;            // Index representation of the type of the array.
 } array_manager_context;
 
 /**

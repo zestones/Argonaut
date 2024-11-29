@@ -37,7 +37,6 @@ void func_proc_add_parameter(int index_lexeme_lexicographic, int index_type_lexi
     context.number_of_parameters++;
     update_representation(context.index_number_of_parameters_representation, context.number_of_parameters);
     
-    // TODO: call this in YACC
     declaration_param_start(index_type_declaration, index_type_lexicographic);
 }
 

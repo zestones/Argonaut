@@ -92,13 +92,13 @@ letter [a-zA-Z]
     return BOOLEAN_VALUE; 
 }
 
-"'"{letter}"'"                 { 
+"'"{letter}"'" { 
     yylval.ival = yytext[1] - 'a';
     error.column += yyleng;
     return CHARACTER_VALUE; 
 }
 
-"\"".*"\""                     { 
+\"[^\"]*\" { 
     yylval.lexicographic_index = insert_lexeme(yytext);
     error.column += yyleng;
     return STRING_VALUE; 

@@ -16,6 +16,7 @@
 #include <stdio.h>
 
 #include "region_stack.h"
+#include "../ast/ast.h"
 
 
 #define MAX_REGION_COUNT 50 // Maximum number of regions that can be managed.
@@ -33,7 +34,7 @@
 typedef struct Region {
     int size;           // Size of the region.
     int nis;            // Static nesting level in the region.
-    int ast;            // TODO: Abstract Syntax Tree
+    AST ast;            // Abstract Syntax Tree
 } Region;
 
 
@@ -83,12 +84,11 @@ int get_region_size(int index);
 int get_region_nis();
 
 /**
- * @brief Updates the size of the region at the specified index.
+ * @brief Gets the NIS of the current region.
  *
- * @param index The index of the region.
- * @param size The new size of the region.
+ * @return The NIS of the current region.
  */
-void update_region_size(int index, int size);
+int get_current_region_nis();
 
 /**
  * @brief Gets the ID of the current region.
@@ -98,11 +98,20 @@ void update_region_size(int index, int size);
 int get_current_region_id();
 
 /**
- * @brief Gets the NIS of the current region.
+ * @brief Updates the size of the region at the specified index.
  *
- * @return The NIS of the current region.
+ * @param index The index of the region.
+ * @param size The new size of the region.
  */
-int get_current_region_nis();
+void update_region_size(int index, int size);
+
+/**
+ * @brief Updates the AST of the region at the specified index.
+ *
+ * @param index The index of the region.
+ * @param ast The new AST of the region.
+ */
+void update_region_ast(int index, AST ast);
 
 /**
  * @brief Prints the region table.

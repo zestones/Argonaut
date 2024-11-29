@@ -13,7 +13,7 @@ Region construct_region(int size, int nis) {
 
     new_region.size = size;
     new_region.nis = nis;
-    new_region.ast = NULL_VALUE;
+    new_region.ast = NULL;
 
     return new_region;
 }
@@ -64,6 +64,8 @@ int get_current_region_nis() {
     return get_region_nis(peek_region());
 }
 
+int get_current_region_id() { return region_table_size - 1; }
+
 void update_region_size(int index, int size) {
    if (index >= MAX_REGION_COUNT) {
         fprintf(stderr, COLOR_RED "<Error> Update Region Size index out of bounds\n" COLOR_RESET);
@@ -73,7 +75,14 @@ void update_region_size(int index, int size) {
     region_table[index].size = size;
 }
 
-int get_current_region_id() { return region_table_size - 1; }
+void update_region_ast(int index, AST ast) {
+    if (index >= MAX_REGION_COUNT) {
+        fprintf(stderr, COLOR_RED "<Error> Update Region AST index out of bounds\n" COLOR_RESET);
+        exit(EXIT_FAILURE);
+    }
+
+    region_table[index].ast = ast;
+}
 
 void print_region_table() {
     const int col_width_index = 10;
@@ -95,15 +104,31 @@ void print_region_table() {
         sprintf(index_str, "%d", i);
         sprintf(size_str, "%d", region_table[i].size);
         sprintf(nis_str, "%d", region_table[i].nis);
-        sprintf(ast_str, "%d", region_table[i].ast);
+        // TODO: print in a file ?
+        // sprintf(ast_str, "%d", region_table[i].ast);
 
         print_table_row(4, 
                         col_width_index, index_str,
                         col_width_size, size_str,
                         col_width_nis, nis_str,
-                        col_width_ast, ast_str
+                        col_width_ast, "-1"
                     );
     }
 
     print_table_separator(4, col_width_index, col_width_size, col_width_nis, col_width_ast);
+
+    // Print the ast associated with each region
+    for (int i = 0; i < MAX_REGION_COUNT; i++) {
+        if (region_table[i].nis == NULL_VALUE) continue;
+
+        char title[50];
+        sprintf(title, "Region %d AST", i);
+        print_table_title(title);
+        
+        print_table_separator(1, 70);
+        print_ast(region_table[i].ast);
+        print_table_separator(1, 70);
+        
+        fprintf(stdout, "\n");
+    }
 }
