@@ -26,7 +26,7 @@ proc p2(a : int, b : int) {
 
             x := true;
             c := 88;
-        } // fin de la procédure g
+        }
 
         c := x(3.14);
     } 

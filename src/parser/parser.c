@@ -1,5 +1,5 @@
-#include "../bin/y.tab.h"
 #include "parser.h"
+#include "../bin/y.tab.h"
 
 
 void ydebug(int debug) {

@@ -25,6 +25,7 @@ PARSER = parser.o
 SYMBOL_TABLE = declaration_table.o representation_table.o hash_table.o
 TABLE_MANAGEMENT = variable_manager.o array_manager.o func_proc_manager.o structure_manager.o
 DATA = region_table.o region_stack.o
+AST = ast.o lcrs.o
 UTILS = stack.o errors.o validation.o scope_tracker.o
 
 
@@ -37,8 +38,8 @@ install: sudo apt install flex bison
 #                        COMPILER 					   #
 # ---------------------------------------------------- #
 
-compilateur: $(GRAMMAR) $(LEXER) $(PARSER) $(SYMBOL_TABLE) $(TABLE_MANAGEMENT) $(DATA) $(UTILS)  
-	$(CC) $(BIN_DIR)/lex.yy.c $(BIN_DIR)/y.tab.c $(LEXER) $(PARSER) $(SYMBOL_TABLE) $(TABLE_MANAGEMENT) $(DATA) $(UTILS) -I$(INCLUDE_DIR) -o compilateur.exe
+compilateur: $(GRAMMAR) $(LEXER) $(PARSER) $(SYMBOL_TABLE) $(TABLE_MANAGEMENT) $(DATA) $(AST) $(UTILS)  
+	$(CC) $(BIN_DIR)/lex.yy.c $(BIN_DIR)/y.tab.c $(LEXER) $(PARSER) $(SYMBOL_TABLE) $(TABLE_MANAGEMENT) $(DATA) $(AST) $(UTILS) -I$(INCLUDE_DIR) -o compilateur.exe
 
 
 # ----------- #
@@ -57,7 +58,7 @@ lexeme_table.o: src/lexer/lexeme_table.c
 # ----------- #
 
 parser: src/parser/yacc_parser.y 
-	./src/utils/yacc.sh
+	# ./src/utils/yacc.sh
 	$(YACC) -d -Wcounterexamples -b $(BIN_DIR)/y src/parser/yacc_parser.y
 
 parser.o: src/parser/parser.c
@@ -104,6 +105,16 @@ region_table.o: src/data/region_table.c
 
 region_stack.o: src/data/region_stack.c
 	$(CC) -c src/data/region_stack.c
+
+# ----------- #
+# AST
+# ----------- #
+
+ast.o: src/ast/ast.c
+	$(CC) -c src/ast/ast.c
+
+lcrs.o: src/ast/lcrs.c
+	$(CC) -c src/ast/lcrs.c
 
 # ----------- #
 # UTILS
