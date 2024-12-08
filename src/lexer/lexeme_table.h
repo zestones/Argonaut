@@ -73,6 +73,16 @@ int insert_lexeme(const char* lexeme);
 char *get_lexeme(int index);
 
 /**
+ * @brief Finds the index of a lexeme in the lexeme table.
+ *
+ * This function searches for a lexeme in the lexeme table and returns its index.
+ *
+ * @param lexeme The lexeme to search for.
+ * @return The index of the lexeme. If the lexeme is not found, exits the program.
+ */
+int find_lexeme_index(const char* lexeme);
+
+/**
  * @brief Prints the contents of the lexeme table.
  *
  * This function outputs the current state of the lexeme table, displaying

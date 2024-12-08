@@ -58,8 +58,6 @@
 %union {
     AST ast;
 	int lexicographic_index;
-    int ival;
-    double fval;
 }
 
 
@@ -75,9 +73,7 @@
 %token EQUAL NOT_EQUAL LESS_THAN GREATER_THAN LESS_EQUAL GREATER_EQUAL
 %token PRINT INPUT
 
-%token <ival> INTEGER_VALUE CHARACTER_VALUE
-%token <fval> FLOAT_VALUE
-%token <lexicographic_index> BOOLEAN_VALUE STRING_VALUE
+%token <lexicographic_index> BOOLEAN_VALUE STRING_VALUE INTEGER_VALUE CHARACTER_VALUE FLOAT_VALUE
 
 %left AND OR 
 %right NOT
@@ -270,10 +266,10 @@ expression_atom: function_call_expression { $$ = $1; }
                | array_access_statement { $$ = $1; }
                | struct_access_statement { $$ = $1; }
                | IDENTIFIER  { check_variable_definition($1); $$ = construct_node(A_IDENTIFIER, $1, find_declaration_index($1)); }
-               | INTEGER_VALUE { $$ = construct_node(A_INTEGER_LITERAL, NULL_VALUE, NULL_VALUE); }
-               | FLOAT_VALUE { $$ = construct_node(A_FLOAT_LITERAL, NULL_VALUE, NULL_VALUE); }
-               | BOOLEAN_VALUE { $$ = construct_node(A_BOOLEAN_LITERAL, NULL_VALUE, NULL_VALUE); }
-               | CHARACTER_VALUE { $$ = construct_node(A_CHARACTER_LITERAL, NULL_VALUE, NULL_VALUE); }
+               | INTEGER_VALUE { $$ = construct_node(A_INTEGER_LITERAL, $1, NULL_VALUE); }
+               | FLOAT_VALUE { $$ = construct_node(A_FLOAT_LITERAL, $1, NULL_VALUE); }
+               | BOOLEAN_VALUE { $$ = construct_node(A_BOOLEAN_LITERAL, $1, NULL_VALUE); }
+               | CHARACTER_VALUE { $$ = construct_node(A_CHARACTER_LITERAL, $1, NULL_VALUE); }
                | STRING_VALUE { $$ = construct_node(A_STRING_LITERAL, $1, NULL_VALUE); }
 ;
 

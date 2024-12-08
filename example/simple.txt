@@ -1,0 +1,9 @@
+PROG
+var x: int;
+
+x := 1;
+x := true;
+x := false;
+x := 3.14;
+x := 'a';
+x := "hello";
