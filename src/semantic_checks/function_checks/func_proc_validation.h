@@ -1,6 +1,7 @@
-#ifndef __FUNCTION_VALIDATION_H__
-#define __FUNCTION_VALIDATION_H__
+#ifndef __FUNC_PROC_VALIDATION_H__
+#define __FUNC_PROC_VALIDATION_H__
 
+#include "argument_validation.h"
 #include "../validation_utils.h"
 #include "../../ast/ast.h"
 
@@ -36,4 +37,4 @@ void check_func_proc_redefinition(int index_lexeme_lexicographic, char *type);
  */
 void check_func_argument_list(int index_lexeme_lexicographic, Node *argument_list);
 
-#endif // __FUNCTION_VALIDATION_H__
+#endif // __FUNC_PROC_VALIDATION_H__
