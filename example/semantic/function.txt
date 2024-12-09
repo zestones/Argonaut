@@ -6,15 +6,19 @@ func test() -> int {
     return 1;
 }
 
+func test2() -> float {
+    return 1;
+}
+
 func main(a:int, b:float) -> int {
     return 0;
 }
 
-// TODO: check OPAFF
-x := 4.0;
-
 test();
 main(1, 1.0);
+main(test(), 2.0);
+
+// Error
 main();
 main(x, 1.0);
-main(test(), 2.0);
+main(test2(), 2.0);
