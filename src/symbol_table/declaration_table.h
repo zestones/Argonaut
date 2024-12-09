@@ -155,6 +155,22 @@ int find_declaration_index(int index);
 int find_declaration_index_by_nature(int tlex_index, Nature nature);
 
 /**
+ * @brief Gets the nature of a declaration.
+ * 
+ * @param index Index of the declaration.
+ * @return Nature of the declaration.
+ */
+int get_declaration_nature(int index);
+
+/**
+ * @brief Gets the description of a declaration.
+ * 
+ * @param index Index of the declaration.
+ * @return Description of the declaration.
+ */
+int get_declaration_description(int index);
+
+/**
  * @brief Gets the region of a declaration.
  * 
  * @param index Index of the declaration.

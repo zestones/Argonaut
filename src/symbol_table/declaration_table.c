@@ -127,6 +127,24 @@ int find_declaration_index_by_nature(int tlex_index, Nature nature) {
     return find_declaration_in_stack(tlex_index, nature);
 }
 
+int get_declaration_nature(int index) {
+    if (index >= MAX_DECLARATION_COUNT) {
+        fprintf(stderr, COLOR_RED "<Error> Declaration index out of bounds\n" COLOR_RESET);
+        exit(EXIT_FAILURE);
+    }
+
+    return declaration_table[index].nature;
+}
+
+int get_declaration_description(int index) {
+    if (index >= MAX_DECLARATION_COUNT) {
+        fprintf(stderr, COLOR_RED "<Error> Declaration index out of bounds\n" COLOR_RESET);
+        exit(EXIT_FAILURE);
+    }
+
+    return declaration_table[index].description;
+}
+
 int get_declaration_region(int index) {
     if (index >= MAX_DECLARATION_COUNT) {
         fprintf(stderr, COLOR_RED "<Error> Declaration index out of bounds\n" COLOR_RESET);

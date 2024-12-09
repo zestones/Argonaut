@@ -3,6 +3,11 @@
 
 // Define the node types
 #define FOREACH_NODE_TYPE(NODE)             \
+    NODE(A_INTEGER_LITERAL)                 \
+    NODE(A_FLOAT_LITERAL)                   \
+    NODE(A_BOOLEAN_LITERAL)                 \
+    NODE(A_CHARACTER_LITERAL)               \
+    NODE(A_STRING_LITERAL)                  \
     NODE(A_PROGRAM)                         \
     NODE(A_CONDITION)                       \
     NODE(A_AND_CONDITION)                   \
@@ -32,11 +37,6 @@
     NODE(A_TYPE_STRUCT_DECLARATION)         \
     NODE(A_STRUCT_FIELD_LIST)               \
     NODE(A_STRUCT_FIELD)                    \
-    NODE(A_INTEGER_LITERAL)                 \
-    NODE(A_FLOAT_LITERAL)                   \
-    NODE(A_BOOLEAN_LITERAL)                 \
-    NODE(A_CHARACTER_LITERAL)               \
-    NODE(A_STRING_LITERAL)                  \
     NODE(A_IDENTIFIER)                      \
     NODE(A_STATEMENT_LIST)                  \
     NODE(A_ASSIGNMENT_STATEMENT)            \

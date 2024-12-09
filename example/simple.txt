@@ -1,9 +1,9 @@
 PROG
-var x: int;
 
-x := 1;
-x := true;
-x := false;
-x := 3.14;
-x := 'a';
-x := "hello";
+var x:float;
+
+func main(a:int, b:float) -> int {
+    return 0;
+}
+
+main(x, 2.0);

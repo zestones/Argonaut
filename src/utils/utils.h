@@ -1,7 +1,7 @@
 #ifndef __UTILS_H__
 #define __UTILS_H__
 
-#include "validation.h"
+#include "../semantic_checks/semantic_checks.h"
 #include "errors.h"
 
 extern Error error;

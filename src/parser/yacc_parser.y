@@ -306,6 +306,7 @@ type_field: IDENTIFIER TWO_POINTS type SEMICOLON {
 function_call_expression: IDENTIFIER { check_func_proc_definition($1); } OPEN_PARENTHESIS argument_list CLOSE_PARENTHESIS {
                             $$ = construct_node(A_FUNCTION_CALL_STATEMENT, $1, find_declaration_index($1));
                             add_child($$, $4);
+                            check_func_argument_list($1, $4);
                         }
 ;
 
