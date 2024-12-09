@@ -34,7 +34,7 @@ static int is_field_in_struct(int current_type_representation, int num_fields, i
     return 0;
 }
 
-static int resolve_field_access(Node *current_node, int current_type_declaration) {
+int resolve_field_access(Node *current_node, int current_type_declaration) {
     int current_type_representation = get_declaration_description(current_type_declaration);
     int num_fields = get_representation_value(current_type_representation);
 
