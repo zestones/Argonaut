@@ -22,7 +22,9 @@ static int determine_argument_type(Node *argument_node) {
     else if (argument_type == A_STRUCT_FIELD_ACCESS) {
         argument_type = resolve_struct_field_access_type(argument_node->child);
     }
-    // TODO: handle array access
+    else if (argument_type == A_ARRAY_ACCESS) {
+        argument_type = resolve_array_access_type(argument_node->child);
+    }
 
     return argument_type;
 }
@@ -62,10 +64,10 @@ void validate_argument_count(Node *argument_list, int parameter_count) {
 }
 
 void validate_each_argument(Node *argument_list, int parameter_count, int index_lexeme_lexicographic) {
-    Node *current_argument = (argument_list != NULL) ? argument_list->child : NULL;
-    int argument_index = 0;
     int index_declaration = find_declaration_index_by_nature(index_lexeme_lexicographic, TYPE_FUNC);
-
+    Node *current_argument = (argument_list != NULL) ? argument_list->child : NULL;
+    
+    int argument_index = 0;
     while (current_argument != NULL && argument_index < parameter_count) {
         int expected_type = resolve_function_parameter_type_at(argument_index, index_declaration);
         validate_argument_type(current_argument, expected_type, argument_index, index_lexeme_lexicographic);

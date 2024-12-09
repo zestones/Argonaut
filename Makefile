@@ -25,7 +25,7 @@ PARSER = parser.o
 SEMANTIC_CHECKS = func_proc_validation.o argument_validation.o scope_validation.o type_validation.o variable_validation.o
 SYMBOL_TABLE = declaration_table.o representation_table.o hash_table.o
 TABLE_MANAGEMENT = variable_manager.o array_manager.o func_proc_manager.o structure_manager.o
-TYPE_SYSTEM = resolve_struct.o resolve_func.o
+TYPE_SYSTEM = resolve_struct.o resolve_func.o resolve_array.o
 DATA = region_table.o region_stack.o
 AST = ast.o lcrs.o
 UTILS = stack.o errors.o scope_tracker.o
@@ -127,6 +127,9 @@ resolve_struct.o: src/type_system/resolve_struct.c
 
 resolve_func.o: src/type_system/resolve_func.c
 	$(CC) -c src/type_system/resolve_func.c
+
+resolve_array.o: src/type_system/resolve_array.c
+	$(CC) -c src/type_system/resolve_array.c
 
 
 # ----------- #
