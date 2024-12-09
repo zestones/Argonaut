@@ -21,6 +21,8 @@ func main(a:int, b:float) -> int {
 }
 
 main(p[0, 1].naissance.jour, 2.0);
+
+// Error
 main(p[0, 1].naissance.annee, 2.0);
 main(p[0, 1].e.mois, 2.0);
 main(p[0, 1], 2.0);

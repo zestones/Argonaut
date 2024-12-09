@@ -2,6 +2,7 @@
 #include "../symbol_table/declaration_table.h" 
 #include "../lexer/lexeme_table.h"
 #include "../data/region_table.h"
+#include "type_system.h"
 
 static int resolve_struct_declaration(Node *current_node) {
     int current_type_declaration = find_declaration_index(get_declaration_description(current_node->index_declaration));
@@ -41,7 +42,6 @@ int resolve_field_access(Node *current_node, int current_type_declaration) {
     int index_lexicographic = current_node->index_lexicographic;
     int field_index = -1;
     
-    // TODO: Check for array access here 
     if (!is_field_in_struct(current_type_representation, num_fields, index_lexicographic, &field_index)) {
         set_error_type(&error, SEMANTIC_ERROR);
         set_error_message(&error, "Field '%s' does not exist in struct.", get_lexeme(index_lexicographic));
@@ -50,6 +50,12 @@ int resolve_field_access(Node *current_node, int current_type_declaration) {
     }
 
     int field_declaration_index = get_struct_field_index_declaration(current_type_representation, field_index);
+    if (get_declaration_nature(field_declaration_index) == TYPE_ARRAY && current_node->type == A_ARRAY_ACCESS) {
+        current_node->index_declaration = field_declaration_index;
+        int value = resolve_array_access_type(current_node);
+        return value;
+    }
+    
     if (get_declaration_nature(field_declaration_index) != TYPE_STRUCT && current_node->child != NULL) {
         set_error_type(&error, SEMANTIC_ERROR);
         set_error_message(&error, "Field '%s' is not a struct, so further field access is invalid.", get_lexeme(index_lexicographic));
@@ -69,7 +75,7 @@ int resolve_struct_field_access_type(Node *struct_field_access) {
     }
 
     current_node = current_node->child;
-    while (current_node != NULL && current_node->type == A_STRUCT_FIELD_ACCESS) {
+    while (current_node != NULL && (current_node->type == A_STRUCT_FIELD_ACCESS || current_node->type == A_ARRAY_ACCESS)) {
         current_type_declaration = resolve_field_access(current_node, current_type_declaration);
         if (current_type_declaration == NULL_VALUE) {
             return NULL_VALUE;

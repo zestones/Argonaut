@@ -5,10 +5,18 @@
 
 
 static int resolve_array_declaration_type(Node *array_access) {
-    int index_array_declaration = get_declaration_description(array_access->index_declaration);
-    int index_representation = get_declaration_description(index_array_declaration);
+    if (get_declaration_nature(array_access->index_declaration) == TYPE_VAR) {
+        int index_array_declaration = get_declaration_description(array_access->index_declaration);
+        int index_representation = get_declaration_description(index_array_declaration);
+        return get_representation_value(index_representation);
+    }
 
-    return get_representation_value(index_representation);
+    // When the array is a field in a struct the index_declaration of nature TYPE_ARRAY
+    // So no need to find the declaration of the array
+    int index_array_declaration = get_declaration_description(array_access->index_declaration);
+    int index_representation = get_representation_value(index_array_declaration);
+
+    return index_representation;
 }
 
 int resolve_array_access_type(Node *array_access) {
