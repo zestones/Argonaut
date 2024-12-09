@@ -70,20 +70,20 @@ parser.o: src/parser/parser.c
 # SEMANTIC CHECKS
 # --------------- #
 
-func_proc_validation.o: src/semantic_checks/function_checks/func_proc_validation.c
-	$(CC) -c src/semantic_checks/function_checks/func_proc_validation.c
+func_proc_validation.o: src/semantic_analysis/function_checks/func_proc_validation.c
+	$(CC) -c src/semantic_analysis/function_checks/func_proc_validation.c
 
-argument_validation.o: src/semantic_checks/function_checks/argument_validation.c
-	$(CC) -c src/semantic_checks/function_checks/argument_validation.c
+argument_validation.o: src/semantic_analysis/function_checks/argument_validation.c
+	$(CC) -c src/semantic_analysis/function_checks/argument_validation.c
 
-scope_validation.o: src/semantic_checks/scope_checks/scope_validation.c
-	$(CC) -c src/semantic_checks/scope_checks/scope_validation.c
+scope_validation.o: src/semantic_analysis/scope_checks/scope_validation.c
+	$(CC) -c src/semantic_analysis/scope_checks/scope_validation.c
 
-type_validation.o: src/semantic_checks/type_checks/type_validation.c
-	$(CC) -c src/semantic_checks/type_checks/type_validation.c
+type_validation.o: src/semantic_analysis/type_checks/type_validation.c
+	$(CC) -c src/semantic_analysis/type_checks/type_validation.c
 
-variable_validation.o: src/semantic_checks/variable_checks/variable_validation.c
-	$(CC) -c src/semantic_checks/variable_checks/variable_validation.c
+variable_validation.o: src/semantic_analysis/variable_checks/variable_validation.c
+	$(CC) -c src/semantic_analysis/variable_checks/variable_validation.c
 
 
 # ----------- #
