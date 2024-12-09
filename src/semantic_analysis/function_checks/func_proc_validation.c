@@ -34,6 +34,5 @@ void check_func_argument_list(int index_lexeme_lexicographic, Node *argument_lis
     validate_argument_count(argument_list, parameter_count);
 
     // Validate argument types
-    int index_representation_start = get_declaration_description(find_declaration_index_by_nature(index_lexeme_lexicographic, TYPE_FUNC));
-    validate_each_argument(argument_list, index_representation_start, parameter_count, index_lexeme_lexicographic);
+    validate_each_argument(argument_list, parameter_count, index_lexeme_lexicographic);
 }

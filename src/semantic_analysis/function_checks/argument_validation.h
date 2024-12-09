@@ -17,16 +17,12 @@
 void validate_argument_count(Node *argument_list, int parameter_count);
 
 /**
- * @brief Validates the type of an argument.
+ * @brief Validates the type of each argument provided in a function call.
  * 
- * This function checks if the type of an argument matches the expected type.
- * If the types do not match, an error is thrown.
- * 
- * @param current_argument The current argument node.
- * @param expected_type The expected type of the argument.
- * @param argument_index The index of the argument in the argument list.
- * @param index_lexeme_lexicographic The lexicographic index of the function's name.
+ * @param parameter_count The number of parameters expected by the function.
+ * @param parameter_count The number of parameters expected by the function.
+ * @param index_lexeme_lexicographic The index of the lexeme in the lexicographically sorted lexeme table.
  */
-void validate_each_argument(Node *argument_list, int index_representation_start, int parameter_count, int index_lexeme_lexicographic);
+void validate_each_argument(Node *argument_list, int parameter_count, int index_lexeme_lexicographic);
 
 #endif // __ARGUMENT_VALIDATION_H__

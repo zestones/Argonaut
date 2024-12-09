@@ -61,12 +61,13 @@ void validate_argument_count(Node *argument_list, int parameter_count) {
     }
 }
 
-void validate_each_argument(Node *argument_list, int index_representation_start, int parameter_count, int index_lexeme_lexicographic) {
+void validate_each_argument(Node *argument_list, int parameter_count, int index_lexeme_lexicographic) {
     Node *current_argument = (argument_list != NULL) ? argument_list->child : NULL;
     int argument_index = 0;
+    int index_declaration = find_declaration_index_by_nature(index_lexeme_lexicographic, TYPE_FUNC);
 
     while (current_argument != NULL && argument_index < parameter_count) {
-        int expected_type = resolve_function_parameter_type_at(argument_index, index_representation_start);
+        int expected_type = resolve_function_parameter_type_at(argument_index, index_declaration);
         validate_argument_type(current_argument, expected_type, argument_index, index_lexeme_lexicographic);
 
         current_argument = current_argument->sibling;
