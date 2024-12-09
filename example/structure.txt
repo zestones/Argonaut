@@ -21,3 +21,5 @@ func main(a:int, b:float) -> int {
 }
 
 main(p.naissance, 2.0);
+main(p.naissance.annee, 2.0);
+main(p.naissance.jour, 2.0);

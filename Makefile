@@ -25,6 +25,7 @@ PARSER = parser.o
 SEMANTIC_CHECKS = func_proc_validation.o argument_validation.o scope_validation.o type_validation.o variable_validation.o
 SYMBOL_TABLE = declaration_table.o representation_table.o hash_table.o
 TABLE_MANAGEMENT = variable_manager.o array_manager.o func_proc_manager.o structure_manager.o
+TYPE_SYSTEM = resolve_struct.o resolve_func.o
 DATA = region_table.o region_stack.o
 AST = ast.o lcrs.o
 UTILS = stack.o errors.o scope_tracker.o
@@ -39,8 +40,8 @@ install: sudo apt install flex bison
 #                        COMPILER 					   #
 # ---------------------------------------------------- #
 
-compilateur: $(GRAMMAR) $(LEXER) $(PARSER) $(SYMBOL_TABLE) $(TABLE_MANAGEMENT) $(DATA) $(AST) $(UTILS) $(SEMANTIC_CHECKS)
-	$(CC) $(BIN_DIR)/lex.yy.c $(BIN_DIR)/y.tab.c $(LEXER) $(PARSER) $(SYMBOL_TABLE) $(TABLE_MANAGEMENT) $(DATA) $(AST) $(UTILS) $(SEMANTIC_CHECKS) -I$(INCLUDE_DIR) -o compilateur.exe
+compilateur: $(GRAMMAR) $(LEXER) $(PARSER) $(SYMBOL_TABLE) $(TABLE_MANAGEMENT) $(DATA) $(AST) $(UTILS) $(SEMANTIC_CHECKS) $(TYPE_SYSTEM)
+	$(CC) $(BIN_DIR)/lex.yy.c $(BIN_DIR)/y.tab.c $(LEXER) $(PARSER) $(SYMBOL_TABLE) $(TABLE_MANAGEMENT) $(DATA) $(AST) $(UTILS) $(SEMANTIC_CHECKS) $(TYPE_SYSTEM) -I$(INCLUDE_DIR) -o compilateur.exe
 
 
 # ----------- #
@@ -115,6 +116,17 @@ func_proc_manager.o: src/table_management/func_proc_manager.c
 
 structure_manager.o: src/table_management/structure_manager.c
 	$(CC) -c src/table_management/structure_manager.c
+
+
+# ----------- #
+# TYPE SYSTEM
+# ----------- #
+
+resolve_struct.o: src/type_system/resolve_struct.c
+	$(CC) -c src/type_system/resolve_struct.c
+
+resolve_func.o: src/type_system/resolve_func.c
+	$(CC) -c src/type_system/resolve_func.c
 
 
 # ----------- #
