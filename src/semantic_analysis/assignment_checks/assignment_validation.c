@@ -41,5 +41,18 @@ void check_array_assignment(Node *array, Node *expression) {
 }
 
 void check_struct_assignment(Node *structure, Node *expression) {
+    // Step 1: Resolve the type of the structure field access
+    int struct_field_type = resolve_struct_field_access_type(structure);
 
+    // Step 2: Resolve the type of the expression
+    int expression_type = resolve_expression_type(expression);
+
+    // Step 3: Check type compatibility
+    if (struct_field_type != expression_type) {
+        set_error_type(&error, TYPE_ERROR);
+        set_error_message(&error, "Type mismatch: Cannot assign expression of type '%s' to struct field of type '%s'.",
+                    (expression_type == NULL_VALUE) ? "NO TYPE" : get_lexeme(expression_type), get_lexeme(struct_field_type));
+        yerror(error);
+        return;
+    }
 }

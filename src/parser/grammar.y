@@ -393,6 +393,7 @@ assignment_statement: IDENTIFIER { check_variable_definition($1); } OPAFF expres
                         $$ = construct_node_default(A_STRUCT_ASSIGNMENT);
                         add_child($$, $1);  
                         add_sibling($1, $3);
+                        check_struct_assignment($1, $3);
                     }
 ;
 

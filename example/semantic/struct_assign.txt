@@ -1,0 +1,30 @@
+PROG
+
+type date : struct  {
+    jour : int;
+    mois : int;
+    annee : float;
+} fstruct;
+
+type personne : struct  {
+    numero : int;
+    naissance : date;
+    age : int;
+    taille : float;
+} fstruct;
+
+var p : personne;
+
+func main(a:int, b:float) -> int {
+    return 0;
+}
+
+p.naissance.jour := 5;
+p.naissance.mois := 8;
+p.naissance.annee := 1997.0;
+p.age := main(p.naissance.jour, 2.0);
+p.taille := 1.80;
+
+// Error
+p.naissance.jour := 5.0;
+p.naissance.annee := 1997.0 + main(p.naissance.jour, 2.0);
