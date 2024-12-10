@@ -44,6 +44,34 @@ int resolve_expression_type(Node *expression) {
         case A_STRING_LITERAL:
             return A_STRING_LITERAL;
 
+        case A_ADD_OP:
+        case A_SUB_OP:
+        case A_MUL_OP:
+        case A_DIV_OP: {
+            int left_type = resolve_expression_type(expression->child);
+            int right_type = resolve_expression_type(expression->child->sibling);
+
+            // Ensure both sides of the operation have the same type
+            if (left_type != right_type) {
+                set_error_type(&error, TYPE_ERROR);
+                set_error_message(&error, "Type mismatch: Cannot apply operator to '%s' and '%s'.",
+                                  (left_type == NULL_VALUE) ? "NO TYPE" : get_lexeme(left_type),
+                                  (right_type == NULL_VALUE) ? "NO TYPE" : get_lexeme(right_type));
+                yerror(error);
+                return NULL_VALUE;
+            }
+
+            // Only numeric types are allowed for arithmetic operations
+            if (left_type != A_INTEGER_LITERAL && left_type != A_FLOAT_LITERAL) {
+                set_error_type(&error, TYPE_ERROR);
+                set_error_message(&error, "Invalid type for arithmetic operation: '%s'.", get_lexeme(left_type));
+                yerror(error);
+                return NULL_VALUE;
+            }
+
+            return left_type;
+        }
+
         case A_ARRAY_ACCESS:
             return resolve_array_access_type(expression);
 
