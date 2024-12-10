@@ -5,7 +5,7 @@
 #include "../../data/region_table.h"
 
 
-static int determine_argument_type(Node *argument_node) {
+static int resolve_argument_type(Node *argument_node) {
     int argument_type = argument_node->child->type;
 
     if (argument_type == A_IDENTIFIER) {
@@ -33,7 +33,7 @@ static int determine_argument_type(Node *argument_node) {
 }
 
 static void validate_argument_type(Node *current_argument, int expected_type, int argument_index, int index_lexeme_lexicographic, Nature nature) {
-    int argument_type = determine_argument_type(current_argument);
+    int argument_type = resolve_argument_type(current_argument);
 
     if (argument_type != expected_type) {
         set_error_type(&error, TYPE_ERROR);

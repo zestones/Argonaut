@@ -87,7 +87,7 @@
 %type <lexicographic_index> type 
 
 %type <ast> assignment_statement if_statement loop_statement standalone_func_proc_call_statement func_proc_call_expression
-%type <ast> array_access_statement array_indices struct_access_statement assignable_entity print_statement input_statement
+%type <ast> array_access_statement array_indices struct_access_statement print_statement input_statement
 
 %type <ast> variable_declaration type_declaration complex_type_fields type_field
 %type <ast> function_declaration return_statement procedure_declaration parameter_list parameter argument_list
@@ -95,7 +95,7 @@
 %type <ast> program declaration_list statement_list statement_block declaration statement expression expression_atom
 %type <ast> condition comparison_operator
 
-%type <ast> format_string print_argument_list
+%type <ast> input_argument_list format_string 
 
 %start program
 %debug
@@ -477,7 +477,7 @@ struct_access_statement: IDENTIFIER DOT IDENTIFIER {
                        }
 ;
 
-print_statement: PRINT OPEN_PARENTHESIS format_string COMMA print_argument_list CLOSE_PARENTHESIS SEMICOLON {
+print_statement: PRINT OPEN_PARENTHESIS format_string COMMA argument_list CLOSE_PARENTHESIS SEMICOLON {
                     $$ = construct_node_default(A_PRINT_STATEMENT);
                     add_child($$, $3);
                     add_child($$, $5);
@@ -494,54 +494,57 @@ format_string: STRING_VALUE {
               }
 ;
 
-print_argument_list: expression {
-                    $$ = construct_node_default(A_ARGUMENT_LIST);
-                    Node* single_argument = construct_node_default(A_ARGUMENT);
-                    add_child(single_argument, $1);
-                    add_child($$, single_argument);
-              }
-              | print_argument_list COMMA expression {
-                    Node* single_argument = construct_node_default(A_ARGUMENT);
-                    add_child(single_argument, $3);
-                    add_sibling($1->child, single_argument);
-                    $$ = $1;
-              }
-              | { $$ = NULL; }
-;
-
-input_statement: INPUT OPEN_PARENTHESIS assignable_entity CLOSE_PARENTHESIS SEMICOLON {
+input_statement: INPUT OPEN_PARENTHESIS format_string COMMA input_argument_list CLOSE_PARENTHESIS SEMICOLON {
+                    $$ = construct_node_default(A_INPUT_STATEMENT);
+                    add_child($$, $3); 
+                    add_child($$, $5);
+                    check_input_proc_argument_list($3, $5);
+               }
+               | INPUT OPEN_PARENTHESIS format_string CLOSE_PARENTHESIS SEMICOLON {
                     $$ = construct_node_default(A_INPUT_STATEMENT);
                     add_child($$, $3);
                }
 ;
 
-assignable_entity: IDENTIFIER {
-                        $$ = construct_node_default(A_ASSIGNABLE_ENTITY_LIST);
-                        Node *entity_node = construct_node_default(A_ASSIGNABLE_ENTITY);
-                        
-                        add_child(entity_node, construct_node(A_IDENTIFIER, $1, find_declaration_index($1)));
-                        add_child($$, entity_node);
-                 }
-                 | array_access_statement {
-                        $$ = construct_node_default(A_ASSIGNABLE_ENTITY_LIST);
-                        Node *entity_node = construct_node_default(A_ASSIGNABLE_ENTITY);
+input_argument_list: IDENTIFIER {
+                        $$ = construct_node_default(A_ARGUMENT_LIST);
+                        Node *single_argument = construct_node_default(A_ARGUMENT);
 
-                        add_child(entity_node, $1);
-                        add_child($$, entity_node);
-                 }
-                 | struct_access_statement {
-                        $$ = construct_node_default(A_ASSIGNABLE_ENTITY_LIST);
-                        Node *entity_node = construct_node_default(A_ASSIGNABLE_ENTITY);
+                        add_child(single_argument, construct_node(A_IDENTIFIER, $1, find_declaration_index($1)));
+                        add_child($$, single_argument);
+                    }
+                   | array_access_statement {
+                        $$ = construct_node_default(A_ARGUMENT_LIST);
+                        Node *single_argument = construct_node_default(A_ARGUMENT);
 
-                        add_child(entity_node, $1);
-                        add_child($$, entity_node);
-                 }
-                 | assignable_entity COMMA assignable_entity {
-                        $$ = $1;  
+                        add_child(single_argument, $1);
+                        add_child($$, single_argument);
+                    }
+                   | struct_access_statement {
+                        $$ = construct_node_default(A_ARGUMENT_LIST);
+                        Node *single_argument = construct_node_default(A_ARGUMENT);
 
-                        add_sibling($1->child, $3->child);
-                        // free($3);
-                 }
+                        add_child(single_argument, $1);
+                        add_child($$, single_argument);
+                    }
+                   | input_argument_list COMMA IDENTIFIER {
+                        Node *single_argument = construct_node_default(A_ARGUMENT);
+                        add_child(single_argument, construct_node(A_IDENTIFIER, $3, find_declaration_index($3)));
+                        add_sibling($1->child, single_argument);
+                        $$ = $1;
+                   }
+                   | input_argument_list COMMA array_access_statement {
+                        Node *single_argument = construct_node_default(A_ARGUMENT);
+                        add_child(single_argument, $3);
+                        add_sibling($1->child, single_argument);
+                        $$ = $1;
+                   }
+                   | input_argument_list COMMA struct_access_statement {
+                        Node *single_argument = construct_node_default(A_ARGUMENT);
+                        add_child(single_argument, $3);
+                        add_sibling($1->child, single_argument);
+                        $$ = $1;
+                   }
 ;
 
 

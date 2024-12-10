@@ -1,0 +1,22 @@
+PROG
+
+var x : int;
+var name : char;
+
+type tab : array[1:3] of int;
+
+type date : struct 
+{
+    jour : int;    
+    mois : int;
+    annee : float;
+} fstruct;
+
+var my_struct : date;
+
+input("%d %s", x, name);
+input("%d %s", tab[0], name);
+input("%d %s", my_struct.jour, name);
+
+// Error
+input("%d %s", my_struct.annee, name);
