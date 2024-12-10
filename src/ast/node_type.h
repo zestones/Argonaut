@@ -49,13 +49,9 @@
     NODE(A_ARRAY_ACCESS)                    \
     NODE(A_ARRAY_INDEX_LIST)                \
     NODE(A_ARRAY_INDEX)                     \
-    NODE(A_ARRAY_FIELD_ACCESS)              \
-    NODE(A_STRUCT_ARRAY_ACCESS)             \
     NODE(A_STRUCT_FIELD_ACCESS)             \
     NODE(A_PRINT_STATEMENT)                 \
     NODE(A_INPUT_STATEMENT)                 \
-    NODE(A_ASSIGNABLE_ENTITY)               \
-    NODE(A_ASSIGNABLE_ENTITY_LIST)          \
     NODE(A_ARGUMENT_LIST)                   \
     NODE(A_ARGUMENT)                        \
     NODE(A_PARAMETER_LIST)                  \

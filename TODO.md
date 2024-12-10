@@ -79,10 +79,6 @@ These nodes have been successfully implemented and are ready to be used:
 - ✔️ **A_PRINT_STATEMENT**
 - ✔️ **A_INPUT_STATEMENT**  
 
-##### **Assignable Entity Nodes:**
-- ✔️ **A_ASSIGNABLE_ENTITY**  
-- ✔️ **A_ASSIGNABLE_ENTITY_LIST**  
-
 </details>
 
 <details>
