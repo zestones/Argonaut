@@ -152,6 +152,7 @@ function_declaration: FUNCTION IDENTIFIER {
 
                         // Keep the declaration in the region
                         $$ = construct_node(A_FUNCTION_DECLARATION, $2, find_declaration_index_by_nature($2, TYPE_FUNC));
+                        check_func_prototype($8, $13);
                     } 
 ;
 

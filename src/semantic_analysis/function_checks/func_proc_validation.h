@@ -26,6 +26,8 @@ void check_func_proc_definition(int index_lexeme_lexicographic);
  */
 void check_func_proc_redefinition(int index_lexeme_lexicographic, char *type);
 
+void check_func_prototype(int index_lexeme_lexicographic, Node *return_statement);
+
 /**
  * @brief Validates the argument list of a function.
  *

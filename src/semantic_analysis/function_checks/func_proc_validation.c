@@ -27,6 +27,20 @@ void check_func_proc_redefinition(int index_lexeme_lexicographic, char *type) {
     }
 }
 
+void check_func_prototype(int index_lexeme_lexicographic, Node *return_statement) {
+    // functions return type can only be base types (int, float, char, bool)
+    int base_type = index_lexeme_lexicographic;
+    int expression_type = resolve_expression_type(return_statement->child);
+
+    if (base_type != expression_type) {
+        set_error_type(&error, TYPE_ERROR);
+        set_error_message(&error, "Type mismatch: Function returned value has type '%s' but should be of type '%s'.",
+                    (expression_type == NULL_VALUE) ? "UNKNOWN" : get_lexeme(expression_type), get_lexeme(base_type));
+        yerror(error);
+        return;
+    }
+}
+
 void check_func_proc_argument_list(int index_lexeme_lexicographic, Node *argument_list) {
     int index_declaration = find_declaration_index_by_nature(index_lexeme_lexicographic, TYPE_FUNC);
     if (index_declaration == NULL_VALUE) index_declaration = find_declaration_index_by_nature(index_lexeme_lexicographic, TYPE_PROC);

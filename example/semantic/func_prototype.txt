@@ -1,0 +1,14 @@
+PROG
+
+func zero() -> float {
+    return 0.0;
+}
+
+// Change float to int to check error
+func main(a:int) -> int {
+    var x : float;
+
+    x := 45.0; 
+
+    return x + zero();
+}
