@@ -1,8 +1,8 @@
-#include "../../symbol_table/representation/representation_table.h" 
-#include "../../symbol_table/declaration/declaration_table.h" 
-#include "../../type_system/type_system.h"
-#include "../../lexer/lexeme_table.h"
-#include "../../data/region_table.h"
+#include "../../../symbol_table/representation/representation_table.h" 
+#include "../../../symbol_table/declaration/declaration_table.h" 
+#include "../../../type_system/type_system.h"
+#include "../../../lexer/lexeme_table.h"
+#include "../../../data/region_table.h"
 
 void check_func_proc_definition(int index_lexeme_lexicographic) {
     // TODO: the procedure call should not be assigned to a variable

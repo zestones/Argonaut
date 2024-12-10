@@ -22,7 +22,7 @@ INCLUDE_DIR = src/parser
 GRAMMAR = lexer parser
 LEXER = lexeme_table.o 
 PARSER = parser.o
-SEMANTIC_CHECKS = assignment_validation.o print_validation.o input_validation.o func_proc_validation.o argument_validation.o scope_validation.o type_validation.o variable_validation.o
+SEMANTIC_CHECKS = assignment_validation.o print_validation.o input_validation.o func_proc_validation.o argument_validation.o format_specifiers.o scope_validation.o type_validation.o variable_validation.o
 SYMBOL_TABLE = declaration_table.o representation_table.o hash_table.o
 TABLE_MANAGEMENT = variable_manager.o array_manager.o func_proc_manager.o structure_manager.o
 TYPE_SYSTEM = structure_resolution.o func_proc_resolution.o array_resolution.o expression_resolution.o
@@ -70,27 +70,43 @@ parser.o: src/parser/parser.c
 # SEMANTIC CHECKS
 # --------------- #
 
+# Assignment checks
+# -----------------
 assignment_validation.o: src/semantic_analysis/assignment_checks/assignment_validation.c
 	$(CC) -c src/semantic_analysis/assignment_checks/assignment_validation.c
 
-print_validation.o: src/semantic_analysis/function_checks/print_validation.c
-	$(CC) -c src/semantic_analysis/function_checks/print_validation.c
 
-input_validation.o: src/semantic_analysis/function_checks/input_validation.c
-	$(CC) -c src/semantic_analysis/function_checks/input_validation.c
+# Function and procedure checks
+# -----------------------------
+print_validation.o: src/semantic_analysis/function_checks/predefined/print_validation.c
+	$(CC) -c src/semantic_analysis/function_checks/predefined/print_validation.c
 
-func_proc_validation.o: src/semantic_analysis/function_checks/func_proc_validation.c
-	$(CC) -c src/semantic_analysis/function_checks/func_proc_validation.c
+input_validation.o: src/semantic_analysis/function_checks/predefined/input_validation.c
+	$(CC) -c src/semantic_analysis/function_checks/predefined/input_validation.c
 
-argument_validation.o: src/semantic_analysis/function_checks/argument_validation.c
-	$(CC) -c src/semantic_analysis/function_checks/argument_validation.c
+func_proc_validation.o: src/semantic_analysis/function_checks/function_validations/func_proc_validation.c
+	$(CC) -c src/semantic_analysis/function_checks/function_validations/func_proc_validation.c
 
+argument_validation.o: src/semantic_analysis/function_checks/common/argument_validation.c
+	$(CC) -c src/semantic_analysis/function_checks/common/argument_validation.c
+
+format_specifiers.o: src/semantic_analysis/function_checks/common/format_specifiers.c
+	$(CC) -c src/semantic_analysis/function_checks/common/format_specifiers.c
+
+# Scope checks
+# ------------
 scope_validation.o: src/semantic_analysis/scope_checks/scope_validation.c
 	$(CC) -c src/semantic_analysis/scope_checks/scope_validation.c
 
+
+# Type checks
+# -----------
 type_validation.o: src/semantic_analysis/type_checks/type_validation.c
 	$(CC) -c src/semantic_analysis/type_checks/type_validation.c
 
+
+# Variable checks
+# ---------------
 variable_validation.o: src/semantic_analysis/variable_checks/variable_validation.c
 	$(CC) -c src/semantic_analysis/variable_checks/variable_validation.c
 

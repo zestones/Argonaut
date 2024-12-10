@@ -1,9 +1,9 @@
 #ifndef __ARGUMENT_VALIDATION_H__
 #define __ARGUMENT_VALIDATION_H__
 
-#include "../../symbol_table/declaration/declaration_table.h"
-#include "../validation_utils.h"
-#include "../../ast/ast.h"
+#include "../../../symbol_table/declaration/declaration_table.h"
+#include "../../validation_utils.h"
+#include "../../../ast/ast.h"
 
 /**
  * @brief Validates the number of arguments provided in a function call.

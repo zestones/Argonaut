@@ -8,8 +8,8 @@
 
 #include "assignment_checks/assignment_validation.h"
 
-#include "function_checks/func_proc_validation.h"
-#include "function_checks/print_validation.h"
+#include "function_checks/function_validations/func_proc_validation.h"
+#include "function_checks/predefined/predefined.h"
 
 #include "variable_checks/variable_validation.h"
 
