@@ -381,6 +381,7 @@ statement: assignment_statement {
 assignment_statement: IDENTIFIER { check_variable_definition($1); } OPAFF expression SEMICOLON {
                         $$ = construct_node(A_VARIABLE_ASSIGNMENT, $1, find_declaration_index($1));
                         add_child($$, $4);
+                        check_variable_assignment($1, $4);
                     }
                     | array_access_statement OPAFF expression SEMICOLON {
                         $$ = construct_node_default(A_ARRAY_ASSIGNMENT);

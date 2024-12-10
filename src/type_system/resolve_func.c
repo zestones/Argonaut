@@ -4,10 +4,10 @@
 #include "../data/region_table.h"
 
 int resolve_func_proc_return_type(Node *function_call) {
-    int nature = get_declaration_nature(function_call->child->index_declaration);
+    int nature = get_declaration_nature(function_call->index_declaration);
 
     if (nature == TYPE_FUNC) {
-        int index_declaration = function_call->child->index_declaration;
+        int index_declaration = function_call->index_declaration;
         int index_representation = get_declaration_description(index_declaration);
         return get_representation_value(index_representation);
     }

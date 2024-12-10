@@ -1,0 +1,37 @@
+PROG
+
+type date : struct  {
+    jour : int;
+    mois : int;
+    annee : float;
+} fstruct;
+
+type personne : struct  {
+    numero : int;
+    naissance : date;
+    age : int;
+    taille : float;
+} fstruct;
+
+var p : personne;
+
+var x:int;
+
+func test() -> float {
+    return 1;
+}
+
+func main(a:int) -> int {
+    return 0;
+}
+
+// x := 1.0;
+x := p.naissance.jour;
+
+// Error
+// x := true;
+// x := 5;
+x := test();
+x := p.taille;
+x := p.naissance;
+x := p.naissance.annee;

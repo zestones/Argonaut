@@ -27,4 +27,7 @@ void check_variable_definition(int index_lexeme_lexicographic);
  */
 void check_variable_redefinition(int index_lexeme_lexicographic);
 
+
+void check_variable_assignment(int index_lexeme_lexicographic, Node *expression);
+
 #endif // __VARIABLE_VALIDATION_H__

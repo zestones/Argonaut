@@ -17,7 +17,7 @@ static int determine_argument_type(Node *argument_node) {
         }
     } 
     else if (argument_type == A_FUNC_PROC_CALL_STATEMENT) {
-        argument_type = resolve_func_proc_return_type(argument_node);
+        argument_type = resolve_func_proc_return_type(argument_node->child);
     }
     else if (argument_type == A_STRUCT_FIELD_ACCESS) {
         argument_type = resolve_struct_field_access_type(argument_node->child);
