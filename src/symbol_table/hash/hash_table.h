@@ -1,7 +1,7 @@
 #ifndef __HASH_H__
 #define __HASH_H__
 
-#include "../../lib/colors.h"
+#include "../../../lib/colors.h"
 
 #include <stdio.h>
 #include <stdlib.h>

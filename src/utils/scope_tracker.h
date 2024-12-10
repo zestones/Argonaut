@@ -2,7 +2,7 @@
 #define __SCOPE_TRACKER_H__
 
 #include "utils.h"
-#include "../symbol_table/declaration_table.h"
+#include "../symbol_table/declaration/declaration_table.h"
 
 void initialize_scope_identifier_tracker();
 

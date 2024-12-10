@@ -1,12 +1,12 @@
-#include "../../lib/table_printer.h"
-#include "../../lib/colors.h" 
+#include "../../../lib/table_printer.h"
+#include "../../../lib/colors.h" 
 
-#include "../lexer/lexeme_table.h"
-#include "../data/region_table.h"
+#include "../../lexer/lexeme_table.h"
+#include "../../data/region_table.h"
 #include "declaration_table.h"
 
-#include "../utils/utils.h"
-#include "../utils/stack.h"
+#include "../../utils/utils.h"
+#include "../../utils/stack.h"
 
 static Declaration declaration_table[MAX_DECLARATION_COUNT];
 static int declaration_table_size = 0;

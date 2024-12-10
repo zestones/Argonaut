@@ -90,14 +90,14 @@ variable_validation.o: src/semantic_analysis/variable_checks/variable_validation
 # SYMBOL TABLE
 # ----------- #
 
-hash_table.o: src/symbol_table/hash_table.c
-	$(CC) -c src/symbol_table/hash_table.c
+hash_table.o: src/symbol_table/hash/hash_table.c
+	$(CC) -c src/symbol_table/hash/hash_table.c
 
-declaration_table.o: src/symbol_table/declaration_table.c
-	$(CC) -c src/symbol_table/declaration_table.c
+declaration_table.o: src/symbol_table/declaration/declaration_table.c
+	$(CC) -c src/symbol_table/declaration/declaration_table.c
 
-representation_table.o: src/symbol_table/representation_table.c
-	$(CC) -c src/symbol_table/representation_table.c
+representation_table.o: src/symbol_table/representation/representation_table.c
+	$(CC) -c src/symbol_table/representation/representation_table.c
 
 
 # ---------------- #

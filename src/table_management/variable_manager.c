@@ -1,6 +1,6 @@
 #include "../../lib/colors.h"
 
-#include "../symbol_table/declaration_table.h"
+#include "../symbol_table/declaration/declaration_table.h"
 #include "../lexer/lexeme_table.h"
 #include "../data/region_table.h"
 #include "variable_manager.h"

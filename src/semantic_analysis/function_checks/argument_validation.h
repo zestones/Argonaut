@@ -1,7 +1,7 @@
 #ifndef __ARGUMENT_VALIDATION_H__
 #define __ARGUMENT_VALIDATION_H__
 
-#include "../../symbol_table/declaration_table.h"
+#include "../../symbol_table/declaration/declaration_table.h"
 #include "../validation_utils.h"
 #include "../../ast/ast.h"
 

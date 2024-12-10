@@ -1,8 +1,8 @@
-#include "../../lib/table_printer.h"
-#include "../../lib/colors.h" 
+#include "../../../lib/table_printer.h"
+#include "../../../lib/colors.h" 
 
 #include "representation_table.h"
-#include "../utils/utils.h"
+#include "../../utils/utils.h"
 
 static int representation_table[MAX_REPRESENTATION_COUNT];
 static int representation_table_size = 0;

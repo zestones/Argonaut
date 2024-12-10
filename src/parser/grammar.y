@@ -4,8 +4,8 @@
     #include "../table_management/variable_manager.h"
     #include "../table_management/array_manager.h"
 
-    #include "../symbol_table/declaration_table.h"
-    #include "../symbol_table/hash_table.h"
+    #include "../symbol_table/declaration/declaration_table.h"
+    #include "../symbol_table/hash/hash_table.h"
     #include "../data/region_table.h"
 
     #include "../lexer/lexeme_table.h"

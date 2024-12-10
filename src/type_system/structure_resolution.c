@@ -1,5 +1,5 @@
-#include "../symbol_table/representation_table.h" 
-#include "../symbol_table/declaration_table.h" 
+#include "../symbol_table/representation/representation_table.h" 
+#include "../symbol_table/declaration/declaration_table.h" 
 #include "../lexer/lexeme_table.h"
 #include "../data/region_table.h"
 #include "type_system.h"
