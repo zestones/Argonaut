@@ -26,6 +26,15 @@ void check_func_proc_definition(int index_lexeme_lexicographic);
  */
 void check_func_proc_redefinition(int index_lexeme_lexicographic, char *type);
 
+/**
+ * @brief Validates the return statement of a function.
+ *
+ * This function checks if the return statement of a function matches the expected return type.
+ * If the return statement does not match, an error is thrown.
+ *
+ * @param index_lexeme_lexicographic The lexicographic index of the function's name.
+ * @param return_statement The return statement provided in the function.
+ */
 void check_func_prototype(int index_lexeme_lexicographic, Node *return_statement);
 
 /**

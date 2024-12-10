@@ -95,6 +95,8 @@
 %type <ast> program declaration_list statement_list statement_block declaration statement expression expression_atom
 %type <ast> condition comparison_operator
 
+%type <ast> format_string print_argument_list
+
 %start program
 %debug
 %%
@@ -475,10 +477,36 @@ struct_access_statement: IDENTIFIER DOT IDENTIFIER {
                        }
 ;
 
-print_statement: PRINT OPEN_PARENTHESIS argument_list CLOSE_PARENTHESIS SEMICOLON {
+print_statement: PRINT OPEN_PARENTHESIS format_string COMMA print_argument_list CLOSE_PARENTHESIS SEMICOLON {
                     $$ = construct_node_default(A_PRINT_STATEMENT);
                     add_child($$, $3);
+                    add_child($$, $5);
+                    check_print_proc_argument_list($3, $5);
                }
+                | PRINT OPEN_PARENTHESIS format_string CLOSE_PARENTHESIS SEMICOLON {
+                      $$ = construct_node_default(A_PRINT_STATEMENT);
+                      add_child($$, $3);
+                }
+;
+
+format_string: STRING_VALUE {
+                    $$ = construct_node(A_FORMAT_STRING, $1, find_declaration_index($1));
+              }
+;
+
+print_argument_list: expression {
+                    $$ = construct_node_default(A_ARGUMENT_LIST);
+                    Node* single_argument = construct_node_default(A_ARGUMENT);
+                    add_child(single_argument, $1);
+                    add_child($$, single_argument);
+              }
+              | print_argument_list COMMA expression {
+                    Node* single_argument = construct_node_default(A_ARGUMENT);
+                    add_child(single_argument, $3);
+                    add_sibling($1->child, single_argument);
+                    $$ = $1;
+              }
+              | { $$ = NULL; }
 ;
 
 input_statement: INPUT OPEN_PARENTHESIS assignable_entity CLOSE_PARENTHESIS SEMICOLON {

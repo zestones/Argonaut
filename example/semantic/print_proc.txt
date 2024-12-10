@@ -1,0 +1,6 @@
+PROG
+
+print("Hello %d", 42);                      // Valid
+print("Hello %d, here is %s", 42, "world"); // Valid
+print("Hello %d", 42, "extra");             // Error: Too many arguments
+print("Hello %d, here is %f", 42, "oops");  // Error: Type mismatch

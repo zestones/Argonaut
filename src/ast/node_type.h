@@ -8,6 +8,7 @@
     NODE(A_BOOLEAN_LITERAL)                 \
     NODE(A_CHARACTER_LITERAL)               \
     NODE(A_STRING_LITERAL)                  \
+    NODE(A_FORMAT_STRING)                   \
     NODE(A_PROGRAM)                         \
     NODE(A_CONDITION)                       \
     NODE(A_AND_CONDITION)                   \

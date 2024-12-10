@@ -22,7 +22,7 @@ INCLUDE_DIR = src/parser
 GRAMMAR = lexer parser
 LEXER = lexeme_table.o 
 PARSER = parser.o
-SEMANTIC_CHECKS = assignment_validation.o func_proc_validation.o argument_validation.o scope_validation.o type_validation.o variable_validation.o
+SEMANTIC_CHECKS = assignment_validation.o print_validation.o func_proc_validation.o argument_validation.o scope_validation.o type_validation.o variable_validation.o
 SYMBOL_TABLE = declaration_table.o representation_table.o hash_table.o
 TABLE_MANAGEMENT = variable_manager.o array_manager.o func_proc_manager.o structure_manager.o
 TYPE_SYSTEM = structure_resolution.o func_proc_resolution.o array_resolution.o expression_resolution.o
@@ -72,6 +72,9 @@ parser.o: src/parser/parser.c
 
 assignment_validation.o: src/semantic_analysis/assignment_checks/assignment_validation.c
 	$(CC) -c src/semantic_analysis/assignment_checks/assignment_validation.c
+
+print_validation.o: src/semantic_analysis/function_checks/print_validation.c
+	$(CC) -c src/semantic_analysis/function_checks/print_validation.c
 
 func_proc_validation.o: src/semantic_analysis/function_checks/func_proc_validation.c
 	$(CC) -c src/semantic_analysis/function_checks/func_proc_validation.c

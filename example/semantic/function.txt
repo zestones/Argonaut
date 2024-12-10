@@ -7,12 +7,13 @@ func test() -> int {
 }
 
 func test2() -> float {
-    return 1;
+    return 1.0;
 }
 
 func main(a:int, b:float) -> int {
     return 0;
 }
+
 
 // test();
 // main(1, 1.0);

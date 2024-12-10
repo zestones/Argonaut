@@ -18,6 +18,9 @@ int resolve_expression_type(Node *expression) {
         case A_BOOLEAN_LITERAL:
             return A_BOOLEAN_LITERAL;
 
+        case A_CHARACTER_LITERAL:
+            return A_CHARACTER_LITERAL;
+
         case A_STRING_LITERAL:
             return A_STRING_LITERAL;
 

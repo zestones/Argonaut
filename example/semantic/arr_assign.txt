@@ -11,7 +11,7 @@ type elem : array[1:5] of date;
 var my_struct : elem;
 
 func test() -> float {
-    return 1;
+    return 1.0;
 }
 
 func main(a:int) -> int {
