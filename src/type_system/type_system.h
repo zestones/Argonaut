@@ -1,10 +1,15 @@
 #ifndef __TYPE_SYSTEM_H__
 #define __TYPE_SYSTEM_H__
 
+#include "../symbol_table/declaration/declaration_table.h" 
 #include "../ast/ast.h"
 
 // EXPRESSION RESOLUTION
 int resolve_expression_type(Node *expression);
+
+
+// CONDITION RESOLUTION
+int resolve_condition_type(Node *condition);
 
 
 // FUNCTION RESOLUTION

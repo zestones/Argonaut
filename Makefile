@@ -22,10 +22,10 @@ INCLUDE_DIR = src/parser
 GRAMMAR = lexer parser
 LEXER = lexeme_table.o 
 PARSER = parser.o
-SEMANTIC_CHECKS = assignment_validation.o print_validation.o input_validation.o func_proc_validation.o argument_validation.o format_specifiers.o scope_validation.o type_validation.o variable_validation.o
+SEMANTIC_CHECKS = assignment_validation.o print_validation.o input_validation.o func_proc_validation.o argument_validation.o format_specifiers.o condition_validation.o scope_validation.o type_validation.o variable_validation.o
 SYMBOL_TABLE = declaration_table.o representation_table.o hash_table.o
 TABLE_MANAGEMENT = variable_manager.o array_manager.o func_proc_manager.o structure_manager.o
-TYPE_SYSTEM = structure_resolution.o func_proc_resolution.o array_resolution.o expression_resolution.o
+TYPE_SYSTEM = structure_resolution.o func_proc_resolution.o array_resolution.o expression_resolution.o condition_resolution.o
 DATA = region_table.o region_stack.o
 AST = ast.o lcrs.o
 UTILS = stack.o errors.o scope_tracker.o
@@ -74,6 +74,12 @@ parser.o: src/parser/parser.c
 # -----------------
 assignment_validation.o: src/semantic_analysis/assignment_checks/assignment_validation.c
 	$(CC) -c src/semantic_analysis/assignment_checks/assignment_validation.c
+
+
+# Condition checks
+# ----------------
+condition_validation.o: src/semantic_analysis/condition_checks/condition_validation.c
+	$(CC) -c src/semantic_analysis/condition_checks/condition_validation.c
 
 
 # Function and procedure checks
@@ -157,6 +163,9 @@ array_resolution.o: src/type_system/array_resolution.c
 
 expression_resolution.o: src/type_system/expression_resolution.c
 	$(CC) -c src/type_system/expression_resolution.c
+
+condition_resolution.o: src/type_system/condition_resolution.c
+	$(CC) -c src/type_system/condition_resolution.c
 
 # ----------- #
 # DATA

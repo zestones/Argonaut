@@ -75,8 +75,8 @@
 
 %token <lexicographic_index> BOOLEAN_VALUE STRING_VALUE INTEGER_VALUE CHARACTER_VALUE FLOAT_VALUE
 
-%left AND OR 
 %right NOT
+%left AND OR 
 
 %right RETURN_TYPE RETURN_VALUE
 %left SEMICOLON COMMA
@@ -319,8 +319,11 @@ condition: OPEN_PARENTHESIS expression_atom comparison_operator expression_atom 
             add_child($$, $3);
             add_child($3, $2);
             add_sibling($2, $4);
+            check_condition($$);
          }
-         | OPEN_PARENTHESIS condition CLOSE_PARENTHESIS { $$ = $2; }
+         | OPEN_PARENTHESIS condition CLOSE_PARENTHESIS {
+            $$ = $2;
+         }
          | condition AND condition {
             $$ = construct_node_default(A_AND_CONDITION);
             add_child($$, $1);

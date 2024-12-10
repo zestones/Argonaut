@@ -27,7 +27,15 @@ void check_variable_definition(int index_lexeme_lexicographic);
  */
 void check_variable_redefinition(int index_lexeme_lexicographic);
 
-
+/**
+ * @brief Checks if an assinement to a variable is valid.
+ *
+ * This function checks the type of the expression being assigned to a variable.
+ * If the assignment is invalid, an error is thrown.
+ *
+ * @param index_lexeme_lexicographic The lexicographic index of the variable's name.
+ * @param expression The expression being assigned to the variable.
+ */
 void check_variable_assignment(int index_lexeme_lexicographic, Node *expression);
 
 #endif // __VARIABLE_VALIDATION_H__

@@ -1,0 +1,14 @@
+PROG
+
+var x : int;
+var is_red : bool;
+
+x := 1;
+
+if ((is_red > true) || (is_red >= false)) {
+    x := 0;
+}
+
+while(x < 5.0) {
+    x := x + 1;
+}
