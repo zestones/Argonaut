@@ -35,8 +35,8 @@ int resolve_expression_type(Node *expression) {
                     &error,
                     "Type mismatch during operation '%s': left operand type '%s', right operand type '%s'.",
                     NodeTypeStrings[expression->type],
-                    (left_type == NULL_VALUE) ? "NO TYPE" : get_lexeme(left_type),
-                    (right_type == NULL_VALUE) ? "NO TYPE" : get_lexeme(right_type)
+                    (left_type == NULL_VALUE) ? "UNKNOWN" : get_lexeme(left_type),
+                    (right_type == NULL_VALUE) ? "UNKNOWN" : get_lexeme(right_type)
                 );
                 yerror(error);
                 return NULL_VALUE;

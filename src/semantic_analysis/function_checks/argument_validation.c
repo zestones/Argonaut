@@ -25,6 +25,9 @@ static int determine_argument_type(Node *argument_node) {
     else if (argument_type == A_ARRAY_ACCESS) {
         argument_type = resolve_array_access_type(argument_node->child);
     }
+    else if (argument_type == A_ADD_OP || argument_type == A_SUB_OP || argument_type == A_MUL_OP || argument_type == A_DIV_OP) {
+        argument_type = resolve_expression_type(argument_node->child);
+    } 
 
     return argument_type;
 }
@@ -36,7 +39,7 @@ static void validate_argument_type(Node *current_argument, int expected_type, in
         set_error_type(&error, TYPE_ERROR);
         char *func_proc = (nature == TYPE_FUNC) ? "Function" : "Procedure";
         set_error_message(&error, "%s '%s' expects argument %d to be of type '%s', but '%s' was provided.",
-                            func_proc, get_lexeme(index_lexeme_lexicographic), argument_index + 1, get_lexeme(expected_type), (argument_type == NULL_VALUE) ? "NO TYPE" : get_lexeme(argument_type));
+                            func_proc, get_lexeme(index_lexeme_lexicographic), argument_index + 1, get_lexeme(expected_type), (argument_type == NULL_VALUE) ? "UNKNOWN" : get_lexeme(argument_type));
         yerror(error);
     }
 }

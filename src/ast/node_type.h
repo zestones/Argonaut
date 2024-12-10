@@ -14,10 +14,6 @@
     NODE(A_OR_CONDITION)                    \
     NODE(A_NOT_CONDITION)                   \
     NODE(A_NOT_EXPRESSION)                  \
-    NODE(A_ADDITION)                        \
-    NODE(A_SUBTRACTION)                     \
-    NODE(A_MULTIPLICATION)                  \
-    NODE(A_DIVISION)                        \
     NODE(A_EQUAL_OP)                        \
     NODE(A_NOT_EQUAL_OP)                    \
     NODE(A_LESS_THAN_OP)                    \
