@@ -39,7 +39,7 @@ This project is a compiler for the CPYRR programming language, which is a simple
 │   │   ├── lexer.l                    # Lexical analysis (token generation and lexeme identification)
 │   │
 │   ├── /parser
-│   │   ├── yacc_parser.y              # YACC grammar file
+│   │   ├── grammar.y              # YACC grammar file
 │   │   ├── parser.c                   # Parser implementation (calls lexing functions and constructs AST)
 │   │   ├── parser.h                   # Header file for parser declarations
 │   │

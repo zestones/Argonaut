@@ -25,7 +25,7 @@ PARSER = parser.o
 SEMANTIC_CHECKS = func_proc_validation.o argument_validation.o scope_validation.o type_validation.o variable_validation.o
 SYMBOL_TABLE = declaration_table.o representation_table.o hash_table.o
 TABLE_MANAGEMENT = variable_manager.o array_manager.o func_proc_manager.o structure_manager.o
-TYPE_SYSTEM = resolve_struct.o resolve_func.o resolve_array.o resolve_expression.o
+TYPE_SYSTEM = structure_resolution.o func_proc_resolution.o array_resolution.o expression_resolution.o
 DATA = region_table.o region_stack.o
 AST = ast.o lcrs.o
 UTILS = stack.o errors.o scope_tracker.o
@@ -59,9 +59,8 @@ lexeme_table.o: src/lexer/lexeme_table.c
 # PARSER
 # ----------- #
 
-parser: src/parser/yacc_parser.y 
-	# ./src/utils/yacc.sh
-	$(YACC) -d -Wcounterexamples -b $(BIN_DIR)/y src/parser/yacc_parser.y
+parser: src/parser/grammar.y 
+	$(YACC) -d -Wcounterexamples -b $(BIN_DIR)/y src/parser/grammar.y
 
 parser.o: src/parser/parser.c
 	$(CC) -I$(BIN_DIR) -I$(INCLUDE_DIR) -c src/parser/parser.c
@@ -122,17 +121,17 @@ structure_manager.o: src/table_management/structure_manager.c
 # TYPE SYSTEM
 # ----------- #
 
-resolve_struct.o: src/type_system/resolve_struct.c
-	$(CC) -c src/type_system/resolve_struct.c
+structure_resolution.o: src/type_system/structure_resolution.c
+	$(CC) -c src/type_system/structure_resolution.c
 
-resolve_func.o: src/type_system/resolve_func.c
-	$(CC) -c src/type_system/resolve_func.c
+func_proc_resolution.o: src/type_system/func_proc_resolution.c
+	$(CC) -c src/type_system/func_proc_resolution.c
 
-resolve_array.o: src/type_system/resolve_array.c
-	$(CC) -c src/type_system/resolve_array.c
+array_resolution.o: src/type_system/array_resolution.c
+	$(CC) -c src/type_system/array_resolution.c
 
-resolve_expression.o: src/type_system/resolve_expression.c
-	$(CC) -c src/type_system/resolve_expression.c
+expression_resolution.o: src/type_system/expression_resolution.c
+	$(CC) -c src/type_system/expression_resolution.c
 
 # ----------- #
 # DATA
