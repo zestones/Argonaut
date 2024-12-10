@@ -86,7 +86,7 @@
 
 %type <lexicographic_index> type 
 
-%type <ast> assignment_statement if_statement loop_statement standalone_function_call_statement function_call_expression
+%type <ast> assignment_statement if_statement loop_statement standalone_func_proc_call_statement func_proc_call_expression
 %type <ast> array_access_statement array_indices struct_access_statement assignable_entity print_statement input_statement
 
 %type <ast> variable_declaration type_declaration complex_type_fields type_field
@@ -262,7 +262,7 @@ expression: expression PLUS expression {
           | OPEN_PARENTHESIS expression CLOSE_PARENTHESIS { $$ = $2; }
 ;
 
-expression_atom: function_call_expression { $$ = $1; }  
+expression_atom: func_proc_call_expression { $$ = $1; }  
                | array_access_statement { $$ = $1; }
                | struct_access_statement { $$ = $1; }
                | IDENTIFIER  { check_variable_definition($1); $$ = construct_node(A_IDENTIFIER, $1, find_declaration_index($1)); }
@@ -303,10 +303,10 @@ type_field: IDENTIFIER TWO_POINTS type SEMICOLON {
             }
 ;
 
-function_call_expression: IDENTIFIER { check_func_proc_definition($1); } OPEN_PARENTHESIS argument_list CLOSE_PARENTHESIS {
-                            $$ = construct_node(A_FUNCTION_CALL_STATEMENT, $1, find_declaration_index($1));
+func_proc_call_expression: IDENTIFIER { check_func_proc_definition($1); } OPEN_PARENTHESIS argument_list CLOSE_PARENTHESIS {
+                            $$ = construct_node(A_FUNC_PROC_CALL_STATEMENT, $1, find_declaration_index($1));
                             add_child($$, $4);
-                            check_func_argument_list($1, $4);
+                            check_func_proc_argument_list($1, $4);
                         }
 ;
 
@@ -369,7 +369,7 @@ statement: assignment_statement {
             add_child($$, $1);
         }
         | if_statement { $$ = $1; }
-        | standalone_function_call_statement { $$ = $1; }
+        | standalone_func_proc_call_statement { $$ = $1; }
         | loop_statement  { $$ = $1; }
         | print_statement { $$ = $1; }
         | input_statement {
@@ -419,7 +419,7 @@ loop_statement: WHILE condition statement_block {
             }
 ;
 
-standalone_function_call_statement: function_call_expression SEMICOLON { $$ = $1; }
+standalone_func_proc_call_statement: func_proc_call_expression SEMICOLON { $$ = $1; }
 ;
 
 array_access_statement: IDENTIFIER OPEN_BRACKET array_indices CLOSE_BRACKET {

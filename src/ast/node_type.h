@@ -41,7 +41,7 @@
     NODE(A_STATEMENT_LIST)                  \
     NODE(A_ASSIGNMENT_STATEMENT)            \
     NODE(A_LOOP_STATEMENT)                  \
-    NODE(A_FUNCTION_CALL_STATEMENT)         \
+    NODE(A_FUNC_PROC_CALL_STATEMENT)        \
     NODE(A_RETURN_STATEMENT)                \
     NODE(A_VARIABLE_ASSIGNMENT)             \
     NODE(A_ARRAY_ASSIGNMENT)                \

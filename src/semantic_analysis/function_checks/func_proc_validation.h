@@ -35,6 +35,6 @@ void check_func_proc_redefinition(int index_lexeme_lexicographic, char *type);
  * @param index_lexeme_lexicographic The lexicographic index of the function's name.
  * @param argument_list The argument list provided in the function call.
  */
-void check_func_argument_list(int index_lexeme_lexicographic, Node *argument_list);
+void check_func_proc_argument_list(int index_lexeme_lexicographic, Node *argument_list);
 
 #endif // __FUNC_PROC_VALIDATION_H__

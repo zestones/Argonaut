@@ -16,8 +16,8 @@ static int determine_argument_type(Node *argument_node) {
             argument_type = get_declaration_description(index_declaration);
         }
     } 
-    else if (argument_type == A_FUNCTION_CALL_STATEMENT) {
-        argument_type = resolve_function_call_type(argument_node);
+    else if (argument_type == A_FUNC_PROC_CALL_STATEMENT) {
+        argument_type = resolve_func_proc_return_type(argument_node);
     }
     else if (argument_type == A_STRUCT_FIELD_ACCESS) {
         argument_type = resolve_struct_field_access_type(argument_node->child);
@@ -29,13 +29,14 @@ static int determine_argument_type(Node *argument_node) {
     return argument_type;
 }
 
-static void validate_argument_type(Node *current_argument, int expected_type, int argument_index, int index_lexeme_lexicographic) {
+static void validate_argument_type(Node *current_argument, int expected_type, int argument_index, int index_lexeme_lexicographic, Nature nature) {
     int argument_type = determine_argument_type(current_argument);
 
     if (argument_type != expected_type) {
         set_error_type(&error, TYPE_ERROR);
-        set_error_message(&error, "Function '%s' expects argument %d to be of type '%s', but type '%s' was provided.",
-                            get_lexeme(index_lexeme_lexicographic), argument_index + 1, get_lexeme(expected_type), get_lexeme(argument_type));
+        char *func_proc = (nature == TYPE_FUNC) ? "Function" : "Procedure";
+        set_error_message(&error, "%s '%s' expects argument %d to be of type '%s', but '%s' was provided.",
+                            func_proc, get_lexeme(index_lexeme_lexicographic), argument_index + 1, get_lexeme(expected_type), (argument_type == NULL_VALUE) ? "NO TYPE" : get_lexeme(argument_type));
         yerror(error);
     }
 }
@@ -63,14 +64,14 @@ void validate_argument_count(Node *argument_list, int parameter_count) {
     }
 }
 
-void validate_each_argument(Node *argument_list, int parameter_count, int index_lexeme_lexicographic) {
-    int index_declaration = find_declaration_index_by_nature(index_lexeme_lexicographic, TYPE_FUNC);
+void validate_each_argument(Node *argument_list, int parameter_count, int index_lexeme_lexicographic, Nature nature) {
+    int index_declaration = find_declaration_index_by_nature(index_lexeme_lexicographic, nature);
     Node *current_argument = (argument_list != NULL) ? argument_list->child : NULL;
     
     int argument_index = 0;
     while (current_argument != NULL && argument_index < parameter_count) {
-        int expected_type = resolve_function_parameter_type_at(argument_index, index_declaration);
-        validate_argument_type(current_argument, expected_type, argument_index, index_lexeme_lexicographic);
+        int expected_type = resolve_func_proc_parameter_type_at(argument_index, index_declaration, nature);
+        validate_argument_type(current_argument, expected_type, argument_index, index_lexeme_lexicographic, nature);
 
         current_argument = current_argument->sibling;
         argument_index++;

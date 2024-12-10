@@ -104,3 +104,75 @@ This project is a compiler for the CPYRR programming language, which is a simple
 7. **`/utils`**: Utility functions such as hashing and error handling.
 8. **`/output`**: Handles saving the intermediate code/text needed for future interpretation.
 9. **`/test`**: Unit tests for each major component of the project to ensure proper functionality.
+
+
+Here's a visual representation of the information, combining tables and hierarchical structures for better clarity. You can copy this Markdown and render it to visualize it as required.
+
+
+# Table de représentation des types et des entêtes de sous-programmes
+
+Cette table contient la description des types, des procédures et des fonctions déclarés dans un programme.
+
+---
+
+## Types de Structures
+
+| **Attribut**                  | **Description**                                                                 |
+|-------------------------------|---------------------------------------------------------------------------------|
+| **Nombre de champs**           | Nombre total de champs dans la structure.                                      |
+| **Champs**                    | Description des champs de la structure.                                        |
+| **Numéro lexicographique**    | Identifiant unique pour chaque champ.                                          |
+| **Type**                      | Index dans la table des déclarations associé à ce type ou une valeur de base.  |
+| **Déplacement d'exécution**   | Emplacement relatif dans la structure (vide dans certaines phases).            |
+
+### Exemple :
+```mermaid
+graph TD
+    Structure[Structure Type] -->|Nombre de champs| FieldCount[Nombre de Champs]
+    FieldCount --> FieldDetails[Description des Champs]
+    FieldDetails --> Field1[Champ 1: Numéro, Type, Déplacement]
+    FieldDetails --> Field2[Champ 2: Numéro, Type, Déplacement]
+```
+
+---
+
+## Types de Tableaux
+
+| **Attribut**             | **Description**                                                           |
+|--------------------------|---------------------------------------------------------------------------|
+| **Type des éléments**     | Index dans la table des déclarations associé à ce type.                  |
+| **Nombre de dimensions**  | Total des dimensions du tableau.                                         |
+| **Borne inférieure**      | Valeur minimale pour chaque dimension.                                   |
+| **Borne supérieure**      | Valeur maximale pour chaque dimension.                                   |
+
+### Exemple :
+```mermaid
+graph TD
+    Tableau[Array Type] -->|Type des éléments| ElementType[Type des Éléments]
+    Tableau -->|Nombre de dimensions| Dimensions[Nombre de Dimensions]
+    Dimensions --> DimDetails[Détails des Dimensions]
+    DimDetails --> Dim1[Dimension 1: Borne Inférieure, Borne Supérieure]
+    DimDetails --> Dim2[Dimension 2: Borne Inférieure, Borne Supérieure]
+```
+
+---
+
+## Fonctions et Procédures
+
+| **Attribut**             | **Description**                                                      |
+|--------------------------|----------------------------------------------------------------------|
+| **Type de résultat**      | Valeur (0, 1, 2 ou 3) indiquant le type (uniquement pour fonctions). |
+| **Nombre de paramètres**  | Total des paramètres requis.                                        |
+| **Paramètres**            | Description détaillée des paramètres.                              |
+| **Numéro lexicographique**| Identifiant unique pour chaque paramètre.                          |
+| **Type**                 | Valeur (0, 1, 2 ou 3) précisant le type du paramètre.               |
+
+### Exemple :
+```mermaid
+graph TD
+    Procedure[Procédure ou Fonction] -->|Type de résultat| ResultType[Type du Résultat]
+    Procedure -->|Nombre de paramètres| ParamCount[Nombre de Paramètres]
+    ParamCount --> ParamDetails[Description des Paramètres]
+    ParamDetails --> Param1[Paramètre 1: Numéro, Type]
+    ParamDetails --> Param2[Paramètre 2: Numéro, Type]
+```

@@ -27,12 +27,16 @@ void check_func_proc_redefinition(int index_lexeme_lexicographic, char *type) {
     }
 }
 
-void check_func_argument_list(int index_lexeme_lexicographic, Node *argument_list) {
-    int parameter_count = resolve_function_parameter_count(index_lexeme_lexicographic);
+void check_func_proc_argument_list(int index_lexeme_lexicographic, Node *argument_list) {
+    int index_declaration = find_declaration_index_by_nature(index_lexeme_lexicographic, TYPE_FUNC);
+    if (index_declaration == NULL_VALUE) index_declaration = find_declaration_index_by_nature(index_lexeme_lexicographic, TYPE_PROC);
+    Nature nature = get_declaration_nature(index_declaration);
+
+    int parameter_count = resolve_func_proc_parameter_count(index_lexeme_lexicographic, nature);
 
     // Check argument count validity first
     validate_argument_count(argument_list, parameter_count);
 
     // Validate argument types
-    validate_each_argument(argument_list, parameter_count, index_lexeme_lexicographic);
+    validate_each_argument(argument_list, parameter_count, index_lexeme_lexicographic, nature);
 }
