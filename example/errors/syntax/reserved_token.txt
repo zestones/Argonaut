@@ -1,0 +1,6 @@
+PROG
+
+var x : char;
+
+// Error: proc is a reserved token
+var proc : int;

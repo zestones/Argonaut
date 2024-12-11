@@ -1,0 +1,11 @@
+PROG
+
+var a : float;
+var f : int;
+var c : char;
+
+c := 'a';
+
+// Errors
+f := 10 #;
+a := 1.5$;
