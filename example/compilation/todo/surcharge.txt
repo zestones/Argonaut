@@ -7,8 +7,6 @@ type x : struct {
     ch2 : int;
 } fstruct;
 
-
-
 proc p1(a : int, b : int) {
     proc p4() {
         var z : x;

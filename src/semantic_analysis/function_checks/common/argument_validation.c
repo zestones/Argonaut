@@ -29,6 +29,9 @@ static int resolve_argument_type(Node *argument_node) {
     else if (argument_type == A_ADD_OP || argument_type == A_SUB_OP || argument_type == A_MUL_OP || argument_type == A_DIV_OP) {
         type = resolve_expression_type(argument_node->child);
     } 
+    else if (argument_type == A_FLOAT_LITERAL || argument_type == A_INTEGER_LITERAL || argument_type == A_CHARACTER_LITERAL || argument_type == A_BOOLEAN_LITERAL) {
+        type = argument_type;
+    }
 
     return type;
 }

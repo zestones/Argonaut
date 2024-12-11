@@ -18,7 +18,6 @@ func main(a:int) -> int {
     return 0;
 }
 
-
 my_struct[2].mois := 8;
 my_struct[2].annee := test();
 
@@ -28,4 +27,3 @@ my_struct[2].annee := 5;
 my_struct[2] := 5;
 my_struct := 5;
 my_struct[2].jour := test();
-

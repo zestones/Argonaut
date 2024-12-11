@@ -9,7 +9,7 @@ type date : struct  {
 type elem : array[1:5] of date;
 type data : struct {
     field1 : elem;
-    field2 : float;
+    field2 : int;
 } fstruct;
 
 var my_struct : data;
@@ -21,6 +21,6 @@ func main(a:int, b:float) -> int {
 main(my_struct.field1[2].jour, 2.0);
 
 // Error
-main(my_struct.field1[2], 2.0);
-main(my_struct.field1[2].annee, 2.0);
-main(my_struct.field2, 2.0);
+main(my_struct.field1[2], 2.0);         // Error: expected int, found array[1:5] of date
+main(my_struct.field1[2].annee, 2.0);   // Error: expected int, found float
+main(1, my_struct.field2);              // Error: expected float, found int

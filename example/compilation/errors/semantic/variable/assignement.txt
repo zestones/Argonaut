@@ -1,0 +1,44 @@
+PROG
+
+type date : struct  {
+    jour : int;
+    mois : int;
+    annee : float;
+} fstruct;
+
+type personne : struct  {
+    numero : int;
+    naissance : date;
+    age : int;
+    taille : float;
+} fstruct;
+
+type elem : array[1:5] of date;
+type data : struct {
+    field1 : elem;
+    field2 : float;
+} fstruct;
+
+var my_struct : data;
+var p : personne;
+
+var x:int;
+
+func test() -> int {
+    return 1;
+}
+
+func main(a:int) -> int {
+    return 0;
+}
+
+x := 5 + my_struct.field1[2].mois * 2 + 3;
+x := p.naissance.jour;
+
+// Error
+x := 5 + main(p.naissance.jour) * 2.0 + 3;  // main(p.naissance.jour) returns an int, but 2.0 is a float
+x := true;                                  // true is a boolean, x is an int
+x := test();                                // test() returns an int, x is an int
+x := p.taille;                              // p.taille is a float, x is an int
+x := p.naissance;                           // p.naissance is a date, x is an int
+x := p.naissance.annee;                     // p.naissance.annee is a float, x is an int

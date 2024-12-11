@@ -18,5 +18,5 @@ input("%d %s", x, name);
 input("%d %s", tab[0], name);
 input("%d %s", my_struct.jour, name);
 
-// Error
+// Error: annee is a float
 input("%d %s", my_struct.annee, name);

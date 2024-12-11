@@ -1,0 +1,46 @@
+PROG
+
+var a : int;
+var b : float;
+
+type date : struct  {
+    jour : int;
+    mois : int;
+    annee : float;
+} fstruct;
+
+type personne : struct  {
+    numero : int;
+    naissance : date;
+    age : int;
+    taille : float;
+} fstruct;
+
+type elem : array[1:5] of date;
+type data : struct {
+    field1 : elem;
+    field2 : float;
+} fstruct;
+
+var my_struct : data;
+var x : int;
+
+func fois_deux(a : int) -> int
+{
+    a := a * 2;
+    return a;
+}
+
+func divise_par_deux(g : int) -> int
+{
+    g := g / 2;
+    return g;
+}
+
+a := 2;
+a := fois_deux(a) + divise_par_deux(a);
+
+// Error
+a := fois_deux(a) * b;                  // fois_deux(a) returns an int, but b is a float
+a := a * b / true;                      // true is not an int and b is a float
+x := 5 + my_struct.field1[2] * 2 + 3;   // my_struct.field1[2] is a date, not an int

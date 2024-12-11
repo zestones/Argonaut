@@ -26,5 +26,5 @@ p.age := main(p.naissance.jour, 2.0);
 p.taille := 1.80;
 
 // Error
-p.naissance.jour := 5.0;
-p.naissance.annee := 1997.0 + main(p.naissance.jour, 2.0);
+p.naissance.annee := 1997.0 + main(p.naissance.jour, 2.0);  // main returns an int
+p.e.annee := 1997.0;                                        // p.e does not exist
