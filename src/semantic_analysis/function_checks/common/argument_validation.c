@@ -7,29 +7,30 @@
 
 static int resolve_argument_type(Node *argument_node) {
     int argument_type = argument_node->child->type;
+    int type = NULL_VALUE;
 
     if (argument_type == A_IDENTIFIER) {
         int index_declaration = argument_node->child->index_declaration;
         int nature = get_declaration_nature(index_declaration);
 
         if (nature == TYPE_VAR) {
-            argument_type = get_declaration_description(index_declaration);
+            type = get_declaration_description(index_declaration);
         }
     } 
     else if (argument_type == A_FUNC_PROC_CALL_STATEMENT) {
-        argument_type = resolve_func_proc_return_type(argument_node->child);
+        type = resolve_func_proc_return_type(argument_node->child);
     }
     else if (argument_type == A_STRUCT_FIELD_ACCESS) {
-        argument_type = resolve_struct_field_access_type(argument_node->child);
+        type = resolve_struct_field_access_type(argument_node->child);
     }
     else if (argument_type == A_ARRAY_ACCESS) {
-        argument_type = resolve_array_access_type(argument_node->child);
+        type = resolve_array_access_type(argument_node->child);
     }
     else if (argument_type == A_ADD_OP || argument_type == A_SUB_OP || argument_type == A_MUL_OP || argument_type == A_DIV_OP) {
-        argument_type = resolve_expression_type(argument_node->child);
+        type = resolve_expression_type(argument_node->child);
     } 
 
-    return argument_type;
+    return type;
 }
 
 static void validate_argument_type(Node *current_argument, int expected_type, int argument_index, int index_lexeme_lexicographic, Nature nature) {

@@ -126,7 +126,7 @@ declaration_list: declaration declaration_list {
                 | { $$ = NULL; }
 ;
 
-declaration: variable_declaration  { $$ = $1; }
+declaration: variable_declaration { $$ = $1; }
            | function_declaration  { $$ = $1; }
            | type_declaration      { $$ = $1; }
            | procedure_declaration { $$ = $1; }

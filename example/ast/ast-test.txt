@@ -93,13 +93,13 @@ proc argument_list() {
 
 func print_statement() -> int {
     
-    print("Mon texte", f(x, y), "deuxieme texte", x+1);
+    print("Mon texte, %d, %s, %d", f(x, y), "deuxieme texte", x+1);
     return 1;
 }
 
 proc input_statement() {
     j := 1;
-    input(x, y, a[5, 2], b[1].c.d);
+    input("%d, %d, %d, %d", x, y, a[5, 2], b[1].c.d);
 }
 
 proc operator() {

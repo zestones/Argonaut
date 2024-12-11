@@ -2,7 +2,6 @@ PROG
 var a : int;
 var b : char;
 var is_red : bool;
-var str : string[10];
 var d : float;
 
 // Invalid character '@' will trigger a warning

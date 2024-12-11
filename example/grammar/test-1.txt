@@ -3,7 +3,6 @@ PROG
 var a : int;
 var b : char;
 var is_red : bool;
-var str : string[10];
 var d : float;
 
 type mytype : struct
@@ -46,7 +45,7 @@ else
     d := 1;
 }
 
-if ((a > 0) && (b > 0) || (!(b > 5) && !is_red))
+if ((a > 0) && (b > 0) || (!(b > 5) && !(is_red == true)))
 {
     a := 0;
 }
