@@ -39,7 +39,8 @@ static void validate_argument_type(Node *current_argument, int expected_type, in
         set_error_type(&error, TYPE_ERROR);
         char *func_proc = (nature == TYPE_FUNC) ? "Function" : "Procedure";
         set_error_message(&error, "%s '%s' expects argument %d to be of type '%s', but '%s' was provided.",
-                            func_proc, get_lexeme(index_lexeme_lexicographic), argument_index + 1, get_lexeme(expected_type), (argument_type == NULL_VALUE) ? "UNKNOWN" : get_lexeme(argument_type));
+                            func_proc, get_lexeme(index_lexeme_lexicographic), argument_index + 1, get_lexeme(expected_type),
+                            (argument_type == NULL_VALUE) ? "UNKNOWN" : get_lexeme(argument_type));
         yerror(error);
     }
 }

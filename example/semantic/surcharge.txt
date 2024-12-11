@@ -1,0 +1,15 @@
+PROG
+
+var x : int;
+
+proc x(a : int, b : int) {
+    type x : struct {
+        ch1 : int;
+        ch2 : int;
+    } fstruct;
+
+    proc p4() {
+        var x : x;
+        x.ch1 := 3;
+    } 
+} 

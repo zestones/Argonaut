@@ -5,16 +5,20 @@
 #include "type_system.h"
 
 static int resolve_struct_declaration(Node *current_node) {
-    int current_type_declaration = find_declaration_index(get_declaration_description(current_node->index_declaration));
+    check_variable_definition(current_node->index_lexicographic);
 
-    if (get_declaration_nature(current_type_declaration) != TYPE_STRUCT) {
-        set_error_type(&error, SEMANTIC_ERROR);
-        set_error_message(&error, "Field access is only allowed on struct types.");
-        yerror(error);
-        return NULL_VALUE;
+    if (get_declaration_nature(current_node->index_declaration) == TYPE_VAR) {
+        int struct_index_declaration = get_declaration_description(current_node->index_declaration);
+        
+        if (get_declaration_nature(struct_index_declaration) != TYPE_STRUCT) {
+            set_error_type(&error, SEMANTIC_ERROR);
+            set_error_message(&error, "Field access is only allowed on struct types.");
+            yerror(error);
+            return NULL_VALUE;
+        }
+
+        return struct_index_declaration;
     }
-
-    return current_type_declaration;
 }
 
 static int get_struct_field_index_declaration(int current_type_representation, int field_index) {

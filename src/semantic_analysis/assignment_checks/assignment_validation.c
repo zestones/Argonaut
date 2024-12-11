@@ -17,7 +17,8 @@ void check_variable_assignment(int index_lexeme_lexicographic, Node *expression)
     if (variable_type != expression_type) {
         set_error_type(&error, TYPE_ERROR);
         set_error_message(&error, "Type mismatch: Cannot assign expression of type '%s' to variable of type '%s'.",
-                    (expression_type == NULL_VALUE) ? "UNKNOWN" : get_lexeme(expression_type), get_lexeme(variable_type));
+                    (expression_type == NULL_VALUE) ? "UNKNOWN" : get_lexeme(expression_type), 
+                    (variable_type == NULL_VALUE) ? "UNKNOWN" : get_lexeme(variable_type));
         yerror(error);
         return;
     }
@@ -34,7 +35,8 @@ void check_array_assignment(Node *array, Node *expression) {
     if (array_type != expression_type) {
         set_error_type(&error, TYPE_ERROR);
         set_error_message(&error, "Type mismatch: Cannot assign expression of type '%s' to array of type '%s'.",
-                    (expression_type == NULL_VALUE) ? "UNKNOWN" : get_lexeme(expression_type), get_lexeme(array_type));
+                    (expression_type == NULL_VALUE) ? "UNKNOWN" : get_lexeme(expression_type), 
+                    (array_type == NULL_VALUE) ? "UNKNOWN" : get_lexeme(array_type));
         yerror(error);
         return;
     }
@@ -51,7 +53,8 @@ void check_struct_assignment(Node *structure, Node *expression) {
     if (struct_field_type != expression_type) {
         set_error_type(&error, TYPE_ERROR);
         set_error_message(&error, "Type mismatch: Cannot assign expression of type '%s' to struct field of type '%s'.",
-                    (expression_type == NULL_VALUE) ? "UNKNOWN" : get_lexeme(expression_type), get_lexeme(struct_field_type));
+                    (expression_type == NULL_VALUE) ? "UNKNOWN" : get_lexeme(expression_type),
+                    (struct_field_type == NULL_VALUE) ? "UNKNOWN" : get_lexeme(struct_field_type));
         yerror(error);
         return;
     }
