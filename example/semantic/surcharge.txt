@@ -2,14 +2,16 @@ PROG
 
 var x : int;
 
-proc x(a : int, b : int) {
-    type x : struct {
-        ch1 : int;
-        ch2 : int;
-    } fstruct;
+type x : struct {
+    ch1 : int;
+    ch2 : int;
+} fstruct;
 
+
+
+proc p1(a : int, b : int) {
     proc p4() {
-        var x : x;
-        x.ch1 := 3;
+        var z : x;
+        z.ch1 := 3;
     } 
 } 
