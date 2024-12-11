@@ -1,0 +1,11 @@
+PROG
+
+func mul(i:int, j:int) -> int {
+    return i * j;
+}
+
+func main(a:int) -> int {
+    return mul(a, 4); // The a should not raise an error
+}
+
+main(5);
