@@ -2,6 +2,10 @@ PROG
 
 var x : int;
 
+func x() -> int {
+    return 0;
+}
+
 type x : struct {
     ch1 : int;
     ch2 : int;
