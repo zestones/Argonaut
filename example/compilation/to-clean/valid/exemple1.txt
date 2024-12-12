@@ -42,7 +42,7 @@ proc a()
                 while (j < 2) {
                     j := j + 1;
                     print("\nNumero de securite sociale : ");
-                    input(te[i, j].numero);
+                    input("%d", te[i, j].numero);
                 }
             }
             T := j;
