@@ -5,6 +5,18 @@
 #include "../../validation_utils.h"
 #include "../../../ast/ast.h"
 
+
+/**
+ * @brief Retrieves the declaration index of a function or procedure.
+ *
+ * This function retrieves the declaration index of a function or procedure based on the lexicographic index of the name.
+ * If the function or procedure is not found, NULL_VALUE is returned.
+ *
+ * @param index_lexeme_lexicographic The lexicographic index of the function or procedure's name.
+ * @return The declaration index of the function or procedure.
+ */
+int get_func_proc_declaration_index(int index_lexeme_lexicographic);
+
 /**
  * @brief Validates the definition of a function or procedure.
  *

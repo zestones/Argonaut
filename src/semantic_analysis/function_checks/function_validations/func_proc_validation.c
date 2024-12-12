@@ -4,11 +4,14 @@
 #include "../../../lexer/lexeme_table.h"
 #include "../../../data/region_table.h"
 
-void check_func_proc_definition(int index_lexeme_lexicographic) {
-    // TODO: the procedure call should not be assigned to a variable
-    if (find_declaration_index_by_nature(index_lexeme_lexicographic, TYPE_FUNC) == NULL_VALUE && 
-        find_declaration_index_by_nature(index_lexeme_lexicographic, TYPE_PROC) == NULL_VALUE) {
+int get_func_proc_declaration_index(int index_lexeme_lexicographic) {
+    int func_index = find_declaration_index_by_nature(index_lexeme_lexicographic, TYPE_FUNC);
+    return (func_index != NULL_VALUE) ? func_index 
+                                      : find_declaration_index_by_nature(index_lexeme_lexicographic, TYPE_PROC);
+}
 
+void check_func_proc_definition(int index_lexeme_lexicographic) {
+    if (get_func_proc_declaration_index(index_lexeme_lexicographic) == NULL_VALUE) {
         set_error_type(&error, SEMANTIC_ERROR);
         set_error_message(&error, "Function or procedure '%s' is not defined.", get_lexeme(index_lexeme_lexicographic));
 
@@ -17,9 +20,8 @@ void check_func_proc_definition(int index_lexeme_lexicographic) {
 }
 
 void check_func_proc_redefinition(int index_lexeme_lexicographic, char *type) {
-    // TODO: Change condition to 'OR' if we don't want to allow function and procedure with the same name 
-    if (find_declaration_index_by_nature(index_lexeme_lexicographic, TYPE_FUNC) != NULL_VALUE &&
-        find_declaration_index_by_nature(index_lexeme_lexicographic, TYPE_PROC) != NULL_VALUE) {
+    int index_func_proc_declaration = get_func_proc_declaration_index(index_lexeme_lexicographic);
+    if (index_func_proc_declaration != NULL_VALUE && peek_region() == get_declaration_region(index_func_proc_declaration)) {
         set_error_type(&error, SEMANTIC_ERROR);
         set_error_message(&error, "Redefinition of %s '%s'.", type, get_lexeme(index_lexeme_lexicographic));
 
@@ -42,8 +44,7 @@ void check_func_prototype(int index_lexeme_lexicographic, Node *return_statement
 }
 
 void check_func_proc_argument_list(int index_lexeme_lexicographic, Node *argument_list) {
-    int index_declaration = find_declaration_index_by_nature(index_lexeme_lexicographic, TYPE_FUNC);
-    if (index_declaration == NULL_VALUE) index_declaration = find_declaration_index_by_nature(index_lexeme_lexicographic, TYPE_PROC);
+    int index_declaration = get_func_proc_declaration_index(index_lexeme_lexicographic);
     Nature nature = get_declaration_nature(index_declaration);
 
     int parameter_count = resolve_func_proc_parameter_count(index_lexeme_lexicographic, nature);

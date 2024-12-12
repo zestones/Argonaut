@@ -141,6 +141,7 @@ int get_declaration_nature(int index) {
         exit(EXIT_FAILURE);
     }
 
+    if (index == NULL_VALUE) return NULL_VALUE;
     return declaration_table[index].nature;
 }
 
@@ -150,6 +151,7 @@ int get_declaration_description(int index) {
         exit(EXIT_FAILURE);
     }
 
+    if (index == NULL_VALUE) return NULL_VALUE;
     return declaration_table[index].description;
 }
 
@@ -159,6 +161,7 @@ int get_declaration_region(int index) {
         exit(EXIT_FAILURE);
     }
 
+    if (index == NULL_VALUE) return NULL_VALUE;
     return declaration_table[index].region;
 }
 
@@ -168,6 +171,7 @@ int get_declaration_execution(int index) {
         exit(EXIT_FAILURE);
     }
 
+    if (index == NULL_VALUE) return NULL_VALUE;
     return declaration_table[index].execution;
 }
 

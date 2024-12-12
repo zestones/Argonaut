@@ -4,6 +4,15 @@
 #include "../semantic_checks.h"
 #include "../../type_system/type_system.h"
 
+
+int get_var_param_declaration_index(int index_lexeme_lexicographic) {
+    int var_index = find_declaration_index_by_nature(index_lexeme_lexicographic, TYPE_VAR);
+    int param_index = find_declaration_index_by_nature(index_lexeme_lexicographic, TYPE_PARAM);
+
+    return (var_index > param_index) ? var_index : param_index;
+}
+
+
 void check_variable_definition(int index_lexeme_lexicographic) {
     if (find_declaration_index(index_lexeme_lexicographic) == NULL_VALUE) {
         set_error_type(&error, SEMANTIC_ERROR);
@@ -14,7 +23,7 @@ void check_variable_definition(int index_lexeme_lexicographic) {
 }
 
 void check_variable_redefinition(int index_lexeme_lexicographic) {
-    int index_lexeme_declaration = find_declaration_index(index_lexeme_lexicographic);
+    int index_lexeme_declaration = find_declaration_index_by_nature(index_lexeme_lexicographic, TYPE_VAR);
     if (index_lexeme_declaration != NULL_VALUE) {
         set_error_type(&error, SEMANTIC_ERROR);
         set_error_message(&error, "Redefinition of variable '%s'.", get_lexeme(index_lexeme_lexicographic));

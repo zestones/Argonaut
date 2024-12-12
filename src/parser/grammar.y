@@ -134,7 +134,7 @@ declaration: variable_declaration { $$ = $1; }
 
 variable_declaration: VARIABLE IDENTIFIER TWO_POINTS type SEMICOLON { 
                         declaration_variable_start($2, $4);
-                        $$ = construct_node(A_VARIABLE_DECLARATION, $2, find_declaration_index($4));
+                        $$ = construct_node(A_VARIABLE_DECLARATION, $2, get_arr_struct_declaration_index($4));
                     }
 ;
 
@@ -226,7 +226,7 @@ parameter_list: parameter {
 
 parameter: IDENTIFIER TWO_POINTS type { 
             func_proc_add_parameter($1, $3);
-            $$ = construct_node(A_PARAMETER, $1, find_declaration_index($1));    
+            $$ = construct_node(A_PARAMETER, $1, find_declaration_index_by_nature($1, TYPE_PARAM));    
         }
 ;
 
@@ -307,7 +307,7 @@ type_field: IDENTIFIER TWO_POINTS type SEMICOLON {
 ;
 
 func_proc_call_expression: IDENTIFIER { check_func_proc_definition($1); } OPEN_PARENTHESIS argument_list CLOSE_PARENTHESIS {
-                            $$ = construct_node(A_FUNC_PROC_CALL_STATEMENT, $1, find_declaration_index($1));
+                            $$ = construct_node(A_FUNC_PROC_CALL_STATEMENT, $1, get_func_proc_declaration_index($1));
                             add_child($$, $4);
                             check_func_proc_argument_list($1, $4);
                         }
@@ -385,7 +385,7 @@ statement: assignment_statement {
 ;
 
 assignment_statement: IDENTIFIER { check_variable_definition($1); } OPAFF expression SEMICOLON {
-                        $$ = construct_node(A_VARIABLE_ASSIGNMENT, $1, find_declaration_index($1));
+                        $$ = construct_node(A_VARIABLE_ASSIGNMENT, $1, get_var_param_declaration_index($1));
                         add_child($$, $4);
                         check_variable_assignment($1, $4);
                     }
