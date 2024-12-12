@@ -13,7 +13,7 @@ static int resolve_argument_type(Node *argument_node) {
         int index_declaration = argument_node->child->index_declaration;
         int nature = get_declaration_nature(index_declaration);
 
-        if (nature == TYPE_VAR) {
+        if (nature == TYPE_VAR || nature == TYPE_PARAM) {
             type = get_declaration_description(index_declaration);
         }
     } 
