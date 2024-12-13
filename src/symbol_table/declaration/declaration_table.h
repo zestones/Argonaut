@@ -187,6 +187,18 @@ int get_declaration_region(int index);
 int get_declaration_execution(int index);
 
 /**
+ * @brief Gets the lexicographic index of a declaration.
+ * The objective is to find the first declaration in the chain of declarations
+ * that is the genitor of the declaration. Because the first declaration index in the
+ * chain is linked to the lexicographic index, this way we are able to find the lexeme of 
+ * of type that is inside the overflown zone. 
+ * 
+ * @param index Index of the declaration.
+ * @return Lexicographic index of the declaration.
+ */
+int get_declaration_lexicographic_index(int index);
+
+/**
  * @brief Updates the execution information of a declaration.
  * 
  * @param index Index of the declaration.

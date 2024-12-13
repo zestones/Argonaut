@@ -9,6 +9,7 @@ void check_variable_assignment(int index_lexeme_lexicographic, Node *expression)
     // Step 1: Retrieve the declaration index and type of the variable
     int index_lexeme_declaration = get_var_param_declaration_index(index_lexeme_lexicographic);
     int variable_type = get_declaration_description(index_lexeme_declaration);
+    int variable_type_lexeme_index = get_declaration_lexicographic_index(variable_type);
 
     // Step 2: Resolve the type of the expression
     int expression_type = resolve_expression_type(expression);
@@ -19,7 +20,7 @@ void check_variable_assignment(int index_lexeme_lexicographic, Node *expression)
         set_error_message(&error, "Type mismatch: Cannot assign expression of type '%s' to variable '%s' of type '%s'.",
                     (expression_type == NULL_VALUE) ? "UNKNOWN" : get_lexeme(expression_type), 
                     (variable_type == NULL_VALUE) ? "UNKNOWN" : get_lexeme(index_lexeme_lexicographic),
-                    (variable_type == NULL_VALUE) ? "UNKNOWN" : get_lexeme(variable_type));
+                    (variable_type == NULL_VALUE) ? "UNKNOWN" : get_lexeme(variable_type_lexeme_index));
         yerror(error);
         return;
     }

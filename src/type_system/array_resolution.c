@@ -1,5 +1,6 @@
 #include "../symbol_table/representation/representation_table.h" 
 #include "../symbol_table/declaration/declaration_table.h" 
+#include "../lexer/lexeme_table.h"
 #include "../utils/utils.h"
 #include "type_system.h"
 
@@ -7,6 +8,23 @@
 static int resolve_array_declaration_type(Node *array_access) {
     if (get_declaration_nature(array_access->index_declaration) == TYPE_VAR) {
         int index_array_declaration = get_declaration_description(array_access->index_declaration);
+        
+        if (get_declaration_nature(index_array_declaration) != TYPE_ARRAY) {
+            int index_lexeme_declaration_type = get_declaration_lexicographic_index(index_array_declaration);
+            
+            set_error_type(&error, SEMANTIC_ERROR);
+            set_error_message(&error, 
+                            "Array access on non-array type.\n"
+                            "  In expression: '%s[?]'\n"
+                            "  '%s' is not an array, but is of type '%s'.\n",
+                            get_lexeme(array_access->index_declaration), 
+                            get_lexeme(array_access->index_declaration),
+                            get_lexeme(index_lexeme_declaration_type)
+            );
+            yerror(error);
+            return NULL_VALUE;
+        }
+
         int index_representation = get_declaration_description(index_array_declaration);
         return get_representation_value(index_representation);
     }
