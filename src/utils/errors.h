@@ -64,18 +64,11 @@ void yywarn(const Error error);
 void yerror(const Error error);
 
 /**
- * @brief Returns the name of the current file.
+ * @brief Returns a formatted string containing the current file, line, and column.
  * 
- * @return The name of the current file.
+ * @return The formatted string containing the current file, line, and column.
  */
-char *get_current_filename();
-
-/**
- * @brief Returns the current line number.
- * 
- * @return The current line number.
- */
-int get_current_line();
+char* get_formatted_location();
 
 /**
  * @brief Sets the error message of the provided Error struct.

@@ -16,8 +16,13 @@ int get_var_param_declaration_index(int index_lexeme_lexicographic) {
 void check_variable_definition(int index_lexeme_lexicographic) {
     if (find_declaration_index(index_lexeme_lexicographic) == NULL_VALUE) {
         set_error_type(&error, SEMANTIC_ERROR);
-        set_error_message(&error, "Variable '%s' is not defined.", get_lexeme(index_lexeme_lexicographic));
-
+        set_error_message(&error, 
+            "Undeclared variable '%s' at %s.\n"
+            "  The variable '%s' is used before being defined or declared.\n",
+            get_lexeme(index_lexeme_lexicographic),
+            get_formatted_location(),
+            get_lexeme(index_lexeme_lexicographic)
+        );
         yerror(error);
     }
 }
