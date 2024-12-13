@@ -33,10 +33,14 @@ static int resolve_array_declaration_type(Node *array_access) {
 
     // When the array is a field in a struct the index_declaration of nature TYPE_ARRAY
     // So no need to find the declaration of the array
-    int index_array_declaration = get_declaration_description(array_access->index_declaration);
-    int index_representation = get_representation_value(index_array_declaration);
+    if (get_declaration_nature(array_access->index_declaration) == TYPE_ARRAY) {
+        return get_representation_value(get_declaration_description(array_access->index_declaration));
+    }
 
-    return index_representation;
+    // Otherwise, the array is not defined,
+    // we flag an error and return NULL_VALUE
+    check_variable_definition(array_access->index_lexicographic);
+    return NULL_VALUE;
 }
 
 int resolve_array_access_type(Node *array_access) {
