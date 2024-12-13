@@ -92,8 +92,8 @@ letter [a-zA-Z]
     return BOOLEAN_VALUE; 
 }
 
-"'"{letter}"'" { 
-    char lexeme[2] = { yytext[1], '\0' };
+"'"[^\"]"'" { 
+    char lexeme[4] = { '\'', yytext[1], '\'', '\0' };
     yylval.lexicographic_index = insert_lexeme(lexeme);
     error.column += yyleng;
     return CHARACTER_VALUE; 

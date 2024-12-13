@@ -1,0 +1,23 @@
+PROG
+
+var x:bool;
+
+proc test() {
+}
+
+func test2() -> int {
+    return 1;
+}
+
+proc main(a:int, b:float) {
+}
+
+test();
+main(1, 1.0);
+main(test2(), 2.0);
+
+// Error
+main();
+main(x, 1.0);
+main(test(), 2.0);
+main(test(), 2.0, 3.0);

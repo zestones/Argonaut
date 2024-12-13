@@ -15,7 +15,7 @@ Error construct_error(ErrorType type, int line, int column, const char *format, 
 }
 
 void yywarn(const Error error) {
-    printf(COLOR_YELLOW "[Warning] ");
+    printf(COLOR_YELLOW "[");
     switch (error.type) {
         case SYNTAX_ERROR:        printf("Syntax Warning");           break;
         case SEMANTIC_ERROR:      printf("Semantic Warning");         break;
@@ -24,12 +24,12 @@ void yywarn(const Error error) {
         case INVALID_INPUT_ERROR: printf("Invalid Input Warning");    break;
         default:                  printf("Unknown Warning");          break;
     }
-
-    printf(" at line %d, column %d: %s" COLOR_RESET "\n", error.line, error.column, error.message);
+    printf("]");
+    printf(" %s" COLOR_RESET "\n", error.message);
 }
 
 void yerror(const Error error) {
-    fprintf(stderr, COLOR_RED "[Error] ");
+    fprintf(stderr, COLOR_RED "[");
     switch (error.type) {
         case SYNTAX_ERROR:        fprintf(stderr, "Syntax Error");         break;
         case SEMANTIC_ERROR:      fprintf(stderr, "Semantic Error");       break;
@@ -39,8 +39,15 @@ void yerror(const Error error) {
         default:                  fprintf(stderr, "Unknown Error");        break;
     }
 
-    fprintf(stderr, " at line %d, column %d: %s" COLOR_RESET "\n", error.line, error.column, error.message);
-    // exit(EXIT_FAILURE);
+    fprintf(stderr, "]");
+    fprintf(stderr, " %s" COLOR_RESET "\n", error.message);
+    // exit(EXIT_FAILURE);  // Uncomment this line to exit the program on error
+}
+
+char* get_formatted_location() {
+    static char location[256];
+    snprintf(location, sizeof(location), "%s:%d:%d", error.filename, error.line, error.column);
+    return location;
 }
 
 void set_error_message(Error *error, const char *format, ...) {

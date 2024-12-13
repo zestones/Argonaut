@@ -1,0 +1,6 @@
+PROG
+
+var x : int;
+
+// Error
+x := tab[0]; // tab is not declared

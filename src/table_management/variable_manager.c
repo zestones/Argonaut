@@ -1,6 +1,6 @@
 #include "../../lib/colors.h"
 
-#include "../symbol_table/declaration_table.h"
+#include "../symbol_table/declaration/declaration_table.h"
 #include "../lexer/lexeme_table.h"
 #include "../data/region_table.h"
 #include "variable_manager.h"
@@ -11,7 +11,7 @@ void declaration_variable_start(int index_lexeme_lexicographic, int index_type_l
     check_type_definition(index_type_lexicographic);
     check_variable_redefinition(index_lexeme_lexicographic);
     
-    int index_type_declaration = find_declaration_index(index_type_lexicographic);
+    int index_type_declaration = get_arr_struct_declaration_index(index_type_lexicographic);
     int execution = get_declaration_execution(index_type_declaration); 
 
     insert_declaration_var(index_lexeme_lexicographic, peek_region(), index_type_declaration, get_region_size(get_current_region_id()));

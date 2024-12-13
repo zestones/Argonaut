@@ -1,0 +1,10 @@
+PROG
+
+var x : int;
+
+x := 1;
+
+// Error: x is an int, not a float
+while(x < 5.0) {
+    x := x + 1;
+}

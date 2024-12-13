@@ -1,0 +1,19 @@
+PROG
+
+var x : int;
+
+type x : array[0:10] of int;
+
+type x : struct 
+{
+    jour : int;
+    mois : int;
+    annee : int;
+} fstruct;
+
+
+proc x(a: float) {
+    var z : x;
+    z[0] := 1;
+    // a := 3.14;
+}

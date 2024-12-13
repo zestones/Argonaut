@@ -1,5 +1,5 @@
-#include "../symbol_table/representation_table.h"
-#include "../symbol_table/declaration_table.h"
+#include "../symbol_table/representation/representation_table.h"
+#include "../symbol_table/declaration/declaration_table.h"
 #include "../data/region_table.h"
 #include "../utils/utils.h"
 #include "array_manager.h"
@@ -16,7 +16,7 @@ void construct_array_manager_context(int index_array_name_lexicographic) {
 }
 
 void declaration_array_start() {
-    check_type_redefinition(context.index_array_name_lexicographic);
+    check_type_redefinition(context.index_array_name_lexicographic, TYPE_ARRAY);
     context.index_array_type_representation = insert_representation(NULL_VALUE);
     insert_declaration_array(context.index_array_name_lexicographic, peek_region(), context.index_array_type_representation);
     context.index_number_of_dimensions_representation = insert_representation(context.number_of_dimensions);

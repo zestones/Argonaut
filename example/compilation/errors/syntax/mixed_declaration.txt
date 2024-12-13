@@ -1,0 +1,7 @@
+PROG
+
+var n : int;
+n := 5;
+
+// Error: Cannot mix declarations and statements
+var a : float;

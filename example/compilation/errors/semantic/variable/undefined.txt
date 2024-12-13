@@ -1,0 +1,12 @@
+PROG
+
+var n : int;
+
+proc my_proc() {
+    n := 5;     // OK
+
+    x := n;     // x is not declared
+}
+
+// Error
+x := n;  // x is not declared

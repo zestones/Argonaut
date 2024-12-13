@@ -1,0 +1,29 @@
+PROG
+
+type date : struct  {
+    jour : int;
+    mois : int;
+    annee : float;
+} fstruct;
+
+type elem : array[1:5] of date;
+
+var my_struct : elem;
+
+func test() -> float {
+    return 1.0;
+}
+
+func main(a:int) -> int {
+    return 0;
+}
+
+my_struct[2].mois := 8;
+my_struct[2].annee := test();
+
+// Error
+my_struct[2].jour := 5.0;
+my_struct[2].annee := 5;
+my_struct[2, main(4) * (2 + j) + my_struct[2].jour].annee := 5;
+my_struct := 5;
+my_struct[2].jour := test();

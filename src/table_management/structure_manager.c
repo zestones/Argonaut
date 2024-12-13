@@ -1,5 +1,5 @@
-#include "../symbol_table/representation_table.h"
-#include "../symbol_table/declaration_table.h"
+#include "../symbol_table/representation/representation_table.h"
+#include "../symbol_table/declaration/declaration_table.h"
 
 #include "../data/region_table.h"
 #include "structure_manager.h"
@@ -20,7 +20,7 @@ void construct_structure_manager_context(int index_struct_name_lexicographic) {
 }
 
 void declaration_structure_start() {
-    check_type_redefinition(context.index_struct_name_lexicographic);
+    check_type_redefinition(context.index_struct_name_lexicographic, TYPE_STRUCT);
     context.index_number_of_fields_representation = insert_representation(context.number_of_fields);
     insert_declaration_struct(context.index_struct_name_lexicographic, peek_region(), context.index_number_of_fields_representation);
 }

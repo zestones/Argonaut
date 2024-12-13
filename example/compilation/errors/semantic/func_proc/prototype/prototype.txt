@@ -1,0 +1,17 @@
+PROG
+
+func zero() -> float {
+    return 0.0;
+}
+
+func one(x:int) -> int {
+    return x;
+}
+
+// Error : return type of main is int, not float
+func main(a:int) -> int {
+    var x : float;
+
+    x := 45.0; 
+    return x + zero(); // This is a float
+}

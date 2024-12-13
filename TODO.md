@@ -29,7 +29,7 @@ These nodes have been successfully implemented and are ready to be used:
 - ✔️ **A_STATEMENT_LIST**  
 - ✔️ **A_RETURN_STATEMENT**
 - ✔️ **A_ASSIGNMENT_STATEMENT**  
-- ❌ **A_FUNCTION_CALL_STATEMENT**  
+- ❌ **A_FUNC_PROC_CALL_STATEMENT**  
 
 ##### **Expression and Condition Nodes:**
 - ✔️ **A_CONDITION**  
@@ -79,10 +79,6 @@ These nodes have been successfully implemented and are ready to be used:
 - ✔️ **A_PRINT_STATEMENT**
 - ✔️ **A_INPUT_STATEMENT**  
 
-##### **Assignable Entity Nodes:**
-- ✔️ **A_ASSIGNABLE_ENTITY**  
-- ✔️ **A_ASSIGNABLE_ENTITY_LIST**  
-
 </details>
 
 <details>
@@ -126,6 +122,9 @@ These error handling mechanisms are yet to be implemented:
 - ❌ **Function Argument Mismatch:** Calling a function with the wrong number of arguments or argument types.
 - ❌ **Invalid Operation on Types:** Trying to multiply two pointers, access a property of a non-struct type, etc.
 
+
+#### **Access Nodes:**
+- ❌ **Array Index Type Mismatch:** Accessing an array with a non-integer index.
 
 ##### **Assignments:**
 - ❌ **Type Mismatch:** Assigning a string to an integer variable (e.g., `int x = "hello";`).
