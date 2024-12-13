@@ -1,10 +1,11 @@
 #ifndef __TYPE_SYSTEM_H__
 #define __TYPE_SYSTEM_H__
 
-#include "../symbol_table/declaration/declaration_table.h" 
-#include "../ast/ast.h"
+#include "../../ast/ast.h"
+#include "../../symbol_table/declaration/declaration_table.h" 
 
 // EXPRESSION RESOLUTION
+char *resolve_expression_lexeme(Node *expression);
 int resolve_expression_type(Node *expression);
 
 
@@ -19,6 +20,7 @@ int resolve_func_proc_parameter_type_at(int num_param, int index_declaration, Na
 
 
 // ARRAY RESOLUTION
+char *resolve_array_access_lexeme(Node *array_access);
 int resolve_array_access_type(Node *array_access);
 
 

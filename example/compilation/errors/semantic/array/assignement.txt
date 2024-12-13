@@ -22,8 +22,8 @@ my_struct[2].mois := 8;
 my_struct[2].annee := test();
 
 // Error
-my_struct[2].jour := 5.0;
-my_struct[2].annee := 5;
-my_struct[2] := 5;
-my_struct := 5;
+// my_struct[2].jour := 5.0;
+// my_struct[2].annee := 5;
+my_struct[2, main(4)].annee := 5;
+// my_struct := 5;
 my_struct[2].jour := test();

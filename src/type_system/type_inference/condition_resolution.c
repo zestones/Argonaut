@@ -1,7 +1,7 @@
-#include "../symbol_table/declaration/declaration_table.h" 
-#include "../lexer/lexeme_table.h"
-#include "../data/region_table.h"
-#include "type_system.h"
+#include "../../symbol_table/declaration/declaration_table.h" 
+#include "../../lexer/lexeme_table.h"
+#include "../../data/region_table.h"
+#include "type_inference.h"
 
 
 int resolve_condition_type(Node *condition) {

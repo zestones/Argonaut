@@ -1,8 +1,8 @@
-#include "../symbol_table/representation/representation_table.h" 
-#include "../symbol_table/declaration/declaration_table.h" 
-#include "../lexer/lexeme_table.h"
-#include "../utils/utils.h"
-#include "type_system.h"
+#include "../../symbol_table/representation/representation_table.h" 
+#include "../../symbol_table/declaration/declaration_table.h" 
+#include "../../lexer/lexeme_table.h"
+#include "../../utils/utils.h"
+#include "type_inference.h"
 
 
 static int resolve_array_declaration_type(Node *array_access) {

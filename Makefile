@@ -25,7 +25,7 @@ PARSER = parser.o
 SEMANTIC_CHECKS = assignment_validation.o print_validation.o input_validation.o func_proc_validation.o argument_validation.o format_specifiers.o condition_validation.o scope_validation.o type_validation.o variable_validation.o
 SYMBOL_TABLE = declaration_table.o representation_table.o hash_table.o
 TABLE_MANAGEMENT = variable_manager.o array_manager.o func_proc_manager.o structure_manager.o
-TYPE_SYSTEM = structure_resolution.o func_proc_resolution.o array_resolution.o expression_resolution.o condition_resolution.o
+TYPE_SYSTEM = structure_resolution.o func_proc_resolution.o array_resolution.o expression_resolution.o condition_resolution.o array_access_format.o expression_format.o
 DATA = region_table.o region_stack.o
 AST = ast.o lcrs.o
 UTILS = stack.o errors.o scope_tracker.o
@@ -152,20 +152,31 @@ structure_manager.o: src/table_management/structure_manager.c
 # TYPE SYSTEM
 # ----------- #
 
-structure_resolution.o: src/type_system/structure_resolution.c
-	$(CC) -c src/type_system/structure_resolution.c
+# Type inference
+# --------------
+structure_resolution.o: src/type_system/type_inference/structure_resolution.c
+	$(CC) -c src/type_system/type_inference/structure_resolution.c
 
-func_proc_resolution.o: src/type_system/func_proc_resolution.c
-	$(CC) -c src/type_system/func_proc_resolution.c
+func_proc_resolution.o: src/type_system/type_inference/func_proc_resolution.c
+	$(CC) -c src/type_system/type_inference/func_proc_resolution.c
 
-array_resolution.o: src/type_system/array_resolution.c
-	$(CC) -c src/type_system/array_resolution.c
+array_resolution.o: src/type_system/type_inference/array_resolution.c
+	$(CC) -c src/type_system/type_inference/array_resolution.c
 
-expression_resolution.o: src/type_system/expression_resolution.c
-	$(CC) -c src/type_system/expression_resolution.c
+expression_resolution.o: src/type_system/type_inference/expression_resolution.c
+	$(CC) -c src/type_system/type_inference/expression_resolution.c
 
-condition_resolution.o: src/type_system/condition_resolution.c
-	$(CC) -c src/type_system/condition_resolution.c
+condition_resolution.o: src/type_system/type_inference/condition_resolution.c
+	$(CC) -c src/type_system/type_inference/condition_resolution.c
+
+# Formating
+# ---------
+
+array_access_format.o: src/type_system/format/array_access_format.c
+	$(CC) -c src/type_system/format/array_access_format.c
+
+expression_format.o: src/type_system/format/expression_format.c
+	$(CC) -c src/type_system/format/expression_format.c
 
 # ----------- #
 # DATA

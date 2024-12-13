@@ -1,8 +1,8 @@
-#include "../symbol_table/representation/representation_table.h" 
-#include "../symbol_table/declaration/declaration_table.h" 
-#include "../lexer/lexeme_table.h"
-#include "../data/region_table.h"
-#include "type_system.h"
+#include "../../symbol_table/representation/representation_table.h" 
+#include "../../symbol_table/declaration/declaration_table.h" 
+#include "../../lexer/lexeme_table.h"
+#include "../../data/region_table.h"
+#include "type_inference.h"
 
 static int resolve_struct_declaration(Node *current_node) {
     check_variable_definition(current_node->index_lexicographic);

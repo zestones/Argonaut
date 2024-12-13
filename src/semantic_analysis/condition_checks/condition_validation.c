@@ -1,4 +1,4 @@
-#include "../../type_system/type_system.h"
+#include "../../type_system/type_inference/type_inference.h"
 #include "../../symbol_table/declaration/declaration_table.h" 
 #include "../../lexer/lexeme_table.h"
 #include "../../data/region_table.h"

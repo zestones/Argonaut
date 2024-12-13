@@ -1,8 +1,9 @@
 #include "../../symbol_table/declaration/declaration_table.h" 
+#include "../../type_system/type_inference/type_inference.h"
+#include "../../type_system/format/formatting.h"
 #include "../../lexer/lexeme_table.h"
 #include "../../data/region_table.h"
 #include "../semantic_checks.h"
-#include "../../type_system/type_system.h"
 
 
 void check_variable_assignment(int index_lexeme_lexicographic, Node *expression) {
@@ -17,10 +18,15 @@ void check_variable_assignment(int index_lexeme_lexicographic, Node *expression)
     // Step 3: Check type compatibility
     if (variable_type != expression_type) {
         set_error_type(&error, TYPE_ERROR);
-        set_error_message(&error, "Type mismatch: Cannot assign expression of type '%s' to variable '%s' of type '%s'.",
-                    (expression_type == NULL_VALUE) ? "UNKNOWN" : get_lexeme(expression_type), 
-                    (variable_type == NULL_VALUE) ? "UNKNOWN" : get_lexeme(index_lexeme_lexicographic),
-                    (variable_type == NULL_VALUE) ? "UNKNOWN" : get_lexeme(variable_type_lexeme_index));
+        set_error_message(&error, 
+            "Type mismatch at %s.\n"
+            "  Cannot assign expression of type '%s' to variable '%s' of type '%s'.\n"
+            "  Ensure that the expression type matches the expected type for the variable.\n",
+            get_formatted_location(),
+            (expression_type == NULL_VALUE) ? "UNKNOWN" : get_lexeme(expression_type),
+            (variable_type == NULL_VALUE) ? "UNKNOWN" : get_lexeme(index_lexeme_lexicographic),
+            (variable_type == NULL_VALUE) ? "UNKNOWN" : get_lexeme(variable_type_lexeme_index)
+        );
         yerror(error);
         return;
     }
@@ -36,10 +42,15 @@ void check_array_assignment(Node *array, Node *expression) {
     // Step 3: Check type compatibility
     if (array_type != expression_type) {
         set_error_type(&error, TYPE_ERROR);
-        set_error_message(&error, "Type mismatch: Cannot assign expression of type '%s' to array '%s' of type '%s'.",
-                    (expression_type == NULL_VALUE) ? "UNKNOWN" : get_lexeme(expression_type), 
-                    (array_type == NULL_VALUE) ? "UNKNOWN" : get_lexeme(array->index_lexicographic),
-                    (array_type == NULL_VALUE) ? "UNKNOWN" : get_lexeme(array_type));
+        set_error_message(&error, 
+            "Type mismatch at %s.\n"
+            "  Cannot assign expression of type '%s' to array '%s' of type '%s'.\n"
+            "  Please ensure the expression type is compatible with the array type.\n",
+            get_formatted_location(),
+            (expression_type == NULL_VALUE) ? "UNKNOWN" : get_lexeme(expression_type),
+            (array_type == NULL_VALUE) ? "UNKNOWN" : format_array_access(array),
+            (array_type == NULL_VALUE) ? "UNKNOWN" : get_lexeme(array_type)
+        );
         yerror(error);
         return;
     }

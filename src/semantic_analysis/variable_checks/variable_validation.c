@@ -2,7 +2,7 @@
 #include "../../lexer/lexeme_table.h"
 #include "../../data/region_table.h"
 #include "../semantic_checks.h"
-#include "../../type_system/type_system.h"
+#include "../../type_system/type_inference/type_inference.h"
 
 
 int get_var_param_declaration_index(int index_lexeme_lexicographic) {
