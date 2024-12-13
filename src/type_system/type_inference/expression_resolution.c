@@ -39,7 +39,7 @@ int resolve_expression_type(Node *expression) {
                     "Type mismatch during operation '%c' at %s.\n"
                     "  Left operand type: '%s', right operand type: '%s'.\n"
                     "  Ensure both operands are of compatible types for the operation.\n",
-                    to_op_char(expression->type),
+                    node_type_to_operator_char(expression->type),
                     get_formatted_location(),
                     (left_type == NULL_VALUE) ? "UNKNOWN" : get_lexeme(left_type),
                     (right_type == NULL_VALUE) ? "UNKNOWN" : get_lexeme(right_type)

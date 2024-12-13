@@ -12,7 +12,7 @@ char *format_arithmetic_op(Node *expression) {
     strcat(lexeme, " ");
 
     // Convert the operator char to a string
-    char op[2] = {to_op_char(expression->type), '\0'};
+    char op[2] = {node_type_to_operator_char(expression->type), '\0'};
     strcat(lexeme, op);
 
     strcat(lexeme, " ");

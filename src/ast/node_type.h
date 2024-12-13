@@ -71,7 +71,8 @@ static const char *NodeTypeStrings[] = {
 };
 #undef GENERATE_STRING
 
-static inline char to_op_char(NodeType type) {
+
+static inline char node_type_to_operator_char(NodeType type) {
     switch (type) {
         case A_ADD_OP: return '+';
         case A_SUB_OP: return '-';
@@ -80,5 +81,7 @@ static inline char to_op_char(NodeType type) {
         default: return '\0';
     }
 }
+
+
 
 #endif // __NODE_TYPE_H__
