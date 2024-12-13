@@ -48,7 +48,14 @@ int resolve_field_access(Node *current_node, int current_type_declaration) {
     
     if (!is_field_in_struct(current_type_representation, num_fields, index_lexicographic, &field_index)) {
         set_error_type(&error, SEMANTIC_ERROR);
-        set_error_message(&error, "Field '%s' does not exist in struct.", get_lexeme(index_lexicographic));
+        set_error_message(
+            &error,
+            "Field access error at %s.\n"
+            "  The field '%s' does not exist in the struct.\n"
+            "  Ensure the field name is correct and defined within the struct type.\n",
+            get_formatted_location(),
+            get_lexeme(index_lexicographic)
+        );
         yerror(error);
         return NULL_VALUE;
     }
