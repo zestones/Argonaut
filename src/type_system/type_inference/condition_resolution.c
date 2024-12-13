@@ -14,9 +14,11 @@ int resolve_condition_type(Node *condition) {
             // Ensure the operands are of compatible types
             if (left_type != right_type) {
                 set_error_type(&error, TYPE_ERROR);
-                set_error_message(
-                    &error,
-                    "Type mismatch in condition: left operand type '%s', right operand type '%s'.",
+                set_error_message(&error, 
+                    "Type mismatch in condition at %s.\n"
+                    "  Left operand type: '%s', right operand type: '%s'.\n"
+                    "  Ensure both operands are of compatible types for the condition.\n",
+                    get_formatted_location(),
                     get_lexeme(left_type),
                     get_lexeme(right_type)
                 );
