@@ -31,7 +31,13 @@ void check_variable_redefinition(int index_lexeme_lexicographic) {
     int index_lexeme_declaration = find_declaration_index_by_nature(index_lexeme_lexicographic, TYPE_VAR);
     if (index_lexeme_declaration != NULL_VALUE) {
         set_error_type(&error, SEMANTIC_ERROR);
-        set_error_message(&error, "Redefinition of variable '%s'.", get_lexeme(index_lexeme_lexicographic));
+        set_error_message(&error, 
+            "Redefinition of variable '%s' at %s.\n"
+            "  This variable has already been defined in the current scope.\n"
+            "  Consider renaming or modifying the existing definition.\n",
+            get_lexeme(index_lexeme_lexicographic),
+            get_formatted_location()
+        );
         
         int declaration_region = get_declaration_region(index_lexeme_declaration);
         int current_region = get_current_region_id();
