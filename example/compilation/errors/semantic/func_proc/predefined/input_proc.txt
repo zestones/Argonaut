@@ -20,3 +20,5 @@ input("%d %s", my_struct.jour, name);
 
 // Error: annee is a float
 input("%d %s", my_struct.annee, name);
+input("%d", my_struct.mois, name);
+input("%s %d", name);
