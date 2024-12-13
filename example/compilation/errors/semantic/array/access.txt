@@ -1,0 +1,23 @@
+PROG
+
+type date : struct  {
+    jour : int;
+    mois : int;
+    annee : float;
+} fstruct;
+
+type personne : struct  {
+    numero : int;
+    naissance : date;
+    age : int;
+    taille : float;
+} fstruct;
+
+var p : personne;
+var x : int;
+var z : x;
+
+p.naissance.jour := 5;
+
+// Error
+z[0] := 1;

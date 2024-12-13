@@ -22,7 +22,7 @@ static int resolve_array_declaration_type(Node *array_access) {
                 format_array_access(array_access), 
                 get_lexeme(array_access->index_declaration),
                 get_lexeme(array_access->index_declaration),
-                get_lexeme(index_lexeme_declaration_type)
+                (index_lexeme_declaration_type == NULL_VALUE) ? "UNKNOWN" : get_lexeme(index_lexeme_declaration_type)
             );
             yerror(error);
             return NULL_VALUE;
