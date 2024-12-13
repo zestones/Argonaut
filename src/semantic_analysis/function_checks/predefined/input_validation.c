@@ -36,9 +36,10 @@ void check_input_proc_argument_list(Node *format_string, Node *argument_list) {
         if (!is_compatible_with_format_specifier(entity_type, specifier)) {
             set_error_type(&error, TYPE_ERROR);
             set_error_message(&error, 
-                "Type mismatch at %s.\n"
+                "Type mismatch for argument %d at %s.\n"
                 "  Input entity %d has type '%s', but specifier '%c' requires a different type.\n"
                 "  Ensure the input type matches the expected type for the specifier.\n",
+                i + 1,
                 get_formatted_location(),
                 i + 1, 
                 get_lexeme(entity_type), 
