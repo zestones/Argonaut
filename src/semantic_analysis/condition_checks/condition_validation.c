@@ -1,4 +1,4 @@
-#include "../../type_system/type_system.h"
+#include "../../type_system/type_inference/type_inference.h"
 #include "../../symbol_table/declaration/declaration_table.h" 
 #include "../../lexer/lexeme_table.h"
 #include "../../data/region_table.h"
@@ -11,8 +11,13 @@ void check_condition(Node *condition) {
     // Step 2: Check if the condition is a valid boolean expression
     if (condition_type != A_BOOLEAN_LITERAL) {
         set_error_type(&error, TYPE_ERROR);
-        set_error_message(&error, "Invalid condition: Expected boolean expression, but received '%s'.",
-                    (condition_type == NULL_VALUE) ? "UNKNOWN" : get_lexeme(condition_type));
+        set_error_message(&error, 
+            "Invalid condition at %s.\n"
+            "  Expected a boolean expression, but received '%s'.\n"
+            "  Ensure the expression evaluates to a boolean value.\n",
+            get_formatted_location(),
+            (condition_type == NULL_VALUE) ? "UNKNOWN" : get_lexeme(condition_type)
+        );
         yerror(error);
         return;
     }

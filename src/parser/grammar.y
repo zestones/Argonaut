@@ -134,7 +134,7 @@ declaration: variable_declaration { $$ = $1; }
 
 variable_declaration: VARIABLE IDENTIFIER TWO_POINTS type SEMICOLON { 
                         declaration_variable_start($2, $4);
-                        $$ = construct_node(A_VARIABLE_DECLARATION, $2, find_declaration_index($4));
+                        $$ = construct_node(A_VARIABLE_DECLARATION, $2, get_arr_struct_declaration_index($4));
                     }
 ;
 
@@ -226,7 +226,7 @@ parameter_list: parameter {
 
 parameter: IDENTIFIER TWO_POINTS type { 
             func_proc_add_parameter($1, $3);
-            $$ = construct_node(A_PARAMETER, $1, find_declaration_index($1));    
+            $$ = construct_node(A_PARAMETER, $1, find_declaration_index_by_nature($1, TYPE_PARAM));    
         }
 ;
 
@@ -307,7 +307,7 @@ type_field: IDENTIFIER TWO_POINTS type SEMICOLON {
 ;
 
 func_proc_call_expression: IDENTIFIER { check_func_proc_definition($1); } OPEN_PARENTHESIS argument_list CLOSE_PARENTHESIS {
-                            $$ = construct_node(A_FUNC_PROC_CALL_STATEMENT, $1, find_declaration_index($1));
+                            $$ = construct_node(A_FUNC_PROC_CALL_STATEMENT, $1, get_func_proc_declaration_index($1));
                             add_child($$, $4);
                             check_func_proc_argument_list($1, $4);
                         }
@@ -385,7 +385,7 @@ statement: assignment_statement {
 ;
 
 assignment_statement: IDENTIFIER { check_variable_definition($1); } OPAFF expression SEMICOLON {
-                        $$ = construct_node(A_VARIABLE_ASSIGNMENT, $1, find_declaration_index($1));
+                        $$ = construct_node(A_VARIABLE_ASSIGNMENT, $1, get_var_param_declaration_index($1));
                         add_child($$, $4);
                         check_variable_assignment($1, $4);
                     }
@@ -561,7 +561,7 @@ static void print_usage(const char *program_name) {
 
     fprintf(stdout, COLOR_BOLD "Options:\n" COLOR_RESET);
     fprintf(stdout, "  " COLOR_YELLOW "-f <file>      " COLOR_RESET "The input file to be processed.\n");
-    fprintf(stdout, "  " COLOR_YELLOW "-v             " COLOR_RESET "Enable verbose mode (display lexeme table).\n");
+    fprintf(stdout, "  " COLOR_YELLOW "-v             " COLOR_RESET "Enable verbose mode (display symbol table and ast).\n");
     fprintf(stdout, "  " COLOR_YELLOW "-h             " COLOR_RESET "Show help (this usage information).\n");
 
     fprintf(stdout, "\n");
@@ -572,31 +572,31 @@ static void print_usage(const char *program_name) {
     exit(EXIT_SUCCESS);
 }
 
+static void handle_file_error(const char *filename) {
+    fprintf(stderr, COLOR_RED "Error: Could not open file '%s'.\n", filename);
+    perror("\t> Reason");
+    fprintf(stderr, COLOR_RESET);
+
+    exit(EXIT_FAILURE);
+}
+
 int main(int argc, char **argv) {
     int opt, verbose = 0;
     
     error.line = 1;
     error.column = 1;
     error.type = NO_ERROR;
-    
+
     if (argc == 1) {
-        // No arguments provided
         print_usage(argv[0]);
     }
+
+    char *input_file = NULL;
 
     while ((opt = getopt(argc, argv, "f:vh")) != -1) {
         switch (opt) {
             case 'f':
-                FILE *file = fopen(optarg, "r");
-                if (!file) {
-                    fprintf(stderr, COLOR_RED "Error: Could not open file %s\n" COLOR_RESET, optarg);
-                    return 1;
-                }
-                
-                yyin = file;
-                yyrun();
-
-                fclose(file);
+                input_file = optarg;
                 break;
             case 'v':
                 verbose = 1;
@@ -610,6 +610,27 @@ int main(int argc, char **argv) {
         }
     }
 
-    ydebug(verbose);
+    if (input_file == NULL) {
+        fprintf(stderr, COLOR_RED "Error: Missing required '-f <file>' argument.\n" COLOR_RESET);
+        print_usage(argv[0]);
+    }
+
+    // Open the file for reading
+    FILE *file = fopen(input_file, "r");
+    if (!file) {
+        handle_file_error(input_file);
+    }
+
+    error.filename = input_file;
+    yyin = file;
+
+    yyrun();
+    fclose(file);
+
+    if (verbose) {
+        printf(COLOR_GREEN "Verbose mode enabled. Printing tables and ast...\n" COLOR_RESET);
+        ydebug(verbose);
+    }
+
     return 0;
 }

@@ -4,6 +4,17 @@
 #include "../validation_utils.h"
 
 /**
+ * @brief Retrieves the declaration index of a variable or parameter.
+ *
+ * This function retrieves the declaration index of a variable or parameter
+ * given the lexicographic index of the variable's name.
+ *
+ * @param index_lexeme_lexicographic The lexicographic index of the variable's name.
+ * @return The declaration index of the variable or parameter.
+ */
+int get_var_param_declaration_index(int index_lexeme_lexicographic);
+
+/**
  * @brief Validates the definition of a variable.
  *
  * This function checks if a variable has been defined in the current scope.

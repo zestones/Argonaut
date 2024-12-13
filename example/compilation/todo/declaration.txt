@@ -1,0 +1,5 @@
+PROG
+var x: int;
+
+// Error
+var z: x;  // x is a variable not a type

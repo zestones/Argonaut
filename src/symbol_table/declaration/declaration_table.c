@@ -135,40 +135,56 @@ int find_declaration_index_by_nature(int tlex_index, Nature nature) {
     return find_declaration_in_stack(tlex_index, nature);
 }
 
-int get_declaration_nature(int index) {
+static int is_valid_declaration_index(int index) {
     if (index >= MAX_DECLARATION_COUNT) {
         fprintf(stderr, COLOR_RED "<Error> Declaration index out of bounds\n" COLOR_RESET);
         exit(EXIT_FAILURE);
     }
+    return index != NULL_VALUE;
+}
 
+int get_declaration_nature(int index) {
+    if (!is_valid_declaration_index(index)) return NULL_VALUE;
     return declaration_table[index].nature;
 }
 
 int get_declaration_description(int index) {
-    if (index >= MAX_DECLARATION_COUNT) {
-        fprintf(stderr, COLOR_RED "<Error> Declaration index out of bounds\n" COLOR_RESET);
-        exit(EXIT_FAILURE);
-    }
-
+    if (!is_valid_declaration_index(index)) return NULL_VALUE;
     return declaration_table[index].description;
 }
 
 int get_declaration_region(int index) {
-    if (index >= MAX_DECLARATION_COUNT) {
-        fprintf(stderr, COLOR_RED "<Error> Declaration index out of bounds\n" COLOR_RESET);
-        exit(EXIT_FAILURE);
-    }
-
+    if (!is_valid_declaration_index(index)) return NULL_VALUE;
     return declaration_table[index].region;
 }
 
 int get_declaration_execution(int index) {
-    if (index >= MAX_DECLARATION_COUNT) {
-        fprintf(stderr, COLOR_RED "<Error> Declaration index out of bounds\n" COLOR_RESET);
-        exit(EXIT_FAILURE);
+    if (!is_valid_declaration_index(index)) return NULL_VALUE;
+    return declaration_table[index].execution;
+}
+
+static int find_predecessor(int current) {
+    for (int i = 0; i < MAX_DECLARATION_COUNT; i++) {
+        if (declaration_table[i].next == current) {
+            return i; 
+        }
+    }
+    return NULL_VALUE;
+}
+
+int get_declaration_lexicographic_index(int index) {
+    if (!is_valid_declaration_index(index)) return NULL_VALUE;
+
+    int current = index;
+    int predecessor = NULL_VALUE;
+
+    while (1) {
+        predecessor = find_predecessor(current);
+        if (predecessor == NULL_VALUE) break; // The current declaration is the first one
+        current = predecessor;
     }
 
-    return declaration_table[index].execution;
+    return current;
 }
 
 void update_declaration_execution(int index, int execution) {

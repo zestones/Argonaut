@@ -1,9 +1,9 @@
 #include "../../../symbol_table/representation/representation_table.h" 
 #include "../../../symbol_table/declaration/declaration_table.h" 
-#include "../../../type_system/type_system.h"
+#include "../../../type_system/type_inference/type_inference.h"
+#include "../../../type_system/format/formatting.h"
 #include "../../../lexer/lexeme_table.h"
 #include "../../../data/region_table.h"
-
 
 static int resolve_argument_type(Node *argument_node) {
     int argument_type = argument_node->child->type;
@@ -42,9 +42,18 @@ static void validate_argument_type(Node *current_argument, int expected_type, in
     if (argument_type != expected_type) {
         set_error_type(&error, TYPE_ERROR);
         char *func_proc = (nature == TYPE_FUNC) ? "Function" : "Procedure";
-        set_error_message(&error, "%s '%s' expects argument %d to be of type '%s', but '%s' was provided.",
-                            func_proc, get_lexeme(index_lexeme_lexicographic), argument_index + 1, get_lexeme(expected_type),
-                            (argument_type == NULL_VALUE) ? "UNKNOWN" : get_lexeme(argument_type));
+        set_error_message(&error, 
+            "%s '%s' expects argument %d to be of type '%s' at %s.\n"
+            "  But the provided argument '%s' is of type '%s'.\n"
+            "  Ensure the argument type matches the expected type for the function or procedure.\n",
+            func_proc, 
+            get_lexeme(index_lexeme_lexicographic), 
+            argument_index + 1, 
+            get_lexeme(expected_type),
+            get_formatted_location(),
+            format_expression(current_argument->child),
+            (argument_type == NULL_VALUE) ? "UNKNOWN" : get_lexeme(argument_type)
+        );
         yerror(error);
     }
 }
@@ -56,7 +65,13 @@ void validate_argument_count(Node *argument_list, int parameter_count) {
     while (current_argument != NULL) {
         if (argument_index >= parameter_count) {
             set_error_type(&error, SEMANTIC_ERROR);
-            set_error_message(&error, "Function expects %d arguments, but more were provided.", parameter_count);
+            set_error_message(&error, 
+                "Function expects %d arguments at %s.\n"
+                "  However, more arguments were provided.\n"
+                "  Ensure the correct number of arguments are passed to the function.\n",
+                parameter_count,
+                get_formatted_location()
+            );
             yerror(error);
             break;
         }
@@ -67,7 +82,14 @@ void validate_argument_count(Node *argument_list, int parameter_count) {
 
     if (argument_index < parameter_count) {
         set_error_type(&error, SEMANTIC_ERROR);
-        set_error_message(&error, "Function expects %d arguments, but only %d were provided.", parameter_count, argument_index);
+        set_error_message(&error, 
+            "Function expects %d arguments at %s.\n"
+            "  However, only %d arguments were provided.\n"
+            "  Ensure the correct number of arguments are passed to the function.\n",
+            parameter_count, 
+            get_formatted_location(),
+            argument_index
+        );
         yerror(error);
     }
 }

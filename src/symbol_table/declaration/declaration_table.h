@@ -187,6 +187,18 @@ int get_declaration_region(int index);
 int get_declaration_execution(int index);
 
 /**
+ * @brief Gets the lexicographic index of a declaration.
+ * The objective is to find the first declaration in the chain of declarations
+ * that is the genitor of the declaration. Because the first declaration index in the
+ * chain is linked to the lexicographic index, this way we are able to find the lexeme of 
+ * of type that is inside the overflown zone. 
+ * 
+ * @param index Index of the declaration.
+ * @return Lexicographic index of the declaration.
+ */
+int get_declaration_lexicographic_index(int index);
+
+/**
  * @brief Updates the execution information of a declaration.
  * 
  * @param index Index of the declaration.
@@ -216,6 +228,22 @@ static inline char *nature_to_string(Nature nature)
         case TYPE_PROC: return "TYPE_PROC";
         case TYPE_FUNC: return "TYPE_FUNC";
         case TYPE_PARAM: return "TYPE_PARAM";
+
+        default: return "UNKNOWN";
+    }
+}
+
+static inline char *nature_to_string_short(Nature nature)
+{
+    switch (nature)
+    {
+        case TYPE_BASE: return "base";
+        case TYPE_VAR:  return "variable";
+        case TYPE_STRUCT: return "structure";
+        case TYPE_ARRAY: return "array";
+        case TYPE_PROC: return "procedure";
+        case TYPE_FUNC: return "function";
+        case TYPE_PARAM: return "parameter";
 
         default: return "UNKNOWN";
     }

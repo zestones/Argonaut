@@ -1,8 +1,9 @@
-#include "../symbol_table/representation/representation_table.h" 
-#include "../symbol_table/declaration/declaration_table.h" 
-#include "../lexer/lexeme_table.h"
-#include "../data/region_table.h"
-#include "type_system.h"
+#include "../../symbol_table/representation/representation_table.h" 
+#include "../../symbol_table/declaration/declaration_table.h" 
+#include "../../lexer/lexeme_table.h"
+#include "../../data/region_table.h"
+#include "../format/formatting.h"
+#include "type_inference.h"
 
 static int resolve_struct_declaration(Node *current_node) {
     check_variable_definition(current_node->index_lexicographic);
@@ -12,7 +13,14 @@ static int resolve_struct_declaration(Node *current_node) {
         
         if (get_declaration_nature(struct_index_declaration) != TYPE_STRUCT) {
             set_error_type(&error, SEMANTIC_ERROR);
-            set_error_message(&error, "Field access is only allowed on struct types.");
+            set_error_message(&error, 
+                "Field access error at %s.\n"
+                "  The entity '%s' is not a struct but is of type '%s'.\n"
+                "  Ensure that the entity is a struct before attempting to access its fields.\n",
+                get_formatted_location(),
+                get_lexeme(current_node->index_lexicographic),
+                get_lexeme(get_declaration_description(current_node->index_declaration))
+            );
             yerror(error);
             return NULL_VALUE;
         }
@@ -48,7 +56,15 @@ int resolve_field_access(Node *current_node, int current_type_declaration) {
     
     if (!is_field_in_struct(current_type_representation, num_fields, index_lexicographic, &field_index)) {
         set_error_type(&error, SEMANTIC_ERROR);
-        set_error_message(&error, "Field '%s' does not exist in struct.", get_lexeme(index_lexicographic));
+        set_error_message(
+            &error,
+            "Field access error at %s.\n"
+            "  The field '%s' does not exist in the struct '%s'.\n"
+            "  Ensure the field name is correct and defined within the struct type.\n",
+            get_formatted_location(),
+            get_lexeme(index_lexicographic),
+            get_lexeme(get_declaration_lexicographic_index(current_type_declaration))
+        );
         yerror(error);
         return NULL_VALUE;
     }
@@ -62,7 +78,13 @@ int resolve_field_access(Node *current_node, int current_type_declaration) {
     
     if (get_declaration_nature(field_declaration_index) != TYPE_STRUCT && current_node->child != NULL) {
         set_error_type(&error, SEMANTIC_ERROR);
-        set_error_message(&error, "Field '%s' is not a struct, so further field access is invalid.", get_lexeme(index_lexicographic));
+        set_error_message(&error, 
+            "Field access error at %s.\n"
+            "  The entity '%s' is not a struct, so field access is not possible.\n"
+            "  Verify that the entity is a struct before attempting to access its fields.\n",
+            get_formatted_location(),
+            get_lexeme(index_lexicographic)
+        );
         yerror(error);
         return NULL_VALUE;
     }
