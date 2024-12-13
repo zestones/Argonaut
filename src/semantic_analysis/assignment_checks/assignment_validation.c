@@ -19,7 +19,7 @@ void check_variable_assignment(int index_lexeme_lexicographic, Node *expression)
     if (variable_type != expression_type) {
         set_error_type(&error, TYPE_ERROR);
         set_error_message(&error, 
-            "Type mismatch at %s.\n"
+            "Type mismatch at during assignement %s.\n"
             "  Cannot assign expression of type '%s' to variable '%s' of type '%s'.\n"
             "  Ensure that the expression type matches the expected type for the variable.\n",
             get_formatted_location(),
@@ -43,7 +43,7 @@ void check_array_assignment(Node *array, Node *expression) {
     if (array_type != expression_type) {
         set_error_type(&error, TYPE_ERROR);
         set_error_message(&error, 
-            "Type mismatch at %s.\n"
+            "Type mismatch at during assignement %s.\n"
             "  Cannot assign expression of type '%s' to array '%s' of type '%s'.\n"
             "  Please ensure the expression type is compatible with the array type.\n",
             get_formatted_location(),
@@ -67,7 +67,7 @@ void check_struct_assignment(Node *structure, Node *expression) {
     if (struct_field_type != expression_type) {
         set_error_type(&error, TYPE_ERROR);
         set_error_message(&error, 
-            "Type mismatch at %s.\n"
+            "Type mismatch at during assignement %s.\n"
             "  Cannot assign expression of type '%s' to struct field '%s' of type '%s'.\n"
             "  Ensure the expression type matches the expected type for the struct field.\n",
             get_formatted_location(),
