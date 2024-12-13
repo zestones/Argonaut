@@ -1,0 +1,6 @@
+PROG
+
+var x : int;
+
+// Error
+x := my_func(); // my_func is not declared

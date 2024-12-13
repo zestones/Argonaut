@@ -1,0 +1,11 @@
+PROG
+
+var x : int;
+var is_red : bool;
+
+x := 1;
+
+// Error: Cannot compare bool and bool with '>' operator
+if ((x > 5) || (is_red >= false)) {
+    x := 0;
+}

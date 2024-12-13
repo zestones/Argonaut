@@ -1,0 +1,19 @@
+PROG
+
+type date : struct  {
+    jour : int;
+    mois : int;
+    annee : float;
+} fstruct;
+
+
+
+func my_func() -> date {
+    var x : date;
+    return x;
+}
+
+proc my_proc(today : date) {
+    var x : date;
+    x := today;
+} 

@@ -1,0 +1,22 @@
+PROG
+
+type date : struct  {
+    jour : int;
+    mois : int;
+    mois : int;  // Error: mois field already defined
+} fstruct;
+
+type personne : struct  {
+    naissance : date;
+    taille : float;
+} fstruct;
+
+var p : personne;
+
+proc my_proc() {
+    
+    p.naissance.jour := 5;     // OK
+    p.taille := 1.75;          // OK
+
+    p.naissance.annee := 21;   // p.naissance.annee field does not exist
+}

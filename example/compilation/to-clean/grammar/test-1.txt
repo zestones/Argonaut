@@ -1,0 +1,68 @@
+PROG
+
+var a : int;
+var b : char;
+var is_red : bool;
+var d : float;
+
+type mytype : struct
+{
+    a : custom_type;
+    b : char;
+    c : float;
+} fstruct;
+
+type my_array : array[1:10] of mytype;
+
+func myfunction(a : int, b : int) -> int 
+{
+    var z : int;
+    z := a + b;
+
+    return z;
+}
+
+proc myprocedure(a : int, b : int)
+{
+    var z : int;
+    z := a + b;
+}
+
+c := myfunction(1, 2);
+
+a := 1;
+b := 2;
+
+a := 1 + 2;
+
+d := 1;
+if (d > 0)
+{
+    d := 0;
+}
+else
+{
+    d := 1;
+}
+
+if ((a > 0) && (b > 0) || (!(b > 5) && !(is_red == true)))
+{
+    a := 0;
+}
+
+while (a > 0)
+{
+    a := a - 1;
+}
+
+while (((a == 0) || (b == 0)) && ((c != 0) || (d != 0)) || ((e > 0) && (f < 0))) {
+    a := a - 1;
+    
+    if (a > 0) {
+        a := a - 1;
+        myprocedure(a, b);
+    }
+}
+
+a := 1 - 5 * 2 + 4 / 2;
+b := (1 - 5) * (2 + 4) / 2;

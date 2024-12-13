@@ -1,0 +1,27 @@
+PROG
+// Assuming the following types are defined as:
+type date : struct {
+    jour : int;
+    mois : int;
+    annee : float;
+} fstruct;
+
+type personne : struct {
+    numero : int;
+    naissance : date;
+    age : int;
+    taille : float;
+} fstruct;
+
+type my_tab : array[0: 10] of date;
+
+var x : int;
+var y : float;
+var z : bool;
+var a : date;
+
+// Trigger Error 2: Invalid operand type in condition (non-literal)
+if (a == z) {  // 'a' is a struct (date), 'z' is a boolean; invalid comparison of non-literal type
+    // Do something
+}
+

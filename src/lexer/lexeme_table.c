@@ -3,7 +3,7 @@
 
 #include "../utils/utils.h"
 
-#include "../symbol_table/hash_table.h"
+#include "../symbol_table/hash/hash_table.h"
 #include "lexeme_table.h"
 
 static Lexeme lexeme_table[MAX_LEXEME_COUNT];
@@ -54,6 +54,14 @@ int insert_lexeme(const char* lexeme) {
 
 char *get_lexeme(int index) {
     return lexeme_table[index].lexeme;
+}
+
+int find_lexeme_index(const char* lexeme) {
+    int index = get_lexeme_index(lexeme);
+    if (index == NULL_VALUE) {
+        fprintf(stderr, COLOR_RED "<Error> Lexeme not found in the table\n" COLOR_RESET);
+        exit(EXIT_FAILURE);
+    }
 }
 
 void print_lexeme_table() {

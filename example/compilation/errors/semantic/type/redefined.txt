@@ -1,0 +1,11 @@
+PROG
+
+type date : struct  {
+    jour : int;
+    mois : int;
+    annee : float;
+} fstruct;
+
+type date : struct  {
+    annee : float;
+} fstruct;

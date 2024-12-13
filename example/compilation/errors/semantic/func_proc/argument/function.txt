@@ -1,0 +1,23 @@
+PROG
+
+var x:bool;
+
+func one_int() -> int {
+    return 1;
+}
+
+func one_float() -> float {
+    return 1.0;
+}
+
+func main(a:int, b:float) -> int {
+    return 0;
+}
+
+one_int();
+main(1, 1.0);
+main(one_int(), 2.0);
+
+// Error
+main(one_float(), one_float());         // test2 returns a float, not an int
+main(one_int() + true, one_float());    // (test() + true) is a UNKNOWN_TYPE, not an int

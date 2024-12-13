@@ -3,16 +3,18 @@
 
 // Define the node types
 #define FOREACH_NODE_TYPE(NODE)             \
+    NODE(A_INTEGER_LITERAL)                 \
+    NODE(A_FLOAT_LITERAL)                   \
+    NODE(A_BOOLEAN_LITERAL)                 \
+    NODE(A_CHARACTER_LITERAL)               \
+    NODE(A_STRING_LITERAL)                  \
+    NODE(A_FORMAT_STRING)                   \
     NODE(A_PROGRAM)                         \
     NODE(A_CONDITION)                       \
     NODE(A_AND_CONDITION)                   \
     NODE(A_OR_CONDITION)                    \
     NODE(A_NOT_CONDITION)                   \
     NODE(A_NOT_EXPRESSION)                  \
-    NODE(A_ADDITION)                        \
-    NODE(A_SUBTRACTION)                     \
-    NODE(A_MULTIPLICATION)                  \
-    NODE(A_DIVISION)                        \
     NODE(A_EQUAL_OP)                        \
     NODE(A_NOT_EQUAL_OP)                    \
     NODE(A_LESS_THAN_OP)                    \
@@ -32,16 +34,11 @@
     NODE(A_TYPE_STRUCT_DECLARATION)         \
     NODE(A_STRUCT_FIELD_LIST)               \
     NODE(A_STRUCT_FIELD)                    \
-    NODE(A_INTEGER_LITERAL)                 \
-    NODE(A_FLOAT_LITERAL)                   \
-    NODE(A_BOOLEAN_LITERAL)                 \
-    NODE(A_CHARACTER_LITERAL)               \
-    NODE(A_STRING_LITERAL)                  \
     NODE(A_IDENTIFIER)                      \
     NODE(A_STATEMENT_LIST)                  \
     NODE(A_ASSIGNMENT_STATEMENT)            \
     NODE(A_LOOP_STATEMENT)                  \
-    NODE(A_FUNCTION_CALL_STATEMENT)         \
+    NODE(A_FUNC_PROC_CALL_STATEMENT)        \
     NODE(A_RETURN_STATEMENT)                \
     NODE(A_VARIABLE_ASSIGNMENT)             \
     NODE(A_ARRAY_ASSIGNMENT)                \
@@ -52,13 +49,9 @@
     NODE(A_ARRAY_ACCESS)                    \
     NODE(A_ARRAY_INDEX_LIST)                \
     NODE(A_ARRAY_INDEX)                     \
-    NODE(A_ARRAY_FIELD_ACCESS)              \
-    NODE(A_STRUCT_ARRAY_ACCESS)             \
     NODE(A_STRUCT_FIELD_ACCESS)             \
     NODE(A_PRINT_STATEMENT)                 \
     NODE(A_INPUT_STATEMENT)                 \
-    NODE(A_ASSIGNABLE_ENTITY)               \
-    NODE(A_ASSIGNABLE_ENTITY_LIST)          \
     NODE(A_ARGUMENT_LIST)                   \
     NODE(A_ARGUMENT)                        \
     NODE(A_PARAMETER_LIST)                  \
@@ -77,5 +70,28 @@ static const char *NodeTypeStrings[] = {
     FOREACH_NODE_TYPE(GENERATE_STRING)
 };
 #undef GENERATE_STRING
+
+
+static inline char node_type_to_operator_char(NodeType type) {
+    switch (type) {
+        case A_ADD_OP: return '+';
+        case A_SUB_OP: return '-';
+        case A_MUL_OP: return '*';
+        case A_DIV_OP: return '/';
+        default: return '\0';
+    }
+}
+
+static inline const char *node_type_to_comparison_operator(NodeType type) {
+    switch (type) {
+        case A_EQUAL_OP: return "==";
+        case A_NOT_EQUAL_OP: return "!=";
+        case A_LESS_THAN_OP: return "<";
+        case A_GREATER_THAN_OP: return ">";
+        case A_LESS_EQUAL_OP: return "<=";
+        case A_GREATER_EQUAL_OP: return ">=";
+        default: return "\0";
+    }
+}
 
 #endif // __NODE_TYPE_H__

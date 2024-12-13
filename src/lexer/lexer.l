@@ -81,19 +81,20 @@ letter [a-zA-Z]
 
 
 "true" { 
-    yylval.ival = 1;
+    yylval.lexicographic_index = insert_lexeme("true");
     error.column += yyleng;
     return BOOLEAN_VALUE; 
 }
 
 "false" { 
-    yylval.ival = 0;
+    yylval.lexicographic_index = insert_lexeme("false");
     error.column += yyleng;
     return BOOLEAN_VALUE; 
 }
 
-"'"{letter}"'" { 
-    yylval.ival = yytext[1] - 'a';
+"'"[^\"]"'" { 
+    char lexeme[4] = { '\'', yytext[1], '\'', '\0' };
+    yylval.lexicographic_index = insert_lexeme(lexeme);
     error.column += yyleng;
     return CHARACTER_VALUE; 
 }
@@ -105,22 +106,20 @@ letter [a-zA-Z]
 }
 
 {number}+"."{number}* { 
-    yylval.fval = atof(yytext);
+    yylval.lexicographic_index = insert_lexeme(yytext);
     error.column += yyleng;
     return FLOAT_VALUE; 
 }
 
 0|[1-9][0-9]* { 
-    yylval.ival = atoi(yytext);
+    yylval.lexicographic_index = insert_lexeme(yytext);
     error.column += yyleng;
     return INTEGER_VALUE; 
 }
 
 {letter}+({letter}|{number}|"_"|"-")* {
-    yylval.ival = yytext[0] - 'a';
-    error.column += yyleng;
-    
     yylval.lexicographic_index = insert_lexeme(yytext);
+    error.column += yyleng;
     return IDENTIFIER;
 }
 

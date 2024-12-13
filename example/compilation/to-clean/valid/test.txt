@@ -1,0 +1,18 @@
+PROG 
+
+proc p3(c : int) {
+    var x : int;
+    proc x() {
+        
+    }
+
+    func x(c : float) -> int {
+        return 0;
+    }
+
+
+
+    c := x(3.14);
+} 
+
+p3(42);
