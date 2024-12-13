@@ -176,3 +176,11 @@ graph TD
     ParamDetails --> Param1[Paramètre 1: Numéro, Type]
     ParamDetails --> Param2[Paramètre 2: Numéro, Type]
 ```
+
+---
+
+## Error Messages
+
+1- Title Line: Changed to "... at %s".
+2- Context: context about the issue.
+3- Advice: guidance to solve the issue.

@@ -66,12 +66,15 @@ void check_struct_assignment(Node *structure, Node *expression) {
     // Step 3: Check type compatibility
     if (struct_field_type != expression_type) {
         set_error_type(&error, TYPE_ERROR);
-        set_error_message(&error, "Type mismatch: Cannot assign expression of type '%s' to struct field '%s' of type '%s'.",
-                    (expression_type == NULL_VALUE) ? "UNKNOWN" : get_lexeme(expression_type),
-                    (struct_field_type == NULL_VALUE) ? "UNKNOWN" : get_lexeme(structure->index_lexicographic),
-                    (struct_field_type == NULL_VALUE) ? "UNKNOWN" : get_lexeme(struct_field_type)
-                );
-
+        set_error_message(&error, 
+            "Type mismatch at %s.\n"
+            "  Cannot assign expression of type '%s' to struct field '%s' of type '%s'.\n"
+            "  Ensure the expression type matches the expected type for the struct field.\n",
+            get_formatted_location(),
+            (expression_type == NULL_VALUE) ? "UNKNOWN" : get_lexeme(expression_type),
+            (struct_field_type == NULL_VALUE) ? "UNKNOWN" : get_lexeme(structure->index_lexicographic),
+            (struct_field_type == NULL_VALUE) ? "UNKNOWN" : get_lexeme(struct_field_type)
+        );
         yerror(error);
         return;
     }
