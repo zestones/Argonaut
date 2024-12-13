@@ -5,4 +5,5 @@ print("Hello %d, here is %s", 42, "world");
 
 // Error 
 print("Hello %d", 42, "extra");             // Error: Too many arguments
+print("Hello %d, here is %s", 42);          // Error: Too few arguments
 print("Hello %d, here is %f", 42, "oops");  // Error: Type mismatch
