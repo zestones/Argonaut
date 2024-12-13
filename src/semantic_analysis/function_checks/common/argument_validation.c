@@ -65,7 +65,13 @@ void validate_argument_count(Node *argument_list, int parameter_count) {
     while (current_argument != NULL) {
         if (argument_index >= parameter_count) {
             set_error_type(&error, SEMANTIC_ERROR);
-            set_error_message(&error, "Function expects %d arguments, but more were provided.", parameter_count);
+            set_error_message(&error, 
+                "Function expects %d arguments at %s.\n"
+                "  However, more arguments were provided.\n"
+                "  Ensure the correct number of arguments are passed to the function.\n",
+                parameter_count,
+                get_formatted_location()
+            );
             yerror(error);
             break;
         }
@@ -76,7 +82,14 @@ void validate_argument_count(Node *argument_list, int parameter_count) {
 
     if (argument_index < parameter_count) {
         set_error_type(&error, SEMANTIC_ERROR);
-        set_error_message(&error, "Function expects %d arguments, but only %d were provided.", parameter_count, argument_index);
+        set_error_message(&error, 
+            "Function expects %d arguments at %s.\n"
+            "  However, only %d arguments were provided.\n"
+            "  Ensure the correct number of arguments are passed to the function.\n",
+            parameter_count, 
+            get_formatted_location(),
+            argument_index
+        );
         yerror(error);
     }
 }

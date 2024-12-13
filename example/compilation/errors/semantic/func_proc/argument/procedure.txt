@@ -20,3 +20,4 @@ main(test2(), 2.0);
 main();
 main(x, 1.0);
 main(test(), 2.0);
+main(test(), 2.0, 3.0);
