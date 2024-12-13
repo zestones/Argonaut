@@ -50,11 +50,13 @@ char *format_array_access(Node *array_access) {
 
         if (current_node->type == A_STRUCT_FIELD_ACCESS) {
             // Concatenate the struct field access lexeme
-            size_t new_size = strlen(lexeme) + 2 + strlen(get_lexeme(current_node->index_lexicographic)) + 1;
+            char *field_lexeme = format_struct_access(current_node);
+            size_t new_size = strlen(lexeme) + strlen(field_lexeme) + 2;
             lexeme = (char *)realloc(lexeme, new_size);
- 
+
             strcat(lexeme, ".");
-            strcat(lexeme, get_lexeme(current_node->index_lexicographic));
+            strcat(lexeme, field_lexeme);
+            free(field_lexeme);
         }
 
         current_node = current_node->sibling;
