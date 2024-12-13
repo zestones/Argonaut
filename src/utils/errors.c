@@ -43,6 +43,14 @@ void yerror(const Error error) {
     // exit(EXIT_FAILURE);
 }
 
+char *get_current_filename() {
+    return error.filename;
+}
+
+int get_current_line() {
+    return error.line;
+}
+
 void set_error_message(Error *error, const char *format, ...) {
     va_list args;
     va_start(args, format);

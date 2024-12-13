@@ -13,7 +13,7 @@ type x : struct
 
 
 proc x(a: float) {
-    var my_tab : x;
-    my_tab.z := 1;
+    var z : x;
+    z[0] := 1;
     // a := 3.14;
 }

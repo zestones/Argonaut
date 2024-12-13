@@ -29,6 +29,7 @@ typedef struct {
     int line;            // The line number where the error occurred.
     int column;          // The column number where the error occurred.
     char message[256];   // The error message.
+    char *filename;      // The name of the file where the error occurred.
 } Error;
 
 /**
@@ -61,6 +62,20 @@ void yywarn(const Error error);
  * @param error The Error struct containing error details.
  */
 void yerror(const Error error);
+
+/**
+ * @brief Returns the name of the current file.
+ * 
+ * @return The name of the current file.
+ */
+char *get_current_filename();
+
+/**
+ * @brief Returns the current line number.
+ * 
+ * @return The current line number.
+ */
+int get_current_line();
 
 /**
  * @brief Sets the error message of the provided Error struct.

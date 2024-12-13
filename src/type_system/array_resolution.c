@@ -14,9 +14,11 @@ static int resolve_array_declaration_type(Node *array_access) {
             
             set_error_type(&error, SEMANTIC_ERROR);
             set_error_message(&error, 
-                            "Array access on non-array type.\n"
+                            "Array access on non-array type at %s:%d.\n"
                             "  In expression: '%s[?]'\n"
                             "  '%s' is not an array, but is of type '%s'.\n",
+                            get_current_filename(),
+                            get_current_line(),
                             get_lexeme(array_access->index_declaration), 
                             get_lexeme(array_access->index_declaration),
                             get_lexeme(index_lexeme_declaration_type)
