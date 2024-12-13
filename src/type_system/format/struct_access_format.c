@@ -18,7 +18,16 @@ char *format_struct_access(Node *struct_access) {
             strcat(lexeme, ".");
             strcat(lexeme, get_lexeme(current_node->index_lexicographic));
         }
+        else if (current_node->type == A_ARRAY_ACCESS) {
+            char *array_access = format_array_access(current_node);
+            size_t new_size = strlen(lexeme) + strlen(array_access) + 2;
+            lexeme = (char *)realloc(lexeme, new_size);
 
+            strcat(lexeme, ".");
+            strcat(lexeme, array_access);
+            free(array_access);
+        }
+        
         current_node = current_node->child;
     }
 

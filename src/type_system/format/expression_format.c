@@ -45,7 +45,7 @@ char *format_expression(Node *expression) {
             return format_array_access(expression);
 
         case A_STRUCT_FIELD_ACCESS: 
-            return get_lexeme(expression->index_lexicographic);
+            return format_struct_access(expression);
 
         case A_FUNC_PROC_CALL_STATEMENT: 
             return format_func_proc_call(expression); 

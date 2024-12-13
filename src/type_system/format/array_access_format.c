@@ -47,9 +47,7 @@ char *format_array_access(Node *array_access) {
             strcat(lexeme, index_list_lexeme);
             free(index_list_lexeme);
         }
-
-        if (current_node->type == A_STRUCT_FIELD_ACCESS) {
-            // Concatenate the struct field access lexeme
+        else if (current_node->type == A_STRUCT_FIELD_ACCESS) {
             char *field_lexeme = format_struct_access(current_node);
             size_t new_size = strlen(lexeme) + strlen(field_lexeme) + 2;
             lexeme = (char *)realloc(lexeme, new_size);
