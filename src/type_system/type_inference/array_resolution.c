@@ -1,6 +1,7 @@
 #include "../../symbol_table/representation/representation_table.h" 
 #include "../../symbol_table/declaration/declaration_table.h" 
 #include "../../lexer/lexeme_table.h"
+#include "../format/formatting.h"
 #include "../../utils/utils.h"
 #include "type_inference.h"
 
@@ -14,13 +15,14 @@ static int resolve_array_declaration_type(Node *array_access) {
             
             set_error_type(&error, SEMANTIC_ERROR);
             set_error_message(&error, 
-                            "Array access on non-array type at %s.\n"
-                            "  In expression: '%s[?]'\n"
-                            "  '%s' is not an array, but is of type '%s'.\n",
-                            get_formatted_location(),
-                            get_lexeme(array_access->index_declaration), 
-                            get_lexeme(array_access->index_declaration),
-                            get_lexeme(index_lexeme_declaration_type)
+                "Array access error at %s.\n"
+                "  The expression '%s' attempts to access an array, but '%s' is not an array.\n"
+                "  '%s' is of type '%s', which is incompatible with array access.\n",
+                get_formatted_location(),
+                format_array_access(array_access), 
+                get_lexeme(array_access->index_declaration),
+                get_lexeme(array_access->index_declaration),
+                get_lexeme(index_lexeme_declaration_type)
             );
             yerror(error);
             return NULL_VALUE;
