@@ -36,8 +36,14 @@ void check_func_prototype(int index_lexeme_lexicographic, Node *return_statement
 
     if (base_type != expression_type) {
         set_error_type(&error, TYPE_ERROR);
-        set_error_message(&error, "Type mismatch: Function returned value has type '%s' but should be of type '%s'.",
-                    (expression_type == NULL_VALUE) ? "UNKNOWN" : get_lexeme(expression_type), get_lexeme(base_type));
+        set_error_message(&error, 
+            "Type mismatch for function return value at %s.\n"
+            "  Function returned value has type '%s', but it should be of type '%s'.\n"
+            "  Ensure the function return type matches the expected type.\n",
+            get_formatted_location(),
+            (expression_type == NULL_VALUE) ? "UNKNOWN" : get_lexeme(expression_type), 
+            get_lexeme(base_type)
+        );
         yerror(error);
         return;
     }
