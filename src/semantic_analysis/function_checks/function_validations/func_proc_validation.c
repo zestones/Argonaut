@@ -13,8 +13,13 @@ int get_func_proc_declaration_index(int index_lexeme_lexicographic) {
 void check_func_proc_definition(int index_lexeme_lexicographic) {
     if (get_func_proc_declaration_index(index_lexeme_lexicographic) == NULL_VALUE) {
         set_error_type(&error, SEMANTIC_ERROR);
-        set_error_message(&error, "Function or procedure '%s' is not defined.", get_lexeme(index_lexeme_lexicographic));
-
+        set_error_message(&error, 
+            "Undeclared function or procedure at %s.\n"
+            "  The function or procedure '%s' is not defined in the current scope.\n"
+            "  Ensure that the function or procedure is declared before usage.\n",
+            get_formatted_location(),
+            get_lexeme(index_lexeme_lexicographic)
+        );
         yerror(error);
     }
 }
@@ -51,6 +56,8 @@ void check_func_prototype(int index_lexeme_lexicographic, Node *return_statement
 
 void check_func_proc_argument_list(int index_lexeme_lexicographic, Node *argument_list) {
     int index_declaration = get_func_proc_declaration_index(index_lexeme_lexicographic);
+    if (index_declaration == NULL_VALUE) return; // do not check undeclared functions
+
     Nature nature = get_declaration_nature(index_declaration);
 
     int parameter_count = resolve_func_proc_parameter_count(index_lexeme_lexicographic, nature);
