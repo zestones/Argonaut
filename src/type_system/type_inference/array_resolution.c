@@ -54,6 +54,7 @@ int resolve_array_access_type(Node *array_access) {
             // Resolve the field type in the struct
             if (get_declaration_nature(index_type_declaration) != TYPE_STRUCT) {
                 set_error_type(&error, SEMANTIC_ERROR);
+                // TODO: error not reproducible ?
                 set_error_message(&error, "Field access is invalid as the type is not a struct.");
                 yerror(error);
                 return NULL_VALUE;

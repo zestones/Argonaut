@@ -30,6 +30,7 @@ int resolve_condition_type(Node *condition) {
             if (left_type != A_INTEGER_LITERAL && left_type != A_FLOAT_LITERAL &&
                 left_type != A_BOOLEAN_LITERAL && left_type != A_CHARACTER_LITERAL) {
                 set_error_type(&error, TYPE_ERROR);
+                // TODO: Error impossible to trigger ? Handled by grammar ?
                 set_error_message(
                     &error,
                     "Invalid operand type in condition: '%s'.",
@@ -66,6 +67,7 @@ int resolve_condition_type(Node *condition) {
 
             if (left_type != A_BOOLEAN_LITERAL || right_type != A_BOOLEAN_LITERAL) {
                 set_error_type(&error, TYPE_ERROR);
+                // TODO: Error impossible to trigger ? Handled by grammar ?
                 set_error_message(
                     &error,
                     "Logical operators ('AND', 'OR') require boolean operands, but received '%s' and '%s'.",
@@ -84,6 +86,7 @@ int resolve_condition_type(Node *condition) {
 
             if (operand_type != A_BOOLEAN_LITERAL) {
                 set_error_type(&error, TYPE_ERROR);
+                // TODO: Error impossible to trigger ? Handled by grammar ?
                 set_error_message(
                     &error,
                     "NOT operator requires a boolean operand, but received '%s'.",
@@ -97,11 +100,15 @@ int resolve_condition_type(Node *condition) {
         }
 
         default: {
+            // ! should never reach this point
             set_error_type(&error, SEMANTIC_ERROR);
             set_error_message(
                 &error,
-                "Unexpected or unhandled condition type encountered: '%s'.",
-                get_lexeme(condition->type)
+                "Unexpected condition type '%s' at %s.\n"
+                "  The encountered condition type is not handled or supported.\n"
+                "  Please check for valid condition types or ensure proper handling.\n",
+                get_lexeme(condition->type),
+                get_formatted_location()
             );
             yerror(error);
             return NULL_VALUE;

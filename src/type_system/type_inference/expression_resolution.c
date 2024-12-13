@@ -51,6 +51,7 @@ int resolve_expression_type(Node *expression) {
             // Only numeric types are allowed for arithmetic operations
             if (left_type != A_INTEGER_LITERAL && left_type != A_FLOAT_LITERAL) {
                 set_error_type(&error, TYPE_ERROR);
+                // TODO: impossible to trigger ? Handled by previous checks ?
                 set_error_message(
                     &error,
                     "Invalid type for arithmetic operation '%s': operand type '%s'.",
@@ -74,11 +75,15 @@ int resolve_expression_type(Node *expression) {
             return resolve_func_proc_return_type(expression);
 
         default: {
+            // ! should never reach this point
             set_error_type(&error, SEMANTIC_ERROR);
             set_error_message(
                 &error,
-                "Unexpected or unhandled expression type encountered: '%s'.",
-                get_lexeme(expression->type)
+                "Unexpected expression type '%s' at %s.\n"
+                "  The encountered expression type is not handled or supported.\n"
+                "  Please verify the expression type or ensure proper handling.\n",
+                get_lexeme(expression->type),
+                get_formatted_location()
             );
             yerror(error);
             return NULL_VALUE;
