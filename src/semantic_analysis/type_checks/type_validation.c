@@ -15,8 +15,14 @@ int get_arr_struct_declaration_index(int index_type_lexicographic) {
 void check_base_type(int index_lexeme_lexicographic) {
        if(!is_declaration_base_type(index_lexeme_lexicographic)) {
         set_error_type(&error, TYPE_ERROR);
-        set_error_message(&error, "Type '%s' should be a base type (int, float, bool, char).", get_lexeme(index_lexeme_lexicographic));
-
+        set_error_message(&error, 
+            "Invalid type '%s' at %s.\n"
+            "  The type '%s' should be a base type (int, float, bool, char).\n"
+            "  Ensure the type is one of the supported base types.\n",
+            get_lexeme(index_lexeme_lexicographic),
+            get_formatted_location(),
+            get_lexeme(index_lexeme_lexicographic)
+        );
         yerror(error);
     }   
 }
