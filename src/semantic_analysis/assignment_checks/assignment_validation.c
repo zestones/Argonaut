@@ -72,7 +72,7 @@ void check_struct_assignment(Node *structure, Node *expression) {
             "  Ensure the expression type matches the expected type for the struct field.\n",
             get_formatted_location(),
             (expression_type == NULL_VALUE) ? "UNKNOWN" : get_lexeme(expression_type),
-            (struct_field_type == NULL_VALUE) ? "UNKNOWN" : get_lexeme(structure->index_lexicographic),
+            (struct_field_type == NULL_VALUE) ? "UNKNOWN" : format_struct_access(structure),
             (struct_field_type == NULL_VALUE) ? "UNKNOWN" : get_lexeme(struct_field_type)
         );
         yerror(error);

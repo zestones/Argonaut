@@ -8,6 +8,7 @@
 #include "../../ast/ast.h"
 #include "../../symbol_table/declaration/declaration_table.h" 
 
+char *format_struct_access(Node *struct_access);
 
 char *format_array_access(Node *array_access);
 

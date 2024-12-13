@@ -2,6 +2,7 @@
 #include "../../symbol_table/declaration/declaration_table.h" 
 #include "../../lexer/lexeme_table.h"
 #include "../../data/region_table.h"
+#include "../format/formatting.h"
 #include "type_inference.h"
 
 static int resolve_struct_declaration(Node *current_node) {
@@ -51,10 +52,11 @@ int resolve_field_access(Node *current_node, int current_type_declaration) {
         set_error_message(
             &error,
             "Field access error at %s.\n"
-            "  The field '%s' does not exist in the struct.\n"
+            "  The field '%s' does not exist in the struct '%s'.\n"
             "  Ensure the field name is correct and defined within the struct type.\n",
             get_formatted_location(),
-            get_lexeme(index_lexicographic)
+            get_lexeme(index_lexicographic),
+            get_lexeme(get_declaration_lexicographic_index(current_type_declaration))
         );
         yerror(error);
         return NULL_VALUE;
