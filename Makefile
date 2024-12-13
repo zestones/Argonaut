@@ -25,7 +25,7 @@ PARSER = parser.o
 SEMANTIC_CHECKS = assignment_validation.o print_validation.o input_validation.o func_proc_validation.o argument_validation.o format_specifiers.o condition_validation.o scope_validation.o type_validation.o variable_validation.o
 SYMBOL_TABLE = declaration_table.o representation_table.o hash_table.o
 TABLE_MANAGEMENT = variable_manager.o array_manager.o func_proc_manager.o structure_manager.o
-TYPE_SYSTEM = structure_resolution.o func_proc_resolution.o array_resolution.o expression_resolution.o condition_resolution.o array_access_format.o expression_format.o
+TYPE_SYSTEM = structure_resolution.o func_proc_resolution.o array_resolution.o expression_resolution.o condition_resolution.o array_access_format.o expression_format.o func_proc_format.o
 DATA = region_table.o region_stack.o
 AST = ast.o lcrs.o
 UTILS = stack.o errors.o scope_tracker.o
@@ -177,6 +177,9 @@ array_access_format.o: src/type_system/format/array_access_format.c
 
 expression_format.o: src/type_system/format/expression_format.c
 	$(CC) -c src/type_system/format/expression_format.c
+
+func_proc_format.o: src/type_system/format/func_proc_format.c
+	$(CC) -c src/type_system/format/func_proc_format.c
 
 # ----------- #
 # DATA

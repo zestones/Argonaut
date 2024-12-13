@@ -39,7 +39,7 @@ char *resolve_expression_lexeme(Node *expression) {
             return get_lexeme(expression->index_lexicographic);
 
         case A_FUNC_PROC_CALL_STATEMENT: 
-            return get_lexeme(expression->index_lexicographic);
+            return format_func_proc_call(expression); 
 
         default: {
             set_error_type(&error, SEMANTIC_ERROR);
