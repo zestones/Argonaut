@@ -82,6 +82,16 @@ static inline char node_type_to_operator_char(NodeType type) {
     }
 }
 
-
+static inline const char *node_type_to_comparison_operator(NodeType type) {
+    switch (type) {
+        case A_EQUAL_OP: return "==";
+        case A_NOT_EQUAL_OP: return "!=";
+        case A_LESS_THAN_OP: return "<";
+        case A_GREATER_THAN_OP: return ">";
+        case A_LESS_EQUAL_OP: return "<=";
+        case A_GREATER_EQUAL_OP: return ">=";
+        default: return "\0";
+    }
+}
 
 #endif // __NODE_TYPE_H__

@@ -43,8 +43,11 @@ int resolve_condition_type(Node *condition) {
                 set_error_type(&error, TYPE_ERROR);
                 set_error_message(
                     &error,
-                    "Invalid comparison: BOOLEAN LITERAL cannot be compared with '%s' operator.",
-                    NodeTypeStrings[operator]
+                    "Invalid comparison at %s.\n"
+                    "  Boolean cannot be compared with '%s' operator.\n"
+                    "  Ensure the operator is used with compatible types.\n",
+                    get_formatted_location(),
+                    node_type_to_comparison_operator(operator)
                 );
                 yerror(error);
                 return NULL_VALUE;
