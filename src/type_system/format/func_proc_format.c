@@ -12,7 +12,7 @@ static char *format_argument_list(Node *argument_list) {
     while (current_node != NULL) {
         if (current_node->type == A_ARGUMENT) {
             // Allocate or reallocate memory for each new lexeme part
-            char *expression_lexeme = resolve_expression_lexeme(current_node->child);
+            char *expression_lexeme = format_expression(current_node->child);
             size_t new_size = strlen(lexeme) + strlen(expression_lexeme) + 3; // +3 for comma, space and expression
             lexeme = (char *)realloc(lexeme, new_size);
 

@@ -5,7 +5,6 @@
 #include "../../symbol_table/declaration/declaration_table.h" 
 
 // EXPRESSION RESOLUTION
-char *resolve_expression_lexeme(Node *expression);
 int resolve_expression_type(Node *expression);
 
 

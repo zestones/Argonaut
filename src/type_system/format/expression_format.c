@@ -5,7 +5,24 @@
 #include "formatting.h"
 
 
-char *resolve_expression_lexeme(Node *expression) {
+char *format_arithmetic_op(Node *expression) {
+    char *lexeme = (char *)malloc(MAX_LEXEME_LENGTH * sizeof(char));
+    strcpy(lexeme, "(");
+    strcat(lexeme, format_expression(expression->child));
+    strcat(lexeme, " ");
+
+    // Convert the operator char to a string
+    char op[2] = {to_op_char(expression->type), '\0'};
+    strcat(lexeme, op);
+
+    strcat(lexeme, " ");
+    strcat(lexeme, format_expression(expression->child->sibling));
+    strcat(lexeme, ")");
+
+    return lexeme;
+}
+
+char *format_expression(Node *expression) {
     switch (expression->type) {
         case A_IDENTIFIER:
             return get_lexeme(expression->index_lexicographic);
@@ -21,15 +38,7 @@ char *resolve_expression_lexeme(Node *expression) {
         case A_SUB_OP:
         case A_MUL_OP:
         case A_DIV_OP: {
-            char *lexeme = (char *)malloc(MAX_LEXEME_LENGTH * sizeof(char));
-            strcpy(lexeme, "(");
-            strcat(lexeme, resolve_expression_lexeme(expression->child));
-            strcat(lexeme, " ");
-            strcat(lexeme, get_lexeme(expression->index_lexicographic));
-            strcat(lexeme, " ");
-            strcat(lexeme, resolve_expression_lexeme(expression->child->sibling));
-            strcat(lexeme, ")");
-            return lexeme;
+            return format_arithmetic_op(expression);
         }
 
         case A_ARRAY_ACCESS:

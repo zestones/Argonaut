@@ -13,7 +13,7 @@ static char *format_array_index_list(Node *array_index_list) {
     while (current_node != NULL) {
         if (current_node->type == A_ARRAY_INDEX) {
             // Allocate or reallocate memory for each new lexeme part
-            char *index_lexeme = resolve_expression_lexeme(current_node->child);
+            char *index_lexeme = format_expression(current_node->child);
             size_t new_size = strlen(lexeme) + strlen(index_lexeme) + 5; // +5 for brackets, comma, space and index
             lexeme = (char *)realloc(lexeme, new_size);
 

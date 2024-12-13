@@ -11,7 +11,7 @@
 
 char *format_array_access(Node *array_access);
 
-char *resolve_expression_lexeme(Node *expression);
+char *format_expression(Node *expression);
 
 char *format_func_proc_call(Node *func_proc_call);
 

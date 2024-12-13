@@ -71,4 +71,14 @@ static const char *NodeTypeStrings[] = {
 };
 #undef GENERATE_STRING
 
+static inline char to_op_char(NodeType type) {
+    switch (type) {
+        case A_ADD_OP: return '+';
+        case A_SUB_OP: return '-';
+        case A_MUL_OP: return '*';
+        case A_DIV_OP: return '/';
+        default: return '\0';
+    }
+}
+
 #endif // __NODE_TYPE_H__
