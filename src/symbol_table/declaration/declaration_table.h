@@ -233,6 +233,22 @@ static inline char *nature_to_string(Nature nature)
     }
 }
 
+static inline char *nature_to_string_short(Nature nature)
+{
+    switch (nature)
+    {
+        case TYPE_BASE: return "base";
+        case TYPE_VAR:  return "variable";
+        case TYPE_STRUCT: return "structure";
+        case TYPE_ARRAY: return "array";
+        case TYPE_PROC: return "procedure";
+        case TYPE_FUNC: return "function";
+        case TYPE_PARAM: return "parameter";
+
+        default: return "UNKNOWN";
+    }
+}
+
 /**
  * @brief Checks if a declaration is a base type.
  * 

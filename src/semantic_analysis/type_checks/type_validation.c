@@ -40,8 +40,13 @@ void check_type_redefinition(int index_lexeme_lexicographic, Nature nature) {
     
     if (index_lexeme_declaration != NULL_VALUE && peek_region() == get_declaration_region(index_lexeme_declaration)) {
         set_error_type(&error, TYPE_ERROR);
-        set_error_message(&error, "Redefinition of the %s : '%s'.", 
-            nature_to_string(nature), 
+        set_error_message(&error, 
+            "Redefinition of the %s at %s.\n"
+            "  The %s '%s' has already been defined in the current scope.\n"
+            "  Consider renaming or modifying the existing definition to avoid conflict.\n",
+            nature_to_string_short(nature),
+            get_formatted_location(),
+            nature_to_string_short(nature),
             get_lexeme(index_lexeme_lexicographic)
         );
 
