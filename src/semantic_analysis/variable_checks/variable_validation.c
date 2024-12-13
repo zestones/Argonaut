@@ -18,7 +18,8 @@ void check_variable_definition(int index_lexeme_lexicographic) {
         set_error_type(&error, SEMANTIC_ERROR);
         set_error_message(&error, 
             "Undeclared variable at %s.\n"
-            "  The variable '%s' is used before being defined or declared.\n",
+            "  The variable '%s' is used before being defined or declared.\n"
+            "  Ensure the variable is declared in the correct scope before use.\n",
             get_formatted_location(),
             get_lexeme(index_lexeme_lexicographic)
         );
