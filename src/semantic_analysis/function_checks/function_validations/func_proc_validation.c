@@ -28,8 +28,15 @@ void check_func_proc_redefinition(int index_lexeme_lexicographic, char *type) {
     int index_func_proc_declaration = get_func_proc_declaration_index(index_lexeme_lexicographic);
     if (index_func_proc_declaration != NULL_VALUE && peek_region() == get_declaration_region(index_func_proc_declaration)) {
         set_error_type(&error, SEMANTIC_ERROR);
-        set_error_message(&error, "Redefinition of %s '%s'.", type, get_lexeme(index_lexeme_lexicographic));
-
+        set_error_message(&error, 
+            "Redefinition of %s '%s' at %s.\n"
+            "  This identifier '%s' has already been defined.\n"
+            "  Consider renaming or modifying the existing definition.\n",
+            type,
+            get_lexeme(index_lexeme_lexicographic),
+            get_formatted_location(),
+            get_lexeme(index_lexeme_lexicographic)
+        );
         yerror(error);
     }
 }
