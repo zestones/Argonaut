@@ -13,7 +13,14 @@ static int resolve_struct_declaration(Node *current_node) {
         
         if (get_declaration_nature(struct_index_declaration) != TYPE_STRUCT) {
             set_error_type(&error, SEMANTIC_ERROR);
-            set_error_message(&error, "Field access is only allowed on struct types.");
+            set_error_message(&error, 
+                "Field access error at %s.\n"
+                "  The entity '%s' is not a struct but is of type '%s'.\n"
+                "  Ensure that the entity is a struct before attempting to access its fields.\n",
+                get_formatted_location(),
+                get_lexeme(current_node->index_lexicographic),
+                get_lexeme(get_declaration_description(current_node->index_declaration))
+            );
             yerror(error);
             return NULL_VALUE;
         }
@@ -71,7 +78,13 @@ int resolve_field_access(Node *current_node, int current_type_declaration) {
     
     if (get_declaration_nature(field_declaration_index) != TYPE_STRUCT && current_node->child != NULL) {
         set_error_type(&error, SEMANTIC_ERROR);
-        set_error_message(&error, "Field '%s' is not a struct, so further field access is invalid.", get_lexeme(index_lexicographic));
+        set_error_message(&error, 
+            "Field access error at %s.\n"
+            "  The entity '%s' is not a struct, so field access is not possible.\n"
+            "  Verify that the entity is a struct before attempting to access its fields.\n",
+            get_formatted_location(),
+            get_lexeme(index_lexicographic)
+        );
         yerror(error);
         return NULL_VALUE;
     }

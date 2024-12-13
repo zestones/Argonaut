@@ -1,0 +1,23 @@
+PROG
+
+type date : struct  {
+    jour : int;
+    mois : int;
+    annee : float;
+} fstruct;
+
+type personne : struct  {
+    numero : int;
+    naissance : date;
+    age : int;
+    taille : float;
+} fstruct;
+
+var p : personne;
+var x : int;
+
+p.naissance.jour := 5;
+
+// Error
+p.numero.annee.z := 1997.0; // p.e does not exist
+x.annee := 1997.0;         // x is not a struct but an int
