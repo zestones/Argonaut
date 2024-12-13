@@ -17,7 +17,11 @@ var p : personne;
 var x : int;
 var z : x;
 
+type my_tab : array[0: 10] of int;
+var y : my_tab;
+
 p.naissance.jour := 5;
 
 // Error
 z[0] := 1;
+y[0].jour := 1; // y[0] is an int, not a struct
