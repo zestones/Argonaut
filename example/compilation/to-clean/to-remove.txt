@@ -1,0 +1,7 @@
+PROG
+
+type arr : array[0:5] of int;
+
+var x : arr;
+x := 5;
+

@@ -134,7 +134,7 @@ declaration: variable_declaration { $$ = $1; }
 
 variable_declaration: VARIABLE IDENTIFIER TWO_POINTS type SEMICOLON { 
                         declaration_variable_start($2, $4);
-                        $$ = construct_node(A_VARIABLE_DECLARATION, $2, get_arr_struct_declaration_index($4));
+                        $$ = construct_node(A_VARIABLE_DECLARATION, $2, find_declaration_index_by_nature($2, TYPE_VAR));
                     }
 ;
 
