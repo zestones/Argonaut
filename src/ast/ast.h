@@ -26,7 +26,7 @@ char* format_ast(Node* node);
  * 
  * @param ast The root of the AST to print.
  */
-void print_ast(AST ast);
+void fprintf_ast(FILE* out, AST ast);
 
 /**
  * @brief Frees all memory associated with the AST.

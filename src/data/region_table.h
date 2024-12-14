@@ -125,7 +125,7 @@ void export_region_table(const char* filename);
  *
  * This function prints the current state of the region table.
  */
-void print_region_table();
+void fprintf_region_table();
 
 
 #endif // __REGION_TABLE_H__

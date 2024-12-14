@@ -223,7 +223,7 @@ void export_declaration_table(const char* filename) {
                  "END_DECLARATION_TABLE");
 }
 
-void print_declaration_table() {
+void fprintf_declaration_table(FILE* out) {
     const int col_width_index = 10;
     const int col_width_nature = 15;
     const int col_width_next = 10;
@@ -231,16 +231,16 @@ void print_declaration_table() {
     const int col_width_description = 15;
     const int col_width_execution = 15;
 
-    print_table_title(stdout, "Declaration Table");
-    print_table_separator(stdout, 6, col_width_index, col_width_nature, col_width_next, col_width_region, col_width_description, col_width_execution);
-    print_table_header(stdout, 6, col_width_index, "Index", col_width_nature, "Nature", col_width_next, "Suivant", col_width_region, "Région", col_width_description, "Description", col_width_execution, "Exécution");
-    print_table_separator(stdout, 6, col_width_index, col_width_nature, col_width_next, col_width_region, col_width_description, col_width_execution);
+    print_table_title(out, "Declaration Table");
+    print_table_separator(out, 6, col_width_index, col_width_nature, col_width_next, col_width_region, col_width_description, col_width_execution);
+    print_table_header(out, 6, col_width_index, "Index", col_width_nature, "Nature", col_width_next, "Suivant", col_width_region, "Région", col_width_description, "Description", col_width_execution, "Exécution");
+    print_table_separator(out, 6, col_width_index, col_width_nature, col_width_next, col_width_region, col_width_description, col_width_execution);
 
     for (int i = 0; i < MAX_DECLARATION_COUNT; i++) {
         if (declaration_table[i].nature == NULL_VALUE) continue;
         if (i == MAX_LEXEME_COUNT) {
-            print_table_separator(stdout, 6, col_width_index, col_width_nature, col_width_next, col_width_region, col_width_description, col_width_execution);
-            print_table_separator(stdout, 6, col_width_index, col_width_nature, col_width_next, col_width_region, col_width_description, col_width_execution);
+            print_table_separator(out, 6, col_width_index, col_width_nature, col_width_next, col_width_region, col_width_description, col_width_execution);
+            print_table_separator(out, 6, col_width_index, col_width_nature, col_width_next, col_width_region, col_width_description, col_width_execution);
         }
 
         int char_length = 20;
@@ -254,7 +254,7 @@ void print_declaration_table() {
         sprintf(index_str, "%d", i);
         sprintf(nature_str, "%s", nature_to_string(declaration_table[i].nature));
 
-        print_table_row(stdout, 
+        print_table_row(out, 
                         6, 
                         col_width_index, index_str,
                         col_width_nature, nature_str,
@@ -266,9 +266,9 @@ void print_declaration_table() {
 
         // Print separator after the base types
         if (i == 3) {
-            print_table_separator(stdout, 6, col_width_index, col_width_nature, col_width_next, col_width_region, col_width_description, col_width_execution);
+            print_table_separator(out, 6, col_width_index, col_width_nature, col_width_next, col_width_region, col_width_description, col_width_execution);
         }
     }
 
-    print_table_separator(stdout, 6, col_width_index, col_width_nature, col_width_next, col_width_region, col_width_description, col_width_execution);
+    print_table_separator(out, 6, col_width_index, col_width_nature, col_width_next, col_width_region, col_width_description, col_width_execution);
 }

@@ -42,7 +42,9 @@ int get_hash_value(int index);
 
 /**
  * @brief Display the contents of the hash table.
+ * 
+ * @param out : The output stream to write to.
  */
-void print_hash_table();
+void fprintf_hash_table(FILE* out);
 
 #endif // __HASH_H__

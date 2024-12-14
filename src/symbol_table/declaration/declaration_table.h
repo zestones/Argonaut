@@ -215,8 +215,10 @@ void export_declaration_table(const char* filename);
 
 /**
  * @brief Prints the declaration table.
+ * 
+ * @param out File stream to write the declaration table to.
  */
-void print_declaration_table();
+void fprintf_declaration_table(FILE* out);
 
 /**
  * @brief Converts a nature to a string representation.

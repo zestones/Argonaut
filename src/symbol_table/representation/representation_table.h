@@ -61,7 +61,10 @@ void export_representation_table(const char* filename);
  * @brief Prints the contents of the representation table.
  *
  * This function prints the contents of the representation table to the standard output.
+ * The table is printed in a tabular format, with each row containing the index and value
+ * 
+ * @param out The file stream to write the representation table to.
  */
-void print_representation_table();
+void fprintf_representation_table(FILE* out);
 
 #endif // REPRESENTATION_TABLE_H

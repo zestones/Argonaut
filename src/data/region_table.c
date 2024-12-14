@@ -112,16 +112,16 @@ void export_region_table(const char* filename) {
                  "END_REGION_TABLE");
 }
 
-void print_region_table() {
+void fprintf_region_table(FILE* out) {
     const int col_width_index = 10;
     const int col_width_size = 10;
     const int col_width_nis = 10;
     const int col_width_ast = 10;
 
-    print_table_title(stdout, "Region Table");
-    print_table_separator(stdout, 4, col_width_index, col_width_size, col_width_nis, col_width_ast);
-    print_table_header(stdout, 4, col_width_index, "Index", col_width_size, "Size", col_width_nis, "NIS", col_width_ast, "AST");
-    print_table_separator(stdout, 4, col_width_index, col_width_size, col_width_nis, col_width_ast);
+    print_table_title(out, "Region Table");
+    print_table_separator(out, 4, col_width_index, col_width_size, col_width_nis, col_width_ast);
+    print_table_header(out, 4, col_width_index, "Index", col_width_size, "Size", col_width_nis, "NIS", col_width_ast, "AST");
+    print_table_separator(out, 4, col_width_index, col_width_size, col_width_nis, col_width_ast);
 
     for (int i = 0; i < MAX_REGION_COUNT; i++) {
         if (region_table[i].nis == NULL_VALUE) continue;
@@ -135,7 +135,7 @@ void print_region_table() {
         // TODO: print in a file ?
         // sprintf(ast_str, "%d", region_table[i].ast);
 
-        print_table_row(stdout,
+        print_table_row(out,
                         4, 
                         col_width_index, index_str,
                         col_width_size, size_str,
@@ -144,7 +144,7 @@ void print_region_table() {
                     );
     }
 
-    print_table_separator(stdout, 4, col_width_index, col_width_size, col_width_nis, col_width_ast);
+    print_table_separator(out, 4, col_width_index, col_width_size, col_width_nis, col_width_ast);
 
     // Print the ast associated with each region
     for (int i = 0; i < MAX_REGION_COUNT; i++) {
@@ -152,12 +152,12 @@ void print_region_table() {
 
         char title[50];
         sprintf(title, "Region %d AST", i);
-        print_table_title(stdout, title);
+        print_table_title(out, title);
         
-        print_table_separator(stdout, 1, 70);
-        print_ast(region_table[i].ast);
-        print_table_separator(stdout, 1, 70);
+        print_table_separator(out, 1, 70);
+        fprintf_ast(out, region_table[i].ast);
+        print_table_separator(out, 1, 70);
         
-        fprintf(stdout, "\n");
+        fprintf(out, "\n");
     }
 }

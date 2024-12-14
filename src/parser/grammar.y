@@ -585,7 +585,7 @@ static void handle_file_error(const char *filename) {
 }
 
 int main(int argc, char **argv) {
-    int opt, verbose = 0;
+    int opt, verbose, log = 0;
     
     error.line = 1;
     error.column = 1;
@@ -598,10 +598,13 @@ int main(int argc, char **argv) {
     char *input_file = NULL;
     char *output_file = NULL;
 
-    while ((opt = getopt(argc, argv, "f:vho:")) != -1) {
+    while ((opt = getopt(argc, argv, "f:vlho:")) != -1) {
         switch (opt) {
             case 'f':
                 input_file = optarg;
+                break;
+            case 'l':
+                log = 1;
                 break;
             case 'v':
                 verbose = 1;
@@ -635,11 +638,10 @@ int main(int argc, char **argv) {
     yyrun();
     fclose(file);
 
-    if (verbose) {
-        printf(COLOR_GREEN "Verbose mode enabled. Printing tables and ast...\n" COLOR_RESET);
-        ydebug(verbose);
-    }
 
+    ydebug(verbose);
+    ylog(log);
+    
     if (output_file != NULL) {
         export_lexeme_table(output_file);
         export_declaration_table(output_file);

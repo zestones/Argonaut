@@ -63,25 +63,25 @@ void export_representation_table(const char* filename) {
                  "END_REPRESENTATION_TABLE");
 }
 
-void print_representation_table() {
+void fprintf_representation_table(FILE* out) {
     const int col_width_index = 10;
     const int col_width_value = 20;
 
-    print_table_title(stdout, "Representation Table");
-    print_table_separator(stdout, 2, col_width_index, col_width_value);
-    print_table_header(stdout, 2, col_width_index, "Index", col_width_value, "Value");
-    print_table_separator(stdout, 2, col_width_index, col_width_value);
+    print_table_title(out, "Representation Table");
+    print_table_separator(out, 2, col_width_index, col_width_value);
+    print_table_header(out, 2, col_width_index, "Index", col_width_value, "Value");
+    print_table_separator(out, 2, col_width_index, col_width_value);
 
     for (int i = 0; i < representation_table_size; i++) {
         char index_str[10], value_str[10];
         sprintf(index_str, "%d", i);
         sprintf(value_str, "%d", representation_table[i]);
 
-        print_table_row(stdout, 
+        print_table_row(out, 
                         2,
                         col_width_index, index_str,
                         col_width_value, value_str);
     }
 
-    print_table_separator(stdout, 2, col_width_index, col_width_value);
+    print_table_separator(out, 2, col_width_index, col_width_value);
 }

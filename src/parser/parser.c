@@ -1,17 +1,34 @@
 #include "parser.h"
 #include "../bin/y.tab.h"
 
+static void write_tables_to(FILE* out) {
+    fprintf_lexeme_table(out);
+    fprintf_hash_table(out);
+    
+    fprintf_declaration_table(out);
+    fprintf_representation_table(out);
+
+    fprintf_region_table(out);
+}
+
+void ylog(int log) {
+    if (!log) return;
+    const char *filename = "log.txt";
+    FILE *output = fopen(filename, "w");
+    if (!output) {
+        fprintf(stderr, "Error opening log file %s\n", filename);
+        return;
+    }
+
+    fprintf(stdout, COLOR_GREEN "Logging enabled. Exporting tables to %s\n" COLOR_RESET, filename);
+    write_tables_to(output);
+    fclose(output);
+}
 
 void ydebug(int debug) {
     if (!debug) return;
-
-    fprintf_lexeme_table(stdout);
-    print_hash_table();
-    
-    print_declaration_table();
-    print_representation_table();
-
-    print_region_table();
+    fprintf(stdout, COLOR_GREEN "Verbose mode enabled. Printing tables and ast...\n" COLOR_RESET);
+    write_tables_to(stdout);
 }
 
 static void initialize_tables() {
