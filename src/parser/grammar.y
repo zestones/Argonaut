@@ -33,18 +33,23 @@
 
         if (!strcmp(s, "syntax error")) {
             set_error_message(&error,
-                "Unexpected token found: '%s'.\n"
+                "Unexpected token found: '%s' at %s.\n"
                 "\t> This error is critical and will cause the program to terminate.\n"
                 "\t> Exiting due to a syntax error.",
-                yytext);
+                yytext,
+                get_formatted_location()
+            );
         } 
         else {
             set_error_message(&error,
-                "Unexpected token found: '%s'.\n"
+                "Unexpected token found: '%s' at %s.\n"
                 "\t> %s\n"
                 "\t> This error is critical and will cause the program to terminate.\n"
                 "\t> Exiting due to a syntax error.",
-                yytext, s);
+                yytext,
+                get_formatted_location(),
+                s
+            );
         }
 
         
