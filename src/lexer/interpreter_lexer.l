@@ -18,8 +18,6 @@ letter [a-zA-Z]
 \n                              { error.line++; error.column = 1; }
 [ \t]+                          { error.column += yyleng; }
 
-"!CPYRR"                        { return CPYRR; }
-
 "BEGIN_LEXEME_TABLE"          { error.column += yyleng; return BEGIN_LEXEME_TABLE; }
 "END_LEXEME_TABLE"            { error.column += yyleng; return END_LEXEME_TABLE; }
 "BEGIN_DECLARATION_TABLE"     { error.column += yyleng; return BEGIN_DECLARATION_TABLE; }
@@ -30,7 +28,6 @@ letter [a-zA-Z]
 "END_REGION_TABLE"            { error.column += yyleng; return END_REGION_TABLE; }
 
 "|"                           { error.column += yyleng; return PIPE; }
-
 
 "Node("                  { error.column += yyleng; return NODE_LPAREN; }
 ")"                      { error.column += yyleng; return NODE_RPAREN; }

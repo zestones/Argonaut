@@ -62,7 +62,7 @@
 %left CHILD
 %right SIBLING
 
-%token CPYRR PIPE
+%token PIPE
 
 %token <integer> INTEGER
 %token <string> LEXEME
