@@ -63,6 +63,18 @@ void init_lexeme_table();
 int insert_lexeme(const char* lexeme);
 
 /**
+ * @brief Inserts a lexeme row into the lexeme table.
+ *
+ * This function adds a new lexeme to the lexeme table at the specified index.
+ *
+ * @param index The index at which to insert the lexeme.
+ * @param lexeme The lexeme to be inserted.
+ * @param length The length of the lexeme.
+ * @param next The index of the next lexeme in the table.
+ */
+void insert_lexeme_row(int index, const char* lexeme, int length, int next);
+
+/**
  * @brief Retrieves the lexeme at the given index.
  *
  * This function returns the lexeme stored at the specified index in the lexeme table.

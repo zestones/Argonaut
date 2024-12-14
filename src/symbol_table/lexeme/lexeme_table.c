@@ -54,6 +54,13 @@ int insert_lexeme(const char* lexeme) {
     return lexeme_table_size++;
 }
 
+void insert_lexeme_row(int index, const char* lexeme, int length, int next) {
+    Lexeme new_lexeme = construct_lexeme(lexeme, length, next);
+    lexeme_table[index] = new_lexeme;
+
+    lexeme_table_size++;
+}
+
 char *get_lexeme(int index) {
     return lexeme_table[index].lexeme;
 }

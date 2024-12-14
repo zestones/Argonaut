@@ -239,7 +239,7 @@ tex: src/lexer/interpreter_lexer.l
 	$(LEX) -o $(BIN_DIR)/lex.yy.c src/lexer/interpreter_lexer.l
 
 yax: src/parser/interpreter_grammar.y
-	$(YACC) -d -o $(BIN_DIR)/y.tab.c src/parser/interpreter_grammar.y
+	$(YACC) -d -Wcounterexamples -o $(BIN_DIR)/y.tab.c src/parser/interpreter_grammar.y
 
 # ==================================================== #
 #                        C L E A N                     #

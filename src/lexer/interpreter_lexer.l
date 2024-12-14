@@ -20,19 +20,36 @@ letter [a-zA-Z]
 
 "!CPYRR"                        { return CPYRR; }
 
-"BEGIN_LEXEME_TABLE"          { return BEGIN_LEXEME_TABLE; }
-"END_LEXEME_TABLE"            { return END_LEXEME_TABLE; }
+"BEGIN_LEXEME_TABLE"          { error.column += yyleng; return BEGIN_LEXEME_TABLE; }
+"END_LEXEME_TABLE"            { error.column += yyleng; return END_LEXEME_TABLE; }
+"BEGIN_DECLARATION_TABLE"     { error.column += yyleng; return BEGIN_DECLARATION_TABLE; }
+"END_DECLARATION_TABLE"       { error.column += yyleng; return END_DECLARATION_TABLE; }
+"BEGIN_REPRESENTATION_TABLE"  { error.column += yyleng; return BEGIN_REPRESENTATION_TABLE; }
+"END_REPRESENTATION_TABLE"    { error.column += yyleng; return END_REPRESENTATION_TABLE; }
+"BEGIN_REGION_TABLE"          { error.column += yyleng; return BEGIN_REGION_TABLE; }
+"END_REGION_TABLE"            { error.column += yyleng; return END_REGION_TABLE; }
 
-"|"                  { error.column += yyleng; return PIPE; }
+"|"                           { error.column += yyleng; return PIPE; }
+
+
+"Node("                  { error.column += yyleng; return NODE_LPAREN; }
+")"                      { error.column += yyleng; return NODE_RPAREN; }
+","                      { error.column += yyleng; return COMMA; }
+"["                      { error.column += yyleng; return LBRACKET; }
+"]"                      { error.column += yyleng; return RBRACKET; }
+"Child:"                 { error.column += yyleng; return CHILD; }
+"Sibling:"               { error.column += yyleng; return SIBLING; }
 
 
 [-]?{number}+ {
     yylval.integer = atoi(yytext);
+    error.column += yyleng;
     return INTEGER;
 }
 
 [-]?{number}+"."{number}+ {
     yylval.real = atof(yytext);
+    error.column += yyleng;
     return FLOAT;
 }
 
@@ -54,7 +71,7 @@ letter [a-zA-Z]
     return LEXEME; 
 }
 
-.                    { yyerror("Unrecognized character"); }
+.                    { error.column += yyleng; yyerror("Unrecognized character"); }
 
 %%
 

@@ -54,6 +54,14 @@
 
 
 %token BEGIN_LEXEME_TABLE END_LEXEME_TABLE
+%token BEGIN_DECLARATION_TABLE END_DECLARATION_TABLE
+%token BEGIN_REPRESENTATION_TABLE END_REPRESENTATION_TABLE
+%token BEGIN_REGION_TABLE END_REGION_TABLE
+%token NODE_LPAREN NODE_RPAREN COMMA LBRACKET RBRACKET CHILD SIBLING
+
+%left CHILD
+%right SIBLING
+
 %token CPYRR PIPE
 
 %token <integer> INTEGER
@@ -63,31 +71,109 @@
 
 %%
 
-program: CPYRR lexeme_table
-        | error { yyerrok; }
+program: lexeme_table declaration_table representation_table region_table
 ;
+
+
 
 lexeme_table: BEGIN_LEXEME_TABLE lexeme_table_body END_LEXEME_TABLE
 ;
 
-lexeme_table_body: lexeme_table_body lexeme_table_row
-                | lexeme_table_row
+lexeme_table_body: lexeme_table_row
+                 | lexeme_table_body lexeme_table_row
 ;
 
 lexeme_table_row: PIPE INTEGER PIPE LEXEME PIPE INTEGER PIPE INTEGER PIPE {
-                    // add_lexeme($2, $4, $6, $8);
-                    printf("lexeme: %d %s %d %d\n", $2, $4, $6, $8);
+                    insert_lexeme_row($2, $4, $6, $8);
+                    // printf("lexeme: %d %s %d %d\n", $2, $4, $6, $8);
                 }
                 | PIPE INTEGER PIPE INTEGER PIPE INTEGER PIPE INTEGER PIPE {
-                    // add_lexeme($2, NULL, $4, $6);
-                    printf("lexeme: %d %d %d %d\n", $2, $4, $6, $8);
+                    int len = snprintf(NULL, 0, "%d", $4);  // Get the length of the number as a string
+                    char* lexeme = malloc(len + 1);
+                    sprintf(lexeme, "%d", $4);
+
+                    insert_lexeme_row($2, lexeme, $6, $8);
+                    free(lexeme);
                 }
                 | PIPE INTEGER PIPE FLOAT PIPE INTEGER PIPE INTEGER PIPE {
-                    // add_lexeme($2, NULL, $4, $6);
-                    printf("lexeme: %d %f %d %d\n", $2, $4, $6, $8);
+                   int len = snprintf(NULL, 0, "%f", $4);  // Get the length of the number as a string
+                    char* lexeme = malloc(len + 1);
+                    sprintf(lexeme, "%f", $4);
+                    insert_lexeme_row($2, lexeme, $6, $8);
+                    // printf("lexeme: %d %f %d %d\n", $2, $4, $6, $8);
                 }
 ;
 
+
+
+declaration_table: BEGIN_DECLARATION_TABLE declaration_table_body END_DECLARATION_TABLE
+;
+
+declaration_table_body: declaration_table_row 
+                      | declaration_table_body declaration_table_row
+;
+
+declaration_table_row: PIPE INTEGER PIPE INTEGER PIPE INTEGER PIPE INTEGER PIPE INTEGER PIPE INTEGER PIPE {
+                        // insert_declaration_row($2, $4, $6, $8, $10, $12);
+                        // printf("declaration: %d %d %d %d %d %d\n", $2, $4, $6, $8, $10, $12);
+                    }
+;
+
+
+
+representation_table: BEGIN_REPRESENTATION_TABLE representation_table_body END_REPRESENTATION_TABLE
+;
+
+representation_table_body:
+                         | representation_table_body representation_table_row
+;
+
+representation_table_row: PIPE INTEGER PIPE INTEGER PIPE {
+                            // insert_representation_row($2, $4);
+                            // printf("representation: %d %d\n", $2, $4);
+                        }
+;
+
+
+
+region_table: BEGIN_REGION_TABLE region_table_body END_REGION_TABLE
+;
+
+region_table_body: region_table_row
+                | region_table_body region_table_row
+;
+
+region_table_row: PIPE INTEGER PIPE INTEGER PIPE INTEGER PIPE ast PIPE {
+                    // insert_region_row($2, $4, $6);
+                    printf("region: %d %d %d\n", $2, $4, $6);
+                }
+;
+
+
+
+ast: NODE_LPAREN INTEGER COMMA INTEGER COMMA INTEGER NODE_RPAREN child_node sibling_node {
+        // Process the AST node
+        printf("AST Node: %d, %d, %d\n", $2, $4, $6);
+    }
+    | NODE_LPAREN INTEGER COMMA INTEGER COMMA INTEGER NODE_RPAREN child_node {
+        // Process the AST node
+        printf("AST Node: %d, %d, %d\n", $2, $4, $6);
+    }
+    | NODE_LPAREN INTEGER COMMA INTEGER COMMA INTEGER NODE_RPAREN sibling_node {
+        // Process the AST node
+        printf("AST Node: %d, %d, %d\n", $2, $4, $6);
+    }
+    | NODE_LPAREN INTEGER COMMA INTEGER COMMA INTEGER NODE_RPAREN {
+        // Process the AST node
+        printf("AST Node: %d, %d, %d\n", $2, $4, $6);
+    }
+;
+
+child_node: LBRACKET CHILD ast RBRACKET
+;
+
+sibling_node: LBRACKET SIBLING ast RBRACKET
+;
 
 %%
 
@@ -112,6 +198,7 @@ int main(int argc, char **argv) {
     yyin = file;
 
     yyparse();
+    fprintf_lexeme_table(stdout);
 
     fclose(file);
     return 0;

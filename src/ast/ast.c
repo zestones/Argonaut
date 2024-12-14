@@ -14,7 +14,7 @@ char* format_ast(Node* node) {
 
     char* formatted_row = (char*)malloc(256 * sizeof(char));
 
-    sprintf(formatted_row, "Node(Type: %d, LexIndex: %d, DeclIndex: %d)", 
+    sprintf(formatted_row, "Node(%d, %d, %d)", 
             node->type, node->index_lexicographic, node->index_declaration);
 
     if (node->child) {
