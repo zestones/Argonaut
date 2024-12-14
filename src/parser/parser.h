@@ -9,7 +9,7 @@
 #include "../../lib/colors.h"
 #include "../utils/utils.h"
 
-#include "../lexer/lexeme_table.h"
+#include "../symbol_table/lexeme/lexeme_table.h"
 
 #include "../symbol_table/declaration/declaration_table.h"
 #include "../symbol_table/representation/representation_table.h"

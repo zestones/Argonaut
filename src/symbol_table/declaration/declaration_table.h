@@ -207,6 +207,13 @@ int get_declaration_lexicographic_index(int index);
 void update_declaration_execution(int index, int execution);
 
 /**
+ * @brief Exports the declaration table to a file.
+ * 
+ * @param filename Name of the file to write the declaration table to.
+ */
+void export_declaration_table(const char* filename);
+
+/**
  * @brief Prints the declaration table.
  */
 void print_declaration_table();

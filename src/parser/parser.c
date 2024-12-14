@@ -5,7 +5,7 @@
 void ydebug(int debug) {
     if (!debug) return;
 
-    print_lexeme_table();
+    fprintf_lexeme_table(stdout);
     print_hash_table();
     
     print_declaration_table();

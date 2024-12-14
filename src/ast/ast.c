@@ -1,12 +1,47 @@
 #include "../../lib/colors.h"
 
-#include "../lexer/lexeme_table.h"
+#include "../symbol_table/lexeme/lexeme_table.h"
 #include "../utils/utils.h"
 
 #include "ast.h"
 
 AST construct_ast() {
     return NULL;
+}
+
+char* format_ast(Node* node) {
+    if (!node) return NULL;
+
+    char* formatted_row = (char*)malloc(256 * sizeof(char));
+
+    sprintf(formatted_row, "Node(Type: %d, LexIndex: %d, DeclIndex: %d)", 
+            node->type, node->index_lexicographic, node->index_declaration);
+
+    if (node->child) {
+        char* child_data = format_ast(node->child);
+        
+        if (child_data) {
+            formatted_row = realloc(formatted_row, strlen(formatted_row) + strlen(child_data) + 50);
+            strcat(formatted_row, " [Child: ");
+            strcat(formatted_row, child_data);
+            strcat(formatted_row, "]");
+            free(child_data);
+        }
+    }
+
+    if (node->sibling) {
+        char* sibling_data = format_ast(node->sibling);
+        
+        if (sibling_data) {
+            formatted_row = realloc(formatted_row, strlen(formatted_row) + strlen(sibling_data) + 50);
+            strcat(formatted_row, " [Sibling: ");
+            strcat(formatted_row, sibling_data);
+            strcat(formatted_row, "]");
+            free(sibling_data);
+        }
+    }
+
+    return formatted_row;
 }
 
 static void print_ast_helper(Node* node, int depth, int is_sibling) {

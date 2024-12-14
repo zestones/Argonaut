@@ -83,11 +83,20 @@ char *get_lexeme(int index);
 int find_lexeme_index(const char* lexeme);
 
 /**
+ * @brief Exports the lexeme table to a file.
+ *
+ * This function writes the contents of the lexeme table to a file.
+ *
+ * @param filename The name of the file to write the lexeme table to.
+ */
+void export_lexeme_table(const char* filename);
+
+/**
  * @brief Prints the contents of the lexeme table.
  *
  * This function outputs the current state of the lexeme table, displaying
  * all stored lexemes and their associated information.
  */
-void print_lexeme_table();
+void fprintf_lexeme_table(FILE* out);
 
 #endif // LEXEME_TABLE_H

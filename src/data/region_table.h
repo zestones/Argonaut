@@ -114,6 +114,13 @@ void update_region_size(int index, int size);
 void update_region_ast(int index, AST ast);
 
 /**
+ * @brief Exports the region table to a file.
+ *
+ * @param filename The name of the file to write the region table to.
+ */
+void export_region_table(const char* filename);
+
+/**
  * @brief Prints the region table.
  *
  * This function prints the current state of the region table.

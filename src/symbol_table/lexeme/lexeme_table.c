@@ -1,9 +1,11 @@
-#include "../../lib/table_printer.h"
-#include "../../lib/colors.h"
+#include "../../../lib/table_printer.h"
+#include "../../../lib/colors.h"
 
-#include "../utils/utils.h"
+#include "../../utils/utils.h"
 
-#include "../symbol_table/hash/hash_table.h"
+#include "../hash/hash_table.h"
+#include "../utility.h"
+
 #include "lexeme_table.h"
 
 static Lexeme lexeme_table[MAX_LEXEME_COUNT];
@@ -64,13 +66,32 @@ int find_lexeme_index(const char* lexeme) {
     }
 }
 
-void print_lexeme_table() {
-    const int cols_width[] = {10, 20, 10, 10};
+static char* format_lexeme_row(void* data) {
+    Lexeme* row = (Lexeme*)data;
+    char* formatted_row = (char*)malloc(100 * sizeof(char));
+    sprintf(formatted_row, "%s|%d|%d", row->lexeme, row->length, row->next);
+    return formatted_row;
+}
 
-    print_table_title("Lexeme Table");
-    print_table_separator(4, cols_width[0], cols_width[1], cols_width[2], cols_width[3]);
-    print_table_header(4, cols_width[0], "Index", cols_width[1], "Lexeme", cols_width[2], "Length", cols_width[3], "Next");
-    print_table_separator(4, cols_width[0], cols_width[1], cols_width[2], cols_width[3]);
+void export_lexeme_table(const char* filename) {
+    export_table(filename, 
+                 lexeme_table, 
+                 lexeme_table_size, 
+                 sizeof(Lexeme), 
+                 format_lexeme_row, 
+                 "BEGIN_LEXEME_TABLE", 
+                 "END_LEXEME_TABLE");
+}
+
+void fprintf_lexeme_table(FILE* out) {
+    const int cols_width[] = {10, 20, 10, 10};
+    char title[50];
+    sprintf(title, "Lexeme Table: %d entries", lexeme_table_size);
+
+    print_table_title(out, title);
+    print_table_separator(out, 4, cols_width[0], cols_width[1], cols_width[2], cols_width[3]);
+    print_table_header(out, 4, cols_width[0], "Index", cols_width[1], "Lexeme", cols_width[2], "Length", cols_width[3], "Next");
+    print_table_separator(out, 4, cols_width[0], cols_width[1], cols_width[2], cols_width[3]);
 
     for (int i = 0; i < lexeme_table_size; i++) {
         char length_str[10], next_str[10], index_str[10];
@@ -78,7 +99,8 @@ void print_lexeme_table() {
         sprintf(next_str, "%d", lexeme_table[i].next);
         sprintf(index_str, "%d", i);
 
-        print_table_row(4, 
+        print_table_row(out,
+                        4, 
                         cols_width[0], index_str,
                         cols_width[1], lexeme_table[i].lexeme,
                         cols_width[2], length_str,
@@ -87,9 +109,9 @@ void print_lexeme_table() {
 
         // Print separator after the base types
         if (i == 3) {
-            print_table_separator(4, cols_width[0], cols_width[1], cols_width[2], cols_width[3]);
+            print_table_separator(out, 4, cols_width[0], cols_width[1], cols_width[2], cols_width[3]);
         }
     }
 
-    print_table_separator(4, cols_width[0], cols_width[1], cols_width[2], cols_width[3]);
+    print_table_separator(out, 4, cols_width[0], cols_width[1], cols_width[2], cols_width[3]);
 }

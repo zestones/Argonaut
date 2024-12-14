@@ -51,6 +51,13 @@ void update_representation(int index, int value);
 int get_representation_value(int index);
 
 /**
+ * @brief Exports the representation table to a file.
+ *
+ * @param filename The name of the file to write the representation table to.
+ */
+void export_representation_table(const char* filename);
+
+/**
  * @brief Prints the contents of the representation table.
  *
  * This function prints the contents of the representation table to the standard output.
