@@ -628,9 +628,7 @@ int main(int argc, char **argv) {
 
     // Open the file for reading
     FILE *file = fopen(input_file, "r");
-    if (!file) {
-        handle_file_error(input_file);
-    }
+    if (!file) handle_file_error(input_file);
 
     error.filename = input_file;
     yyin = file;

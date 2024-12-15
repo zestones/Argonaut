@@ -1,16 +1,16 @@
 PROG
-var x : int;
-var z : float;
+var entier : int;
 
-type x : array[0:10] of int;
-type x : struct {
-    a : int;
-    b : float;
+type tableau_entier : array[0:10] of int;
+type date : struct {
+    jour : int;
 } fstruct;
-
-
-func x() -> int {
-    return 0;
+ 
+func my_function(a:int) -> int {
+    var today : date;
+    today.jour := 1;
+    return today.jour + a;
 }
 
-x := x();
+entier := 2;
+entier := my_function(entier);

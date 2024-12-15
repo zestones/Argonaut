@@ -69,6 +69,16 @@ void start_region();
 void end_region();
 
 /**
+ * @brief Inserts a new region row into the region table.
+ *
+ * @param index The index of the region.
+ * @param size The size of the region.
+ * @param nis The NIS of the region.
+ * @param ast The AST of the region.
+ */
+void insert_region_row(int index, int size, int nis, AST ast);
+
+/**
  * @brief Gets the size of the region at the specified index.
  *
  * @param index The index of the region.

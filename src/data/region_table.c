@@ -42,6 +42,14 @@ void start_region() {
 
 void end_region() { pop_region(); }
 
+void insert_region_row(int index, int size, int nis, AST ast) {
+    region_table[index].size = size;
+    region_table[index].nis = nis;
+    region_table[index].ast = ast;
+
+    region_table_size++;
+}
+
 int get_region_size(int index) {
     if (index >= MAX_REGION_COUNT) {
         fprintf(stderr, COLOR_RED "<Error> Get Region Size index out of bounds\n" COLOR_RESET);
