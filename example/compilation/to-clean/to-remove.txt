@@ -1,16 +1,15 @@
 PROG
-var entier : int;
 
-type tableau_entier : array[0:10] of int;
-type date : struct {
-    jour : int;
-} fstruct;
- 
-func my_function(a:int) -> int {
-    var today : date;
-    today.jour := 1;
-    return today.jour + a;
+var x : int;
+
+type x : array[0:10] of int;
+
+proc x(a: float) {
+    var z : x; 
+    z := 1;
+    // a := 3.14;
 }
 
-entier := 2;
-entier := my_function(entier);
+// change in assignment_validation.c the message to :
+// (variable_type == NULL_VALUE) ? "UNKNOWN" : get_lexeme(variable_type) message should display
+// '' instead of the actual type of the variable
