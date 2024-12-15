@@ -5,10 +5,10 @@
     #include "../table_management/array_manager.h"
 
     #include "../symbol_table/declaration/declaration_table.h"
+    #include "../symbol_table/lexeme/lexeme_table.h"
     #include "../symbol_table/hash/hash_table.h"
     #include "../data/region_table.h"
 
-    #include "../symbol_table/lexeme/lexeme_table.h"
     #include "parser.h"
 
     #include "../utils/errors.h"

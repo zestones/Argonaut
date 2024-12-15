@@ -1,17 +1,16 @@
 PROG
 var x : int;
 var z : float;
-var caracterer : char;
-var boolean : bool;
-var nboolea : bool;
 
-type x : array[0 : 4] of int;
+type x : array[0:10] of int;
+type x : struct {
+    a : int;
+    b : float;
+} fstruct;
 
-x := 5;
-z := 5.0;
 
-caracterer := 'a';
-boolean := true;
-nboolea := false;
+func x() -> int {
+    return 0;
+}
 
-print("Hello, World!");
+x := x();

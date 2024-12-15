@@ -1,9 +1,9 @@
 %{
+    #include "../parser/parser.h"
+    #include <string.h>
+
     #include "../utils/errors.h"
     #include "y.tab.h"
-
-    #include <string.h>
-    #include <stdlib.h>
 
     extern Error error;
     extern char *yytext;

@@ -48,6 +48,8 @@
 %}
 
 %union {
+    AST ast;
+
     int integer;
     char* string;
     float real;
@@ -60,15 +62,14 @@
 %token BEGIN_REGION_TABLE END_REGION_TABLE
 %token NODE_LPAREN NODE_RPAREN COMMA LBRACKET RBRACKET CHILD SIBLING
 
-%left CHILD
-%right SIBLING
-
 %token PIPE
 
 %token <integer> INTEGER
 %token <string> LEXEME
 %token <real> FLOAT
 %start program
+
+%type <ast> ast_node child_node sibling_node node
 
 %%
 
@@ -88,7 +89,7 @@ lexeme_table_row: PIPE INTEGER PIPE LEXEME PIPE INTEGER PIPE INTEGER PIPE {
                     insert_lexeme_row($2, $4, $6, $8);
                 }
                 | PIPE INTEGER PIPE INTEGER PIPE INTEGER PIPE INTEGER PIPE {
-                    int len = snprintf(NULL, 0, "%d", $4);  // TODO: refactor this
+                    int len = snprintf(NULL, 0, "%d", $4);  
                     char* lexeme = malloc(len + 1);
                     sprintf(lexeme, "%d", $4);
 
@@ -96,7 +97,7 @@ lexeme_table_row: PIPE INTEGER PIPE LEXEME PIPE INTEGER PIPE INTEGER PIPE {
                     free(lexeme);
                 }
                 | PIPE INTEGER PIPE FLOAT PIPE INTEGER PIPE INTEGER PIPE {
-                   int len = snprintf(NULL, 0, "%f", $4);  // TODO: refactor this
+                   int len = snprintf(NULL, 0, "%f", $4);  
                     char* lexeme = malloc(len + 1);
                     sprintf(lexeme, "%f", $4);
                     insert_lexeme_row($2, lexeme, $6, $8);
@@ -140,36 +141,39 @@ region_table_body: region_table_row
                 | region_table_body region_table_row
 ;
 
-region_table_row: PIPE INTEGER PIPE INTEGER PIPE INTEGER PIPE ast PIPE {
-                    // insert_region_row($2, $4, $6);
-                    printf("region: %d %d %d\n", $2, $4, $6);
-                }
-;
 
-
-
-ast: NODE_LPAREN INTEGER COMMA INTEGER COMMA INTEGER NODE_RPAREN child_node sibling_node {
-        // Process the AST node
-        printf("AST Node: %d, %d, %d\n", $2, $4, $6);
-    }
-    | NODE_LPAREN INTEGER COMMA INTEGER COMMA INTEGER NODE_RPAREN child_node {
-        // Process the AST node
-        printf("AST Node: %d, %d, %d\n", $2, $4, $6);
-    }
-    | NODE_LPAREN INTEGER COMMA INTEGER COMMA INTEGER NODE_RPAREN sibling_node {
-        // Process the AST node
-        printf("AST Node: %d, %d, %d\n", $2, $4, $6);
-    }
-    | NODE_LPAREN INTEGER COMMA INTEGER COMMA INTEGER NODE_RPAREN {
-        // Process the AST node
-        printf("AST Node: %d, %d, %d\n", $2, $4, $6);
+region_table_row: PIPE INTEGER PIPE INTEGER PIPE INTEGER PIPE ast_node PIPE
+    { 
+        fprintf_ast(stdout, $8); 
     }
 ;
 
-child_node: LBRACKET CHILD ast RBRACKET
+ast_node: node child_node sibling_node
+    { 
+        append_child($1, $2);
+        add_sibling($1, $3);
+    }
+    | node child_node
+    { 
+        append_child($1, $2);
+    }
+    | node sibling_node
+    { 
+        add_sibling($1, $2);  
+    }
+    | node { $$ = $1; }
 ;
 
-sibling_node: LBRACKET SIBLING ast RBRACKET
+node: NODE_LPAREN INTEGER COMMA INTEGER COMMA INTEGER NODE_RPAREN
+    { 
+        $$ = construct_node($2, $4, $6);
+    }
+;
+
+child_node: LBRACKET CHILD ast_node RBRACKET { $$ = $3; }
+;
+
+sibling_node: LBRACKET SIBLING ast_node RBRACKET { $$ = $3; }
 ;
 
 %%
@@ -195,7 +199,7 @@ int main(int argc, char **argv) {
     yyin = file;
 
     yyrun(INTERPRETATION);
-    ydebug(1);
+    /* ydebug(1); */
 
     fclose(file);
     return 0;
