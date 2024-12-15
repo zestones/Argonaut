@@ -635,7 +635,7 @@ int main(int argc, char **argv) {
     error.filename = input_file;
     yyin = file;
 
-    yyrun();
+    yyrun(COMPILATION);
     fclose(file);
 
 

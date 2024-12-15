@@ -4,6 +4,7 @@
     #include "../symbol_table/lexeme/lexeme_table.h"
     #include "../data/region_table.h"
 
+    #include "parser.h"
     #include "../utils/errors.h"
 
     #include <stdio.h>
@@ -85,10 +86,9 @@ lexeme_table_body: lexeme_table_row
 
 lexeme_table_row: PIPE INTEGER PIPE LEXEME PIPE INTEGER PIPE INTEGER PIPE {
                     insert_lexeme_row($2, $4, $6, $8);
-                    // printf("lexeme: %d %s %d %d\n", $2, $4, $6, $8);
                 }
                 | PIPE INTEGER PIPE INTEGER PIPE INTEGER PIPE INTEGER PIPE {
-                    int len = snprintf(NULL, 0, "%d", $4);  // Get the length of the number as a string
+                    int len = snprintf(NULL, 0, "%d", $4);  // TODO: refactor this
                     char* lexeme = malloc(len + 1);
                     sprintf(lexeme, "%d", $4);
 
@@ -96,11 +96,10 @@ lexeme_table_row: PIPE INTEGER PIPE LEXEME PIPE INTEGER PIPE INTEGER PIPE {
                     free(lexeme);
                 }
                 | PIPE INTEGER PIPE FLOAT PIPE INTEGER PIPE INTEGER PIPE {
-                   int len = snprintf(NULL, 0, "%f", $4);  // Get the length of the number as a string
+                   int len = snprintf(NULL, 0, "%f", $4);  // TODO: refactor this
                     char* lexeme = malloc(len + 1);
                     sprintf(lexeme, "%f", $4);
                     insert_lexeme_row($2, lexeme, $6, $8);
-                    // printf("lexeme: %d %f %d %d\n", $2, $4, $6, $8);
                 }
 ;
 
@@ -114,8 +113,7 @@ declaration_table_body: declaration_table_row
 ;
 
 declaration_table_row: PIPE INTEGER PIPE INTEGER PIPE INTEGER PIPE INTEGER PIPE INTEGER PIPE INTEGER PIPE {
-                        // insert_declaration_row($2, $4, $6, $8, $10, $12);
-                        // printf("declaration: %d %d %d %d %d %d\n", $2, $4, $6, $8, $10, $12);
+                        insert_declaration_row($2, $4, $6, $8, $10, $12);
                     }
 ;
 
@@ -197,8 +195,8 @@ int main(int argc, char **argv) {
     extern FILE *yyin;
     yyin = file;
 
-    yyparse();
-    fprintf_lexeme_table(stdout);
+    yyrun(INTERPRETATION);
+    ydebug(1);
 
     fclose(file);
     return 0;

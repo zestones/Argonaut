@@ -31,16 +31,8 @@ void ydebug(int debug) {
     write_tables_to(stdout);
 }
 
-static void initialize_tables() {
+static void initialize_base_types() {
     int lexicographic_index = 0;
-
-    init_hash_table();
-    init_lexeme_table();
-    
-    init_declaration_table();
-    init_representation_table();
-
-    init_region_table();
 
     lexicographic_index = insert_lexeme("int");
     insert_declaration(lexicographic_index, TYPE_BASE, 0, lexicographic_index, 1);
@@ -57,13 +49,20 @@ static void initialize_tables() {
     start_region();
 }
 
-static void initialize_parser() {
-    initialize_tables();
+static void initialize_tables(Mode m) {
+    init_hash_table();
+    init_lexeme_table();
+    
+    init_declaration_table();
+    init_representation_table();
+
+    init_region_table();
+
+    if (m == COMPILATION) initialize_base_types();
 }
 
-
-int yyrun() {
-    initialize_parser();
+int yyrun(Mode m) {
+    initialize_tables(m);
     int parse_result = yyparse(); 
 
     return parse_result;

@@ -122,6 +122,18 @@ void insert_declaration_proc(int index, int region, int description);
 void insert_declaration_param(int index, int region, int description, int execution);
 
 /**
+ * @brief Inserts a declaration row into the table.
+ * 
+ * @param index Index at which to insert the declaration.
+ * @param nature Nature of the declaration.
+ * @param next Index of the next declaration.
+ * @param region Region of the declaration.
+ * @param description Description of the declaration.
+ * @param execution Execution information of the declaration.
+ */
+void insert_declaration_row(int index, Nature nature, int next, int region, int description, int execution);
+
+/**
  * @brief Finds the index of a declaration with the specified lexicographic index.
  * This function is used to ensure that a declaration with the specified lexicographic
  * index exists in the table.

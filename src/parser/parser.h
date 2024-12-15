@@ -17,6 +17,11 @@
 
 #include "../data/region_table.h"
 
+typedef enum {
+    COMPILATION,
+    INTERPRETATION
+} Mode;
+
 void ylog(int log);
 
 void ydebug(int debug);

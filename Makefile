@@ -232,8 +232,8 @@ scope_tracker.o: src/utils/scope_tracker.c
 #                I N T E R P R E T E R                 #
 # ---------------------------------------------------- #
 
-interpreter: $(INTERPRETER_RULES) $(SYMBOL_TABLE) $(DATA) $(AST) $(UTILS)
-	$(CC) $(BIN_DIR)/lex.yy.c $(BIN_DIR)/y.tab.c $(SYMBOL_TABLE) $(DATA) $(AST) $(UTILS) -I$(INCLUDE_DIR) -o interpreter.exe
+interpreter: $(INTERPRETER_RULES) $(PARSER) $(SYMBOL_TABLE) $(DATA) $(AST) $(UTILS)
+	$(CC) $(BIN_DIR)/lex.yy.c $(BIN_DIR)/y.tab.c $(PARSER) $(SYMBOL_TABLE) $(DATA) $(AST) $(UTILS) -I$(INCLUDE_DIR) -o interpreter.exe
 
 tex: src/lexer/interpreter_lexer.l
 	$(LEX) -o $(BIN_DIR)/lex.yy.c src/lexer/interpreter_lexer.l

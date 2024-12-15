@@ -86,6 +86,18 @@ void insert_declaration_param(int index, int region, int description, int execut
     insert_declaration(index, TYPE_PARAM, region, description, execution);
 }
 
+void insert_declaration_row(int index, Nature nature, int next, int region, int description, int execution) {
+    if (index >= MAX_LEXEME_COUNT) {
+        Declaration new_declaration = construct_declaration(nature, next, region, description, execution);
+        declaration_table[declaration_table_size] = new_declaration;
+        overflow_zone_size++;
+    } else {
+        Declaration new_declaration = construct_declaration(nature, next, region, description, execution);
+        declaration_table[index] = new_declaration;
+        declaration_table_size++;
+    }
+}
+
 int is_declaration_base_type(int index) {
     return (declaration_table[index].nature == TYPE_BASE);
 }
