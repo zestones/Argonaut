@@ -2,7 +2,7 @@ import subprocess
 import filecmp
 import os
 
-from regression.config import ERRORS_DIR, OUTPUTS_DIR, ACTUAL_OUTPUTS_DIR, COMPILER_CMD, COMPILER_OPTIONS, ensure_directory_exists
+from regression.config import TEST_DIR, OUTPUTS_DIR, ACTUAL_OUTPUTS_DIR, COMPILER_CMD, COMPILER_OPTIONS, ensure_directory_exists
 from regression.helpers import print_success, print_error, print_warning, print_progress, remove_ansi_codes
 
 class TestRunner:
@@ -44,13 +44,13 @@ class TestRunner:
         all_passed = True
         print_progress("Starting regression tests")
 
-        for root, _, files in os.walk(ERRORS_DIR):
+        for root, _, files in os.walk(TEST_DIR):
             for file in files:
                 if file.endswith(".txt"):
                     input_file = os.path.join(root, file)
 
                     # Determine corresponding output files
-                    relative_path = os.path.relpath(input_file, ERRORS_DIR)
+                    relative_path = os.path.relpath(input_file, TEST_DIR)
                     expected_output_file = os.path.join(OUTPUTS_DIR, relative_path.replace(".txt", ".out"))
                     actual_output_file = os.path.join(ACTUAL_OUTPUTS_DIR, relative_path.replace(".txt", ".out"))
 

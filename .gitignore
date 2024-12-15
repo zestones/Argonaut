@@ -35,7 +35,6 @@
 
 # Executables
 *.exe
-*.out
 *.app
 *.i*86
 *.x86_64
@@ -267,5 +266,12 @@ pyrightconfig.json
 
 src/bin/*
 !src/bin/.gitkeep
+
+example/compilation/.out/actual_outputs/
+
+# But do not ignore the expected_outputs directory
+!example/compilation/.out/expected_outputs/
+!example/compilation/.out/expected_outputs/**/
+!example/compilation/.out/expected_outputs/*.out
 
 log.txt

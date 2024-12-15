@@ -1,6 +1,6 @@
 import os
 
-ERRORS_DIR = "example/compilation/errors/"
+TEST_DIR = "example/compilation/"
 OUTPUTS_DIR = "example/compilation/.out/expected_outputs/"
 ACTUAL_OUTPUTS_DIR = "example/compilation/.out/actual_outputs/"
 COMPILER_CMD = os.path.join(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')), 'compiler.exe')
