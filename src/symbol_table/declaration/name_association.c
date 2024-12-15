@@ -9,23 +9,17 @@ static int find_declaration_index_in_region_by_nature(int tlex_index, int region
     Declaration *declaration_table = get_declaration_table();    
     int index = tlex_index;
     
-    Stack overload_stack = construct_stack();
-    push(&overload_stack, NULL_VALUE);
-
     while (index != NULL_VALUE) {
         if (declaration_table[index].region == region && 
             (nature_filter == NULL_VALUE || declaration_table[index].nature == nature_filter)
         ) {
-            push(&overload_stack, index);
+            return index;
         }
         
         index = declaration_table[index].next;
     }
 
-    // return the last declaration in the stack
-    // if there are multiple declarations with the same nature
-    // in the same region
-    return pop(&overload_stack);
+    return NULL_VALUE;
 }
 
 static int find_declaration_in_stack(int tlex_index, int nature_filter) {
