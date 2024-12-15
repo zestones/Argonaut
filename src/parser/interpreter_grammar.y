@@ -127,8 +127,7 @@ representation_table_body:
 ;
 
 representation_table_row: PIPE INTEGER PIPE INTEGER PIPE {
-                            // insert_representation_row($2, $4);
-                            // printf("representation: %d %d\n", $2, $4);
+                            insert_representation_row($2, $4);
                         }
 ;
 

@@ -35,6 +35,14 @@ void init_representation_table();
 int insert_representation(int value);
 
 /**
+ * @brief Inserts a representation into the table at a specific index.
+ *
+ * @param index The index at which to insert the representation.
+ * @param value The value of the representation to insert.
+ */
+void insert_representation_row(int index, int value);
+
+/**
  * @brief Updates a representation in the table.
  *
  * @param index The index of the representation to update.
