@@ -9,13 +9,20 @@
 #include "../../lib/colors.h"
 #include "../utils/utils.h"
 
-#include "../lexer/lexeme_table.h"
+#include "../symbol_table/lexeme/lexeme_table.h"
 
 #include "../symbol_table/declaration/declaration_table.h"
 #include "../symbol_table/representation/representation_table.h"
 #include "../symbol_table/hash/hash_table.h"
 
 #include "../data/region_table.h"
+
+typedef enum {
+    COMPILATION,
+    INTERPRETATION
+} Mode;
+
+void ylog(int log);
 
 void ydebug(int debug);
 

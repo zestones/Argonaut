@@ -19,11 +19,12 @@ INCLUDE_DIR = src/parser
 # 		   defines the targets of the makefile         #
 # ---------------------------------------------------- #
 
+COMPILER_RULES = lexer parser
+INTERPRETER_RULES = tex yax
 GRAMMAR = lexer parser
-LEXER = lexeme_table.o 
 PARSER = parser.o
 SEMANTIC_CHECKS = assignment_validation.o print_validation.o input_validation.o func_proc_validation.o argument_validation.o format_specifiers.o condition_validation.o scope_validation.o type_validation.o variable_validation.o
-SYMBOL_TABLE = declaration_table.o representation_table.o hash_table.o
+SYMBOL_TABLE = declaration_table.o representation_table.o hash_table.o lexeme_table.o utility.o
 TABLE_MANAGEMENT = variable_manager.o array_manager.o func_proc_manager.o structure_manager.o
 TYPE_SYSTEM = structure_resolution.o func_proc_resolution.o array_resolution.o expression_resolution.o condition_resolution.o array_access_format.o expression_format.o func_proc_format.o struct_access_format.o
 DATA = region_table.o region_stack.o
@@ -31,17 +32,23 @@ AST = ast.o lcrs.o
 UTILS = stack.o errors.o scope_tracker.o
 
 
-all: compilateur simple-clean
+# ==================================================== #
+# 					  R U L E S                        #
+# ==================================================== #
+
+all: compiler interpreter simple-clean
 
 install: sudo apt install flex bison
+
+# ==================================================== #
 
 
 # ---------------------------------------------------- #
 #                        COMPILER 					   #
 # ---------------------------------------------------- #
 
-compilateur: $(GRAMMAR) $(LEXER) $(PARSER) $(SYMBOL_TABLE) $(TABLE_MANAGEMENT) $(DATA) $(AST) $(UTILS) $(SEMANTIC_CHECKS) $(TYPE_SYSTEM)
-	$(CC) $(BIN_DIR)/lex.yy.c $(BIN_DIR)/y.tab.c $(LEXER) $(PARSER) $(SYMBOL_TABLE) $(TABLE_MANAGEMENT) $(DATA) $(AST) $(UTILS) $(SEMANTIC_CHECKS) $(TYPE_SYSTEM) -I$(INCLUDE_DIR) -o compilateur.exe
+compiler: $(COMPILER_RULES) $(PARSER) $(SYMBOL_TABLE) $(TABLE_MANAGEMENT) $(DATA) $(AST) $(UTILS) $(SEMANTIC_CHECKS) $(TYPE_SYSTEM)
+	$(CC) $(BIN_DIR)/lex.yy.c $(BIN_DIR)/y.tab.c $(PARSER) $(SYMBOL_TABLE) $(TABLE_MANAGEMENT) $(DATA) $(AST) $(UTILS) $(SEMANTIC_CHECKS) $(TYPE_SYSTEM) -I$(INCLUDE_DIR) -o compiler.exe
 
 
 # ----------- #
@@ -50,9 +57,6 @@ compilateur: $(GRAMMAR) $(LEXER) $(PARSER) $(SYMBOL_TABLE) $(TABLE_MANAGEMENT) $
 
 lexer: src/lexer/lexer.l 
 	$(LEX) -o $(BIN_DIR)/lex.yy.c src/lexer/lexer.l
-
-lexeme_table.o: src/lexer/lexeme_table.c
-	$(CC) -c src/lexer/lexeme_table.c
 
 
 # ----------- #
@@ -130,6 +134,11 @@ declaration_table.o: src/symbol_table/declaration/declaration_table.c
 representation_table.o: src/symbol_table/representation/representation_table.c
 	$(CC) -c src/symbol_table/representation/representation_table.c
 
+lexeme_table.o: src/symbol_table/lexeme/lexeme_table.c
+	$(CC) -c src/symbol_table/lexeme/lexeme_table.c
+
+utility.o: src/symbol_table/utility.c
+	$(CC) -c src/symbol_table/utility.c
 
 # ---------------- #
 # TABLE MANAGEMENT
@@ -216,6 +225,21 @@ errors.o: src/utils/errors.c
 
 scope_tracker.o: src/utils/scope_tracker.c
 	$(CC) -c src/utils/scope_tracker.c
+
+
+
+# ---------------------------------------------------- #
+#                I N T E R P R E T E R                 #
+# ---------------------------------------------------- #
+
+interpreter: $(INTERPRETER_RULES) $(PARSER) $(SYMBOL_TABLE) $(DATA) $(AST) $(UTILS)
+	$(CC) $(BIN_DIR)/lex.yy.c $(BIN_DIR)/y.tab.c $(PARSER) $(SYMBOL_TABLE) $(DATA) $(AST) $(UTILS) -I$(INCLUDE_DIR) -o interpreter.exe
+
+tex: src/lexer/interpreter_lexer.l
+	$(LEX) -o $(BIN_DIR)/lex.yy.c src/lexer/interpreter_lexer.l
+
+yax: src/parser/interpreter_grammar.y
+	$(YACC) -d -Wcounterexamples -o $(BIN_DIR)/y.tab.c src/parser/interpreter_grammar.y
 
 # ==================================================== #
 #                        C L E A N                     #

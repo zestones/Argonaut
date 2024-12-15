@@ -35,6 +35,14 @@ void init_representation_table();
 int insert_representation(int value);
 
 /**
+ * @brief Inserts a representation into the table at a specific index.
+ *
+ * @param index The index at which to insert the representation.
+ * @param value The value of the representation to insert.
+ */
+void insert_representation_row(int index, int value);
+
+/**
  * @brief Updates a representation in the table.
  *
  * @param index The index of the representation to update.
@@ -51,10 +59,20 @@ void update_representation(int index, int value);
 int get_representation_value(int index);
 
 /**
+ * @brief Exports the representation table to a file.
+ *
+ * @param filename The name of the file to write the representation table to.
+ */
+void export_representation_table(const char* filename);
+
+/**
  * @brief Prints the contents of the representation table.
  *
  * This function prints the contents of the representation table to the standard output.
+ * The table is printed in a tabular format, with each row containing the index and value
+ * 
+ * @param out The file stream to write the representation table to.
  */
-void print_representation_table();
+void fprintf_representation_table(FILE* out);
 
 #endif // REPRESENTATION_TABLE_H

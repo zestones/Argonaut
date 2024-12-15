@@ -97,3 +97,5 @@ dkms.conf
 
 src/bin/*
 !src/bin/.gitkeep
+
+log.txt

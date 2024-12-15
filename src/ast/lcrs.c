@@ -39,6 +39,23 @@ void add_sibling(Node* node, Node* sibling) {
     node->sibling = sibling;
 }
 
+void append_child(Node* parent, Node* child) {
+    if (!parent || !child) return; 
+
+    if (!parent->child) {
+        parent->child = child;
+    } 
+    else {
+        Node* current = parent->child;
+        while (current->sibling != NULL) {
+            current = current->sibling;
+        }
+    
+        current->sibling = child;
+    }
+}
+
+
 void add_chain(Node *parent, Node *nodes[], int count) {
     Node *current = NULL;
     for (int i = 0; i < count; i++) {

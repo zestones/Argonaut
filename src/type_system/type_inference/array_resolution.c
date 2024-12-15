@@ -1,6 +1,6 @@
 #include "../../symbol_table/representation/representation_table.h" 
 #include "../../symbol_table/declaration/declaration_table.h" 
-#include "../../lexer/lexeme_table.h"
+#include "../../symbol_table/lexeme/lexeme_table.h"
 #include "../format/formatting.h"
 #include "../../utils/utils.h"
 #include "type_inference.h"
@@ -54,8 +54,15 @@ int resolve_array_access_type(Node *array_access) {
             // Resolve the field type in the struct
             if (get_declaration_nature(index_type_declaration) != TYPE_STRUCT) {
                 set_error_type(&error, SEMANTIC_ERROR);
-                // TODO: error not reproducible ?
-                set_error_message(&error, "Field access is invalid as the type is not a struct.");
+                set_error_message(
+                    &error,
+                    "Invalid field access at %s.\n"
+                    "  '%s' is of type '%s', which is incompatible with field access.\n"
+                    "  Ensure the entity is a struct before attempting to access its fields.\n",
+                    get_formatted_location(),
+                    get_lexeme(array_access->index_declaration),
+                    get_lexeme(index_type_declaration)
+                );
                 yerror(error);
                 return NULL_VALUE;
             }

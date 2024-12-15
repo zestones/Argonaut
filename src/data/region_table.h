@@ -69,6 +69,16 @@ void start_region();
 void end_region();
 
 /**
+ * @brief Inserts a new region row into the region table.
+ *
+ * @param index The index of the region.
+ * @param size The size of the region.
+ * @param nis The NIS of the region.
+ * @param ast The AST of the region.
+ */
+void insert_region_row(int index, int size, int nis, AST ast);
+
+/**
  * @brief Gets the size of the region at the specified index.
  *
  * @param index The index of the region.
@@ -114,11 +124,18 @@ void update_region_size(int index, int size);
 void update_region_ast(int index, AST ast);
 
 /**
+ * @brief Exports the region table to a file.
+ *
+ * @param filename The name of the file to write the region table to.
+ */
+void export_region_table(const char* filename);
+
+/**
  * @brief Prints the region table.
  *
  * This function prints the current state of the region table.
  */
-void print_region_table();
+void fprintf_region_table();
 
 
 #endif // __REGION_TABLE_H__

@@ -5,10 +5,10 @@
     #include "../table_management/array_manager.h"
 
     #include "../symbol_table/declaration/declaration_table.h"
+    #include "../symbol_table/lexeme/lexeme_table.h"
     #include "../symbol_table/hash/hash_table.h"
     #include "../data/region_table.h"
 
-    #include "../lexer/lexeme_table.h"
     #include "parser.h"
 
     #include "../utils/errors.h"
@@ -24,7 +24,6 @@
     extern char *yytext;
 
     Error error;
-    int current_lexeme_code;
 
     void yyerror(const char *s) {
         // TODO: Uncomment this line to prevent the program from exiting on syntax errors
@@ -33,18 +32,23 @@
 
         if (!strcmp(s, "syntax error")) {
             set_error_message(&error,
-                "Unexpected token found: '%s'.\n"
+                "Unexpected token found: '%s' at %s.\n"
                 "\t> This error is critical and will cause the program to terminate.\n"
                 "\t> Exiting due to a syntax error.",
-                yytext);
+                yytext,
+                get_formatted_location()
+            );
         } 
         else {
             set_error_message(&error,
-                "Unexpected token found: '%s'.\n"
+                "Unexpected token found: '%s' at %s.\n"
                 "\t> %s\n"
                 "\t> This error is critical and will cause the program to terminate.\n"
                 "\t> Exiting due to a syntax error.",
-                yytext, s);
+                yytext,
+                get_formatted_location(),
+                s
+            );
         }
 
         
@@ -134,7 +138,7 @@ declaration: variable_declaration { $$ = $1; }
 
 variable_declaration: VARIABLE IDENTIFIER TWO_POINTS type SEMICOLON { 
                         declaration_variable_start($2, $4);
-                        $$ = construct_node(A_VARIABLE_DECLARATION, $2, get_arr_struct_declaration_index($4));
+                        $$ = construct_node(A_VARIABLE_DECLARATION, $2, find_declaration_index_by_nature($2, TYPE_VAR));
                     }
 ;
 
@@ -581,7 +585,7 @@ static void handle_file_error(const char *filename) {
 }
 
 int main(int argc, char **argv) {
-    int opt, verbose = 0;
+    int opt, verbose, log = 0;
     
     error.line = 1;
     error.column = 1;
@@ -592,14 +596,21 @@ int main(int argc, char **argv) {
     }
 
     char *input_file = NULL;
+    char *output_file = NULL;
 
-    while ((opt = getopt(argc, argv, "f:vh")) != -1) {
+    while ((opt = getopt(argc, argv, "f:vlho:")) != -1) {
         switch (opt) {
             case 'f':
                 input_file = optarg;
                 break;
+            case 'l':
+                log = 1;
+                break;
             case 'v':
                 verbose = 1;
+                break;
+            case 'o':
+                output_file = optarg;
                 break;
             case 'h':
                 print_usage(argv[0]);
@@ -617,19 +628,23 @@ int main(int argc, char **argv) {
 
     // Open the file for reading
     FILE *file = fopen(input_file, "r");
-    if (!file) {
-        handle_file_error(input_file);
-    }
+    if (!file) handle_file_error(input_file);
 
     error.filename = input_file;
     yyin = file;
 
-    yyrun();
+    yyrun(COMPILATION);
     fclose(file);
 
-    if (verbose) {
-        printf(COLOR_GREEN "Verbose mode enabled. Printing tables and ast...\n" COLOR_RESET);
-        ydebug(verbose);
+
+    ydebug(verbose);
+    ylog(log);
+    
+    if (output_file != NULL) {
+        export_lexeme_table(output_file);
+        export_declaration_table(output_file);
+        export_representation_table(output_file);
+        export_region_table(output_file);
     }
 
     return 0;

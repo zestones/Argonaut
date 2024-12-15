@@ -1,5 +1,5 @@
 %{
-    #include "../lexer/lexeme_table.h"
+    #include "../symbol_table/lexeme/lexeme_table.h"
     #include "../parser/parser.h"
 
     #include "../utils/errors.h"
@@ -125,7 +125,14 @@ letter [a-zA-Z]
 
 . { 
     set_error_type(&error, LEXICAL_ERROR);
-    set_error_message(&error, "Unknown character '%s'", yytext);
+    set_error_message(
+        &error,
+        "Unknown character at %s.\n"
+        "  The character '%s' is not recognized by the parser.\n"
+        "  Ensure that the character is valid for the expected syntax.\n",
+        get_formatted_location(),
+        yytext
+    );
     yerror(error);  
     error.column += yyleng;
 } 
