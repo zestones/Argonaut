@@ -9,6 +9,8 @@ CFLAGS = -g -W -Wall -pedantic -std=c99 -O3
 LEX = lex
 YACC = yacc
 
+ARGS = $(filter-out $@,$(MAKECMDGOALS))
+
 BIN_DIR = src/bin
 INCLUDE_DIR = src/parser
 
@@ -45,6 +47,11 @@ compiler: compiler-rule simple-clean
 interpreter: interpreter-rule simple-clean
 
 # ==================================================== #
+# 					  T E S T S                    	   #
+# ==================================================== #
+
+test: compiler
+	PYTHONPATH=tests python3 tests/regression/main.py $(ARGS)
 
 
 # ---------------------------------------------------- #
@@ -258,4 +265,5 @@ simple-clean:
 	rm -f *.o
 
 clean: simple-clean
-	rm -f *.exe $(BIN_DIR)/*.tab.c $(BIN_DIR)/*.tab.h $(BIN_DIR)/lex.yy.c
+	rm -f *.exe $(BIN_DIR)/*.tab.c $(BIN_DIR)/*.tab.h $(BIN_DIR)/lex.yy.c && \
+	rm -rf tests/**/__pycache__
