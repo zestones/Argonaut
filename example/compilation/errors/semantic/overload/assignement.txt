@@ -1,6 +1,7 @@
 PROG
 
 var x : int;
+var x : float;
 
 type x : array[0:10] of int;
 

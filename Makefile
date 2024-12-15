@@ -40,6 +40,10 @@ all: compiler interpreter simple-clean
 
 install: sudo apt install flex bison
 
+compiler: compiler-rule simple-clean
+
+interpreter: interpreter-rule simple-clean
+
 # ==================================================== #
 
 
@@ -47,7 +51,7 @@ install: sudo apt install flex bison
 #                        COMPILER 					   #
 # ---------------------------------------------------- #
 
-compiler: $(COMPILER_RULES) $(PARSER) $(SYMBOL_TABLE) $(TABLE_MANAGEMENT) $(DATA) $(AST) $(UTILS) $(SEMANTIC_CHECKS) $(TYPE_SYSTEM)
+compiler-rule: $(COMPILER_RULES) $(PARSER) $(SYMBOL_TABLE) $(TABLE_MANAGEMENT) $(DATA) $(AST) $(UTILS) $(SEMANTIC_CHECKS) $(TYPE_SYSTEM)
 	$(CC) $(BIN_DIR)/lex.yy.c $(BIN_DIR)/y.tab.c $(PARSER) $(SYMBOL_TABLE) $(TABLE_MANAGEMENT) $(DATA) $(AST) $(UTILS) $(SEMANTIC_CHECKS) $(TYPE_SYSTEM) -I$(INCLUDE_DIR) -o compiler.exe
 
 
@@ -232,7 +236,7 @@ scope_tracker.o: src/utils/scope_tracker.c
 #                I N T E R P R E T E R                 #
 # ---------------------------------------------------- #
 
-interpreter: $(INTERPRETER_RULES) $(PARSER) $(SYMBOL_TABLE) $(DATA) $(AST) $(UTILS)
+interpreter-rule: $(INTERPRETER_RULES) $(PARSER) $(SYMBOL_TABLE) $(DATA) $(AST) $(UTILS)
 	$(CC) $(BIN_DIR)/lex.yy.c $(BIN_DIR)/y.tab.c $(PARSER) $(SYMBOL_TABLE) $(DATA) $(AST) $(UTILS) -I$(INCLUDE_DIR) -o interpreter.exe
 
 tex: src/lexer/interpreter_lexer.l
