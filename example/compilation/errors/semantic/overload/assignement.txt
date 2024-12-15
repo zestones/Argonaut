@@ -12,8 +12,11 @@ type x : struct
     annee : int;
 } fstruct;
 
+func main(a: int) -> int {
+    return 1;
+}
 
-proc x(a: float) {
+proc main(a: float) {
     var z : x;
     z[0] := 1;
     // a := 3.14;

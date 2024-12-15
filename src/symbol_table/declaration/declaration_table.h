@@ -211,6 +211,13 @@ int get_declaration_execution(int index);
 int get_declaration_lexicographic_index(int index);
 
 /**
+ * @brief Gets the declaration table.
+ * 
+ * @return Pointer to the declaration table.
+ */
+Declaration *get_declaration_table();
+
+/**
  * @brief Updates the execution information of a declaration.
  * 
  * @param index Index of the declaration.

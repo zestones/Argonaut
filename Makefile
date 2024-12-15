@@ -24,7 +24,7 @@ INTERPRETER_RULES = tex yax
 GRAMMAR = lexer parser
 PARSER = parser.o
 SEMANTIC_CHECKS = assignment_validation.o print_validation.o input_validation.o func_proc_validation.o argument_validation.o format_specifiers.o condition_validation.o scope_validation.o type_validation.o variable_validation.o
-SYMBOL_TABLE = declaration_table.o representation_table.o hash_table.o lexeme_table.o utility.o
+SYMBOL_TABLE = declaration_table.o name_association.o representation_table.o hash_table.o lexeme_table.o utility.o
 TABLE_MANAGEMENT = variable_manager.o array_manager.o func_proc_manager.o structure_manager.o
 TYPE_SYSTEM = structure_resolution.o func_proc_resolution.o array_resolution.o expression_resolution.o condition_resolution.o array_access_format.o expression_format.o func_proc_format.o struct_access_format.o
 DATA = region_table.o region_stack.o
@@ -134,6 +134,9 @@ hash_table.o: src/symbol_table/hash/hash_table.c
 
 declaration_table.o: src/symbol_table/declaration/declaration_table.c
 	$(CC) -c src/symbol_table/declaration/declaration_table.c
+
+name_association.o: src/symbol_table/declaration/name_association.c
+	$(CC) -c src/symbol_table/declaration/name_association.c
 
 representation_table.o: src/symbol_table/representation/representation_table.c
 	$(CC) -c src/symbol_table/representation/representation_table.c
