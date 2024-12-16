@@ -1,6 +1,6 @@
 #include "../../symbol_table/representation/representation_table.h" 
 #include "../../symbol_table/declaration/declaration_table.h" 
-#include "../../lexer/lexeme_table.h"
+#include "../../symbol_table/lexeme/lexeme_table.h"
 #include "../../data/region_table.h"
 
 int resolve_func_proc_return_type(Node *function_call) {

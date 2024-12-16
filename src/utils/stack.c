@@ -61,18 +61,18 @@ void print_stack(const Stack stack) {
     const int col_width_index = 10;
     const int col_width_value = 15;
 
-    print_table_title("Stack");
-    print_table_separator(2, col_width_index, col_width_value);
-    print_table_header(2, col_width_index, "Index", col_width_value, "Value");
-    print_table_separator(2, col_width_index, col_width_value);
+    print_table_title(stdout, "Stack");
+    print_table_separator(stdout, 2, col_width_index, col_width_value);
+    print_table_header(stdout, 2, col_width_index, "Index", col_width_value, "Value");
+    print_table_separator(stdout, 2, col_width_index, col_width_value);
 
     for (int i = 0; i < stack.top; i++) {
         char index_str[20], value_str[20];
         sprintf(index_str, "%d", i);
         sprintf(value_str, "%d", stack.data[i]);
 
-        print_table_row(2, col_width_index, index_str, col_width_value, value_str);
+        print_table_row(stdout, 2, col_width_index, index_str, col_width_value, value_str);
     }
 
-    print_table_separator(2, col_width_index, col_width_value);
+    print_table_separator(stdout, 2, col_width_index, col_width_value);
 }

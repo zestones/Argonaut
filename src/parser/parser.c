@@ -1,29 +1,38 @@
 #include "parser.h"
 #include "../bin/y.tab.h"
 
+static void write_tables_to(FILE* out) {
+    fprintf_lexeme_table(out);
+    fprintf_hash_table(out);
+    
+    fprintf_declaration_table(out);
+    fprintf_representation_table(out);
+
+    fprintf_region_table(out);
+}
+
+void ylog(int log) {
+    if (!log) return;
+    const char *filename = "log.txt";
+    FILE *output = fopen(filename, "w");
+    if (!output) {
+        fprintf(stderr, "Error opening log file %s\n", filename);
+        return;
+    }
+
+    fprintf(stdout, COLOR_GREEN "Logging enabled. Exporting tables to %s\n" COLOR_RESET, filename);
+    write_tables_to(output);
+    fclose(output);
+}
 
 void ydebug(int debug) {
     if (!debug) return;
-
-    print_lexeme_table();
-    print_hash_table();
-    
-    print_declaration_table();
-    print_representation_table();
-
-    print_region_table();
+    fprintf(stdout, COLOR_GREEN "Verbose mode enabled. Printing tables and ast...\n" COLOR_RESET);
+    write_tables_to(stdout);
 }
 
-static void initialize_tables() {
+static void initialize_base_types() {
     int lexicographic_index = 0;
-
-    init_hash_table();
-    init_lexeme_table();
-    
-    init_declaration_table();
-    init_representation_table();
-
-    init_region_table();
 
     lexicographic_index = insert_lexeme("int");
     insert_declaration(lexicographic_index, TYPE_BASE, 0, lexicographic_index, 1);
@@ -40,13 +49,20 @@ static void initialize_tables() {
     start_region();
 }
 
-static void initialize_parser() {
-    initialize_tables();
+static void initialize_tables(Mode m) {
+    init_hash_table();
+    init_lexeme_table();
+    
+    init_declaration_table();
+    init_representation_table();
+
+    init_region_table();
+
+    if (m == COMPILATION) initialize_base_types();
 }
 
-
-int yyrun() {
-    initialize_parser();
+int yyrun(Mode m) {
+    initialize_tables(m);
     int parse_result = yyparse(); 
 
     return parse_result;

@@ -1,7 +1,14 @@
 PROG
 
-type arr : array[0:5] of int;
+type x : struct {
+    a : int;
+    b : float;
+} fstruct;
 
-var x : arr;
-x := 5;
+var x : int;
 
+func main(a: float) -> int {
+    var x : int;
+    x := 1.0;
+    return 0;
+}

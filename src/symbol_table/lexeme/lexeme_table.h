@@ -63,6 +63,18 @@ void init_lexeme_table();
 int insert_lexeme(const char* lexeme);
 
 /**
+ * @brief Inserts a lexeme row into the lexeme table.
+ *
+ * This function adds a new lexeme to the lexeme table at the specified index.
+ *
+ * @param index The index at which to insert the lexeme.
+ * @param lexeme The lexeme to be inserted.
+ * @param length The length of the lexeme.
+ * @param next The index of the next lexeme in the table.
+ */
+void insert_lexeme_row(int index, const char* lexeme, int length, int next);
+
+/**
  * @brief Retrieves the lexeme at the given index.
  *
  * This function returns the lexeme stored at the specified index in the lexeme table.
@@ -83,11 +95,20 @@ char *get_lexeme(int index);
 int find_lexeme_index(const char* lexeme);
 
 /**
+ * @brief Exports the lexeme table to a file.
+ *
+ * This function writes the contents of the lexeme table to a file.
+ *
+ * @param filename The name of the file to write the lexeme table to.
+ */
+void export_lexeme_table(const char* filename);
+
+/**
  * @brief Prints the contents of the lexeme table.
  *
  * This function outputs the current state of the lexeme table, displaying
  * all stored lexemes and their associated information.
  */
-void print_lexeme_table();
+void fprintf_lexeme_table(FILE* out);
 
 #endif // LEXEME_TABLE_H

@@ -1,6 +1,6 @@
 #include "../../symbol_table/representation/representation_table.h" 
 #include "../../symbol_table/declaration/declaration_table.h" 
-#include "../../lexer/lexeme_table.h"
+#include "../../symbol_table/lexeme/lexeme_table.h"
 #include "../format/formatting.h"
 #include "../../utils/utils.h"
 #include "type_inference.h"

@@ -1,19 +1,15 @@
 PROG
 
-var x : int;
-
-type x : array[0:10] of int;
-
-type x : struct 
-{
-    jour : int;
-    mois : int;
-    annee : int;
+type x : struct {
+    a : int;
+    b : float;
 } fstruct;
 
+type x : array[0:10] of int; // Error: Type 'x' already defined
+var x : x;
+var x : int;                // Error: Variable 'x' already defined
 
-proc x(a: float) {
-    var z : x;
-    z[0] := 1;
-    // a := 3.14;
+proc main(a: float) {
+    var x : int;            // OK as x is of different region
+    x := 1;
 }

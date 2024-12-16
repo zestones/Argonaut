@@ -15,7 +15,7 @@ type personne : struct  {
 
 var p : personne;
 var x : int;
-var z : x;
+var z : x;          // Error : type x undefined
 
 type my_tab : array[0: 10] of int;
 var y : my_tab;

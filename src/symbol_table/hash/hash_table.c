@@ -42,13 +42,13 @@ int get_hash_value(int index) {
     return hash_table[index];
 }
 
-void print_hash_table() {
+void fprintf_hash_table(FILE* out) {
     const int cols_width[] = {10, 20};
 
-    print_table_title("Hash Table");
-    print_table_separator(2, cols_width[0], cols_width[1]);
-    print_table_header(2, cols_width[0], "Hash", cols_width[1], "Lexicographic Index");
-    print_table_separator(2, cols_width[0], cols_width[1]);
+    print_table_title(out, "Hash Table");
+    print_table_separator(out, 2, cols_width[0], cols_width[1]);
+    print_table_header(out, 2, cols_width[0], "Hash", cols_width[1], "Lexicographic Index");
+    print_table_separator(out, 2, cols_width[0], cols_width[1]);
 
     for (int i = 0; i < HASH_TABLE_SIZE; i++) {
         if (hash_table[i] == -1) continue;
@@ -57,11 +57,12 @@ void print_hash_table() {
         sprintf(index_str, "%d", i);
         sprintf(value_str, "%d", hash_table[i]);
 
-        print_table_row(2,
+        print_table_row(out, 
+                        2,
                         cols_width[0], index_str, 
                         cols_width[1], value_str
                     );
     }
 
-    print_table_separator(2, cols_width[0], cols_width[1]);
+    print_table_separator(out, 2, cols_width[0], cols_width[1]);
 }

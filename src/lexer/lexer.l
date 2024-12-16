@@ -1,5 +1,5 @@
 %{
-    #include "../lexer/lexeme_table.h"
+    #include "../symbol_table/lexeme/lexeme_table.h"
     #include "../parser/parser.h"
 
     #include "../utils/errors.h"

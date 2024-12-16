@@ -1,5 +1,5 @@
 #include "../../utils/scope_tracker.h"
-#include "../../lexer/lexeme_table.h"
+#include "../../symbol_table/lexeme/lexeme_table.h"
 
 void check_scope_redefinition(int index_lexeme_lexicographic, char *entity_type) {
     if (is_identifier_already_tracked(index_lexeme_lexicographic)) {

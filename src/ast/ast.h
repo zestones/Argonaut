@@ -14,11 +14,19 @@ typedef struct Node* AST;
 AST construct_ast();
 
 /**
+ * @brief Formats the AST in a human-readable format.
+ * 
+ * @param node The root of the AST to format.
+ * @return A formatted string representing the AST.
+ */
+char* format_ast(Node* node);
+
+/**
  * @brief Prints the AST in a human-readable format.
  * 
  * @param ast The root of the AST to print.
  */
-void print_ast(AST ast);
+void fprintf_ast(FILE* out, AST ast);
 
 /**
  * @brief Frees all memory associated with the AST.

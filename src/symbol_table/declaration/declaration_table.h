@@ -122,6 +122,18 @@ void insert_declaration_proc(int index, int region, int description);
 void insert_declaration_param(int index, int region, int description, int execution);
 
 /**
+ * @brief Inserts a declaration row into the table.
+ * 
+ * @param index Index at which to insert the declaration.
+ * @param nature Nature of the declaration.
+ * @param next Index of the next declaration.
+ * @param region Region of the declaration.
+ * @param description Description of the declaration.
+ * @param execution Execution information of the declaration.
+ */
+void insert_declaration_row(int index, Nature nature, int next, int region, int description, int execution);
+
+/**
  * @brief Finds the index of a declaration with the specified lexicographic index.
  * This function is used to ensure that a declaration with the specified lexicographic
  * index exists in the table.
@@ -191,12 +203,24 @@ int get_declaration_execution(int index);
  * The objective is to find the first declaration in the chain of declarations
  * that is the genitor of the declaration. Because the first declaration index in the
  * chain is linked to the lexicographic index, this way we are able to find the lexeme of 
- * of type that is inside the overflown zone. 
+ * of type that is inside the overflown zone.
+ * 
+ * Why do we need this? It is used only to further improve the error messages.
+ * A declaration of variable can have a type that is stored in the overflown zone.
+ * Making it impossible to get the lexeme out of the declaration index. So we need to
+ * find the first declaration in the chain that is linked to the lexeme.
  * 
  * @param index Index of the declaration.
  * @return Lexicographic index of the declaration.
  */
 int get_declaration_lexicographic_index(int index);
+
+/**
+ * @brief Gets the declaration table.
+ * 
+ * @return Pointer to the declaration table.
+ */
+Declaration *get_declaration_table();
 
 /**
  * @brief Updates the execution information of a declaration.
@@ -207,9 +231,18 @@ int get_declaration_lexicographic_index(int index);
 void update_declaration_execution(int index, int execution);
 
 /**
- * @brief Prints the declaration table.
+ * @brief Exports the declaration table to a file.
+ * 
+ * @param filename Name of the file to write the declaration table to.
  */
-void print_declaration_table();
+void export_declaration_table(const char* filename);
+
+/**
+ * @brief Prints the declaration table.
+ * 
+ * @param out File stream to write the declaration table to.
+ */
+void fprintf_declaration_table(FILE* out);
 
 /**
  * @brief Converts a nature to a string representation.

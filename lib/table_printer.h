@@ -21,17 +21,17 @@
  * 
  * @param title The title to print.
  */
-static inline void print_table_title(const char* title) {
+static inline void print_table_title(FILE *out, const char* title) {
     int title_length = strlen(title);
     int total_length = title_length + 4;
 
-    printf("\n+");
+    fprintf(out, "\n+");
     for (int i = 0; i < total_length; i++) {
-        printf("-");
+        fprintf(out, "-");
     }
 
-    printf("+\n");
-    printf("|" " %-*s " "|\n", total_length - 2, title);
+    fprintf(out, "+\n");
+    fprintf(out, "|" " %-*s " "|\n", total_length - 2, title);
 }
 
 /**
@@ -40,21 +40,21 @@ static inline void print_table_title(const char* title) {
  * @param num_columns The number of columns in the table.
  * @param ... The width of each column.
  */
-static inline void print_table_separator(int num_columns, ...) {
+static inline void print_table_separator(FILE *out, int num_columns, ...) {
     va_list args;
     va_start(args, num_columns);
 
-    fprintf(stdout, "+");
+    fprintf(out, "+");
     for (int i = 0; i < num_columns; i++) {
         int col_width = va_arg(args, int);
         for (int j = 0; j < col_width + 2; j++) {
-            fprintf(stdout, "-");
+            fprintf(out, "-");
         }
 
-        fprintf(stdout, "+");
+        fprintf(out, "+");
     }
 
-    fprintf(stdout, "\n");
+    fprintf(out, "\n");
     va_end(args);
 }
 
@@ -64,18 +64,18 @@ static inline void print_table_separator(int num_columns, ...) {
  * @param num_columns The number of columns in the table.
  * @param ... The width and name of each column.
  */
-static inline void print_table_header(int num_columns, ...) {
+static inline void print_table_header(FILE *out, int num_columns, ...) {
     va_list args;
     va_start(args, num_columns);
 
-    fprintf(stdout, "|");
+    fprintf(out, "|");
     for (int i = 0; i < num_columns; i++) {
         int col_width = va_arg(args, int);
         const char* col_name = va_arg(args, const char*);
-        fprintf(stdout, " " COLOR_BOLD "%-*s" COLOR_RESET " |", col_width, col_name);
+        fprintf(out, " " "%-*s" " |", col_width, col_name);
     }
 
-    fprintf(stdout, "\n");
+    fprintf(out, "\n");
     va_end(args);
 }
 
@@ -85,18 +85,18 @@ static inline void print_table_header(int num_columns, ...) {
  * @param num_columns The number of columns in the table.
  * @param ... The width and value of each column.
  */
-static inline void print_table_row(int num_columns, ...) {
+static inline void print_table_row(FILE *out, int num_columns, ...) {
     va_list args;
     va_start(args, num_columns);
 
-    fprintf(stdout, "|");
+    fprintf(out, "|");
     for (int i = 0; i < num_columns; i++) {
         int col_width = va_arg(args, int);
         const char* col_value = va_arg(args, const char*);
-        fprintf(stdout, " %-*s |", col_width, col_value);
+        fprintf(out, " %-*s |", col_width, col_value);
     }
 
-    fprintf(stdout, "\n");
+    fprintf(out, "\n");
     va_end(args);
 }
 
