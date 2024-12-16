@@ -24,8 +24,9 @@ def main():
     # Header
     print_header(
         "Regression Test Runner", 
-"A regression testing tool that validates compiler output against predefined test cases. It automates the comparison of actual and expected outputs to ensure the compiler's correctness and prevent regressions after changes. The tool can generate expected outputs or run tests to verify the compiler’s behavior."    )
-
+        " A regression testing tool that validates compiler output against predefined test cases."
+        " It automates the comparison of actual and expected outputs to ensure the compiler's correctness and prevent regressions after changes."
+        " The tool can generate expected outputs or run tests to verify the compiler’s behavior.")
 
     if args.generate:
         print_info("Generating expected outputs...")
