@@ -15,7 +15,7 @@
 #include "utils.h"
 
 
-#define MAX_SIZE 100
+#define MAX_SIZE 5000
 
 /**
  * @struct Stack
@@ -23,10 +23,12 @@
  * 
  * This structure defines a stack with a fixed maximum size. It contains an array to hold the stack elements
  * and an integer to keep track of the index of the top element.
+ * The stack can store elements of any data type by using a void pointer. The data should be cast to the appropriate
+ * type when popped from the stack.
  */
 typedef struct {
-    int data[MAX_SIZE]; // Array to store the elements of the stack.
-    int top;            // Index of the top element in the stack.
+    void *data[MAX_SIZE];   // Array to store the elements of the stack.
+    int top;                // Index of the top element in the stack.
 } Stack;
 
 /**
@@ -65,8 +67,9 @@ int size(const Stack stack);
  *
  * @param stack The stack to push the value onto.
  * @param value The value to push onto the stack.
+ * @param value_size The size of the value to push (needed for allocating memory).
  */
-void push(Stack *stack, int value);
+void push(Stack *stack, void *value, size_t value_size);
 
 /**
  * @brief Pops a value from the stack.
@@ -74,7 +77,7 @@ void push(Stack *stack, int value);
  * @param stack The stack to pop the value from.
  * @return The value popped from the stack.
  */
-int pop(Stack *stack);
+void *pop(Stack *stack);
 
 /**
  * @brief Peeks at the top value of the stack without popping it.
@@ -82,22 +85,24 @@ int pop(Stack *stack);
  * @param stack The stack to peek at.
  * @return The value at the top of the stack.
  */
-int peek(const Stack stack);
+void *peek(const Stack stack);
 
 /**
  * @brief Copies the contents of one stack to another.
  *
  * @param dest The destination stack.
  * @param src The source stack.
+ * @param value_size The size of the values in the stack (needed for allocating memory).
  */
-void stack_cpy(Stack *dest, const Stack src);
+void stack_cpy(Stack *dest, const Stack src, size_t value_size);
 
 /**
  * @brief Prints the contents of the stack.
  *
  * @param stack The stack to print.
+ * @param format_func A function to format the elements of the stack.
  */
-void print_stack(const Stack stack);
+void print_stack(const Stack stack, const char* (*format_func)(void *));
 
 
 #endif // __STACK_H__
