@@ -203,12 +203,24 @@ int get_declaration_execution(int index);
  * The objective is to find the first declaration in the chain of declarations
  * that is the genitor of the declaration. Because the first declaration index in the
  * chain is linked to the lexicographic index, this way we are able to find the lexeme of 
- * of type that is inside the overflown zone. 
+ * of type that is inside the overflown zone.
+ * 
+ * Why do we need this? It is used only to further improve the error messages.
+ * A declaration of variable can have a type that is stored in the overflown zone.
+ * Making it impossible to get the lexeme out of the declaration index. So we need to
+ * find the first declaration in the chain that is linked to the lexeme.
  * 
  * @param index Index of the declaration.
  * @return Lexicographic index of the declaration.
  */
 int get_declaration_lexicographic_index(int index);
+
+/**
+ * @brief Gets the declaration table.
+ * 
+ * @return Pointer to the declaration table.
+ */
+Declaration *get_declaration_table();
 
 /**
  * @brief Updates the execution information of a declaration.

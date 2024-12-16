@@ -9,6 +9,8 @@ CFLAGS = -g -W -Wall -pedantic -std=c99 -O3
 LEX = lex
 YACC = yacc
 
+ARGS = $(filter-out $@,$(MAKECMDGOALS))
+
 BIN_DIR = src/bin
 INCLUDE_DIR = src/parser
 
@@ -24,7 +26,7 @@ INTERPRETER_RULES = tex yax
 GRAMMAR = lexer parser
 PARSER = parser.o
 SEMANTIC_CHECKS = assignment_validation.o print_validation.o input_validation.o func_proc_validation.o argument_validation.o format_specifiers.o condition_validation.o scope_validation.o type_validation.o variable_validation.o
-SYMBOL_TABLE = declaration_table.o representation_table.o hash_table.o lexeme_table.o utility.o
+SYMBOL_TABLE = declaration_table.o name_association.o representation_table.o hash_table.o lexeme_table.o utility.o
 TABLE_MANAGEMENT = variable_manager.o array_manager.o func_proc_manager.o structure_manager.o
 TYPE_SYSTEM = structure_resolution.o func_proc_resolution.o array_resolution.o expression_resolution.o condition_resolution.o array_access_format.o expression_format.o func_proc_format.o struct_access_format.o
 DATA = region_table.o region_stack.o
@@ -40,14 +42,23 @@ all: compiler interpreter simple-clean
 
 install: sudo apt install flex bison
 
+compiler: compiler-rule simple-clean
+
+interpreter: interpreter-rule simple-clean
+
 # ==================================================== #
+# 					  T E S T S                    	   #
+# ==================================================== #
+
+test: compiler
+	PYTHONPATH=tests python3 tests/regression/main.py $(ARGS)
 
 
 # ---------------------------------------------------- #
 #                        COMPILER 					   #
 # ---------------------------------------------------- #
 
-compiler: $(COMPILER_RULES) $(PARSER) $(SYMBOL_TABLE) $(TABLE_MANAGEMENT) $(DATA) $(AST) $(UTILS) $(SEMANTIC_CHECKS) $(TYPE_SYSTEM)
+compiler-rule: $(COMPILER_RULES) $(PARSER) $(SYMBOL_TABLE) $(TABLE_MANAGEMENT) $(DATA) $(AST) $(UTILS) $(SEMANTIC_CHECKS) $(TYPE_SYSTEM)
 	$(CC) $(BIN_DIR)/lex.yy.c $(BIN_DIR)/y.tab.c $(PARSER) $(SYMBOL_TABLE) $(TABLE_MANAGEMENT) $(DATA) $(AST) $(UTILS) $(SEMANTIC_CHECKS) $(TYPE_SYSTEM) -I$(INCLUDE_DIR) -o compiler.exe
 
 
@@ -130,6 +141,9 @@ hash_table.o: src/symbol_table/hash/hash_table.c
 
 declaration_table.o: src/symbol_table/declaration/declaration_table.c
 	$(CC) -c src/symbol_table/declaration/declaration_table.c
+
+name_association.o: src/symbol_table/declaration/name_association.c
+	$(CC) -c src/symbol_table/declaration/name_association.c
 
 representation_table.o: src/symbol_table/representation/representation_table.c
 	$(CC) -c src/symbol_table/representation/representation_table.c
@@ -232,7 +246,7 @@ scope_tracker.o: src/utils/scope_tracker.c
 #                I N T E R P R E T E R                 #
 # ---------------------------------------------------- #
 
-interpreter: $(INTERPRETER_RULES) $(PARSER) $(SYMBOL_TABLE) $(DATA) $(AST) $(UTILS)
+interpreter-rule: $(INTERPRETER_RULES) $(PARSER) $(SYMBOL_TABLE) $(DATA) $(AST) $(UTILS)
 	$(CC) $(BIN_DIR)/lex.yy.c $(BIN_DIR)/y.tab.c $(PARSER) $(SYMBOL_TABLE) $(DATA) $(AST) $(UTILS) -I$(INCLUDE_DIR) -o interpreter.exe
 
 tex: src/lexer/interpreter_lexer.l
@@ -251,4 +265,5 @@ simple-clean:
 	rm -f *.o
 
 clean: simple-clean
-	rm -f *.exe $(BIN_DIR)/*.tab.c $(BIN_DIR)/*.tab.h $(BIN_DIR)/lex.yy.c
+	rm -f *.exe $(BIN_DIR)/*.tab.c $(BIN_DIR)/*.tab.h $(BIN_DIR)/lex.yy.c && \
+	rm -rf tests/**/__pycache__
