@@ -22,8 +22,8 @@ class OutputGenerator:
 
                     try:
                         with open(expected_output_file, "w") as output_file:
-                            result = subprocess.run([COMPILER_CMD, COMPILER_OPTIONS, input_file],
-                                                    stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+                            result = subprocess.run([COMPILER_CMD, COMPILER_OPTIONS, input_file], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+                            
                             output = remove_ansi_codes(result.stdout.decode())
                             output_file.write(output)
 

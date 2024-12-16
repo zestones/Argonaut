@@ -3,7 +3,7 @@ import argparse
 
 from regression.generator import OutputGenerator
 from regression.runner import TestRunner
-from regression.helpers import print_header, print_info, print_success, print_error, print_summary
+from regression.helpers import print_header, print_footer, print_info, print_success, print_error, print_summary
 
 from colorama import Fore, Style, init
 
@@ -40,10 +40,7 @@ def main():
         
         print_summary(runner.tests_passed, runner.tests_failed, runner.tests_skipped)
 
-    # Final footer with separator for visual clarity
-    print(f"\n{Fore.MAGENTA}{Style.BRIGHT}{'=' * 40}{Style.RESET_ALL}")
-    print(f"{Fore.MAGENTA}{Style.BRIGHT}| {'Test run complete'.center(36)} |")
-    print(f"{Fore.MAGENTA}{Style.BRIGHT}{'=' * 40}\n")
+    print_footer("Test Complete")
 
 if __name__ == "__main__":
     main()

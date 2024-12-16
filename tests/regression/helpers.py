@@ -14,6 +14,13 @@ def print_header(title: str):
     print(f"\n{Fore.MAGENTA}{Style.BRIGHT}{'=' * line_length}")
     print(f"{Fore.MAGENTA}{Style.BRIGHT}| {title} |")
     print(f"{Fore.MAGENTA}{Style.BRIGHT}{'=' * line_length}\n")
+    
+def print_footer(title: str):
+    """Print a styled footer with a title."""
+    line_length = len(title) + 4
+    print(f"\n{Fore.MAGENTA}{Style.BRIGHT}{'=' * line_length}")
+    print(f"{Fore.MAGENTA}{Style.BRIGHT}| {title} |")
+    print(f"{Fore.MAGENTA}{Style.BRIGHT}{'=' * line_length}\n")
 
 def print_success(message: str):
     """Print a success message in green."""
