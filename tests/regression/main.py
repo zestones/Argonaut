@@ -40,9 +40,10 @@ def main():
         print_info("Running regression tests...")
         
         runner = TestRunner()
-        runner.run_tests()
+        all_passed = runner.run_tests()
         
         print_summary(runner.tests_passed, runner.tests_failed, runner.tests_skipped)
+        if not all_passed: sys.exit(1) # Return non-zero exit code if any test failed
 
     print_footer("End of Regression Test Run", width=100)
 
