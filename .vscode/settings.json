@@ -67,7 +67,8 @@
         "utility": "c",
         "type_traits": "c",
         "execution.h": "c",
-        "vm_cell.h": "c"
+        "vm_cell.h": "c",
+        "interpreter.h": "c"
     },
     "python.testing.pytestArgs": [
         "tests"

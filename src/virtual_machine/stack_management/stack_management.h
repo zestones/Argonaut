@@ -5,10 +5,8 @@
 
 void init_execution_stack();
 
-vm_cell construct_vm_cell(int type, void *value);
-
-void declare_variable(int type, int execution_size);
 void push_execution_stack(int type, void *value);
+
 void fprintf_vm_stack(FILE *out);
 
 #endif 
