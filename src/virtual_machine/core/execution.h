@@ -9,6 +9,6 @@ void declare_variable(int type, int execution_size);
 
 void declare_array_variable(int array_type, int execution_size);
 
-void handle_declaration(Node *declaration);
+void handle_declaration(int type, int index_lexicographic, int index_declaration);
 
 #endif // __VIRTUAL_MACHINE_H__

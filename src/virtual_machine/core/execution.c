@@ -29,11 +29,8 @@ void declare_array_variable(int array_type, int execution_size) {
     }
 }
 
-void handle_declaration(Node *declaration) {
-    if (declaration == NULL || declaration->type != A_VARIABLE_DECLARATION) return;
-
-    int index_lexicographic = declaration->index_lexicographic;
-    int index_declaration = declaration->index_declaration;
+void handle_declaration(int type, int index_lexicographic, int index_declaration) {
+    if (type != A_VARIABLE_DECLARATION) return;
 
     int index_type_declaration = get_declaration_description(index_declaration);
     int execution_size = get_declaration_execution(index_type_declaration);
