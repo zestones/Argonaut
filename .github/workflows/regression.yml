@@ -25,4 +25,4 @@ jobs:
 
     - name: Build Compiler & Run Tests
       run: |
-        make test -- --run
+        make test ARGS=--run
