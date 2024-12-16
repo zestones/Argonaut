@@ -262,7 +262,7 @@ yax: src/parser/interpreter_grammar.y
 # ---------------------------------------------------- #
 
 simple-clean:
-	rm -f *.o
+	find . -type f -name "*.o" -exec rm -f {} \;
 
 clean: simple-clean
 	rm -f *.exe $(BIN_DIR)/*.tab.c $(BIN_DIR)/*.tab.h $(BIN_DIR)/lex.yy.c && \
