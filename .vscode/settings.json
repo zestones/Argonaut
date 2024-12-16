@@ -50,5 +50,10 @@
         "type_inference.h": "c",
         "utility.h": "c",
         "*.tcc": "c"
-    }
+    },
+    "python.testing.pytestArgs": [
+        "tests"
+    ],
+    "python.testing.unittestEnabled": false,
+    "python.testing.pytestEnabled": true
 }

@@ -22,7 +22,10 @@ def main():
         sys.exit(1)
 
     # Header
-    print_header("Regression Test Runner")
+    print_header(
+        "Regression Test Runner", 
+"A regression testing tool that validates compiler output against predefined test cases. It automates the comparison of actual and expected outputs to ensure the compiler's correctness and prevent regressions after changes. The tool can generate expected outputs or run tests to verify the compiler’s behavior."    )
+
 
     if args.generate:
         print_info("Generating expected outputs...")
@@ -40,7 +43,7 @@ def main():
         
         print_summary(runner.tests_passed, runner.tests_failed, runner.tests_skipped)
 
-    print_footer("Test Complete")
+    print_footer("End of Regression Test Run", width=100)
 
 if __name__ == "__main__":
     main()

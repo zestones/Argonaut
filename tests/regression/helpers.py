@@ -1,4 +1,5 @@
-from colorama import Fore, Style, init
+from colorama import Fore, Style, init, Back
+import textwrap
 import re
 
 init(autoreset=True)
@@ -8,19 +9,44 @@ def remove_ansi_codes(text):
     """Remove ANSI escape codes from a string."""
     return ansi_escape.sub('', text)
 
-def print_header(title: str):
-    """Print a styled header with a title."""
-    line_length = len(title) + 4
-    print(f"\n{Fore.MAGENTA}{Style.BRIGHT}{'=' * line_length}")
-    print(f"{Fore.MAGENTA}{Style.BRIGHT}| {title} |")
-    print(f"{Fore.MAGENTA}{Style.BRIGHT}{'=' * line_length}\n")
+
+def print_header(title: str, description: str, width: int = 90):
+    """Print a styled header with a title and program description."""
     
-def print_footer(title: str):
-    """Print a styled footer with a title."""
-    line_length = len(title) + 4
-    print(f"\n{Fore.MAGENTA}{Style.BRIGHT}{'=' * line_length}")
-    print(f"{Fore.MAGENTA}{Style.BRIGHT}| {title} |")
-    print(f"{Fore.MAGENTA}{Style.BRIGHT}{'=' * line_length}\n")
+    # Calculate the border based on the total desired width
+    border_line = f"{Fore.MAGENTA}{Style.BRIGHT}{'~' * width}"
+
+    # Center the title based on the total width
+    centered_title = title.center(width)
+
+    # Wrap the description to fit within the desired width
+    wrapped_description = textwrap.fill(description, width=width - 4)
+
+    # Print the border, centered title, and wrapped description
+    print(f"\n{border_line}")
+    print(f"{Fore.CYAN}{Style.BRIGHT}{'  ' + centered_title + '  '}")
+    
+    # Print wrapped description line by line, each centered
+    for line in wrapped_description.splitlines():
+        print(f"{Fore.WHITE}{Style.NORMAL}{'  ' + line.center(width - 4) + '  '}")
+
+    print(f"{border_line}\n")
+    
+def print_footer(footer_text: str, width: int = 90):
+    """Print a styled footer with a message."""
+    
+    # Calculate the border based on the total desired width
+    border_line = f"{Fore.MAGENTA}{Style.BRIGHT}{'~' * width}"
+
+    # Center the footer text based on the total width
+    centered_footer = footer_text.center(width)
+
+    # Print the border and centered footer text
+    print(f"\n{border_line}")
+    print(f"{Fore.CYAN}{Style.BRIGHT}{'  ' + centered_footer + '  '}")
+
+    # Print the footer border line
+    print(f"{border_line}\n")
 
 def print_success(message: str):
     """Print a success message in green."""
@@ -43,8 +69,8 @@ def print_progress(message: str):
     print(f"{Fore.YELLOW}{Style.BRIGHT}⏳ {message}...{Style.RESET_ALL}")
 
 
-def print_summary(tests_passed: int, tests_failed: int, tests_skipped: int):
-    """Print a refined summary of the test run with passed, failed, and skipped counts."""
+def print_summary(tests_passed: int, tests_failed: int, tests_skipped: int, width: int = 90):
+    """Print a styled summary of the test run with passed, failed, skipped counts, and total tests."""
     
     # Calculate total tests
     total_tests = tests_passed + tests_failed + tests_skipped
@@ -54,26 +80,40 @@ def print_summary(tests_passed: int, tests_failed: int, tests_skipped: int):
     failed_percentage = (tests_failed / total_tests) * 100 if total_tests else 0
     skipped_percentage = (tests_skipped / total_tests) * 100 if total_tests else 0
     
-    # Calculate dynamic widths
-    label_width = max(len("Tests Passed:"), len("Tests Failed:"), len("Tests Skipped:"))
-    value_width = max(len(str(tests_passed)), len(str(tests_failed)), len(str(tests_skipped)))
-    percentage_width = max(len(f"{passed_percentage:6.2f}%"), len(f"{failed_percentage:6.2f}%"), len(f"{skipped_percentage:6.2f}%"))
+    # Adjust total width to accommodate the labels, values, and percentages
+    total_width = width
     
-    # Calculate space between columns dynamically
-    column_space = 2  # Space between label, value, and percentage columns
+    # Add padding for borders and spacing between columns
+    padding = 4  # A bit more space between columns for visual clarity
     
-    # Total width for formatting
-    total_width = label_width + value_width + percentage_width + 2 * column_space + 4 
-
-    # Print the header with separators
-    print(f"\n{Fore.MAGENTA}{Style.BRIGHT}{'=' * total_width}{Style.RESET_ALL}")
-    print(f"{Fore.MAGENTA}{Style.BRIGHT}|{'Test Summary'.center(total_width)}|")
-    print(f"{Fore.MAGENTA}{Style.BRIGHT}{'=' * total_width}")
-
-    # Print each category with labels, values, and percentages, ensuring alignment
-    print(f"{Fore.GREEN}{Style.BRIGHT}| {'Tests Passed:'.ljust(label_width)} {str(tests_passed).rjust(value_width)} ({passed_percentage:6.2f}%) |")
-    print(f"{Fore.RED}{Style.BRIGHT}| {'Tests Failed:'.ljust(label_width)} {str(tests_failed).rjust(value_width)} ({failed_percentage:6.2f}%) |")
-    print(f"{Fore.YELLOW}{Style.BRIGHT}| {'Tests Skipped:'.ljust(label_width)} {str(tests_skipped).rjust(value_width)} ({skipped_percentage:6.2f}%) |")
-
-    # Print footer with separator for clarity
-    print(f"{Fore.MAGENTA}{Style.BRIGHT}{'=' * total_width}{Style.RESET_ALL}\n")
+    # Divide the total width, subtracting space for borders and padding
+    label_width = (total_width - padding * 2) // 3  # Split width evenly
+    value_width = (total_width - padding * 2) // 3
+    percentage_width = (total_width - padding * 2) // 3
+    
+    # Border line for the summary box (same as header/footer)
+    border_line = f"{'=' * total_width}"
+    
+    # Center the title based on the specified width
+    centered_title = f"{Fore.CYAN}{Style.BRIGHT}{'Test Summary'.center(total_width)}{Style.RESET_ALL}"
+    
+    # Print the header with separator
+    print(f"\n{border_line}")
+    print(f"{centered_title}")
+    print(f"{border_line}")
+    
+    # Column headers, with labels matching the cell width
+    print(f"| {Back.BLACK}{'Metric'.center(label_width)}{Style.RESET_ALL} | {Back.BLACK}{'Count'.center(value_width)}{Style.RESET_ALL} | {Back.BLACK}{'Percentage'.center(percentage_width)}{Style.RESET_ALL} |")
+    print(f"{'+' + '-' * (label_width + 2) + '+' + '-' * (value_width + 2) + '+' + '-' * (percentage_width + 2) + '|'}")
+    
+    # Print the results in a table-like format with proper alignment
+    print(f"| {Back.BLACK}{Fore.GREEN}{'Tests Passed:'.ljust(label_width)}{Style.RESET_ALL} | {Back.BLACK}{Fore.GREEN}{str(tests_passed).rjust(value_width)}{Style.RESET_ALL} | {Back.BLACK}{Fore.GREEN}{f'{passed_percentage:6.2f}%'.rjust(percentage_width)}{Style.RESET_ALL} |")
+    print(f"| {Back.BLACK}{Fore.RED}{'Tests Failed:'.ljust(label_width)}{Style.RESET_ALL} | {Back.BLACK}{Fore.RED}{str(tests_failed).rjust(value_width)}{Style.RESET_ALL} | {Back.BLACK}{Fore.RED}{f'{failed_percentage:6.2f}%'.rjust(percentage_width)}{Style.RESET_ALL} |")
+    print(f"| {Back.BLACK}{Fore.YELLOW}{'Tests Skipped:'.ljust(label_width)}{Style.RESET_ALL} | {Back.BLACK}{Fore.YELLOW}{str(tests_skipped).rjust(value_width)}{Style.RESET_ALL} | {Back.BLACK}{Fore.YELLOW}{f'{skipped_percentage:6.2f}%'.rjust(percentage_width)}{Style.RESET_ALL} |")
+    
+    # Print the total tests row
+    print(f"{'+' + '-' * (label_width + 2) + '+' + '-' * (value_width + 2) + '+' + '-' * (percentage_width + 2) + '|'}")
+    print(f"| {Back.BLACK}{Fore.MAGENTA}{'Total Tests:'.ljust(label_width)}{Style.RESET_ALL} | {Back.BLACK}{Fore.MAGENTA}{str(total_tests).rjust(value_width)}{Style.RESET_ALL} | {Back.BLACK}{Fore.MAGENTA}{'100.00%'.rjust(percentage_width)}{Style.RESET_ALL} |")
+    
+    # Bottom border to close the table
+    print(f"{border_line}")
