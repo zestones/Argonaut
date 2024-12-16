@@ -22,4 +22,16 @@ void export_table(const char* filename,
                   const char* begin_marker, 
                   const char* end_marker);
 
+
+int get_array_element_type(int index_declaration_array);
+
+int get_struct_field_index_declaration(int current_type_representation, int field_index);
+
+int get_struct_field_execution(int current_type_representation, int field_index);
+
+int get_struct_field_type(int struct_declaration, int field_index);
+
+int get_struct_field_count(int struct_declaration);
+
+
 #endif // __UTILITY_H__

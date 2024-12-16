@@ -76,6 +76,15 @@ int get_current_region_nis() {
 
 int get_current_region_id() { return region_table_size - 1; }
 
+AST get_region_ast(int index) {
+    if (index >= MAX_REGION_COUNT) {
+        fprintf(stderr, COLOR_RED "<Error> Get Region AST index out of bounds\n" COLOR_RESET);
+        exit(EXIT_FAILURE);
+    }
+
+    return region_table[index].ast;
+}
+
 void update_region_size(int index, int size) {
    if (index >= MAX_REGION_COUNT) {
         fprintf(stderr, COLOR_RED "<Error> Update Region Size index out of bounds\n" COLOR_RESET);

@@ -108,6 +108,14 @@ int get_current_region_nis();
 int get_current_region_id();
 
 /**
+ * @brief Gets the AST of the region at the specified index.
+ *
+ * @param index The index of the region.
+ * @return The AST of the region.
+ */
+AST get_region_ast(int index);
+
+/**
  * @brief Updates the size of the region at the specified index.
  *
  * @param index The index of the region.

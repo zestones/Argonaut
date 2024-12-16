@@ -32,6 +32,7 @@ TYPE_SYSTEM = structure_resolution.o func_proc_resolution.o array_resolution.o e
 DATA = region_table.o region_stack.o
 AST = ast.o lcrs.o
 UTILS = stack.o errors.o scope_tracker.o
+VIRTUAL_MACHINE = stack_management.o execution.o vm_cell.o
 
 
 # ==================================================== #
@@ -58,8 +59,8 @@ test: compiler
 #                        COMPILER 					   #
 # ---------------------------------------------------- #
 
-compiler-rule: $(COMPILER_RULES) $(PARSER) $(SYMBOL_TABLE) $(TABLE_MANAGEMENT) $(DATA) $(AST) $(UTILS) $(SEMANTIC_CHECKS) $(TYPE_SYSTEM)
-	$(CC) $(BIN_DIR)/lex.yy.c $(BIN_DIR)/y.tab.c $(PARSER) $(SYMBOL_TABLE) $(TABLE_MANAGEMENT) $(DATA) $(AST) $(UTILS) $(SEMANTIC_CHECKS) $(TYPE_SYSTEM) -I$(INCLUDE_DIR) -o compiler.exe
+compiler-rule: $(COMPILER_RULES) $(PARSER) $(SYMBOL_TABLE) $(TABLE_MANAGEMENT) $(DATA) $(AST) $(UTILS) $(SEMANTIC_CHECKS) $(TYPE_SYSTEM) $(VIRTUAL_MACHINE)
+	$(CC) $(BIN_DIR)/lex.yy.c $(BIN_DIR)/y.tab.c $(PARSER) $(SYMBOL_TABLE) $(TABLE_MANAGEMENT) $(DATA) $(AST) $(UTILS) $(SEMANTIC_CHECKS) $(TYPE_SYSTEM) $(VIRTUAL_MACHINE) -I$(INCLUDE_DIR) -o compiler.exe
 
 
 # ----------- #
@@ -246,14 +247,23 @@ scope_tracker.o: src/utils/scope_tracker.c
 #                I N T E R P R E T E R                 #
 # ---------------------------------------------------- #
 
-interpreter-rule: $(INTERPRETER_RULES) $(PARSER) $(SYMBOL_TABLE) $(DATA) $(AST) $(UTILS)
-	$(CC) $(BIN_DIR)/lex.yy.c $(BIN_DIR)/y.tab.c $(PARSER) $(SYMBOL_TABLE) $(DATA) $(AST) $(UTILS) -I$(INCLUDE_DIR) -o interpreter.exe
+interpreter-rule: $(INTERPRETER_RULES) $(PARSER) $(SYMBOL_TABLE) $(DATA) $(AST) $(UTILS) $(VIRTUAL_MACHINE) 
+	$(CC) $(BIN_DIR)/lex.yy.c $(BIN_DIR)/y.tab.c $(PARSER) $(SYMBOL_TABLE) $(DATA) $(AST) $(UTILS) $(VIRTUAL_MACHINE) -I$(INCLUDE_DIR) -o interpreter.exe
 
 tex: src/lexer/interpreter_lexer.l
 	$(LEX) -o $(BIN_DIR)/lex.yy.c src/lexer/interpreter_lexer.l
 
 yax: src/parser/interpreter_grammar.y
 	$(YACC) -d -Wcounterexamples -o $(BIN_DIR)/y.tab.c src/parser/interpreter_grammar.y
+
+stack_management.o: src/virtual_machine/stack_management/stack_management.c
+	$(CC) -c src/virtual_machine/stack_management/stack_management.c
+
+execution.o: src/virtual_machine/core/execution.c
+	$(CC) -c src/virtual_machine/core/execution.c
+
+vm_cell.o: src/virtual_machine/core/vm_cell.c
+	$(CC) -c src/virtual_machine/core/vm_cell.c
 
 # ==================================================== #
 #                        C L E A N                     #

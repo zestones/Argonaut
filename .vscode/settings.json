@@ -55,7 +55,19 @@
         "limits": "c",
         "ostream": "c",
         "streambuf": "c",
-        "tuple": "c"
+        "tuple": "c",
+        "virtual_machine.h": "c",
+        "stack_management.h": "c",
+        "cstdlib": "c",
+        "bit": "c",
+        "compare": "c",
+        "cstddef": "c",
+        "new": "c",
+        "numeric": "c",
+        "utility": "c",
+        "type_traits": "c",
+        "execution.h": "c",
+        "vm_cell.h": "c"
     },
     "python.testing.pytestArgs": [
         "tests"

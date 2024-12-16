@@ -1,4 +1,14 @@
 PROG
 
-var x : int;
-x := 1;
+type date : struct {
+    day : bool;
+    month : int;
+    year : float;
+} fstruct;
+
+type tab : array[1 : 2] of date;
+
+var x : tab;
+var z : int;
+
+x[0].day := 1;

@@ -65,5 +65,6 @@ int yyrun(Mode m) {
     initialize_tables(m);
     int parse_result = yyparse(); 
 
+    if (m == INTERPRETATION) interpret();
     return parse_result;
 }

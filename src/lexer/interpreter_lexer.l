@@ -41,31 +41,31 @@ letter [a-zA-Z]
 [-]?{number}+ {
     yylval.integer = atoi(yytext);
     error.column += yyleng;
-    return INTEGER;
+    return TOKEN_INTEGER;
 }
 
 [-]?{number}+"."{number}+ {
     yylval.real = atof(yytext);
     error.column += yyleng;
-    return FLOAT;
+    return TOKEN_FLOAT;
 }
 
 {letter}+({letter}|{number}|"_"|"-")* {
     yylval.string = strdup(yytext);
     error.column += yyleng;
-    return LEXEME;
+    return TOKEN_LEXEME;
 }
 
 \"[^\"]*\" { 
     yylval.string = strdup(yytext);
     error.column += yyleng;
-    return LEXEME;
+    return TOKEN_LEXEME;
 }
 
 "'"[^\"]"'" { 
     yylval.string = strdup(yytext);
     error.column += yyleng;
-    return LEXEME; 
+    return TOKEN_LEXEME; 
 }
 
 .                    { error.column += yyleng; yyerror("Unrecognized character"); }

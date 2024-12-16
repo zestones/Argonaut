@@ -15,6 +15,7 @@
 #include "../symbol_table/representation/representation_table.h"
 #include "../symbol_table/hash/hash_table.h"
 
+#include "../virtual_machine/core/execution.h"
 #include "../data/region_table.h"
 
 typedef enum {

@@ -241,7 +241,7 @@ list_dimensions: one_dimension
                | list_dimensions COMMA one_dimension 
 ;
 
-one_dimension: INTEGER_VALUE TWO_POINTS INTEGER_VALUE { array_add_dimension($1, $3); }
+one_dimension: INTEGER_VALUE TWO_POINTS INTEGER_VALUE { array_add_dimension(atoi(get_lexeme($1)), atoi(get_lexeme($3))); }
 ;
 
 // Arithmetic expressions
@@ -641,6 +641,8 @@ int main(int argc, char **argv) {
     ylog(log);
     
     if (output_file != NULL) {
+        remove(output_file);
+        
         export_lexeme_table(output_file);
         export_declaration_table(output_file);
         export_representation_table(output_file);
