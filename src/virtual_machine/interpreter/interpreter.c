@@ -12,7 +12,7 @@ static void resolve_declaration_list(Node *declaration_list) {
 
     Node *declaration = declaration_list->child;
     while (declaration != NULL) {
-        handle_declaration(declaration->type, declaration->index_lexicographic, declaration->index_declaration);
+        handle_variable_declaration(declaration->type, declaration->index_lexicographic, declaration->index_declaration);
         declaration = declaration->sibling;
     }
 }

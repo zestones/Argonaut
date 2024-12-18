@@ -1,15 +1,25 @@
 PROG
 
-// type date : struct {
-//     day : bool;
-//     month : int;
-//     year : float;
-// } fstruct;
-// 
-// type tab : array[1 : 2] of date;
-// 
-// var x : tab;
+type details : struct {
+    weight : float;
+} fstruct;
 
-var z : int;
+type infos : struct {
+    name : char;
+    age : int;
+    details : details;
+} fstruct;
 
-x[0].day := 1;
+type my_array : array[0 : 1] of infos;
+
+type date : struct {
+    day : my_array;
+    year : float;
+} fstruct;
+
+type tab : array[1 : 2] of date;
+
+var x : tab;
+var z : bool;
+
+var i : infos;

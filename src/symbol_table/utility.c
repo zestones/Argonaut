@@ -38,6 +38,33 @@ int get_array_element_type(int index_declaration_array) {
     return get_representation_value(index_representation);
 }
 
+int get_array_dimension(int index_declaration_array) {
+    int index_representation = get_declaration_description(index_declaration_array);
+    return get_representation_value(index_representation + 1);
+}
+
+int get_array_nth_dimension(int index_declaration_array, int nth_dim) {
+    int index_representation = get_declaration_description(index_declaration_array);
+    return get_representation_value(index_representation + 2 + nth_dim);
+}
+
+int get_array_size(int index_declaration_array) {
+    int dimension = get_array_dimension(index_declaration_array);
+    int min = 0, max = 0;
+    int size = 0;
+
+    for (int i = 0; i < dimension; i++) {
+        min = get_array_nth_dimension(index_declaration_array, i);
+        max = get_array_nth_dimension(index_declaration_array, i + 1);
+
+        if (size == 0) size = max - min + 1;
+        else size *= (max - min + 1);
+    }
+
+    return size;
+}
+
+
 int get_struct_field_index_declaration(int current_type_representation, int field_index) {
     return get_representation_value(current_type_representation + 2 + (field_index * 3));
 }

@@ -7,42 +7,33 @@
 #include "execution.h"
 
 
-void declare_variable(int type, int execution_size) {
-    for (int i = 0; i < execution_size; i++) {
-        vm_cell cell = construct_vm_cell(type, NULL);
-        push_execution_stack(type, &cell);
+static void declare_variable(int index_type_declaration) {
+    if (is_declaration_base_type(index_type_declaration)) {
+        allocate_execution_cells(get_declaration_description(index_type_declaration), get_declaration_execution(index_type_declaration));
+        return;
     }
-}
 
-void declare_array_variable(int array_type, int execution_size) {
-    int element_type = get_array_element_type(array_type);
-    
-    if (get_declaration_nature(element_type) == TYPE_STRUCT) {
-        int num_fields = get_struct_field_count(element_type);
-        while (execution_size > 0) {
-            int field_type = get_struct_field_type(element_type, execution_size % num_fields);
-            push_execution_stack(field_type, NULL);
-            execution_size--;
+    if (get_declaration_nature(index_type_declaration) == TYPE_ARRAY) {
+        int element_type = get_array_element_type(index_type_declaration);
+        int size = get_array_size(index_type_declaration);
+        for (int i = 0; i < size; i++) {
+            declare_variable(element_type);
         }
-    } else {
-        declare_variable(element_type, execution_size);
+    } 
+    else if (get_declaration_nature(index_type_declaration) == TYPE_STRUCT) {
+        int field_count = get_struct_field_count(index_type_declaration);
+
+        for (int i = 0; i < field_count; i++) {
+            int field_type = get_struct_field_type(index_type_declaration, i);
+            declare_variable(field_type);
+        }
     }
 }
 
-void handle_declaration(int type, int index_lexicographic, int index_declaration) {
+void handle_variable_declaration(int type, int index_lexicographic, int index_declaration) {
     if (type != A_VARIABLE_DECLARATION) return;
 
     int index_type_declaration = get_declaration_description(index_declaration);
     int execution_size = get_declaration_execution(index_type_declaration);
-
-    if (is_declaration_base_type(index_type_declaration)) {
-        declare_variable(index_type_declaration, execution_size);
-    } 
-    else if (get_declaration_nature(index_type_declaration) == TYPE_ARRAY) {
-        declare_array_variable(index_type_declaration, execution_size);  
-    }
-    else if (get_declaration_nature(index_type_declaration) == TYPE_STRUCT) {
-        int struct_type = get_struct_field_index_declaration(index_type_declaration, 0);  
-        declare_variable(struct_type, execution_size);
-    }
+    declare_variable(index_type_declaration);
 }

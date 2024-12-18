@@ -7,6 +7,8 @@ void init_execution_stack();
 
 void push_execution_stack(int type, void *value);
 
+void allocate_execution_cells(int type, int size);
+
 void fprintf_vm_stack(FILE *out);
 
 #endif 
