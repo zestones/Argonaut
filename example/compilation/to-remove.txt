@@ -20,6 +20,8 @@ type date : struct {
 type tab : array[1 : 2] of date;
 
 var x : tab;
-var z : bool;
+var z : int;
 
 var i : infos;
+
+z := 12;

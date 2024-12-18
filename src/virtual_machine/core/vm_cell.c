@@ -28,6 +28,28 @@ vm_cell construct_vm_cell(int type, void *value) {
     return cell;
 }
 
+void update_vm_cell(vm_cell *cell, void *value) {
+    cell->is_initialized = 1;
+
+    switch (cell->type) {
+        case INTEGER:
+            cell->value.integer = *((int *)value);
+            break;
+        case REAL:
+            cell->value.real = *((float *)value);
+            break;
+        case BOOLEAN:
+            cell->value.boolean = *((char *)value);
+            break;
+        case CHARACTER:
+            cell->value.character = *((char *)value);
+            break;
+        default:
+            fprintf(stderr, "update_vm_cell Invalid type\n");
+            exit(EXIT_FAILURE);
+    }
+}
+
 const char *format_cell(void *data) {
     vm_cell *cell = (vm_cell *)data;
     static char buffer[64];  
@@ -43,16 +65,16 @@ const char *format_cell(void *data) {
 
     switch (cell->type) {
         case INTEGER:
-            sprintf(buffer, "%d", cell->value.integer);
+            sprintf(buffer, "%d (int)", cell->value.integer);
             break;
         case REAL:
-            sprintf(buffer, "%.2f", cell->value.real);
+            sprintf(buffer, "%.2f (float)", cell->value.real);
             break;
         case BOOLEAN:
-            sprintf(buffer, "%s", cell->value.boolean ? "true" : "false");
+            sprintf(buffer, "%s (bool)", cell->value.boolean ? "true" : "false");
             break;
         case CHARACTER:
-            sprintf(buffer, "'%c'", cell->value.character);
+            sprintf(buffer, "'%c' (char)", cell->value.character);
             break;
         default:
             sprintf(buffer, "Unknown Type");

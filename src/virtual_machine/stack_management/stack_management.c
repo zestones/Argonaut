@@ -20,6 +20,13 @@ void allocate_execution_cells(int type, int size) {
     }
 }
 
+void update_execution_cell(int index, void *value) {
+    vm_cell cell = *(vm_cell *) get_stack_value(execution_stack, index);
+
+    update_vm_cell(&cell, value);
+    update_stack(&execution_stack, index, &cell, sizeof(vm_cell));
+}
+
 void fprintf_vm_stack(FILE *out) {
     print_stack(execution_stack, format_cell);
 }

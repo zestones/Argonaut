@@ -18,6 +18,8 @@ typedef struct {
 
 vm_cell construct_vm_cell(int type, void *value);
 
+void update_vm_cell(vm_cell *cell, void *value);
+
 const char *format_cell(void *data);
 
 #endif // __VM_CELL_H__

@@ -58,6 +58,31 @@ void *peek(const Stack stack) {
     return stack.data[stack.top - 1];
 }
 
+void update_stack(Stack *stack, int index, void *value, size_t value_size) {
+    if (index < 0 || index >= stack->top) {
+        fprintf(stderr, "Error: Index out of bounds\n");
+        exit(EXIT_FAILURE);
+    }
+
+    free(stack->data[index]);
+    stack->data[index] = malloc(value_size);
+    if (!stack->data[index]) {
+        fprintf(stderr, "Error: Memory allocation failed\n");
+        exit(EXIT_FAILURE);
+    }
+
+    memcpy(stack->data[index], value, value_size);
+}
+
+void *get_stack_value(const Stack stack, int index) {
+    if (index < 0 || index >= stack.top) {
+        fprintf(stderr, "Error: Index out of bounds\n");
+        exit(EXIT_FAILURE);
+    }
+    void *value = stack.data[index];
+    return value;
+}
+
 void stack_cpy(Stack *dest, const Stack src, size_t value_size) {
     dest->top = src.top;
     for (int i = 0; i < src.top; i++) {

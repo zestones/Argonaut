@@ -88,6 +88,25 @@ void *pop(Stack *stack);
 void *peek(const Stack stack);
 
 /**
+ * @brief Gets the value at a specific index in the stack.
+ *
+ * @param stack The stack to get the value from.
+ * @param index The index of the value to get.
+ * @return The value at the specified index.
+ */
+void *get_stack_value(const Stack stack, int index);
+
+/**
+ * @brief Updates the value at a specific index in the stack.
+ *
+ * @param stack The stack to update.
+ * @param index The index of the value to update.
+ * @param value The new value to store in the stack.
+ * @param value_size The size of the value to store (needed for allocating memory).
+ */
+void update_stack(Stack *stack, int index, void *value, size_t value_size);
+
+/**
  * @brief Copies the contents of one stack to another.
  *
  * @param dest The destination stack.
