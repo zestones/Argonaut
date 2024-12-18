@@ -115,7 +115,7 @@
   'b' is of type 'bool', which is incompatible with array access.
 
 [Semantic Error] Invalid field access at example/compilation/to-clean/ast/ast-test.txt:102:54.
-  'b' is of type ''', which is incompatible with field access.
+  'b' is of type 'UNKNOWN', which is incompatible with field access.
   Ensure the entity is a struct before attempting to access its fields.
 
 [Type Error] Type mismatch for argument 4 at example/compilation/to-clean/ast/ast-test.txt:102:54.
