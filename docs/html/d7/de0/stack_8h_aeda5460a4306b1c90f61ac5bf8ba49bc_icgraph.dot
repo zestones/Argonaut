@@ -1,0 +1,36 @@
+digraph "is_empty"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="RL";
+  Node1 [label="is_empty",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Checks if the stack is empty."];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="peek",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d3/dbb/stack_8c.html#a9cf0786f5f2fb0c4c025b7e9bb552881",tooltip="Peeks at the top value of the stack without popping it."];
+  Node2 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="peek_region",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d3/d91/region__stack_8c.html#a367ecd3e3c76f083c2ef6b296cfa8030",tooltip="Peeks at the top region of the stack without removing it."];
+  Node3 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="check_func_proc_redefinition",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d0/d8b/func__proc__validation_8c.html#a8411cbcac96e774b3d92ba56cd92d927",tooltip="Checks if a function or procedure has been redefined."];
+  Node4 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="declaration_func_start",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$dc/d66/func__proc__manager_8c.html#ad308181286b701d8a073ea5416924e1d",tooltip="Starts the declaration of a function."];
+  Node4 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="declaration_proc_start",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$dc/d66/func__proc__manager_8c.html#a1423e71098aec906db6b648a65845296",tooltip="Starts the declaration of a procedure."];
+  Node3 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="check_type_redefinition",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d2/d71/type__validation_8c.html#ad0ff0ffaf64af0526cea2fc312001686",tooltip="Checks if a type has been redefined."];
+  Node7 -> Node8 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node8 [label="declaration_array_start",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d3/d13/array__manager_8c.html#a2bb30a00cd527c3decfe286173f052e1",tooltip="Starts the declaration of an array."];
+  Node7 -> Node9 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node9 [label="declaration_structure\l_start",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d1/da1/structure__manager_8c.html#aa577dea532d7d7c93aca4df9fa53235c",tooltip="Starts the declaration of a structure."];
+  Node3 -> Node10 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node10 [label="declaration_variable\l_start",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$de/d23/variable__manager_8c.html#af85e197b346ed860553f44112be19c28",tooltip="Starts the declaration of a variable."];
+  Node3 -> Node11 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node11 [label="get_current_region_nis",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d8/d88/region__table_8c.html#a7c1df0c1c144c34b4089f04c631c3127",tooltip="Gets the NIS of the current region."];
+  Node1 -> Node12 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node12 [label="pop",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d3/dbb/stack_8c.html#ab9b175f5ea01bed047c29bcdb935a111",tooltip="Pops a value from the stack."];
+  Node12 -> Node13 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node13 [label="pop_region",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d3/d91/region__stack_8c.html#afeb96bf21d57cc73671e0fa178704f63",tooltip="Pops a region from the stack."];
+  Node13 -> Node14 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node14 [label="end_region",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d8/d88/region__table_8c.html#a3fcd12446a933658f0caaf8180076868",tooltip="Ends the current region."];
+  Node14 -> Node15 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node15 [label="declaration_func_proc_end",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$dc/d66/func__proc__manager_8c.html#af3dc7c5760795f233da276c3204091e1",tooltip="Ends the declaration of a function or procedure."];
+}

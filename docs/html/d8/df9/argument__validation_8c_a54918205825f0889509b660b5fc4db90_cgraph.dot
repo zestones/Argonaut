@@ -1,0 +1,16 @@
+digraph "validate_each_argument"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="validate_each_argument",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Validates the type of each argument provided in a function call."];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="find_declaration_index\l_by_nature",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$dc/de9/declaration__table_8h.html#a8d20d657d482952631adde5763e985c8",tooltip="Finds the index of a declaration with the specified lexicographic index and nature...."];
+  Node1 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="resolve_func_proc_parameter\l_type_at",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d7/d12/func__proc__resolution_8c.html#a443b17c469927fff30a597a812997fa7",tooltip=" "];
+  Node3 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="get_declaration_description",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$dd/d3e/declaration__table_8c.html#a6d7cfaa61de7241348ef4a08f55bd9a0",tooltip="Gets the description of a declaration."];
+  Node3 -> Node5 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="get_representation\l_value",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$dd/dfd/representation__table_8c.html#a64bb130b5e07aeebfd4333567ecc9a0e",tooltip="Retrieves the value of a representation from the table."];
+}

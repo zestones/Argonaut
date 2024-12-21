@@ -1,0 +1,7 @@
+digraph "array_manager_context"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  Node1 [label="{array_manager_context\n|+ array_size\l+ index_array_name_lexicographic\l+ number_of_dimensions\l+ index_number_of_dimensions\l_representation\l+ index_array_type_representation\l|}",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="A structure to manage the context of an array."];
+}

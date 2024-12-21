@@ -1,0 +1,47 @@
+digraph "declaration_param_start"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="declaration_param_start",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Starts the declaration of a parameter."];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="check_base_type",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d2/d71/type__validation_8c.html#a5787d66f109d016f22256dc3a5f84435",tooltip="Validates that the lexicographic index is a base type."];
+  Node2 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="get_formatted_location",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d0/d15/errors_8c.html#a68d1ccae372534af850e06d48b45d638",tooltip="Returns a formatted string containing the current file, line, and column."];
+  Node2 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="get_lexeme",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d0/d92/lexeme__table_8c.html#ab176cfe8b410c1f87237ed115a0d8df4",tooltip="Retrieves the lexeme at the given index."];
+  Node2 -> Node5 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="is_declaration_base_type",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$dd/d3e/declaration__table_8c.html#a0d9073ef901b312b251556411474e440",tooltip="Checks if a declaration is a base type."];
+  Node2 -> Node6 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="set_error_message",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d0/d15/errors_8c.html#a4eba1d90a88e13e4b1beada48a1c2b9d",tooltip="Sets the error message of the provided Error struct."];
+  Node2 -> Node7 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="set_error_type",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d0/d15/errors_8c.html#aff32bbfac01af1967382165ffc1d5607",tooltip="Sets the error type of the provided Error struct."];
+  Node2 -> Node8 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node8 [label="yerror",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d0/d15/errors_8c.html#a362b4d026b806baabf4d0654eea096a8",tooltip="Prints a formatted error message based on the provided Error struct and exits the program."];
+  Node1 -> Node9 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node9 [label="check_type_definition",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d2/d71/type__validation_8c.html#ab2be243b7af9ae3fdecace4260ed430d",tooltip="Validates the definition of a type."];
+  Node9 -> Node10 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node10 [label="get_arr_struct_declaration\l_index",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d2/d71/type__validation_8c.html#a2826420c3e7c29f271899a3b50ac40c8",tooltip="Retrieves the declaration index of an array or struct."];
+  Node10 -> Node11 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node11 [label="find_declaration_index\l_by_nature",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$dc/de9/declaration__table_8h.html#a8d20d657d482952631adde5763e985c8",tooltip="Finds the index of a declaration with the specified lexicographic index and nature...."];
+  Node9 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node9 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node9 -> Node6 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node9 -> Node7 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node9 -> Node8 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node1 -> Node12 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node12 [label="find_declaration_index",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$dc/de9/declaration__table_8h.html#aa3f16ed63745dfbda78a449e4a354d5f",tooltip="Finds the index of a declaration with the specified lexicographic index. This function is used to ens..."];
+  Node1 -> Node13 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node13 [label="get_current_region_id",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d8/d88/region__table_8c.html#a49272dbdea0b5157804dc85964e15469",tooltip="Gets the ID of the current region."];
+  Node1 -> Node14 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node14 [label="get_declaration_execution",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$dd/d3e/declaration__table_8c.html#aaac3e6193717aaccc629ddcb3c678f81",tooltip="Gets the execution information of a declaration."];
+  Node1 -> Node15 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node15 [label="get_region_size",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d8/d88/region__table_8c.html#a6174d3ae3d2b95fc38b10285c2dd14f9",tooltip="Gets the size of the region at the specified index."];
+  Node1 -> Node16 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node16 [label="insert_declaration\l_param",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$dd/d3e/declaration__table_8c.html#a73848ad30539999525bd2df078e09cf3",tooltip="Inserts a parameter declaration into the table."];
+  Node16 -> Node17 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node17 [label="insert_declaration",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$dd/d3e/declaration__table_8c.html#a43c491a0b81e9249ceccebe651dc9a87",tooltip="Inserts a declaration into the table."];
+  Node1 -> Node18 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node18 [label="update_region_size",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d8/d88/region__table_8c.html#a36985dd80d85c10f81a505ec691943b8",tooltip="Updates the size of the region at the specified index."];
+}

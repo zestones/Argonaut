@@ -1,0 +1,10 @@
+digraph "insert_lexeme_row"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="insert_lexeme_row",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Inserts a lexeme row into the lexeme table."];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="construct_lexeme",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d0/d92/lexeme__table_8c.html#af67a9cc383ae0c204bd088ad57bf0a42",tooltip="Constructs a new lexeme with the given character sequence, length, and next index."];
+}

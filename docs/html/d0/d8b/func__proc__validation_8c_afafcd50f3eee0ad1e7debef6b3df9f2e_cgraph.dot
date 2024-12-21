@@ -1,0 +1,35 @@
+digraph "check_func_proc_argument_list"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="check_func_proc_argument_list",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Validates the argument list of a function."];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="get_declaration_nature",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$dd/d3e/declaration__table_8c.html#a4dbfeaf06f3a4883c8d357fec6cbcc21",tooltip="Gets the nature of a declaration."];
+  Node1 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="get_func_proc_declaration\l_index",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d0/d8b/func__proc__validation_8c.html#a1165dc252af5075d0e0b35c836d92315",tooltip="Retrieves the declaration index of a function or procedure."];
+  Node3 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="find_declaration_index\l_by_nature",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$dc/de9/declaration__table_8h.html#a8d20d657d482952631adde5763e985c8",tooltip="Finds the index of a declaration with the specified lexicographic index and nature...."];
+  Node1 -> Node5 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="resolve_func_proc_parameter\l_count",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d7/d12/func__proc__resolution_8c.html#a1de716360bea12bd175b1c2549f7e55d",tooltip=" "];
+  Node1 -> Node6 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="validate_argument_count",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d8/df9/argument__validation_8c.html#a5e26809437ee721a34383410eee9e05a",tooltip="Validates the number of arguments provided in a function call."];
+  Node6 -> Node7 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="get_formatted_location",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d0/d15/errors_8c.html#a68d1ccae372534af850e06d48b45d638",tooltip="Returns a formatted string containing the current file, line, and column."];
+  Node6 -> Node8 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node8 [label="set_error_message",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d0/d15/errors_8c.html#a4eba1d90a88e13e4b1beada48a1c2b9d",tooltip="Sets the error message of the provided Error struct."];
+  Node6 -> Node9 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node9 [label="set_error_type",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d0/d15/errors_8c.html#aff32bbfac01af1967382165ffc1d5607",tooltip="Sets the error type of the provided Error struct."];
+  Node6 -> Node10 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node10 [label="yerror",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d0/d15/errors_8c.html#a362b4d026b806baabf4d0654eea096a8",tooltip="Prints a formatted error message based on the provided Error struct and exits the program."];
+  Node1 -> Node11 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node11 [label="validate_each_argument",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d8/df9/argument__validation_8c.html#a54918205825f0889509b660b5fc4db90",tooltip="Validates the type of each argument provided in a function call."];
+  Node11 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node11 -> Node12 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node12 [label="resolve_func_proc_parameter\l_type_at",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d7/d12/func__proc__resolution_8c.html#a443b17c469927fff30a597a812997fa7",tooltip=" "];
+  Node12 -> Node13 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node13 [label="get_declaration_description",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$dd/d3e/declaration__table_8c.html#a6d7cfaa61de7241348ef4a08f55bd9a0",tooltip="Gets the description of a declaration."];
+  Node12 -> Node14 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node14 [label="get_representation\l_value",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$dd/dfd/representation__table_8c.html#a64bb130b5e07aeebfd4333567ecc9a0e",tooltip="Retrieves the value of a representation from the table."];
+}

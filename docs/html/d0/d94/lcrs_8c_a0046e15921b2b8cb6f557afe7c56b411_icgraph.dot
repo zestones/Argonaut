@@ -1,0 +1,10 @@
+digraph "add_sibling"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="RL";
+  Node1 [label="add_sibling",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Adds a sibling node to the given node."];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="add_chain",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d0/d94/lcrs_8c.html#a0041efe2d4fcf5a13ad625876bfa9633",tooltip="Adds a chain of nodes to the given parent node. This function will add the first non-NULL node as the..."];
+}

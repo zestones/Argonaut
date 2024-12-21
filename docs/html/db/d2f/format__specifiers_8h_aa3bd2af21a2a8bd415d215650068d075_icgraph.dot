@@ -1,0 +1,12 @@
+digraph "count_format_specifiers"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="RL";
+  Node1 [label="count_format_specifiers",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="check_input_proc_argument_list",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$dd/d08/input__validation_8c.html#ad3dd17f0853fcdf49904fd5847b0e4b3",tooltip=" "];
+  Node1 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="check_print_proc_argument_list",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$de/dd3/predefined_8h.html#a2e389d9645c7b92911f4c86af31b14a8",tooltip=" "];
+}

@@ -1,0 +1,20 @@
+digraph "check_variable_definition"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="check_variable_definition",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Validates the definition of a variable."];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="find_declaration_index",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$dc/de9/declaration__table_8h.html#aa3f16ed63745dfbda78a449e4a354d5f",tooltip="Finds the index of a declaration with the specified lexicographic index. This function is used to ens..."];
+  Node1 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="get_formatted_location",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d0/d15/errors_8c.html#a68d1ccae372534af850e06d48b45d638",tooltip="Returns a formatted string containing the current file, line, and column."];
+  Node1 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="get_lexeme",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d0/d92/lexeme__table_8c.html#ab176cfe8b410c1f87237ed115a0d8df4",tooltip="Retrieves the lexeme at the given index."];
+  Node1 -> Node5 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="set_error_message",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d0/d15/errors_8c.html#a4eba1d90a88e13e4b1beada48a1c2b9d",tooltip="Sets the error message of the provided Error struct."];
+  Node1 -> Node6 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="set_error_type",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d0/d15/errors_8c.html#aff32bbfac01af1967382165ffc1d5607",tooltip="Sets the error type of the provided Error struct."];
+  Node1 -> Node7 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="yerror",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d0/d15/errors_8c.html#a362b4d026b806baabf4d0654eea096a8",tooltip="Prints a formatted error message based on the provided Error struct and exits the program."];
+}

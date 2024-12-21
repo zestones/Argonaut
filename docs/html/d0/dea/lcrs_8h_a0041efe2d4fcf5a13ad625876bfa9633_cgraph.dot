@@ -1,0 +1,14 @@
+digraph "add_chain"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="add_chain",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Adds a chain of nodes to the given parent node. This function will add the first non-NULL node as the..."];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="add_child",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d0/d94/lcrs_8c.html#a652ffa0133e7e3433df60997e1fed1cf",tooltip="Adds a child node to the given parent node."];
+  Node1 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="add_sibling",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d0/d94/lcrs_8c.html#a0046e15921b2b8cb6f557afe7c56b411",tooltip="Adds a sibling node to the given node."];
+  Node1 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="is_node_null",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d0/d94/lcrs_8c.html#a1cb9fe9f883e601625f76f82adccf439",tooltip="Checks if the given node is NULL."];
+}

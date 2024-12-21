@@ -1,0 +1,52 @@
+digraph "get_declaration_description"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="RL";
+  Node1 [label="get_declaration_description",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Gets the description of a declaration."];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="check_variable_assignment",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d6/d4c/assignment__validation_8c.html#a4fde6de79346a9e0cdb168b7c802fccc",tooltip="Checks if an assinement to a variable is valid."];
+  Node1 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="get_array_dimension",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d0/d41/utility_8c.html#a090389fef823ec0d609d12973dbd5ac3",tooltip=" "];
+  Node3 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="get_array_size",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d0/d41/utility_8c.html#a792cc6e45a44a6d43ee2ea0070d093fd",tooltip=" "];
+  Node1 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="get_array_element_type",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d0/d41/utility_8c.html#a36cff8b3b904f3c42eeba69e38e9d3c2",tooltip=" "];
+  Node1 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="get_array_nth_dimension",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d0/d41/utility_8c.html#ac167e84e15f5c86539c4fa275dfda0e0",tooltip=" "];
+  Node6 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node1 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="get_struct_field_count",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d0/d41/utility_8c.html#a0c355fb97635cff55dbce62d9ccf023a",tooltip=" "];
+  Node1 -> Node8 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node8 [label="get_struct_field_type",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d0/d41/utility_8c.html#a9e964faec15df915195e3ffd8d470c4a",tooltip=" "];
+  Node1 -> Node9 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node9 [label="handle_variable_declaration",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d0/dda/execution_8c.html#a21cc905b1f17c506727067112f8e41d8",tooltip=" "];
+  Node1 -> Node10 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node10 [label="resolve_expression_type",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d2/d18/expression__resolution_8c.html#ad2fa6a52f7590a4fe58adc41e6fab427",tooltip=" "];
+  Node10 -> Node11 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node11 [label="check_array_assignment",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d6/d4c/assignment__validation_8c.html#adafad0061063a9ae298f6233978de3b1",tooltip=" "];
+  Node10 -> Node12 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node12 [label="check_func_prototype",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d0/d8b/func__proc__validation_8c.html#ae8847b0a477fa9ae2766940f78a5c90f",tooltip="Validates the return statement of a function."];
+  Node10 -> Node13 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node13 [label="check_input_proc_argument_list",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$dd/d08/input__validation_8c.html#ad3dd17f0853fcdf49904fd5847b0e4b3",tooltip=" "];
+  Node10 -> Node14 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node14 [label="check_print_proc_argument_list",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$de/dd3/predefined_8h.html#a2e389d9645c7b92911f4c86af31b14a8",tooltip=" "];
+  Node10 -> Node15 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node15 [label="check_struct_assignment",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d6/d4c/assignment__validation_8c.html#afaa433496bef6af1b952c37f239afad2",tooltip=" "];
+  Node10 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node10 -> Node16 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node16 [label="resolve_condition_type",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d6/dbc/condition__resolution_8c.html#a7af42b525181329829b7ed96a0cca487",tooltip=" "];
+  Node16 -> Node17 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node17 [label="check_condition",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d6/d35/condition__validation_8c.html#a71704b89d5560a369eccc90b03ee22eb",tooltip=" "];
+  Node1 -> Node18 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node18 [label="resolve_field_access",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d3/d86/structure__resolution_8c.html#a68c5c5d2d8ef89cb7fdc420753415ae5",tooltip=" "];
+  Node1 -> Node19 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node19 [label="resolve_func_proc_parameter\l_type_at",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d7/d12/func__proc__resolution_8c.html#a443b17c469927fff30a597a812997fa7",tooltip=" "];
+  Node19 -> Node20 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node20 [label="validate_each_argument",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d8/df9/argument__validation_8c.html#a54918205825f0889509b660b5fc4db90",tooltip="Validates the type of each argument provided in a function call."];
+  Node20 -> Node21 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node21 [label="check_func_proc_argument_list",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d0/d8b/func__proc__validation_8c.html#afafcd50f3eee0ad1e7debef6b3df9f2e",tooltip="Validates the argument list of a function."];
+  Node1 -> Node22 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node22 [label="resolve_func_proc_return_type",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d7/d12/func__proc__resolution_8c.html#a2327b6b59ff015b2616298a1002bf56b",tooltip=" "];
+}

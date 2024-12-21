@@ -1,0 +1,10 @@
+digraph "export_lexeme_table"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="export_lexeme_table",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Exports the lexeme table to a file."];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="export_table",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d0/d41/utility_8c.html#ae0ed135c525b7672bbbfe6de611971d9",tooltip="Generic function to export a table."];
+}

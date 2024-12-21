@@ -1,0 +1,24 @@
+digraph "insert_declaration"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="RL";
+  Node1 [label="insert_declaration",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Inserts a declaration into the table."];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="insert_declaration\l_array",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$dd/d3e/declaration__table_8c.html#a82aedfbec371408f8aae74830e54ee65",tooltip="Inserts an array declaration into the table."];
+  Node1 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="insert_declaration_func",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$dd/d3e/declaration__table_8c.html#a7bea0a38393e4eb7c8f0cf8f8c3cfe87",tooltip="Inserts a function declaration into the table."];
+  Node1 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="insert_declaration\l_param",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$dd/d3e/declaration__table_8c.html#a73848ad30539999525bd2df078e09cf3",tooltip="Inserts a parameter declaration into the table."];
+  Node4 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="declaration_param_start",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$de/d23/variable__manager_8c.html#a0156a227fd1b11089557e8562aabb8dc",tooltip="Starts the declaration of a parameter."];
+  Node1 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="insert_declaration_proc",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$dd/d3e/declaration__table_8c.html#a36829dbee9d5e49770792e5d6c8d8767",tooltip="Inserts a procedure declaration into the table."];
+  Node1 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="insert_declaration\l_struct",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$dd/d3e/declaration__table_8c.html#a085b8b7c5cf3c079dff076c466901f7c",tooltip="Inserts a structure declaration into the table."];
+  Node1 -> Node8 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node8 [label="insert_declaration_var",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$dd/d3e/declaration__table_8c.html#a9dbc7c59cf6024a86dac39cc77daaac5",tooltip="Inserts a variable declaration into the table."];
+  Node8 -> Node9 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node9 [label="declaration_variable\l_start",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$de/d23/variable__manager_8c.html#af85e197b346ed860553f44112be19c28",tooltip="Starts the declaration of a variable."];
+}

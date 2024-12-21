@@ -1,0 +1,7 @@
+digraph "func_proc_manager_context"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  Node1 [label="{func_proc_manager_context\n|+ index_return_type_representation\l+ index_number_of_parameters\l_representation\l+ number_of_parameters\l+ index_func_proc_name\l_lexicographic\l+ index_return_type_lexicographic\l|}",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Structure to hold context information for function and procedure declarations."];
+}
