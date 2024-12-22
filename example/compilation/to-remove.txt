@@ -1,37 +1,18 @@
 PROG
 
-// type details : struct {
-//     weight : float;
-// } fstruct;
-// 
-// type infos : struct {
-//     name : char;
-//     age : int;
-//     details : details;
-// } fstruct;
-// 
-// type my_array : array[0 : 1] of infos;
-// 
-// type date : struct {
-//     day : my_array;
-//     year : float;
-// } fstruct;
-// 
-// type tab : array[1 : 2] of date;
+type tab : array[0:2] of int; 
 
-// var x : tab;
-// var i : infos;
+var tab : tab;
 
-var z : int;
-var floating : float;
-var character : char;
-var is_red : bool;
-var res : int;
+// var z : int;
+// var floating : float;
+// var character : char;
+// var is_red : bool;
+// var res : int;
 
-z := 4 * 2;
-is_red := false;
-floating := 2.5 + 4.0 * 3.0;
-character := 'c';
-res := z + 10;
 
-// i.name := 'c';
+// z := 4 * 2;
+// is_red := false;
+// floating := 2.5 + 4.0 * 3.0;
+// character := 'c';
+// res := z + 10;

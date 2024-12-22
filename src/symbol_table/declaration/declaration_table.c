@@ -89,7 +89,7 @@ void insert_declaration_param(int index, int region, int description, int execut
 void insert_declaration_row(int index, Nature nature, int next, int region, int description, int execution) {
     if (index >= MAX_LEXEME_COUNT) {
         Declaration new_declaration = construct_declaration(nature, next, region, description, execution);
-        declaration_table[declaration_table_size] = new_declaration;
+        declaration_table[index] = new_declaration;
         overflow_zone_size++;
     } else {
         Declaration new_declaration = construct_declaration(nature, next, region, description, execution);
