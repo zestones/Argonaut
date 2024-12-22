@@ -30,9 +30,9 @@ static int resolve_struct_declaration(Node *current_node) {
     }
 }
 
-static int is_field_in_struct(int current_type_representation, int num_fields, int index_lexicographic, int *field_index) {
+static int is_field_in_struct(int current_type_declaration, int num_fields, int index_lexicographic, int *field_index) {
     for (int i = 0; i < num_fields; i++) {
-        if (get_struct_field_index_lexicographic(current_type_representation, i) == index_lexicographic) {
+        if (get_struct_nth_field_lexicographic(current_type_declaration, i) == index_lexicographic) {
             *field_index = i;
             return 1;
         }
@@ -41,13 +41,12 @@ static int is_field_in_struct(int current_type_representation, int num_fields, i
 }
 
 int resolve_field_access(Node *current_node, int current_type_declaration) {
-    int current_type_representation = get_declaration_description(current_type_declaration);
-    int num_fields = get_representation_value(current_type_representation);
+    int num_fields = get_representation_value(get_declaration_description(current_type_declaration));
 
     int index_lexicographic = current_node->index_lexicographic;
     int field_index = -1;
     
-    if (!is_field_in_struct(current_type_representation, num_fields, index_lexicographic, &field_index)) {
+    if (!is_field_in_struct(current_type_declaration, num_fields, index_lexicographic, &field_index)) {
         set_error_type(&error, SEMANTIC_ERROR);
         set_error_message(
             &error,
@@ -62,7 +61,7 @@ int resolve_field_access(Node *current_node, int current_type_declaration) {
         return NULL_VALUE;
     }
 
-    int field_declaration_index = get_struct_field_index_declaration(current_type_representation, field_index);
+    int field_declaration_index = get_struct_nth_field_declaration(current_type_declaration, field_index);
     if (get_declaration_nature(field_declaration_index) == TYPE_ARRAY && current_node->type == A_ARRAY_ACCESS) {
         current_node->index_declaration = field_declaration_index;
         int value = resolve_array_access_type(current_node);

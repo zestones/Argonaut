@@ -69,11 +69,11 @@ int get_array_size(int index_declaration_array) {
     return size;
 }
 
-int get_struct_field_index_lexicographic(int declaration_type, int field_index) {
+static int get_struct_field_index_lexicographic(int declaration_type, int field_index) {
     return get_representation_value(declaration_type + 1 + (field_index * 3));
 }
 
-int get_struct_field_index_declaration(int declaration_type, int field_index) {
+static int get_struct_field_index_declaration(int declaration_type, int field_index) {
     return get_representation_value(declaration_type + 2 + (field_index * 3));
 }
 
@@ -95,9 +95,14 @@ int get_struct_nth_field_execution(int declaration_type, int nth_field) {
     return get_representation_value(struct_representation + 3 + (nth_field * 3));
 }
 
-int get_struct_nth_field_type(int struct_declaration, int nth_field) {
+int get_struct_nth_field_declaration(int struct_declaration, int nth_field) {
     int struct_representation = get_declaration_description(struct_declaration);
     return get_struct_field_index_declaration(struct_representation, nth_field);  
+}
+
+int get_struct_nth_field_lexicographic(int struct_declaration, int nth_field) {
+    int struct_representation = get_declaration_description(struct_declaration);
+    return get_struct_field_index_lexicographic(struct_representation, nth_field);
 }
 
 int get_struct_field_count(int struct_declaration) {

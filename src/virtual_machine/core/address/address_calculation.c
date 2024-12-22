@@ -79,7 +79,7 @@ int get_struct_field_address(Node *struct_field_access) {
         // Find the index and execution offset for the current field
         int nth_field          = find_struct_field_index_lexicographic(struct_declaration, current_field->index_lexicographic);
         int field_execution    = get_struct_nth_field_execution(struct_declaration, nth_field);
-        int index_declaration  = get_struct_nth_field_type(struct_declaration, nth_field);
+        int index_declaration  = get_struct_nth_field_declaration(struct_declaration, nth_field);
 
         if (!is_declaration_base_type(index_declaration) && get_declaration_nature(index_declaration) == TYPE_STRUCT) {
             struct_declaration = index_declaration;
