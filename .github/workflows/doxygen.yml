@@ -3,7 +3,7 @@ name: Doxygen Documentation
 on:
   push:
     branches:
-      - 40-virtual-machine 
+      - main
 
 jobs:
   doxygen:
