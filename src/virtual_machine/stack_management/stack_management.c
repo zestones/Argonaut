@@ -20,15 +20,15 @@ void allocate_execution_cells(int type, int size) {
     }
 }
 
-void update_execution_cell(int index, vm_cell to) {
-    vm_cell cell = *(vm_cell *) get_stack_value(execution_stack, index);
+void update_execution_cell(int address, vm_cell to) {
+    vm_cell cell = *(vm_cell *) get_stack_value(execution_stack, address);
 
     update_vm_cell(&cell, get_vm_cell_value(to));
-    update_stack(&execution_stack, index, &cell, sizeof(vm_cell));
+    update_stack(&execution_stack, address, &cell, sizeof(vm_cell));
 }
 
-vm_cell get_execution_cell(int index) {
-    return *(vm_cell *) get_stack_value(execution_stack, index);
+vm_cell get_execution_cell(int address) {
+    return *(vm_cell *) get_stack_value(execution_stack, address);
 }
 
 void fprintf_vm_stack(FILE *out) {

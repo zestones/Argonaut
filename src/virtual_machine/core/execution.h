@@ -9,10 +9,11 @@
 
 vm_cell get_variable_cell(int index_declaration);
 
-int get_index_variable(int index_declaration);
+void handle_variable_declaration(int type, int index_lexicographic, int index_declaration);
 
 void handle_variable_affectation(int index_declaration, vm_cell cell);
 
-void handle_variable_declaration(int type, int index_lexicographic, int index_declaration);
+void handle_array_affectation(Node *array_index_list, vm_cell cell);
+
 
 #endif // __VIRTUAL_MACHINE_H__

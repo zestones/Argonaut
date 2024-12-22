@@ -21,6 +21,7 @@
         "utility": "c",
         "compare": "c",
         "utils.h": "c",
-        "region_table.h": "c"
+        "region_table.h": "c",
+        "address_calculation.h": "c"
     }
 }

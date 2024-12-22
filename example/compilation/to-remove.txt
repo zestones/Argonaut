@@ -3,11 +3,14 @@ PROG
 type tab : array[0:2, 0:2] of int; 
 
 var tab : tab;
+var x : int;
+x := 10;
 
 tab[0,0] := 4;
 tab[1,1] := 4 + 2;
 tab[2,1] := 2 * 1;
 
+tab[2,2] := x + 2;
 
 // var z : int;
 // var floating : float;

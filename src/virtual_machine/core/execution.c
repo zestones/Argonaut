@@ -4,6 +4,7 @@
 #include "../../data/region_table.h"
 
 #include "../stack_management/stack_management.h"
+#include "address/address_calculation.h"
 #include "execution.h"
 
 
@@ -37,24 +38,17 @@ void handle_variable_declaration(int type, int index_lexicographic, int index_de
     declare_variable(index_type_declaration);
 }
 
-// FIXME
-int get_index_variable(int index_declaration) {
-    int region_declaration = get_declaration_region(index_declaration);
-    int nis_declaration    = get_region_nis(region_declaration);
-    int nis_utilisation    = get_region_nis(peek_region());
-    int execution_offset   = get_declaration_execution(index_declaration);
-
-    // BC + nis_utilisation - nis_declaration + execution_offset
-    return nis_utilisation - nis_declaration + execution_offset;
-}
-
 vm_cell get_variable_cell(int index_declaration) {
-    int index = get_index_variable(index_declaration);
+    int index = get_variable_address(index_declaration);
     return get_execution_cell(index);
 }
 
-// FIXME
 void handle_variable_affectation(int index_declaration, vm_cell cell) {
-    int index = get_index_variable(index_declaration);
-    update_execution_cell(index, cell);
+    int address = get_variable_address(index_declaration);
+    update_execution_cell(address, cell);
+}
+
+void handle_array_affectation(Node *array_index_list, vm_cell cell) {
+    int address = get_array_address(array_index_list);
+    update_execution_cell(address, cell);
 }
