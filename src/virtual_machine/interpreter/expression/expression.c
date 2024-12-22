@@ -1,6 +1,8 @@
 #include "../../../symbol_table/lexeme/lexeme_table.h"
-
 #include "../../../utils/utils.h"
+
+#include "../../stack_management/stack_management.h"
+#include "../../core/address/address_calculation.h"
 #include "../../core/execution.h"
 
 #include "expression.h"
@@ -60,8 +62,16 @@ vm_cell resolve_expression(Node *expression) {
             return resolve_arithmetic_operation(expression->type, left, right);
         }
 
-        // case A_ARRAY_ACCESS:
-        // case A_STRUCT_FIELD_ACCESS: 
+        case A_ARRAY_ACCESS: {
+            int address = get_array_address(expression);
+            return get_execution_cell(address);
+        }
+
+        case A_STRUCT_FIELD_ACCESS: {
+            int address = get_struct_field_address(expression);
+            return get_execution_cell(address);
+        } 
+
         // case A_FUNC_PROC_CALL_STATEMENT: 
         default:
             printf("Expression type not yet implemented.\n");

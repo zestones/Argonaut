@@ -1,4 +1,5 @@
 PROG
+type arr : array[0:10] of int;
 
 type date : struct {
     day : int;
@@ -13,6 +14,7 @@ type details : struct {
 } fstruct;
 
 var details : details;
+var arr : arr;
 
 details.age := 33;
 details.salary := 1235.99;
@@ -20,4 +22,7 @@ details.salary := 1235.99;
 details.birthday.day := 4;
 
 details.birthday.month := 12;
-details.birthday.year := 1999;
+details.birthday.year := 199;
+
+arr[0] := 10;
+details.birthday.year := arr[0] * details.birthday.year + details.age;
