@@ -21,7 +21,6 @@ void resolve_assignement(Node *assignement_start) {
         handle_array_affectation(assignement->child, cell);
     } else if (assignement->type == A_STRUCT_ASSIGNMENT) {
         vm_cell cell = resolve_expression(assignement->child->sibling);
-        int address = get_struct_field_address(assignement->child);
-        update_execution_cell(address, cell);
+        handle_structure_affectation(assignement->child, cell);
     }
 }

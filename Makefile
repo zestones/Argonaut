@@ -100,7 +100,7 @@ vm_parser: $(SRC_DIR)/parser/interpreter_grammar.y
 
 ARGS = $(filter-out $@,$(MAKECMDGOALS))
 
-test: compiler
+test: compiler simple-clean
 	PYTHONPATH=$(TESTS_DIR) python3 tests/regression/main.py $(ARGS)
 
 # ====================================================== # 

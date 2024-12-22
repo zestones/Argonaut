@@ -15,5 +15,6 @@ void handle_variable_affectation(int index_declaration, vm_cell cell);
 
 void handle_array_affectation(Node *array_index_list, vm_cell cell);
 
+void handle_structure_affectation(Node* struct_field_access, vm_cell cell);
 
 #endif // __VIRTUAL_MACHINE_H__
