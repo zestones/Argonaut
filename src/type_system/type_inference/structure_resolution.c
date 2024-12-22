@@ -1,6 +1,7 @@
 #include "../../symbol_table/representation/representation_table.h" 
 #include "../../symbol_table/declaration/declaration_table.h" 
 #include "../../symbol_table/lexeme/lexeme_table.h"
+#include "../../symbol_table/utility.h"
 #include "../../data/region_table.h"
 #include "../format/formatting.h"
 #include "type_inference.h"
@@ -29,17 +30,9 @@ static int resolve_struct_declaration(Node *current_node) {
     }
 }
 
-static int get_struct_field_index_declaration(int current_type_representation, int field_index) {
-    return get_representation_value(current_type_representation + 2 + (field_index * 3));
-}
-
-static int get_struct_field_index_lexico(int current_type_representation, int field_index) {
-    return get_representation_value(current_type_representation + 1 + (field_index * 3));
-}
-
 static int is_field_in_struct(int current_type_representation, int num_fields, int index_lexicographic, int *field_index) {
     for (int i = 0; i < num_fields; i++) {
-        if (get_struct_field_index_lexico(current_type_representation, i) == index_lexicographic) {
+        if (get_struct_field_index_lexicographic(current_type_representation, i) == index_lexicographic) {
             *field_index = i;
             return 1;
         }

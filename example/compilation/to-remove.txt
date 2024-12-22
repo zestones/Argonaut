@@ -1,26 +1,23 @@
 PROG
 
-type tab : array[0:2, 0:2] of int; 
+type date : struct {
+    day : int;
+    month : int;
+    year : int;
+} fstruct;
 
-var tab : tab;
-var x : int;
-x := 10;
+type details : struct {
+    age : int;
+    salary : float;
+    birthday : date;
+} fstruct;
 
-tab[0,0] := 4;
-tab[1,1] := 4 + 2;
-tab[2,1] := 2 * 1;
+var details : details;
 
-tab[2,2] := x + 2;
+details.age := 33;
+details.salary := 1235.99;
 
-// var z : int;
-// var floating : float;
-// var character : char;
-// var is_red : bool;
-// var res : int;
+details.birthday.day := 4;
 
-
-// z := 4 * 2;
-// is_red := false;
-// floating := 2.5 + 4.0 * 3.0;
-// character := 'c';
-// res := z + 10;
+details.birthday.month := 12;
+details.birthday.year := 1999;

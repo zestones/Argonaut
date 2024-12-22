@@ -22,6 +22,7 @@
         "compare": "c",
         "utils.h": "c",
         "region_table.h": "c",
-        "address_calculation.h": "c"
+        "address_calculation.h": "c",
+        "type_inference.h": "c"
     }
 }

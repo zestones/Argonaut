@@ -20,13 +20,8 @@ int get_variable_address(int index_declaration) {
 
 int get_array_address(Node *array_index_list) {
     int array_decl_index = get_declaration_description(array_index_list->index_declaration);
-    if (get_declaration_nature(array_decl_index) != TYPE_ARRAY) {
-        fprintf(stderr, "Error: Attempt to assign to a non-array type.\n");
-        exit(EXIT_FAILURE);
-    }
-
-    int num_dimensions = get_array_dimension(array_decl_index);
-    int base_address = get_variable_address(array_index_list->index_declaration);
+    int num_dimensions   = get_array_dimension(array_decl_index);
+    int base_address     = get_variable_address(array_index_list->index_declaration);
 
     int calculated_offset = 0;
     int dimension_product = 1;
@@ -69,5 +64,32 @@ int get_array_address(Node *array_index_list) {
 
     // Calculate the final address
     int final_address = base_address + calculated_offset;
+    return final_address;
+}
+
+int get_struct_field_address(Node *struct_field_access) {
+    // Start from the root structure
+    int base_address       = get_variable_address(struct_field_access->index_declaration);
+    int struct_declaration = get_declaration_description(struct_field_access->index_declaration);
+
+    // Traverse the nested field access hierarchy
+    int offset = 0;
+    Node *current_field = struct_field_access->child;
+    while (current_field != NULL) {
+        // Find the index and execution offset for the current field
+        int nth_field          = find_struct_field_index_lexicographic(struct_declaration, current_field->index_lexicographic);
+        int field_execution    = get_struct_nth_field_execution(struct_declaration, nth_field);
+        int index_declaration  = get_struct_nth_field_type(struct_declaration, nth_field);
+
+        if (!is_declaration_base_type(index_declaration) && get_declaration_nature(index_declaration) == TYPE_STRUCT) {
+            struct_declaration = index_declaration;
+        }
+
+        offset += field_execution; // Accumulate the offset
+        current_field = current_field->child;
+    }
+
+    // Calculate the final address
+    int final_address = base_address + offset;
     return final_address;
 }

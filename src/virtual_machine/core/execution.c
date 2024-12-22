@@ -24,7 +24,7 @@ static void declare_variable(int index_type_declaration) {
         int field_count = get_struct_field_count(index_type_declaration);
 
         for (int i = 0; i < field_count; i++) {
-            int field_type = get_struct_field_type(index_type_declaration, i);
+            int field_type = get_struct_nth_field_type(index_type_declaration, i);
             declare_variable(field_type);
         }
     }

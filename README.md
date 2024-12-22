@@ -118,7 +118,7 @@ This project is a compiler for the CPYRR programming language, which is a simple
 
 ## AST Node Format in Intermediate Code
 
-```
+```text
 Node(<type>, <lex-index>, <decl-index>) [Child: <child>] [Sibling: <sibling>]
 ```
 
@@ -126,33 +126,101 @@ This format ensures consistency when interpreting or debugging the AST represent
 
 ---
 
+## Virtual Machine
+
 Pour affecter correctement une valeur à un tableau dans votre pile d'exécution, vous devez calculer l'adresse exacte de l'emplacement où la valeur doit être stockée. Cette adresse est déterminée par les indices donnés lors de l'accès au tableau et les informations de dimensionnalité (comme les bornes des dimensions) dans la table des déclarations et la table de représentation. Voici comment procéder :
 
 ---
 
-### **Étapes détaillées :**
-
-#### **1. Récupérer les informations du tableau**
-- Utilisez l'index dans la **table des déclarations** pour identifier le tableau.
-- Assurez-vous que l'entrée `Nature` du tableau est `TYPE_ARRAY`.
-- Récupérez son **descripteur** depuis la **table de représentation** via le champ `Description` de la déclaration. Ce descripteur contient :
-  - Le type des éléments.
-  - Le nombre de dimensions.
-  - Les bornes inférieures et supérieures pour chaque dimension.
-
----
+### **Mathematical Formulas**
 
 #### **2. Calculer l'adresse dans la pile d'exécution**
+
 Le calcul de l'adresse repose sur la formule suivante pour les tableaux multidimensionnels :
 
 \[
 \text{adresse} = \text{base} + \sum_{i=1}^n (\text{indice}_i - \text{borne inférieure}_i) \times \prod_{j=i+1}^n (\text{borne supérieure}_j - \text{borne inférieure}_j + 1)
 \]
 
-
 Où :
+
 - \( \text{base} \) est l'adresse de départ du tableau dans la pile d'exécution.
 - \( \text{indice}_i \) est la valeur donnée pour la \( i^{\text{ème}} \) dimension.
 - \( \text{borne inférieure}_i \) et \( \text{borne supérieure}_i \) sont respectivement les bornes inférieure et supérieure de la \( i^{\text{ème}} \) dimension.
 - \( n \) est le nombre de dimensions.
 
+---
+
+To compute the address of a specific field in a structure, we use the following mathematical formulas based on the **base address** of the structure, the **offset** of the field within the structure, and the **displacement in memory**.
+
+---
+
+#### **1. General Formula for the Address of a Field**
+
+\[
+\text{Address of Field} = \text{Base Address of Structure} + \text{Field Offset}
+\]
+
+- **Base Address of Structure**: The starting address in memory where the structure is allocated (retrieved from the declaration table).
+- **Field Offset**: The relative position (in bytes or memory cells) of the field from the beginning of the structure, as defined in the representation table.
+
+---
+
+#### **2. Calculating the Field Offset**
+
+Each field in a structure has a **displacement** or **offset**, which is calculated as the sum of the sizes of all preceding fields. For a field \( f_k \), its offset is given by:
+\[
+\text{Field Offset of } f_k = \sum_{i=1}^{k-1} \text{Size of Field } f_i
+\]
+
+Where:
+
+- \( k \): The position of the field in the structure.
+- \( \text{Size of Field } f_i \): The size (in memory units) of the \( i^\text{th} \) field, retrieved from the declaration or type information.
+
+---
+
+#### **3. Memory Size for Each Field**
+
+For **basic types** (e.g., integers, booleans, characters), the size is typically predefined by the virtual machine, in our case each base type has a size of 1.
+
+For **complex types** (e.g., arrays, structures), the size depends on their specific declaration:
+
+- **Array**: Calculated as:
+\[
+\text{Size of Array} = \prod_{i=1}^{n} (\text{Upper Bound}_i - \text{Lower Bound}_i + 1) \times \text{Element Size}
+\]
+
+- **Nested Structures**: Use the same formula recursively.
+
+---
+
+### **Step-by-Step Breakdown**
+
+For a structure with \( N \) fields:
+
+1. **Identify the Base Address**:
+   \[
+   \text{Base Address of Structure} = \text{Execution Address from Declaration Table}
+   \]
+
+2. **Locate the Field Description**:
+   For a field \( f_k \), find its **displacement** (\( d_k \)) in the Representation Table.
+
+3. **Final Address Calculation**:
+   \[
+   \text{Address of Field } f_k = \text{Base Address of Structure} + d_k
+   \]
+
+---
+
+### **Generalization for Nested Structures**
+
+If a field is itself a structure, its offset is added to the base address of the parent structure, and the offsets within the nested structure are calculated recursively.
+
+For nested structures:
+\[
+\text{Address of Nested Field } f_{i,j} = \text{Base Address of Parent Structure} + \text{Offset of Field } f_i + \text{Offset of Subfield } f_j
+\]
+
+Master, this approach ensures clarity and precision for all scenarios involving structure-based memory computations.
