@@ -19,6 +19,7 @@ YACC    = yacc
 
 # Directories
 SRC_DIR         = src
+TESTS_DIR 		= tests
 BIN_DIR         = $(SRC_DIR)/bin
 LEXER_DIR       = $(SRC_DIR)/lexer
 PARSER_DIR      = $(SRC_DIR)/parser
@@ -97,8 +98,10 @@ vm_parser: $(SRC_DIR)/parser/interpreter_grammar.y
 #          Running tests to ensure functionality         #
 # ------------------------------------------------------ #
 
+ARGS = $(filter-out $@,$(MAKECMDGOALS))
+
 test: compiler
-    PYTHONPATH=$(SRC_DIR) python3 tests/regression/main.py $(ARGS)
+	PYTHONPATH=$(TESTS_DIR) python3 tests/regression/main.py $(ARGS)
 
 # ====================================================== # 
 #                      C L E A N I N G                   #
