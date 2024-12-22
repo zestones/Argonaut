@@ -5,6 +5,8 @@
 
 #include "../stack_management/stack_management.h"
 #include "../core/execution.h"
+
+#include "expression/expression.h"
 #include "interpreter.h"
 
 static void resolve_declaration_list(Node *declaration_list) {
@@ -17,6 +19,16 @@ static void resolve_declaration_list(Node *declaration_list) {
     }
 }
 
+static void resolve_assignement(Node *assignement_start) {
+    if (assignement_start == NULL) return;
+
+    Node *assignement = assignement_start->child;
+    if (assignement->type == A_VARIABLE_ASSIGNMENT) {
+        vm_cell cell = resolve_expression(assignement->child);
+        handle_variable_affectation(assignement->index_declaration, cell);
+    }
+}
+
 static void interpret_ast(AST ast) {
     if (ast == NULL) return;
 
@@ -26,8 +38,8 @@ static void interpret_ast(AST ast) {
             resolve_declaration_list(ast);
             break;
 
-        case A_VARIABLE_ASSIGNMENT:
-            handle_variable_affectation(ast->type, ast->child->index_lexicographic, ast->index_declaration);
+        case A_ASSIGNMENT_STATEMENT:
+            resolve_assignement(ast);
             break;
 
         default:

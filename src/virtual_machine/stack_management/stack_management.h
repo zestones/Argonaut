@@ -7,9 +7,11 @@ void init_execution_stack();
 
 void push_execution_stack(int type, void *value);
 
-void update_execution_cell(int index, void *value);
+void update_execution_cell(int index, vm_cell to);
 
 void allocate_execution_cells(int type, int size);
+
+vm_cell get_execution_cell(int index);
 
 void fprintf_vm_stack(FILE *out);
 

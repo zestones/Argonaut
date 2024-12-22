@@ -31,12 +31,14 @@ void yywarn(const Error error) {
 void yerror(const Error error) {
     fprintf(stderr, COLOR_RED "[");
     switch (error.type) {
-        case SYNTAX_ERROR:        fprintf(stderr, "Syntax Error");         break;
-        case SEMANTIC_ERROR:      fprintf(stderr, "Semantic Error");       break;
-        case TYPE_ERROR:          fprintf(stderr, "Type Error");           break;
-        case LEXICAL_ERROR:       fprintf(stderr, "Lexical Error");        break;
-        case INVALID_INPUT_ERROR: fprintf(stderr, "Invalid Input Error");  break;
-        default:                  fprintf(stderr, "Unknown Error");        break;
+        case SYNTAX_ERROR:              fprintf(stderr, "Syntax Error");         break;
+        case SEMANTIC_ERROR:            fprintf(stderr, "Semantic Error");       break;
+        case TYPE_ERROR:                fprintf(stderr, "Type Error");           break;
+        case LEXICAL_ERROR:             fprintf(stderr, "Lexical Error");        break;
+        case INVALID_INPUT_ERROR:       fprintf(stderr, "Invalid Input Error");  break;
+        case DIVISION_BY_ZERO:          fprintf(stderr, "Division by 0");        break;
+        case UNINITIALIZED_VARIABLE:    fprintf(stderr, "Null Variable");        break; 
+        default:                        fprintf(stderr, "Unknown Error");        break;
     }
 
     fprintf(stderr, "]");

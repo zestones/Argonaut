@@ -48,14 +48,13 @@ static int get_index_variable(int index_declaration) {
     return nis_utilisation - nis_declaration + execution_offset;
 }
 
-// FIXME
-void handle_variable_affectation(int type, int index_lexicographic, int index_declaration) {
-    if (type != A_VARIABLE_ASSIGNMENT) return;
-
-    int value = atoi(get_lexeme(index_lexicographic));
+vm_cell get_variable_cell(int index_declaration) {
     int index = get_index_variable(index_declaration);
-    int typed = get_declaration_description(index_declaration);
+    return get_execution_cell(index);
+}
 
-    fprintf(stdout, "Affectation(%s): %d -> %d\n", get_lexeme(typed), value, index);
-    update_execution_cell(index, &value);
+// FIXME
+void handle_variable_affectation(int index_declaration, vm_cell cell) {
+    int index = get_index_variable(index_declaration);
+    update_execution_cell(index, cell);
 }

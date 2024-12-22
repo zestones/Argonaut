@@ -1,0 +1,24 @@
+{
+    "files.associations": {
+        "*.rmd": "markdown",
+        "vm_cell.h": "c",
+        "stdio.h": "c",
+        "representation_table.h": "c",
+        "lexeme_table.h": "c",
+        "utility.h": "c",
+        "expression.h": "c",
+        "stdlib.h": "c",
+        "execution.h": "c",
+        "interpreter.h": "c",
+        "stack_management.h": "c",
+        "ast.h": "c",
+        "table_printer.h": "c",
+        "system_error": "c",
+        "array": "c",
+        "functional": "c",
+        "tuple": "c",
+        "type_traits": "c",
+        "utility": "c",
+        "compare": "c"
+    }
+}

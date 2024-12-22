@@ -3,9 +3,13 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "../../ast/ast.h"
 
-void handle_variable_affectation(int type, int index_lexicographic, int index_declaration);
+#include "../../ast/ast.h"
+#include "vm_cell.h"
+
+vm_cell get_variable_cell(int index_declaration);
+
+void handle_variable_affectation(int index_declaration, vm_cell cell);
 
 void handle_variable_declaration(int type, int index_lexicographic, int index_declaration);
 
