@@ -1,8 +1,13 @@
 PROG
 
-type tab : array[0:2] of int; 
+type tab : array[0:2, 0:2] of int; 
 
 var tab : tab;
+
+tab[0,0] := 4;
+tab[1,1] := 4 + 2;
+tab[2,1] := 2 * 1;
+
 
 // var z : int;
 // var floating : float;

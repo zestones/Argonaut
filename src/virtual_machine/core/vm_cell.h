@@ -6,6 +6,8 @@
 
 #include "../../utils/utils.h"
 
+typedef enum vm_type { INTEGER, REAL, BOOLEAN, CHARACTER } vm_type;
+
 typedef struct {
     union {
         int integer;
@@ -14,7 +16,7 @@ typedef struct {
         char character;  
     } value;
 
-    enum { INTEGER, REAL, BOOLEAN, CHARACTER } type;
+    vm_type type;
     int is_initialized;
 } vm_cell;
 

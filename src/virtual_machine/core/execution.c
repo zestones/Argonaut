@@ -38,7 +38,7 @@ void handle_variable_declaration(int type, int index_lexicographic, int index_de
 }
 
 // FIXME
-static int get_index_variable(int index_declaration) {
+int get_index_variable(int index_declaration) {
     int region_declaration = get_declaration_region(index_declaration);
     int nis_declaration    = get_region_nis(region_declaration);
     int nis_utilisation    = get_region_nis(peek_region());

@@ -123,3 +123,36 @@ Node(<type>, <lex-index>, <decl-index>) [Child: <child>] [Sibling: <sibling>]
 ```
 
 This format ensures consistency when interpreting or debugging the AST representation.
+
+---
+
+Pour affecter correctement une valeur à un tableau dans votre pile d'exécution, vous devez calculer l'adresse exacte de l'emplacement où la valeur doit être stockée. Cette adresse est déterminée par les indices donnés lors de l'accès au tableau et les informations de dimensionnalité (comme les bornes des dimensions) dans la table des déclarations et la table de représentation. Voici comment procéder :
+
+---
+
+### **Étapes détaillées :**
+
+#### **1. Récupérer les informations du tableau**
+- Utilisez l'index dans la **table des déclarations** pour identifier le tableau.
+- Assurez-vous que l'entrée `Nature` du tableau est `TYPE_ARRAY`.
+- Récupérez son **descripteur** depuis la **table de représentation** via le champ `Description` de la déclaration. Ce descripteur contient :
+  - Le type des éléments.
+  - Le nombre de dimensions.
+  - Les bornes inférieures et supérieures pour chaque dimension.
+
+---
+
+#### **2. Calculer l'adresse dans la pile d'exécution**
+Le calcul de l'adresse repose sur la formule suivante pour les tableaux multidimensionnels :
+
+\[
+\text{adresse} = \text{base} + \sum_{i=1}^n (\text{indice}_i - \text{borne inférieure}_i) \times \prod_{j=i+1}^n (\text{borne supérieure}_j - \text{borne inférieure}_j + 1)
+\]
+
+
+Où :
+- \( \text{base} \) est l'adresse de départ du tableau dans la pile d'exécution.
+- \( \text{indice}_i \) est la valeur donnée pour la \( i^{\text{ème}} \) dimension.
+- \( \text{borne inférieure}_i \) et \( \text{borne supérieure}_i \) sont respectivement les bornes inférieure et supérieure de la \( i^{\text{ème}} \) dimension.
+- \( n \) est le nombre de dimensions.
+
