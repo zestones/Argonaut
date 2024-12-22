@@ -10,7 +10,7 @@ typedef struct {
     union {
         int integer;
         float real;      
-        char boolean;    
+        int boolean;    
         char character;  
     } value;
 

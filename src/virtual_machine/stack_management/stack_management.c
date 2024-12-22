@@ -20,8 +20,6 @@ void allocate_execution_cells(int type, int size) {
     }
 }
 
-
-
 void update_execution_cell(int index, vm_cell to) {
     vm_cell cell = *(vm_cell *) get_stack_value(execution_stack, index);
 

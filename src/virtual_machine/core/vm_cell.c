@@ -17,7 +17,7 @@ vm_cell construct_vm_cell(int type, void *value) {
                 cell.value.real = *((double *)value);
                 break;
             case BOOLEAN:
-                cell.value.boolean = *((char *)value);
+                cell.value.boolean = *((int *)value);
                 break;
             case CHARACTER:
                 cell.value.character = *((char *)value);
