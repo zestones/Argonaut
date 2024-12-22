@@ -39,43 +39,35 @@ int get_array_address(Node *array_index_list) {
             exit(EXIT_FAILURE);
         }
 
-        printf("Node : %s\n", NodeTypeStrings[array_access->type]);
-
         if (array_access->type == A_ARRAY_INDEX) {
             // Resolve the expression for the current index in the current dimension
             vm_cell index_cell = resolve_expression(array_access->child);
             if (index_cell.type != INTEGER) {
-                fprintf(stdout, "Error: Index type should be integer, instead got: %d\n", index_cell.type);
+                printf("Error: Index type should be integer, instead got: %d\n", index_cell.type);
                 exit(EXIT_FAILURE);
             }
 
-            int index = index_cell.value.integer; // Assume the index is an integer
-            printf("Index value for dimension %d: %d\n", dim, index);
+            int index = index_cell.value.integer;
 
             // Check bounds for the current dimension
-            int lower_bound = get_array_nth_dimension(array_decl_index, 2 * dim); // Accessing bounds
-            int upper_bound = get_array_nth_dimension(array_decl_index, 2 * dim + 1); // Accessing bounds
-
-            printf("Lower bound: %d - Upper bound: %d\n", lower_bound, upper_bound);
+            int lower_bound = get_array_nth_dimension(array_decl_index, 2 * dim);
+            int upper_bound = get_array_nth_dimension(array_decl_index, 2 * dim + 1);
 
             if (index < lower_bound || index > upper_bound) {
-                fprintf(stderr, "Error: Index %d out of bounds for dimension %d.\n", index, dim);
+                printf("Error: Index %d out of bounds for dimension %d.\n", index, dim);
                 exit(EXIT_FAILURE);
             }
 
             // Calculate the offset for the current dimension
             calculated_offset += (index - lower_bound) * dimension_product;
             dimension_product *= (upper_bound - lower_bound + 1);
-
-            // Move to the next index in the list (next dimension)
         }
 
+        // Move to the next index in the list (next dimension)
         array_access = array_access->sibling;
     }
 
     // Calculate the final address
     int final_address = base_address + calculated_offset;
-    printf("Final address: %d\n", final_address);
-
     return final_address;
 }

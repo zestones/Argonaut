@@ -15,17 +15,17 @@ Error construct_error(ErrorType type, int line, int column, const char *format, 
 }
 
 void yywarn(const Error error) {
-    printf(COLOR_YELLOW "[");
+    fprintf(stderr, COLOR_YELLOW "[");
     switch (error.type) {
-        case SYNTAX_ERROR:        printf("Syntax Warning");           break;
-        case SEMANTIC_ERROR:      printf("Semantic Warning");         break;
-        case TYPE_ERROR:          printf("Type Warning");             break;
-        case LEXICAL_ERROR:       printf("Lexical Warning");          break;
-        case INVALID_INPUT_ERROR: printf("Invalid Input Warning");    break;
-        default:                  printf("Unknown Warning");          break;
+        case SYNTAX_ERROR:        fprintf(stderr, "Syntax Warning");           break;
+        case SEMANTIC_ERROR:      fprintf(stderr, "Semantic Warning");         break;
+        case TYPE_ERROR:          fprintf(stderr, "Type Warning");             break;
+        case LEXICAL_ERROR:       fprintf(stderr, "Lexical Warning");          break;
+        case INVALID_INPUT_ERROR: fprintf(stderr, "Invalid Input Warning");    break;
+        default:                  fprintf(stderr, "Unknown Warning");          break;
     }
-    printf("]");
-    printf(" %s" COLOR_RESET "\n", error.message);
+    fprintf(stderr, "]");
+    fprintf(stderr, " %s" COLOR_RESET "\n", error.message);
 }
 
 void yerror(const Error error) {
