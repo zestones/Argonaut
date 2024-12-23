@@ -21,7 +21,6 @@ int get_array_address(Node *start_array_access, int base_address) {
     int calculated_offset = 0;
     int element_size = get_declaration_execution(get_array_element_type(array_decl_index));
     int dimension_product = element_size;
-    printf("Element size: %d\n", element_size);
 
     Node *array_access = start_array_access->child->child;
 
@@ -60,7 +59,6 @@ int get_array_address(Node *start_array_access, int base_address) {
     }
 
     // Calculate the final address
-    printf("Calculated offset: %d\n", calculated_offset);
     int final_address = base_address + calculated_offset;
     if (get_declaration_nature(array_type_declaration) == TYPE_STRUCT && start_array_access->child->sibling != NULL) {
         // Compute struct field offset for array elements
@@ -70,9 +68,7 @@ int get_array_address(Node *start_array_access, int base_address) {
             array_type_declaration
         );
 
-        printf("Struct offset: %d\n", struct_offset);
         final_address += struct_offset;
-        printf("Final address: %d\n", final_address);
     }
 
     return final_address;
