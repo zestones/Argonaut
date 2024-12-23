@@ -21,6 +21,20 @@ vm_cell resolve_arithmetic_operation(int operation, vm_cell left, vm_cell right)
         exit(EXIT_FAILURE);
     }
 
+    // Check if the values are initialized
+    if (!left.is_initialized || !right.is_initialized) {
+        set_error_type(&error, UNINITIALIZED_VARIABLE);
+        set_error_message(
+            &error,
+            "Uninitialized value error at %s.\n"
+            "  Ensure that both operands are initialized before performing arithmetic operations.\n",
+            get_formatted_location()
+        );
+     
+        yerror(error);
+        exit(EXIT_FAILURE);
+    }
+
     // Then perform the operation
     switch (operation) {
         case A_ADD_OP:
