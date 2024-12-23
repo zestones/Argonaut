@@ -54,6 +54,6 @@ void handle_array_affectation(Node *array_index_list, vm_cell cell) {
 }
 
 void handle_structure_affectation(Node* struct_field_access, vm_cell cell) {
-    int address = get_struct_field_address(struct_field_access);
+    int address = get_struct_field_address(struct_field_access, NULL_VALUE, NULL_VALUE);
     update_execution_cell(address, cell);
 }

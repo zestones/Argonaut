@@ -1,5 +1,6 @@
 #include "../../../data/region_table.h"
 #include "../../../symbol_table/utility.h"
+#include "../../../symbol_table/lexeme/lexeme_table.h"
 
 #include "../../interpreter/expression/expression.h"
 
@@ -22,13 +23,16 @@ int get_variable_address(int index_declaration) {
 int get_array_address(Node *start_array_access, int base_address) {
     int array_decl_index = get_declaration_description(start_array_access->index_declaration);
     int num_dimensions = get_array_dimension(array_decl_index);
+    int array_type_declaration = get_array_element_type(array_decl_index);
     
     if (base_address == NULL_VALUE) {
         base_address = get_variable_address(start_array_access->index_declaration);
     }
 
     int calculated_offset = 0;
-    int dimension_product = 1;
+    int element_size = get_declaration_execution(get_array_element_type(array_decl_index));
+    int dimension_product = element_size;
+    printf("Element size: %d\n", element_size);
 
     Node *array_access = start_array_access->child->child;
 
@@ -51,7 +55,6 @@ int get_array_address(Node *start_array_access, int base_address) {
             // Check bounds for the current dimension
             int lower_bound = get_array_nth_dimension(array_decl_index, 2 * dim);
             int upper_bound = get_array_nth_dimension(array_decl_index, 2 * dim + 1);
-            printf("Index: %d, Lower: %d, Upper: %d\n", index, lower_bound, upper_bound);
 
             if (index < lower_bound || index > upper_bound) {
                 printf("Error: Index %d out of bounds for dimension %d.\n", index, dim);
@@ -60,7 +63,7 @@ int get_array_address(Node *start_array_access, int base_address) {
 
             // Calculate the offset for the current dimension
             calculated_offset += (index - lower_bound) * dimension_product;
-            dimension_product *= (upper_bound - lower_bound + 1);
+            dimension_product *= (upper_bound - lower_bound + 1) * element_size;
         }
 
         // Move to the next index in the list (next dimension)
@@ -68,18 +71,36 @@ int get_array_address(Node *start_array_access, int base_address) {
     }
 
     // Calculate the final address
+    printf("Calculated offset: %d\n", calculated_offset);
     int final_address = base_address + calculated_offset;
+    if (get_declaration_nature(array_type_declaration) == TYPE_STRUCT && start_array_access->child->sibling != NULL) {
+        // Compute struct field offset for array elements
+        int struct_offset = get_struct_field_address(
+            start_array_access->child->sibling,
+            base_address,
+            array_type_declaration
+        );
+
+        printf("Struct offset: %d\n", struct_offset);
+        final_address += struct_offset;
+        printf("Final address: %d\n", final_address);
+    }
+
     return final_address;
 }
 
-int get_struct_field_address(Node *struct_field_access) {
+int get_struct_field_address(Node *struct_field_access, int base_address, int index_declaration) {
     // Start from the root structure
-    int base_address       = get_variable_address(struct_field_access->index_declaration);
-    int struct_declaration = get_declaration_description(struct_field_access->index_declaration);
+    int struct_declaration = index_declaration;
+    Node *current_field = struct_field_access;
+    if (base_address == NULL_VALUE) {
+        struct_declaration = get_declaration_description(struct_field_access->index_declaration);
+        base_address = get_variable_address(struct_field_access->index_declaration);
+        current_field = struct_field_access->child;
+    }
 
     // Traverse the nested field access hierarchy
     int offset = 0;
-    Node *current_field = struct_field_access->child;
     while (current_field != NULL) {
         // Find the index and execution offset for the current field
         int nth_field          = find_struct_field_index_lexicographic(struct_declaration, current_field->index_lexicographic);
@@ -88,8 +109,8 @@ int get_struct_field_address(Node *struct_field_access) {
 
         if (get_declaration_nature(index_declaration) == TYPE_ARRAY) {
             // Calculate the address for the array
-            int array_address = get_array_address(current_field, base_address);
-            offset += array_address + field_execution;
+            int array_offset = get_array_address(current_field, base_address);
+            offset += array_offset + field_execution;
             break;
         }
 

@@ -68,7 +68,7 @@ vm_cell resolve_expression(Node *expression) {
         }
 
         case A_STRUCT_FIELD_ACCESS: {
-            int address = get_struct_field_address(expression);
+            int address = get_struct_field_address(expression, NULL_VALUE, NULL_VALUE);
             return get_execution_cell(address);
         } 
 
