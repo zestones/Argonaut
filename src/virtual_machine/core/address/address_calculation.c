@@ -89,7 +89,7 @@ int get_struct_field_address(Node *struct_field_access) {
         if (get_declaration_nature(index_declaration) == TYPE_ARRAY) {
             // Calculate the address for the array
             int array_address = get_array_address(current_field, base_address);
-            offset += array_address;
+            offset += array_address + field_execution;
             break;
         }
 

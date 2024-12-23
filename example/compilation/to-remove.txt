@@ -6,13 +6,13 @@ type date : struct {
     day : int;
     month : int;
     year : int;
+    tableau : arr;
 } fstruct;
 
 type details : struct {
     age : int;
     salary : float;
     birthday : date;
-    tableau : arr;
 } fstruct;
 
 var details : details;
@@ -20,12 +20,21 @@ var details : details;
 details.age := 33;
 details.salary := 1235.99;
 
-details.tableau[9] := 100;
-
-
-details.birthday.day := 4;
-
+details.birthday.day := 23;
 details.birthday.month := 12;
-details.birthday.year := 199;
+details.birthday.year := 2024;
 
-details.birthday.year := details.tableau[9] * details.birthday.year + details.age;
+details.birthday.tableau[0] := 100;
+details.birthday.tableau[1] := 101;
+details.birthday.tableau[2] := 102;
+details.birthday.tableau[3] := 103;
+details.birthday.tableau[4] := 104;
+details.birthday.tableau[5] := 105;
+details.birthday.tableau[6] := 106;
+details.birthday.tableau[7] := 107;
+details.birthday.tableau[8] := 108;
+details.birthday.tableau[9] := 109;
+details.birthday.tableau[10] := 110;
+
+
+details.birthday.year := details.birthday.tableau[0] * details.birthday.year + details.age;
