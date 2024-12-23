@@ -63,7 +63,7 @@ vm_cell resolve_expression(Node *expression) {
         }
 
         case A_ARRAY_ACCESS: {
-            int address = get_array_address(expression);
+            int address = get_array_address(expression, NULL_VALUE);
             return get_execution_cell(address);
         }
 

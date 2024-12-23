@@ -223,4 +223,161 @@ For nested structures:
 \text{Address of Nested Field } f_{i,j} = \text{Base Address of Parent Structure} + \text{Offset of Field } f_i + \text{Offset of Subfield } f_j
 \]
 
-Master, this approach ensures clarity and precision for all scenarios involving structure-based memory computations.
+---
+
+Certainly! Below is the mathematical representation using **standard conventions** for clarity and precision:
+
+---
+
+### **1. Multi-Dimensional Arrays**
+#### Address Calculation Formula:
+Let:
+- \( A \) = array
+- \( B \) = base address of the array
+- \( L_i \) = lower bound of the \( i \)-th dimension
+- \( U_i \) = upper bound of the \( i \)-th dimension
+- \( I_i \) = index in the \( i \)-th dimension
+- \( S_i \) = stride for the \( i \)-th dimension
+
+Then, the address of \( A[I_1, I_2, \ldots, I_n] \) is:
+
+\[
+\text{Address}(A[I_1, I_2, \ldots, I_n]) = B + \sum_{i=1}^n \left( (I_i - L_i) \cdot S_i \right)
+\]
+
+Where:
+\[
+S_i = \prod_{j=i+1}^n (U_j - L_j + 1) \quad \text{for } i < n, \quad S_n = 1
+\]
+
+---
+
+### **2. Structs**
+#### Field Offset Formula:
+Let:
+- \( S \) = struct
+- \( B \) = base address of the struct
+- \( O_f \) = offset of the field \( f \) within the struct
+
+Then, the address of field \( f \) in \( S \) is:
+
+\[
+\text{Address}(S.f) = B + O_f
+\]
+
+#### Field Offset Calculation:
+If the struct \( S \) contains fields \( \{f_1, f_2, \ldots, f_k\} \) with sizes \( \{s_1, s_2, \ldots, s_k\} \), the offset \( O_{f_i} \) for the \( i \)-th field is:
+
+\[
+O_{f_i} = \sum_{j=1}^{i-1} \text{Align}(s_j) + \text{Padding}
+\]
+
+Where:
+
+- \( \text{Align}(s_j) \): Alignment size for the field based on its type.
+- Padding: Ensures proper alignment based on the architecture.
+
+---
+
+### **3. Arrays of Structs**
+
+#### Address Formula:
+
+Let:
+
+- \( S \) = struct
+- \( A \) = array of structs
+- \( B \) = base address of the array
+- \( I \) = index in the array
+- \( T_S \) = total size of the struct \( S \)
+- \( O_f \) = offset of field \( f \) within \( S \)
+
+Then, the address of field \( f \) in \( A[I] \) is:
+
+\[
+\text{Address}(A[I].f) = B + (I \cdot T_S) + O_f
+\]
+
+---
+
+### **4. Nested Arrays in Structs**
+
+#### Address Formula:
+
+Let:
+
+- \( S \) = struct containing an array \( A \) as a field
+- \( B \) = base address of \( S \)
+- \( O_A \) = offset of array \( A \) within \( S \)
+- \( L_i, U_i, I_i, S_i \): Lower bounds, upper bounds, indices, and strides of \( A \)'s dimensions.
+
+The address of \( S.A[I_1, \ldots, I_n] \) is:
+
+\[
+\text{Address}(S.A[I_1, I_2, \ldots, I_n]) = B + O_A + \sum_{i=1}^n \left( (I_i - L_i) \cdot S_i \right)
+\]
+
+---
+
+### **5. Nested Structs in Arrays**
+
+#### Address Formula:
+
+Let:
+
+- \( A \) = array of structs \( S \)
+- \( B \) = base address of \( A \)
+- \( I \) = index in \( A \)
+- \( T_S \) = total size of \( S \)
+- \( O_f \) = offset of field \( f \) in \( S \)
+
+The address of a nested struct field \( A[I].S.f \) is:
+
+\[
+\text{Address}(A[I].S.f) = B + (I \cdot T_S) + O_f
+\]
+
+---
+
+### **Example Using Formal Terms**
+
+#### Example 1: Multi-Dimensional Array
+
+Given a 2D array \( A[3][4] \), let:
+
+- \( B = 1000 \) (base address)
+- \( L_1 = 0, U_1 = 2 \) (bounds for the first dimension)
+- \( L_2 = 0, U_2 = 3 \) (bounds for the second dimension)
+
+Stride for the first dimension:
+\[
+S_1 = (U_2 - L_2 + 1) = 4
+\]
+
+Accessing \( A[1][2] \):
+
+\[
+\text{Address}(A[1][2]) = B + ((1 - L_1) \cdot S_1) + ((2 - L_2) \cdot S_2)
+\]
+\[
+\text{Address}(A[1][2]) = 1000 + (1 \cdot 4) + (2 \cdot 1) = 1000 + 4 + 2 = 1006
+\]
+
+---
+
+#### Example 2: Array of Structs
+
+For an array of structs \( S[5] \) where:
+
+- Struct size \( T_S = 12 \)
+- Field \( f \) has offset \( O_f = 4 \)
+- \( B = 2000 \) (base address)
+
+Accessing \( S[3].f \):
+
+\[
+\text{Address}(S[3].f) = B + (3 \cdot T_S) + O_f
+\]
+\[
+\text{Address}(S[3].f) = 2000 + (3 \cdot 12) + 4 = 2000 + 36 + 4 = 2040
+\]

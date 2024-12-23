@@ -18,19 +18,23 @@ int get_variable_address(int index_declaration) {
     return nis_utilisation - nis_declaration + execution_offset;
 }
 
-int get_array_address(Node *array_index_list) {
-    int array_decl_index = get_declaration_description(array_index_list->index_declaration);
-    int num_dimensions   = get_array_dimension(array_decl_index);
-    int base_address     = get_variable_address(array_index_list->index_declaration);
+// TODO: find a better way to init the base address
+int get_array_address(Node *start_array_access, int base_address) {
+    int array_decl_index = get_declaration_description(start_array_access->index_declaration);
+    int num_dimensions = get_array_dimension(array_decl_index);
+    
+    if (base_address == NULL_VALUE) {
+        base_address = get_variable_address(start_array_access->index_declaration);
+    }
 
     int calculated_offset = 0;
     int dimension_product = 1;
 
-    Node *array_access = array_index_list->child->child;
+    Node *array_access = start_array_access->child->child;
 
     for (int dim = 0; dim < num_dimensions; dim++) {
         if (array_access == NULL) {
-            fprintf(stderr, "Error: Insufficient indices provided for array assignment.\n");
+            printf("Error: Insufficient indices provided for array assignment.\n");
             exit(EXIT_FAILURE);
         }
 
@@ -47,6 +51,7 @@ int get_array_address(Node *array_index_list) {
             // Check bounds for the current dimension
             int lower_bound = get_array_nth_dimension(array_decl_index, 2 * dim);
             int upper_bound = get_array_nth_dimension(array_decl_index, 2 * dim + 1);
+            printf("Index: %d, Lower: %d, Upper: %d\n", index, lower_bound, upper_bound);
 
             if (index < lower_bound || index > upper_bound) {
                 printf("Error: Index %d out of bounds for dimension %d.\n", index, dim);
@@ -81,7 +86,14 @@ int get_struct_field_address(Node *struct_field_access) {
         int field_execution    = get_struct_nth_field_execution(struct_declaration, nth_field);
         int index_declaration  = get_struct_nth_field_declaration(struct_declaration, nth_field);
 
-        if (!is_declaration_base_type(index_declaration) && get_declaration_nature(index_declaration) == TYPE_STRUCT) {
+        if (get_declaration_nature(index_declaration) == TYPE_ARRAY) {
+            // Calculate the address for the array
+            int array_address = get_array_address(current_field, base_address);
+            offset += array_address;
+            break;
+        }
+
+        if (get_declaration_nature(index_declaration) == TYPE_STRUCT) {
             struct_declaration = index_declaration;
         }
 

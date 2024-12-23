@@ -49,7 +49,7 @@ void handle_variable_affectation(int index_declaration, vm_cell cell) {
 }
 
 void handle_array_affectation(Node *array_index_list, vm_cell cell) {
-    int address = get_array_address(array_index_list);
+    int address = get_array_address(array_index_list, NULL_VALUE);
     update_execution_cell(address, cell);
 }
 
