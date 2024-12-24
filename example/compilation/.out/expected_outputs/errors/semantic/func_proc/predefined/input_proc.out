@@ -32,10 +32,10 @@ Verbose mode enabled. Printing tables and ast...
 | 11         | mois                 | 4          | -1         |
 | 12         | annee                | 5          | -1         |
 | 13         | my_struct            | 9          | -1         |
-| 14         | "%d %s"              | 7          | 17         |
+| 14         | "%d %c"              | 7          | 17         |
 | 15         | 0                    | 1          | -1         |
 | 16         | "%d"                 | 4          | -1         |
-| 17         | "%s %d"              | 7          | -1         |
+| 17         | "%c %d"              | 7          | -1         |
 +------------+----------------------+------------+------------+
 
 +--------------+
@@ -45,7 +45,6 @@ Verbose mode enabled. Printing tables and ast...
 +------------+----------------------+
 | 0          | 10                   |
 | 1          | 5                    |
-| 5          | 17                   |
 | 7          | 12                   |
 | 10         | 13                   |
 | 11         | 0                    |
@@ -54,6 +53,7 @@ Verbose mode enabled. Printing tables and ast...
 | 16         | 15                   |
 | 17         | 7                    |
 | 19         | 8                    |
+| 21         | 17                   |
 | 22         | 1                    |
 | 23         | 6                    |
 | 24         | 11                   |
@@ -129,7 +129,7 @@ Root of the AST:
 │   │   │   │   │   │   ├── A_IDENTIFIER, Lexico Idx: 4, Decl Idx: 4 -- Lexeme: 'x'
 │   │   │   │   │   └── A_ARGUMENT, Lexico Idx: -1, Decl Idx: -1
 │   │   │   │   │   │   ├── A_IDENTIFIER, Lexico Idx: 5, Decl Idx: 5 -- Lexeme: 'name'
-│   │   │   │   └── A_FORMAT_STRING, Lexico Idx: 14, Decl Idx: -1 -- Lexeme: '"%d %s"'
+│   │   │   │   └── A_FORMAT_STRING, Lexico Idx: 14, Decl Idx: -1 -- Lexeme: '"%d %c"'
 │   │   └── A_INPUT_STATEMENT, Lexico Idx: -1, Decl Idx: -1
 │   │   │   ├── A_INPUT_STATEMENT, Lexico Idx: -1, Decl Idx: -1
 │   │   │   │   ├── A_ARGUMENT_LIST, Lexico Idx: -1, Decl Idx: -1
@@ -140,7 +140,7 @@ Root of the AST:
 │   │   │   │   │   │   │   │   │   ├── A_INTEGER_LITERAL, Lexico Idx: 15, Decl Idx: -1 -- Lexeme: '0'
 │   │   │   │   │   └── A_ARGUMENT, Lexico Idx: -1, Decl Idx: -1
 │   │   │   │   │   │   ├── A_IDENTIFIER, Lexico Idx: 5, Decl Idx: 5 -- Lexeme: 'name'
-│   │   │   │   └── A_FORMAT_STRING, Lexico Idx: 14, Decl Idx: -1 -- Lexeme: '"%d %s"'
+│   │   │   │   └── A_FORMAT_STRING, Lexico Idx: 14, Decl Idx: -1 -- Lexeme: '"%d %c"'
 │   │   └── A_INPUT_STATEMENT, Lexico Idx: -1, Decl Idx: -1
 │   │   │   ├── A_INPUT_STATEMENT, Lexico Idx: -1, Decl Idx: -1
 │   │   │   │   ├── A_ARGUMENT_LIST, Lexico Idx: -1, Decl Idx: -1
@@ -149,7 +149,7 @@ Root of the AST:
 │   │   │   │   │   │   │   ├── A_STRUCT_FIELD_ACCESS, Lexico Idx: 10, Decl Idx: -1 -- Lexeme: 'jour'
 │   │   │   │   │   └── A_ARGUMENT, Lexico Idx: -1, Decl Idx: -1
 │   │   │   │   │   │   ├── A_IDENTIFIER, Lexico Idx: 5, Decl Idx: 5 -- Lexeme: 'name'
-│   │   │   │   └── A_FORMAT_STRING, Lexico Idx: 14, Decl Idx: -1 -- Lexeme: '"%d %s"'
+│   │   │   │   └── A_FORMAT_STRING, Lexico Idx: 14, Decl Idx: -1 -- Lexeme: '"%d %c"'
 │   │   └── A_INPUT_STATEMENT, Lexico Idx: -1, Decl Idx: -1
 │   │   │   ├── A_INPUT_STATEMENT, Lexico Idx: -1, Decl Idx: -1
 │   │   │   │   ├── A_ARGUMENT_LIST, Lexico Idx: -1, Decl Idx: -1
@@ -158,7 +158,7 @@ Root of the AST:
 │   │   │   │   │   │   │   ├── A_STRUCT_FIELD_ACCESS, Lexico Idx: 12, Decl Idx: -1 -- Lexeme: 'annee'
 │   │   │   │   │   └── A_ARGUMENT, Lexico Idx: -1, Decl Idx: -1
 │   │   │   │   │   │   ├── A_IDENTIFIER, Lexico Idx: 5, Decl Idx: 5 -- Lexeme: 'name'
-│   │   │   │   └── A_FORMAT_STRING, Lexico Idx: 14, Decl Idx: -1 -- Lexeme: '"%d %s"'
+│   │   │   │   └── A_FORMAT_STRING, Lexico Idx: 14, Decl Idx: -1 -- Lexeme: '"%d %c"'
 │   │   └── A_INPUT_STATEMENT, Lexico Idx: -1, Decl Idx: -1
 │   │   │   ├── A_INPUT_STATEMENT, Lexico Idx: -1, Decl Idx: -1
 │   │   │   │   ├── A_ARGUMENT_LIST, Lexico Idx: -1, Decl Idx: -1
@@ -173,6 +173,6 @@ Root of the AST:
 │   │   │   │   ├── A_ARGUMENT_LIST, Lexico Idx: -1, Decl Idx: -1
 │   │   │   │   │   ├── A_ARGUMENT, Lexico Idx: -1, Decl Idx: -1
 │   │   │   │   │   │   ├── A_IDENTIFIER, Lexico Idx: 5, Decl Idx: 5 -- Lexeme: 'name'
-│   │   │   │   └── A_FORMAT_STRING, Lexico Idx: 17, Decl Idx: -1 -- Lexeme: '"%s %d"'
+│   │   │   │   └── A_FORMAT_STRING, Lexico Idx: 17, Decl Idx: -1 -- Lexeme: '"%c %d"'
 +------------------------------------------------------------------------+
 
