@@ -50,7 +50,10 @@ vm_cell resolve_expression(Node *expression) {
             return construct_vm_cell(CHARACTER, &value);
         }
 
-        // TODO: string!
+        case A_STRING_LITERAL: {
+            char *lexeme = get_lexeme(expression->index_lexicographic);
+            return construct_vm_cell(STRING, lexeme);
+        }
 
         case A_ADD_OP:
         case A_SUB_OP:

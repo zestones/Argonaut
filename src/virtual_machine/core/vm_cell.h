@@ -3,10 +3,11 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 #include "../../utils/utils.h"
 
-typedef enum vm_type { INTEGER, REAL, BOOLEAN, CHARACTER } vm_type;
+typedef enum vm_type { INTEGER, REAL, BOOLEAN, CHARACTER, STRING } vm_type;
 
 typedef struct {
     union {
@@ -14,6 +15,7 @@ typedef struct {
         float real;      
         int boolean;    
         char character;  
+        char *string;
     } value;
 
     vm_type type;

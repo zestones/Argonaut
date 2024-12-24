@@ -22,6 +22,11 @@ vm_cell construct_vm_cell(int type, void *value) {
             case CHARACTER:
                 cell.value.character = *((char *)value);
                 break;
+
+            case STRING: 
+                cell.value.string = strdup((char *)value);
+                break;
+
             case NULL_VALUE:
                 printf("type not recognized !\n");
                 break;
@@ -53,6 +58,10 @@ void *get_vm_cell_value(vm_cell cell) {
             cell_value = &cell.value.character;
             return cell_value;
         }
+        case STRING: {
+            cell_value = &cell.value.string;
+            return cell_value;
+        }
         default:
             fprintf(stderr, "get_vm_cell_value Invalid type\n");
             exit(EXIT_FAILURE);
@@ -75,6 +84,10 @@ void update_vm_cell(vm_cell *cell, void *value) {
         case CHARACTER:
             cell->value.character = *((char *)value);
             break;
+        case STRING:
+            cell->value.string = strdup((char *)value);
+            break;
+        
         default:
             fprintf(stderr, "update_vm_cell Invalid type\n");
             exit(EXIT_FAILURE);
@@ -107,6 +120,10 @@ const char *format_cell(void *data) {
         case CHARACTER:
             sprintf(buffer, "'%c' (char)", cell->value.character);
             break;
+        case STRING: 
+            sprintf(buffer, "%s (string)", cell->value.string);
+            break;
+
         default:
             sprintf(buffer, "Unknown Type");
             break;
@@ -128,7 +145,8 @@ void fprintf_vm_cell(FILE *out, vm_cell cell) {
         (cell.type == INTEGER)   ? "INTEGER" :
         (cell.type == REAL)      ? "REAL" :
         (cell.type == BOOLEAN)   ? "BOOLEAN" :
-        (cell.type == CHARACTER) ? "CHARACTER" : "UNKNOWN";
+        (cell.type == CHARACTER) ? "CHARACTER" : 
+        (cell.type == STRING)    ? "STRING" : "UNKNOWN";
 
     char value_str[64];
     if (cell.type == INTEGER) {
@@ -139,6 +157,8 @@ void fprintf_vm_cell(FILE *out, vm_cell cell) {
         snprintf(value_str, sizeof(value_str), "%s", cell.value.boolean ? "true" : "false");
     } else if (cell.type == CHARACTER) {
         snprintf(value_str, sizeof(value_str), "'%c'", cell.value.character);
+    } else if (cell.type == STRING) {
+        snprintf(value_str, sizeof(value_str), "%s", cell.value.string);
     } else {
         snprintf(value_str, sizeof(value_str), "UNKNOWN");
     }

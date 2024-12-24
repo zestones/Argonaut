@@ -2,6 +2,7 @@
 
 #include "assignement/assignement.h"
 #include "condition/condition.h"
+#include "procedure/procedure.h"
 
 #include "../core/execution.h"
 #include "interpreter.h"
@@ -27,6 +28,14 @@ void resolve_statement_list(AST statement_list) {
         case A_IF:
         case A_IF_ELSE:
             execute_condition(statement_list->child);
+            break;
+
+        // case A_INPUT_STATEMENT:
+        //     execute_input(statement_list);
+        //     break;
+
+        case A_PRINT_STATEMENT:
+            execute_print(statement_list);
             break;
         
         case A_WHILE:

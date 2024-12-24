@@ -9,11 +9,12 @@ y := 0;
 
 
 while (x < 7) {
-    is_even := x / 2;
+    is_even := x / 2; // TODO: implement % operator
     
     if (is_even == 1) {
         y := y + 1;
     }
 
     x := x + 1;
+    print("'x' %s --> %d", "vaut", x);
 }
