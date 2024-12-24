@@ -22,4 +22,21 @@ void export_table(const char* filename,
                   const char* begin_marker, 
                   const char* end_marker);
 
+
+// ARRAYS
+int get_array_element_type(int index_declaration_array);
+int get_array_dimension(int index_declaration_array);
+int get_array_nth_dimension(int index_declaration_array, int nth_dim);
+int get_array_size(int index_declaration_array);
+
+
+// STRUCTURES
+int find_struct_field_index_lexicographic(int declaration_type, int index_lexicographic);
+
+int get_struct_nth_field_execution(int declaration_type, int nth);
+int get_struct_nth_field_declaration(int struct_declaration, int nth_field); // TODO: rename type -> declaration
+int get_struct_nth_field_lexicographic(int struct_declaration, int nth_field);
+int get_struct_field_count(int struct_declaration);
+
+
 #endif // __UTILITY_H__

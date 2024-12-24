@@ -6,7 +6,7 @@ Tâches réalisées cette semaine :
 
 - Refonte du yacc, correction des erreurs de syntaxe présente.
 - Ajout d'une fonction d'erreur plus détaillée (affichage de la ligne d'erreur ainsi que le lexème).
-- Correction des erreurs lexicales (IDF, FLOAT, INTEGER, etc...). 
+- Correction des erreurs lexicales (IDF, TOKEN_FLOAT, INTEGER, etc...). 
 - Modularisation du code source, pour une meilleure lisibilité. Nous avons décider de séparer les règles syntaxiques en plusieurs fichiers, 
   chaque fichier correspondant à un type de règles (en l'occurence, les déclarations, les expressions, les instructions, etc...).  
   Pour pouvoir compiler le code, chaque fichier est concaténé dans un fichier commun appelé combined.y. Le fichier résultant contient la grammaire complète.

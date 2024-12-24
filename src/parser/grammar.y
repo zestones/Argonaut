@@ -241,7 +241,7 @@ list_dimensions: one_dimension
                | list_dimensions COMMA one_dimension 
 ;
 
-one_dimension: INTEGER_VALUE TWO_POINTS INTEGER_VALUE { array_add_dimension($1, $3); }
+one_dimension: INTEGER_VALUE TWO_POINTS INTEGER_VALUE { array_add_dimension(atoi(get_lexeme($1)), atoi(get_lexeme($3))); }
 ;
 
 // Arithmetic expressions
@@ -357,13 +357,14 @@ statement_block: START statement_list END { $$ = $2; }
 ;
 
 statement_list: statement statement_list {
+                    $$ = $1;
                     if (!is_node_null($2)) {
                         $$ = $2;
                         add_sibling($1, $2);
                         add_child($$, $1);
                     } else {
                         $$ = construct_node_default(A_STATEMENT_LIST);
-                        add_child($$, $1);
+                        append_child($$, $1);
                     }
               }
               | statement declaration { 
@@ -374,6 +375,7 @@ statement_list: statement statement_list {
               | { $$ = NULL; }
 ;
 
+
 statement: assignment_statement {
             $$ = construct_node_default(A_ASSIGNMENT_STATEMENT);
             add_child($$, $1);
@@ -382,10 +384,7 @@ statement: assignment_statement {
         | standalone_func_proc_call_statement { $$ = $1; }
         | loop_statement  { $$ = $1; }
         | print_statement { $$ = $1; }
-        | input_statement {
-            $$ = construct_node_default(A_INPUT_STATEMENT);
-            add_child($$, $1);
-        }
+        | input_statement { $$ = $1; }
 ;
 
 assignment_statement: IDENTIFIER { check_variable_definition($1); } OPAFF expression SEMICOLON {
@@ -416,6 +415,7 @@ return_statement: RETURN_VALUE expression SEMICOLON {
 if_statement: IF condition statement_block {
                 $$ = construct_node_default(A_IF);
                 add_child($$, $2);
+                add_sibling($2, $3);
             }
             | IF condition statement_block ELSE statement_block {
                 $$ = construct_node_default(A_IF_ELSE); 
@@ -427,7 +427,7 @@ if_statement: IF condition statement_block {
 
 loop_statement: WHILE condition statement_block {
                 $$ = construct_node_default(A_WHILE); 
-                add_child($$, $2); 
+                add_child($$, $2);
                 add_sibling($2, $3);
             }
 ;
@@ -641,6 +641,8 @@ int main(int argc, char **argv) {
     ylog(log);
     
     if (output_file != NULL) {
+        remove(output_file);
+        
         export_lexeme_table(output_file);
         export_declaration_table(output_file);
         export_representation_table(output_file);

@@ -14,11 +14,11 @@ type date : struct
 
 var my_struct : date;
 
-input("%d %s", x, name);
-input("%d %s", tab[0], name);
-input("%d %s", my_struct.jour, name);
+input("%d %c", x, name);
+input("%d %c", tab[0], name);
+input("%d %c", my_struct.jour, name);
 
 // Error: annee is a float
-input("%d %s", my_struct.annee, name);
+input("%d %c", my_struct.annee, name);
 input("%d", my_struct.mois, name);
-input("%s %d", name);
+input("%c %d", name);

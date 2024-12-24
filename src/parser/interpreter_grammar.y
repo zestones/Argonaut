@@ -53,9 +53,9 @@
 
 %token PIPE
 
-%token <integer> INTEGER
-%token <string> LEXEME
-%token <real> FLOAT
+%token <integer> TOKEN_INTEGER
+%token <string> TOKEN_LEXEME
+%token <real> TOKEN_FLOAT
 %start program
 
 %type <ast> ast_node child_node sibling_node node
@@ -74,8 +74,8 @@ lexeme_table_body: lexeme_table_row
                  | lexeme_table_body lexeme_table_row
 ;
 
-lexeme_table_row: PIPE INTEGER PIPE LEXEME PIPE INTEGER PIPE INTEGER PIPE { insert_lexeme_row($2, $4, $6, $8); }
-                | PIPE INTEGER PIPE INTEGER PIPE INTEGER PIPE INTEGER PIPE {
+lexeme_table_row: PIPE TOKEN_INTEGER PIPE TOKEN_LEXEME PIPE TOKEN_INTEGER PIPE TOKEN_INTEGER PIPE { insert_lexeme_row($2, $4, $6, $8); }
+                | PIPE TOKEN_INTEGER PIPE TOKEN_INTEGER PIPE TOKEN_INTEGER PIPE TOKEN_INTEGER PIPE {
                     int len = snprintf(NULL, 0, "%d", $4);  
                     char* lexeme = malloc(len + 1);
                     sprintf(lexeme, "%d", $4);
@@ -83,7 +83,7 @@ lexeme_table_row: PIPE INTEGER PIPE LEXEME PIPE INTEGER PIPE INTEGER PIPE { inse
                     insert_lexeme_row($2, lexeme, $6, $8);
                     free(lexeme);
                 }
-                | PIPE INTEGER PIPE FLOAT PIPE INTEGER PIPE INTEGER PIPE {
+                | PIPE TOKEN_INTEGER PIPE TOKEN_FLOAT PIPE TOKEN_INTEGER PIPE TOKEN_INTEGER PIPE {
                    int len = snprintf(NULL, 0, "%f", $4);  
                     char* lexeme = malloc(len + 1);
                     sprintf(lexeme, "%f", $4);
@@ -100,7 +100,7 @@ declaration_table_body: declaration_table_row
                       | declaration_table_body declaration_table_row
 ;
 
-declaration_table_row: PIPE INTEGER PIPE INTEGER PIPE INTEGER PIPE INTEGER PIPE INTEGER PIPE INTEGER PIPE { insert_declaration_row($2, $4, $6, $8, $10, $12); }
+declaration_table_row: PIPE TOKEN_INTEGER PIPE TOKEN_INTEGER PIPE TOKEN_INTEGER PIPE TOKEN_INTEGER PIPE TOKEN_INTEGER PIPE TOKEN_INTEGER PIPE { insert_declaration_row($2, $4, $6, $8, $10, $12); }
 ;
 
 
@@ -112,7 +112,7 @@ representation_table_body:
                          | representation_table_body representation_table_row
 ;
 
-representation_table_row: PIPE INTEGER PIPE INTEGER PIPE { insert_representation_row($2, $4); }
+representation_table_row: PIPE TOKEN_INTEGER PIPE TOKEN_INTEGER PIPE { insert_representation_row($2, $4); }
 ;
 
 
@@ -125,7 +125,7 @@ region_table_body: region_table_row
 ;
 
 
-region_table_row: PIPE INTEGER PIPE INTEGER PIPE INTEGER PIPE ast_node PIPE { insert_region_row($2, $4, $6, $8); }
+region_table_row: PIPE TOKEN_INTEGER PIPE TOKEN_INTEGER PIPE TOKEN_INTEGER PIPE ast_node PIPE { insert_region_row($2, $4, $6, $8); }
 ;
 
 ast_node: node child_node sibling_node { append_child($1, $2); add_sibling($1, $3); }
@@ -134,7 +134,7 @@ ast_node: node child_node sibling_node { append_child($1, $2); add_sibling($1, $
         | node { $$ = $1; }
 ;
 
-node: NODE_LPAREN INTEGER COMMA INTEGER COMMA INTEGER NODE_RPAREN { $$ = construct_node($2, $4, $6); }
+node: NODE_LPAREN TOKEN_INTEGER COMMA TOKEN_INTEGER COMMA TOKEN_INTEGER NODE_RPAREN { $$ = construct_node($2, $4, $6); }
 ;
 
 child_node: LBRACKET CHILD ast_node RBRACKET { $$ = $3; }
@@ -217,7 +217,9 @@ int main(int argc, char **argv) {
     }
 
     // Initialize and run the interpreter
+    error.filename = input_file;
     yyin = file;
+    
     yyrun(INTERPRETATION);
     fclose(file);
 

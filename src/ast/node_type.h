@@ -36,8 +36,8 @@
     NODE(A_STRUCT_FIELD)                    \
     NODE(A_IDENTIFIER)                      \
     NODE(A_STATEMENT_LIST)                  \
+    NODE(A_EMPTY_STATEMENT_LIST)            \
     NODE(A_ASSIGNMENT_STATEMENT)            \
-    NODE(A_LOOP_STATEMENT)                  \
     NODE(A_FUNC_PROC_CALL_STATEMENT)        \
     NODE(A_RETURN_STATEMENT)                \
     NODE(A_VARIABLE_ASSIGNMENT)             \

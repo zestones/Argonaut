@@ -60,8 +60,8 @@ int resolve_array_access_type(Node *array_access) {
                     "  '%s' is of type '%s', which is incompatible with field access.\n"
                     "  Ensure the entity is a struct before attempting to access its fields.\n",
                     get_formatted_location(),
-                    get_lexeme(array_access->index_declaration),
-                    get_lexeme(index_type_declaration)
+                    (array_access->index_declaration == NULL_VALUE) ? "UNKNOWN" : get_lexeme(array_access->index_declaration),
+                    (index_type_declaration == NULL_VALUE) ? "UNKNOWN" : get_lexeme(index_type_declaration)
                 );
                 yerror(error);
                 return NULL_VALUE;
