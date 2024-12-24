@@ -3,7 +3,8 @@
 
 void interpret();
 
-// ! void handle_variable_declaration(AST ast);
+void interpret_ast(AST ast);
 
+void resolve_statement_list(AST statement_list);
 
 #endif 

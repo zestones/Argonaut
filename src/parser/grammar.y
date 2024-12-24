@@ -357,13 +357,14 @@ statement_block: START statement_list END { $$ = $2; }
 ;
 
 statement_list: statement statement_list {
+                    $$ = $1;
                     if (!is_node_null($2)) {
                         $$ = $2;
                         add_sibling($1, $2);
                         add_child($$, $1);
                     } else {
                         $$ = construct_node_default(A_STATEMENT_LIST);
-                        add_child($$, $1);
+                        append_child($$, $1);
                     }
               }
               | statement declaration { 
@@ -373,6 +374,7 @@ statement_list: statement statement_list {
               } 
               | { $$ = NULL; }
 ;
+
 
 statement: assignment_statement {
             $$ = construct_node_default(A_ASSIGNMENT_STATEMENT);
@@ -416,6 +418,7 @@ return_statement: RETURN_VALUE expression SEMICOLON {
 if_statement: IF condition statement_block {
                 $$ = construct_node_default(A_IF);
                 add_child($$, $2);
+                add_sibling($2, $3);
             }
             | IF condition statement_block ELSE statement_block {
                 $$ = construct_node_default(A_IF_ELSE); 
@@ -427,7 +430,7 @@ if_statement: IF condition statement_block {
 
 loop_statement: WHILE condition statement_block {
                 $$ = construct_node_default(A_WHILE); 
-                add_child($$, $2); 
+                add_child($$, $2);
                 add_sibling($2, $3);
             }
 ;

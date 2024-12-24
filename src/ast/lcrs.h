@@ -57,6 +57,14 @@ void add_sibling(Node* node, Node* sibling);
 void append_child(Node* parent, Node* child);
 
 /**
+ * @brief Appends a sibling node to the given node.
+ * 
+ * @param node The node to which the sibling will be appended.
+ * @param sibling The sibling node to append.
+ */
+void append_sibling(Node* node, Node* sibling);
+
+/**
  * @brief Adds a chain of nodes to the given parent node.
  * This function will add the first non-NULL node as the child of the parent node,
  * and then add the rest of the non-NULL nodes as siblings.

@@ -1,0 +1,95 @@
+PROG
+type date : struct {
+    day : int;
+    month : int;
+    year : int;
+} fstruct;
+
+type details : struct {
+    age : int;
+    salary : float;
+    birthday : date;
+} fstruct;
+
+var person1 : details;
+var person2 : details;
+var person3 : details;
+var reference_date : date;
+var total_salary : float;
+
+person1.age := 25;
+person1.salary := 2500.00;
+person1.birthday.day := 15;
+person1.birthday.month := 7;
+person1.birthday.year := 1998;
+
+person2.age := 30;
+person2.salary := 3000.00;
+person2.birthday.day := 12;
+person2.birthday.month := 3;
+person2.birthday.year := 1994;
+
+person3.age := 40;
+person3.salary := 4000.00;
+person3.birthday.day := 20;
+person3.birthday.month := 5;
+person3.birthday.year := 1984;
+
+reference_date.day := 1;
+reference_date.month := 1;
+reference_date.year := 1995;
+
+total_salary := 0.00;
+
+// Check person1
+if (person1.birthday.year > reference_date.year) {
+    total_salary := total_salary + person1.salary;
+} else {
+    if (person1.birthday.year == reference_date.year) {
+        if (person1.birthday.month > reference_date.month) {
+            total_salary := total_salary + person1.salary;
+        } else {
+            if (person1.birthday.month == reference_date.month) {
+                if (person1.birthday.day >= reference_date.day) {
+                    total_salary := total_salary + person1.salary;
+                }
+            }
+        }
+    }
+}
+
+// Check person2
+if (person2.birthday.year > reference_date.year) {
+    total_salary := total_salary + person2.salary;
+} else {
+    if (person2.birthday.year == reference_date.year) {
+        if (person2.birthday.month > reference_date.month) {
+            total_salary := total_salary + person2.salary;
+        } else {
+            if (person2.birthday.month == reference_date.month) {
+                if (person2.birthday.day >= reference_date.day) {
+                    total_salary := total_salary + person2.salary;
+                }
+            }
+        }
+    }
+}
+
+// Check person3
+if (person3.birthday.year > reference_date.year) {
+    total_salary := total_salary + person3.salary;
+} else {
+    if (person3.birthday.year == reference_date.year) {
+        if (person3.birthday.month > reference_date.month) {
+            total_salary := total_salary + person3.salary;
+        } else {
+            if (person3.birthday.month == reference_date.month) {
+                if (person3.birthday.day >= reference_date.day) {
+                    total_salary := total_salary + person3.salary;
+                }
+            }
+        }
+    }
+}
+
+total_salary := total_salary;

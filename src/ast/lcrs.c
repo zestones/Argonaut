@@ -55,6 +55,15 @@ void append_child(Node* parent, Node* child) {
     }
 }
 
+void append_sibling(Node* node, Node* sibling) {
+    if (!node || !sibling) return;
+
+    Node* current = node;
+    while (current->sibling) {
+        current = current->sibling;
+    }
+    current->sibling = sibling;
+}
 
 void add_chain(Node *parent, Node *nodes[], int count) {
     Node *current = NULL;
