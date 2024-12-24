@@ -30,9 +30,9 @@ void resolve_statement_list(AST statement_list) {
             execute_condition(statement_list->child);
             break;
 
-        // case A_INPUT_STATEMENT:
-        //     execute_input(statement_list);
-        //     break;
+        case A_INPUT_STATEMENT:
+            execute_input(statement_list);
+            break;
 
         case A_PRINT_STATEMENT:
             execute_print(statement_list);

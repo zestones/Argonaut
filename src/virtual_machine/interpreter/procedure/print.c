@@ -12,19 +12,6 @@
 
 #define BUFFER_SIZE 1024
 
-static char *strip_quotes(const char *raw_format) {
-    int format_len = strlen(raw_format);
-
-    if (format_len >= 2 && raw_format[0] == '"' && raw_format[format_len - 1] == '"') {
-        char *format = (char *)malloc(format_len - 1);
-
-        strncpy(format, raw_format + 1, format_len - 2);
-        format[format_len - 2] = '\0';
-        return format;
-    }
-
-    return NULL;
-}
 
 static void process_format_string(const char *format, AST arg_list, char *buffer) {
     char *buffer_ptr = buffer;
@@ -106,5 +93,3 @@ void execute_print(AST ast) {
 
     printf("%s", buffer);
 }
-
-

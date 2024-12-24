@@ -384,10 +384,7 @@ statement: assignment_statement {
         | standalone_func_proc_call_statement { $$ = $1; }
         | loop_statement  { $$ = $1; }
         | print_statement { $$ = $1; }
-        | input_statement {
-            $$ = construct_node_default(A_INPUT_STATEMENT);
-            add_child($$, $1);
-        }
+        | input_statement { $$ = $1; }
 ;
 
 assignment_statement: IDENTIFIER { check_variable_definition($1); } OPAFF expression SEMICOLON {

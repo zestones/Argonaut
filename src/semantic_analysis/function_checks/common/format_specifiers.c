@@ -1,5 +1,19 @@
 #include "format_specifiers.h"
 
+char *strip_quotes(const char *raw_format) {
+    int format_len = strlen(raw_format);
+
+    if (format_len >= 2 && raw_format[0] == '"' && raw_format[format_len - 1] == '"') {
+        char *format = (char *)malloc(format_len - 1);
+
+        strncpy(format, raw_format + 1, format_len - 2);
+        format[format_len - 2] = '\0';
+        return format;
+    }
+
+    return NULL;
+}
+
 char get_nth_format_specifier(const char *format, int n) {
     int count = 0;
     for (int i = 0; format[i] != '\0'; i++) {

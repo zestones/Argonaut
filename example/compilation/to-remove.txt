@@ -1,20 +1,21 @@
 PROG
 
+type arr: array[0:1] of int;
+type date : struct {
+    day : int;
+    month : int;
+    year : int;
+} fstruct;
+
 var x : int;
 var y : int;
-var is_even : int;
+var arr : arr;
+var date : date;
 
 x := 0;
 y := 0;
 
 
-while (x < 7) {
-    is_even := x / 2; // TODO: implement % operator
-    
-    if (is_even == 1) {
-        y := y + 1;
-    }
+input("%d %d %d", x, arr[1], date.day);
 
-    x := x + 1;
-    print("'x' %s --> %d\n", "vaut", x);
-}
+print("--> %d -- %d -- %d\n", x, arr[1], date.day);
