@@ -52,9 +52,6 @@ static void process_format_string(const char *format, AST arg_list, char *buffer
             current_arg = current_arg->sibling;
             arg_index++;
             format_idx += 2;
-        } else if (format[format_idx] == '\\' && format[format_idx + 1] == 'n') {
-            *buffer_ptr++ = '\n';
-            format_idx += 2;
         } else {
             *buffer_ptr++ = format[format_idx++];
         }
@@ -69,7 +66,7 @@ void execute_print(AST ast) {
     AST arg_list = ast->child;
     AST format_node = arg_list->sibling;
     if (format_node == NULL) {
-        printf("Error: Missing format string.\n");
+        printf("%s", process_special_chars(strip_quotes(get_lexeme(arg_list->index_lexicographic))));
         return;
     }
 
@@ -91,5 +88,5 @@ void execute_print(AST ast) {
     char buffer[BUFFER_SIZE] = {0};
     process_format_string(format, arg_list, buffer);
 
-    printf("%s", buffer);
+    printf("%s", process_special_chars(buffer));
 }

@@ -1,5 +1,47 @@
 #include "format_specifiers.h"
 
+
+char *process_special_chars(const char *input) {
+    if (input == NULL) {
+        return NULL;
+    }
+
+    int input_len = strlen(input);
+    char *output = (char *)malloc(input_len + 1);
+    char *output_ptr = output; 
+    for (int i = 0; i < input_len; i++) {
+        if (input[i] == '\\' && i + 1 < input_len) {
+            // Handle escape sequences
+            switch (input[i + 1]) {
+                case 'n':
+                    *output_ptr++ = '\n';
+                    i++; // Skip the 'n'
+                    break;
+                case 't':
+                    *output_ptr++ = '\t';
+                    i++; // Skip the 't'
+                    break;
+                case '\\':
+                    *output_ptr++ = '\\';
+                    i++; // Skip the second '\'
+                    break;
+                case '"':
+                    *output_ptr++ = '"';
+                    i++; // Skip the '"'
+                    break;
+                default:
+                    *output_ptr++ = input[i];
+                    break;
+            }
+        } else {
+            *output_ptr++ = input[i];
+        }
+    }
+
+    *output_ptr = '\0';
+    return output;
+}
+
 char *strip_quotes(const char *raw_format) {
     int format_len = strlen(raw_format);
 
