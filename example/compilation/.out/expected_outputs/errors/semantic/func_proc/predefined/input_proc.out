@@ -123,56 +123,50 @@ Root of the AST:
 │   │   └── A_VARIABLE_DECLARATION, Lexico Idx: 13, Decl Idx: 13 -- Lexeme: 'my_struct'
 │   └── A_STATEMENT_LIST, Lexico Idx: -1, Decl Idx: -1
 │   │   ├── A_INPUT_STATEMENT, Lexico Idx: -1, Decl Idx: -1
-│   │   │   ├── A_INPUT_STATEMENT, Lexico Idx: -1, Decl Idx: -1
-│   │   │   │   ├── A_ARGUMENT_LIST, Lexico Idx: -1, Decl Idx: -1
-│   │   │   │   │   ├── A_ARGUMENT, Lexico Idx: -1, Decl Idx: -1
-│   │   │   │   │   │   ├── A_IDENTIFIER, Lexico Idx: 4, Decl Idx: 4 -- Lexeme: 'x'
-│   │   │   │   │   └── A_ARGUMENT, Lexico Idx: -1, Decl Idx: -1
-│   │   │   │   │   │   ├── A_IDENTIFIER, Lexico Idx: 5, Decl Idx: 5 -- Lexeme: 'name'
-│   │   │   │   └── A_FORMAT_STRING, Lexico Idx: 14, Decl Idx: -1 -- Lexeme: '"%d %c"'
+│   │   │   ├── A_ARGUMENT_LIST, Lexico Idx: -1, Decl Idx: -1
+│   │   │   │   ├── A_ARGUMENT, Lexico Idx: -1, Decl Idx: -1
+│   │   │   │   │   ├── A_IDENTIFIER, Lexico Idx: 4, Decl Idx: 4 -- Lexeme: 'x'
+│   │   │   │   └── A_ARGUMENT, Lexico Idx: -1, Decl Idx: -1
+│   │   │   │   │   ├── A_IDENTIFIER, Lexico Idx: 5, Decl Idx: 5 -- Lexeme: 'name'
+│   │   │   └── A_FORMAT_STRING, Lexico Idx: 14, Decl Idx: -1 -- Lexeme: '"%d %c"'
 │   │   └── A_INPUT_STATEMENT, Lexico Idx: -1, Decl Idx: -1
-│   │   │   ├── A_INPUT_STATEMENT, Lexico Idx: -1, Decl Idx: -1
-│   │   │   │   ├── A_ARGUMENT_LIST, Lexico Idx: -1, Decl Idx: -1
-│   │   │   │   │   ├── A_ARGUMENT, Lexico Idx: -1, Decl Idx: -1
-│   │   │   │   │   │   ├── A_ARRAY_ACCESS, Lexico Idx: 6, Decl Idx: 6 -- Lexeme: 'tab'
-│   │   │   │   │   │   │   ├── A_ARRAY_INDEX_LIST, Lexico Idx: -1, Decl Idx: -1
-│   │   │   │   │   │   │   │   ├── A_ARRAY_INDEX, Lexico Idx: -1, Decl Idx: -1
-│   │   │   │   │   │   │   │   │   ├── A_INTEGER_LITERAL, Lexico Idx: 15, Decl Idx: -1 -- Lexeme: '0'
-│   │   │   │   │   └── A_ARGUMENT, Lexico Idx: -1, Decl Idx: -1
-│   │   │   │   │   │   ├── A_IDENTIFIER, Lexico Idx: 5, Decl Idx: 5 -- Lexeme: 'name'
-│   │   │   │   └── A_FORMAT_STRING, Lexico Idx: 14, Decl Idx: -1 -- Lexeme: '"%d %c"'
+│   │   │   ├── A_ARGUMENT_LIST, Lexico Idx: -1, Decl Idx: -1
+│   │   │   │   ├── A_ARGUMENT, Lexico Idx: -1, Decl Idx: -1
+│   │   │   │   │   ├── A_ARRAY_ACCESS, Lexico Idx: 6, Decl Idx: 6 -- Lexeme: 'tab'
+│   │   │   │   │   │   ├── A_ARRAY_INDEX_LIST, Lexico Idx: -1, Decl Idx: -1
+│   │   │   │   │   │   │   ├── A_ARRAY_INDEX, Lexico Idx: -1, Decl Idx: -1
+│   │   │   │   │   │   │   │   ├── A_INTEGER_LITERAL, Lexico Idx: 15, Decl Idx: -1 -- Lexeme: '0'
+│   │   │   │   └── A_ARGUMENT, Lexico Idx: -1, Decl Idx: -1
+│   │   │   │   │   ├── A_IDENTIFIER, Lexico Idx: 5, Decl Idx: 5 -- Lexeme: 'name'
+│   │   │   └── A_FORMAT_STRING, Lexico Idx: 14, Decl Idx: -1 -- Lexeme: '"%d %c"'
 │   │   └── A_INPUT_STATEMENT, Lexico Idx: -1, Decl Idx: -1
-│   │   │   ├── A_INPUT_STATEMENT, Lexico Idx: -1, Decl Idx: -1
-│   │   │   │   ├── A_ARGUMENT_LIST, Lexico Idx: -1, Decl Idx: -1
-│   │   │   │   │   ├── A_ARGUMENT, Lexico Idx: -1, Decl Idx: -1
-│   │   │   │   │   │   ├── A_STRUCT_FIELD_ACCESS, Lexico Idx: 13, Decl Idx: 13 -- Lexeme: 'my_struct'
-│   │   │   │   │   │   │   ├── A_STRUCT_FIELD_ACCESS, Lexico Idx: 10, Decl Idx: -1 -- Lexeme: 'jour'
-│   │   │   │   │   └── A_ARGUMENT, Lexico Idx: -1, Decl Idx: -1
-│   │   │   │   │   │   ├── A_IDENTIFIER, Lexico Idx: 5, Decl Idx: 5 -- Lexeme: 'name'
-│   │   │   │   └── A_FORMAT_STRING, Lexico Idx: 14, Decl Idx: -1 -- Lexeme: '"%d %c"'
+│   │   │   ├── A_ARGUMENT_LIST, Lexico Idx: -1, Decl Idx: -1
+│   │   │   │   ├── A_ARGUMENT, Lexico Idx: -1, Decl Idx: -1
+│   │   │   │   │   ├── A_STRUCT_FIELD_ACCESS, Lexico Idx: 13, Decl Idx: 13 -- Lexeme: 'my_struct'
+│   │   │   │   │   │   ├── A_STRUCT_FIELD_ACCESS, Lexico Idx: 10, Decl Idx: -1 -- Lexeme: 'jour'
+│   │   │   │   └── A_ARGUMENT, Lexico Idx: -1, Decl Idx: -1
+│   │   │   │   │   ├── A_IDENTIFIER, Lexico Idx: 5, Decl Idx: 5 -- Lexeme: 'name'
+│   │   │   └── A_FORMAT_STRING, Lexico Idx: 14, Decl Idx: -1 -- Lexeme: '"%d %c"'
 │   │   └── A_INPUT_STATEMENT, Lexico Idx: -1, Decl Idx: -1
-│   │   │   ├── A_INPUT_STATEMENT, Lexico Idx: -1, Decl Idx: -1
-│   │   │   │   ├── A_ARGUMENT_LIST, Lexico Idx: -1, Decl Idx: -1
-│   │   │   │   │   ├── A_ARGUMENT, Lexico Idx: -1, Decl Idx: -1
-│   │   │   │   │   │   ├── A_STRUCT_FIELD_ACCESS, Lexico Idx: 13, Decl Idx: 13 -- Lexeme: 'my_struct'
-│   │   │   │   │   │   │   ├── A_STRUCT_FIELD_ACCESS, Lexico Idx: 12, Decl Idx: -1 -- Lexeme: 'annee'
-│   │   │   │   │   └── A_ARGUMENT, Lexico Idx: -1, Decl Idx: -1
-│   │   │   │   │   │   ├── A_IDENTIFIER, Lexico Idx: 5, Decl Idx: 5 -- Lexeme: 'name'
-│   │   │   │   └── A_FORMAT_STRING, Lexico Idx: 14, Decl Idx: -1 -- Lexeme: '"%d %c"'
+│   │   │   ├── A_ARGUMENT_LIST, Lexico Idx: -1, Decl Idx: -1
+│   │   │   │   ├── A_ARGUMENT, Lexico Idx: -1, Decl Idx: -1
+│   │   │   │   │   ├── A_STRUCT_FIELD_ACCESS, Lexico Idx: 13, Decl Idx: 13 -- Lexeme: 'my_struct'
+│   │   │   │   │   │   ├── A_STRUCT_FIELD_ACCESS, Lexico Idx: 12, Decl Idx: -1 -- Lexeme: 'annee'
+│   │   │   │   └── A_ARGUMENT, Lexico Idx: -1, Decl Idx: -1
+│   │   │   │   │   ├── A_IDENTIFIER, Lexico Idx: 5, Decl Idx: 5 -- Lexeme: 'name'
+│   │   │   └── A_FORMAT_STRING, Lexico Idx: 14, Decl Idx: -1 -- Lexeme: '"%d %c"'
 │   │   └── A_INPUT_STATEMENT, Lexico Idx: -1, Decl Idx: -1
-│   │   │   ├── A_INPUT_STATEMENT, Lexico Idx: -1, Decl Idx: -1
-│   │   │   │   ├── A_ARGUMENT_LIST, Lexico Idx: -1, Decl Idx: -1
-│   │   │   │   │   ├── A_ARGUMENT, Lexico Idx: -1, Decl Idx: -1
-│   │   │   │   │   │   ├── A_STRUCT_FIELD_ACCESS, Lexico Idx: 13, Decl Idx: 13 -- Lexeme: 'my_struct'
-│   │   │   │   │   │   │   ├── A_STRUCT_FIELD_ACCESS, Lexico Idx: 11, Decl Idx: -1 -- Lexeme: 'mois'
-│   │   │   │   │   └── A_ARGUMENT, Lexico Idx: -1, Decl Idx: -1
-│   │   │   │   │   │   ├── A_IDENTIFIER, Lexico Idx: 5, Decl Idx: 5 -- Lexeme: 'name'
-│   │   │   │   └── A_FORMAT_STRING, Lexico Idx: 16, Decl Idx: -1 -- Lexeme: '"%d"'
+│   │   │   ├── A_ARGUMENT_LIST, Lexico Idx: -1, Decl Idx: -1
+│   │   │   │   ├── A_ARGUMENT, Lexico Idx: -1, Decl Idx: -1
+│   │   │   │   │   ├── A_STRUCT_FIELD_ACCESS, Lexico Idx: 13, Decl Idx: 13 -- Lexeme: 'my_struct'
+│   │   │   │   │   │   ├── A_STRUCT_FIELD_ACCESS, Lexico Idx: 11, Decl Idx: -1 -- Lexeme: 'mois'
+│   │   │   │   └── A_ARGUMENT, Lexico Idx: -1, Decl Idx: -1
+│   │   │   │   │   ├── A_IDENTIFIER, Lexico Idx: 5, Decl Idx: 5 -- Lexeme: 'name'
+│   │   │   └── A_FORMAT_STRING, Lexico Idx: 16, Decl Idx: -1 -- Lexeme: '"%d"'
 │   │   └── A_INPUT_STATEMENT, Lexico Idx: -1, Decl Idx: -1
-│   │   │   ├── A_INPUT_STATEMENT, Lexico Idx: -1, Decl Idx: -1
-│   │   │   │   ├── A_ARGUMENT_LIST, Lexico Idx: -1, Decl Idx: -1
-│   │   │   │   │   ├── A_ARGUMENT, Lexico Idx: -1, Decl Idx: -1
-│   │   │   │   │   │   ├── A_IDENTIFIER, Lexico Idx: 5, Decl Idx: 5 -- Lexeme: 'name'
-│   │   │   │   └── A_FORMAT_STRING, Lexico Idx: 17, Decl Idx: -1 -- Lexeme: '"%c %d"'
+│   │   │   ├── A_ARGUMENT_LIST, Lexico Idx: -1, Decl Idx: -1
+│   │   │   │   ├── A_ARGUMENT, Lexico Idx: -1, Decl Idx: -1
+│   │   │   │   │   ├── A_IDENTIFIER, Lexico Idx: 5, Decl Idx: 5 -- Lexeme: 'name'
+│   │   │   └── A_FORMAT_STRING, Lexico Idx: 17, Decl Idx: -1 -- Lexeme: '"%c %d"'
 +------------------------------------------------------------------------+
 
