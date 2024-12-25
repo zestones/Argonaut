@@ -43,6 +43,19 @@ void resolve_statement_list(AST statement_list) {
             execute_loop(statement_list);
             break;
 
+        case A_FUNC_PROC_CALL_STATEMENT: {
+            int static_link;
+            int dynamic_link = get_execution_stack_current_frame_id();
+            int target_region_index = get_declaration_region(statement_list->index_declaration);
+
+            stack_frame current_frame = peek_execution_stack();
+            stack_frame frame = construct_stack_frame(target_region_index, dynamic_link, get_declaration_execution(statement_list->index_declaration));
+            push_frame_to_execution_stack(frame);
+
+            execute(get_declaration_execution(statement_list->index_declaration));
+            break;
+        }
+
         default:
             resolve_statement_list(statement_list->child);
             resolve_statement_list(statement_list->sibling);
@@ -77,27 +90,30 @@ void interpret_ast(AST ast) {
 }
 
 
-static int execute(int region_index) {
-
+int execute(int region_index) {
     push_region(region_index);
-    
-    stack_frame frame = construct_stack_frame(NULL_VALUE, NULL_VALUE, NULL_VALUE);
-    push_frame_to_execution_stack(frame);
 
     interpret_ast(get_region_ast(region_index));
     
     pop_region();
+    pop_frame_from_execution_stack();
+}
+
+static void execute_global_program() {
+    int program_region = 0;
+
+    push_region(program_region);
+    stack_frame frame = construct_stack_frame(program_region, program_region, program_region);
+    push_frame_to_execution_stack(frame);
+
+    interpret_ast(get_region_ast(program_region));
 }
 
 void interpret() {
     init_execution_stack(); 
     init_stack_region();
 
-    for (int i = 0; i <= get_current_region_id(); i++) {
-        if (get_region_size(i) > 0) {
-            execute(i);
-        }
-    }
+    execute_global_program();
 
     fprintf_vm_stack(stdout); 
 }

@@ -2,8 +2,28 @@ PROG
 
 var n : int;
 
-func main() -> int {
-    return n + 1;
+proc main()  {
+    var x: int;
+
+    proc er() {
+        x := x + 5;
+    }
+
+    x := 4;
+    er();
+    n := 12;
+    print("x - %d\n", x);
 }
 
-n := 2;
+proc test() {
+    n := 14;
+}
+
+n := 0;
+
+test();
+print("n: %d\n", n);
+main();
+print("n: %d\n", n);
+
+

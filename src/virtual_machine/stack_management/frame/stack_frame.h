@@ -11,10 +11,10 @@ typedef struct {
 
     int static_link;
     int dynamic_link;
-    int return_address;
+    int region_index;
 } stack_frame;
 
-stack_frame construct_stack_frame(int static_link, int dynamic_link, int return_address);
+stack_frame construct_stack_frame(int static_link, int dynamic_link, int region_index);
 
 vm_cell get_cell_from_stack_frame(stack_frame frame, int address);
 

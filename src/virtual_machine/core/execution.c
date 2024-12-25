@@ -40,13 +40,19 @@ void handle_variable_declaration(int type, int index_lexicographic, int index_de
 }
 
 vm_cell get_variable_cell(int index_declaration) {
-    int index = get_variable_address(index_declaration);
-    return get_cell_from_stack_frame(peek_execution_stack(), index);
+    int address = get_variable_address(index_declaration);
+    int region = get_declaration_region(index_declaration);
+
+    stack_frame frame = *find_stack_frame_by_region_index(region);
+    return get_cell_from_stack_frame(frame, address);
 }
 
 void handle_variable_affectation(int index_declaration, vm_cell cell) {
     int address = get_variable_address(index_declaration);
-    update_cell_in_stack_frame(peek_execution_stack_as_mutable(), address, cell);
+    int region = get_declaration_region(index_declaration);
+
+    stack_frame *frame = find_stack_frame_by_region_index(region);
+    update_cell_in_stack_frame(frame, address, cell);
 }
 
 void handle_array_affectation(Node *array_index_list, vm_cell cell) {

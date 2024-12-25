@@ -60,7 +60,7 @@ void *peek(const Stack stack) {
 
 void update_stack(Stack *stack, int index, void *value, size_t value_size) {
     if (index < 0 || index >= stack->top) {
-        fprintf(stderr, "Error: Index out of bounds\n");
+        fprintf(stderr, "Error: Stack Index out of bounds\n");
         exit(EXIT_FAILURE);
     }
 
@@ -76,7 +76,7 @@ void update_stack(Stack *stack, int index, void *value, size_t value_size) {
 
 void *get_stack_value(const Stack stack, int index) {
     if (index < 0 || index >= stack.top) {
-        fprintf(stderr, "Error: Index out of bounds\n");
+        fprintf(stderr, "Error: Get Stack Value - Index out of bounds\n");
         exit(EXIT_FAILURE);
     }
     void *value = stack.data[index];

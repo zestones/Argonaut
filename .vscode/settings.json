@@ -27,6 +27,8 @@
         "condition.h": "c",
         "procedure.h": "c",
         "format_specifiers.h": "c",
-        "cstdlib": "c"
+        "cstdlib": "c",
+        "stack_frame.h": "c",
+        "assignement.h": "c"
     }
 }
