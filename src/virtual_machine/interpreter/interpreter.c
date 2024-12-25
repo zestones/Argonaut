@@ -1,3 +1,4 @@
+#include "../stack_management/frame/stack_frame.h"
 #include "../stack_management/stack_management.h"
 
 #include "assignement/assignement.h"
@@ -79,10 +80,13 @@ void interpret_ast(AST ast) {
 static int execute(int region_index) {
 
     push_region(region_index);
-    interpret_ast(get_region_ast(region_index));
-    pop_region();
+    
+    stack_frame frame = construct_stack_frame(NULL_VALUE, NULL_VALUE, NULL_VALUE);
+    push_frame_to_execution_stack(frame);
 
-    fprintf_vm_stack(stdout); 
+    interpret_ast(get_region_ast(region_index));
+    
+    pop_region();
 }
 
 void interpret() {
@@ -94,4 +98,6 @@ void interpret() {
             execute(i);
         }
     }
+
+    fprintf_vm_stack(stdout); 
 }

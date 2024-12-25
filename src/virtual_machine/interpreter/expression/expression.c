@@ -67,12 +67,12 @@ vm_cell resolve_expression(Node *expression) {
 
         case A_ARRAY_ACCESS: {
             int address = get_array_address(expression, NULL_VALUE);
-            return get_execution_cell(address);
+            return get_cell_from_stack_frame(peek_execution_stack(), address);
         }
 
         case A_STRUCT_FIELD_ACCESS: {
             int address = get_struct_field_address(expression, NULL_VALUE, NULL_VALUE);
-            return get_execution_cell(address);
+            return get_cell_from_stack_frame(peek_execution_stack(), address);
         } 
 
         // case A_FUNC_PROC_CALL_STATEMENT: 

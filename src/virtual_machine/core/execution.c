@@ -3,6 +3,7 @@
 #include "../../symbol_table/utility.h"
 #include "../../data/region_table.h"
 
+#include "../stack_management/frame/stack_frame.h"
 #include "../stack_management/stack_management.h"
 #include "address/address_calculation.h"
 #include "execution.h"
@@ -10,7 +11,7 @@
 
 static void declare_variable(int index_type_declaration) {
     if (is_declaration_base_type(index_type_declaration)) {
-        allocate_execution_cells(get_declaration_description(index_type_declaration), get_declaration_execution(index_type_declaration));
+        allocate_cells_to_stack_frame(peek_execution_stack_as_mutable(), get_declaration_description(index_type_declaration), get_declaration_execution(index_type_declaration));
         return;
     }
 
@@ -40,20 +41,20 @@ void handle_variable_declaration(int type, int index_lexicographic, int index_de
 
 vm_cell get_variable_cell(int index_declaration) {
     int index = get_variable_address(index_declaration);
-    return get_execution_cell(index);
+    return get_cell_from_stack_frame(peek_execution_stack(), index);
 }
 
 void handle_variable_affectation(int index_declaration, vm_cell cell) {
     int address = get_variable_address(index_declaration);
-    update_execution_cell(address, cell);
+    update_cell_in_stack_frame(peek_execution_stack_as_mutable(), address, cell);
 }
 
 void handle_array_affectation(Node *array_index_list, vm_cell cell) {
     int address = get_array_address(array_index_list, NULL_VALUE);
-    update_execution_cell(address, cell);
+    update_cell_in_stack_frame(peek_execution_stack_as_mutable(), address, cell);
 }
 
 void handle_structure_affectation(Node* struct_field_access, vm_cell cell) {
     int address = get_struct_field_address(struct_field_access, NULL_VALUE, NULL_VALUE);
-    update_execution_cell(address, cell);
+    update_cell_in_stack_frame(peek_execution_stack_as_mutable(), address, cell);
 }
