@@ -3,6 +3,8 @@
 
 #include "../../../ast/ast.h"
 
+int get_parameter_address(int index_declaration);
+
 int get_variable_address(int index_declaration);
 
 int get_array_address(Node *start_array_access, int base_address);

@@ -4,7 +4,7 @@
 #include "assignement/assignement.h"
 #include "expression/expression.h"
 #include "condition/condition.h"
-#include "procedure/procedure.h"
+#include "func_proc/func_proc.h"
 
 #include "../core/execution.h"
 #include "interpreter.h"
@@ -14,7 +14,10 @@ static void resolve_declaration_list(Node *declaration_list) {
 
     Node *declaration = declaration_list->child;
     while (declaration != NULL) {
-        handle_variable_declaration(declaration->type, declaration->index_lexicographic, declaration->index_declaration);
+        if (declaration->type == A_VARIABLE_DECLARATION) {
+            handle_variable_declaration(declaration->index_lexicographic, declaration->index_declaration);
+        }
+        
         declaration = declaration->sibling;
     }
 }
@@ -45,15 +48,7 @@ void resolve_statement_list(AST statement_list) {
             break;
 
         case A_FUNC_PROC_CALL_STATEMENT: {
-            int static_link;
-            int dynamic_link = get_execution_stack_current_frame_id();
-            int target_region_index = get_declaration_region(statement_list->index_declaration);
-
-            stack_frame current_frame = peek_execution_stack();
-            stack_frame frame = construct_stack_frame(target_region_index, dynamic_link, get_declaration_execution(statement_list->index_declaration));
-            push_frame_to_execution_stack(frame);
-
-            execute(get_declaration_execution(statement_list->index_declaration));
+            execute_func_proc_call(statement_list);
             break;
         }
 
@@ -70,7 +65,6 @@ void resolve_statement_list(AST statement_list) {
 void interpret_ast(AST ast) {
     if (ast == NULL) return;
 
-    // Process the current node based on its type
     switch (ast->type) {
         case A_DECLARATION_LIST:
             resolve_declaration_list(ast);
@@ -80,10 +74,13 @@ void interpret_ast(AST ast) {
             resolve_statement_list(ast);
             break;
 
+        case A_PROCEDURE_DECLARATION:
+        case A_FUNCTION_DECLARATION:
+            interpret_ast(ast->child->sibling);
+            break;
+
         case A_RETURN_STATEMENT: {
-            fprintf_ast(stdout, ast);
             vm_cell cell = resolve_expression(ast->child);
-            fprintf_vm_cell(stdout, cell);
             handle_function_return_value(cell);
             break;
         }
@@ -98,7 +95,7 @@ void interpret_ast(AST ast) {
     interpret_ast(ast->sibling);
 }
 
-int execute(int region_index) {
+void execute(int region_index) {
     push_region(region_index);
 
     interpret_ast(get_region_ast(region_index));

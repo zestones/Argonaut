@@ -5,6 +5,7 @@
 #include "../../core/address/address_calculation.h"
 #include "../../core/execution.h"
 
+#include "../func_proc/func_proc.h"
 #include "../interpreter.h"
 #include "expression.h"
 
@@ -77,17 +78,8 @@ vm_cell resolve_expression(Node *expression) {
         } 
 
         case A_FUNC_PROC_CALL_STATEMENT: {
-            int static_link;
-            int dynamic_link = get_execution_stack_current_frame_id();
-            int target_region_index = get_declaration_region(expression->index_declaration);
-
+            execute_func_proc_call(expression);
             stack_frame current_frame = peek_execution_stack();
-            stack_frame frame = construct_stack_frame(target_region_index, dynamic_link, get_declaration_execution(expression->index_declaration));
-            push_frame_to_execution_stack(frame);
-
-            execute(get_declaration_execution(expression->index_declaration));
-
-            current_frame = peek_execution_stack();
             return current_frame.region_value;
         }
 

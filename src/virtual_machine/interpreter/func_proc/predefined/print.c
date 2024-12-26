@@ -1,11 +1,11 @@
-#include "../../../semantic_analysis/function_checks/common/format_specifiers.h"
-#include "../../../symbol_table/lexeme/lexeme_table.h"
+#include "../../../../semantic_analysis/function_checks/common/format_specifiers.h"
+#include "../../../../symbol_table/lexeme/lexeme_table.h"
 
-#include "../../core/vm_cell.h"
-#include "../../core/execution.h"
+#include "../../../core/vm_cell.h"
+#include "../../../core/execution.h"
 
-#include "../expression/expression.h"
-#include "procedure.h"
+#include "../../expression/expression.h"
+#include "../func_proc.h"
 
 #include <stdio.h>
 #include <string.h>

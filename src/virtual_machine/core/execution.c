@@ -31,16 +31,22 @@ static void declare_variable(int index_type_declaration) {
     }
 }
 
-void handle_variable_declaration(int type, int index_lexicographic, int index_declaration) {
-    if (type != A_VARIABLE_DECLARATION) return;
-
+void handle_variable_declaration(int index_lexicographic, int index_declaration) {
     int index_type_declaration = get_declaration_description(index_declaration);
-    int execution_size = get_declaration_execution(index_type_declaration);
     declare_variable(index_type_declaration);
 }
 
 vm_cell get_variable_cell(int index_declaration) {
-    int address = get_variable_address(index_declaration);
+    int address;
+    Nature nature = get_declaration_nature(index_declaration);
+    if (nature == TYPE_VAR) {
+        address = get_variable_address(index_declaration);
+    } else if (nature == TYPE_PARAM) {
+        address = get_parameter_address(index_declaration);
+    } else {
+        printf("ERREUR lors de la recuperation de la cellule pour la variable %d\n", index_declaration);
+    }
+    
     int region = get_declaration_region(index_declaration);
 
     stack_frame frame = *find_stack_frame_by_region_index(region);
@@ -69,6 +75,4 @@ void handle_function_return_value(vm_cell cell) {
     stack_frame current_frame = peek_execution_stack();
     stack_frame *dynamic_link_frame = get_stack_frame_by_id(current_frame.dynamic_link);
     dynamic_link_frame->region_value = cell;
-
-    fprintf_vm_cell(stdout, dynamic_link_frame->region_value);
 }
