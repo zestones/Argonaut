@@ -76,7 +76,10 @@ void interpret_ast(AST ast) {
 
         case A_PROCEDURE_DECLARATION:
         case A_FUNCTION_DECLARATION:
-            interpret_ast(ast->child->sibling);
+            // Skip function and procedure declarations
+            // Go directly to the next statement 
+            if (ast->child->type == A_PARAMETER_LIST) interpret_ast(ast->child->sibling);
+            else interpret_ast(ast->child);
             break;
 
         case A_RETURN_STATEMENT: {
