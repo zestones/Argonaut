@@ -31,22 +31,13 @@ static void declare_variable(int index_type_declaration) {
     }
 }
 
-void handle_variable_declaration(int index_lexicographic, int index_declaration) {
+void handle_variable_declaration(int index_declaration) {
     int index_type_declaration = get_declaration_description(index_declaration);
     declare_variable(index_type_declaration);
 }
 
 vm_cell get_variable_cell(int index_declaration) {
-    int address;
-    Nature nature = get_declaration_nature(index_declaration);
-    if (nature == TYPE_VAR) {
-        address = get_variable_address(index_declaration);
-    } else if (nature == TYPE_PARAM) {
-        address = get_parameter_address(index_declaration);
-    } else {
-        printf("ERREUR lors de la recuperation de la cellule pour la variable %d\n", index_declaration);
-    }
-    
+    int address = get_variable_address(index_declaration);
     int region = get_declaration_region(index_declaration);
 
     stack_frame frame = *find_stack_frame_by_region_index(region);

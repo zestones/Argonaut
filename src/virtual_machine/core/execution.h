@@ -9,7 +9,7 @@
 
 vm_cell get_variable_cell(int index_declaration);
 
-void handle_variable_declaration(int index_lexicographic, int index_declaration);
+void handle_variable_declaration(int index_declaration);
 
 void handle_variable_affectation(int index_declaration, vm_cell cell);
 

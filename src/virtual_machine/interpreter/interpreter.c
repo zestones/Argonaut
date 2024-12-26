@@ -15,7 +15,7 @@ static void resolve_declaration_list(Node *declaration_list) {
     Node *declaration = declaration_list->child;
     while (declaration != NULL) {
         if (declaration->type == A_VARIABLE_DECLARATION) {
-            handle_variable_declaration(declaration->index_lexicographic, declaration->index_declaration);
+            handle_variable_declaration(declaration->index_declaration);
         }
         
         declaration = declaration->sibling;

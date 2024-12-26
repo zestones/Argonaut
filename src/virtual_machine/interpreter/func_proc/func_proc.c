@@ -22,13 +22,13 @@ static void handle_parameters(AST parameter_list, AST argument_list) {
     while (param_node != NULL && arg_node != NULL) {
         if (param_node->type == A_PARAMETER && arg_node->type == A_ARGUMENT) {
             // Handle the parameter declaration
-            handle_variable_declaration(param_node->index_lexicographic, param_node->index_declaration);
+            handle_variable_declaration(param_node->index_declaration);
 
             // Resolve the argument's expression
             vm_cell cell = resolve_expression(arg_node->child);
 
             // Get the variable address for the declared parameter
-            int address = get_parameter_address(param_node->index_declaration);
+            int address = get_variable_address(param_node->index_declaration);
 
             // Update the stack frame with the resolved value
             update_cell_in_stack_frame(current_frame, address, cell);
@@ -56,6 +56,5 @@ void execute_func_proc_call(AST ast) {
     AST parameter_list = get_region_ast(index_region)->child;
 
     handle_parameters(parameter_list, ast->child);
-    
     execute(index_region);
 }

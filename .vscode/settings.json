@@ -4,6 +4,7 @@
         "address_calculation.h": "c",
         "stack_management.h": "c",
         "variable_manager.h": "c",
-        "cstdlib": "c"
+        "cstdlib": "c",
+        "execution.h": "c"
     }
 }
