@@ -54,12 +54,18 @@ void handle_variable_affectation(int index_declaration, vm_cell cell) {
 
 void handle_array_affectation(Node *array_index_list, vm_cell cell) {
     int address = get_array_address(array_index_list, NULL_VALUE);
-    update_cell_in_stack_frame(peek_execution_stack_as_mutable(), address, cell);
+    int region = get_declaration_region(array_index_list->index_declaration);
+
+    stack_frame *frame = find_stack_frame_by_region_index(region);
+    update_cell_in_stack_frame(frame, address, cell);
 }
 
 void handle_structure_affectation(Node* struct_field_access, vm_cell cell) {
     int address = get_struct_field_address(struct_field_access, NULL_VALUE, NULL_VALUE);
-    update_cell_in_stack_frame(peek_execution_stack_as_mutable(), address, cell);
+    int region = get_declaration_region(struct_field_access->index_declaration);
+
+    stack_frame *frame = find_stack_frame_by_region_index(region);
+    update_cell_in_stack_frame(frame, address, cell);
 }
 
 void handle_function_return_value(vm_cell cell) {

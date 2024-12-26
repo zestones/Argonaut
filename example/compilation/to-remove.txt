@@ -1,51 +1,35 @@
 PROG
 
-var n : int;        // Nombre pour lequel on calcule la factorielle
-var fact : int;     // Résultat de la factorielle
-var res : int;      // Variable pour vérifier les débordements
+type matrix : array[0:1, 0:1] of int;
 
-// Fonction pour calculer la factorielle
-func factorial(num : int) -> int {
-    var result : int;
-    var i : int;
+var mat1 : matrix;
 
-    if (num == 0) {
-        result := 1;   // Factorielle de 0 est 1
-    } else {
-        result := 1;
-        i := 1;
+var i : int;
+var j : int;
+var k : int;
 
-        while (i <= num) {
-            res := result * i / i;
-            if (res != result) {
-                print("Error: Factorial calculation overflowed for %d.\n", num);
-                result := 0; // TODO: Retourner -1 en cas de débordement
+proc display_matrix(a: int) {
+    print("Matrix Multiplication Result\n");
+
+    i := 0;
+    while (i <= 1) {
+        j := 0;
+        while (j <= 1) {
+            if (j > 0) {
+                print(" ");
             }
-            result := result * i;
-            i := i + 1;
+            print("%d", mat1[i, j]);
+            j := j + 1;
         }
-    }
-
-    return result; // Retourne la factorielle calculée
-}
-
-// Procédure pour afficher le résultat
-proc display_factorial(num : int, result : int) {
-    if (result < 0) {
-        print("Factorial calculation failed due to overflow.\n");
-    } else {
-        print("Factorial of %d is %d\n", num, result);
+        
+        print("\n");
+        i := i + 1;
     }
 }
 
-// Début du programme principal
-print("Enter a number to compute its factorial: ");
-input("%d", n);
+// Main program
+mat1[0, 0] := 1; mat1[0, 1] := 2;
+mat1[1, 0] := 3; mat1[1, 1] := 4;
 
-// Gérer les cas particuliers
-if (n < 0) {
-    print("Factorial is undefined for negative numbers.\n");
-} else {
-    fact := factorial(n);
-    display_factorial(n, fact);
-}
+// Display results
+display_matrix(4);

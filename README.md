@@ -233,3 +233,8 @@ Address of $S[3].f$:
 $$
 \text{Address} = 2000 + (3 \cdot 12) + 4 = 2040
 $$
+
+### Notes:
+
+- **Dynamic**: Refers to the function frame index of the caller.  
+- **Static**: Refers to the frame index of the parent.
