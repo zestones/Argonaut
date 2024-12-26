@@ -10,6 +10,7 @@ stack_frame construct_stack_frame(int static_link, int dynamic_link, int region_
     frame.region_index = region_index;
 
     frame.cells = construct_stack();
+    frame.region_value = construct_vm_cell(NULL_VALUE, NULL);
 
     return frame;
 }
@@ -40,14 +41,15 @@ vm_cell get_cell_from_stack_frame(stack_frame frame, int address) {
 void fprintf_stack_frame(FILE *out, stack_frame frame) {
     const int num_col = 3;
     const int width = 15;
-    char str_region_index[width], str_static_link[width], str_dynamic_link[width];
+    char str_region_index[width], str_static_link[width];
+    char str_dynamic_link[width];
 
 
     print_table_separator(out, num_col, width, width, width, width);
     printf("\n");
 
     print_table_separator(out, num_col, width, width, width, width);
-    print_table_header(out, num_col, width, "STATIC LINK", width, "DYNAMIC LINK", width, "RETURN ADRESS");
+    print_table_header(out, num_col, width, "STATIC LINK", width, "DYNAMIC LINK", width, "REGION INDEX");
     print_table_separator(out, num_col, width, width, width, width);
 
     sprintf(str_region_index, "%d", frame.region_index);
@@ -64,6 +66,8 @@ void fprintf_stack_frame(FILE *out, stack_frame frame) {
     print_table_separator(out, num_col, width, width, width, width);
     
     print_stack(frame.cells, format_cell);
+
+    fprintf_vm_cell(out, frame.region_value);
 
     printf("\n");
     print_table_separator(out, num_col, width, width, width, width);

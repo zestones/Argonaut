@@ -1,0 +1,130 @@
+PROG
+
+// Calculator Program with Enhanced ASCII Display
+var choice: int;
+var num1: int;
+var num2: int;
+var result: int;
+
+// Function for addition
+func add(a: int, b: int) -> int {
+    return a + b;
+}
+
+// Function for subtraction
+func subtract(a: int, b: int) -> int {
+    return a - b;
+}
+
+// Function for multiplication
+func multiply(a: int, b: int) -> int {
+    return a * b;
+}
+
+// Function for division
+func divide(a: int, b: int) -> int {
+    var res: int;
+    res := 0;
+    if (b == 0) {
+        print("\n/!\\ ERROR: Division by zero! /!\\\n\n");
+    } else {
+        res := a / b;
+    }
+    return res;
+}
+
+// Procedure to display the menu
+proc display_menu() {
+    print("\n");
+    print("    .===============================================.\n");
+    print("    |                SIMPLE CALCULATOR              |\n");
+    print("    |===============================================|\n");
+    print("    |                                               |\n");
+    print("    |  [1] Addition         |  Result: a + b        |\n");
+    print("    |  [2] Subtraction      |  Result: a - b        |\n");
+    print("    |  [3] Multiplication   |  Result: a * b        |\n");
+    print("    |  [4] Division         |  Result: a / b        |\n");
+    print("    |  [5] Exit             |  Terminate Program    |\n");
+    print("    |                                               |\n");
+    print("    '==============================================='\n");
+    print("\n");
+    print("     Enter your selection [1-5] >> ");
+}
+
+// Procedure to display the result
+proc display_result(operation: char, num1: int, num2: int, result: int) {
+    print("\n");
+    print("    .===============================================.\n");
+    print("    |                 CALCULATION                   |\n");
+    print("    |===============================================|\n");
+    print("    |                                               |\n");
+    print("    |  Operation: %d %c %d                           \n", num1, operation, num2);
+    print("    |  Result  : %d                                 \n", result);
+    print("    |                                               |\n");
+    print("    '==============================================='\n");
+    print("\n");
+}
+
+// Procedure to display error message
+proc display_error() {
+    print("\n");
+    print("    .===============================================.\n");
+    print("    |                   ERROR                       |\n");
+    print("    |===============================================|\n");
+    print("    |                                               |\n");
+    print("    |  Invalid selection! Please choose 1-5.        \n");
+    print("    |                                               |\n");
+    print("    '==============================================='\n");
+    print("\n");
+}
+
+// Main Program
+print("\n    === Welcome to Simple Calculator v1.0 ===\n");
+
+choice := 0;
+while (choice != 5) {
+    display_menu();
+    input("%d", choice);
+
+    if ((choice >= 1) && (choice <= 4)) {
+        print("\n     Enter first number  >> ");
+        input("%d", num1);
+        print("     Enter second number >> ");
+        input("%d", num2);
+    }
+
+    if (choice == 1) {
+        result := add(num1, num2);
+        display_result('+', num1, num2, result);
+    }
+    if (choice == 2) {
+        result := subtract(num1, num2);
+        display_result('-', num1, num2, result);
+    }
+    if (choice == 3) {
+        result := multiply(num1, num2);
+        display_result('*', num1, num2, result);
+    }
+    if (choice == 4) {
+        result := divide(num1, num2);
+        if (num2 != 0) {
+            display_result('/', num1, num2, result);
+        }
+    }
+    if (choice == 5) {
+        print("\n");
+        print("    .===============================================.\n");
+        print("    |               PROGRAM TERMINATED              |\n");
+        print("    |===============================================|\n");
+        print("    |                                               |\n");
+        print("    |        Thank you for using our Calculator     |\n");
+        print("    |                                               |\n");
+        print("    |              Have a great day!                |\n");
+        print("    |                                               |\n");
+        print("    '==============================================='\n");
+        print("\n");
+    }
+    if ((choice < 1) || (choice > 5)) {
+        display_error();
+    }
+}
