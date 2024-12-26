@@ -1,29 +1,11 @@
 PROG
 
-var n : int;
+var x : int;
 
-proc main()  {
-    var x: int;
-
-    proc er() {
-        x := x + 5;
-    }
-
-    x := 4;
-    er();
-    n := 12;
-    print("x - %d\n", x);
+func substraction(a: int, b: int) -> int {
+    return a - b;
 }
 
-proc test() {
-    n := 14;
-}
+x := substraction(4, 5);
 
-n := 0;
-
-test();
-print("n: %d\n", n);
-main();
-print("n: %d\n", n);
-
-
+print("x vaut %d\n", x);

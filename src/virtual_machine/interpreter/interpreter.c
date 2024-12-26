@@ -2,6 +2,7 @@
 #include "../stack_management/stack_management.h"
 
 #include "assignement/assignement.h"
+#include "expression/expression.h"
 #include "condition/condition.h"
 #include "procedure/procedure.h"
 
@@ -79,6 +80,14 @@ void interpret_ast(AST ast) {
             resolve_statement_list(ast);
             break;
 
+        case A_RETURN_STATEMENT: {
+            fprintf_ast(stdout, ast);
+            vm_cell cell = resolve_expression(ast->child);
+            fprintf_vm_cell(stdout, cell);
+            handle_function_return_value(cell);
+            break;
+        }
+
         default: {
             interpret_ast(ast->child);
             interpret_ast(ast->sibling);
@@ -88,7 +97,6 @@ void interpret_ast(AST ast) {
 
     interpret_ast(ast->sibling);
 }
-
 
 int execute(int region_index) {
     push_region(region_index);
@@ -115,5 +123,5 @@ void interpret() {
 
     execute_global_program();
 
-    fprintf_vm_stack(stdout); 
+    // fprintf_vm_stack(stdout); 
 }

@@ -12,6 +12,8 @@ typedef struct {
     int static_link;
     int dynamic_link;
     int region_index;
+
+    vm_cell region_value;
 } stack_frame;
 
 stack_frame construct_stack_frame(int static_link, int dynamic_link, int region_index);

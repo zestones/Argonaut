@@ -64,3 +64,11 @@ void handle_structure_affectation(Node* struct_field_access, vm_cell cell) {
     int address = get_struct_field_address(struct_field_access, NULL_VALUE, NULL_VALUE);
     update_cell_in_stack_frame(peek_execution_stack_as_mutable(), address, cell);
 }
+
+void handle_function_return_value(vm_cell cell) {
+    stack_frame current_frame = peek_execution_stack();
+    stack_frame *dynamic_link_frame = get_stack_frame_by_id(current_frame.dynamic_link);
+    dynamic_link_frame->region_value = cell;
+
+    fprintf_vm_cell(stdout, dynamic_link_frame->region_value);
+}
