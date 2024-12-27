@@ -67,8 +67,11 @@ int get_array_address(Node *start_array_access, int base_address) {
             base_address,
             array_type_declaration
         );
-
-        final_address += struct_offset;
+        
+        // Adjust the final address
+        // The struct field address is relative to the base address
+        // We need to adjust it to be relative to the array element address
+        final_address += (struct_offset - base_address);
     }
 
     return final_address;

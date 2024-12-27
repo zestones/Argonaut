@@ -18,12 +18,16 @@
 void validate_argument_count(Node *argument_list, int parameter_count);
 
 /**
- * @brief Validates the type of each argument provided in a function call.
+ * @brief Validates the type of each argument in a function or procedure call.
  * 
- * @param parameter_count The number of parameters expected by the function.
- * @param parameter_count The number of parameters expected by the function.
- * @param index_lexeme_lexicographic The index of the lexeme in the lexicographically sorted lexeme table.
- * @param nature The nature of the function or procedure.
+ * This function iterates over the provided arguments and validates their types against
+ * the expected parameter types for a function or procedure. It logs an error for each
+ * type mismatch encountered.
+ * 
+ * @param argument_list A pointer to the `Node` representing the list of arguments.
+ * @param parameter_count The total number of expected parameters for the function or procedure.
+ * @param index_lexeme_lexicographic The lexeme index of the function or procedure.
+ * @param nature The nature of the callable (e.g., `TYPE_FUNC` for functions, `TYPE_PROC` for procedures).
  */
 void validate_each_argument(Node *argument_list, int parameter_count, int index_lexeme_lexicographic, Nature nature);
 

@@ -5,7 +5,19 @@
 #include "../../utils/utils.h"
 #include "type_inference.h"
 
-
+/**
+ * @brief Resolves the type of an array declaration.
+ * 
+ * This function resolves the declaration type of an array access expression. It checks whether the array 
+ * is defined as an array or a variable and handles errors in case of type mismatches or undefined arrays.
+ * 
+ * @param array_access A pointer to the node representing the array access expression.
+ * @return The representation value of the array's declaration type, or `NULL_VALUE` in case of an error.
+ * 
+ * @note This function ensures that the array access is valid by verifying the array's declaration type.
+ * 
+ * @warning Memory errors or incorrect type declarations may cause unexpected behavior or errors.
+ */
 static int resolve_array_declaration_type(Node *array_access) {
     if (get_declaration_nature(array_access->index_declaration) == TYPE_VAR) {
         int index_array_declaration = get_declaration_description(array_access->index_declaration);

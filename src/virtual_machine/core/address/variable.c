@@ -12,10 +12,9 @@
 
 int get_variable_address(int index_declaration) {
     int region_declaration = get_declaration_region(index_declaration);
-    int nis_declaration    = get_region_nis(region_declaration);
-    int nis_utilisation    = get_region_nis(peek_region());
-    int execution_offset   = get_declaration_execution(index_declaration);
+    int execution_offset = get_declaration_execution(index_declaration);
+    int nis_declaration = get_region_nis(region_declaration);
 
-    // BC + nis_utilisation - nis_declaration + execution_offset
-    return nis_utilisation - nis_declaration + execution_offset;
+    if (region_declaration == 0) return execution_offset;
+    else return execution_offset - (nis_declaration + 1);
 }

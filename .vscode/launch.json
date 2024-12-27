@@ -1,0 +1,39 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Debug Compiler",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/compiler.exe",
+            "args": ["-lf", "./example/compilation/to-remove.txt", "-o", "test.a"],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "miDebuggerPath": "/usr/bin/gdb",
+            "setupCommands": [
+                { "description": "Enable pretty-printing for gdb", "text": "-enable-pretty-printing", "ignoreFailures": true }
+            ],
+            "preLaunchTask": "Build Project"
+        },
+        {
+            "name": "Debug Interpreter",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/interpreter.exe",
+            "args": ["-f", "test.a"],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "miDebuggerPath": "/usr/bin/gdb",
+            "setupCommands": [
+                { "description": "Enable pretty-printing for gdb", "text": "-enable-pretty-printing", "ignoreFailures": true }
+            ],
+            "preLaunchTask": "Build Project"
+        }
+    ]
+}

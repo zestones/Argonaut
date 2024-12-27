@@ -8,7 +8,7 @@
 #include "condition.h"
 
 void execute_condition(AST ast) {
-    vm_cell condition = resolve_boolean_expression(ast->child);
+    vm_cell condition = resolve_boolean_expression(ast);
 
     if (condition.value.boolean) {
         resolve_statement_list(ast->sibling->child);
@@ -17,7 +17,6 @@ void execute_condition(AST ast) {
         resolve_statement_list(ast->sibling->sibling->child);
     }
 }
-
 
 void execute_loop(AST ast) {
     int is_while = (ast->type == A_WHILE);

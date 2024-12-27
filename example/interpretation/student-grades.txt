@@ -1,0 +1,94 @@
+PROG
+
+// Define date structure
+type date : struct {
+    day : int;
+    month : int;
+    year : int;
+} fstruct;
+
+// Define grade structure
+type grades : struct {
+    math : float;
+    physics : float;
+    chemistry : float;
+    average : float;
+} fstruct;
+
+// Define student structure
+type student : struct {
+    id : int;
+    birth_date : date;
+    scores : grades;
+} fstruct;
+
+// Define array of students (for 3 students)
+type student_array : array[0:2] of student;
+
+// Declare variables
+var students : student_array;
+var current_year : int;
+var i : int;
+
+// Initialize current year
+current_year := 2024;
+
+// Initialize first student
+students[0].id := 1001;
+students[0].birth_date.day := 15;
+students[0].birth_date.month := 3;
+students[0].birth_date.year := 2000;
+students[0].scores.math := 85.5;
+students[0].scores.physics := 78.0;
+students[0].scores.chemistry := 92.5;
+
+// Initialize second student
+students[1].id := 1002;
+students[1].birth_date.day := 22;
+students[1].birth_date.month := 7;
+students[1].birth_date.year := 2001;
+students[1].scores.math := 92.0;
+students[1].scores.physics := 88.5;
+students[1].scores.chemistry := 85.0;
+
+// Initialize third student
+students[2].id := 1003;
+students[2].birth_date.day := 8;
+students[2].birth_date.month := 11;
+students[2].birth_date.year := 2000;
+students[2].scores.math := 76.5;
+students[2].scores.physics := 81.0;
+students[2].scores.chemistry := 88.5;
+
+// Calculate averages for each student
+i := 0;
+while (i <= 2) {
+    students[i].scores.average := (students[i].scores.math + 
+                                 students[i].scores.physics + 
+                                 students[i].scores.chemistry) / 3.0;
+    i := i + 1;
+}
+
+// Display student information and grades
+i := 0;
+while (i <= 2) {
+    print("\n+------------------------------------------+\n");
+    print("|            Student Record %d              |\n", i + 1);
+    print("+------------------------------------------+\n");
+    print("| ID         : %d                           \n", students[i].id);
+    print("| Birth Date : %d/%d/%d                     \n", 
+          students[i].birth_date.day,
+          students[i].birth_date.month,
+          students[i].birth_date.year);
+    print("| Age        : %d                           \n", current_year - students[i].birth_date.year);
+    print("+------------------------------------------+\n");
+    print("|                  Grades                   |\n");
+    print("+------------------------------------------+\n");
+    print("| Mathematics : %f                     \n", students[i].scores.math);
+    print("| Physics     : %f                     \n", students[i].scores.physics);
+    print("| Chemistry   : %f                     \n", students[i].scores.chemistry);
+    print("+------------------------------------------+\n");
+    print("| Average     : %f                  |\n", students[i].scores.average);
+    print("+------------------------------------------+\n");
+    i := i + 1;
+}

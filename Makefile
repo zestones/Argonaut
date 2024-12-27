@@ -117,4 +117,4 @@ clean: simple-clean
 	rm -f *.exe $(BIN_DIR)/*.tab.c $(BIN_DIR)/*.tab.h $(BIN_DIR)/lex.yy.c && \
 	rm -rf tests/**/__pycache__
 	rm -rf ./.pytest_cache/
-	rm -f log.txt *.a
+	rm -f log.txt

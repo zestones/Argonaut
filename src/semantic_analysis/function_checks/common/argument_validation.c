@@ -5,6 +5,16 @@
 #include "../../../symbol_table/lexeme/lexeme_table.h"
 #include "../../../data/region_table.h"
 
+/**
+ * @brief Resolves the type of a given argument node.
+ * 
+ * This function determines the type of an argument by examining its node type and resolving
+ * it appropriately for various cases, such as identifiers, function calls, structure field access,
+ * array access, or literals.
+ * 
+ * @param argument_node A pointer to the `Node` representing the argument.
+ * @return The resolved type of the argument as an integer, or `NULL_VALUE` if the type cannot be resolved.
+ */
 static int resolve_argument_type(Node *argument_node) {
     int argument_type = argument_node->child->type;
     int type = NULL_VALUE;
@@ -36,6 +46,19 @@ static int resolve_argument_type(Node *argument_node) {
     return type;
 }
 
+/**
+ * @brief Validates the type of a function or procedure argument against the expected type.
+ * 
+ * This function checks whether a given argument matches the expected type for a function or procedure.
+ * If the types do not match, a detailed type error is logged, including information about the 
+ * expected type, provided type, and argument index.
+ * 
+ * @param current_argument A pointer to the `Node` representing the current argument.
+ * @param expected_type The expected type of the argument.
+ * @param argument_index The index of the argument in the function or procedure's parameter list (zero-based).
+ * @param index_lexeme_lexicographic The lexeme index of the function or procedure.
+ * @param nature The nature of the callable (e.g., `TYPE_FUNC` for functions, `TYPE_PROC` for procedures).
+ */
 static void validate_argument_type(Node *current_argument, int expected_type, int argument_index, int index_lexeme_lexicographic, Nature nature) {
     int argument_type = resolve_argument_type(current_argument);
 

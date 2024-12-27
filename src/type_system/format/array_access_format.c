@@ -4,7 +4,20 @@
 #include "../../utils/utils.h"
 #include "formatting.h"
 
-
+/**
+ * @brief Formats a list of array indices into a string representation.
+ * 
+ * This function takes a linked list of array indices and formats it into a string, 
+ * which includes each index enclosed in square brackets. Each index is separated 
+ * by a comma and a space. The string is dynamically allocated and must be freed by the caller.
+ * 
+ * @param array_index_list A pointer to the root node of the array index list.
+ * @return A dynamically allocated string representing the formatted array index list.
+ * 
+ * @note The caller is responsible for freeing the returned string.
+ * 
+ * @warning If memory allocation fails during concatenation, the function may result in undefined behavior.
+ */
 static char *format_array_index_list(Node *array_index_list) {
     char *lexeme = (char *)malloc(256 * sizeof(char));
     lexeme[0] = '\0';
