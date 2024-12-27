@@ -1,0 +1,5 @@
+<map id="execute_loop" name="execute_loop">
+<area shape="rect" id="node1" title="Executes a loop statement (while loop)." alt="" coords="412,5,520,32"/>
+<area shape="rect" id="node2" href="$dc/d30/interpreter_8c.html#ad22185b4006e50b6d4fb026dd83a6bd2" title="Resolves and executes a list of statements." alt="" coords="193,5,364,32"/>
+<area shape="rect" id="node3" href="$dd/d57/condition_8c.html#a7fb8e5acd57b590993223b0c48bed85c" title="Executes a conditional statement (if&#45;else)." alt="" coords="5,5,145,32"/>
+</map>

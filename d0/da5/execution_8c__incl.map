@@ -1,0 +1,35 @@
+<map id="src/virtual_machine/core/execution.c" name="src/virtual_machine/core/execution.c">
+<area shape="rect" id="node1" title=" " alt="" coords="638,5,789,47"/>
+<area shape="rect" id="node2" href="$d0/d9f/representation__table_8h.html" title="Header file for the representation table module." alt="" coords="245,780,465,836"/>
+<area shape="rect" id="node6" href="$d0/d48/lexeme__table_8h.html" title="Header file for managing a table of lexemes." alt="" coords="42,787,220,829"/>
+<area shape="rect" id="node7" href="$d5/d47/utility_8h.html" title=" " alt="" coords="994,787,1129,829"/>
+<area shape="rect" id="node8" href="$d8/d8a/region__table_8h.html" title="Header file for managing regions in the compiler." alt="" coords="566,102,738,129"/>
+<area shape="rect" id="node29" href="$d8/dca/stack__frame_8h.html" title=" " alt="" coords="746,184,908,225"/>
+<area shape="rect" id="node31" href="$d1/d90/stack__management_8h.html" title=" " alt="" coords="814,95,981,136"/>
+<area shape="rect" id="node32" href="$d2/dda/address__calculation_8h.html" title=" " alt="" coords="2324,348,2543,375"/>
+<area shape="rect" id="node33" href="$dd/d01/execution_8h.html" title=" " alt="" coords="1098,191,1196,218"/>
+<area shape="rect" id="node3" title=" " alt="" coords="647,884,714,911"/>
+<area shape="rect" id="node4" title=" " alt="" coords="1208,884,1278,911"/>
+<area shape="rect" id="node5" title=" " alt="" coords="96,884,166,911"/>
+<area shape="rect" id="node9" href="$df/dcb/region__stack_8h.html" title="Header file for managing a stack of regions." alt="" coords="551,191,668,218"/>
+<area shape="rect" id="node18" href="$db/df0/ast_8h.html" title=" " alt="" coords="1994,705,2097,732"/>
+<area shape="rect" id="node10" href="$d7/de0/stack_8h.html" title="A simple stack implementation in C." alt="" coords="744,273,857,300"/>
+<area shape="rect" id="node11" href="$d5/d60/utils_8h.html" title=" " alt="" coords="997,348,1060,375"/>
+<area shape="rect" id="node12" href="$d2/dd9/semantic__checks_8h.html" title="This file contains the aggregated header file for the semantic checks module." alt="" coords="1510,423,1664,464"/>
+<area shape="rect" id="node15" href="$de/d45/errors_8h.html" title=" " alt="" coords="2128,795,2244,821"/>
+<area shape="rect" id="node13" href="$d0/df0/assignment__validation_8h.html" title=" " alt="" coords="1816,616,2046,657"/>
+<area shape="rect" id="node21" href="$d9/d3f/condition__validation_8h.html" title=" " alt="" coords="1420,519,1618,561"/>
+<area shape="rect" id="node22" href="$d1/d79/func__proc__validation_8h.html" title=" " alt="" coords="1692,512,1876,568"/>
+<area shape="rect" id="node25" href="$de/dd3/predefined_8h.html" title=" " alt="" coords="1540,616,1740,657"/>
+<area shape="rect" id="node26" href="$d3/d89/variable__validation_8h.html" title=" " alt="" coords="1098,616,1282,657"/>
+<area shape="rect" id="node27" href="$de/d19/scope__validation_8h.html" title=" " alt="" coords="996,519,1151,561"/>
+<area shape="rect" id="node28" href="$d8/d62/type__validation_8h.html" title=" " alt="" coords="1176,527,1396,553"/>
+<area shape="rect" id="node14" href="$d1/dcf/validation__utils_8h.html" title=" " alt="" coords="1246,705,1392,732"/>
+<area shape="rect" id="node16" title=" " alt="" coords="2015,884,2090,911"/>
+<area shape="rect" id="node17" title=" " alt="" coords="2242,884,2359,911"/>
+<area shape="rect" id="node19" href="$d5/d1e/node__type_8h.html" title=" " alt="" coords="2114,884,2217,911"/>
+<area shape="rect" id="node20" href="$d0/dea/lcrs_8h.html" title=" " alt="" coords="1994,795,2052,821"/>
+<area shape="rect" id="node23" href="$df/d79/argument__validation_8h.html" title=" " alt="" coords="1357,616,1516,657"/>
+<area shape="rect" id="node24" href="$dc/de9/declaration__table_8h.html" title="Header file for managing a table of declarations in a compiler." alt="" coords="794,780,970,836"/>
+<area shape="rect" id="node30" href="$da/d55/vm__cell_8h.html" title=" " alt="" coords="882,273,1023,300"/>
+</map>

@@ -1,0 +1,5 @@
+<map id="get_array_dimension" name="get_array_dimension">
+<area shape="rect" id="node1" title="Retrieves the number of dimensions in an array." alt="" coords="5,35,164,61"/>
+<area shape="rect" id="node2" href="$dd/d3e/declaration__table_8c.html#a6d7cfaa61de7241348ef4a08f55bd9a0" title="Gets the description of a declaration." alt="" coords="212,5,415,32"/>
+<area shape="rect" id="node3" href="$dd/dfd/representation__table_8c.html#a64bb130b5e07aeebfd4333567ecc9a0e" title="Retrieves the value of a representation from the table." alt="" coords="241,57,386,98"/>
+</map>

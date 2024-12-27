@@ -1,0 +1,5 @@
+<map id="pop_frame_from_execution_stack" name="pop_frame_from_execution_stack">
+<area shape="rect" id="node1" title="Pops the top stack frame from the execution stack." alt="" coords="5,5,205,47"/>
+<area shape="rect" id="node2" href="$d3/dbb/stack_8c.html#ab9b175f5ea01bed047c29bcdb935a111" title="Pops a value from the stack." alt="" coords="253,13,300,39"/>
+<area shape="rect" id="node3" href="$d3/dbb/stack_8c.html#aeda5460a4306b1c90f61ac5bf8ba49bc" title="Checks if the stack is empty." alt="" coords="348,13,431,39"/>
+</map>

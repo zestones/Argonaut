@@ -1,0 +1,5 @@
+<map id="format_struct_access" name="format_struct_access">
+<area shape="rect" id="node1" title="Formats a struct access expression into a string representation." alt="" coords="5,31,167,57"/>
+<area shape="rect" id="node2" href="$d8/d00/array__access__format_8c.html#a9b3f35ff5d4a163ac0ce00435cfd2e1a" title="Formats an array access expression into a string representation." alt="" coords="215,5,373,32"/>
+<area shape="rect" id="node3" href="$d0/d92/lexeme__table_8c.html#ab176cfe8b410c1f87237ed115a0d8df4" title="Retrieves the lexeme at the given index." alt="" coords="421,31,520,57"/>
+</map>

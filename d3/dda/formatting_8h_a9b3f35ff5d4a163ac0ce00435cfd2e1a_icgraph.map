@@ -1,0 +1,6 @@
+<map id="format_array_access" name="format_array_access">
+<area shape="rect" id="node1" title="Formats an array access expression into a string representation." alt="" coords="472,31,631,57"/>
+<area shape="rect" id="node2" href="$d6/d4c/assignment__validation_8c.html#adafad0061063a9ae298f6233978de3b1" title="Validates type compatibility for array assignments." alt="" coords="240,5,424,32"/>
+<area shape="rect" id="node3" href="$d3/dda/formatting_8h.html#a10adbb022d417444654f3cb697c9c0bc" title="Formats a struct access expression into a string representation." alt="" coords="251,56,413,83"/>
+<area shape="rect" id="node4" href="$d6/d4c/assignment__validation_8c.html#afaa433496bef6af1b952c37f239afad2" title="Ensures type compatibility for struct field assignments." alt="" coords="5,56,192,83"/>
+</map>

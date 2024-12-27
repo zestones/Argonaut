@@ -1,0 +1,5 @@
+<map id="interpret" name="interpret">
+<area shape="rect" id="node1" title="Interprets and executes the entire program." alt="" coords="5,31,84,57"/>
+<area shape="rect" id="node2" href="$d5/dae/stack__management_8c.html#abd5eadaccccada431ac49d2f8edd2a39" title="Initializes the execution stack." alt="" coords="132,5,287,32"/>
+<area shape="rect" id="node3" href="$d3/d91/region__stack_8c.html#ac1bd4073b64abf05827d96f875b2b7a3" title="Initializes the region stack." alt="" coords="143,56,276,83"/>
+</map>

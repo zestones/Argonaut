@@ -1,0 +1,15 @@
+<map id="declaration_proc_start" name="declaration_proc_start">
+<area shape="rect" id="node1" title="Starts the declaration of a procedure." alt="" coords="5,199,172,225"/>
+<area shape="rect" id="node2" href="$d0/d8b/func__proc__validation_8c.html#a8411cbcac96e774b3d92ba56cd92d927" title="Checks if a function or procedure has been redefined." alt="" coords="220,199,431,225"/>
+<area shape="rect" id="node3" href="$dd/d3e/declaration__table_8c.html#a3a2a92436534333020848016833c3abc" title="Gets the region of a declaration." alt="" coords="490,5,661,32"/>
+<area shape="rect" id="node4" href="$d0/d15/errors_8c.html#a68d1ccae372534af850e06d48b45d638" title="Returns a formatted string containing the current file, line, and column." alt="" coords="488,56,663,83"/>
+<area shape="rect" id="node5" href="$d0/d8b/func__proc__validation_8c.html#a1165dc252af5075d0e0b35c836d92315" title="Retrieves the declaration index of a function or procedure." alt="" coords="479,107,672,149"/>
+<area shape="rect" id="node7" href="$d0/d92/lexeme__table_8c.html#ab176cfe8b410c1f87237ed115a0d8df4" title="Retrieves the lexeme at the given index." alt="" coords="526,173,625,200"/>
+<area shape="rect" id="node8" href="$d3/d91/region__stack_8c.html#a367ecd3e3c76f083c2ef6b296cfa8030" title="Peeks at the top region of the stack without removing it." alt="" coords="524,224,627,251"/>
+<area shape="rect" id="node11" href="$d0/d15/errors_8c.html#a4eba1d90a88e13e4b1beada48a1c2b9d" title="Sets the error message of the provided Error struct." alt="" coords="502,275,649,301"/>
+<area shape="rect" id="node12" href="$d0/d15/errors_8c.html#aff32bbfac01af1967382165ffc1d5607" title="Sets the error type of the provided Error struct." alt="" coords="517,325,633,352"/>
+<area shape="rect" id="node13" href="$d0/d15/errors_8c.html#a362b4d026b806baabf4d0654eea096a8" title="Prints a formatted error message based on the provided Error struct and exits the program." alt="" coords="545,376,606,403"/>
+<area shape="rect" id="node6" href="$dc/de9/declaration__table_8h.html#a8d20d657d482952631adde5763e985c8" title="Finds the index of a declaration with the specified lexicographic index and nature...." alt="" coords="720,107,889,149"/>
+<area shape="rect" id="node9" href="$d3/dbb/stack_8c.html#a9cf0786f5f2fb0c4c025b7e9bb552881" title="Peeks at the top value of the stack without popping it." alt="" coords="777,224,832,251"/>
+<area shape="rect" id="node10" href="$d3/dbb/stack_8c.html#aeda5460a4306b1c90f61ac5bf8ba49bc" title="Checks if the stack is empty." alt="" coords="937,224,1020,251"/>
+</map>

@@ -1,0 +1,44 @@
+<map id="src/utils/stack.h" name="src/utils/stack.h">
+<area shape="rect" id="node1" title="A simple stack implementation in C." alt="" coords="4463,5,4587,32"/>
+<area shape="rect" id="node2" href="$df/dcb/region__stack_8h.html" title="Header file for managing a stack of regions." alt="" coords="2872,95,3045,121"/>
+<area shape="rect" id="node16" href="$dd/d3e/declaration__table_8c.html" title=" " alt="" coords="5,295,216,337"/>
+<area shape="rect" id="node17" href="$d8/da9/name__association_8c.html" title=" " alt="" coords="240,295,451,337"/>
+<area shape="rect" id="node37" href="$d3/dbb/stack_8c.html" title=" " alt="" coords="6468,95,6591,121"/>
+<area shape="rect" id="node38" href="$d8/dca/stack__frame_8h.html" title=" " alt="" coords="5958,80,6157,136"/>
+<area shape="rect" id="node40" href="$d5/dae/stack__management_8c.html" title=" " alt="" coords="6308,288,6503,344"/>
+<area shape="rect" id="node3" href="$d3/d91/region__stack_8c.html" title=" " alt="" coords="2687,199,2859,225"/>
+<area shape="rect" id="node4" href="$d8/d8a/region__table_8h.html" title="Header file for managing regions in the compiler." alt="" coords="2935,199,3105,225"/>
+<area shape="rect" id="node19" href="$dc/d66/func__proc__manager_8c.html" title=" " alt="" coords="475,295,647,337"/>
+<area shape="rect" id="node5" href="$d8/d88/region__table_8c.html" title=" " alt="" coords="3476,303,3647,329"/>
+<area shape="rect" id="node6" href="$d5/d36/parser_8h.html" title=" " alt="" coords="3126,303,3269,329"/>
+<area shape="rect" id="node8" href="$d6/d4c/assignment__validation_8c.html" title=" " alt="" coords="3879,288,4113,344"/>
+<area shape="rect" id="node9" href="$d6/d35/condition__validation_8c.html" title=" " alt="" coords="4137,288,4340,344"/>
+<area shape="rect" id="node10" href="$d8/df9/argument__validation_8c.html" title=" " alt="" coords="4364,288,4556,344"/>
+<area shape="rect" id="node11" href="$d0/d8b/func__proc__validation_8c.html" title=" " alt="" coords="4580,288,4831,344"/>
+<area shape="rect" id="node12" href="$dd/d08/input__validation_8c.html" title=" " alt="" coords="671,288,875,344"/>
+<area shape="rect" id="node13" href="$d5/da0/print__validation_8c.html" title=" " alt="" coords="899,288,1103,344"/>
+<area shape="rect" id="node14" href="$d2/d71/type__validation_8c.html" title=" " alt="" coords="1127,295,1350,337"/>
+<area shape="rect" id="node15" href="$da/d3a/variable__validation_8c.html" title=" " alt="" coords="1374,288,1562,344"/>
+<area shape="rect" id="node18" href="$d3/d13/array__manager_8c.html" title=" " alt="" coords="1586,295,1758,337"/>
+<area shape="rect" id="node20" href="$d1/da1/structure__manager_8c.html" title=" " alt="" coords="1782,295,1954,337"/>
+<area shape="rect" id="node21" href="$de/d23/variable__manager_8c.html" title=" " alt="" coords="1978,295,2150,337"/>
+<area shape="rect" id="node22" href="$d8/d9a/expression__format_8c.html" title=" " alt="" coords="2174,295,2351,337"/>
+<area shape="rect" id="node23" href="$d6/dbc/condition__resolution_8c.html" title=" " alt="" coords="2376,288,2539,344"/>
+<area shape="rect" id="node24" href="$d2/d18/expression__resolution_8c.html" title=" " alt="" coords="2563,288,2728,344"/>
+<area shape="rect" id="node25" href="$d7/d12/func__proc__resolution_8c.html" title=" " alt="" coords="2752,288,2915,344"/>
+<area shape="rect" id="node26" href="$d3/d86/structure__resolution_8c.html" title=" " alt="" coords="2939,288,3101,344"/>
+<area shape="rect" id="node27" href="$dc/dcc/array_8c.html" title=" " alt="" coords="4855,295,5011,337"/>
+<area shape="rect" id="node28" href="$df/d20/structure_8c.html" title=" " alt="" coords="5242,295,5425,337"/>
+<area shape="rect" id="node29" href="$d0/d2a/variable_8c.html" title=" " alt="" coords="5449,295,5626,337"/>
+<area shape="rect" id="node30" href="$d0/dda/execution_8c.html" title=" " alt="" coords="5650,295,5801,337"/>
+<area shape="rect" id="node31" href="$d5/d55/assignement_8c.html" title=" " alt="" coords="5035,288,5218,344"/>
+<area shape="rect" id="node32" href="$de/d5f/assignement_8h.html" title=" " alt="" coords="3671,288,3854,344"/>
+<area shape="rect" id="node34" href="$d7/d6c/condition_8h.html" title=" " alt="" coords="3293,288,3451,344"/>
+<area shape="rect" id="node36" href="$d2/db0/func__proc_8c.html" title=" " alt="" coords="6071,288,6233,344"/>
+<area shape="rect" id="node7" href="$d2/d72/parser_8c.html" title=" " alt="" coords="3127,407,3268,433"/>
+<area shape="rect" id="node33" href="$dc/d30/interpreter_8c.html" title=" " alt="" coords="4711,399,4889,441"/>
+<area shape="rect" id="node35" href="$dd/d57/condition_8c.html" title=" " alt="" coords="3293,392,3451,448"/>
+<area shape="rect" id="node39" href="$db/da0/stack__frame_8c.html" title=" " alt="" coords="6145,184,6343,240"/>
+<area shape="rect" id="node41" href="$d1/d90/stack__management_8h.html" title=" " alt="" coords="5659,184,5853,240"/>
+<area shape="rect" id="node42" href="$d0/d4a/expression_8c.html" title=" " alt="" coords="5876,288,6047,344"/>
+</map>

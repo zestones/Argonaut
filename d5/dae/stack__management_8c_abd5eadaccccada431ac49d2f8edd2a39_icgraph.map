@@ -1,0 +1,4 @@
+<map id="init_execution_stack" name="init_execution_stack">
+<area shape="rect" id="node1" title="Initializes the execution stack." alt="" coords="132,5,287,32"/>
+<area shape="rect" id="node2" href="$dc/d30/interpreter_8c.html#aeec8fb0aa4c6922ab518df077d175f1c" title="Interprets and executes the entire program." alt="" coords="5,5,84,32"/>
+</map>

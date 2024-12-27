@@ -1,0 +1,9 @@
+<map id="check_variable_definition" name="check_variable_definition">
+<area shape="rect" id="node1" title="Validates the definition of a variable." alt="" coords="5,132,193,159"/>
+<area shape="rect" id="node2" href="$dc/de9/declaration__table_8h.html#aa3f16ed63745dfbda78a449e4a354d5f" title="Finds the index of a declaration with the specified lexicographic index. This function is used to ens..." alt="" coords="244,5,413,32"/>
+<area shape="rect" id="node3" href="$d0/d15/errors_8c.html#a68d1ccae372534af850e06d48b45d638" title="Returns a formatted string containing the current file, line, and column." alt="" coords="241,56,416,83"/>
+<area shape="rect" id="node4" href="$d0/d92/lexeme__table_8c.html#ab176cfe8b410c1f87237ed115a0d8df4" title="Retrieves the lexeme at the given index." alt="" coords="279,107,378,133"/>
+<area shape="rect" id="node5" href="$d0/d15/errors_8c.html#a4eba1d90a88e13e4b1beada48a1c2b9d" title="Sets the error message of the provided Error struct." alt="" coords="255,157,402,184"/>
+<area shape="rect" id="node6" href="$d0/d15/errors_8c.html#aff32bbfac01af1967382165ffc1d5607" title="Sets the error type of the provided Error struct." alt="" coords="271,208,387,235"/>
+<area shape="rect" id="node7" href="$d0/d15/errors_8c.html#a362b4d026b806baabf4d0654eea096a8" title="Prints a formatted error message based on the provided Error struct and exits the program." alt="" coords="298,259,359,285"/>
+</map>

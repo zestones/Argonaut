@@ -1,0 +1,11 @@
+<map id="peek_region" name="peek_region">
+<area shape="rect" id="node1" title="Peeks at the top region of the stack without removing it." alt="" coords="485,136,588,163"/>
+<area shape="rect" id="node2" href="$d0/d8b/func__proc__validation_8c.html#a8411cbcac96e774b3d92ba56cd92d927" title="Checks if a function or procedure has been redefined." alt="" coords="227,56,437,83"/>
+<area shape="rect" id="node5" href="$d2/d71/type__validation_8c.html#ad0ff0ffaf64af0526cea2fc312001686" title="Checks if a type has been redefined." alt="" coords="243,107,421,133"/>
+<area shape="rect" id="node8" href="$de/d23/variable__manager_8c.html#af85e197b346ed860553f44112be19c28" title="Starts the declaration of a variable." alt="" coords="255,158,409,199"/>
+<area shape="rect" id="node9" href="$d8/d88/region__table_8c.html#a7c1df0c1c144c34b4089f04c631c3127" title="Gets the NIS of the current region." alt="" coords="247,224,417,251"/>
+<area shape="rect" id="node3" href="$dc/d66/func__proc__manager_8c.html#ad308181286b701d8a073ea5416924e1d" title="Starts the declaration of a function." alt="" coords="9,5,175,32"/>
+<area shape="rect" id="node4" href="$dc/d66/func__proc__manager_8c.html#a1423e71098aec906db6b648a65845296" title="Starts the declaration of a procedure." alt="" coords="9,56,175,83"/>
+<area shape="rect" id="node6" href="$d3/d13/array__manager_8c.html#a2bb30a00cd527c3decfe286173f052e1" title="Starts the declaration of an array." alt="" coords="5,107,179,133"/>
+<area shape="rect" id="node7" href="$d1/da1/structure__manager_8c.html#aa577dea532d7d7c93aca4df9fa53235c" title="Starts the declaration of a structure." alt="" coords="12,158,172,199"/>
+</map>

@@ -1,0 +1,9 @@
+<map id="check_scope_redefinition" name="check_scope_redefinition">
+<area shape="rect" id="node1" title="Checks if a scope entity has been redefined." alt="" coords="5,144,192,171"/>
+<area shape="rect" id="node2" href="$d0/d15/errors_8c.html#a68d1ccae372534af850e06d48b45d638" title="Returns a formatted string containing the current file, line, and column." alt="" coords="240,5,415,32"/>
+<area shape="rect" id="node3" href="$d0/d92/lexeme__table_8c.html#ab176cfe8b410c1f87237ed115a0d8df4" title="Retrieves the lexeme at the given index." alt="" coords="278,56,377,83"/>
+<area shape="rect" id="node4" href="$dd/d4a/scope__tracker_8c.html#ab2d26b3fe57f6f284f4c31afb66c6b60" title="Checks if an identifier is already tracked within the current scope." alt="" coords="250,107,405,149"/>
+<area shape="rect" id="node5" href="$d0/d15/errors_8c.html#a4eba1d90a88e13e4b1beada48a1c2b9d" title="Sets the error message of the provided Error struct." alt="" coords="254,173,401,200"/>
+<area shape="rect" id="node6" href="$d0/d15/errors_8c.html#aff32bbfac01af1967382165ffc1d5607" title="Sets the error type of the provided Error struct." alt="" coords="269,224,385,251"/>
+<area shape="rect" id="node7" href="$d0/d15/errors_8c.html#a362b4d026b806baabf4d0654eea096a8" title="Prints a formatted error message based on the provided Error struct and exits the program." alt="" coords="297,275,358,301"/>
+</map>

@@ -1,0 +1,20 @@
+<map id="declaration_param_start" name="declaration_param_start">
+<area shape="rect" id="node1" title="Starts the declaration of a parameter." alt="" coords="5,325,187,351"/>
+<area shape="rect" id="node2" href="$d2/d71/type__validation_8c.html#a5787d66f109d016f22256dc3a5f84435" title="Validates that the lexicographic index is a base type." alt="" coords="264,198,399,225"/>
+<area shape="rect" id="node9" href="$d2/d71/type__validation_8c.html#ab2be243b7af9ae3fdecace4260ed430d" title="Validates the definition of a type." alt="" coords="249,147,413,174"/>
+<area shape="rect" id="node12" href="$dc/de9/declaration__table_8h.html#aa3f16ed63745dfbda78a449e4a354d5f" title="Finds the index of a declaration with the specified lexicographic index. This function is used to ens..." alt="" coords="247,249,416,275"/>
+<area shape="rect" id="node13" href="$d8/d88/region__table_8c.html#a49272dbdea0b5157804dc85964e15469" title="Gets the ID of the current region." alt="" coords="250,299,413,326"/>
+<area shape="rect" id="node14" href="$dd/d3e/declaration__table_8c.html#aaac3e6193717aaccc629ddcb3c678f81" title="Gets the execution information of a declaration." alt="" coords="235,350,428,377"/>
+<area shape="rect" id="node15" href="$d8/d88/region__table_8c.html#a6174d3ae3d2b95fc38b10285c2dd14f9" title="Gets the size of the region at the specified index." alt="" coords="269,401,393,427"/>
+<area shape="rect" id="node16" href="$dd/d3e/declaration__table_8c.html#a73848ad30539999525bd2df078e09cf3" title="Inserts a parameter declaration into the table." alt="" coords="262,452,401,493"/>
+<area shape="rect" id="node18" href="$d8/d88/region__table_8c.html#a36985dd80d85c10f81a505ec691943b8" title="Updates the size of the region at the specified index." alt="" coords="257,518,405,545"/>
+<area shape="rect" id="node3" href="$d0/d15/errors_8c.html#a68d1ccae372534af850e06d48b45d638" title="Returns a formatted string containing the current file, line, and column." alt="" coords="485,71,659,98"/>
+<area shape="rect" id="node4" href="$d0/d92/lexeme__table_8c.html#ab176cfe8b410c1f87237ed115a0d8df4" title="Retrieves the lexeme at the given index." alt="" coords="523,122,621,149"/>
+<area shape="rect" id="node5" href="$dd/d3e/declaration__table_8c.html#a0d9073ef901b312b251556411474e440" title="Checks if a declaration is a base type." alt="" coords="479,325,665,351"/>
+<area shape="rect" id="node6" href="$d0/d15/errors_8c.html#a4eba1d90a88e13e4b1beada48a1c2b9d" title="Sets the error message of the provided Error struct." alt="" coords="499,173,645,199"/>
+<area shape="rect" id="node7" href="$d0/d15/errors_8c.html#aff32bbfac01af1967382165ffc1d5607" title="Sets the error type of the provided Error struct." alt="" coords="514,223,630,250"/>
+<area shape="rect" id="node8" href="$d0/d15/errors_8c.html#a362b4d026b806baabf4d0654eea096a8" title="Prints a formatted error message based on the provided Error struct and exits the program." alt="" coords="541,274,603,301"/>
+<area shape="rect" id="node10" href="$d2/d71/type__validation_8c.html#a2826420c3e7c29f271899a3b50ac40c8" title="Retrieves the declaration index of an array or struct." alt="" coords="476,5,668,47"/>
+<area shape="rect" id="node11" href="$dc/de9/declaration__table_8h.html#a8d20d657d482952631adde5763e985c8" title="Finds the index of a declaration with the specified lexicographic index and nature...." alt="" coords="716,5,885,47"/>
+<area shape="rect" id="node17" href="$dd/d3e/declaration__table_8c.html#a43c491a0b81e9249ceccebe651dc9a87" title="Inserts a declaration into the table." alt="" coords="503,459,641,486"/>
+</map>

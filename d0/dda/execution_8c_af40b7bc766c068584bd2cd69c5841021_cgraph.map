@@ -1,0 +1,9 @@
+<map id="handle_function_return_value" name="handle_function_return_value">
+<area shape="rect" id="node1" title="Stores the return value of a function in the caller&#39;s stack frame." alt="" coords="5,27,177,69"/>
+<area shape="rect" id="node2" href="$d5/dae/stack__management_8c.html#aadd28bdf73ee13a48c8a7176c2326728" title="Retrieves a stack frame by its ID." alt="" coords="225,8,399,35"/>
+<area shape="rect" id="node4" href="$d5/dae/stack__management_8c.html#a1355ab2e4c983fe8ddae499e1d3f802d" title="Peeks at the top stack frame in a read&#45;only way." alt="" coords="229,60,395,87"/>
+<area shape="rect" id="node3" href="$d3/dbb/stack_8c.html#a6b5edf43250cada4964d61ce37603c45" title="Gets the value at a specific index in the stack." alt="" coords="466,5,594,32"/>
+<area shape="rect" id="node5" href="$d5/dae/stack__management_8c.html#a6927c2ddc620f62226d71cf41951041e" title="Peeks at the top stack frame in a mutable way." alt="" coords="447,57,613,98"/>
+<area shape="rect" id="node6" href="$d3/dbb/stack_8c.html#a9cf0786f5f2fb0c4c025b7e9bb552881" title="Peeks at the top value of the stack without popping it." alt="" coords="661,64,716,91"/>
+<area shape="rect" id="node7" href="$d3/dbb/stack_8c.html#aeda5460a4306b1c90f61ac5bf8ba49bc" title="Checks if the stack is empty." alt="" coords="764,64,847,91"/>
+</map>

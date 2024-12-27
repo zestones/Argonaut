@@ -1,0 +1,5 @@
+<map id="resolve_statement_list" name="resolve_statement_list">
+<area shape="rect" id="node1" title="Resolves and executes a list of statements." alt="" coords="193,31,364,57"/>
+<area shape="rect" id="node2" href="$dd/d57/condition_8c.html#a7fb8e5acd57b590993223b0c48bed85c" title="Executes a conditional statement (if&#45;else)." alt="" coords="5,5,145,32"/>
+<area shape="rect" id="node3" href="$dd/d57/condition_8c.html#a59a7e582c8a07c7d1407f6bd276d1370" title="Executes a loop statement (while loop)." alt="" coords="21,56,129,83"/>
+</map>

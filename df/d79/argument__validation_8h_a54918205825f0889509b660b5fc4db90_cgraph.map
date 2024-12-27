@@ -1,0 +1,7 @@
+<map id="validate_each_argument" name="validate_each_argument">
+<area shape="rect" id="node1" title="Validates the type of each argument in a function or procedure call." alt="" coords="5,46,188,73"/>
+<area shape="rect" id="node2" href="$dc/de9/declaration__table_8h.html#a8d20d657d482952631adde5763e985c8" title="Finds the index of a declaration with the specified lexicographic index and nature...." alt="" coords="259,5,428,47"/>
+<area shape="rect" id="node3" href="$d7/d12/func__proc__resolution_8c.html#a443b17c469927fff30a597a812997fa7" title="Resolves the type of a specific parameter in a function or procedure." alt="" coords="236,71,451,112"/>
+<area shape="rect" id="node4" href="$dd/d3e/declaration__table_8c.html#a6d7cfaa61de7241348ef4a08f55bd9a0" title="Gets the description of a declaration." alt="" coords="499,49,701,75"/>
+<area shape="rect" id="node5" href="$dd/dfd/representation__table_8c.html#a64bb130b5e07aeebfd4333567ecc9a0e" title="Retrieves the value of a representation from the table." alt="" coords="527,100,673,141"/>
+</map>

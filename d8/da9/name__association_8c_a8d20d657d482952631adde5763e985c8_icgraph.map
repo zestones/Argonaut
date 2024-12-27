@@ -1,0 +1,22 @@
+<map id="find_declaration_index_by_nature" name="find_declaration_index_by_nature">
+<area shape="rect" id="node1" title="Finds the index of a declaration with the specified lexicographic index and nature...." alt="" coords="759,224,928,265"/>
+<area shape="rect" id="node2" href="$da/d3a/variable__validation_8c.html#a9516a6e44a11928cf63ddf2d18960920" title="Checks if a variable has been redefined." alt="" coords="509,55,711,82"/>
+<area shape="rect" id="node4" href="$d2/d71/type__validation_8c.html#a2826420c3e7c29f271899a3b50ac40c8" title="Retrieves the declaration index of an array or struct." alt="" coords="514,140,706,181"/>
+<area shape="rect" id="node12" href="$d0/d8b/func__proc__validation_8c.html#a1165dc252af5075d0e0b35c836d92315" title="Retrieves the declaration index of a function or procedure." alt="" coords="513,283,707,324"/>
+<area shape="rect" id="node18" href="$da/d3a/variable__validation_8c.html#a9e6d710dd00724c657461fc6b0618433" title="Retrieves the declaration index of a variable or parameter." alt="" coords="510,365,710,407"/>
+<area shape="rect" id="node20" href="$d8/df9/argument__validation_8c.html#a54918205825f0889509b660b5fc4db90" title="Validates the type of each argument in a function or procedure call." alt="" coords="519,231,701,258"/>
+<area shape="rect" id="node3" href="$de/d23/variable__manager_8c.html#af85e197b346ed860553f44112be19c28" title="Starts the declaration of a variable." alt="" coords="19,5,173,47"/>
+<area shape="rect" id="node5" href="$d2/d71/type__validation_8c.html#ab2be243b7af9ae3fdecace4260ed430d" title="Validates the definition of a type." alt="" coords="266,122,430,149"/>
+<area shape="rect" id="node9" href="$d2/d71/type__validation_8c.html#ad0ff0ffaf64af0526cea2fc312001686" title="Checks if a type has been redefined." alt="" coords="259,189,437,215"/>
+<area shape="rect" id="node6" href="$d3/d13/array__manager_8c.html#aed3142335b3245bff94bbd4dde0d47f9" title=" " alt="" coords="13,71,179,98"/>
+<area shape="rect" id="node7" href="$de/d23/variable__manager_8c.html#a0156a227fd1b11089557e8562aabb8dc" title="Starts the declaration of a parameter." alt="" coords="5,122,187,149"/>
+<area shape="rect" id="node8" href="$d1/da1/structure__manager_8c.html#a91ddb0e97f567e2ee1c85cdf6cb4833c" title="Adds a field to the current structure declaration." alt="" coords="23,173,169,199"/>
+<area shape="rect" id="node10" href="$d3/d13/array__manager_8c.html#a2bb30a00cd527c3decfe286173f052e1" title="Starts the declaration of an array." alt="" coords="9,223,183,250"/>
+<area shape="rect" id="node11" href="$d1/da1/structure__manager_8c.html#aa577dea532d7d7c93aca4df9fa53235c" title="Starts the declaration of a structure." alt="" coords="16,275,176,316"/>
+<area shape="rect" id="node13" href="$d0/d8b/func__proc__validation_8c.html#afafcd50f3eee0ad1e7debef6b3df9f2e" title="Validates the argument list of a function." alt="" coords="235,239,461,266"/>
+<area shape="rect" id="node14" href="$d0/d8b/func__proc__validation_8c.html#a3ae1164529326a68c7fd80deeebc846d" title="Validates the definition of a function or procedure." alt="" coords="249,290,447,317"/>
+<area shape="rect" id="node15" href="$d0/d8b/func__proc__validation_8c.html#a8411cbcac96e774b3d92ba56cd92d927" title="Checks if a function or procedure has been redefined." alt="" coords="243,341,453,367"/>
+<area shape="rect" id="node16" href="$dc/d66/func__proc__manager_8c.html#ad308181286b701d8a073ea5416924e1d" title="Starts the declaration of a function." alt="" coords="13,341,179,367"/>
+<area shape="rect" id="node17" href="$dc/d66/func__proc__manager_8c.html#a1423e71098aec906db6b648a65845296" title="Starts the declaration of a procedure." alt="" coords="13,391,179,418"/>
+<area shape="rect" id="node19" href="$d6/d4c/assignment__validation_8c.html#a4fde6de79346a9e0cdb168b7c802fccc" title="Checks type compatibility during variable assignments." alt="" coords="247,391,449,418"/>
+</map>

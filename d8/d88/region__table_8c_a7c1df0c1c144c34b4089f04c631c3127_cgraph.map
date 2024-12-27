@@ -1,0 +1,7 @@
+<map id="get_current_region_nis" name="get_current_region_nis">
+<area shape="rect" id="node1" title="Gets the NIS of the current region." alt="" coords="5,31,176,57"/>
+<area shape="rect" id="node2" href="$d8/d88/region__table_8c.html#a95e102cd58c1b0edad8f6af8aa245761" title=" " alt="" coords="224,5,341,32"/>
+<area shape="rect" id="node3" href="$d3/d91/region__stack_8c.html#a367ecd3e3c76f083c2ef6b296cfa8030" title="Peeks at the top region of the stack without removing it." alt="" coords="231,56,334,83"/>
+<area shape="rect" id="node4" href="$d3/dbb/stack_8c.html#a9cf0786f5f2fb0c4c025b7e9bb552881" title="Peeks at the top value of the stack without popping it." alt="" coords="389,56,444,83"/>
+<area shape="rect" id="node5" href="$d3/dbb/stack_8c.html#aeda5460a4306b1c90f61ac5bf8ba49bc" title="Checks if the stack is empty." alt="" coords="492,56,575,83"/>
+</map>

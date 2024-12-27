@@ -1,0 +1,12 @@
+<map id="check_array_assignment" name="check_array_assignment">
+<area shape="rect" id="node1" title="Validates type compatibility for array assignments." alt="" coords="5,183,189,209"/>
+<area shape="rect" id="node2" href="$d8/d00/array__access__format_8c.html#a9b3f35ff5d4a163ac0ce00435cfd2e1a" title="Formats an array access expression into a string representation." alt="" coords="257,5,416,32"/>
+<area shape="rect" id="node3" href="$d0/d92/lexeme__table_8c.html#ab176cfe8b410c1f87237ed115a0d8df4" title="Retrieves the lexeme at the given index." alt="" coords="536,31,635,57"/>
+<area shape="rect" id="node4" href="$d0/d15/errors_8c.html#a68d1ccae372534af850e06d48b45d638" title="Returns a formatted string containing the current file, line, and column." alt="" coords="249,107,424,133"/>
+<area shape="rect" id="node5" href="$de/dfd/array__resolution_8c.html#ac073eb00ceefd91641635ffc9d407e84" title="Resolves the type of an array access expression." alt="" coords="237,157,436,184"/>
+<area shape="rect" id="node6" href="$d2/d18/expression__resolution_8c.html#ad2fa6a52f7590a4fe58adc41e6fab427" title="Resolves the type of an expression." alt="" coords="245,259,429,285"/>
+<area shape="rect" id="node8" href="$d0/d15/errors_8c.html#a4eba1d90a88e13e4b1beada48a1c2b9d" title="Sets the error message of the provided Error struct." alt="" coords="512,208,659,235"/>
+<area shape="rect" id="node9" href="$d0/d15/errors_8c.html#aff32bbfac01af1967382165ffc1d5607" title="Sets the error type of the provided Error struct." alt="" coords="527,309,643,336"/>
+<area shape="rect" id="node10" href="$d0/d15/errors_8c.html#a362b4d026b806baabf4d0654eea096a8" title="Prints a formatted error message based on the provided Error struct and exits the program." alt="" coords="306,360,367,387"/>
+<area shape="rect" id="node7" href="$dd/d3e/declaration__table_8c.html#a6d7cfaa61de7241348ef4a08f55bd9a0" title="Gets the description of a declaration." alt="" coords="484,259,687,285"/>
+</map>

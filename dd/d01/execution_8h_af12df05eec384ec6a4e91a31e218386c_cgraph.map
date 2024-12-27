@@ -1,0 +1,50 @@
+<map id="handle_array_affectation" name="handle_array_affectation">
+<area shape="rect" id="node1" title="Updates the memory cell of an array element with a new value." alt="" coords="5,1464,189,1491"/>
+<area shape="rect" id="node2" href="$d5/dae/stack__management_8c.html#ad941f5518107b482939a3f3592b6c363" title="Finds a stack frame by its region index." alt="" coords="877,1322,1035,1363"/>
+<area shape="rect" id="node4" href="$d2/dda/address__calculation_8h.html#aba9c6f08a45baa4051d0ea05a5a97d7d" title="Computes the memory address of an array element in the stack frame." alt="" coords="245,363,388,389"/>
+<area shape="rect" id="node18" href="$dd/d3e/declaration__table_8c.html#a3a2a92436534333020848016833c3abc" title="Gets the region of a declaration." alt="" coords="1330,741,1501,768"/>
+<area shape="rect" id="node45" href="$db/da0/stack__frame_8c.html#a9152462681f4579e071206125524d4e6" title="Updates the value of a cell at a given address in the stack frame." alt="" coords="237,1634,396,1675"/>
+<area shape="rect" id="node3" href="$d3/dbb/stack_8c.html#a05857cdc7b90e2fbf5d2fb5f050911d3" title="Returns the size of the stack." alt="" coords="1161,745,1209,772"/>
+<area shape="rect" id="node5" href="$d0/d41/utility_8c.html#a090389fef823ec0d609d12973dbd5ac3" title="Retrieves the number of dimensions in an array." alt="" coords="1336,792,1495,819"/>
+<area shape="rect" id="node6" href="$dd/d3e/declaration__table_8c.html#a6d7cfaa61de7241348ef4a08f55bd9a0" title="Gets the description of a declaration." alt="" coords="1560,308,1763,335"/>
+<area shape="rect" id="node8" href="$d0/d41/utility_8c.html#a36cff8b3b904f3c42eeba69e38e9d3c2" title="Retrieves the type of elements stored in an array." alt="" coords="1325,228,1506,255"/>
+<area shape="rect" id="node9" href="$d0/d41/utility_8c.html#ac167e84e15f5c86539c4fa275dfda0e0" title="Retrieves the bounds of a specific dimension of an array." alt="" coords="1322,843,1509,869"/>
+<area shape="rect" id="node10" href="$dd/d3e/declaration__table_8c.html#aaac3e6193717aaccc629ddcb3c678f81" title="Gets the execution information of a declaration." alt="" coords="1319,447,1512,473"/>
+<area shape="rect" id="node11" href="$dd/d3e/declaration__table_8c.html#a4dbfeaf06f3a4883c8d357fec6cbcc21" title="Gets the nature of a declaration." alt="" coords="1099,144,1271,171"/>
+<area shape="rect" id="node12" href="$d2/dda/address__calculation_8h.html#aabb788710f42b02a4dc7053de6a99664" title="Computes the memory address of a specific field within a struct or nested struct." alt="" coords="866,312,1046,339"/>
+<area shape="rect" id="node17" href="$d2/dda/address__calculation_8h.html#a72560142cb7fc3731a5a6f6ef2caf77b" title="Computes the address of a variable in the stack frame based on its declaration index." alt="" coords="1104,480,1265,507"/>
+<area shape="rect" id="node20" href="$d0/d4a/expression_8c.html#a5c3c94fa7fbf1616f99e899c1c765830" title="Resolves an expression from the abstract syntax tree (AST) and returns the corresponding VM cell." alt="" coords="444,893,592,920"/>
+<area shape="rect" id="node7" href="$dd/dfd/representation__table_8c.html#a64bb130b5e07aeebfd4333567ecc9a0e" title="Retrieves the value of a representation from the table." alt="" coords="1589,389,1734,430"/>
+<area shape="rect" id="node13" href="$d0/d41/utility_8c.html#a380303600922d7808a2d46d2be746a4c" title="Finds the index of a struct field by its lexicographic index." alt="" coords="1101,363,1269,405"/>
+<area shape="rect" id="node15" href="$d0/d41/utility_8c.html#a498f30f7c5c13fe3642fb66bd813a519" title=" " alt="" coords="1109,246,1260,287"/>
+<area shape="rect" id="node16" href="$d0/d41/utility_8c.html#a59346f96f4698ef7f216337651a503bd" title="Retrieves information about a specific field in a struct." alt="" coords="1340,330,1491,371"/>
+<area shape="rect" id="node14" href="$d0/d41/utility_8c.html#a0c355fb97635cff55dbce62d9ccf023a" title="Retrieves the total number of fields in a struct." alt="" coords="1333,396,1498,423"/>
+<area shape="rect" id="node19" href="$d8/d88/region__table_8c.html#a95e102cd58c1b0edad8f6af8aa245761" title=" " alt="" coords="1357,497,1474,524"/>
+<area shape="rect" id="node21" href="$d8/d33/vm__cell_8c.html#a204f7bd018dfed72ca842d1f3cae11f1" title="Constructs a vm_cell with a specific type and value." alt="" coords="1115,581,1255,608"/>
+<area shape="rect" id="node22" href="$d2/db0/func__proc_8c.html#a2ed75d2b34197485670c11c7832ae9ae" title="Executes a function or procedure call." alt="" coords="640,657,813,684"/>
+<area shape="rect" id="node27" href="$d5/dae/stack__management_8c.html#a1355ab2e4c983fe8ddae499e1d3f802d" title="Peeks at the top stack frame in a read&#45;only way." alt="" coords="873,851,1039,877"/>
+<area shape="rect" id="node34" href="$d0/dda/execution_8c.html#adb4a7eee238e55c16dfc8299b854c6b0" title="Retrieves the cell associated with an array element from the stack frame." alt="" coords="669,1264,784,1291"/>
+<area shape="rect" id="node37" href="$d0/d15/errors_8c.html#a68d1ccae372534af850e06d48b45d638" title="Returns a formatted string containing the current file, line, and column." alt="" coords="869,952,1043,979"/>
+<area shape="rect" id="node38" href="$d0/d92/lexeme__table_8c.html#ab176cfe8b410c1f87237ed115a0d8df4" title="Retrieves the lexeme at the given index." alt="" coords="677,893,776,920"/>
+<area shape="rect" id="node39" href="$d0/dda/execution_8c.html#a672f6a960e586a42b5d13fce0834042f" title="Retrieves the cell associated with a structure field from the stack frame." alt="" coords="668,741,785,768"/>
+<area shape="rect" id="node40" href="$d0/dda/execution_8c.html#a2ed11feca9d05ad094d1cfdf2b6fd0e0" title="Retrieves the cell associated with a variable from the stack frame." alt="" coords="660,1205,793,1232"/>
+<area shape="rect" id="node41" href="$d3/dac/arithmetic_8c.html#af5b4461b8b9c2c669b76c466a9576b02" title="Resolves an arithmetic operation between two operands and returns the resulting value." alt="" coords="655,995,799,1037"/>
+<area shape="rect" id="node42" href="$d0/d15/errors_8c.html#a4eba1d90a88e13e4b1beada48a1c2b9d" title="Sets the error message of the provided Error struct." alt="" coords="883,1053,1029,1080"/>
+<area shape="rect" id="node43" href="$d0/d15/errors_8c.html#aff32bbfac01af1967382165ffc1d5607" title="Sets the error type of the provided Error struct." alt="" coords="898,1104,1014,1131"/>
+<area shape="rect" id="node44" href="$d0/d15/errors_8c.html#a362b4d026b806baabf4d0654eea096a8" title="Prints a formatted error message based on the provided Error struct and exits the program." alt="" coords="925,901,987,928"/>
+<area shape="rect" id="node23" href="$db/da0/stack__frame_8c.html#a4ddc71b7efae5e98eea1e6b20a57592f" title="Constructs a new stack frame for the function or procedure call." alt="" coords="871,581,1041,608"/>
+<area shape="rect" id="node25" href="$d5/dae/stack__management_8c.html#aa37045793a2ce4c0f2234c3a78beaaf3" title="Retrieves the ID of the current stack frame." alt="" coords="879,734,1033,775"/>
+<area shape="rect" id="node26" href="$d8/d88/region__table_8c.html#ad9273b2a87fbaf444f99ba5be1d06b21" title="Gets the AST of the region at the specified index." alt="" coords="897,632,1015,659"/>
+<area shape="rect" id="node31" href="$d5/dae/stack__management_8c.html#ad9bdebeab8090563be1c62dfc07fd665" title="Pushes a new stack frame onto the execution stack." alt="" coords="861,515,1051,557"/>
+<area shape="rect" id="node24" href="$d3/dbb/stack_8c.html#a65244e2319afc87bb396f300373e35dc" title="Constructs a new stack." alt="" coords="1123,632,1247,659"/>
+<area shape="rect" id="node28" href="$d5/dae/stack__management_8c.html#a6927c2ddc620f62226d71cf41951041e" title="Peeks at the top stack frame in a mutable way." alt="" coords="1101,1257,1268,1298"/>
+<area shape="rect" id="node29" href="$d3/dbb/stack_8c.html#a9cf0786f5f2fb0c4c025b7e9bb552881" title="Peeks at the top value of the stack without popping it." alt="" coords="1388,1264,1443,1291"/>
+<area shape="rect" id="node30" href="$d3/dbb/stack_8c.html#aeda5460a4306b1c90f61ac5bf8ba49bc" title="Checks if the stack is empty." alt="" coords="1620,1264,1703,1291"/>
+<area shape="rect" id="node32" href="$d3/dbb/stack_8c.html#ab8e2bdf44038600ab2a71d4d09d8f11f" title="Pushes a value onto the stack." alt="" coords="1158,531,1211,557"/>
+<area shape="rect" id="node33" href="$d3/dbb/stack_8c.html#a82adb67aa3f68f9f67a9b88475296933" title="Checks if the stack is full." alt="" coords="1385,548,1446,575"/>
+<area shape="rect" id="node35" href="$db/da0/stack__frame_8c.html#ad04921bedac1f51aea05e34be5835875" title="Retrieves the value of a cell from the stack frame." alt="" coords="879,1257,1033,1298"/>
+<area shape="rect" id="node36" href="$d3/dbb/stack_8c.html#a6b5edf43250cada4964d61ce37603c45" title="Gets the value at a specific index in the stack." alt="" coords="1121,1489,1249,1516"/>
+<area shape="rect" id="node46" href="$d8/d33/vm__cell_8c.html#af56154ed6b8e6d16c839bf3673d0c0e0" title="Retrieves the value from a vm_cell as a pointer." alt="" coords="446,1641,590,1668"/>
+<area shape="rect" id="node47" href="$d3/dbb/stack_8c.html#a1b24f73b72398f7fa109bfe8f066b083" title="Updates the value at a specific index in the stack." alt="" coords="463,1692,573,1719"/>
+<area shape="rect" id="node48" href="$d8/d33/vm__cell_8c.html#ad1c4593563f0d439201b43ddebe400c3" title="Updates an existing vm_cell with a new value." alt="" coords="455,1743,581,1769"/>
+</map>

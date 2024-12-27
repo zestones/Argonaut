@@ -1,0 +1,10 @@
+<map id="check_func_prototype" name="check_func_prototype">
+<area shape="rect" id="node1" title="Validates the return statement of a function." alt="" coords="5,132,171,159"/>
+<area shape="rect" id="node2" href="$d0/d15/errors_8c.html#a68d1ccae372534af850e06d48b45d638" title="Returns a formatted string containing the current file, line, and column." alt="" coords="223,5,398,32"/>
+<area shape="rect" id="node3" href="$d0/d92/lexeme__table_8c.html#ab176cfe8b410c1f87237ed115a0d8df4" title="Retrieves the lexeme at the given index." alt="" coords="261,56,360,83"/>
+<area shape="rect" id="node4" href="$d2/d18/expression__resolution_8c.html#ad2fa6a52f7590a4fe58adc41e6fab427" title="Resolves the type of an expression." alt="" coords="219,157,403,184"/>
+<area shape="rect" id="node6" href="$d0/d15/errors_8c.html#a4eba1d90a88e13e4b1beada48a1c2b9d" title="Sets the error message of the provided Error struct." alt="" coords="479,107,625,133"/>
+<area shape="rect" id="node7" href="$d0/d15/errors_8c.html#aff32bbfac01af1967382165ffc1d5607" title="Sets the error type of the provided Error struct." alt="" coords="494,208,610,235"/>
+<area shape="rect" id="node8" href="$d0/d15/errors_8c.html#a362b4d026b806baabf4d0654eea096a8" title="Prints a formatted error message based on the provided Error struct and exits the program." alt="" coords="280,259,341,285"/>
+<area shape="rect" id="node5" href="$dd/d3e/declaration__table_8c.html#a6d7cfaa61de7241348ef4a08f55bd9a0" title="Gets the description of a declaration." alt="" coords="451,157,653,184"/>
+</map>

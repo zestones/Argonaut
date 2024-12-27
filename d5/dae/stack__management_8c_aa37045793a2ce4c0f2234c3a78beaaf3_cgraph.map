@@ -1,0 +1,4 @@
+<map id="get_execution_stack_current_frame_id" name="get_execution_stack_current_frame_id">
+<area shape="rect" id="node1" title="Retrieves the ID of the current stack frame." alt="" coords="5,5,160,47"/>
+<area shape="rect" id="node2" href="$d3/dbb/stack_8c.html#a05857cdc7b90e2fbf5d2fb5f050911d3" title="Returns the size of the stack." alt="" coords="208,13,256,39"/>
+</map>

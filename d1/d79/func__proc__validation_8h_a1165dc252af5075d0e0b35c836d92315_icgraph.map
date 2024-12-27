@@ -1,0 +1,8 @@
+<map id="get_func_proc_declaration_index" name="get_func_proc_declaration_index">
+<area shape="rect" id="node1" title="Retrieves the declaration index of a function or procedure." alt="" coords="495,49,688,90"/>
+<area shape="rect" id="node2" href="$d0/d8b/func__proc__validation_8c.html#afafcd50f3eee0ad1e7debef6b3df9f2e" title="Validates the argument list of a function." alt="" coords="220,5,447,32"/>
+<area shape="rect" id="node3" href="$d0/d8b/func__proc__validation_8c.html#a3ae1164529326a68c7fd80deeebc846d" title="Validates the definition of a function or procedure." alt="" coords="234,56,433,83"/>
+<area shape="rect" id="node4" href="$d0/d8b/func__proc__validation_8c.html#a8411cbcac96e774b3d92ba56cd92d927" title="Checks if a function or procedure has been redefined." alt="" coords="228,107,439,133"/>
+<area shape="rect" id="node5" href="$dc/d66/func__proc__manager_8c.html#ad308181286b701d8a073ea5416924e1d" title="Starts the declaration of a function." alt="" coords="5,81,172,108"/>
+<area shape="rect" id="node6" href="$dc/d66/func__proc__manager_8c.html#a1423e71098aec906db6b648a65845296" title="Starts the declaration of a procedure." alt="" coords="5,132,172,159"/>
+</map>

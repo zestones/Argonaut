@@ -1,0 +1,5 @@
+<map id="pop_region" name="pop_region">
+<area shape="rect" id="node1" title="Pops a region from the stack." alt="" coords="392,5,487,32"/>
+<area shape="rect" id="node2" href="$d8/d88/region__table_8c.html#a3fcd12446a933658f0caaf8180076868" title="Ends the current region." alt="" coords="249,5,344,32"/>
+<area shape="rect" id="node3" href="$dc/d66/func__proc__manager_8c.html#af3dc7c5760795f233da276c3204091e1" title="Ends the declaration of a function or procedure." alt="" coords="5,5,201,32"/>
+</map>

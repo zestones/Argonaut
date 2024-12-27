@@ -1,0 +1,4 @@
+<map id="push" name="push">
+<area shape="rect" id="node1" title="Pushes a value onto the stack." alt="" coords="5,5,59,32"/>
+<area shape="rect" id="node2" href="$d3/dbb/stack_8c.html#a82adb67aa3f68f9f67a9b88475296933" title="Checks if the stack is full." alt="" coords="107,5,168,32"/>
+</map>

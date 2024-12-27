@@ -1,0 +1,13 @@
+<map id="check_struct_assignment" name="check_struct_assignment">
+<area shape="rect" id="node1" title="Ensures type compatibility for struct field assignments." alt="" coords="5,233,192,260"/>
+<area shape="rect" id="node2" href="$d3/dda/formatting_8h.html#a10adbb022d417444654f3cb697c9c0bc" title="Formats a struct access expression into a string representation." alt="" coords="251,56,413,83"/>
+<area shape="rect" id="node4" href="$d0/d92/lexeme__table_8c.html#ab176cfe8b410c1f87237ed115a0d8df4" title="Retrieves the lexeme at the given index." alt="" coords="723,56,821,83"/>
+<area shape="rect" id="node5" href="$d0/d15/errors_8c.html#a68d1ccae372534af850e06d48b45d638" title="Returns a formatted string containing the current file, line, and column." alt="" coords="245,157,419,184"/>
+<area shape="rect" id="node6" href="$d2/d18/expression__resolution_8c.html#ad2fa6a52f7590a4fe58adc41e6fab427" title="Resolves the type of an expression." alt="" coords="240,259,424,285"/>
+<area shape="rect" id="node8" href="$d0/d15/errors_8c.html#a4eba1d90a88e13e4b1beada48a1c2b9d" title="Sets the error message of the provided Error struct." alt="" coords="500,208,647,235"/>
+<area shape="rect" id="node9" href="$d0/d15/errors_8c.html#aff32bbfac01af1967382165ffc1d5607" title="Sets the error type of the provided Error struct." alt="" coords="515,309,631,336"/>
+<area shape="rect" id="node10" href="$d3/d86/structure__resolution_8c.html#a05d8b96afc7d3dc4d826eb06596342ea" title="Resolves the type of a struct field access expression." alt="" coords="257,361,407,402"/>
+<area shape="rect" id="node11" href="$d0/d15/errors_8c.html#a362b4d026b806baabf4d0654eea096a8" title="Prints a formatted error message based on the provided Error struct and exits the program." alt="" coords="301,427,363,453"/>
+<area shape="rect" id="node3" href="$d8/d00/array__access__format_8c.html#a9b3f35ff5d4a163ac0ce00435cfd2e1a" title="Formats an array access expression into a string representation." alt="" coords="494,5,653,32"/>
+<area shape="rect" id="node7" href="$dd/d3e/declaration__table_8c.html#a6d7cfaa61de7241348ef4a08f55bd9a0" title="Gets the description of a declaration." alt="" coords="472,259,675,285"/>
+</map>

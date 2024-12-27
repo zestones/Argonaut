@@ -1,0 +1,23 @@
+<map id="declaration_variable_start" name="declaration_variable_start">
+<area shape="rect" id="node1" title="Starts the declaration of a variable." alt="" coords="5,419,160,460"/>
+<area shape="rect" id="node2" href="$d2/d71/type__validation_8c.html#ab2be243b7af9ae3fdecace4260ed430d" title="Validates the definition of a type." alt="" coords="227,173,391,199"/>
+<area shape="rect" id="node3" href="$d2/d71/type__validation_8c.html#a2826420c3e7c29f271899a3b50ac40c8" title="Retrieves the declaration index of an array or struct." alt="" coords="457,5,649,47"/>
+<area shape="rect" id="node10" href="$da/d3a/variable__validation_8c.html#a9516a6e44a11928cf63ddf2d18960920" title="Checks if a variable has been redefined." alt="" coords="208,299,409,326"/>
+<area shape="rect" id="node11" href="$d8/d88/region__table_8c.html#a49272dbdea0b5157804dc85964e15469" title="Gets the ID of the current region." alt="" coords="472,477,635,503"/>
+<area shape="rect" id="node14" href="$dd/d3e/declaration__table_8c.html#aaac3e6193717aaccc629ddcb3c678f81" title="Gets the execution information of a declaration." alt="" coords="212,426,405,453"/>
+<area shape="rect" id="node15" href="$d8/d88/region__table_8c.html#a6174d3ae3d2b95fc38b10285c2dd14f9" title="Gets the size of the region at the specified index." alt="" coords="247,477,371,503"/>
+<area shape="rect" id="node16" href="$dd/d3e/declaration__table_8c.html#a9dbc7c59cf6024a86dac39cc77daaac5" title="Inserts a variable declaration into the table." alt="" coords="225,527,392,554"/>
+<area shape="rect" id="node18" href="$d3/d91/region__stack_8c.html#a367ecd3e3c76f083c2ef6b296cfa8030" title="Peeks at the top region of the stack without removing it." alt="" coords="257,578,360,605"/>
+<area shape="rect" id="node21" href="$d8/d88/region__table_8c.html#a36985dd80d85c10f81a505ec691943b8" title="Updates the size of the region at the specified index." alt="" coords="235,629,383,655"/>
+<area shape="rect" id="node5" href="$d0/d15/errors_8c.html#a68d1ccae372534af850e06d48b45d638" title="Returns a formatted string containing the current file, line, and column." alt="" coords="466,173,641,199"/>
+<area shape="rect" id="node6" href="$d0/d92/lexeme__table_8c.html#ab176cfe8b410c1f87237ed115a0d8df4" title="Retrieves the lexeme at the given index." alt="" coords="504,223,603,250"/>
+<area shape="rect" id="node7" href="$d0/d15/errors_8c.html#a4eba1d90a88e13e4b1beada48a1c2b9d" title="Sets the error message of the provided Error struct." alt="" coords="480,274,627,301"/>
+<area shape="rect" id="node8" href="$d0/d15/errors_8c.html#aff32bbfac01af1967382165ffc1d5607" title="Sets the error type of the provided Error struct." alt="" coords="495,71,611,98"/>
+<area shape="rect" id="node9" href="$d0/d15/errors_8c.html#a362b4d026b806baabf4d0654eea096a8" title="Prints a formatted error message based on the provided Error struct and exits the program." alt="" coords="523,122,584,149"/>
+<area shape="rect" id="node4" href="$dc/de9/declaration__table_8h.html#a8d20d657d482952631adde5763e985c8" title="Finds the index of a declaration with the specified lexicographic index and nature...." alt="" coords="697,161,867,203"/>
+<area shape="rect" id="node12" href="$dd/d3e/declaration__table_8c.html#a3a2a92436534333020848016833c3abc" title="Gets the region of a declaration." alt="" coords="468,375,639,402"/>
+<area shape="rect" id="node13" href="$d0/d15/errors_8c.html#acb2bca670a5423d964979952c64603e2" title="Prints a formatted warning message based on the provided Error struct." alt="" coords="518,426,589,453"/>
+<area shape="rect" id="node17" href="$dd/d3e/declaration__table_8c.html#a43c491a0b81e9249ceccebe651dc9a87" title="Inserts a declaration into the table." alt="" coords="484,527,623,554"/>
+<area shape="rect" id="node19" href="$d3/dbb/stack_8c.html#a9cf0786f5f2fb0c4c025b7e9bb552881" title="Peeks at the top value of the stack without popping it." alt="" coords="526,578,581,605"/>
+<area shape="rect" id="node20" href="$d3/dbb/stack_8c.html#aeda5460a4306b1c90f61ac5bf8ba49bc" title="Checks if the stack is empty." alt="" coords="741,578,823,605"/>
+</map>

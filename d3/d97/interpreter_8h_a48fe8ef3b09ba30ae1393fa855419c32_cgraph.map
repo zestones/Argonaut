@@ -1,0 +1,6 @@
+<map id="execute" name="execute">
+<area shape="rect" id="node1" title="Executes the code for a specific region in the program." alt="" coords="5,5,79,32"/>
+<area shape="rect" id="node2" href="$d3/d91/region__stack_8c.html#aab3fe6cdc777770c60f6052868b713c6" title="Pushes a region onto the stack." alt="" coords="127,5,228,32"/>
+<area shape="rect" id="node3" href="$d3/dbb/stack_8c.html#ab8e2bdf44038600ab2a71d4d09d8f11f" title="Pushes a value onto the stack." alt="" coords="276,5,329,32"/>
+<area shape="rect" id="node4" href="$d3/dbb/stack_8c.html#a82adb67aa3f68f9f67a9b88475296933" title="Checks if the stack is full." alt="" coords="377,5,439,32"/>
+</map>

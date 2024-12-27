@@ -1,0 +1,11 @@
+<map id="insert_declaration" name="insert_declaration">
+<area shape="rect" id="node1" title="Inserts a declaration into the table." alt="" coords="457,159,596,186"/>
+<area shape="rect" id="node2" href="$dd/d3e/declaration__table_8c.html#a82aedfbec371408f8aae74830e54ee65" title="Inserts an array declaration into the table." alt="" coords="253,5,391,47"/>
+<area shape="rect" id="node3" href="$dd/d3e/declaration__table_8c.html#a7bea0a38393e4eb7c8f0cf8f8c3cfe87" title="Inserts a function declaration into the table." alt="" coords="235,71,409,98"/>
+<area shape="rect" id="node4" href="$dd/d3e/declaration__table_8c.html#a73848ad30539999525bd2df078e09cf3" title="Inserts a parameter declaration into the table." alt="" coords="253,123,391,164"/>
+<area shape="rect" id="node6" href="$dd/d3e/declaration__table_8c.html#a36829dbee9d5e49770792e5d6c8d8767" title="Inserts a procedure declaration into the table." alt="" coords="235,189,409,215"/>
+<area shape="rect" id="node7" href="$dd/d3e/declaration__table_8c.html#a085b8b7c5cf3c079dff076c466901f7c" title="Inserts a structure declaration into the table." alt="" coords="253,240,391,281"/>
+<area shape="rect" id="node8" href="$dd/d3e/declaration__table_8c.html#a9dbc7c59cf6024a86dac39cc77daaac5" title="Inserts a variable declaration into the table." alt="" coords="239,306,405,333"/>
+<area shape="rect" id="node5" href="$de/d23/variable__manager_8c.html#a0156a227fd1b11089557e8562aabb8dc" title="Starts the declaration of a parameter." alt="" coords="5,130,187,157"/>
+<area shape="rect" id="node9" href="$de/d23/variable__manager_8c.html#af85e197b346ed860553f44112be19c28" title="Starts the declaration of a variable." alt="" coords="19,299,173,340"/>
+</map>

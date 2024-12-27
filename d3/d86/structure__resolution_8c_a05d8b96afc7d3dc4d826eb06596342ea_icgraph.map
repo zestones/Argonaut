@@ -1,0 +1,4 @@
+<map id="resolve_struct_field_access_type" name="resolve_struct_field_access_type">
+<area shape="rect" id="node1" title="Resolves the type of a struct field access expression." alt="" coords="240,5,389,47"/>
+<area shape="rect" id="node2" href="$d6/d4c/assignment__validation_8c.html#afaa433496bef6af1b952c37f239afad2" title="Ensures type compatibility for struct field assignments." alt="" coords="5,13,192,39"/>
+</map>

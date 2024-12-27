@@ -1,0 +1,5 @@
+<map id="peek_region" name="peek_region">
+<area shape="rect" id="node1" title="Peeks at the top region of the stack without removing it." alt="" coords="5,5,108,32"/>
+<area shape="rect" id="node2" href="$d3/dbb/stack_8c.html#a9cf0786f5f2fb0c4c025b7e9bb552881" title="Peeks at the top value of the stack without popping it." alt="" coords="156,5,211,32"/>
+<area shape="rect" id="node3" href="$d3/dbb/stack_8c.html#aeda5460a4306b1c90f61ac5bf8ba49bc" title="Checks if the stack is empty." alt="" coords="259,5,341,32"/>
+</map>

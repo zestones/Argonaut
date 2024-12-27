@@ -1,0 +1,5 @@
+<map id="print_stack" name="print_stack">
+<area shape="rect" id="node1" title="Prints the contents of the stack." alt="" coords="204,31,299,57"/>
+<area shape="rect" id="node2" href="$db/da0/stack__frame_8c.html#a8d775ad4a4f47a5cecb25813efe7597d" title="Prints a detailed representation of a stack frame." alt="" coords="5,5,156,32"/>
+<area shape="rect" id="node3" href="$d3/d91/region__stack_8c.html#ad91a06fc6a49e3090ee66d97e9aa6307" title="Prints the contents of the region stack." alt="" coords="9,56,152,83"/>
+</map>

@@ -1,0 +1,11 @@
+<map id="get_variable_cell" name="get_variable_cell">
+<area shape="rect" id="node1" title="Retrieves the cell associated with a variable from the stack frame." alt="" coords="5,107,139,134"/>
+<area shape="rect" id="node2" href="$d5/dae/stack__management_8c.html#ad941f5518107b482939a3f3592b6c363" title="Finds a stack frame by its region index." alt="" coords="189,5,346,47"/>
+<area shape="rect" id="node4" href="$db/da0/stack__frame_8c.html#ad04921bedac1f51aea05e34be5835875" title="Retrieves the value of a cell from the stack frame." alt="" coords="191,71,344,112"/>
+<area shape="rect" id="node6" href="$dd/d3e/declaration__table_8c.html#a3a2a92436534333020848016833c3abc" title="Gets the region of a declaration." alt="" coords="407,137,578,163"/>
+<area shape="rect" id="node7" href="$d2/dda/address__calculation_8h.html#a72560142cb7fc3731a5a6f6ef2caf77b" title="Computes the address of a variable in the stack frame based on its declaration index." alt="" coords="187,187,348,214"/>
+<area shape="rect" id="node3" href="$d3/dbb/stack_8c.html#a05857cdc7b90e2fbf5d2fb5f050911d3" title="Returns the size of the stack." alt="" coords="469,13,517,39"/>
+<area shape="rect" id="node5" href="$d3/dbb/stack_8c.html#a6b5edf43250cada4964d61ce37603c45" title="Gets the value at a specific index in the stack." alt="" coords="429,78,557,105"/>
+<area shape="rect" id="node8" href="$dd/d3e/declaration__table_8c.html#aaac3e6193717aaccc629ddcb3c678f81" title="Gets the execution information of a declaration." alt="" coords="396,187,589,214"/>
+<area shape="rect" id="node9" href="$d8/d88/region__table_8c.html#a95e102cd58c1b0edad8f6af8aa245761" title=" " alt="" coords="434,238,551,265"/>
+</map>

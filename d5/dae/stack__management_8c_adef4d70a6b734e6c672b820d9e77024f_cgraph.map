@@ -1,0 +1,4 @@
+<map id="fprintf_vm_stack" name="fprintf_vm_stack">
+<area shape="rect" id="node1" title="Prints the contents of the execution stack." alt="" coords="5,5,137,32"/>
+<area shape="rect" id="node2" href="$d3/dbb/stack_8c.html#a05857cdc7b90e2fbf5d2fb5f050911d3" title="Returns the size of the stack." alt="" coords="185,5,233,32"/>
+</map>

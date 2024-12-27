@@ -1,0 +1,7 @@
+<map id="update_cell_in_stack_frame" name="update_cell_in_stack_frame">
+<area shape="rect" id="node1" title="Updates the value of a cell at a given address in the stack frame." alt="" coords="5,74,164,115"/>
+<area shape="rect" id="node2" href="$d3/dbb/stack_8c.html#a6b5edf43250cada4964d61ce37603c45" title="Gets the value at a specific index in the stack." alt="" coords="220,5,348,32"/>
+<area shape="rect" id="node3" href="$d8/d33/vm__cell_8c.html#af56154ed6b8e6d16c839bf3673d0c0e0" title="Retrieves the value from a vm_cell as a pointer." alt="" coords="212,56,356,83"/>
+<area shape="rect" id="node4" href="$d3/dbb/stack_8c.html#a1b24f73b72398f7fa109bfe8f066b083" title="Updates the value at a specific index in the stack." alt="" coords="229,107,339,133"/>
+<area shape="rect" id="node5" href="$d8/d33/vm__cell_8c.html#ad1c4593563f0d439201b43ddebe400c3" title="Updates an existing vm_cell with a new value." alt="" coords="221,157,347,184"/>
+</map>

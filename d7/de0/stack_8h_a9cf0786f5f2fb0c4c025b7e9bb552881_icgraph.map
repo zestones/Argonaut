@@ -1,0 +1,28 @@
+<map id="peek" name="peek">
+<area shape="rect" id="node1" title="Peeks at the top value of the stack without popping it." alt="" coords="2223,265,2277,292"/>
+<area shape="rect" id="node2" href="$d5/dae/stack__management_8c.html#a6927c2ddc620f62226d71cf41951041e" title="Peeks at the top stack frame in a mutable way." alt="" coords="2008,199,2175,241"/>
+<area shape="rect" id="node18" href="$d3/d91/region__stack_8c.html#a367ecd3e3c76f083c2ef6b296cfa8030" title="Peeks at the top region of the stack without removing it." alt="" coords="2040,295,2143,321"/>
+<area shape="rect" id="node3" href="$d5/dae/stack__management_8c.html#a1355ab2e4c983fe8ddae499e1d3f802d" title="Peeks at the top stack frame in a read&#45;only way." alt="" coords="1771,177,1938,204"/>
+<area shape="rect" id="node4" href="$d2/db0/func__proc_8c.html#a2ed75d2b34197485670c11c7832ae9ae" title="Executes a function or procedure call." alt="" coords="1528,236,1701,263"/>
+<area shape="rect" id="node5" href="$d0/d4a/expression_8c.html#a5c3c94fa7fbf1616f99e899c1c765830" title="Resolves an expression from the abstract syntax tree (AST) and returns the corresponding VM cell." alt="" coords="1332,119,1480,145"/>
+<area shape="rect" id="node17" href="$d0/dda/execution_8c.html#af40b7bc766c068584bd2cd69c5841021" title="Stores the return value of a function in the caller&#39;s stack frame." alt="" coords="1529,170,1701,211"/>
+<area shape="rect" id="node12" href="$dc/d30/interpreter_8c.html#ad22185b4006e50b6d4fb026dd83a6bd2" title="Resolves and executes a list of statements." alt="" coords="211,195,382,221"/>
+<area shape="rect" id="node6" href="$d2/dda/address__calculation_8h.html#aba9c6f08a45baa4051d0ea05a5a97d7d" title="Computes the memory address of an array element in the stack frame." alt="" coords="1141,144,1284,171"/>
+<area shape="rect" id="node11" href="$d5/d55/assignement_8c.html#a0aaf8493f8cbefac6d8a6271305f403c" title="Resolves an assignment expression and updates the corresponding variable, array, or structure." alt="" coords="448,195,609,221"/>
+<area shape="rect" id="node16" href="$d2/da4/boolean_8c.html#a4672b6b7d70ece84636b4b7d2f750cde" title="Resolves a boolean expression and returns the resulting boolean value." alt="" coords="193,144,400,171"/>
+<area shape="rect" id="node7" href="$d0/dda/execution_8c.html#adb4a7eee238e55c16dfc8299b854c6b0" title="Retrieves the cell associated with an array element from the stack frame." alt="" coords="946,93,1061,120"/>
+<area shape="rect" id="node8" href="$d2/dda/address__calculation_8h.html#aabb788710f42b02a4dc7053de6a99664" title="Computes the memory address of a specific field within a struct or nested struct." alt="" coords="913,144,1093,171"/>
+<area shape="rect" id="node15" href="$d0/dda/execution_8c.html#af12df05eec384ec6a4e91a31e218386c" title="Updates the memory cell of an array element with a new value." alt="" coords="669,195,853,221"/>
+<area shape="rect" id="node9" href="$d0/dda/execution_8c.html#a672f6a960e586a42b5d13fce0834042f" title="Retrieves the cell associated with a structure field from the stack frame." alt="" coords="703,68,820,95"/>
+<area shape="rect" id="node10" href="$d0/dda/execution_8c.html#a79287a8dfe7d040df2cab424cab86ab7" title="Updates the memory cell of a structure field with a new value." alt="" coords="657,144,865,171"/>
+<area shape="rect" id="node13" href="$dd/d57/condition_8c.html#a7fb8e5acd57b590993223b0c48bed85c" title="Executes a conditional statement (if&#45;else)." alt="" coords="5,144,145,171"/>
+<area shape="rect" id="node14" href="$dd/d57/condition_8c.html#a59a7e582c8a07c7d1407f6bd276d1370" title="Executes a loop statement (while loop)." alt="" coords="21,195,129,221"/>
+<area shape="rect" id="node19" href="$d0/d8b/func__proc__validation_8c.html#a8411cbcac96e774b3d92ba56cd92d927" title="Checks if a function or procedure has been redefined." alt="" coords="1749,345,1960,372"/>
+<area shape="rect" id="node22" href="$d2/d71/type__validation_8c.html#ad0ff0ffaf64af0526cea2fc312001686" title="Checks if a type has been redefined." alt="" coords="1766,396,1943,423"/>
+<area shape="rect" id="node25" href="$de/d23/variable__manager_8c.html#af85e197b346ed860553f44112be19c28" title="Starts the declaration of a variable." alt="" coords="1777,229,1932,270"/>
+<area shape="rect" id="node26" href="$d8/d88/region__table_8c.html#a7c1df0c1c144c34b4089f04c631c3127" title="Gets the NIS of the current region." alt="" coords="1769,295,1940,321"/>
+<area shape="rect" id="node20" href="$dc/d66/func__proc__manager_8c.html#ad308181286b701d8a073ea5416924e1d" title="Starts the declaration of a function." alt="" coords="1531,295,1698,321"/>
+<area shape="rect" id="node21" href="$dc/d66/func__proc__manager_8c.html#a1423e71098aec906db6b648a65845296" title="Starts the declaration of a procedure." alt="" coords="1531,345,1698,372"/>
+<area shape="rect" id="node23" href="$d3/d13/array__manager_8c.html#a2bb30a00cd527c3decfe286173f052e1" title="Starts the declaration of an array." alt="" coords="1528,396,1701,423"/>
+<area shape="rect" id="node24" href="$d1/da1/structure__manager_8c.html#aa577dea532d7d7c93aca4df9fa53235c" title="Starts the declaration of a structure." alt="" coords="1535,447,1695,489"/>
+</map>

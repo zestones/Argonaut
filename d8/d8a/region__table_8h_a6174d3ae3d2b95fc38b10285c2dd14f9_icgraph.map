@@ -1,0 +1,5 @@
+<map id="get_region_size" name="get_region_size">
+<area shape="rect" id="node1" title="Gets the size of the region at the specified index." alt="" coords="235,35,359,61"/>
+<area shape="rect" id="node2" href="$de/d23/variable__manager_8c.html#a0156a227fd1b11089557e8562aabb8dc" title="Starts the declaration of a parameter." alt="" coords="5,5,187,32"/>
+<area shape="rect" id="node3" href="$de/d23/variable__manager_8c.html#af85e197b346ed860553f44112be19c28" title="Starts the declaration of a variable." alt="" coords="19,57,173,98"/>
+</map>

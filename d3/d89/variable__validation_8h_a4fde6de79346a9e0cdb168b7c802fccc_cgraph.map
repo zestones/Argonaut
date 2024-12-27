@@ -1,0 +1,13 @@
+<map id="check_variable_assignment" name="check_variable_assignment">
+<area shape="rect" id="node1" title="Checks if an assinement to a variable is valid." alt="" coords="5,203,208,229"/>
+<area shape="rect" id="node2" href="$dd/d3e/declaration__table_8c.html#a6d7cfaa61de7241348ef4a08f55bd9a0" title="Gets the description of a declaration." alt="" coords="521,5,724,32"/>
+<area shape="rect" id="node3" href="$dd/d3e/declaration__table_8c.html#a0638983c5b6c92d76d08e2cd3e78e96a" title="Gets the lexicographic index of a declaration. The objective is to find the first declaration in the ..." alt="" coords="256,195,473,237"/>
+<area shape="rect" id="node4" href="$d0/d15/errors_8c.html#a68d1ccae372534af850e06d48b45d638" title="Returns a formatted string containing the current file, line, and column." alt="" coords="277,261,452,288"/>
+<area shape="rect" id="node5" href="$d0/d92/lexeme__table_8c.html#ab176cfe8b410c1f87237ed115a0d8df4" title="Retrieves the lexeme at the given index." alt="" coords="315,312,414,339"/>
+<area shape="rect" id="node6" href="$da/d3a/variable__validation_8c.html#a9e6d710dd00724c657461fc6b0618433" title="Retrieves the declaration index of a variable or parameter." alt="" coords="265,363,465,405"/>
+<area shape="rect" id="node8" href="$d2/d18/expression__resolution_8c.html#ad2fa6a52f7590a4fe58adc41e6fab427" title="Resolves the type of an expression." alt="" coords="273,93,457,120"/>
+<area shape="rect" id="node9" href="$d0/d15/errors_8c.html#a4eba1d90a88e13e4b1beada48a1c2b9d" title="Sets the error message of the provided Error struct." alt="" coords="549,81,696,108"/>
+<area shape="rect" id="node10" href="$d0/d15/errors_8c.html#aff32bbfac01af1967382165ffc1d5607" title="Sets the error type of the provided Error struct." alt="" coords="565,139,681,165"/>
+<area shape="rect" id="node11" href="$d0/d15/errors_8c.html#a362b4d026b806baabf4d0654eea096a8" title="Prints a formatted error message based on the provided Error struct and exits the program." alt="" coords="334,429,395,456"/>
+<area shape="rect" id="node7" href="$dc/de9/declaration__table_8h.html#a8d20d657d482952631adde5763e985c8" title="Finds the index of a declaration with the specified lexicographic index and nature...." alt="" coords="538,363,707,405"/>
+</map>

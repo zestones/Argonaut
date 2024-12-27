@@ -1,0 +1,7 @@
+<map id="handle_array_affectation" name="handle_array_affectation">
+<area shape="rect" id="node1" title="Updates the memory cell of an array element with a new value." alt="" coords="621,31,805,57"/>
+<area shape="rect" id="node2" href="$d5/d55/assignement_8c.html#a0aaf8493f8cbefac6d8a6271305f403c" title="Resolves an assignment expression and updates the corresponding variable, array, or structure." alt="" coords="412,31,573,57"/>
+<area shape="rect" id="node3" href="$dc/d30/interpreter_8c.html#ad22185b4006e50b6d4fb026dd83a6bd2" title="Resolves and executes a list of statements." alt="" coords="193,31,364,57"/>
+<area shape="rect" id="node4" href="$dd/d57/condition_8c.html#a7fb8e5acd57b590993223b0c48bed85c" title="Executes a conditional statement (if&#45;else)." alt="" coords="5,5,145,32"/>
+<area shape="rect" id="node5" href="$dd/d57/condition_8c.html#a59a7e582c8a07c7d1407f6bd276d1370" title="Executes a loop statement (while loop)." alt="" coords="21,56,129,83"/>
+</map>

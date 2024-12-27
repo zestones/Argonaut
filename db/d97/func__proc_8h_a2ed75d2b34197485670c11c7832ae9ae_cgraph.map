@@ -1,0 +1,18 @@
+<map id="execute_func_proc_call" name="execute_func_proc_call">
+<area shape="rect" id="node1" title="Executes a function or procedure call." alt="" coords="5,191,179,217"/>
+<area shape="rect" id="node2" href="$db/da0/stack__frame_8c.html#a4ddc71b7efae5e98eea1e6b20a57592f" title="Constructs a new stack frame for the function or procedure call." alt="" coords="238,31,409,57"/>
+<area shape="rect" id="node5" href="$dd/d3e/declaration__table_8c.html#aaac3e6193717aaccc629ddcb3c678f81" title="Gets the execution information of a declaration." alt="" coords="227,81,420,108"/>
+<area shape="rect" id="node6" href="$dd/d3e/declaration__table_8c.html#a3a2a92436534333020848016833c3abc" title="Gets the region of a declaration." alt="" coords="238,132,409,159"/>
+<area shape="rect" id="node7" href="$d5/dae/stack__management_8c.html#aa37045793a2ce4c0f2234c3a78beaaf3" title="Retrieves the ID of the current stack frame." alt="" coords="246,183,401,225"/>
+<area shape="rect" id="node9" href="$d8/d88/region__table_8c.html#ad9273b2a87fbaf444f99ba5be1d06b21" title="Gets the AST of the region at the specified index." alt="" coords="264,249,383,276"/>
+<area shape="rect" id="node10" href="$d5/dae/stack__management_8c.html#a1355ab2e4c983fe8ddae499e1d3f802d" title="Peeks at the top stack frame in a read&#45;only way." alt="" coords="240,300,407,327"/>
+<area shape="rect" id="node14" href="$d5/dae/stack__management_8c.html#ad9bdebeab8090563be1c62dfc07fd665" title="Pushes a new stack frame onto the execution stack." alt="" coords="229,351,418,393"/>
+<area shape="rect" id="node3" href="$d3/dbb/stack_8c.html#a65244e2319afc87bb396f300373e35dc" title="Constructs a new stack." alt="" coords="489,5,613,32"/>
+<area shape="rect" id="node4" href="$d8/d33/vm__cell_8c.html#a204f7bd018dfed72ca842d1f3cae11f1" title="Constructs a vm_cell with a specific type and value." alt="" coords="481,56,621,83"/>
+<area shape="rect" id="node8" href="$d3/dbb/stack_8c.html#a05857cdc7b90e2fbf5d2fb5f050911d3" title="Returns the size of the stack." alt="" coords="527,191,575,217"/>
+<area shape="rect" id="node11" href="$d5/dae/stack__management_8c.html#a6927c2ddc620f62226d71cf41951041e" title="Peeks at the top stack frame in a mutable way." alt="" coords="468,293,635,334"/>
+<area shape="rect" id="node12" href="$d3/dbb/stack_8c.html#a9cf0786f5f2fb0c4c025b7e9bb552881" title="Peeks at the top value of the stack without popping it." alt="" coords="686,300,741,327"/>
+<area shape="rect" id="node13" href="$d3/dbb/stack_8c.html#aeda5460a4306b1c90f61ac5bf8ba49bc" title="Checks if the stack is empty." alt="" coords="792,300,875,327"/>
+<area shape="rect" id="node15" href="$d3/dbb/stack_8c.html#ab8e2bdf44038600ab2a71d4d09d8f11f" title="Pushes a value onto the stack." alt="" coords="525,359,578,385"/>
+<area shape="rect" id="node16" href="$d3/dbb/stack_8c.html#a82adb67aa3f68f9f67a9b88475296933" title="Checks if the stack is full." alt="" coords="683,359,744,385"/>
+</map>

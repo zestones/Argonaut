@@ -1,0 +1,5 @@
+<map id="check_func_proc_redefinition" name="check_func_proc_redefinition">
+<area shape="rect" id="node1" title="Checks if a function or procedure has been redefined." alt="" coords="220,31,431,57"/>
+<area shape="rect" id="node2" href="$dc/d66/func__proc__manager_8c.html#ad308181286b701d8a073ea5416924e1d" title="Starts the declaration of a function." alt="" coords="5,5,172,32"/>
+<area shape="rect" id="node3" href="$dc/d66/func__proc__manager_8c.html#a1423e71098aec906db6b648a65845296" title="Starts the declaration of a procedure." alt="" coords="5,56,172,83"/>
+</map>

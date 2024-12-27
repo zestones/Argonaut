@@ -1,0 +1,4 @@
+<map id="get_arr_struct_declaration_index" name="get_arr_struct_declaration_index">
+<area shape="rect" id="node1" title="Retrieves the declaration index of an array or struct." alt="" coords="5,5,197,47"/>
+<area shape="rect" id="node2" href="$dc/de9/declaration__table_8h.html#a8d20d657d482952631adde5763e985c8" title="Finds the index of a declaration with the specified lexicographic index and nature...." alt="" coords="245,5,415,47"/>
+</map>

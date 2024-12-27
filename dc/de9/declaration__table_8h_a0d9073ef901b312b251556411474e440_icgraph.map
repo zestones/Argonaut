@@ -1,0 +1,5 @@
+<map id="is_declaration_base_type" name="is_declaration_base_type">
+<area shape="rect" id="node1" title="Checks if a declaration is a base type." alt="" coords="417,5,604,32"/>
+<area shape="rect" id="node2" href="$d2/d71/type__validation_8c.html#a5787d66f109d016f22256dc3a5f84435" title="Validates that the lexicographic index is a base type." alt="" coords="235,5,369,32"/>
+<area shape="rect" id="node3" href="$de/d23/variable__manager_8c.html#a0156a227fd1b11089557e8562aabb8dc" title="Starts the declaration of a parameter." alt="" coords="5,5,187,32"/>
+</map>

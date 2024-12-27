@@ -1,0 +1,14 @@
+<map id="handle_variable_affectation" name="handle_variable_affectation">
+<area shape="rect" id="node1" title="Updates the memory cell of a variable with a new value." alt="" coords="5,97,208,123"/>
+<area shape="rect" id="node2" href="$d5/dae/stack__management_8c.html#ad941f5518107b482939a3f3592b6c363" title="Finds a stack frame by its region index." alt="" coords="258,5,415,47"/>
+<area shape="rect" id="node4" href="$dd/d3e/declaration__table_8c.html#a3a2a92436534333020848016833c3abc" title="Gets the region of a declaration." alt="" coords="477,71,647,98"/>
+<area shape="rect" id="node5" href="$d2/dda/address__calculation_8h.html#a72560142cb7fc3731a5a6f6ef2caf77b" title="Computes the address of a variable in the stack frame based on its declaration index." alt="" coords="256,122,417,149"/>
+<area shape="rect" id="node8" href="$db/da0/stack__frame_8c.html#a9152462681f4579e071206125524d4e6" title="Updates the value of a cell at a given address in the stack frame." alt="" coords="257,267,416,308"/>
+<area shape="rect" id="node3" href="$d3/dbb/stack_8c.html#a05857cdc7b90e2fbf5d2fb5f050911d3" title="Returns the size of the stack." alt="" coords="538,13,586,39"/>
+<area shape="rect" id="node6" href="$dd/d3e/declaration__table_8c.html#aaac3e6193717aaccc629ddcb3c678f81" title="Gets the execution information of a declaration." alt="" coords="465,122,659,149"/>
+<area shape="rect" id="node7" href="$d8/d88/region__table_8c.html#a95e102cd58c1b0edad8f6af8aa245761" title=" " alt="" coords="503,173,621,199"/>
+<area shape="rect" id="node9" href="$d3/dbb/stack_8c.html#a6b5edf43250cada4964d61ce37603c45" title="Gets the value at a specific index in the stack." alt="" coords="498,223,626,250"/>
+<area shape="rect" id="node10" href="$d8/d33/vm__cell_8c.html#af56154ed6b8e6d16c839bf3673d0c0e0" title="Retrieves the value from a vm_cell as a pointer." alt="" coords="490,274,634,301"/>
+<area shape="rect" id="node11" href="$d3/dbb/stack_8c.html#a1b24f73b72398f7fa109bfe8f066b083" title="Updates the value at a specific index in the stack." alt="" coords="507,325,617,351"/>
+<area shape="rect" id="node12" href="$d8/d33/vm__cell_8c.html#ad1c4593563f0d439201b43ddebe400c3" title="Updates an existing vm_cell with a new value." alt="" coords="499,375,625,402"/>
+</map>

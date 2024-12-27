@@ -1,0 +1,12 @@
+<map id="func_proc_add_parameter" name="func_proc_add_parameter">
+<area shape="rect" id="node1" title="Adds a parameter to the current function or procedure context." alt="" coords="5,144,196,171"/>
+<area shape="rect" id="node2" href="$dd/d4a/scope__tracker_8c.html#a0b1a199870543c55748b4cc89a4faabd" title="Adds an identifier to the scope tracker." alt="" coords="249,78,425,119"/>
+<area shape="rect" id="node3" href="$d6/da5/scope__validation_8c.html#a01d2012cbc4acbf0920f4060463c2c83" title="Checks if a scope entity has been redefined." alt="" coords="244,144,431,171"/>
+<area shape="rect" id="node10" href="$dd/dfd/representation__table_8c.html#a2768241d745508ed9f9818dfbe366265" title="Inserts a representation into the table." alt="" coords="257,195,418,221"/>
+<area shape="rect" id="node4" href="$d0/d15/errors_8c.html#a68d1ccae372534af850e06d48b45d638" title="Returns a formatted string containing the current file, line, and column." alt="" coords="479,5,653,32"/>
+<area shape="rect" id="node5" href="$d0/d92/lexeme__table_8c.html#ab176cfe8b410c1f87237ed115a0d8df4" title="Retrieves the lexeme at the given index." alt="" coords="517,56,615,83"/>
+<area shape="rect" id="node6" href="$dd/d4a/scope__tracker_8c.html#ab2d26b3fe57f6f284f4c31afb66c6b60" title="Checks if an identifier is already tracked within the current scope." alt="" coords="489,107,643,149"/>
+<area shape="rect" id="node7" href="$d0/d15/errors_8c.html#a4eba1d90a88e13e4b1beada48a1c2b9d" title="Sets the error message of the provided Error struct." alt="" coords="493,173,639,200"/>
+<area shape="rect" id="node8" href="$d0/d15/errors_8c.html#aff32bbfac01af1967382165ffc1d5607" title="Sets the error type of the provided Error struct." alt="" coords="508,224,624,251"/>
+<area shape="rect" id="node9" href="$d0/d15/errors_8c.html#a362b4d026b806baabf4d0654eea096a8" title="Prints a formatted error message based on the provided Error struct and exits the program." alt="" coords="535,275,597,301"/>
+</map>

@@ -1,0 +1,16 @@
+<map id="check_func_proc_argument_list" name="check_func_proc_argument_list">
+<area shape="rect" id="node1" title="Validates the argument list of a function." alt="" coords="5,129,232,156"/>
+<area shape="rect" id="node2" href="$dd/d3e/declaration__table_8c.html#a4dbfeaf06f3a4883c8d357fec6cbcc21" title="Gets the nature of a declaration." alt="" coords="301,5,473,32"/>
+<area shape="rect" id="node3" href="$d0/d8b/func__proc__validation_8c.html#a1165dc252af5075d0e0b35c836d92315" title="Retrieves the declaration index of a function or procedure." alt="" coords="291,57,484,98"/>
+<area shape="rect" id="node5" href="$d7/d12/func__proc__resolution_8c.html#a1de716360bea12bd175b1c2549f7e55d" title="Resolves the number of parameters for a function or procedure." alt="" coords="280,122,495,163"/>
+<area shape="rect" id="node6" href="$d8/df9/argument__validation_8c.html#a5e26809437ee721a34383410eee9e05a" title="Validates the number of arguments provided in a function call." alt="" coords="293,283,481,309"/>
+<area shape="rect" id="node11" href="$d8/df9/argument__validation_8c.html#a54918205825f0889509b660b5fc4db90" title="Validates the type of each argument in a function or procedure call." alt="" coords="296,188,479,215"/>
+<area shape="rect" id="node4" href="$dc/de9/declaration__table_8h.html#a8d20d657d482952631adde5763e985c8" title="Finds the index of a declaration with the specified lexicographic index and nature...." alt="" coords="565,71,735,113"/>
+<area shape="rect" id="node7" href="$d0/d15/errors_8c.html#a68d1ccae372534af850e06d48b45d638" title="Returns a formatted string containing the current file, line, and column." alt="" coords="563,333,737,360"/>
+<area shape="rect" id="node8" href="$d0/d15/errors_8c.html#a4eba1d90a88e13e4b1beada48a1c2b9d" title="Sets the error message of the provided Error struct." alt="" coords="577,384,723,411"/>
+<area shape="rect" id="node9" href="$d0/d15/errors_8c.html#aff32bbfac01af1967382165ffc1d5607" title="Sets the error type of the provided Error struct." alt="" coords="592,232,708,259"/>
+<area shape="rect" id="node10" href="$d0/d15/errors_8c.html#a362b4d026b806baabf4d0654eea096a8" title="Prints a formatted error message based on the provided Error struct and exits the program." alt="" coords="619,283,681,309"/>
+<area shape="rect" id="node12" href="$d7/d12/func__proc__resolution_8c.html#a443b17c469927fff30a597a812997fa7" title="Resolves the type of a specific parameter in a function or procedure." alt="" coords="543,166,757,207"/>
+<area shape="rect" id="node13" href="$dd/d3e/declaration__table_8c.html#a6d7cfaa61de7241348ef4a08f55bd9a0" title="Gets the description of a declaration." alt="" coords="805,144,1008,171"/>
+<area shape="rect" id="node14" href="$dd/dfd/representation__table_8c.html#a64bb130b5e07aeebfd4333567ecc9a0e" title="Retrieves the value of a representation from the table." alt="" coords="834,195,979,237"/>
+</map>

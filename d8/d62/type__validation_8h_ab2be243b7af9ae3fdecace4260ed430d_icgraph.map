@@ -1,0 +1,7 @@
+<map id="check_type_definition" name="check_type_definition">
+<area shape="rect" id="node1" title="Validates the definition of a type." alt="" coords="235,85,399,112"/>
+<area shape="rect" id="node2" href="$d3/d13/array__manager_8c.html#aed3142335b3245bff94bbd4dde0d47f9" title=" " alt="" coords="13,5,179,32"/>
+<area shape="rect" id="node3" href="$de/d23/variable__manager_8c.html#a0156a227fd1b11089557e8562aabb8dc" title="Starts the declaration of a parameter." alt="" coords="5,56,187,83"/>
+<area shape="rect" id="node4" href="$de/d23/variable__manager_8c.html#af85e197b346ed860553f44112be19c28" title="Starts the declaration of a variable." alt="" coords="19,107,173,149"/>
+<area shape="rect" id="node5" href="$d1/da1/structure__manager_8c.html#a91ddb0e97f567e2ee1c85cdf6cb4833c" title="Adds a field to the current structure declaration." alt="" coords="23,173,169,200"/>
+</map>

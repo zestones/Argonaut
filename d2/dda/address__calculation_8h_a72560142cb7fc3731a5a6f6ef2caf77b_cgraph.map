@@ -1,0 +1,6 @@
+<map id="get_variable_address" name="get_variable_address">
+<area shape="rect" id="node1" title="Computes the address of a variable in the stack frame based on its declaration index." alt="" coords="5,56,167,83"/>
+<area shape="rect" id="node2" href="$dd/d3e/declaration__table_8c.html#aaac3e6193717aaccc629ddcb3c678f81" title="Gets the execution information of a declaration." alt="" coords="215,5,408,32"/>
+<area shape="rect" id="node3" href="$dd/d3e/declaration__table_8c.html#a3a2a92436534333020848016833c3abc" title="Gets the region of a declaration." alt="" coords="226,56,397,83"/>
+<area shape="rect" id="node4" href="$d8/d88/region__table_8c.html#a95e102cd58c1b0edad8f6af8aa245761" title=" " alt="" coords="253,107,370,133"/>
+</map>

@@ -1,0 +1,8 @@
+<map id="declaration_func_proc_end" name="declaration_func_proc_end">
+<area shape="rect" id="node1" title="Ends the declaration of a function or procedure." alt="" coords="5,42,201,69"/>
+<area shape="rect" id="node2" href="$dd/d4a/scope__tracker_8c.html#afa589585d342047eba2c603b33953122" title="Clears the scope identifier tracker." alt="" coords="249,5,413,47"/>
+<area shape="rect" id="node3" href="$d8/d88/region__table_8c.html#a3fcd12446a933658f0caaf8180076868" title="Ends the current region." alt="" coords="284,71,379,98"/>
+<area shape="rect" id="node4" href="$d3/d91/region__stack_8c.html#afeb96bf21d57cc73671e0fa178704f63" title="Pops a region from the stack." alt="" coords="461,71,556,98"/>
+<area shape="rect" id="node5" href="$d3/dbb/stack_8c.html#ab9b175f5ea01bed047c29bcdb935a111" title="Pops a value from the stack." alt="" coords="604,71,651,98"/>
+<area shape="rect" id="node6" href="$d3/dbb/stack_8c.html#aeda5460a4306b1c90f61ac5bf8ba49bc" title="Checks if the stack is empty." alt="" coords="699,71,781,98"/>
+</map>

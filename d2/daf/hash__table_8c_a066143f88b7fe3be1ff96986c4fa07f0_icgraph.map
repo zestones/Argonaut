@@ -1,0 +1,5 @@
+<map id="hash_function" name="hash_function">
+<area shape="rect" id="node1" title="Hash function to generate a hash code for a given lexeme." alt="" coords="168,31,281,57"/>
+<area shape="rect" id="node2" href="$d2/daf/hash__table_8c.html#af16a67ad77c4461ceafd3baa3d4c3fea" title="Compute hash code for a given lexeme and insert it into the hash table." alt="" coords="14,5,111,32"/>
+<area shape="rect" id="node3" href="$d0/d92/lexeme__table_8c.html#a60fa759ae85aef60d4a5bf4e8370f185" title="Inserts a lexeme into the lexeme table." alt="" coords="5,56,120,83"/>
+</map>

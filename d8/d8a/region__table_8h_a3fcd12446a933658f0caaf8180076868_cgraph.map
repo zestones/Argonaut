@@ -1,0 +1,6 @@
+<map id="end_region" name="end_region">
+<area shape="rect" id="node1" title="Ends the current region." alt="" coords="5,5,100,32"/>
+<area shape="rect" id="node2" href="$d3/d91/region__stack_8c.html#afeb96bf21d57cc73671e0fa178704f63" title="Pops a region from the stack." alt="" coords="148,5,243,32"/>
+<area shape="rect" id="node3" href="$d3/dbb/stack_8c.html#ab9b175f5ea01bed047c29bcdb935a111" title="Pops a value from the stack." alt="" coords="291,5,337,32"/>
+<area shape="rect" id="node4" href="$d3/dbb/stack_8c.html#aeda5460a4306b1c90f61ac5bf8ba49bc" title="Checks if the stack is empty." alt="" coords="385,5,468,32"/>
+</map>

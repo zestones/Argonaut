@@ -1,0 +1,7 @@
+<map id="pop" name="pop">
+<area shape="rect" id="node1" title="Pops a value from the stack." alt="" coords="640,42,687,69"/>
+<area shape="rect" id="node2" href="$d5/dae/stack__management_8c.html#ac6546d0573834ff166e7b04abeef1599" title="Pops the top stack frame from the execution stack." alt="" coords="392,5,592,47"/>
+<area shape="rect" id="node3" href="$d3/d91/region__stack_8c.html#afeb96bf21d57cc73671e0fa178704f63" title="Pops a region from the stack." alt="" coords="445,71,539,98"/>
+<area shape="rect" id="node4" href="$d8/d88/region__table_8c.html#a3fcd12446a933658f0caaf8180076868" title="Ends the current region." alt="" coords="249,71,344,98"/>
+<area shape="rect" id="node5" href="$dc/d66/func__proc__manager_8c.html#af3dc7c5760795f233da276c3204091e1" title="Ends the declaration of a function or procedure." alt="" coords="5,71,201,98"/>
+</map>

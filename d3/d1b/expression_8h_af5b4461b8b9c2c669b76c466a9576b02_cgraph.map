@@ -1,0 +1,8 @@
+<map id="resolve_arithmetic_operation" name="resolve_arithmetic_operation">
+<area shape="rect" id="node1" title="Resolves an arithmetic operation between two operands and returns the resulting value." alt="" coords="5,99,149,141"/>
+<area shape="rect" id="node2" href="$d8/d33/vm__cell_8c.html#a204f7bd018dfed72ca842d1f3cae11f1" title="Constructs a vm_cell with a specific type and value." alt="" coords="215,5,355,32"/>
+<area shape="rect" id="node3" href="$d0/d15/errors_8c.html#a68d1ccae372534af850e06d48b45d638" title="Returns a formatted string containing the current file, line, and column." alt="" coords="197,56,372,83"/>
+<area shape="rect" id="node4" href="$d0/d15/errors_8c.html#a4eba1d90a88e13e4b1beada48a1c2b9d" title="Sets the error message of the provided Error struct." alt="" coords="211,107,358,133"/>
+<area shape="rect" id="node5" href="$d0/d15/errors_8c.html#aff32bbfac01af1967382165ffc1d5607" title="Sets the error type of the provided Error struct." alt="" coords="227,157,343,184"/>
+<area shape="rect" id="node6" href="$d0/d15/errors_8c.html#a362b4d026b806baabf4d0654eea096a8" title="Prints a formatted error message based on the provided Error struct and exits the program." alt="" coords="254,208,315,235"/>
+</map>

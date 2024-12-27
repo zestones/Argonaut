@@ -1,0 +1,4 @@
+<map id="add_sibling" name="add_sibling">
+<area shape="rect" id="node1" title="Adds a sibling node to the given node." alt="" coords="141,5,237,32"/>
+<area shape="rect" id="node2" href="$d0/d94/lcrs_8c.html#a0041efe2d4fcf5a13ad625876bfa9633" title="Adds a chain of nodes to the given parent node. This function will add the first non&#45;NULL node as the..." alt="" coords="5,5,93,32"/>
+</map>

@@ -1,0 +1,4 @@
+<map id="construct_lexeme" name="construct_lexeme">
+<area shape="rect" id="node1" title="Constructs a new lexeme with the given character sequence, length, and next index." alt="" coords="199,5,336,32"/>
+<area shape="rect" id="node2" href="$d0/d92/lexeme__table_8c.html#aa6c5964ea3704e2b961395d74dd47534" title="Inserts a lexeme row into the lexeme table." alt="" coords="5,5,151,32"/>
+</map>

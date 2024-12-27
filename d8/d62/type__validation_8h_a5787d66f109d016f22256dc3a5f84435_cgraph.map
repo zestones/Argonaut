@@ -1,0 +1,9 @@
+<map id="check_base_type" name="check_base_type">
+<area shape="rect" id="node1" title="Validates that the lexicographic index is a base type." alt="" coords="5,132,140,159"/>
+<area shape="rect" id="node2" href="$d0/d15/errors_8c.html#a68d1ccae372534af850e06d48b45d638" title="Returns a formatted string containing the current file, line, and column." alt="" coords="194,5,369,32"/>
+<area shape="rect" id="node3" href="$d0/d92/lexeme__table_8c.html#ab176cfe8b410c1f87237ed115a0d8df4" title="Retrieves the lexeme at the given index." alt="" coords="232,56,331,83"/>
+<area shape="rect" id="node4" href="$dd/d3e/declaration__table_8c.html#a0d9073ef901b312b251556411474e440" title="Checks if a declaration is a base type." alt="" coords="188,107,375,133"/>
+<area shape="rect" id="node5" href="$d0/d15/errors_8c.html#a4eba1d90a88e13e4b1beada48a1c2b9d" title="Sets the error message of the provided Error struct." alt="" coords="208,157,355,184"/>
+<area shape="rect" id="node6" href="$d0/d15/errors_8c.html#aff32bbfac01af1967382165ffc1d5607" title="Sets the error type of the provided Error struct." alt="" coords="223,208,339,235"/>
+<area shape="rect" id="node7" href="$d0/d15/errors_8c.html#a362b4d026b806baabf4d0654eea096a8" title="Prints a formatted error message based on the provided Error struct and exits the program." alt="" coords="251,259,312,285"/>
+</map>

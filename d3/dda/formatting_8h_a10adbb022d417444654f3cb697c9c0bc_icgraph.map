@@ -1,0 +1,4 @@
+<map id="format_struct_access" name="format_struct_access">
+<area shape="rect" id="node1" title="Formats a struct access expression into a string representation." alt="" coords="240,5,401,32"/>
+<area shape="rect" id="node2" href="$d6/d4c/assignment__validation_8c.html#afaa433496bef6af1b952c37f239afad2" title="Ensures type compatibility for struct field assignments." alt="" coords="5,5,192,32"/>
+</map>

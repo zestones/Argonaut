@@ -1,0 +1,7 @@
+<map id="validate_argument_count" name="validate_argument_count">
+<area shape="rect" id="node1" title="Validates the number of arguments provided in a function call." alt="" coords="5,81,193,108"/>
+<area shape="rect" id="node2" href="$d0/d15/errors_8c.html#a68d1ccae372534af850e06d48b45d638" title="Returns a formatted string containing the current file, line, and column." alt="" coords="241,5,416,32"/>
+<area shape="rect" id="node3" href="$d0/d15/errors_8c.html#a4eba1d90a88e13e4b1beada48a1c2b9d" title="Sets the error message of the provided Error struct." alt="" coords="255,56,402,83"/>
+<area shape="rect" id="node4" href="$d0/d15/errors_8c.html#aff32bbfac01af1967382165ffc1d5607" title="Sets the error type of the provided Error struct." alt="" coords="271,107,387,133"/>
+<area shape="rect" id="node5" href="$d0/d15/errors_8c.html#a362b4d026b806baabf4d0654eea096a8" title="Prints a formatted error message based on the provided Error struct and exits the program." alt="" coords="298,157,359,184"/>
+</map>

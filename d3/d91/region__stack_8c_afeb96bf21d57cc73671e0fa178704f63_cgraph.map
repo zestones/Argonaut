@@ -1,0 +1,5 @@
+<map id="pop_region" name="pop_region">
+<area shape="rect" id="node1" title="Pops a region from the stack." alt="" coords="5,5,100,32"/>
+<area shape="rect" id="node2" href="$d3/dbb/stack_8c.html#ab9b175f5ea01bed047c29bcdb935a111" title="Pops a value from the stack." alt="" coords="148,5,195,32"/>
+<area shape="rect" id="node3" href="$d3/dbb/stack_8c.html#aeda5460a4306b1c90f61ac5bf8ba49bc" title="Checks if the stack is empty." alt="" coords="243,5,325,32"/>
+</map>

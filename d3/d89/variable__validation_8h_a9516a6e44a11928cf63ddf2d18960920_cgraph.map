@@ -1,0 +1,12 @@
+<map id="check_variable_redefinition" name="check_variable_redefinition">
+<area shape="rect" id="node1" title="Checks if a variable has been redefined." alt="" coords="5,223,207,250"/>
+<area shape="rect" id="node2" href="$dc/de9/declaration__table_8h.html#a8d20d657d482952631adde5763e985c8" title="Finds the index of a declaration with the specified lexicographic index and nature...." alt="" coords="257,5,427,47"/>
+<area shape="rect" id="node3" href="$d8/d88/region__table_8c.html#a49272dbdea0b5157804dc85964e15469" title="Gets the ID of the current region." alt="" coords="261,71,423,98"/>
+<area shape="rect" id="node4" href="$dd/d3e/declaration__table_8c.html#a3a2a92436534333020848016833c3abc" title="Gets the region of a declaration." alt="" coords="257,122,427,149"/>
+<area shape="rect" id="node5" href="$d0/d15/errors_8c.html#a68d1ccae372534af850e06d48b45d638" title="Returns a formatted string containing the current file, line, and column." alt="" coords="255,173,429,199"/>
+<area shape="rect" id="node6" href="$d0/d92/lexeme__table_8c.html#ab176cfe8b410c1f87237ed115a0d8df4" title="Retrieves the lexeme at the given index." alt="" coords="293,223,391,250"/>
+<area shape="rect" id="node7" href="$d0/d15/errors_8c.html#a4eba1d90a88e13e4b1beada48a1c2b9d" title="Sets the error message of the provided Error struct." alt="" coords="269,274,415,301"/>
+<area shape="rect" id="node8" href="$d0/d15/errors_8c.html#aff32bbfac01af1967382165ffc1d5607" title="Sets the error type of the provided Error struct." alt="" coords="284,325,400,351"/>
+<area shape="rect" id="node9" href="$d0/d15/errors_8c.html#a362b4d026b806baabf4d0654eea096a8" title="Prints a formatted error message based on the provided Error struct and exits the program." alt="" coords="311,375,373,402"/>
+<area shape="rect" id="node10" href="$d0/d15/errors_8c.html#acb2bca670a5423d964979952c64603e2" title="Prints a formatted warning message based on the provided Error struct." alt="" coords="307,426,377,453"/>
+</map>

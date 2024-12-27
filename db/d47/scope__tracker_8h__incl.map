@@ -1,0 +1,24 @@
+<map id="src/utils/scope_tracker.h" name="src/utils/scope_tracker.h">
+<area shape="rect" id="node1" title=" " alt="" coords="228,5,407,32"/>
+<area shape="rect" id="node2" href="$d5/d60/utils_8h.html" title=" " alt="" coords="970,80,1033,107"/>
+<area shape="rect" id="node17" href="$dc/de9/declaration__table_8h.html" title="Header file for managing a table of declarations in a compiler." alt="" coords="84,437,260,493"/>
+<area shape="rect" id="node3" href="$d2/dd9/semantic__checks_8h.html" title="This file contains the aggregated header file for the semantic checks module." alt="" coords="624,155,779,196"/>
+<area shape="rect" id="node8" href="$de/d45/errors_8h.html" title=" " alt="" coords="649,541,765,568"/>
+<area shape="rect" id="node4" href="$d0/df0/assignment__validation_8h.html" title=" " alt="" coords="554,348,785,389"/>
+<area shape="rect" id="node14" href="$d9/d3f/condition__validation_8h.html" title=" " alt="" coords="993,251,1192,293"/>
+<area shape="rect" id="node15" href="$d1/d79/func__proc__validation_8h.html" title=" " alt="" coords="175,244,359,300"/>
+<area shape="rect" id="node19" href="$de/dd3/predefined_8h.html" title=" " alt="" coords="330,348,530,389"/>
+<area shape="rect" id="node20" href="$d3/d89/variable__validation_8h.html" title=" " alt="" coords="860,348,1044,389"/>
+<area shape="rect" id="node21" href="$de/d19/scope__validation_8h.html" title=" " alt="" coords="814,251,968,293"/>
+<area shape="rect" id="node22" href="$d8/d62/type__validation_8h.html" title=" " alt="" coords="518,259,738,285"/>
+<area shape="rect" id="node5" href="$d1/dcf/validation__utils_8h.html" title=" " alt="" coords="596,452,743,479"/>
+<area shape="rect" id="node11" href="$db/df0/ast_8h.html" title=" " alt="" coords="333,452,436,479"/>
+<area shape="rect" id="node6" title=" " alt="" coords="570,616,636,643"/>
+<area shape="rect" id="node7" title=" " alt="" coords="468,616,538,643"/>
+<area shape="rect" id="node9" title=" " alt="" coords="664,616,739,643"/>
+<area shape="rect" id="node10" title=" " alt="" coords="763,616,880,643"/>
+<area shape="rect" id="node12" href="$d5/d1e/node__type_8h.html" title=" " alt="" coords="336,616,438,643"/>
+<area shape="rect" id="node13" href="$d0/dea/lcrs_8h.html" title=" " alt="" coords="414,541,472,568"/>
+<area shape="rect" id="node16" href="$df/d79/argument__validation_8h.html" title=" " alt="" coords="45,348,204,389"/>
+<area shape="rect" id="node18" title=" " alt="" coords="210,541,281,568"/>
+</map>

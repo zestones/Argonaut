@@ -1,0 +1,11 @@
+<map id="resolve_expression_type" name="resolve_expression_type">
+<area shape="rect" id="node1" title="Resolves the type of an expression." alt="" coords="460,157,644,184"/>
+<area shape="rect" id="node2" href="$d6/d4c/assignment__validation_8c.html#adafad0061063a9ae298f6233978de3b1" title="Validates type compatibility for array assignments." alt="" coords="204,5,388,32"/>
+<area shape="rect" id="node3" href="$d0/d8b/func__proc__validation_8c.html#ae8847b0a477fa9ae2766940f78a5c90f" title="Validates the return statement of a function." alt="" coords="213,56,379,83"/>
+<area shape="rect" id="node4" href="$dd/d08/input__validation_8c.html#ad3dd17f0853fcdf49904fd5847b0e4b3" title="Validates the arguments provided to an input&#45;like procedure against a format string." alt="" coords="180,107,412,133"/>
+<area shape="rect" id="node5" href="$de/dd3/predefined_8h.html#a2e389d9645c7b92911f4c86af31b14a8" title="Validates the arguments provided to a print&#45;like procedure against a format string." alt="" coords="181,157,411,184"/>
+<area shape="rect" id="node6" href="$d6/d4c/assignment__validation_8c.html#afaa433496bef6af1b952c37f239afad2" title="Ensures type compatibility for struct field assignments." alt="" coords="203,208,389,235"/>
+<area shape="rect" id="node7" href="$d6/d4c/assignment__validation_8c.html#a4fde6de79346a9e0cdb168b7c802fccc" title="Checks type compatibility during variable assignments." alt="" coords="195,259,397,285"/>
+<area shape="rect" id="node8" href="$d6/dbc/condition__resolution_8c.html#a7af42b525181329829b7ed96a0cca487" title="Resolves the type of a condition expression." alt="" coords="209,309,383,336"/>
+<area shape="rect" id="node9" href="$d6/d35/condition__validation_8c.html#a71704b89d5560a369eccc90b03ee22eb" title="Validates the type of a condition expression." alt="" coords="5,309,132,336"/>
+</map>

@@ -1,0 +1,5 @@
+<map id="resolve_field_access" name="resolve_field_access">
+<area shape="rect" id="node1" title="Resolves the access to a field within a struct." alt="" coords="5,35,161,61"/>
+<area shape="rect" id="node2" href="$dd/d3e/declaration__table_8c.html#a6d7cfaa61de7241348ef4a08f55bd9a0" title="Gets the description of a declaration." alt="" coords="209,5,412,32"/>
+<area shape="rect" id="node3" href="$dd/dfd/representation__table_8c.html#a64bb130b5e07aeebfd4333567ecc9a0e" title="Retrieves the value of a representation from the table." alt="" coords="238,57,383,98"/>
+</map>

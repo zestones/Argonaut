@@ -1,0 +1,5 @@
+<map id="get_struct_field_count" name="get_struct_field_count">
+<area shape="rect" id="node1" title="Retrieves the total number of fields in a struct." alt="" coords="5,35,171,61"/>
+<area shape="rect" id="node2" href="$dd/d3e/declaration__table_8c.html#a6d7cfaa61de7241348ef4a08f55bd9a0" title="Gets the description of a declaration." alt="" coords="219,5,421,32"/>
+<area shape="rect" id="node3" href="$dd/dfd/representation__table_8c.html#a64bb130b5e07aeebfd4333567ecc9a0e" title="Retrieves the value of a representation from the table." alt="" coords="247,57,393,98"/>
+</map>

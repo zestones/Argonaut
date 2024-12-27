@@ -1,0 +1,6 @@
+<map id="resolve_func_proc_return_type" name="resolve_func_proc_return_type">
+<area shape="rect" id="node1" title="Resolves the return type of a function or procedure call." alt="" coords="5,56,228,83"/>
+<area shape="rect" id="node2" href="$dd/d3e/declaration__table_8c.html#a6d7cfaa61de7241348ef4a08f55bd9a0" title="Gets the description of a declaration." alt="" coords="276,5,479,32"/>
+<area shape="rect" id="node3" href="$dd/d3e/declaration__table_8c.html#a4dbfeaf06f3a4883c8d357fec6cbcc21" title="Gets the nature of a declaration." alt="" coords="291,56,463,83"/>
+<area shape="rect" id="node4" href="$dd/dfd/representation__table_8c.html#a64bb130b5e07aeebfd4333567ecc9a0e" title="Retrieves the value of a representation from the table." alt="" coords="305,107,450,149"/>
+</map>

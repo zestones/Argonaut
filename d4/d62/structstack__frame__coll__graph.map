@@ -1,0 +1,5 @@
+<map id="stack_frame" name="stack_frame">
+<area shape="rect" id="node1" title=" " alt="" coords="35,248,159,355"/>
+<area shape="rect" id="node2" href="$d7/d17/structStack.html" title="A structure to represent a stack." alt="" coords="5,49,72,141"/>
+<area shape="rect" id="node3" href="$d4/d79/structvm__cell.html" title="Struct representing a cell in the virtual machine." alt="" coords="97,5,215,185"/>
+</map>

@@ -1,0 +1,4 @@
+<map id="get_stack_frame_by_id" name="get_stack_frame_by_id">
+<area shape="rect" id="node1" title="Retrieves a stack frame by its ID." alt="" coords="225,13,399,39"/>
+<area shape="rect" id="node2" href="$d0/dda/execution_8c.html#af40b7bc766c068584bd2cd69c5841021" title="Stores the return value of a function in the caller&#39;s stack frame." alt="" coords="5,5,177,47"/>
+</map>

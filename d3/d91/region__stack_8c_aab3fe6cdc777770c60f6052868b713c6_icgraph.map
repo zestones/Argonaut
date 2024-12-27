@@ -1,0 +1,4 @@
+<map id="push_region" name="push_region">
+<area shape="rect" id="node1" title="Pushes a region onto the stack." alt="" coords="127,5,228,32"/>
+<area shape="rect" id="node2" href="$dc/d30/interpreter_8c.html#a48fe8ef3b09ba30ae1393fa855419c32" title="Executes the code for a specific region in the program." alt="" coords="5,5,79,32"/>
+</map>

@@ -1,0 +1,4 @@
+<map id="handle_variable_declaration" name="handle_variable_declaration">
+<area shape="rect" id="node1" title="Handles the declaration of a variable by allocating memory in the stack frame." alt="" coords="5,5,212,32"/>
+<area shape="rect" id="node2" href="$dd/d3e/declaration__table_8c.html#a6d7cfaa61de7241348ef4a08f55bd9a0" title="Gets the description of a declaration." alt="" coords="260,5,463,32"/>
+</map>

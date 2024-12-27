@@ -1,0 +1,15 @@
+<map id="get_variable_cell" name="get_variable_cell">
+<area shape="rect" id="node1" title="Retrieves the cell associated with a variable from the stack frame." alt="" coords="1528,93,1661,120"/>
+<area shape="rect" id="node2" href="$d2/da4/boolean_8c.html#a4672b6b7d70ece84636b4b7d2f750cde" title="Resolves a boolean expression and returns the resulting boolean value." alt="" coords="1077,43,1284,69"/>
+<area shape="rect" id="node6" href="$d0/d4a/expression_8c.html#a5c3c94fa7fbf1616f99e899c1c765830" title="Resolves an expression from the abstract syntax tree (AST) and returns the corresponding VM cell." alt="" coords="1332,119,1480,145"/>
+<area shape="rect" id="node3" href="$dd/d57/condition_8c.html#a7fb8e5acd57b590993223b0c48bed85c" title="Executes a conditional statement (if&#45;else)." alt="" coords="391,43,531,69"/>
+<area shape="rect" id="node5" href="$dd/d57/condition_8c.html#a59a7e582c8a07c7d1407f6bd276d1370" title="Executes a loop statement (while loop)." alt="" coords="5,43,113,69"/>
+<area shape="rect" id="node4" href="$dc/d30/interpreter_8c.html#ad22185b4006e50b6d4fb026dd83a6bd2" title="Resolves and executes a list of statements." alt="" coords="161,43,332,69"/>
+<area shape="rect" id="node7" href="$d2/dda/address__calculation_8h.html#aba9c6f08a45baa4051d0ea05a5a97d7d" title="Computes the memory address of an array element in the stack frame." alt="" coords="1109,195,1252,221"/>
+<area shape="rect" id="node12" href="$d5/d55/assignement_8c.html#a0aaf8493f8cbefac6d8a6271305f403c" title="Resolves an assignment expression and updates the corresponding variable, array, or structure." alt="" coords="380,220,541,247"/>
+<area shape="rect" id="node8" href="$d0/dda/execution_8c.html#adb4a7eee238e55c16dfc8299b854c6b0" title="Retrieves the cell associated with an array element from the stack frame." alt="" coords="880,144,995,171"/>
+<area shape="rect" id="node9" href="$d2/dda/address__calculation_8h.html#aabb788710f42b02a4dc7053de6a99664" title="Computes the memory address of a specific field within a struct or nested struct." alt="" coords="847,195,1027,221"/>
+<area shape="rect" id="node13" href="$d0/dda/execution_8c.html#af12df05eec384ec6a4e91a31e218386c" title="Updates the memory cell of an array element with a new value." alt="" coords="845,245,1029,272"/>
+<area shape="rect" id="node10" href="$d0/dda/execution_8c.html#a672f6a960e586a42b5d13fce0834042f" title="Retrieves the cell associated with a structure field from the stack frame." alt="" coords="635,119,752,145"/>
+<area shape="rect" id="node11" href="$d0/dda/execution_8c.html#a79287a8dfe7d040df2cab424cab86ab7" title="Updates the memory cell of a structure field with a new value." alt="" coords="589,195,797,221"/>
+</map>

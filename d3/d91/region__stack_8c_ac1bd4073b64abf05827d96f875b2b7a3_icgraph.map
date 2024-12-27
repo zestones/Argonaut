@@ -1,0 +1,4 @@
+<map id="init_stack_region" name="init_stack_region">
+<area shape="rect" id="node1" title="Initializes the region stack." alt="" coords="132,5,265,32"/>
+<area shape="rect" id="node2" href="$dc/d30/interpreter_8c.html#aeec8fb0aa4c6922ab518df077d175f1c" title="Interprets and executes the entire program." alt="" coords="5,5,84,32"/>
+</map>

@@ -1,0 +1,8 @@
+<map id="execute_input" name="execute_input">
+<area shape="rect" id="node1" title="Executes the input function for reading values from the user." alt="" coords="5,107,119,133"/>
+<area shape="rect" id="node2" href="$d8/d33/vm__cell_8c.html#a204f7bd018dfed72ca842d1f3cae11f1" title="Constructs a vm_cell with a specific type and value." alt="" coords="186,5,326,32"/>
+<area shape="rect" id="node3" href="$d3/d0b/format__specifiers_8c.html#ab8157ee86e6f658fb1addd4e04d8a251" title=" " alt="" coords="179,56,333,83"/>
+<area shape="rect" id="node4" href="$d3/d0b/format__specifiers_8c.html#aa3bd2af21a2a8bd415d215650068d075" title=" " alt="" coords="167,107,345,133"/>
+<area shape="rect" id="node5" href="$d0/d92/lexeme__table_8c.html#ab176cfe8b410c1f87237ed115a0d8df4" title="Retrieves the lexeme at the given index." alt="" coords="207,157,305,184"/>
+<area shape="rect" id="node6" href="$d3/d0b/format__specifiers_8c.html#a113efa8189fcca50b4c3204eec206e49" title=" " alt="" coords="205,208,307,235"/>
+</map>

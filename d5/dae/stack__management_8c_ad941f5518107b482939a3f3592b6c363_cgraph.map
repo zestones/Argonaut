@@ -1,0 +1,4 @@
+<map id="find_stack_frame_by_region_index" name="find_stack_frame_by_region_index">
+<area shape="rect" id="node1" title="Finds a stack frame by its region index." alt="" coords="5,5,163,47"/>
+<area shape="rect" id="node2" href="$d3/dbb/stack_8c.html#a05857cdc7b90e2fbf5d2fb5f050911d3" title="Returns the size of the stack." alt="" coords="211,13,259,39"/>
+</map>

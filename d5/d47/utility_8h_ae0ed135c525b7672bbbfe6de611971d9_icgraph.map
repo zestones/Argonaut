@@ -1,0 +1,7 @@
+<map id="export_table" name="export_table">
+<area shape="rect" id="node1" title="Exports a table to a file in a formatted manner." alt="" coords="220,97,324,123"/>
+<area shape="rect" id="node2" href="$dd/d3e/declaration__table_8c.html#a090226adc8a63caaf2898770b00f14f4" title="Exports the declaration table to a file." alt="" coords="17,5,161,47"/>
+<area shape="rect" id="node3" href="$d0/d92/lexeme__table_8c.html#af503dbe0662040985961da17242c7391" title="Exports the lexeme table to a file." alt="" coords="9,71,168,98"/>
+<area shape="rect" id="node4" href="$d8/d88/region__table_8c.html#abb76b8b6574ad753470bfcc8047301ec" title="Exports the region table to a file." alt="" coords="13,122,165,149"/>
+<area shape="rect" id="node5" href="$dd/dfd/representation__table_8c.html#a1eadd295dc83591d03cd876d70bb98a0" title="Exports the representation table to a file." alt="" coords="5,173,172,215"/>
+</map>
