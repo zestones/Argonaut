@@ -9,6 +9,24 @@
 #include "execution.h"
 
 
+/**
+ * @brief Allocates memory in the stack frame for a variable based on its type declaration.
+ *
+ * This function recursively allocates the required memory for variables, including 
+ * primitive types, arrays, and structs. It handles complex types by traversing their 
+ * structure and allocating memory for each component.
+ *
+ * @param index_type_declaration The index of the type declaration for the variable. 
+ *        This is used to determine the nature and structure of the type.
+ *
+ * @details
+ * - For base types (e.g., integers, floats), the function allocates the necessary 
+ *   stack space directly.
+ * - For arrays, the function recursively allocates memory for each element based 
+ *   on the array's size and element type.
+ * - For structs, the function iterates over each field in the struct and allocates 
+ *   memory according to the field's type declaration.
+ */
 static void declare_variable(int index_type_declaration) {
     if (is_declaration_base_type(index_type_declaration)) {
         allocate_cells_to_stack_frame(peek_execution_stack_as_mutable(), get_declaration_description(index_type_declaration), get_declaration_execution(index_type_declaration));

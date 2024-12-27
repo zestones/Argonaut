@@ -10,7 +10,15 @@
 #include "../interpreter.h"
 #include "func_proc.h"
 
-
+/**
+ * @brief Helper function to handle parameters in function and procedure calls.
+ * We prepare the stack frame for the function or procedure call by handling the parameters.
+ * By allocating memory for the parameters and updating the values in the stack frame, we 
+ * ensure that the function or procedure can access the arguments passed to it.
+ * 
+ * @param parameter_list 
+ * @param argument_list 
+ */
 static void handle_parameters(AST parameter_list, AST argument_list) {
     if (parameter_list->type != A_PARAMETER_LIST || argument_list->type != A_ARGUMENT_LIST) return;
 
@@ -18,23 +26,16 @@ static void handle_parameters(AST parameter_list, AST argument_list) {
     Node *arg_node = argument_list->child;
     stack_frame *current_frame = peek_execution_stack_as_mutable();
 
-    // Traverse both trees simultaneously
     while (param_node != NULL && arg_node != NULL) {
         if (param_node->type == A_PARAMETER && arg_node->type == A_ARGUMENT) {
-            // Handle the parameter declaration
             handle_variable_declaration(param_node->index_declaration);
 
-            // Resolve the argument's expression
             vm_cell cell = resolve_expression(arg_node->child);
-
-            // Get the variable address for the declared parameter
             int address = get_variable_address(param_node->index_declaration);
 
-            // Update the stack frame with the resolved value
             update_cell_in_stack_frame(current_frame, address, cell);
         }
 
-        // Move to the next parameter and argument
         param_node = param_node->sibling;
         arg_node = arg_node->sibling;
     }
