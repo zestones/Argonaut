@@ -9,6 +9,7 @@
         "region_table.h": "c",
         "lexeme_table.h": "c",
         "interpreter.h": "c",
-        "stack.h": "c"
+        "stack.h": "c",
+        "type_inference.h": "c"
     }
 }
