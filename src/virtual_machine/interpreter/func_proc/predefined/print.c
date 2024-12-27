@@ -13,6 +13,24 @@
 #define BUFFER_SIZE 1024
 
 
+/**
+ * @brief Processes a format string and fills a buffer with formatted argument values.
+ *
+ * This function iterates through the format string and resolves the arguments specified in the 
+ * argument list. It supports the following format specifiers:
+ * - `%d` for integers.
+ * - `%f` for floating-point numbers.
+ * - `%s` for strings.
+ * - `%c` for characters.
+ *
+ * The function matches each format specifier with the corresponding argument and appends 
+ * the formatted value to the buffer. If an argument is missing for a specifier or an invalid 
+ * format specifier is encountered, an error is printed and the function returns early.
+ *
+ * @param format A pointer to the format string specifying the argument types and layout.
+ * @param arg_list A pointer to the AST node representing the argument list.
+ * @param buffer A pointer to the buffer where the formatted result will be stored.
+ */
 static void process_format_string(const char *format, AST arg_list, char *buffer) {
     char *buffer_ptr = buffer;
     int format_idx = 0;

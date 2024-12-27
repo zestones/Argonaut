@@ -9,6 +9,16 @@
 #include "../core/execution.h"
 #include "interpreter.h"
 
+/**
+ * @brief Resolves a list of variable declarations.
+ * 
+ * This function processes a list of declarations (typically found in a program's 
+ * declaration section) and handles the declaration of each variable. It iterates through 
+ * the list of declarations, calling `handle_variable_declaration` for each variable 
+ * declaration encountered.
+ * 
+ * @param declaration_list A pointer to the AST node representing the list of declarations.
+ */
 static void resolve_declaration_list(Node *declaration_list) {
     if (declaration_list == NULL) return;
 
@@ -61,8 +71,18 @@ void resolve_statement_list(AST statement_list) {
     resolve_statement_list(statement_list->sibling);
 }
 
-
-void interpret_ast(AST ast) {
+/**
+ * @brief Interprets an Abstract Syntax Tree (AST) of the program.
+ * 
+ * This function is the entry point for interpreting an AST representing a program or 
+ * a block of code. It recursively processes the AST nodes and resolves declarations, 
+ * executes statements, and handles function returns. The function dispatches the execution 
+ * based on the type of AST node, calling relevant functions for declarations, statements, 
+ * and returns.
+ * 
+ * @param ast A pointer to the root AST node to be interpreted.
+ */
+static void interpret_ast(AST ast) {
     if (ast == NULL) return;
 
     switch (ast->type) {
@@ -106,6 +126,13 @@ void execute(int region_index) {
     pop_frame_from_execution_stack();
 }
 
+/**
+ * @brief Executes the global program (entry point).
+ * 
+ * This function starts the execution of the global program by pushing the global region 
+ * to the execution stack and interpreting the corresponding AST. After the execution, 
+ * it pops the region and the frame from the stack.
+ */
 static void execute_global_program() {
     int program_region = 0;
 

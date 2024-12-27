@@ -12,12 +12,17 @@
 
 /**
  * @brief Helper function to handle parameters in function and procedure calls.
- * We prepare the stack frame for the function or procedure call by handling the parameters.
- * By allocating memory for the parameters and updating the values in the stack frame, we 
- * ensure that the function or procedure can access the arguments passed to it.
  * 
- * @param parameter_list 
- * @param argument_list 
+ * This function prepares the stack frame for the function or procedure call by processing 
+ * the parameters. It allocates memory for the parameters and updates their values in the stack 
+ * frame, ensuring the function or procedure can access the arguments passed to it.
+ * 
+ * The function iterates through the parameter list and argument list, matching parameters with 
+ * corresponding arguments. For each pair, it resolves the argument expression, handles the parameter 
+ * declaration, and updates the stack frame with the resolved argument value.
+ * 
+ * @param parameter_list A pointer to the AST node representing the parameter list of the function or procedure.
+ * @param argument_list A pointer to the AST node representing the argument list passed in the function or procedure call.
  */
 static void handle_parameters(AST parameter_list, AST argument_list) {
     if (parameter_list->type != A_PARAMETER_LIST || argument_list->type != A_ARGUMENT_LIST) return;

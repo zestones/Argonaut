@@ -6,6 +6,8 @@
         "variable_manager.h": "c",
         "cstdlib": "c",
         "execution.h": "c",
-        "region_table.h": "c"
+        "region_table.h": "c",
+        "lexeme_table.h": "c",
+        "interpreter.h": "c"
     }
 }

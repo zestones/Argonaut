@@ -18,7 +18,6 @@ void execute_condition(AST ast) {
     }
 }
 
-
 void execute_loop(AST ast) {
     int is_while = (ast->type == A_WHILE);
     vm_cell condition = resolve_boolean_expression(ast->child->child);
