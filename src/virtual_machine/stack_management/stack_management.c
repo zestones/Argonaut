@@ -26,10 +26,6 @@ stack_frame pop_frame_from_execution_stack() {
     return *(stack_frame *) pop(&execution_stack);
 }
 
-int get_execution_stack_current_frame_id() {
-    return size(execution_stack) - 1;
-}
-
 stack_frame *get_stack_frame_by_id(int id) {
     return (stack_frame *) get_stack_value(execution_stack, id);
 }
@@ -42,6 +38,10 @@ stack_frame *find_stack_frame_by_region_index(int region_index) {
 
     printf("Error no stack frame found ! (find_stack_frame_by_region_index)\n");
     exit(EXIT_FAILURE);
+}
+
+int get_execution_stack_current_frame_id() {
+    return size(execution_stack) - 1;
 }
 
 void fprintf_vm_stack(FILE *out) {

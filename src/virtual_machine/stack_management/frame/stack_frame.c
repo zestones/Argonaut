@@ -15,7 +15,17 @@ stack_frame construct_stack_frame(int static_link, int dynamic_link, int region_
     return frame;
 }
 
-void add_cell_to_stack_frame(stack_frame *frame, int type, void *value) {
+/**
+ * @brief Adds a new cell to the stack frame's stack.
+ * 
+ * This function adds a new cell of the specified type to the stack of a given stack frame. 
+ * It is used to allocate space for variables and values in the stack frame.
+ * 
+ * @param frame A pointer to the stack frame to which the cell will be added.
+ * @param type The type of the cell to be added.
+ * @param value A pointer to the value that the cell will hold (currently not used).
+ */
+static void add_cell_to_stack_frame(stack_frame *frame, int type, void *value) {
     vm_cell cell = construct_vm_cell(type, NULL);
     push(&frame->cells, &cell, sizeof(vm_cell));
 }
