@@ -36,6 +36,18 @@ void handle_variable_declaration(int index_declaration) {
     declare_variable(index_type_declaration);
 }
 
+vm_cell get_struct_cell(Node *struct_access) {
+    int address = get_struct_field_address(struct_access, NULL_VALUE, NULL_VALUE);
+    stack_frame *frame = find_stack_frame_by_region_index(get_declaration_region(struct_access->index_declaration));
+    return get_cell_from_stack_frame(*frame, address);
+}
+
+vm_cell get_array_cell(Node *arra_access) {
+    int address = get_array_address(arra_access, NULL_VALUE);
+    stack_frame *frame = find_stack_frame_by_region_index(get_declaration_region(arra_access->index_declaration));
+    return get_cell_from_stack_frame(*frame, address);
+}
+
 vm_cell get_variable_cell(int index_declaration) {
     int address = get_variable_address(index_declaration);
     int region = get_declaration_region(index_declaration);

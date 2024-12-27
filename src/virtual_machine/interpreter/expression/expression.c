@@ -67,17 +67,11 @@ vm_cell resolve_expression(Node *expression) {
             return resolve_arithmetic_operation(expression->type, left, right);
         }
 
-        case A_ARRAY_ACCESS: {
-            int address = get_array_address(expression, NULL_VALUE);
-            stack_frame *frame = find_stack_frame_by_region_index(get_declaration_region(expression->index_declaration));
-            return get_cell_from_stack_frame(*frame, address);
-        }
+        case A_ARRAY_ACCESS:
+            return get_array_cell(expression);
 
-        case A_STRUCT_FIELD_ACCESS: {
-            int address = get_struct_field_address(expression, NULL_VALUE, NULL_VALUE);
-            stack_frame *frame = find_stack_frame_by_region_index(get_declaration_region(expression->index_declaration));
-            return get_cell_from_stack_frame(*frame, address);
-        } 
+        case A_STRUCT_FIELD_ACCESS:
+            return get_struct_cell(expression);
 
         case A_FUNC_PROC_CALL_STATEMENT: {
             execute_func_proc_call(expression);

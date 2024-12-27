@@ -9,6 +9,11 @@
 
 vm_cell get_variable_cell(int index_declaration);
 
+vm_cell get_struct_cell(Node *struct_access);
+
+vm_cell get_array_cell(Node *arra_access);
+
+
 void handle_variable_declaration(int index_declaration);
 
 void handle_variable_affectation(int index_declaration, vm_cell cell);

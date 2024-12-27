@@ -83,8 +83,7 @@ void interpret_ast(AST ast) {
             break;
 
         case A_RETURN_STATEMENT: {
-            vm_cell cell = resolve_expression(ast->child);
-            handle_function_return_value(cell);
+            handle_function_return_value(resolve_expression(ast->child));
             break;
         }
 
