@@ -105,13 +105,13 @@ letter [a-zA-Z]
     return STRING_VALUE; 
 }
 
-{number}+"."{number}* { 
+[-]?{number}+"."{number}* { 
     yylval.lexicographic_index = insert_lexeme(yytext);
     error.column += yyleng;
     return FLOAT_VALUE; 
 }
 
-0|[1-9][0-9]* { 
+0|[-]?[1-9][0-9]* { 
     yylval.lexicographic_index = insert_lexeme(yytext);
     error.column += yyleng;
     return INTEGER_VALUE; 

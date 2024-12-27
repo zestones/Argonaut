@@ -5,6 +5,7 @@
         "stack_management.h": "c",
         "variable_manager.h": "c",
         "cstdlib": "c",
-        "execution.h": "c"
+        "execution.h": "c",
+        "region_table.h": "c"
     }
 }

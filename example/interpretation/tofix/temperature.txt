@@ -1,0 +1,125 @@
+PROG
+
+// Constants
+var DAYS : float;
+var FREEZING_POINT : float;
+var WARM_THRESHOLD : float;
+
+// Define temperature record
+type temp_record : struct {
+    celsius : float;
+    fahrenheit : float;
+    day_number : float;
+    is_freezing : bool;
+} fstruct;
+
+// Define array of temperature records
+type week_temps : array[0:6] of temp_record;
+
+// Variables
+var temperatures : week_temps;
+var i : int;
+var j : float;
+
+var sum_temp : float;
+var avg_temp : float;
+var highest_temp : float;
+var lowest_temp : float;
+var cold_days : float;
+var warm_days : float;
+var calcule : float;
+
+
+// Initialize variables
+cold_days := 0.0;
+warm_days := 0.0;
+sum_temp := 0.0;
+highest_temp := -100.0;
+lowest_temp := 100.0;
+
+// Constants
+DAYS := 6.0;
+FREEZING_POINT := 0.0;
+WARM_THRESHOLD := 20.0;
+
+i := 0;
+while (i < DAYS) {
+    print("Enter temperature for day %f (Celsius): ", i + 1);
+    input("%f", temperatures[i].celsius);
+    print("%f\n", temperatures[i].celsius);
+    
+    // Convert to Fahrenheit
+    temperatures[i].fahrenheit := (temperatures[i].celsius * 1.8) + 32.0;
+    temperatures[i].day_number := i + 1;
+    
+    // Check if freezing
+    if (temperatures[i].celsius <= FREEZING_POINT) {
+        temperatures[i].is_freezing := true;
+    } else {
+        temperatures[i].is_freezing := false;
+    }
+    
+    // Update statistics
+    sum_temp := sum_temp + temperatures[i].celsius;
+    
+    if (temperatures[i].celsius > highest_temp) {
+        highest_temp := temperatures[i].celsius;
+    }
+    if (temperatures[i].celsius < lowest_temp) {
+        lowest_temp := temperatures[i].celsius;
+    }
+    
+    if (temperatures[i].celsius <= FREEZING_POINT) {
+        cold_days := cold_days + 1.0;
+    }
+    if (temperatures[i].celsius >= WARM_THRESHOLD) {
+        warm_days := warm_days + 1.0;
+    }
+    
+    i := i + 1;
+}
+
+// Calculate average
+avg_temp := sum_temp / DAYS;
+
+// Display results
+print("\n+----------------------------------------+\n");
+print("|        Weekly Temperature Report         |\n");
+print("+----------------------------------------+\n");
+
+i := 0.0;
+while (i < DAYS) {
+    print("Day %f: %f°C | %f°F ", 
+          temperatures[i].day_number,
+          temperatures[i].celsius,
+          temperatures[i].fahrenheit);
+    
+    // Temperature bar visualization
+    print("|");
+    j := 0.0;
+    calcule := temperatures[i].celsius + 20.0;
+    // while (j < calcule) {
+    //     print("*");
+    //     j := j + 1;
+    // }
+    print("|\n");
+    
+    i := i + 1;
+}
+
+print("\n+===========================================+\n");
+print("||          WEATHER STATISTICS                 \n");
+print("+===========================================+\n");
+print("||                                        \n");
+print("||  TEMPERATURE SUMMARY                   \n");
+print("||  ------------------------              \n");
+print("||  Average Temp    : %f°C                \n", avg_temp);
+print("||  Highest Temp    : %f°C                \n", highest_temp);
+print("||  Lowest Temp     : %f°C                \n", lowest_temp);
+print("||                                        \n");
+print("||  DAY CLASSIFICATION                    \n");
+print("||  ------------------------              \n");
+print("||  Cold Days (≤0°C) : %f days            \n", cold_days);
+print("||  Warm Days (≥20°C): %f days            \n", warm_days);
+print("||                                        \n");
+print("+===========================================+\n");
