@@ -92,5 +92,9 @@ Root of the AST:
 │   │   │   │   │   ├── A_GREATER_EQUAL_OP, Lexico Idx: -1, Decl Idx: -1
 │   │   │   │   │   │   ├── A_IDENTIFIER, Lexico Idx: 5, Decl Idx: 5 -- Lexeme: 'is_red'
 │   │   │   │   │   │   └── A_BOOLEAN_LITERAL, Lexico Idx: 8, Decl Idx: -1 -- Lexeme: 'false'
+│   │   │   └── A_STATEMENT_LIST, Lexico Idx: -1, Decl Idx: -1
+│   │   │   │   ├── A_ASSIGNMENT_STATEMENT, Lexico Idx: -1, Decl Idx: -1
+│   │   │   │   │   ├── A_VARIABLE_ASSIGNMENT, Lexico Idx: 4, Decl Idx: 4 -- Lexeme: 'x'
+│   │   │   │   │   │   ├── A_INTEGER_LITERAL, Lexico Idx: 9, Decl Idx: -1 -- Lexeme: '0'
 +------------------------------------------------------------------------+
 

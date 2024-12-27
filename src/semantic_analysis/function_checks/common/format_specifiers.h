@@ -2,7 +2,12 @@
 #ifndef __FORMAT_SPECIFIERS_H__
 #define __FORMAT_SPECIFIERS_H__
 
+#include <string.h>
 #include "../../../ast/ast.h"
+
+char *process_special_chars(const char *input);
+
+char *strip_quotes(const char *raw_format);
 
 char get_nth_format_specifier(const char *format, int n);
 

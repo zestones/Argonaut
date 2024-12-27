@@ -4,8 +4,24 @@
 #include "../../data/region_table.h"
 #include "formatting.h"
 
-
-char *format_arithmetic_op(Node *expression) {
+/**
+ * @brief Formats an arithmetic operation into a string representation.
+ * 
+ * This function takes an arithmetic operation represented by a node and formats it 
+ * into a string expression. The resulting string is wrapped in parentheses with the 
+ * left operand, the operator, and the right operand, properly formatted. The operator 
+ * is derived from the node type.
+ * 
+ * @param expression A pointer to the node representing the arithmetic operation.
+ * @return A dynamically allocated string representing the formatted arithmetic operation.
+ * 
+ * @note The caller is responsible for freeing the returned string.
+ * 
+ * @warning The function assumes that the expression is valid and that both operands 
+ *          are properly formatted. Memory allocation failures during string concatenation 
+ *          may lead to undefined behavior.
+ */
+static char *format_arithmetic_op(Node *expression) {
     char *lexeme = (char *)malloc(MAX_LEXEME_LENGTH * sizeof(char));
     strcpy(lexeme, "(");
     strcat(lexeme, format_expression(expression->child));

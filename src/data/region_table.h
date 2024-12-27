@@ -29,7 +29,6 @@
  * This struct represents a region in the compiler. It includes information
  * about the size of the region, the static nesting level in the region, and
  * the Abstract Syntax Tree (AST) for the region.
- * 
  */
 typedef struct Region {
     int size;           // Size of the region.
@@ -106,6 +105,14 @@ int get_current_region_nis();
  * @return The ID of the current region.
  */
 int get_current_region_id();
+
+/**
+ * @brief Gets the AST of the region at the specified index.
+ *
+ * @param index The index of the region.
+ * @return The AST of the region.
+ */
+AST get_region_ast(int index);
 
 /**
  * @brief Updates the size of the region at the specified index.

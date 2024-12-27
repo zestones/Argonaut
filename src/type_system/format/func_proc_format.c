@@ -4,6 +4,22 @@
 #include "../../utils/utils.h"
 #include "formatting.h"
 
+
+/**
+ * @brief Formats an argument list into a string representation.
+ * 
+ * This function takes an argument list represented by a node and formats it into 
+ * a string where each argument is separated by a comma and space. The arguments 
+ * are recursively formatted as expressions.
+ * 
+ * @param argument_list A pointer to the node representing the argument list to be formatted.
+ * @return A dynamically allocated string representing the formatted argument list.
+ * 
+ * @note The caller is responsible for freeing the returned string.
+ * 
+ * @warning The function assumes that each argument in the list is a valid expression. 
+ *          Memory allocation failures during string concatenation may lead to undefined behavior.
+ */
 static char *format_argument_list(Node *argument_list) {
     char *lexeme = (char *)malloc(256 * sizeof(char));
     lexeme[0] = '\0';

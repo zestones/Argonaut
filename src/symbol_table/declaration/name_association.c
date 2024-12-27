@@ -10,13 +10,14 @@ static int find_declaration_index_in_region_by_nature(int tlex_index, int region
     int index = tlex_index;
     
     Stack overload_stack = construct_stack();
-    push(&overload_stack, NULL_VALUE);
+    int null_value = NULL_VALUE;
+    push(&overload_stack, &null_value, sizeof(int));
 
     while (index != NULL_VALUE) {
         if (declaration_table[index].region == region && 
             (nature_filter == NULL_VALUE || declaration_table[index].nature == nature_filter)
         ) {
-            push(&overload_stack, index);
+            push(&overload_stack, &index, sizeof(int));
         }
         
         index = declaration_table[index].next;
@@ -25,7 +26,7 @@ static int find_declaration_index_in_region_by_nature(int tlex_index, int region
     // return the last declaration in the stack
     // if there are multiple declarations with the same nature
     // in the same region
-    return pop(&overload_stack);
+    return *(int *) pop(&overload_stack);
 }
 
 static int find_declaration_in_stack(int tlex_index, int nature_filter) {
@@ -33,10 +34,10 @@ static int find_declaration_in_stack(int tlex_index, int nature_filter) {
     if (is_declaration_base_type(tlex_index)) return index;
 
     Stack tmp_stack = construct_stack();
-    stack_cpy(&tmp_stack, get_region_stack());
+    stack_cpy(&tmp_stack, get_region_stack(), sizeof(int));
 
     while (!is_empty(tmp_stack)) {
-        int current_region = pop(&tmp_stack);
+        int current_region = *(int *) pop(&tmp_stack);
         index = find_declaration_index_in_region_by_nature(tlex_index, current_region, nature_filter);
         if (index != NULL_VALUE) return index;
     }
