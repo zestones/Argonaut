@@ -47,6 +47,7 @@
     NODE(A_IF_ELSE)                         \
     NODE(A_IF_ELSE_IF)                      \
     NODE(A_WHILE)                           \
+    NODE(A_FOR_LOOP)                        \
     NODE(A_ARRAY_ACCESS)                    \
     NODE(A_ARRAY_INDEX_LIST)                \
     NODE(A_ARRAY_INDEX)                     \

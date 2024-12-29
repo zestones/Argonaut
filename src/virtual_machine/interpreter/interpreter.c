@@ -53,7 +53,8 @@ void resolve_statement_list(AST statement_list) {
         case A_PRINT_STATEMENT:
             execute_print(statement_list);
             break;
-        
+            
+        case A_FOR_LOOP:
         case A_WHILE:
             execute_loop(statement_list);
             break;

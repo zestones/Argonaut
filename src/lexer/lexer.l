@@ -41,6 +41,7 @@ letter [a-zA-Z]
 "if"                            { error.column += yyleng; return IF; }
 "else"                          { error.column += yyleng; return ELSE; }
 "while"                         { error.column += yyleng; return WHILE; }
+"for"                           { error.column += yyleng; return FOR; }
 
 "int"                           { error.column += yyleng; return INTEGER_TYPE; }
 "float"                         { error.column += yyleng; return FLOAT_TYPE; }

@@ -73,7 +73,7 @@
 %token STRUCT FSTRUCT
 %token <lexicographic_index> IDENTIFIER TYPE INTEGER_TYPE FLOAT_TYPE BOOLEAN_TYPE CHARACTER_TYPE STRING_TYPE
 %token PROCEDURE FUNCTION RETURN_TYPE RETURN_VALUE
-%token IF ELSE WHILE
+%token IF ELSE WHILE FOR
 %token EQUAL NOT_EQUAL LESS_THAN GREATER_THAN LESS_EQUAL GREATER_EQUAL
 %token PRINT INPUT
 
@@ -90,7 +90,7 @@
 
 %type <lexicographic_index> type 
 
-%type <ast> assignment_statement if_statement loop_statement standalone_func_proc_call_statement func_proc_call_expression
+%type <ast> assignment_statement if_statement loop_statement for_statement standalone_func_proc_call_statement func_proc_call_expression
 %type <ast> array_access_statement array_indices struct_access_statement print_statement input_statement
 
 %type <ast> variable_declaration type_declaration complex_type_fields type_field
@@ -318,11 +318,11 @@ func_proc_call_expression: IDENTIFIER { check_func_proc_definition($1); } OPEN_P
 ;
 
 // Conditions and boolean expressions
-condition: OPEN_PARENTHESIS expression comparison_operator expression CLOSE_PARENTHESIS {
+condition: expression comparison_operator expression {
             $$ = construct_node_default(A_CONDITION);
-            add_child($$, $3);
-            add_child($3, $2);
-            add_sibling($2, $4);
+            add_child($$, $2);
+            add_child($2, $1);
+            add_sibling($1, $3);
             check_condition($$);
          }
          | OPEN_PARENTHESIS condition CLOSE_PARENTHESIS {
@@ -376,29 +376,30 @@ statement_list: statement statement_list {
 ;
 
 
-statement: assignment_statement {
+statement: assignment_statement SEMICOLON {
             $$ = construct_node_default(A_ASSIGNMENT_STATEMENT);
             add_child($$, $1);
         }
         | if_statement { $$ = $1; }
         | standalone_func_proc_call_statement { $$ = $1; }
         | loop_statement  { $$ = $1; }
+        | for_statement   { $$ = $1; }  
         | print_statement { $$ = $1; }
         | input_statement { $$ = $1; }
 ;
 
-assignment_statement: IDENTIFIER { check_variable_definition($1); } OPAFF expression SEMICOLON {
+assignment_statement: IDENTIFIER { check_variable_definition($1); } OPAFF expression {
                         $$ = construct_node(A_VARIABLE_ASSIGNMENT, $1, get_var_param_declaration_index($1));
                         add_child($$, $4);
                         check_variable_assignment($1, $4);
                     }
-                    | array_access_statement OPAFF expression SEMICOLON {
+                    | array_access_statement OPAFF expression {
                         $$ = construct_node_default(A_ARRAY_ASSIGNMENT);
                         add_child($$, $1);  
                         add_sibling($1, $3);
                         check_array_assignment($1, $3);
                     }
-                    | struct_access_statement OPAFF expression SEMICOLON {
+                    | struct_access_statement OPAFF expression {
                         $$ = construct_node_default(A_STRUCT_ASSIGNMENT);
                         add_child($$, $1);  
                         add_sibling($1, $3);
@@ -412,31 +413,47 @@ return_statement: RETURN_VALUE expression SEMICOLON {
                 }
 ;
 
-if_statement: IF condition statement_block {
+if_statement: IF OPEN_PARENTHESIS condition CLOSE_PARENTHESIS statement_block {
                 $$ = construct_node_default(A_IF);
-                add_child($$, $2);
-                add_sibling($2, $3);
-            }
-            | IF condition statement_block ELSE statement_block {
-                $$ = construct_node_default(A_IF_ELSE); 
-                add_child($$, $2); 
-                add_sibling($2, $3);
+                add_child($$, $3);
                 add_sibling($3, $5);
             }
-            | IF condition statement_block ELSE if_statement 
+            | IF OPEN_PARENTHESIS condition CLOSE_PARENTHESIS statement_block ELSE statement_block {
+                $$ = construct_node_default(A_IF_ELSE); 
+                add_child($$, $3); 
+                add_sibling($3, $5);
+                add_sibling($5, $7);
+            }
+            | IF OPEN_PARENTHESIS condition CLOSE_PARENTHESIS statement_block ELSE if_statement 
             {
                 $$ = construct_node_default(A_IF_ELSE_IF);
-                add_child($$, $2); 
-                add_sibling($2, $3);
+                add_child($$, $3); 
+                add_sibling($3, $5);
+                add_sibling($5, $7);
+            }
+;
+
+loop_statement: WHILE OPEN_PARENTHESIS condition CLOSE_PARENTHESIS statement_block {
+                $$ = construct_node_default(A_WHILE); 
+                add_child($$, $3);
                 add_sibling($3, $5);
             }
 ;
 
-loop_statement: WHILE condition statement_block {
-                $$ = construct_node_default(A_WHILE); 
-                add_child($$, $2);
-                add_sibling($2, $3);
-            }
+for_statement: FOR OPEN_PARENTHESIS assignment_statement SEMICOLON condition SEMICOLON assignment_statement CLOSE_PARENTHESIS statement_block {
+        $$ = construct_node_default(A_FOR_LOOP);
+        Node *initialization = construct_node_default(A_VARIABLE_ASSIGNMENT);
+        add_child($$, initialization);
+        add_child(initialization, $3);
+
+        add_sibling(initialization, $5);
+
+        Node *update = construct_node_default(A_VARIABLE_ASSIGNMENT);
+        add_sibling($5, update);
+        add_child(update, $7);
+
+        add_sibling(update, $9);
+}
 ;
 
 standalone_func_proc_call_statement: func_proc_call_expression SEMICOLON { $$ = $1; }

@@ -1,16 +1,9 @@
 PROG
 
 var x : int;
-x := 0;
 
-if (x * 2 > 0) {
-    print("Hello World!\n");
-} else if (x > 0) {
-    print("else if\n");
-} else if (x > 0) {
-    print("else if 2\n");
-} else if (x == 0) {
-    print("else if 3\n");
-} else {
-    print("else\n");
+for (x := 0; x < 5; x := x + 1) {
+    print("Looping\n");
 }
+
+print("x: %d\n", x);
