@@ -60,6 +60,9 @@ letter [a-zA-Z]
 "||"                            { error.column += yyleng; return OR; }
 "!"                             { error.column += yyleng; return NOT; }
 
+"++"                            { error.column += yyleng; yylval.lexicographic_index = insert_lexeme("1"); return INCREMENT; }
+"--"                            { error.column += yyleng; yylval.lexicographic_index = insert_lexeme("1"); return DECREMENT; }
+
 "+"                             { error.column += yyleng; return PLUS; }
 "-"                             { error.column += yyleng; return MINUS; }
 "*"                             { error.column += yyleng; return MULTIPLY; }
@@ -118,7 +121,7 @@ letter [a-zA-Z]
     return INTEGER_VALUE; 
 }
 
-{letter}+({letter}|{number}|"_"|"-")* {
+{letter}+({letter}|{number}|"_")* {
     yylval.lexicographic_index = insert_lexeme(yytext);
     error.column += yyleng;
     return IDENTIFIER;

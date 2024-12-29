@@ -1,9 +1,13 @@
 PROG
 
-var x : int;
+var i : int;
 
-for (x := 0; x < 5; x := x + 1) {
-    print("Looping\n");
+for (i := 5; i > 0; i--) {
+    print("i=%d\n", i);
 }
 
-print("x: %d\n", x);
+print("--> i=%d\n", i);
+
+i++;
+
+print("--> i=%d\n", i);

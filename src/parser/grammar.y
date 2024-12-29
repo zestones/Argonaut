@@ -78,6 +78,7 @@
 %token PRINT INPUT
 
 %token <lexicographic_index> BOOLEAN_VALUE STRING_VALUE INTEGER_VALUE CHARACTER_VALUE FLOAT_VALUE
+%token <lexicographic_index> INCREMENT DECREMENT
 
 %right NOT
 %left AND OR 
@@ -96,8 +97,8 @@
 %type <ast> variable_declaration type_declaration complex_type_fields type_field
 %type <ast> function_declaration return_statement procedure_declaration parameter_list parameter argument_list
 
-%type <ast> program declaration_list statement_list statement_block declaration statement expression expression_atom
-%type <ast> condition comparison_operator
+%type <ast> program declaration_list statement_list statement_block declaration statement inc_dec_statement
+%type <ast> expression expression_atom condition comparison_operator
 
 %type <ast> input_argument_list format_string 
 
@@ -269,15 +270,15 @@ expression: expression PLUS expression {
           | OPEN_PARENTHESIS expression CLOSE_PARENTHESIS { $$ = $2; }
 ;
 
-expression_atom: func_proc_call_expression { $$ = $1; }  
-               | array_access_statement { $$ = $1; }
-               | struct_access_statement { $$ = $1; }
-               | IDENTIFIER  { check_variable_definition($1); $$ = construct_node(A_IDENTIFIER, $1, find_declaration_index($1)); }
+expression_atom: IDENTIFIER  { check_variable_definition($1); $$ = construct_node(A_IDENTIFIER, $1, find_declaration_index($1)); }
                | INTEGER_VALUE { $$ = construct_node(A_INTEGER_LITERAL, $1, NULL_VALUE); }
                | FLOAT_VALUE { $$ = construct_node(A_FLOAT_LITERAL, $1, NULL_VALUE); }
                | BOOLEAN_VALUE { $$ = construct_node(A_BOOLEAN_LITERAL, $1, NULL_VALUE); }
                | CHARACTER_VALUE { $$ = construct_node(A_CHARACTER_LITERAL, $1, NULL_VALUE); }
                | STRING_VALUE { $$ = construct_node(A_STRING_LITERAL, $1, NULL_VALUE); }
+               | func_proc_call_expression { $$ = $1; }  
+               | array_access_statement { $$ = $1; }
+               | struct_access_statement { $$ = $1; }
 ;
 
 // TODO : is there a better way to assign the lexicographic_index to the base type ?
@@ -375,7 +376,6 @@ statement_list: statement statement_list {
               | { $$ = NULL; }
 ;
 
-
 statement: assignment_statement SEMICOLON {
             $$ = construct_node_default(A_ASSIGNMENT_STATEMENT);
             add_child($$, $1);
@@ -404,6 +404,43 @@ assignment_statement: IDENTIFIER { check_variable_definition($1); } OPAFF expres
                         add_child($$, $1);  
                         add_sibling($1, $3);
                         check_struct_assignment($1, $3);
+                    }
+                    | inc_dec_statement { $$ = $1; }
+;
+
+inc_dec_statement: IDENTIFIER DECREMENT {
+                        $$ = construct_node(A_VARIABLE_ASSIGNMENT, $1, get_var_param_declaration_index($1));
+                        
+                        // Create the A_SUB_OP node
+                        Node *op_node = construct_node_default(A_SUB_OP);
+                        Node *identifier_node = construct_node(A_IDENTIFIER, $1, get_var_param_declaration_index($1));
+                        Node *literal_node = construct_node(A_INTEGER_LITERAL, $2, NULL_VALUE);
+
+                        // Build the operation tree
+                        add_child(op_node, identifier_node);
+                        add_sibling(identifier_node, literal_node);
+
+                        // Attach operation tree as the child of the assignment node
+                        add_child($$, op_node);
+
+                        check_variable_assignment($1, op_node);
+                    }
+                    | IDENTIFIER INCREMENT {
+                        $$ = construct_node(A_VARIABLE_ASSIGNMENT, $1, get_var_param_declaration_index($1));
+                        
+                        // Create the A_SUB_OP or A_ADD_OP node
+                        Node *op_node = construct_node_default(A_ADD_OP);
+                        Node *identifier_node = construct_node(A_IDENTIFIER, $1, get_var_param_declaration_index($1));
+                        Node *literal_node = construct_node(A_INTEGER_LITERAL, $2, NULL_VALUE);
+
+                        // Build the operation tree
+                        add_child(op_node, identifier_node);
+                        add_sibling(identifier_node, literal_node);
+
+                        // Attach operation tree as the child of the assignment node
+                        add_child($$, op_node);
+
+                        check_variable_assignment($1, op_node);
                     }
 ;
 
