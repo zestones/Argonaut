@@ -318,7 +318,7 @@ func_proc_call_expression: IDENTIFIER { check_func_proc_definition($1); } OPEN_P
 ;
 
 // Conditions and boolean expressions
-condition: OPEN_PARENTHESIS expression_atom comparison_operator expression_atom CLOSE_PARENTHESIS {
+condition: OPEN_PARENTHESIS expression comparison_operator expression CLOSE_PARENTHESIS {
             $$ = construct_node_default(A_CONDITION);
             add_child($$, $3);
             add_child($3, $2);
