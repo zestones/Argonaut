@@ -42,7 +42,8 @@ void resolve_statement_list(AST statement_list) {
 
         case A_IF:
         case A_IF_ELSE:
-            execute_condition(statement_list->child);
+        case A_IF_ELSE_IF:
+            execute_condition(statement_list);
             break;
 
         case A_INPUT_STATEMENT:

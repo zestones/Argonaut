@@ -45,6 +45,7 @@
     NODE(A_STRUCT_ASSIGNMENT)               \
     NODE(A_IF)                              \
     NODE(A_IF_ELSE)                         \
+    NODE(A_IF_ELSE_IF)                      \
     NODE(A_WHILE)                           \
     NODE(A_ARRAY_ACCESS)                    \
     NODE(A_ARRAY_INDEX_LIST)                \

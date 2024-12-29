@@ -423,6 +423,13 @@ if_statement: IF condition statement_block {
                 add_sibling($2, $3);
                 add_sibling($3, $5);
             }
+            | IF condition statement_block ELSE if_statement 
+            {
+                $$ = construct_node_default(A_IF_ELSE_IF);
+                add_child($$, $2); 
+                add_sibling($2, $3);
+                add_sibling($3, $5);
+            }
 ;
 
 loop_statement: WHILE condition statement_block {
