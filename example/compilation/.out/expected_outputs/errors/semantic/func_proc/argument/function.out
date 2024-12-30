@@ -147,8 +147,9 @@ Root of the AST:
 +------------------------------------------------------------------------+
 Root of the AST:
 ├── A_FUNCTION_DECLARATION, Lexico Idx: 5, Decl Idx: 5 -- Lexeme: 'one_int'
-│   ├── A_RETURN_STATEMENT, Lexico Idx: -1, Decl Idx: -1
-│   │   ├── A_INTEGER_LITERAL, Lexico Idx: 6, Decl Idx: -1 -- Lexeme: '1'
+│   ├── A_STATEMENT_LIST, Lexico Idx: -1, Decl Idx: -1
+│   │   ├── A_RETURN_STATEMENT, Lexico Idx: -1, Decl Idx: -1
+│   │   │   ├── A_INTEGER_LITERAL, Lexico Idx: 6, Decl Idx: -1 -- Lexeme: '1'
 +------------------------------------------------------------------------+
 
 
@@ -157,8 +158,9 @@ Root of the AST:
 +------------------------------------------------------------------------+
 Root of the AST:
 ├── A_FUNCTION_DECLARATION, Lexico Idx: 7, Decl Idx: 7 -- Lexeme: 'one_float'
-│   ├── A_RETURN_STATEMENT, Lexico Idx: -1, Decl Idx: -1
-│   │   ├── A_FLOAT_LITERAL, Lexico Idx: 8, Decl Idx: -1 -- Lexeme: '1.0'
+│   ├── A_STATEMENT_LIST, Lexico Idx: -1, Decl Idx: -1
+│   │   ├── A_RETURN_STATEMENT, Lexico Idx: -1, Decl Idx: -1
+│   │   │   ├── A_FLOAT_LITERAL, Lexico Idx: 8, Decl Idx: -1 -- Lexeme: '1.0'
 +------------------------------------------------------------------------+
 
 
@@ -170,7 +172,8 @@ Root of the AST:
 │   ├── A_PARAMETER_LIST, Lexico Idx: -1, Decl Idx: -1
 │   │   ├── A_PARAMETER, Lexico Idx: 10, Decl Idx: 10 -- Lexeme: 'a'
 │   │   └── A_PARAMETER, Lexico Idx: 11, Decl Idx: 11 -- Lexeme: 'b'
-│   └── A_RETURN_STATEMENT, Lexico Idx: -1, Decl Idx: -1
-│   │   ├── A_INTEGER_LITERAL, Lexico Idx: 12, Decl Idx: -1 -- Lexeme: '0'
+│   └── A_STATEMENT_LIST, Lexico Idx: -1, Decl Idx: -1
+│   │   ├── A_RETURN_STATEMENT, Lexico Idx: -1, Decl Idx: -1
+│   │   │   ├── A_INTEGER_LITERAL, Lexico Idx: 12, Decl Idx: -1 -- Lexeme: '0'
 +------------------------------------------------------------------------+
 

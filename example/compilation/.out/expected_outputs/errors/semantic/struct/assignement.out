@@ -220,7 +220,8 @@ Root of the AST:
 │   ├── A_PARAMETER_LIST, Lexico Idx: -1, Decl Idx: -1
 │   │   ├── A_PARAMETER, Lexico Idx: 15, Decl Idx: 15 -- Lexeme: 'a'
 │   │   └── A_PARAMETER, Lexico Idx: 16, Decl Idx: 16 -- Lexeme: 'b'
-│   └── A_RETURN_STATEMENT, Lexico Idx: -1, Decl Idx: -1
-│   │   ├── A_INTEGER_LITERAL, Lexico Idx: 17, Decl Idx: -1 -- Lexeme: '0'
+│   └── A_STATEMENT_LIST, Lexico Idx: -1, Decl Idx: -1
+│   │   ├── A_RETURN_STATEMENT, Lexico Idx: -1, Decl Idx: -1
+│   │   │   ├── A_INTEGER_LITERAL, Lexico Idx: 17, Decl Idx: -1 -- Lexeme: '0'
 +------------------------------------------------------------------------+
 

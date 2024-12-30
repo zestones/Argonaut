@@ -120,8 +120,9 @@ Root of the AST:
 ├── A_FUNCTION_DECLARATION, Lexico Idx: 8, Decl Idx: 8 -- Lexeme: 'my_func'
 │   ├── A_DECLARATION_LIST, Lexico Idx: -1, Decl Idx: -1
 │   │   ├── A_VARIABLE_DECLARATION, Lexico Idx: 9, Decl Idx: 9 -- Lexeme: 'x'
-│   └── A_RETURN_STATEMENT, Lexico Idx: -1, Decl Idx: -1
-│   │   ├── A_IDENTIFIER, Lexico Idx: 9, Decl Idx: 9 -- Lexeme: 'x'
+│   └── A_STATEMENT_LIST, Lexico Idx: -1, Decl Idx: -1
+│   │   ├── A_RETURN_STATEMENT, Lexico Idx: -1, Decl Idx: -1
+│   │   │   ├── A_IDENTIFIER, Lexico Idx: 9, Decl Idx: 9 -- Lexeme: 'x'
 +------------------------------------------------------------------------+
 
 

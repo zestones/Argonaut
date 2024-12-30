@@ -1,4 +1,4 @@
-[Type Error] Type mismatch for function return value at example/compilation/errors/semantic/func_proc/prototype/prototype.txt:17:2.
+[Type Error] Type mismatch for function return value at example/compilation/errors/semantic/func_proc/prototype/prototype.txt:16:23.
   Function returned value has type 'float', but it should be of type 'int'.
   Ensure the function return type matches the expected type.
 
@@ -106,8 +106,9 @@ Root of the AST:
 +------------------------------------------------------------------------+
 Root of the AST:
 ├── A_FUNCTION_DECLARATION, Lexico Idx: 4, Decl Idx: 4 -- Lexeme: 'zero'
-│   ├── A_RETURN_STATEMENT, Lexico Idx: -1, Decl Idx: -1
-│   │   ├── A_FLOAT_LITERAL, Lexico Idx: 5, Decl Idx: -1 -- Lexeme: '0.0'
+│   ├── A_STATEMENT_LIST, Lexico Idx: -1, Decl Idx: -1
+│   │   ├── A_RETURN_STATEMENT, Lexico Idx: -1, Decl Idx: -1
+│   │   │   ├── A_FLOAT_LITERAL, Lexico Idx: 5, Decl Idx: -1 -- Lexeme: '0.0'
 +------------------------------------------------------------------------+
 
 
@@ -118,8 +119,9 @@ Root of the AST:
 ├── A_FUNCTION_DECLARATION, Lexico Idx: 6, Decl Idx: 6 -- Lexeme: 'one'
 │   ├── A_PARAMETER_LIST, Lexico Idx: -1, Decl Idx: -1
 │   │   ├── A_PARAMETER, Lexico Idx: 7, Decl Idx: 7 -- Lexeme: 'x'
-│   └── A_RETURN_STATEMENT, Lexico Idx: -1, Decl Idx: -1
-│   │   ├── A_IDENTIFIER, Lexico Idx: 7, Decl Idx: 7 -- Lexeme: 'x'
+│   └── A_STATEMENT_LIST, Lexico Idx: -1, Decl Idx: -1
+│   │   ├── A_RETURN_STATEMENT, Lexico Idx: -1, Decl Idx: -1
+│   │   │   ├── A_IDENTIFIER, Lexico Idx: 7, Decl Idx: 7 -- Lexeme: 'x'
 +------------------------------------------------------------------------+
 
 
@@ -136,9 +138,9 @@ Root of the AST:
 │   │   ├── A_ASSIGNMENT_STATEMENT, Lexico Idx: -1, Decl Idx: -1
 │   │   │   ├── A_VARIABLE_ASSIGNMENT, Lexico Idx: 7, Decl Idx: 500 -- Lexeme: 'x'
 │   │   │   │   ├── A_FLOAT_LITERAL, Lexico Idx: 10, Decl Idx: -1 -- Lexeme: '45.0'
-│   └── A_RETURN_STATEMENT, Lexico Idx: -1, Decl Idx: -1
-│   │   ├── A_ADD_OP, Lexico Idx: -1, Decl Idx: -1
-│   │   │   ├── A_IDENTIFIER, Lexico Idx: 7, Decl Idx: 500 -- Lexeme: 'x'
-│   │   │   └── A_FUNC_PROC_CALL_STATEMENT, Lexico Idx: 4, Decl Idx: 4 -- Lexeme: 'zero'
+│   │   └── A_RETURN_STATEMENT, Lexico Idx: -1, Decl Idx: -1
+│   │   │   ├── A_ADD_OP, Lexico Idx: -1, Decl Idx: -1
+│   │   │   │   ├── A_IDENTIFIER, Lexico Idx: 7, Decl Idx: 500 -- Lexeme: 'x'
+│   │   │   │   └── A_FUNC_PROC_CALL_STATEMENT, Lexico Idx: 4, Decl Idx: 4 -- Lexeme: 'zero'
 +------------------------------------------------------------------------+
 
