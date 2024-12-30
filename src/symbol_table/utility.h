@@ -109,4 +109,7 @@ int get_struct_nth_field_execution(int declaration_type, int nth);
 int get_struct_nth_field_declaration(int struct_declaration, int nth_field); // TODO: rename type -> declaration
 int get_struct_nth_field_lexicographic(int struct_declaration, int nth_field);
 
+
+int get_func_return_type(int func_declaration);
+
 #endif // __UTILITY_H__

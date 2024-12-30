@@ -15,7 +15,7 @@ void execute_condition(AST ast) {
     while (current_node != NULL) {
         vm_cell condition = resolve_boolean_expression(current_node->child);
 
-        if (current_node->type == A_IF_ELSE_IF || current_node->type == A_IF_ELSE) {
+        if (current_node->type == A_IF_ELSE_IF || current_node->type == A_IF_ELSE || A_IF) {
             if (condition.value.boolean) {
                 resolve_statement_list(current_node->child->sibling->child);
                 break;
@@ -23,12 +23,13 @@ void execute_condition(AST ast) {
 
             // Move to the next branch (else if or else)
             Node *next_branch = current_node->child->sibling->sibling;
-            if (current_node->type == A_IF_ELSE && next_branch && next_branch->child) {
+            if ((current_node->type == A_IF_ELSE || A_IF) && next_branch && next_branch->child) {
                 resolve_statement_list(next_branch->child);
                 break;
             }
             current_node = next_branch;
-        } else {
+        }         
+        else {
             printf("Unexpected node type: %d\n", current_node->type);
             break;
         }

@@ -167,6 +167,19 @@ int find_declaration_index(int index);
 int find_declaration_index_by_nature(int tlex_index, Nature nature);
 
 /**
+ * @brief Finds the index of a function declaration based on the execution region.
+ *
+ * This function searches the declaration table for a function (`TYPE_FUNC`) whose 
+ * execution region matches the provided `region_index`. It traverses the linked list 
+ * of declarations and returns the index of the matching function, if found.
+ *
+ * @param region_index The region index to match against the function's execution region.
+ * @return The index of the function declaration in the declaration table if a match is found.
+ *         Returns `NULL_VALUE` if no matching function is found.
+ */
+int find_function_index_by_region(int region_index);
+
+/**
  * @brief Gets the nature of a declaration.
  * 
  * @param index Index of the declaration.

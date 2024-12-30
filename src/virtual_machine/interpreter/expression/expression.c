@@ -76,7 +76,10 @@ vm_cell resolve_expression(Node *expression) {
         case A_FUNC_PROC_CALL_STATEMENT: {
             execute_func_proc_call(expression);
             stack_frame current_frame = peek_execution_stack();
-            return current_frame.region_value;
+            vm_cell cell = current_frame.region_value;
+            // Clear the region value after execution to continue to resolve statement list
+            peek_execution_stack_as_mutable()->region_value = construct_vm_cell(NULL_VALUE, NULL); 
+            return cell;
         }
 
         default:

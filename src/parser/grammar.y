@@ -7,6 +7,7 @@
     #include "../symbol_table/declaration/declaration_table.h"
     #include "../symbol_table/lexeme/lexeme_table.h"
     #include "../symbol_table/hash/hash_table.h"
+    #include "../symbol_table/utility.h"
     #include "../data/region_table.h"
 
     #include "parser.h"
@@ -148,18 +149,17 @@ function_declaration: FUNCTION IDENTIFIER {
                         declaration_func_start();
                     } OPEN_PARENTHESIS parameter_list CLOSE_PARENTHESIS RETURN_TYPE type {
                         update_declaration_func_return_type($8);
-                    } START declaration_list statement_list return_statement END {
+                    } START declaration_list statement_list END {
                         $$ = construct_node(A_FUNCTION_DECLARATION, $2, find_declaration_index_by_nature($2, TYPE_FUNC));
 
-                        Node *nodes[] = { $5, $11, $12, $13 };
-                        add_chain($$, nodes, 4);
+                        Node *nodes[] = { $5, $11, $12 };
+                        add_chain($$, nodes, 3);
 
                         update_region_ast(peek_region(), $$);
                         declaration_func_proc_end();
 
                         // Keep the declaration in the region
                         $$ = construct_node(A_FUNCTION_DECLARATION, $2, find_declaration_index_by_nature($2, TYPE_FUNC));
-                        check_func_prototype($8, $13);
                     } 
 ;
 
@@ -386,6 +386,7 @@ statement: assignment_statement SEMICOLON {
         | for_statement   { $$ = $1; }  
         | print_statement { $$ = $1; }
         | input_statement { $$ = $1; }
+        | return_statement{ $$ = $1; }
 ;
 
 assignment_statement: IDENTIFIER { check_variable_definition($1); } OPAFF expression {
@@ -444,9 +445,14 @@ inc_dec_statement: IDENTIFIER DECREMENT {
                     }
 ;
 
-return_statement: RETURN_VALUE expression SEMICOLON { 
+return_statement: RETURN_VALUE expression SEMICOLON {
+                    if (!peek_region()) {
+                        set_error_type(&error, SYNTAX_ERROR);
+                        yyerror("Return statement is not allowed outside of a function.");
+                    }
                     $$ = construct_node_default(A_RETURN_STATEMENT);
                     add_child($$, $2);
+                    check_func_prototype(get_func_return_type(find_function_index_by_region(peek_region())), $$);
                 }
 ;
 

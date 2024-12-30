@@ -33,7 +33,7 @@ static void resolve_declaration_list(Node *declaration_list) {
 }
 
 void resolve_statement_list(AST statement_list) {
-    if (statement_list == NULL) return;
+    if (statement_list == NULL || get_return_cell().is_initialized) return;   
 
     switch (statement_list->type) {
         case A_ASSIGNMENT_STATEMENT:
@@ -61,6 +61,11 @@ void resolve_statement_list(AST statement_list) {
 
         case A_FUNC_PROC_CALL_STATEMENT: {
             execute_func_proc_call(statement_list);
+            break;
+        }
+
+        case A_RETURN_STATEMENT: {
+            handle_function_return_value(resolve_expression(statement_list->child));
             break;
         }
 
@@ -103,11 +108,6 @@ static void interpret_ast(AST ast) {
             if (ast->child->type == A_PARAMETER_LIST) interpret_ast(ast->child->sibling);
             else interpret_ast(ast->child);
             break;
-
-        case A_RETURN_STATEMENT: {
-            handle_function_return_value(resolve_expression(ast->child));
-            break;
-        }
 
         default: {
             interpret_ast(ast->child);
