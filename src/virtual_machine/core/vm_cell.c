@@ -134,7 +134,7 @@ const char *format_cell(void *data) {
 
 void fprintf_vm_cell(FILE *out, vm_cell cell) {
     const int col_width_type = 10;
-    const int col_width_value = 5;
+    const int col_width_value = 10;
 
     print_table_separator(out, 2, col_width_type, col_width_value);
     print_table_header(out, 2, col_width_type, "Type", col_width_value, "Value");

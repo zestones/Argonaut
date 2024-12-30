@@ -104,6 +104,40 @@ proc multiply_matrices() {
     }
 }
 
+proc transpose_matrix() {
+    // TODO: change the matrix dimensions
+    i := 0;
+    while (i < rows) {
+        j := 0;
+        while (j < cols) {
+            result[j, i] := mat1[i, j];
+            j := j + 1;
+        }
+        i := i + 1;
+    }
+}
+
+proc scale_matrix() {
+    var scalar : int;
+
+    print("\n    Enter the scalar value: ");
+    input("%d", scalar);
+
+    i := 0;
+    while (i < rows) {
+        j := 0;
+        while (j < cols) {
+            result[i, j] := mat1[i, j] * scalar;
+            j := j + 1;
+        }
+        i := i + 1;
+    }
+}
+
+
+// -------------------------------------------- //
+// ------------- HELPER FUNCTIONS ------------ // 
+// -------------------------------------------- //
 
 func is_multiplication_possible() -> bool {
     var is_possible : bool;
@@ -115,104 +149,120 @@ func is_multiplication_possible() -> bool {
     return is_possible;
 }
 
-proc display_matrix(matrix_id: int, operation: char, other_matrix_id: int, show_result: bool) {
+// Helper function to calculate the maximum value from a matrix
+func get_max_value(matrix_id: int) -> int {
+    var max_value : int;
+    var value : int;
+    
     var i : int;
     var j : int;
 
-    var calcule : int;
-
-    var max_value1 : int;
-    var max_value2 : int;
-    var max_value3 : int;
-    var width1 : int;
-    var width2 : int;
-    var width3 : int;
-    var temp : int;
-    var num_digits : int;
-
-    var value: int;
-    var calc2 : int;
-
-    // Initialize max values
-    max_value1 := -99999;
-    max_value2 := -99999;
-    max_value3 := -99999;
-
-    // Calculate max value for the first matrix
     i := 0;
+    max_value := -99999;
     while (i < rows) {
         j := 0;
         while (j < cols) {
             if (matrix_id == 1) { value := mat1[i, j]; }
             if (matrix_id == 2) { value := mat2[i, j]; }
             if (matrix_id == 3) { value := result[i, j]; }
-            if (value > max_value1) { max_value1 := value; }
+            if (value > max_value) { max_value := value; }
             j := j + 1;
         }
         i := i + 1;
     }
+    return max_value;
+}
 
-    // Calculate max value for the second matrix (if applicable)
-    if (other_matrix_id > 0) {
-        i := 0;
-        while (i < rows) {
-            j := 0;
-            while (j < cols) {
-                if (other_matrix_id == 1) { value := mat1[i, j]; }
-                if (other_matrix_id == 2) { value := mat2[i, j]; }
-                if (value > max_value2) { max_value2 := value; }
-                j := j + 1;
-            }
-            i := i + 1;
-        }
-    }
-
-    // Calculate max value for the result matrix (if applicable)
-    if (show_result == true) {
-        i := 0;
-        while (i < rows) {
-            j := 0;
-            while (j < cols) {
-                value := result[i, j];
-                if (value > max_value3) { max_value3 := value; }
-                j := j + 1;
-            }
-            i := i + 1;
-        }
-    }
-
-    // Compute widths for each matrix
-    width1 := 0;
-    temp := max_value1;
-    while (temp > 0) {
-        width1 := width1 + 1;
-        temp := temp / 10;
-    }
-    width1 := width1 + 2; // Add padding
-
-    width2 := 0;
-    if (other_matrix_id > 0) {
-        temp := max_value2;
+// Helper function to calculate the width (number of digits) of a number
+func get_width(value: int) -> int {
+    var temp : int;
+    var num_digits : int;
+    num_digits := 0;
+    temp := value;
+    if (temp == 0) { num_digits := 1; }
+    else {
+        if (temp < 0) { temp :=  temp * -1; num_digits := 1; }
         while (temp > 0) {
-            width2 := width2 + 1;
+            num_digits := num_digits + 1;
             temp := temp / 10;
         }
-        width2 := width2 + 2; // Add padding
     }
+    return num_digits + 2; // Add padding
+}
 
-    width3 := 0;
-    if (show_result == true) {
-        temp := max_value3;
-        while (temp > 0) {
-            width3 := width3 + 1;
-            temp := temp / 10;
+// Helper function to print a single row of a matrix
+proc print_matrix_row(matrix_id: int, row_index: int, width: int) {
+    var i : int;
+    var j : int;
+    
+    var value : int;
+    var temp : int;
+    var num_digits : int;
+
+    print("│ ");
+    j := 0;
+    while (j < cols) {
+        if (matrix_id == 1) { value := mat1[row_index, j]; }
+        if (matrix_id == 2) { value := mat2[row_index, j]; }
+        if (matrix_id == 3) { value := result[row_index, j]; }
+
+        // Align and print value
+        temp := value;
+        num_digits := 0;
+        if (temp == 0) { num_digits := 1; }
+        else {
+            if (temp < 0) { temp :=  temp * -1; num_digits := 1; }
+            while (temp > 0) {
+                num_digits := num_digits + 1;
+                temp := temp / 10;
+            }
         }
-        width3 := width3 + 2; // Add padding
+        temp := width - num_digits - 1;
+        while (temp > 0) {
+            print(" ");
+            temp := temp - 1;
+        }
+        print("%d ", value);
+        j := j + 1;
     }
+    print("│");
+}
+
+// Main function to display the matrix
+proc display_matrix(matrix_id: int, operation: char, other_matrix_id: int, show_result: bool) {
+    var i : int;
+    var j : int;
+    
+    var max_value1 : int;
+    var max_value2 : int;
+    var max_value3 : int;
+    
+    var width1 : int;
+    var width2 : int;
+    var width3 : int;
+    
+    var calcule : int;
+    
+    // Get the max values for the matrices
+    max_value1 := get_max_value(matrix_id);
+    
+    if (other_matrix_id > 0) { max_value2 := get_max_value(other_matrix_id); }
+    else { max_value2 := -99999; }
+    
+    if (show_result == true) { max_value3 := get_max_value(3); }
+    else { max_value3 := -99999; }
+    
+    // Get the width for each matrix
+    width1 := get_width(max_value1);
+    
+    if (other_matrix_id > 0) { width2 := get_width(max_value2); }
+    else { width2 := 0; }
+
+    if (show_result == true) { width3 := get_width(max_value3); }
+    else { width3 := 0; }
 
     // Display top borders
     calcule := width1 * cols + 1;
-
     print("┌");
     i := 0;
     while (i < calcule) {
@@ -247,97 +297,16 @@ proc display_matrix(matrix_id: int, operation: char, other_matrix_id: int, show_
     // Display matrices and operation
     i := 0;
     while (i < rows) {
-        // Display first matrix
-        print("│ ");
-        j := 0;
-        while (j < cols) {
-            if (matrix_id == 1) { value := mat1[i, j]; }
-            if (matrix_id == 2) { value := mat2[i, j]; }
-            if (matrix_id == 3) { value := result[i, j]; }
-
-            // Align and print value
-            temp := value;
-            num_digits := 0;
-            if (temp == 0) { num_digits := 1; }
-            else {
-                while (temp > 0) {
-                    num_digits := num_digits + 1;
-                    temp := temp / 10;
-                }
-            }
-            temp := width1 - num_digits - 1;
-            while (temp > 0) {
-                print(" ");
-                temp := temp - 1;
-            }
-            print("%d ", value);
-            j := j + 1;
-        }
-        print("│");
-
-        // Display operation and second matrix (if applicable)
+        print_matrix_row(matrix_id, i, width1);  // Print the first matrix
+        
         if (other_matrix_id > 0) {
-            calc2 := rows / 2;
-            if (i == calc2) { print(" %c ", operation); }
-            else { print("   "); }
-
-            print("│ ");
-            j := 0;
-            while (j < cols) {
-                if (other_matrix_id == 1) { value := mat1[i, j]; }
-                if (other_matrix_id == 2) { value := mat2[i, j]; }
-
-                // Align and print value
-                temp := value;
-                num_digits := 0;
-                if (temp == 0) { num_digits := 1; }
-                else {
-                    while (temp > 0) {
-                        num_digits := num_digits + 1;
-                        temp := temp / 10;
-                    }
-                }
-                temp := width2 - num_digits - 1;
-                while (temp > 0) {
-                    print(" ");
-                    temp := temp - 1;
-                }
-                print("%d ", value);
-                j := j + 1;
-            }
-            print("│");
+            print(" %c ", operation);  // Display operation
+            print_matrix_row(other_matrix_id, i, width2);  // Print the second matrix
         }
 
-        // Display result matrix (if applicable)
         if (show_result == true) {
-            calc2 := rows / 2;
-            if (i == calc2) { print(" = "); }
-            else { print("   "); }
-
-            print("│ ");
-            j := 0;
-            while (j < cols) {
-                value := result[i, j];
-
-                // Align and print value
-                temp := value;
-                num_digits := 0;
-                if (temp == 0) { num_digits := 1; }
-                else {
-                    while (temp > 0) {
-                        num_digits := num_digits + 1;
-                        temp := temp / 10;
-                    }
-                }
-                temp := width3 - num_digits - 1;
-                while (temp > 0) {
-                    print(" ");
-                    temp := temp - 1;
-                }
-                print("%d ", value);
-                j := j + 1;
-            }
-            print("│");
+            print(" = ");  // Display equals sign
+            print_matrix_row(3, i, width3);  // Print the result matrix
         }
         print("\n");
         i := i + 1;
@@ -346,8 +315,8 @@ proc display_matrix(matrix_id: int, operation: char, other_matrix_id: int, show_
     // Display bottom borders
     print("└");
     i := 0;
-    calc2 := width1 * cols + 1;
-    while (i < calc2) {
+    calcule := width1 * cols + 1;
+    while (i < calcule) {
         print(" ");
         i := i + 1;
     }
@@ -356,8 +325,8 @@ proc display_matrix(matrix_id: int, operation: char, other_matrix_id: int, show_
     if (other_matrix_id > 0) {
         print("   └");
         i := 0;
-        calc2 := width2 * cols + 1;
-        while (i < calc2) {
+        calcule := width2 * cols + 1;
+        while (i < calcule) {
             print(" ");
             i := i + 1;
         }
@@ -367,8 +336,8 @@ proc display_matrix(matrix_id: int, operation: char, other_matrix_id: int, show_
     if (show_result == true) {
         print("   └");
         i := 0;
-        calc2 := width3 * cols + 1;
-        while (i < calc2) {
+        calcule := width3 * cols + 1;
+        while (i < calcule) {
             print(" ");
             i := i + 1;
         }
@@ -445,12 +414,15 @@ proc display_menu() {
     print("    |  [1] Add Matrices                             |\n");
     print("    |  [2] Subtract Matrices                        |\n");
     print("    |  [3] Multiply Matrices                        |\n");
-    print("    |  [4] Enter New Matrices                       |\n");
-    print("    |  [5] Exit                                     |\n");
+    print("    |  [4] Transpose Matrix 1                       |\n");
+    print("    |  [5] Scale Matrix 1                           |\n");
+    print("    |  [6] Show Matrices                            |\n");
+    print("    |  [7] Enter New Matrices                       |\n");
+    print("    |  [8] Exit                                     |\n");
     print("    |                                               |\n");
     print("    '==============================================='\n");
     print("\n");
-    print("     Enter your selection [1-5] >> ");
+    print("     Enter your selection [1-8] >> ");
 }
 
 proc display_error() {
@@ -459,7 +431,7 @@ proc display_error() {
     print("    |                   ERROR                       |\n");
     print("    |===============================================|\n");
     print("    |                                               |\n");
-    print("    |  Invalid selection! Please choose 1-5.        \n");
+    print("    |  Invalid selection! Please choose 1-8.        \n");
     print("    |                                               |\n");
     print("    '==============================================='\n");
     print("\n");
@@ -481,7 +453,7 @@ proc display_end() {
 
 proc main() {
     choice := 0;
-    while (choice != 5) {
+    while (choice != 8) {
         display_menu();
         input("%d", choice);
 
@@ -514,15 +486,35 @@ proc main() {
             }
         }
         if (choice == 4) {
+            print("\n    --------------------------------------\n");
+            print("           Transposed Matrix 1\n");
+            print("    --------------------------------------\n\n");
+            transpose_matrix();
+            display_matrix(3, 'T', 0, false);
+        }
+        if (choice == 5) {
+            print("\n    --------------------------------------\n");
+            print("           Scaled Matrix 1\n");
+            print("    --------------------------------------\n\n");
+            scale_matrix();
+            display_matrix(3, '*', 0, false);
+        }
+        if (choice == 6) {
+            print("\n    --------------------------------------\n");
+            print("           Matrices\n");
+            print("    --------------------------------------\n\n");
+            display_matrix(1, ' ', 2, false);
+        }
+        if (choice == 7) {
             print("\n    Re-entering matrices:\n");
             input_dimensions();
             input_matrix(1);
             input_matrix(2);
         }
-        if (choice == 5) {
+        if (choice == 8) {
             display_end();
         }
-        if ((choice < 1) || (choice > 5)) {
+        if ((choice < 1) || (choice > 8)) {
             display_error();
         }
     }
@@ -538,4 +530,3 @@ input_matrix(2);
 
 // Launch app main loop
 main();
-

@@ -37,7 +37,7 @@ OTHER_SRC     = $(shell find $(SRC_DIR) -name '*.c' ! -path "$(BIN_DIR)/*")
 ALL_OBJ       = $(OTHER_SRC:.c=.o)   
 
 # Executables to generate
-EXECUTABLES  = compiler.exe interpreter.exe 
+EXECUTABLES  = argoc argov 
 
 # ====================================================== #
 #                B U I L D  T A R G E T S            	 #
@@ -59,9 +59,9 @@ docs:
 #  Build the compiler executable from lexer and parser   #
 # ------------------------------------------------------ #
 
-compiler: compiler.exe
+compiler: argoc
 
-compiler.exe: $(COMPILER_RULES) $(ALL_OBJ) $(COMPILER_PARSER_GEN_H)
+argoc: $(COMPILER_RULES) $(ALL_OBJ) $(COMPILER_PARSER_GEN_H)
 	$(CC) $(CFLAGS) $(BIN_DIR)/lex.yy.c $(BIN_DIR)/y.tab.c $(ALL_OBJ) $(INCLUDE_DIRS) -o $@
 
 # Rule to compile .c files into .o object files for the compiler
@@ -81,9 +81,9 @@ parser: $(SRC_DIR)/parser/grammar.y
 #     Build the interpreter executable for the VM        #
 # ------------------------------------------------------ #
 
-vm: interpreter.exe
+vm: argov
 
-interpreter.exe: $(INTERPRETER_RULES) $(ALL_OBJ) $(INTERPRETER_PARSER_GEN_H)
+argov: $(INTERPRETER_RULES) $(ALL_OBJ) $(INTERPRETER_PARSER_GEN_H)
 	$(CC) $(CFLAGS) $(BIN_DIR)/lex.yy.c $(BIN_DIR)/y.tab.c $(ALL_OBJ) $(INCLUDE_DIRS) -o $@
 
 vm_lexer: $(SRC_DIR)/lexer/interpreter_lexer.l
@@ -114,7 +114,7 @@ simple-clean:
 
 
 clean: simple-clean
-	rm -f *.exe $(BIN_DIR)/*.tab.c $(BIN_DIR)/*.tab.h $(BIN_DIR)/lex.yy.c && \
+	rm -f argoc argov $(BIN_DIR)/*.tab.c $(BIN_DIR)/*.tab.h $(BIN_DIR)/lex.yy.c && \
 	rm -rf tests/**/__pycache__
 	rm -rf ./.pytest_cache/
 	rm -f log.txt

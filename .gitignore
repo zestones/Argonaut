@@ -275,3 +275,5 @@ example/compilation/.out/actual_outputs/
 !example/compilation/.out/expected_outputs/*.out
 
 log.txt
+argoc
+argov
