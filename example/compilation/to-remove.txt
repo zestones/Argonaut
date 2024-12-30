@@ -6,7 +6,7 @@ var fib_1 : int;
 var fib_2 : int;       
 
 
-func main(n: int) -> int {
+proc main(n: int) {
     if (n < 1) {
         return -1;
     }
