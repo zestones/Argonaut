@@ -1,0 +1,20 @@
+Bonjour M. Jacquenet,
+
+
+Voici l'archive de notre travail pour la semaine du vendredi 13/12/2024 au vendredi 20/12/2024 réalisé par le groupe Benguezzou/Benmamar/Fizser.
+En raison du coding party, nous n'avons pas pu vous faire notre rendu hier.
+
+Tâches réalisées cette semaine :
+
+- Analyse sémantique terminée (vérification des types, expressions, assignements ...)
+- Création de fichier de tests pour vérifier les erreurs possibles à la compilations dans le dossier "example/compilation/errors/"
+- Refonte de certain module de notre projet pour une meilleure organisation
+
+Prochaines étapes :
+- Finir la génération du texte intermédiaire
+- Charger le texte intermédiaire dans le programme pour commencer l'interprétation
+
+----
+
+Cordialement,
+Benguezzou Mohamed

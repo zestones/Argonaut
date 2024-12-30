@@ -93,3 +93,4 @@ if (person3.birthday.year > reference_date.year) {
 }
 
 total_salary := total_salary;
+print("%f\n", total_salary);

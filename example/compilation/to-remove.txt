@@ -1,37 +1,18 @@
 PROG
 
-var n : int;         // Number to calculate factorial for
-var fact : int;      // Holds the factorial result
-var i : int;         // Loop iterator
-var res : int;
+var n : int;           
+var fib : int;         
+var fib_1 : int;       
+var fib_2 : int;       
 
-print("Enter a number to compute its factorial: ");
-input("%d", n);
 
-// Handle edge cases
-if (n < 0) {
-    print("Factorial is undefined for negative numbers.\n");
-} else {
-    if (n == 0) {
-        // Factorial of 0 is 1 by definition
-        fact := 1;
-        print("Factorial of %d is %d\n", n, fact);
-    } else {
-        // General case
-        fact := 1;       // Initialize factorial to 1
-        i := 1;          // Start loop from 1
-
-        while (i <= n) {
-            // Check for overflow
-            res := fact * i / i; 
-            if (res != fact) {
-                print("Error: Factorial calculation overflowed for %d.\n", n);
-            }
-
-            fact := fact * i; // Multiply current factorial with i
-            i := i + 1;       // Increment iterator
-        }
-
-        print("Factorial of %d is %d\n", n, fact);
+proc main(n: int) {
+    if (n < 1) {
+        return -1;
     }
+
+    return 4;
 }
+
+print("%d\n", main(4));
+print("%d\n", main(0));

@@ -133,11 +133,12 @@ vm_cell resolve_boolean_expression(Node *expression) {
             break;
         }
 
+        case A_CONDITION:
+            return resolve_boolean_expression(expression->child);
+
         default:
-            set_error_type(&error, SYNTAX_ERROR);
-            set_error_message(&error, "Unknown boolean expression type.");
-            yerror(error);
-            exit(EXIT_FAILURE);
+           printf("Invalid boolean expression type: %d\n", expression->type);
+           exit(EXIT_FAILURE);
     }
 
     return construct_vm_cell(NULL_VALUE, NULL);

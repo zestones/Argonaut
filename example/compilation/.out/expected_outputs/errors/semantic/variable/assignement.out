@@ -263,8 +263,9 @@ Root of the AST:
 +------------------------------------------------------------------------+
 Root of the AST:
 ├── A_FUNCTION_DECLARATION, Lexico Idx: 22, Decl Idx: 22 -- Lexeme: 'test'
-│   ├── A_RETURN_STATEMENT, Lexico Idx: -1, Decl Idx: -1
-│   │   ├── A_INTEGER_LITERAL, Lexico Idx: 14, Decl Idx: -1 -- Lexeme: '1'
+│   ├── A_STATEMENT_LIST, Lexico Idx: -1, Decl Idx: -1
+│   │   ├── A_RETURN_STATEMENT, Lexico Idx: -1, Decl Idx: -1
+│   │   │   ├── A_INTEGER_LITERAL, Lexico Idx: 14, Decl Idx: -1 -- Lexeme: '1'
 +------------------------------------------------------------------------+
 
 
@@ -275,7 +276,8 @@ Root of the AST:
 ├── A_FUNCTION_DECLARATION, Lexico Idx: 23, Decl Idx: 23 -- Lexeme: 'main'
 │   ├── A_PARAMETER_LIST, Lexico Idx: -1, Decl Idx: -1
 │   │   ├── A_PARAMETER, Lexico Idx: 24, Decl Idx: 24 -- Lexeme: 'a'
-│   └── A_RETURN_STATEMENT, Lexico Idx: -1, Decl Idx: -1
-│   │   ├── A_INTEGER_LITERAL, Lexico Idx: 25, Decl Idx: -1 -- Lexeme: '0'
+│   └── A_STATEMENT_LIST, Lexico Idx: -1, Decl Idx: -1
+│   │   ├── A_RETURN_STATEMENT, Lexico Idx: -1, Decl Idx: -1
+│   │   │   ├── A_INTEGER_LITERAL, Lexico Idx: 25, Decl Idx: -1 -- Lexeme: '0'
 +------------------------------------------------------------------------+
 

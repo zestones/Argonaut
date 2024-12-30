@@ -1,4 +1,0 @@
-[Syntax Error] Unexpected token found: ';' at example/compilation/errors/syntax/mixed_declaration.txt:7:15.
-	> Do not mix declarations and statements! All declarations must be at the beginning of the block.
-	> This error is critical and will cause the program to terminate.
-	> Exiting due to a syntax error.

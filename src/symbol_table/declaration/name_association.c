@@ -52,3 +52,20 @@ int find_declaration_index(int tlex_index) {
 int find_declaration_index_by_nature(int tlex_index, Nature nature) {
     return find_declaration_in_stack(tlex_index, nature);
 }
+
+int find_function_index_by_region(int region_index) {
+    Declaration *declaration_table = get_declaration_table();
+    int index = 4; // Start at the first entry in the declaration table
+
+    // TODO: optimize this search
+    while (index != MAX_DECLARATION_COUNT) {
+        if (declaration_table[index].nature == TYPE_FUNC && 
+            declaration_table[index].execution == region_index) {
+            return index; // Found the function with the matching region
+        }
+
+        index++;
+    }
+
+    return NULL_VALUE;
+}

@@ -21,7 +21,7 @@ int hash_function(const char* lexeme, int length) {
         hash += lexeme[i];
     }
 
-    return hash % HASH_TABLE_SIZE;
+    return (hash % HASH_TABLE_SIZE + HASH_TABLE_SIZE) % HASH_TABLE_SIZE;
 }
 
 static void new_hash_entry(int index, int value) {

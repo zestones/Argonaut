@@ -41,6 +41,7 @@ letter [a-zA-Z]
 "if"                            { error.column += yyleng; return IF; }
 "else"                          { error.column += yyleng; return ELSE; }
 "while"                         { error.column += yyleng; return WHILE; }
+"for"                           { error.column += yyleng; return FOR; }
 
 "int"                           { error.column += yyleng; return INTEGER_TYPE; }
 "float"                         { error.column += yyleng; return FLOAT_TYPE; }
@@ -58,6 +59,9 @@ letter [a-zA-Z]
 "&&"                            { error.column += yyleng; return AND; }
 "||"                            { error.column += yyleng; return OR; }
 "!"                             { error.column += yyleng; return NOT; }
+
+"++"                            { error.column += yyleng; yylval.lexicographic_index = insert_lexeme("1"); return INCREMENT; }
+"--"                            { error.column += yyleng; yylval.lexicographic_index = insert_lexeme("1"); return DECREMENT; }
 
 "+"                             { error.column += yyleng; return PLUS; }
 "-"                             { error.column += yyleng; return MINUS; }
@@ -105,19 +109,19 @@ letter [a-zA-Z]
     return STRING_VALUE; 
 }
 
-{number}+"."{number}* { 
+[-]?{number}+"."{number}* { 
     yylval.lexicographic_index = insert_lexeme(yytext);
     error.column += yyleng;
     return FLOAT_VALUE; 
 }
 
-0|[1-9][0-9]* { 
+0|[-]?[1-9][0-9]* { 
     yylval.lexicographic_index = insert_lexeme(yytext);
     error.column += yyleng;
     return INTEGER_VALUE; 
 }
 
-{letter}+({letter}|{number}|"_"|"-")* {
+{letter}+({letter}|{number}|"_")* {
     yylval.lexicographic_index = insert_lexeme(yytext);
     error.column += yyleng;
     return IDENTIFIER;

@@ -109,3 +109,9 @@ int get_struct_field_count(int struct_declaration) {
     int struct_representation = get_declaration_description(struct_declaration);
     return get_representation_value(struct_representation);
 }
+
+
+int get_func_return_type(int func_declaration) {
+    int func_representation = get_declaration_description(func_declaration);
+    return get_representation_value(func_representation);
+}

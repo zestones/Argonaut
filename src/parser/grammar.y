@@ -7,6 +7,7 @@
     #include "../symbol_table/declaration/declaration_table.h"
     #include "../symbol_table/lexeme/lexeme_table.h"
     #include "../symbol_table/hash/hash_table.h"
+    #include "../symbol_table/utility.h"
     #include "../data/region_table.h"
 
     #include "parser.h"
@@ -73,11 +74,12 @@
 %token STRUCT FSTRUCT
 %token <lexicographic_index> IDENTIFIER TYPE INTEGER_TYPE FLOAT_TYPE BOOLEAN_TYPE CHARACTER_TYPE STRING_TYPE
 %token PROCEDURE FUNCTION RETURN_TYPE RETURN_VALUE
-%token IF ELSE WHILE
+%token IF ELSE WHILE FOR
 %token EQUAL NOT_EQUAL LESS_THAN GREATER_THAN LESS_EQUAL GREATER_EQUAL
 %token PRINT INPUT
 
 %token <lexicographic_index> BOOLEAN_VALUE STRING_VALUE INTEGER_VALUE CHARACTER_VALUE FLOAT_VALUE
+%token <lexicographic_index> INCREMENT DECREMENT
 
 %right NOT
 %left AND OR 
@@ -90,14 +92,14 @@
 
 %type <lexicographic_index> type 
 
-%type <ast> assignment_statement if_statement loop_statement standalone_func_proc_call_statement func_proc_call_expression
+%type <ast> assignment_statement if_statement loop_statement for_statement standalone_func_proc_call_statement func_proc_call_expression
 %type <ast> array_access_statement array_indices struct_access_statement print_statement input_statement
 
 %type <ast> variable_declaration type_declaration complex_type_fields type_field
 %type <ast> function_declaration return_statement procedure_declaration parameter_list parameter argument_list
 
-%type <ast> program declaration_list statement_list statement_block declaration statement expression expression_atom
-%type <ast> condition comparison_operator
+%type <ast> program declaration_list statement_list statement_block declaration statement inc_dec_statement
+%type <ast> expression expression_atom condition comparison_operator
 
 %type <ast> input_argument_list format_string 
 
@@ -147,18 +149,17 @@ function_declaration: FUNCTION IDENTIFIER {
                         declaration_func_start();
                     } OPEN_PARENTHESIS parameter_list CLOSE_PARENTHESIS RETURN_TYPE type {
                         update_declaration_func_return_type($8);
-                    } START declaration_list statement_list return_statement END {
+                    } START declaration_list statement_list END {
                         $$ = construct_node(A_FUNCTION_DECLARATION, $2, find_declaration_index_by_nature($2, TYPE_FUNC));
 
-                        Node *nodes[] = { $5, $11, $12, $13 };
-                        add_chain($$, nodes, 4);
+                        Node *nodes[] = { $5, $11, $12 };
+                        add_chain($$, nodes, 3);
 
                         update_region_ast(peek_region(), $$);
                         declaration_func_proc_end();
 
                         // Keep the declaration in the region
                         $$ = construct_node(A_FUNCTION_DECLARATION, $2, find_declaration_index_by_nature($2, TYPE_FUNC));
-                        check_func_prototype($8, $13);
                     } 
 ;
 
@@ -269,15 +270,15 @@ expression: expression PLUS expression {
           | OPEN_PARENTHESIS expression CLOSE_PARENTHESIS { $$ = $2; }
 ;
 
-expression_atom: func_proc_call_expression { $$ = $1; }  
-               | array_access_statement { $$ = $1; }
-               | struct_access_statement { $$ = $1; }
-               | IDENTIFIER  { check_variable_definition($1); $$ = construct_node(A_IDENTIFIER, $1, find_declaration_index($1)); }
+expression_atom: IDENTIFIER  { check_variable_definition($1); $$ = construct_node(A_IDENTIFIER, $1, find_declaration_index($1)); }
                | INTEGER_VALUE { $$ = construct_node(A_INTEGER_LITERAL, $1, NULL_VALUE); }
                | FLOAT_VALUE { $$ = construct_node(A_FLOAT_LITERAL, $1, NULL_VALUE); }
                | BOOLEAN_VALUE { $$ = construct_node(A_BOOLEAN_LITERAL, $1, NULL_VALUE); }
                | CHARACTER_VALUE { $$ = construct_node(A_CHARACTER_LITERAL, $1, NULL_VALUE); }
                | STRING_VALUE { $$ = construct_node(A_STRING_LITERAL, $1, NULL_VALUE); }
+               | func_proc_call_expression { $$ = $1; }  
+               | array_access_statement { $$ = $1; }
+               | struct_access_statement { $$ = $1; }
 ;
 
 // TODO : is there a better way to assign the lexicographic_index to the base type ?
@@ -285,7 +286,7 @@ type: INTEGER_TYPE { $$ = 0; }
     | FLOAT_TYPE   { $$ = 1; }
     | BOOLEAN_TYPE { $$ = 2; }
     | CHARACTER_TYPE { $$ = 3; }
-    | STRING_TYPE OPEN_BRACKET INTEGER_VALUE CLOSE_BRACKET // FIXME: HELP I DONT KNOW HOW TO HANDLE THIS
+    | STRING_TYPE  // FIXME: HELP I DONT KNOW HOW TO HANDLE THIS
     | IDENTIFIER 
 ;
 
@@ -318,11 +319,11 @@ func_proc_call_expression: IDENTIFIER { check_func_proc_definition($1); } OPEN_P
 ;
 
 // Conditions and boolean expressions
-condition: OPEN_PARENTHESIS expression_atom comparison_operator expression_atom CLOSE_PARENTHESIS {
+condition: expression comparison_operator expression {
             $$ = construct_node_default(A_CONDITION);
-            add_child($$, $3);
-            add_child($3, $2);
-            add_sibling($2, $4);
+            add_child($$, $2);
+            add_child($2, $1);
+            add_sibling($1, $3);
             check_condition($$);
          }
          | OPEN_PARENTHESIS condition CLOSE_PARENTHESIS {
@@ -375,61 +376,134 @@ statement_list: statement statement_list {
               | { $$ = NULL; }
 ;
 
-
-statement: assignment_statement {
+statement: assignment_statement SEMICOLON {
             $$ = construct_node_default(A_ASSIGNMENT_STATEMENT);
             add_child($$, $1);
         }
         | if_statement { $$ = $1; }
         | standalone_func_proc_call_statement { $$ = $1; }
         | loop_statement  { $$ = $1; }
+        | for_statement   { $$ = $1; }  
         | print_statement { $$ = $1; }
         | input_statement { $$ = $1; }
+        | return_statement{ $$ = $1; }
 ;
 
-assignment_statement: IDENTIFIER { check_variable_definition($1); } OPAFF expression SEMICOLON {
+assignment_statement: IDENTIFIER { check_variable_definition($1); } OPAFF expression {
                         $$ = construct_node(A_VARIABLE_ASSIGNMENT, $1, get_var_param_declaration_index($1));
                         add_child($$, $4);
                         check_variable_assignment($1, $4);
                     }
-                    | array_access_statement OPAFF expression SEMICOLON {
+                    | array_access_statement OPAFF expression {
                         $$ = construct_node_default(A_ARRAY_ASSIGNMENT);
                         add_child($$, $1);  
                         add_sibling($1, $3);
                         check_array_assignment($1, $3);
                     }
-                    | struct_access_statement OPAFF expression SEMICOLON {
+                    | struct_access_statement OPAFF expression {
                         $$ = construct_node_default(A_STRUCT_ASSIGNMENT);
                         add_child($$, $1);  
                         add_sibling($1, $3);
                         check_struct_assignment($1, $3);
                     }
+                    | inc_dec_statement { $$ = $1; }
 ;
 
-return_statement: RETURN_VALUE expression SEMICOLON { 
+inc_dec_statement: IDENTIFIER DECREMENT {
+                        $$ = construct_node(A_VARIABLE_ASSIGNMENT, $1, get_var_param_declaration_index($1));
+                        
+                        // Create the A_SUB_OP node
+                        Node *op_node = construct_node_default(A_SUB_OP);
+                        Node *identifier_node = construct_node(A_IDENTIFIER, $1, get_var_param_declaration_index($1));
+                        Node *literal_node = construct_node(A_INTEGER_LITERAL, $2, NULL_VALUE);
+
+                        // Build the operation tree
+                        add_child(op_node, identifier_node);
+                        add_sibling(identifier_node, literal_node);
+
+                        // Attach operation tree as the child of the assignment node
+                        add_child($$, op_node);
+
+                        check_variable_assignment($1, op_node);
+                    }
+                    | IDENTIFIER INCREMENT {
+                        $$ = construct_node(A_VARIABLE_ASSIGNMENT, $1, get_var_param_declaration_index($1));
+                        
+                        // Create the A_SUB_OP or A_ADD_OP node
+                        Node *op_node = construct_node_default(A_ADD_OP);
+                        Node *identifier_node = construct_node(A_IDENTIFIER, $1, get_var_param_declaration_index($1));
+                        Node *literal_node = construct_node(A_INTEGER_LITERAL, $2, NULL_VALUE);
+
+                        // Build the operation tree
+                        add_child(op_node, identifier_node);
+                        add_sibling(identifier_node, literal_node);
+
+                        // Attach operation tree as the child of the assignment node
+                        add_child($$, op_node);
+
+                        check_variable_assignment($1, op_node);
+                    }
+;
+
+return_statement: RETURN_VALUE expression SEMICOLON {
+                    if (!peek_region()) {
+                        set_error_type(&error, SYNTAX_ERROR);
+                        yyerror("Return statement is not allowed outside of a function.");
+                    }
+                    int index_declaration = find_function_index_by_region(peek_region());
+                    // Check if function exist otherwise we are inside a procedure
+                    if (index_declaration == NULL_VALUE) {
+                        set_error_type(&error, SYNTAX_ERROR);
+                        yyerror("Return statement is not allowed outside of a function.");
+                    }
+
                     $$ = construct_node_default(A_RETURN_STATEMENT);
                     add_child($$, $2);
+                    check_func_prototype(get_func_return_type(index_declaration), $$);
                 }
 ;
 
-if_statement: IF condition statement_block {
+if_statement: IF OPEN_PARENTHESIS condition CLOSE_PARENTHESIS statement_block {
                 $$ = construct_node_default(A_IF);
-                add_child($$, $2);
-                add_sibling($2, $3);
+                add_child($$, $3);
+                add_sibling($3, $5);
             }
-            | IF condition statement_block ELSE statement_block {
+            | IF OPEN_PARENTHESIS condition CLOSE_PARENTHESIS statement_block ELSE statement_block {
                 $$ = construct_node_default(A_IF_ELSE); 
-                add_child($$, $2); 
-                add_sibling($2, $3);
+                add_child($$, $3); 
+                add_sibling($3, $5);
+                add_sibling($5, $7);
+            }
+            | IF OPEN_PARENTHESIS condition CLOSE_PARENTHESIS statement_block ELSE if_statement 
+            {
+                $$ = construct_node_default(A_IF_ELSE_IF);
+                add_child($$, $3); 
+                add_sibling($3, $5);
+                add_sibling($5, $7);
+            }
+;
+
+loop_statement: WHILE OPEN_PARENTHESIS condition CLOSE_PARENTHESIS statement_block {
+                $$ = construct_node_default(A_WHILE); 
+                add_child($$, $3);
                 add_sibling($3, $5);
             }
 ;
 
-loop_statement: WHILE condition statement_block {
-                $$ = construct_node_default(A_WHILE); 
-                add_child($$, $2);
-                add_sibling($2, $3);
-            }
+for_statement: FOR OPEN_PARENTHESIS assignment_statement SEMICOLON condition SEMICOLON assignment_statement CLOSE_PARENTHESIS statement_block {
+        $$ = construct_node_default(A_FOR_LOOP);
+        Node *initialization = construct_node_default(A_VARIABLE_ASSIGNMENT);
+        add_child($$, initialization);
+        add_child(initialization, $3);
+
+        add_sibling(initialization, $5);
+
+        Node *update = construct_node_default(A_VARIABLE_ASSIGNMENT);
+        add_sibling($5, update);
+        add_child(update, $7);
+
+        add_sibling(update, $9);
+}
 ;
 
 standalone_func_proc_call_statement: func_proc_call_expression SEMICOLON { $$ = $1; }

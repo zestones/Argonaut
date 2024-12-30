@@ -15,12 +15,14 @@ int resolve_func_proc_return_type(Node *function_call) {
     return NULL_VALUE;
 }
 
+// TODO: refactor move to symbol_table/utility.c
 static int resolve_procedure_parameter_count(int index_lexeme_lexicographic) {
     int index_declaration = find_declaration_index_by_nature(index_lexeme_lexicographic, TYPE_PROC);
     int index_representation_start = get_declaration_description(index_declaration);
     return get_representation_value(index_representation_start); 
 }
 
+// TODO: refactor move to symbol_table/utility.c
 static int resolve_function_parameter_count(int index_lexeme_lexicographic) {
     int index_declaration = find_declaration_index_by_nature(index_lexeme_lexicographic, TYPE_FUNC);
     int index_representation_start = get_declaration_description(index_declaration);

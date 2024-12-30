@@ -75,7 +75,7 @@ int find_lexeme_index(const char* lexeme) {
 
 static char* format_lexeme_row(void* data) {
     Lexeme* row = (Lexeme*)data;
-    char* formatted_row = (char*)malloc(100 * sizeof(char));
+    char* formatted_row = (char*)malloc(512 * sizeof(char));
     sprintf(formatted_row, "%s|%d|%d", row->lexeme, row->length, row->next);
     return formatted_row;
 }
