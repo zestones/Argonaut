@@ -1,3 +1,4 @@
+#include "../virtual_machine/stack_management/stack_management.h"
 #include "parser.h"
 #include "../bin/y.tab.h"
 
@@ -84,6 +85,7 @@ void ydebug(int debug) {
     if (!debug) return;
     fprintf(stdout, COLOR_GREEN "Verbose mode enabled. Printing tables and ast...\n" COLOR_RESET);
     write_tables_to(stdout);
+    fprintf_vm_stack(stdout); 
 }
 
 int yyrun(Mode m) {

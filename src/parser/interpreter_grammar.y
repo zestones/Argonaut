@@ -10,6 +10,7 @@
     #include <stdio.h>
     #include <stdlib.h>
     #include <unistd.h>
+    #include <getopt.h>
 
     int yylex();
     extern FILE *yyin;
@@ -147,34 +148,43 @@ sibling_node: LBRACKET SIBLING ast_node RBRACKET { $$ = $3; }
 
 static void print_usage(const char *program_name) {
     // Header
-    fprintf(stdout, COLOR_BOLD COLOR_UNDERLINE "\nUsage:" COLOR_RESET "\n");
-    fprintf(stdout, COLOR_GREEN "  %s -f <file> [-v] [-h]\n" COLOR_RESET, program_name);
-
-    fprintf(stdout, "\n");
-
-    // Options section
-    fprintf(stdout, COLOR_BOLD "Options:\n" COLOR_RESET);
-    fprintf(stdout, "  " COLOR_YELLOW "-f <file>      " COLOR_RESET "The input file to be interpreted.\n");
-    fprintf(stdout, "  " COLOR_YELLOW "-v             " COLOR_RESET "Enable verbose mode (display symbol tables and AST).\n");
-    fprintf(stdout, "  " COLOR_YELLOW "-h             " COLOR_RESET "Show this help message.\n");
-
-    fprintf(stdout, "\n");
+    fprintf(stdout, COLOR_BOLD_YELLOW "\nUsage:\n" COLOR_RESET);
+    fprintf(stdout, COLOR_GREEN "  %s -i <input_file> [options]\n\n", program_name);
 
     // Description section
-    fprintf(stdout, COLOR_BOLD "Description:\n" COLOR_RESET);
-    fprintf(stdout, "  This program interprets the specified input file and optionally displays\n");
+    fprintf(stdout, COLOR_BOLD_YELLOW "Description:\n" COLOR_RESET);
+    fprintf(stdout, COLOR_CYAN "  This program interprets the specified input file and optionally displays\n");
     fprintf(stdout, "  additional information such as the symbol tables and abstract syntax tree (AST).\n");
+    fprintf(stdout, "  Use this tool to execute Argonaut code and analyze its internal representation.\n\n" COLOR_RESET);
 
-    fprintf(stdout, "\n");
+    // Arguments section (merged short and long options)
+    fprintf(stdout, COLOR_BOLD_YELLOW "Arguments:\n" COLOR_RESET);
+    fprintf(stdout, COLOR_GREEN "  -i <file>          " COLOR_RESET ": The input file to be interpreted (required).\n");
+    fprintf(stdout, COLOR_GREEN "  -v, --verbose      " COLOR_RESET ": Enable verbose mode (display symbol tables, AST and execution Stack).\n");
+    fprintf(stdout, COLOR_GREEN "  -h, --help         " COLOR_RESET ": Show this help message and exit.\n");
 
-    // Example section
-    fprintf(stdout, COLOR_BOLD COLOR_BLUE "Example:\n" COLOR_RESET);
-    fprintf(stdout, COLOR_GREEN "  %s -f my_program.txt -v\n" COLOR_RESET, program_name);
+    // Examples section
+    fprintf(stdout, "\n" COLOR_BOLD_YELLOW "Examples:\n" COLOR_RESET);
+    fprintf(stdout, COLOR_CYAN "  %s -i my_program.arg -v\n" COLOR_RESET, program_name);
+    fprintf(stdout, "    - Interprets 'my_program.arg' with verbose output (symbol tables, AST, execution Stack, etc.).\n\n");
 
-    fprintf(stdout, "\n");
+    fprintf(stdout, COLOR_CYAN "  %s -i my_program.arg --verbose\n" COLOR_RESET, program_name);
+    fprintf(stdout, "    - Long option equivalent of the above example.\n\n");
+
+    // Constraints section
+    fprintf(stdout, COLOR_BOLD_YELLOW "Constraints:\n" COLOR_RESET);
+    fprintf(stdout, COLOR_RED "  - The input file must be specified with the '-i <file>' option.\n");
+    fprintf(stdout, COLOR_RED "  - If no file is specified, the program will terminate with an error.\n\n");
 
     exit(EXIT_SUCCESS);
 }
+
+
+typedef struct {
+    char *input_file;
+    char *output_file;
+    int log;
+} argonaut_options;
 
 
 int main(int argc, char **argv) {
@@ -182,10 +192,17 @@ int main(int argc, char **argv) {
     char *input_file = NULL;  // File to interpret
     int opt;
 
+    // Long options array
+    static struct option long_options[] = {
+        {"verbose", no_argument, NULL, 1},           // Enable verbose mode
+        {"help",    no_argument, NULL, 'h'},         // Display help message
+        {0, 0, 0, 0}  // End of options
+    };
+
     // Parse command-line options
-    while ((opt = getopt(argc, argv, "f:vh")) != -1) {
+    while ((opt = getopt_long(argc, argv, "i:vh", long_options, NULL)) != -1) {
         switch (opt) {
-            case 'f':
+            case 'i':
                 input_file = optarg;  // Capture the file argument
                 break;
             case 'v':
@@ -195,7 +212,7 @@ int main(int argc, char **argv) {
                 print_usage(argv[0]);  // Display help message
                 return 0;
             default:
-                fprintf(stderr, "Error: Unknown option '-%c'\n", optopt);
+                fprintf(stderr, COLOR_RED "Error: Unknown option '-%c'\n" COLOR_RESET, optopt);
                 print_usage(argv[0]);
                 return 1;
         }
@@ -213,7 +230,7 @@ int main(int argc, char **argv) {
     if (!file) {
         fprintf(stderr, COLOR_RED "Error: Could not open file '%s'.\n" COLOR_RESET, input_file);
         perror("\t> Reason");
-        return 1;
+        return EXIT_FAILURE;
     }
 
     // Initialize and run the interpreter
@@ -225,5 +242,5 @@ int main(int argc, char **argv) {
 
     ydebug(verbose_mode);
 
-    return 0;
+    return EXIT_SUCCESS;
 }

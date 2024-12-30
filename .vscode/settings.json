@@ -13,6 +13,7 @@
         "type_inference.h": "c",
         "representation_table.h": "c",
         "formatting.h": "c",
-        "stdlib.h": "c"
+        "stdlib.h": "c",
+        "parser.h": "c"
     }
 }

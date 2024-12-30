@@ -17,6 +17,9 @@
     #include <stdio.h>
     #include <stdlib.h>
     #include <unistd.h>
+    #include <getopt.h>
+    #include <string.h>
+
 
     int yylex();
 
@@ -632,22 +635,43 @@ input_argument_list: IDENTIFIER {
 %%
 
 static void print_usage(const char *program_name) {
-    fprintf(stdout, COLOR_BOLD COLOR_UNDERLINE "\nUsage:" COLOR_RESET);
-    fprintf(stdout, COLOR_GREEN " %s -f <file> [-v] [-h]\n" COLOR_RESET, program_name);
+    // Header
+    fprintf(stderr, COLOR_BOLD_YELLOW "\nUsage:\n" COLOR_RESET);
+    fprintf(stderr, "  %s -a <input_file> [options]\n\n", program_name);
 
-    fprintf(stdout, "\n");
+    // Description
+    fprintf(stderr, COLOR_BOLD_YELLOW "Description:\n" COLOR_RESET);
+    fprintf(stderr, COLOR_CYAN "  This program compiles the specified file and offers options for generating logs, verbose output,\n");
+    fprintf(stderr, "  and exporting tables to an output file.\n");
+    fprintf(stderr, "  Use this program to compile Argonaut code and analyze the intermediate steps of the process.\n\n" COLOR_RESET);
 
-    fprintf(stdout, COLOR_BOLD "Options:\n" COLOR_RESET);
-    fprintf(stdout, "  " COLOR_YELLOW "-f <file>      " COLOR_RESET "The input file to be processed.\n");
-    fprintf(stdout, "  " COLOR_YELLOW "-v             " COLOR_RESET "Enable verbose mode (display symbol table and ast).\n");
-    fprintf(stdout, "  " COLOR_YELLOW "-h             " COLOR_RESET "Show help (this usage information).\n");
+    // Arguments section (merged short and long options)
+    fprintf(stderr, COLOR_BOLD_YELLOW "Arguments:\n" COLOR_RESET);
+    fprintf(stderr, COLOR_GREEN "  -a <input_file>   " COLOR_RESET ": The source file to compile (required).\n");
+    fprintf(stderr, COLOR_GREEN "  -v, --verbose     " COLOR_RESET ": Display verbose output (e.g., symbol table and AST).\n");
+    fprintf(stderr, COLOR_GREEN "  -l, --log         " COLOR_RESET ": Enable logging during compilation.\n");
+    fprintf(stderr, COLOR_GREEN "  -o <output_file>, --output <output_file> " COLOR_RESET ": Specify the output file to save results.\n");
+    fprintf(stderr, COLOR_GREEN "  -h, --help        " COLOR_RESET ": Display this help information.\n");
 
-    fprintf(stdout, "\n");
+    fprintf(stderr, "\n");
 
-    fprintf(stdout, COLOR_BOLD "Description:\n" COLOR_RESET);
-    fprintf(stdout, "  This program compiles the specified input file.\n\n");
+    // Examples section
+    fprintf(stderr, COLOR_BOLD_YELLOW "Examples:\n" COLOR_RESET);
+    fprintf(stderr, COLOR_CYAN "  %s -a my_program.arg -vl -o output.txt\n" COLOR_RESET, program_name);
+    fprintf(stderr, "    - Compile the file 'my_program.arg' with verbose output and logging.\n");
+    fprintf(stderr, "    - Results saved to 'output.txt'.\n\n");
 
-    exit(EXIT_SUCCESS);
+    fprintf(stderr, COLOR_CYAN "  %s -a my_program.arg --verbose --log --output output.txt\n" COLOR_RESET, program_name);
+    fprintf(stderr, "    - Compile the file 'my_program.arg' with long options.\n");
+    fprintf(stderr, "    - Results saved to 'output.txt'.\n\n");
+
+    // Constraints section
+    fprintf(stderr, COLOR_BOLD_YELLOW "Constraints:\n" COLOR_RESET);
+    fprintf(stderr, COLOR_RED "  - The input file must be specified with the '-a <input_file>' option.\n");
+    fprintf(stderr, COLOR_RED "  - If '-o <output_file>' is used, the output file will be overwritten if it exists.\n\n");
+
+    // Exit function
+    exit(EXIT_FAILURE);
 }
 
 static void handle_file_error(const char *filename) {
@@ -658,69 +682,88 @@ static void handle_file_error(const char *filename) {
     exit(EXIT_FAILURE);
 }
 
+// Struct for storing arguments and options
+typedef struct {
+    char *input_file;
+    char *output_file;
+    int verbose;
+    int log;
+} argonaut_options;
+
 int main(int argc, char **argv) {
-    int opt, verbose, log = 0;
-    
+    int opt;
+    argonaut_options options = {NULL, NULL, 0, 0};
+
+    // Long options array (for --help, --verbose, etc.)
+    static struct option long_options[] = {
+        {"help",    no_argument,       NULL, 'h'},
+        {"verbose", no_argument,       NULL, 'v'},
+        {"log",     no_argument,       NULL, 'l'},
+        {"output",  required_argument, NULL, 'o'},
+        {0, 0, 0, 0}  // End of options
+    };
+
     error.line = 1;
     error.column = 1;
     error.type = NO_ERROR;
 
-    if (argc == 1) {
-        print_usage(argv[0]);
-    }
-
-    char *input_file = NULL;
-    char *output_file = NULL;
-
-    while ((opt = getopt(argc, argv, "f:vlho:")) != -1) {
+    // Process command-line options
+    while ((opt = getopt_long(argc, argv, "a:vlo:h", long_options, NULL)) != -1) {
         switch (opt) {
-            case 'f':
-                input_file = optarg;
-                break;
-            case 'l':
-                log = 1;
+            case 'a':
+                options.input_file = optarg;
                 break;
             case 'v':
-                verbose = 1;
+                options.verbose = 1;
+                break;
+            case 'l':
+                options.log = 1;
                 break;
             case 'o':
-                output_file = optarg;
+                options.output_file = optarg;
                 break;
             case 'h':
                 print_usage(argv[0]);
                 break;
             default:
+                fprintf(stderr, COLOR_RED "Error: Unknown option '-%c'.\n" COLOR_RESET, optopt);
                 print_usage(argv[0]);
                 return 1;
         }
     }
 
-    if (input_file == NULL) {
-        fprintf(stderr, COLOR_RED "Error: Missing required '-f <file>' argument.\n" COLOR_RESET);
+    // Ensure the input file is provided
+    if (options.input_file == NULL) {
+        fprintf(stderr, COLOR_RED "Error: Missing required '-a <file>' argument.\n" COLOR_RESET);
         print_usage(argv[0]);
     }
 
-    // Open the file for reading
-    FILE *file = fopen(input_file, "r");
-    if (!file) handle_file_error(input_file);
+    // Open the input file
+    FILE *file = fopen(options.input_file, "r");
+    if (!file) {
+        handle_file_error(options.input_file);
+    }
 
-    error.filename = input_file;
+    // Set up the file for processing
+    error.filename = options.input_file;
     yyin = file;
 
+    // Run compilation
     yyrun(COMPILATION);
     fclose(file);
 
+    ydebug(options.verbose);
+    ylog(options.log);
 
-    ydebug(verbose);
-    ylog(log);
-    
-    if (output_file != NULL) {
-        remove(output_file);
-        
-        export_lexeme_table(output_file);
-        export_declaration_table(output_file);
-        export_representation_table(output_file);
-        export_region_table(output_file);
+    // Handle output file export if specified
+    if (options.output_file != NULL) {
+        remove(options.output_file);  // Remove existing file before creating
+
+        // Export data to output file (implement your export functions)
+        export_lexeme_table(options.output_file);
+        export_declaration_table(options.output_file);
+        export_representation_table(options.output_file);
+        export_region_table(options.output_file);
     }
 
     return 0;

@@ -150,6 +150,4 @@ void interpret() {
     init_stack_region();
 
     execute_global_program();
-
-    // fprintf_vm_stack(stdout); 
 }
