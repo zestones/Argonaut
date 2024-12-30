@@ -451,6 +451,7 @@ return_statement: RETURN_VALUE expression SEMICOLON {
                         yyerror("Return statement is not allowed outside of a function.");
                     }
                     int index_declaration = find_function_index_by_region(peek_region());
+                    // Check if function exist otherwise we are inside a procedure
                     if (index_declaration == NULL_VALUE) {
                         set_error_type(&error, SYNTAX_ERROR);
                         yyerror("Return statement is not allowed outside of a function.");
