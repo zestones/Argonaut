@@ -152,18 +152,18 @@
                 }
             ]
         },
-        "numbers": {
-            "patterns": [
-                {
-                    "name": "constant.numeric.float.argonaut",
+       "numbers": {
+			"patterns": [
+				{
+					"name": "constant.numeric.float.argonaut",
                     "match": "-?\\d+\\.\\d*"
-                },
-                {
-                    "name": "constant.numeric.integer.argonaut",
-                    "match": "0|-?[1-9][0-9]*"
-                }
-            ]
-        },
+				},
+				{
+					"name": "constant.numeric.integer.argonaut",
+					"match": "(?<=^|\\W)-?[0-9][0-9]*"
+				}
+			]
+		},
         "operators": {
             "patterns": [
                 { "name": "keyword.operator.assignment.argonaut", "match": ":=" },
