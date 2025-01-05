@@ -77,6 +77,7 @@ void fprintf_stack_frame(FILE *out, stack_frame frame) {
     
     print_stack(frame.cells, format_cell);
 
+    print_table_title(out, "Return Value");
     fprintf_vm_cell(out, frame.region_value);
 
     printf("\n");

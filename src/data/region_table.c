@@ -149,8 +149,6 @@ void fprintf_region_table(FILE* out) {
         sprintf(index_str, "%d", i);
         sprintf(size_str, "%d", region_table[i].size);
         sprintf(nis_str, "%d", region_table[i].nis);
-        // TODO: print in a file ?
-        // sprintf(ast_str, "%d", region_table[i].ast);
 
         print_table_row(out,
                         4, 

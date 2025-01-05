@@ -61,6 +61,18 @@ vm_cell get_struct_cell(Node *struct_access);
 vm_cell get_array_cell(Node *arra_access);
 
 /**
+ * @brief Retrieves the return value cell from the current function's stack frame.
+ *
+ * This function accesses the stack frame of the currently executing function 
+ * by using the dynamic link to locate its stack frame. It then retrieves the 
+ * `region_value` field, which represents the memory location for storing 
+ * the return value of the function.
+ *
+ * @return The `vm_cell` containing the return value location for the current function.
+ */
+vm_cell get_return_cell();
+
+/**
  * @brief Updates the memory cell of a variable with a new value.
  *
  * This function handles the affectation (assignment) of a value to a variable

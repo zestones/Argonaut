@@ -33,7 +33,7 @@ static void resolve_declaration_list(Node *declaration_list) {
 }
 
 void resolve_statement_list(AST statement_list) {
-    if (statement_list == NULL) return;
+    if (statement_list == NULL || get_return_cell().is_initialized) return;   
 
     switch (statement_list->type) {
         case A_ASSIGNMENT_STATEMENT:
@@ -42,7 +42,8 @@ void resolve_statement_list(AST statement_list) {
 
         case A_IF:
         case A_IF_ELSE:
-            execute_condition(statement_list->child);
+        case A_IF_ELSE_IF:
+            execute_condition(statement_list);
             break;
 
         case A_INPUT_STATEMENT:
@@ -52,13 +53,19 @@ void resolve_statement_list(AST statement_list) {
         case A_PRINT_STATEMENT:
             execute_print(statement_list);
             break;
-        
+            
+        case A_FOR_LOOP:
         case A_WHILE:
             execute_loop(statement_list);
             break;
 
         case A_FUNC_PROC_CALL_STATEMENT: {
             execute_func_proc_call(statement_list);
+            break;
+        }
+
+        case A_RETURN_STATEMENT: {
+            handle_function_return_value(resolve_expression(statement_list->child));
             break;
         }
 
@@ -102,11 +109,6 @@ static void interpret_ast(AST ast) {
             else interpret_ast(ast->child);
             break;
 
-        case A_RETURN_STATEMENT: {
-            handle_function_return_value(resolve_expression(ast->child));
-            break;
-        }
-
         default: {
             interpret_ast(ast->child);
             interpret_ast(ast->sibling);
@@ -148,6 +150,4 @@ void interpret() {
     init_stack_region();
 
     execute_global_program();
-
-    // fprintf_vm_stack(stdout); 
 }

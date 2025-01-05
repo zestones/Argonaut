@@ -1,0 +1,25 @@
+{
+  "name": "syntax-highlighting",
+  "displayName": "argonaut-lang",
+  "description": "Argonaut Syntax Highlighting is an extension for Visual Studio Code that provides syntax highlighting support for the Argonaut language. This extension enables a clearer and more efficient coding experience for Argonaut developers by highlighting keywords, variables, functions, and other elements in the code with distinctive colors. Perfect for anyone working with Argonaut, whether you're writing or reviewing code.",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.96.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "contributes": {
+    "languages": [{
+      "id": "argonaut",
+      "aliases": ["argonaut", "argonaut"],
+      "extensions": [".arn"],
+      "configuration": "./language-configuration.json"
+    }],
+    "grammars": [{
+      "language": "argonaut",
+      "scopeName": "source.argonaut",
+      "path": "./syntaxes/argonaut.tmLanguage.json"
+    }]
+  }
+}

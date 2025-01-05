@@ -74,6 +74,10 @@ vm_cell get_variable_cell(int index_declaration) {
     return get_cell_from_stack_frame(frame, address);
 }
 
+vm_cell get_return_cell() {
+    return get_stack_frame_by_id(peek_execution_stack().dynamic_link)->region_value;
+}
+
 void handle_variable_affectation(int index_declaration, vm_cell cell) {
     int address = get_variable_address(index_declaration);
     int region = get_declaration_region(index_declaration);

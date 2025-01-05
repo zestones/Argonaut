@@ -271,8 +271,8 @@ Root of the AST:
 │   │   │   │   ├── A_MUL_OP, Lexico Idx: -1, Decl Idx: -1
 │   │   │   │   │   ├── A_IDENTIFIER, Lexico Idx: 4, Decl Idx: 500 -- Lexeme: 'a'
 │   │   │   │   │   └── A_INTEGER_LITERAL, Lexico Idx: 24, Decl Idx: -1 -- Lexeme: '2'
-│   └── A_RETURN_STATEMENT, Lexico Idx: -1, Decl Idx: -1
-│   │   ├── A_IDENTIFIER, Lexico Idx: 4, Decl Idx: 500 -- Lexeme: 'a'
+│   │   └── A_RETURN_STATEMENT, Lexico Idx: -1, Decl Idx: -1
+│   │   │   ├── A_IDENTIFIER, Lexico Idx: 4, Decl Idx: 500 -- Lexeme: 'a'
 +------------------------------------------------------------------------+
 
 
@@ -289,7 +289,7 @@ Root of the AST:
 │   │   │   │   ├── A_DIV_OP, Lexico Idx: -1, Decl Idx: -1
 │   │   │   │   │   ├── A_IDENTIFIER, Lexico Idx: 26, Decl Idx: 26 -- Lexeme: 'g'
 │   │   │   │   │   └── A_INTEGER_LITERAL, Lexico Idx: 24, Decl Idx: -1 -- Lexeme: '2'
-│   └── A_RETURN_STATEMENT, Lexico Idx: -1, Decl Idx: -1
-│   │   ├── A_IDENTIFIER, Lexico Idx: 26, Decl Idx: 26 -- Lexeme: 'g'
+│   │   └── A_RETURN_STATEMENT, Lexico Idx: -1, Decl Idx: -1
+│   │   │   ├── A_IDENTIFIER, Lexico Idx: 26, Decl Idx: 26 -- Lexeme: 'g'
 +------------------------------------------------------------------------+
 
