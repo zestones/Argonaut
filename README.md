@@ -1,15 +1,10 @@
-```txt
-     _                                      _        
-    / \   _ __ __ _  ___  _ __   __ _ _   _| |_
-   / _ \ | '__/ _` |/ _ \| '_ \ / _` | | | | __|
-  / ___ \| | | (_| | (_) | | | | (_| | |_| | |_
- /_/   \_\_|  \__, |\___/|_| |_|\__,_|\__,_|\__|
-              |___/
+<div align="center">
+    <img src="./extensions/custom-icons/icons/icon.png" alt="Argonaut">
+</div>
 
-```
 ---
 
-This project is a compiler for the CPYRR programming language, which is a simple language designed for educational purposes. The compiler is implemented in C and uses the YACC parser generator to parse the language grammar. It generates an abstract syntax tree (AST) from the parsed program and interprets the AST using a virtual machine.
+This project is a compiler for the Argonaut programming language, which is a simple language designed for educational purposes. The compiler is implemented in C and uses the YACC parser generator to parse the language grammar. It generates an abstract syntax tree (AST) from the parsed program and interprets the AST using a virtual machine.
 
 ## Notes
 

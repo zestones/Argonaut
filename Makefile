@@ -50,6 +50,14 @@ install:
 	sudo apt install flex bison
 	sudo apt install doxygen
 
+extension-install:
+	@if [ -d ~/.vscode/extensions/ ]; then \
+		cp -r extensions/* ~/.vscode/extensions/; \
+	fi
+	@if [ -d ~/.vscode-server/extensions/ ]; then \
+		cp -r extensions/* ~/.vscode-server/extensions/; \
+	fi
+
 docs:
 	doxygen Doxyfile
 
@@ -118,3 +126,9 @@ clean: simple-clean
 	rm -rf tests/**/__pycache__
 	rm -rf ./.pytest_cache/
 	rm -f log.txt
+
+extension-clean:
+	rm -rf ~/.vscode/extensions/custom-icons
+	rm -rf ~/.vscode-server/extensions/custom-icons
+	rm -rf ~/.vscode/extensions/syntax-highlighting
+	rm -rf ~/.vscode-server/extensions/syntax-highlighting

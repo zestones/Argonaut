@@ -5,7 +5,6 @@ var fib : int;
 var fib_1 : int;       
 var fib_2 : int;       
 
-
 func fibonacci(num : int) -> int {
     var i: int; 
     if (num <= 1) { return num; }
