@@ -5,8 +5,8 @@
             "name": "Debug Compiler",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/compiler.exe",
-            "args": ["-lf", "./example/compilation/to-remove.txt", "-o", "test.a"],
+            "program": "${workspaceFolder}/argoc",
+            "args": ["-la", "./example/compilation/to-remove.txt", "-o", "test.a"],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
             "environment": [],
@@ -22,8 +22,8 @@
             "name": "Debug Interpreter",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/interpreter.exe",
-            "args": ["-f", "test.a"],
+            "program": "${workspaceFolder}/argov",
+            "args": ["-i", "test.a"],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
             "environment": [],
@@ -34,6 +34,14 @@
                 { "description": "Enable pretty-printing for gdb", "text": "-enable-pretty-printing", "ignoreFailures": true }
             ],
             "preLaunchTask": "Build Project"
-        }
+        },
+        {
+			"name": "Extension",
+			"type": "extensionHost",
+			"request": "launch",
+			"args": [
+				"--extensionDevelopmentPath=${workspaceFolder}/syntax-highlighting"
+			]
+		}
     ]
 }
