@@ -1,0 +1,19 @@
+{
+    "name": "custom-icons",
+    "displayName": "Argonaut Custom Icon",
+    "publisher": "zestones",
+    "version": "1.0.0",
+    "engines": {
+        "vscode": "^1.75.0"
+    },
+    "categories": ["Themes"],
+    "contributes": {
+        "iconThemes": [
+            {
+                "id": "custom-icons",
+                "label": "Custom Icons",
+                "path": "./icons.json"
+            }
+        ]
+    }
+}

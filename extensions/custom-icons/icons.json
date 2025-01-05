@@ -1,0 +1,20 @@
+{
+    "iconDefinitions": {
+        "arnFile": {
+            "iconPath": "./icons/logo.png"
+        }
+    },
+    "fileExtensions": {
+        "arn": "arnFile"
+    },
+    "light": {
+        "fileExtensions": {
+            "arn": "arnFile"
+        }
+    },
+    "dark": {
+        "fileExtensions": {
+            "arn": "arnFile"
+        }
+    }
+}
