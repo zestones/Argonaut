@@ -1,8 +1,0 @@
-<map id="strip_quotes" name="strip_quotes">
-<area shape="rect" id="node1" title=" " alt="" coords="573,31,676,57"/>
-<area shape="rect" id="node2" href="$db/d97/func__proc_8h.html#a539fbc87af68ac31d5ba14ef1b30112c" title="Executes the input function for reading values from the user." alt="" coords="412,5,525,32"/>
-<area shape="rect" id="node6" href="$db/d97/func__proc_8h.html#a9b38818de8dbf519a23ac67cdbde43ad" title="Executes the print function for displaying formatted output." alt="" coords="413,56,524,83"/>
-<area shape="rect" id="node3" href="$dc/d30/interpreter_8c.html#ad22185b4006e50b6d4fb026dd83a6bd2" title="Resolves and executes a list of statements." alt="" coords="193,31,364,57"/>
-<area shape="rect" id="node4" href="$dd/d57/condition_8c.html#a7fb8e5acd57b590993223b0c48bed85c" title="Executes a conditional statement (if&#45;else)." alt="" coords="5,5,145,32"/>
-<area shape="rect" id="node5" href="$dd/d57/condition_8c.html#a59a7e582c8a07c7d1407f6bd276d1370" title="Executes a loop statement (while loop)." alt="" coords="21,56,129,83"/>
-</map>

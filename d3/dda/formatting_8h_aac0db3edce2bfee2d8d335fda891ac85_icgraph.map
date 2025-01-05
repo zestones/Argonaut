@@ -1,0 +1,13 @@
+<map id="format_array_access" name="format_array_access">
+<area shape="rect" id="Node000001" title="Formats an array access expression into a string representation." alt="" coords="472,81,631,107"/>
+<area shape="rect" id="Node000002" href="$d6/d4c/assignment__validation_8c.html#adafad0061063a9ae298f6233978de3b1" title="Validates type compatibility for array assignments." alt="" coords="240,5,424,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="500,79,369,33,371,28,502,74"/>
+<area shape="rect" id="Node000003" href="$d8/d9a/expression__format_8c.html#aa25e96463d92f71df60d78640b1bfb77" title="Formats an expression into a string representation." alt="" coords="27,57,171,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="458,92,171,76,171,71,458,86"/>
+<area shape="rect" id="Node000004" href="$d5/d2b/struct__access__format_8c.html#a29c26a9579f7ffd709362a95824f957f" title="Formats a struct access expression into a string representation." alt="" coords="251,107,413,132"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="492,112,413,121,412,116,491,106"/>
+<area shape="poly" id="edge5_Node000004_Node000001" title=" " alt="" coords="391,102,471,92,472,97,392,107"/>
+<area shape="poly" id="edge6_Node000004_Node000003" title=" " alt="" coords="257,106,159,85,160,80,259,101"/>
+<area shape="rect" id="Node000005" href="$d6/d4c/assignment__validation_8c.html#afaa433496bef6af1b952c37f239afad2" title="Ensures type compatibility for struct field assignments." alt="" coords="5,107,192,132"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="238,122,192,122,192,117,238,117"/>
+</map>

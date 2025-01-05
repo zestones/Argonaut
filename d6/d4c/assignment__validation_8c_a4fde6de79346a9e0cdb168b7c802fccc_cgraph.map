@@ -1,13 +1,63 @@
 <map id="check_variable_assignment" name="check_variable_assignment">
-<area shape="rect" id="node1" title="Checks type compatibility during variable assignments." alt="" coords="5,203,208,229"/>
-<area shape="rect" id="node2" href="$dd/d3e/declaration__table_8c.html#a6d7cfaa61de7241348ef4a08f55bd9a0" title="Gets the description of a declaration." alt="" coords="521,5,724,32"/>
-<area shape="rect" id="node3" href="$dd/d3e/declaration__table_8c.html#a0638983c5b6c92d76d08e2cd3e78e96a" title="Gets the lexicographic index of a declaration. The objective is to find the first declaration in the ..." alt="" coords="256,195,473,237"/>
-<area shape="rect" id="node4" href="$d0/d15/errors_8c.html#a68d1ccae372534af850e06d48b45d638" title="Returns a formatted string containing the current file, line, and column." alt="" coords="277,261,452,288"/>
-<area shape="rect" id="node5" href="$d0/d92/lexeme__table_8c.html#ab176cfe8b410c1f87237ed115a0d8df4" title="Retrieves the lexeme at the given index." alt="" coords="315,312,414,339"/>
-<area shape="rect" id="node6" href="$da/d3a/variable__validation_8c.html#a9e6d710dd00724c657461fc6b0618433" title="Retrieves the declaration index of a variable or parameter." alt="" coords="265,363,465,405"/>
-<area shape="rect" id="node8" href="$d2/d18/expression__resolution_8c.html#ad2fa6a52f7590a4fe58adc41e6fab427" title="Resolves the type of an expression." alt="" coords="273,93,457,120"/>
-<area shape="rect" id="node9" href="$d0/d15/errors_8c.html#a4eba1d90a88e13e4b1beada48a1c2b9d" title="Sets the error message of the provided Error struct." alt="" coords="549,81,696,108"/>
-<area shape="rect" id="node10" href="$d0/d15/errors_8c.html#aff32bbfac01af1967382165ffc1d5607" title="Sets the error type of the provided Error struct." alt="" coords="565,139,681,165"/>
-<area shape="rect" id="node11" href="$d0/d15/errors_8c.html#a362b4d026b806baabf4d0654eea096a8" title="Prints a formatted error message based on the provided Error struct and exits the program." alt="" coords="334,429,395,456"/>
-<area shape="rect" id="node7" href="$dc/de9/declaration__table_8h.html#a8d20d657d482952631adde5763e985c8" title="Finds the index of a declaration with the specified lexicographic index and nature...." alt="" coords="538,363,707,405"/>
+<area shape="rect" id="Node000001" title="Checks type compatibility during variable assignments." alt="" coords="5,648,208,673"/>
+<area shape="rect" id="Node000002" href="$dd/d3e/declaration__table_8c.html#a6d7cfaa61de7241348ef4a08f55bd9a0" title="Gets the description of a declaration." alt="" coords="1287,417,1489,443"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="120,672,184,741,235,789,295,838,364,885,439,925,519,952,560,959,602,962,863,962,978,961,1025,958,1069,950,1110,937,1150,917,1192,888,1237,848,1276,803,1308,751,1332,695,1351,638,1374,533,1383,456,1388,457,1379,534,1356,640,1337,697,1312,753,1280,806,1241,852,1195,892,1153,921,1112,942,1070,955,1026,963,978,966,863,967,602,967,560,965,518,957,437,930,361,890,292,843,231,793,181,745,116,675"/>
+<area shape="rect" id="Node000003" href="$dd/d3e/declaration__table_8c.html#a0638983c5b6c92d76d08e2cd3e78e96a" title="Gets the lexicographic index of a declaration. The objective is to find the first declaration in the ..." alt="" coords="1021,615,1239,655"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="208,656,1007,636,1007,641,208,661"/>
+<area shape="rect" id="Node000004" href="$d0/d15/errors_8c.html#a01b14b54cd994f514849c320aac8c3a2" title="Returns a formatted string containing the current file, line, and column." alt="" coords="1043,197,1217,223"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="108,647,121,592,147,509,167,464,191,419,220,377,254,340,298,305,346,274,396,249,448,227,503,210,558,197,670,180,779,174,881,176,972,183,1046,193,1045,198,971,189,881,182,779,180,670,186,559,202,504,216,450,232,398,253,348,279,301,309,258,344,224,381,195,422,172,467,152,511,126,593,113,648"/>
+<area shape="rect" id="Node000005" href="$d0/d92/lexeme__table_8c.html#ac6921fee118304352fc1df16366aaf23" title="Retrieves the lexeme at the given index." alt="" coords="1081,544,1179,569"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="175,645,256,633,490,606,721,584,1067,558,1067,563,721,589,491,611,256,638,176,651"/>
+<area shape="rect" id="Node000006" href="$da/d3a/variable__validation_8c.html#a9e6d710dd00724c657461fc6b0618433" title="Retrieves the declaration index of a variable or parameter." alt="" coords="256,1002,456,1042"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="113,673,126,729,153,811,172,856,196,901,224,944,258,981,273,993,270,997,254,985,220,947,191,904,167,859,148,813,121,730,108,674"/>
+<area shape="rect" id="Node000008" href="$d2/d18/expression__resolution_8c.html#ad2fa6a52f7590a4fe58adc41e6fab427" title="Resolves the type of an expression." alt="" coords="264,379,448,404"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="118,646,332,412,336,416,122,650"/>
+<area shape="rect" id="Node000014" href="$d0/d15/errors_8c.html#a4eba1d90a88e13e4b1beada48a1c2b9d" title="Sets the error message of the provided Error struct." alt="" coords="1057,724,1203,749"/>
+<area shape="poly" id="edge41_Node000001_Node000014" title=" " alt="" coords="208,665,1043,728,1042,733,208,671"/>
+<area shape="rect" id="Node000015" href="$d0/d15/errors_8c.html#aff32bbfac01af1967382165ffc1d5607" title="Sets the error type of the provided Error struct." alt="" coords="1072,812,1188,837"/>
+<area shape="poly" id="edge42_Node000001_Node000015" title=" " alt="" coords="157,671,410,731,579,765,751,794,916,811,1058,820,1058,825,915,817,750,799,578,770,409,736,156,676"/>
+<area shape="rect" id="Node000016" href="$d0/d15/errors_8c.html#a362b4d026b806baabf4d0654eea096a8" title="Prints a formatted error message based on the provided Error struct and exits the program." alt="" coords="1099,116,1161,141"/>
+<area shape="poly" id="edge43_Node000001_Node000016" title=" " alt="" coords="106,647,115,581,139,480,158,423,183,367,215,314,254,267,301,226,352,193,406,165,463,142,523,124,583,111,705,96,823,93,929,98,1019,107,1086,118,1085,123,1019,113,929,103,823,98,706,101,584,116,524,129,465,147,408,169,354,197,304,231,258,271,219,317,188,369,163,425,144,481,121,582,112,648"/>
+<area shape="rect" id="Node000007" href="$d8/da9/name__association_8c.html#a8d20d657d482952631adde5763e985c8" title="Finds the index of a declaration with the specified lexicographic index and nature...." alt="" coords="519,1002,688,1042"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="456,1019,505,1019,505,1025,456,1025"/>
+<area shape="poly" id="edge8_Node000008_Node000002" title=" " alt="" coords="361,377,380,341,410,292,452,239,476,215,502,195,601,130,693,76,782,36,869,11,912,5,956,3,1001,6,1046,14,1092,27,1140,46,1189,71,1240,101,1277,132,1308,169,1332,210,1351,254,1376,339,1387,403,1381,404,1370,340,1346,256,1327,213,1303,172,1273,135,1237,106,1187,75,1138,51,1091,32,1045,19,1000,11,956,8,913,10,870,16,784,41,696,81,604,134,506,199,480,219,456,243,415,295,384,344,366,380"/>
+<area shape="poly" id="edge9_Node000008_Node000004" title=" " alt="" coords="373,376,429,338,503,298,570,273,641,252,713,237,784,225,918,211,1029,206,1029,211,918,216,785,230,714,242,642,258,572,278,505,303,432,343,376,381"/>
+<area shape="poly" id="edge10_Node000008_Node000005" title=" " alt="" coords="389,402,505,442,662,481,819,511,1067,547,1067,552,819,516,661,486,503,447,387,407"/>
+<area shape="poly" id="edge31_Node000008_Node000008" title=" " alt="" coords="316,380,308,370,312,360,329,354,356,352,391,356,401,361,404,367,400,369,397,365,389,361,356,357,330,359,316,364,313,370,320,377"/>
+<area shape="rect" id="Node000009" href="$de/dfd/array__resolution_8c.html#ac073eb00ceefd91641635ffc9d407e84" title="Resolves the type of an array access expression." alt="" coords="504,408,703,433"/>
+<area shape="poly" id="edge11_Node000008_Node000009" title=" " alt="" coords="448,400,491,405,490,410,448,405"/>
+<area shape="poly" id="edge38_Node000008_Node000014" title=" " alt="" coords="374,402,430,446,505,494,661,570,821,633,964,683,1072,718,1070,723,962,688,819,638,659,574,503,499,427,450,371,406"/>
+<area shape="poly" id="edge39_Node000008_Node000015" title=" " alt="" coords="366,403,385,439,416,489,457,542,506,589,574,636,647,677,724,712,801,741,945,785,1059,810,1058,815,943,790,799,746,722,717,645,682,571,641,502,593,453,546,412,492,381,442,361,406"/>
+<area shape="poly" id="edge40_Node000008_Node000016" title=" " alt="" coords="366,377,420,318,459,283,503,252,579,213,660,183,744,160,826,144,904,134,976,128,1085,125,1085,130,976,134,905,139,827,150,745,165,662,188,581,218,505,256,463,287,424,321,370,380"/>
+<area shape="rect" id="Node000017" href="$d7/d12/func__proc__resolution_8c.html#a2327b6b59ff015b2616298a1002bf56b" title="Resolves the return type of a function or procedure call." alt="" coords="751,293,973,319"/>
+<area shape="poly" id="edge32_Node000008_Node000017" title=" " alt="" coords="381,376,436,351,503,329,562,317,623,310,737,303,737,308,623,315,563,323,505,334,438,356,383,381"/>
+<area shape="rect" id="Node000018" href="$d3/d86/structure__resolution_8c.html#a05d8b96afc7d3dc4d826eb06596342ea" title="Resolves the type of a struct field access expression." alt="" coords="529,343,678,383"/>
+<area shape="poly" id="edge36_Node000008_Node000018" title=" " alt="" coords="448,378,515,371,516,376,448,384"/>
+<area shape="poly" id="edge13_Node000009_Node000004" title=" " alt="" coords="681,406,701,393,713,380,719,366,724,337,728,307,736,293,749,279,770,266,797,255,869,238,950,224,1029,215,1029,221,951,230,870,243,799,260,772,271,752,283,740,296,733,309,729,338,724,368,717,383,704,397,684,410"/>
+<area shape="poly" id="edge14_Node000009_Node000005" title=" " alt="" coords="703,427,834,448,905,465,974,488,999,502,1023,517,1073,537,1071,542,1020,522,996,506,972,492,904,470,833,453,702,432"/>
+<area shape="rect" id="Node000010" href="$dd/d3e/declaration__table_8c.html#a4dbfeaf06f3a4883c8d357fec6cbcc21" title="Gets the nature of a declaration." alt="" coords="1044,303,1216,328"/>
+<area shape="poly" id="edge12_Node000009_Node000010" title=" " alt="" coords="654,405,702,393,750,379,897,350,1030,327,1031,333,898,355,751,385,703,398,655,411"/>
+<area shape="rect" id="Node000011" href="$d3/d86/structure__resolution_8c.html#a68c5c5d2d8ef89cb7fdc420753415ae5" title="Resolves the access to a field within a struct." alt="" coords="784,395,940,420"/>
+<area shape="poly" id="edge15_Node000009_Node000011" title=" " alt="" coords="703,422,770,418,771,423,703,427"/>
+<area shape="poly" id="edge28_Node000009_Node000014" title=" " alt="" coords="627,431,1097,714,1094,719,624,436"/>
+<area shape="poly" id="edge29_Node000009_Node000015" title=" " alt="" coords="613,433,632,471,662,525,703,584,752,637,791,668,833,696,920,744,1004,780,1074,805,1072,810,1002,785,918,748,830,701,788,672,749,641,699,588,658,528,627,474,608,435"/>
+<area shape="poly" id="edge30_Node000009_Node000016" title=" " alt="" coords="683,406,701,393,716,375,723,355,724,315,726,275,733,254,749,234,787,202,830,178,876,159,923,146,1013,130,1085,126,1086,131,1014,135,924,151,878,164,832,183,790,207,753,237,738,256,731,276,730,316,728,356,720,377,704,397,686,410"/>
+<area shape="poly" id="edge16_Node000011_Node000002" title=" " alt="" coords="941,408,1272,422,1272,428,940,413"/>
+<area shape="poly" id="edge17_Node000011_Node000003" title=" " alt="" coords="887,418,931,447,975,488,991,514,999,536,1006,558,1023,580,1061,607,1058,611,1019,584,1002,560,994,538,986,516,971,492,927,451,884,422"/>
+<area shape="poly" id="edge19_Node000011_Node000004" title=" " alt="" coords="881,393,972,328,1020,288,1098,229,1101,233,1023,292,975,332,884,397"/>
+<area shape="poly" id="edge20_Node000011_Node000005" title=" " alt="" coords="937,418,975,437,992,458,1000,478,1007,498,1023,517,1045,531,1068,541,1066,546,1042,536,1020,521,1003,501,995,480,988,460,972,441,934,422"/>
+<area shape="poly" id="edge24_Node000011_Node000009" title=" " alt="" coords="784,406,700,410,699,404,784,400"/>
+<area shape="poly" id="edge18_Node000011_Node000010" title=" " alt="" coords="920,392,972,373,996,356,1020,338,1043,330,1045,335,1023,343,999,360,975,378,922,397"/>
+<area shape="rect" id="Node000012" href="$dd/dfd/representation__table_8c.html#a64bb130b5e07aeebfd4333567ecc9a0e" title="Retrieves the value of a representation from the table." alt="" coords="1057,353,1203,393"/>
+<area shape="poly" id="edge21_Node000011_Node000012" title=" " alt="" coords="940,395,1043,381,1044,386,940,400"/>
+<area shape="rect" id="Node000013" href="$d0/d41/utility_8c.html#a498f30f7c5c13fe3642fb66bd813a519" title=" " alt="" coords="1055,467,1205,507"/>
+<area shape="poly" id="edge22_Node000011_Node000013" title=" " alt="" coords="909,418,974,437,1053,461,1051,466,973,442,907,423"/>
+<area shape="poly" id="edge25_Node000011_Node000014" title=" " alt="" coords="891,418,934,446,957,466,976,489,989,513,996,536,999,579,1003,621,1010,642,1023,666,1052,694,1086,716,1083,720,1049,699,1019,669,1005,645,997,622,994,580,991,537,984,515,971,492,953,470,931,451,888,422"/>
+<area shape="poly" id="edge26_Node000011_Node000015" title=" " alt="" coords="870,419,936,591,981,692,1003,732,1023,760,1052,785,1084,804,1082,808,1049,789,1019,764,999,735,977,694,931,593,865,421"/>
+<area shape="poly" id="edge27_Node000011_Node000016" title=" " alt="" coords="889,392,932,366,953,349,971,328,983,309,989,291,993,256,998,221,1006,202,1019,183,1051,157,1085,139,1088,144,1054,161,1023,186,1011,205,1004,222,999,257,994,292,988,311,975,332,957,353,935,371,892,397"/>
+<area shape="poly" id="edge23_Node000013_Node000002" title=" " alt="" coords="1205,468,1316,443,1317,448,1206,473"/>
+<area shape="poly" id="edge33_Node000017_Node000002" title=" " alt="" coords="905,291,972,276,1056,265,1102,264,1149,266,1195,274,1240,288,1282,311,1319,342,1350,375,1373,404,1368,408,1346,379,1316,346,1279,316,1238,292,1194,279,1149,271,1102,269,1057,270,972,281,906,296"/>
+<area shape="poly" id="edge34_Node000017_Node000010" title=" " alt="" coords="974,307,1030,309,1030,315,973,313"/>
+<area shape="poly" id="edge35_Node000017_Node000012" title=" " alt="" coords="915,316,1045,349,1044,354,913,321"/>
+<area shape="poly" id="edge37_Node000018_Node000011" title=" " alt="" coords="678,373,774,390,773,395,678,379"/>
 </map>

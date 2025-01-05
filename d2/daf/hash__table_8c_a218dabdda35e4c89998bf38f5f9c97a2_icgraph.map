@@ -1,4 +1,5 @@
 <map id="get_hash_value" name="get_hash_value">
-<area shape="rect" id="node1" title="Find the value at the given index in the hash table." alt="" coords="168,5,292,32"/>
-<area shape="rect" id="node2" href="$d0/d92/lexeme__table_8c.html#a60fa759ae85aef60d4a5bf4e8370f185" title="Inserts a lexeme into the lexeme table." alt="" coords="5,5,120,32"/>
+<area shape="rect" id="Node000001" title="Find the value at the given index in the hash table." alt="" coords="168,5,292,31"/>
+<area shape="rect" id="Node000002" href="$d0/d92/lexeme__table_8c.html#a60fa759ae85aef60d4a5bf4e8370f185" title="Inserts a lexeme into the lexeme table." alt="" coords="5,5,120,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="154,21,120,21,120,15,154,15"/>
 </map>

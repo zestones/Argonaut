@@ -1,5 +1,7 @@
 <map id="pop_region" name="pop_region">
-<area shape="rect" id="node1" title="Pops a region from the stack." alt="" coords="5,5,100,32"/>
-<area shape="rect" id="node2" href="$d3/dbb/stack_8c.html#ab9b175f5ea01bed047c29bcdb935a111" title="Pops a value from the stack." alt="" coords="148,5,195,32"/>
-<area shape="rect" id="node3" href="$d3/dbb/stack_8c.html#aeda5460a4306b1c90f61ac5bf8ba49bc" title="Checks if the stack is empty." alt="" coords="243,5,325,32"/>
+<area shape="rect" id="Node000001" title="Pops a region from the stack." alt="" coords="5,5,100,31"/>
+<area shape="rect" id="Node000002" href="$d3/dbb/stack_8c.html#a60c7fd02f37ae5fde0971720e8e00ad8" title="Pops a value from the stack." alt="" coords="148,5,195,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="100,15,134,15,134,21,100,21"/>
+<area shape="rect" id="Node000003" href="$d3/dbb/stack_8c.html#aeda5460a4306b1c90f61ac5bf8ba49bc" title="Checks if the stack is empty." alt="" coords="243,5,325,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="195,15,229,15,229,21,195,21"/>
 </map>

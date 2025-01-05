@@ -1,4 +1,6 @@
 <map id="resolve_condition_type" name="resolve_condition_type">
-<area shape="rect" id="node1" title="Resolves the type of a condition expression." alt="" coords="180,5,353,32"/>
-<area shape="rect" id="node2" href="$d6/d35/condition__validation_8c.html#a71704b89d5560a369eccc90b03ee22eb" title="Validates the type of a condition expression." alt="" coords="5,5,132,32"/>
+<area shape="rect" id="Node000001" title="Resolves the type of a condition expression." alt="" coords="180,29,353,55"/>
+<area shape="poly" id="edge2_Node000001_Node000001" title=" " alt="" coords="302,19,292,11,267,8,246,10,235,15,232,20,238,28,234,31,227,21,231,11,244,5,267,3,294,6,305,15"/>
+<area shape="rect" id="Node000002" href="$d6/d35/condition__validation_8c.html#a71704b89d5560a369eccc90b03ee22eb" title="Validates the type of a condition expression." alt="" coords="5,29,132,55"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="166,45,132,45,132,39,166,39"/>
 </map>

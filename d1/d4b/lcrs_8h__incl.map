@@ -1,6 +1,9 @@
 <map id="src/ast/lcrs.h" name="src/ast/lcrs.h">
-<area shape="rect" id="node1" title=" " alt="" coords="80,5,184,32"/>
-<area shape="rect" id="node2" title=" " alt="" coords="5,80,72,107"/>
-<area shape="rect" id="node3" title=" " alt="" coords="97,80,167,107"/>
-<area shape="rect" id="node4" href="$d5/d1e/node__type_8h.html" title=" " alt="" coords="191,80,294,107"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="80,5,184,31"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,79,72,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="119,33,66,72,63,68,115,29"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="97,79,167,104"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="135,31,135,65,129,65,129,31"/>
+<area shape="rect" id="Node000004" href="$d5/d1e/node__type_8h.html" title=" " alt="" coords="191,79,294,104"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="151,28,214,69,211,73,148,33"/>
 </map>

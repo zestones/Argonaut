@@ -1,4 +1,7 @@
 <map id="construct_lexeme" name="construct_lexeme">
-<area shape="rect" id="node1" title="Constructs a new lexeme with the given character sequence, length, and next index." alt="" coords="199,5,336,32"/>
-<area shape="rect" id="node2" href="$d0/d92/lexeme__table_8c.html#aa6c5964ea3704e2b961395d74dd47534" title="Inserts a lexeme row into the lexeme table." alt="" coords="5,5,151,32"/>
+<area shape="rect" id="Node000001" title="Constructs a new lexeme with the given character sequence, length, and next index." alt="" coords="199,31,336,56"/>
+<area shape="rect" id="Node000002" href="$d0/d92/lexeme__table_8c.html#a60fa759ae85aef60d4a5bf4e8370f185" title="Inserts a lexeme into the lexeme table." alt="" coords="21,5,135,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="185,35,135,28,136,23,186,30"/>
+<area shape="rect" id="Node000003" href="$d0/d92/lexeme__table_8c.html#aa6c5964ea3704e2b961395d74dd47534" title="Inserts a lexeme row into the lexeme table." alt="" coords="5,55,151,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="186,56,151,61,151,55,185,51"/>
 </map>

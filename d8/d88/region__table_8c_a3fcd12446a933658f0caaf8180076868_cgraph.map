@@ -1,6 +1,9 @@
 <map id="end_region" name="end_region">
-<area shape="rect" id="node1" title="Ends the current region." alt="" coords="5,5,100,32"/>
-<area shape="rect" id="node2" href="$d3/d91/region__stack_8c.html#afeb96bf21d57cc73671e0fa178704f63" title="Pops a region from the stack." alt="" coords="148,5,243,32"/>
-<area shape="rect" id="node3" href="$d3/dbb/stack_8c.html#ab9b175f5ea01bed047c29bcdb935a111" title="Pops a value from the stack." alt="" coords="291,5,337,32"/>
-<area shape="rect" id="node4" href="$d3/dbb/stack_8c.html#aeda5460a4306b1c90f61ac5bf8ba49bc" title="Checks if the stack is empty." alt="" coords="385,5,468,32"/>
+<area shape="rect" id="Node000001" title="Ends the current region." alt="" coords="5,5,100,31"/>
+<area shape="rect" id="Node000002" href="$d3/d91/region__stack_8c.html#afeb96bf21d57cc73671e0fa178704f63" title="Pops a region from the stack." alt="" coords="148,5,243,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="100,15,134,15,134,21,100,21"/>
+<area shape="rect" id="Node000003" href="$d3/dbb/stack_8c.html#a60c7fd02f37ae5fde0971720e8e00ad8" title="Pops a value from the stack." alt="" coords="291,5,337,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="243,15,277,15,277,21,243,21"/>
+<area shape="rect" id="Node000004" href="$d3/dbb/stack_8c.html#aeda5460a4306b1c90f61ac5bf8ba49bc" title="Checks if the stack is empty." alt="" coords="385,5,468,31"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="338,15,372,15,372,21,338,21"/>
 </map>

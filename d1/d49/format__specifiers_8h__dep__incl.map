@@ -1,8 +1,13 @@
 <map id="src/semantic_analysis/function_checks/common/format_specifiers.h" name="src/semantic_analysis/function_checks/common/format_specifiers.h">
-<area shape="rect" id="node1" title=" " alt="" coords="456,5,648,61"/>
-<area shape="rect" id="node2" href="$d3/d0b/format__specifiers_8c.html" title=" " alt="" coords="5,109,197,165"/>
-<area shape="rect" id="node3" href="$dd/d08/input__validation_8c.html" title=" " alt="" coords="222,109,426,165"/>
-<area shape="rect" id="node4" href="$d5/da0/print__validation_8c.html" title=" " alt="" coords="450,109,654,165"/>
-<area shape="rect" id="node5" href="$d1/d06/input_8c.html" title=" " alt="" coords="679,109,841,165"/>
-<area shape="rect" id="node6" href="$d6/db1/print_8c.html" title=" " alt="" coords="865,109,1028,165"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="456,5,648,60"/>
+<area shape="rect" id="Node000002" href="$d3/d0b/format__specifiers_8c.html" title=" " alt="" coords="5,108,197,163"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="443,60,210,111,198,113,197,108,209,105,442,54"/>
+<area shape="rect" id="Node000003" href="$dd/d08/input__validation_8c.html" title=" " alt="" coords="222,108,426,163"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="481,68,384,110,382,106,479,63"/>
+<area shape="rect" id="Node000004" href="$d5/da0/print__validation_8c.html" title=" " alt="" coords="450,108,654,163"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="555,74,555,108,549,108,549,74"/>
+<area shape="rect" id="Node000005" href="$d1/d06/input_8c.html" title=" " alt="" coords="679,108,841,163"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="619,63,707,106,705,110,617,68"/>
+<area shape="rect" id="Node000006" href="$d6/db1/print_8c.html" title=" " alt="" coords="865,108,1028,163"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="662,57,854,105,866,109,865,114,853,111,661,63"/>
 </map>

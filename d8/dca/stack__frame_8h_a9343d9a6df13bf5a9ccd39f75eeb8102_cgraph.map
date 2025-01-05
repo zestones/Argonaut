@@ -1,5 +1,7 @@
 <map id="allocate_cells_to_stack_frame" name="allocate_cells_to_stack_frame">
-<area shape="rect" id="node1" title="Allocates multiple cells to a stack frame." alt="" coords="5,23,179,65"/>
-<area shape="rect" id="node2" href="$d8/d33/vm__cell_8c.html#a204f7bd018dfed72ca842d1f3cae11f1" title="Constructs a vm_cell with a specific type and value." alt="" coords="227,5,367,32"/>
-<area shape="rect" id="node3" href="$d3/dbb/stack_8c.html#a05857cdc7b90e2fbf5d2fb5f050911d3" title="Returns the size of the stack." alt="" coords="273,56,321,83"/>
+<area shape="rect" id="Node000001" title="Allocates multiple cells to a stack frame." alt="" coords="5,23,179,63"/>
+<area shape="rect" id="Node000002" href="$d8/d33/vm__cell_8c.html#a204f7bd018dfed72ca842d1f3cae11f1" title="Constructs a vm_cell with a specific type and value." alt="" coords="227,5,367,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="179,30,212,26,213,31,179,35"/>
+<area shape="rect" id="Node000003" href="$d3/dbb/stack_8c.html#a05857cdc7b90e2fbf5d2fb5f050911d3" title="Returns the size of the stack." alt="" coords="273,55,321,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="179,51,259,60,259,66,179,56"/>
 </map>

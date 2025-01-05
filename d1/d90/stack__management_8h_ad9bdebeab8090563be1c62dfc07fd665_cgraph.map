@@ -1,5 +1,7 @@
 <map id="push_frame_to_execution_stack" name="push_frame_to_execution_stack">
-<area shape="rect" id="node1" title="Pushes a new stack frame onto the execution stack." alt="" coords="5,5,195,47"/>
-<area shape="rect" id="node2" href="$d3/dbb/stack_8c.html#ab8e2bdf44038600ab2a71d4d09d8f11f" title="Pushes a value onto the stack." alt="" coords="243,13,296,39"/>
-<area shape="rect" id="node3" href="$d3/dbb/stack_8c.html#a82adb67aa3f68f9f67a9b88475296933" title="Checks if the stack is full." alt="" coords="344,13,405,39"/>
+<area shape="rect" id="Node000001" title="Pushes a new stack frame onto the execution stack." alt="" coords="5,5,195,45"/>
+<area shape="rect" id="Node000002" href="$d3/dbb/stack_8c.html#ab8e2bdf44038600ab2a71d4d09d8f11f" title="Pushes a value onto the stack." alt="" coords="243,13,296,38"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="195,23,229,23,229,28,195,28"/>
+<area shape="rect" id="Node000003" href="$d3/dbb/stack_8c.html#a82adb67aa3f68f9f67a9b88475296933" title="Checks if the stack is full." alt="" coords="344,13,405,38"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="296,23,331,23,331,28,296,28"/>
 </map>

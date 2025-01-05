@@ -1,0 +1,19 @@
+<map id="update_declaration_func_return_type" name="update_declaration_func_return_type">
+<area shape="rect" id="Node000001" title="Updates the return type of the current function." alt="" coords="5,147,152,187"/>
+<area shape="rect" id="Node000002" href="$d2/d71/type__validation_8c.html#a5787d66f109d016f22256dc3a5f84435" title="Validates that the lexicographic index is a base type." alt="" coords="217,129,352,155"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="152,156,203,149,204,155,153,161"/>
+<area shape="rect" id="Node000009" href="$dd/dfd/representation__table_8c.html#a9d03158f7b9f90296535c941fd91022a" title="Updates a representation in the table." alt="" coords="200,179,369,204"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="153,173,187,177,186,183,152,179"/>
+<area shape="rect" id="Node000003" href="$d0/d15/errors_8c.html#a01b14b54cd994f514849c320aac8c3a2" title="Returns a formatted string containing the current file, line, and column." alt="" coords="423,5,598,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="297,127,347,84,380,60,416,40,433,33,435,37,419,44,383,65,350,89,301,131"/>
+<area shape="rect" id="Node000004" href="$d0/d92/lexeme__table_8c.html#ac6921fee118304352fc1df16366aaf23" title="Retrieves the lexeme at the given index." alt="" coords="461,55,560,80"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="315,127,416,89,448,80,449,85,418,94,317,132"/>
+<area shape="rect" id="Node000005" href="$dd/d3e/declaration__table_8c.html#a0d9073ef901b312b251556411474e440" title="Checks if a declaration is a base type." alt="" coords="417,104,604,129"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="352,132,404,126,404,131,353,137"/>
+<area shape="rect" id="Node000006" href="$d0/d15/errors_8c.html#a4eba1d90a88e13e4b1beada48a1c2b9d" title="Sets the error message of the provided Error struct." alt="" coords="437,153,584,179"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="353,146,424,154,423,159,352,152"/>
+<area shape="rect" id="Node000007" href="$d0/d15/errors_8c.html#aff32bbfac01af1967382165ffc1d5607" title="Sets the error type of the provided Error struct." alt="" coords="453,203,569,228"/>
+<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="337,152,370,164,418,188,444,196,443,201,416,192,368,168,335,157"/>
+<area shape="rect" id="Node000008" href="$d0/d15/errors_8c.html#a362b4d026b806baabf4d0654eea096a8" title="Prints a formatted error message based on the provided Error struct and exits the program." alt="" coords="480,252,541,277"/>
+<area shape="poly" id="edge7_Node000002_Node000008" title=" " alt="" coords="350,152,371,164,388,183,396,202,403,220,419,237,442,249,467,257,466,262,440,254,416,241,399,223,391,204,383,185,368,168,348,157"/>
+</map>

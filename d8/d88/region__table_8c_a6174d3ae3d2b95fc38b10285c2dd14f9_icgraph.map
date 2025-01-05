@@ -1,5 +1,9 @@
 <map id="get_region_size" name="get_region_size">
-<area shape="rect" id="node1" title="Gets the size of the region at the specified index." alt="" coords="235,35,359,61"/>
-<area shape="rect" id="node2" href="$de/d23/variable__manager_8c.html#a0156a227fd1b11089557e8562aabb8dc" title="Starts the declaration of a parameter." alt="" coords="5,5,187,32"/>
-<area shape="rect" id="node3" href="$de/d23/variable__manager_8c.html#af85e197b346ed860553f44112be19c28" title="Starts the declaration of a variable." alt="" coords="19,57,173,98"/>
+<area shape="rect" id="Node000001" title="Gets the size of the region at the specified index." alt="" coords="473,35,597,60"/>
+<area shape="rect" id="Node000002" href="$de/d23/variable__manager_8c.html#a0156a227fd1b11089557e8562aabb8dc" title="Starts the declaration of a parameter." alt="" coords="244,5,425,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="459,39,421,33,422,28,460,34"/>
+<area shape="rect" id="Node000004" href="$de/d23/variable__manager_8c.html#af85e197b346ed860553f44112be19c28" title="Starts the declaration of a variable." alt="" coords="257,55,412,95"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="460,60,413,67,412,62,459,55"/>
+<area shape="rect" id="Node000003" href="$dc/d66/func__proc__manager_8c.html#a0f1715a0fb584002923b90035a0405cd" title="Adds a parameter to the current function or procedure context." alt="" coords="5,5,196,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="230,21,196,21,196,15,230,15"/>
 </map>

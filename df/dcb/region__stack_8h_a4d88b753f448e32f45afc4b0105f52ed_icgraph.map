@@ -1,0 +1,9 @@
+<map id="get_region_stack_size" name="get_region_stack_size">
+<area shape="rect" id="Node000001" title="Gets the size of the region stack." alt="" coords="368,31,535,56"/>
+<area shape="rect" id="Node000002" href="$d8/d88/region__table_8c.html#aaca847e44b10b6b5e8fb601fa31905b0" title="Starts a new region." alt="" coords="220,31,320,56"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="355,46,320,46,320,41,355,41"/>
+<area shape="rect" id="Node000003" href="$dc/d66/func__proc__manager_8c.html#ad308181286b701d8a073ea5416924e1d" title="Starts the declaration of a function." alt="" coords="5,5,172,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="206,37,172,32,172,27,207,32"/>
+<area shape="rect" id="Node000004" href="$dc/d66/func__proc__manager_8c.html#a1423e71098aec906db6b648a65845296" title="Starts the declaration of a procedure." alt="" coords="5,55,172,80"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="207,54,172,59,172,54,206,49"/>
+</map>

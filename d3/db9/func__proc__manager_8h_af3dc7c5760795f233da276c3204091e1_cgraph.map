@@ -1,8 +1,13 @@
 <map id="declaration_func_proc_end" name="declaration_func_proc_end">
-<area shape="rect" id="node1" title="Ends the declaration of a function or procedure." alt="" coords="5,42,201,69"/>
-<area shape="rect" id="node2" href="$dd/d4a/scope__tracker_8c.html#afa589585d342047eba2c603b33953122" title="Clears the scope identifier tracker." alt="" coords="249,5,413,47"/>
-<area shape="rect" id="node3" href="$d8/d88/region__table_8c.html#a3fcd12446a933658f0caaf8180076868" title="Ends the current region." alt="" coords="284,71,379,98"/>
-<area shape="rect" id="node4" href="$d3/d91/region__stack_8c.html#afeb96bf21d57cc73671e0fa178704f63" title="Pops a region from the stack." alt="" coords="461,71,556,98"/>
-<area shape="rect" id="node5" href="$d3/dbb/stack_8c.html#ab9b175f5ea01bed047c29bcdb935a111" title="Pops a value from the stack." alt="" coords="604,71,651,98"/>
-<area shape="rect" id="node6" href="$d3/dbb/stack_8c.html#aeda5460a4306b1c90f61ac5bf8ba49bc" title="Checks if the stack is empty." alt="" coords="699,71,781,98"/>
+<area shape="rect" id="Node000001" title="Ends the declaration of a function or procedure." alt="" coords="5,42,201,67"/>
+<area shape="rect" id="Node000002" href="$dd/d4a/scope__tracker_8c.html#afa589585d342047eba2c603b33953122" title="Clears the scope identifier tracker." alt="" coords="249,5,413,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="201,39,235,35,236,40,202,45"/>
+<area shape="rect" id="Node000003" href="$d8/d88/region__table_8c.html#a3fcd12446a933658f0caaf8180076868" title="Ends the current region." alt="" coords="284,70,379,95"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="202,64,271,73,270,78,201,69"/>
+<area shape="rect" id="Node000004" href="$d3/d91/region__stack_8c.html#afeb96bf21d57cc73671e0fa178704f63" title="Pops a region from the stack." alt="" coords="461,70,556,95"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="379,80,447,80,447,85,379,85"/>
+<area shape="rect" id="Node000005" href="$d3/dbb/stack_8c.html#a60c7fd02f37ae5fde0971720e8e00ad8" title="Pops a value from the stack." alt="" coords="604,70,651,95"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="556,80,590,80,590,85,556,85"/>
+<area shape="rect" id="Node000006" href="$d3/dbb/stack_8c.html#aeda5460a4306b1c90f61ac5bf8ba49bc" title="Checks if the stack is empty." alt="" coords="699,70,781,95"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="651,80,685,80,685,85,651,85"/>
 </map>

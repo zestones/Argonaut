@@ -1,5 +1,9 @@
 <map id="insert_declaration_func" name="insert_declaration_func">
-<area shape="rect" id="node1" title="Inserts a function declaration into the table." alt="" coords="5,31,180,57"/>
-<area shape="rect" id="node2" href="$d8/d88/region__table_8c.html#a49272dbdea0b5157804dc85964e15469" title="Gets the ID of the current region." alt="" coords="228,5,391,32"/>
-<area shape="rect" id="node3" href="$dd/d3e/declaration__table_8c.html#a43c491a0b81e9249ceccebe651dc9a87" title="Inserts a declaration into the table." alt="" coords="240,56,379,83"/>
+<area shape="rect" id="Node000001" title="Inserts a function declaration into the table." alt="" coords="5,31,180,56"/>
+<area shape="rect" id="Node000002" href="$d8/d88/region__table_8c.html#a49272dbdea0b5157804dc85964e15469" title="Gets the ID of the current region." alt="" coords="228,5,391,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="180,30,214,26,215,32,181,36"/>
+<area shape="rect" id="Node000003" href="$dd/d3e/declaration__table_8c.html#a43c491a0b81e9249ceccebe651dc9a87" title="Inserts a declaration into the table." alt="" coords="240,55,379,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="181,50,226,56,226,61,180,56"/>
+<area shape="rect" id="Node000004" href="$dd/d3e/declaration__table_8c.html#aa8a7cdebf527233e95ecd24def975f20" title=" " alt="" coords="439,55,601,80"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="379,65,425,65,425,70,379,70"/>
 </map>

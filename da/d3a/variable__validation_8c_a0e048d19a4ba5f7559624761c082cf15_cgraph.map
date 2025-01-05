@@ -1,9 +1,15 @@
 <map id="check_variable_definition" name="check_variable_definition">
-<area shape="rect" id="node1" title="Validates the definition of a variable." alt="" coords="5,132,193,159"/>
-<area shape="rect" id="node2" href="$dc/de9/declaration__table_8h.html#aa3f16ed63745dfbda78a449e4a354d5f" title="Finds the index of a declaration with the specified lexicographic index. This function is used to ens..." alt="" coords="244,5,413,32"/>
-<area shape="rect" id="node3" href="$d0/d15/errors_8c.html#a68d1ccae372534af850e06d48b45d638" title="Returns a formatted string containing the current file, line, and column." alt="" coords="241,56,416,83"/>
-<area shape="rect" id="node4" href="$d0/d92/lexeme__table_8c.html#ab176cfe8b410c1f87237ed115a0d8df4" title="Retrieves the lexeme at the given index." alt="" coords="279,107,378,133"/>
-<area shape="rect" id="node5" href="$d0/d15/errors_8c.html#a4eba1d90a88e13e4b1beada48a1c2b9d" title="Sets the error message of the provided Error struct." alt="" coords="255,157,402,184"/>
-<area shape="rect" id="node6" href="$d0/d15/errors_8c.html#aff32bbfac01af1967382165ffc1d5607" title="Sets the error type of the provided Error struct." alt="" coords="271,208,387,235"/>
-<area shape="rect" id="node7" href="$d0/d15/errors_8c.html#a362b4d026b806baabf4d0654eea096a8" title="Prints a formatted error message based on the provided Error struct and exits the program." alt="" coords="298,259,359,285"/>
+<area shape="rect" id="Node000001" title="Validates the definition of a variable." alt="" coords="5,129,193,155"/>
+<area shape="rect" id="Node000002" href="$d8/da9/name__association_8c.html#a2ee7cf5712a13de73c37fca36f1f6560" title="Finds the index of a declaration with the specified lexicographic index. This function is used to ens..." alt="" coords="244,5,413,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="114,127,167,84,202,60,240,40,257,33,259,37,242,44,205,65,170,89,117,131"/>
+<area shape="rect" id="Node000003" href="$d0/d15/errors_8c.html#a01b14b54cd994f514849c320aac8c3a2" title="Returns a formatted string containing the current file, line, and column." alt="" coords="241,55,416,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="133,127,241,89,266,81,267,86,242,94,135,132"/>
+<area shape="rect" id="Node000004" href="$d0/d92/lexeme__table_8c.html#ac6921fee118304352fc1df16366aaf23" title="Retrieves the lexeme at the given index." alt="" coords="279,104,378,129"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="193,129,265,121,266,126,194,134"/>
+<area shape="rect" id="Node000005" href="$d0/d15/errors_8c.html#a4eba1d90a88e13e4b1beada48a1c2b9d" title="Sets the error message of the provided Error struct." alt="" coords="255,153,402,179"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="194,149,242,154,241,160,193,154"/>
+<area shape="rect" id="Node000006" href="$d0/d15/errors_8c.html#aff32bbfac01af1967382165ffc1d5607" title="Sets the error type of the provided Error struct." alt="" coords="271,203,387,228"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="138,152,242,187,270,196,268,201,241,193,136,157"/>
+<area shape="rect" id="Node000007" href="$d0/d15/errors_8c.html#a362b4d026b806baabf4d0654eea096a8" title="Prints a formatted error message based on the provided Error struct and exits the program." alt="" coords="298,252,359,277"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="117,153,171,194,242,237,286,253,284,258,240,242,168,198,114,157"/>
 </map>

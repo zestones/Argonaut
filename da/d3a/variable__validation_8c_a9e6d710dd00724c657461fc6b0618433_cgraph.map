@@ -1,4 +1,5 @@
 <map id="get_var_param_declaration_index" name="get_var_param_declaration_index">
-<area shape="rect" id="node1" title="Retrieves the declaration index of a variable or parameter." alt="" coords="5,5,205,47"/>
-<area shape="rect" id="node2" href="$dc/de9/declaration__table_8h.html#a8d20d657d482952631adde5763e985c8" title="Finds the index of a declaration with the specified lexicographic index and nature...." alt="" coords="253,5,423,47"/>
+<area shape="rect" id="Node000001" title="Retrieves the declaration index of a variable or parameter." alt="" coords="5,5,205,45"/>
+<area shape="rect" id="Node000002" href="$d8/da9/name__association_8c.html#a8d20d657d482952631adde5763e985c8" title="Finds the index of a declaration with the specified lexicographic index and nature...." alt="" coords="253,5,423,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="206,23,239,23,239,28,206,28"/>
 </map>

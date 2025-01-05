@@ -1,0 +1,22 @@
+<map id="format_expression" name="format_expression">
+<area shape="rect" id="Node000001" title="Formats an expression into a string representation." alt="" coords="5,157,149,183"/>
+<area shape="rect" id="Node000002" href="$d8/d00/array__access__format_8c.html#aac0db3edce2bfee2d8d335fda891ac85" title="Formats an array access expression into a string representation." alt="" coords="197,56,356,81"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="97,155,196,98,228,84,230,89,199,103,100,159"/>
+<area shape="rect" id="Node000003" href="$d5/d2b/struct__access__format_8c.html#a29c26a9579f7ffd709362a95824f957f" title="Formats a struct access expression into a string representation." alt="" coords="407,5,568,31"/>
+<area shape="poly" id="edge8_Node000001_Node000003" title=" " alt="" coords="84,155,126,98,158,66,196,41,244,23,296,12,346,8,393,7,393,12,346,13,296,18,246,28,199,46,161,70,130,102,88,159"/>
+<area shape="rect" id="Node000004" href="$d0/d92/lexeme__table_8c.html#ac6921fee118304352fc1df16366aaf23" title="Retrieves the lexeme at the given index." alt="" coords="619,81,717,107"/>
+<area shape="poly" id="edge9_Node000001_Node000004" title=" " alt="" coords="149,156,197,149,605,98,605,104,198,154,150,161"/>
+<area shape="rect" id="Node000005" href="$d6/de8/func__proc__format_8c.html#a9ad8cfca08b57d88e287a143ca1bf560" title="Formats a function or procedure call into a string representation." alt="" coords="404,157,571,183"/>
+<area shape="poly" id="edge6_Node000001_Node000005" title=" " alt="" coords="150,167,391,167,391,173,150,173"/>
+<area shape="rect" id="Node000006" href="$d0/d15/errors_8c.html#a4eba1d90a88e13e4b1beada48a1c2b9d" title="Sets the error message of the provided Error struct." alt="" coords="203,208,350,233"/>
+<area shape="poly" id="edge10_Node000001_Node000006" title=" " alt="" coords="129,180,214,202,212,207,128,185"/>
+<area shape="rect" id="Node000007" href="$d0/d15/errors_8c.html#aff32bbfac01af1967382165ffc1d5607" title="Sets the error type of the provided Error struct." alt="" coords="219,257,335,283"/>
+<area shape="poly" id="edge11_Node000001_Node000007" title=" " alt="" coords="97,181,142,212,198,244,215,250,213,255,196,248,139,216,94,185"/>
+<area shape="rect" id="Node000008" href="$d0/d15/errors_8c.html#a362b4d026b806baabf4d0654eea096a8" title="Prints a formatted error message based on the provided Error struct and exits the program." alt="" coords="246,307,307,332"/>
+<area shape="poly" id="edge12_Node000001_Node000008" title=" " alt="" coords="89,181,132,235,163,266,199,293,234,308,232,313,196,298,160,270,128,239,85,184"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="355,56,446,32,447,37,357,61"/>
+<area shape="poly" id="edge5_Node000002_Node000004" title=" " alt="" coords="356,71,605,87,605,93,356,76"/>
+<area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="407,31,318,54,317,49,406,26"/>
+<area shape="poly" id="edge4_Node000003_Node000004" title=" " alt="" coords="524,28,572,48,629,73,626,78,570,52,522,33"/>
+<area shape="poly" id="edge7_Node000005_Node000004" title=" " alt="" coords="522,155,570,136,626,110,629,115,572,140,524,160"/>
+</map>

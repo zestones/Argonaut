@@ -1,6 +1,20 @@
 <map id="execute" name="execute">
-<area shape="rect" id="node1" title="Executes the code for a specific region in the program." alt="" coords="5,5,79,32"/>
-<area shape="rect" id="node2" href="$d3/d91/region__stack_8c.html#aab3fe6cdc777770c60f6052868b713c6" title="Pushes a region onto the stack." alt="" coords="127,5,228,32"/>
-<area shape="rect" id="node3" href="$d3/dbb/stack_8c.html#ab8e2bdf44038600ab2a71d4d09d8f11f" title="Pushes a value onto the stack." alt="" coords="276,5,329,32"/>
-<area shape="rect" id="node4" href="$d3/dbb/stack_8c.html#a82adb67aa3f68f9f67a9b88475296933" title="Checks if the stack is full." alt="" coords="377,5,439,32"/>
+<area shape="rect" id="Node000001" title="Executes the code for a specific region in the program." alt="" coords="5,92,79,117"/>
+<area shape="rect" id="Node000002" href="$d8/d88/region__table_8c.html#ad9273b2a87fbaf444f99ba5be1d06b21" title="Gets the AST of the region at the specified index." alt="" coords="167,5,286,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="55,90,86,65,125,41,153,30,155,35,128,46,89,69,59,94"/>
+<area shape="rect" id="Node000003" href="$d5/dae/stack__management_8c.html#ac6546d0573834ff166e7b04abeef1599" title="Pops the top stack frame from the execution stack." alt="" coords="127,55,327,95"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="78,96,113,91,113,96,79,102"/>
+<area shape="rect" id="Node000006" href="$d3/d91/region__stack_8c.html#afeb96bf21d57cc73671e0fa178704f63" title="Pops a region from the stack." alt="" coords="179,120,274,145"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="79,107,166,121,166,126,78,113"/>
+<area shape="rect" id="Node000007" href="$d3/d91/region__stack_8c.html#aab3fe6cdc777770c60f6052868b713c6" title="Pushes a region onto the stack." alt="" coords="176,169,277,195"/>
+<area shape="poly" id="edge7_Node000001_Node000007" title=" " alt="" coords="61,115,91,136,128,156,163,168,162,173,126,160,88,141,58,120"/>
+<area shape="rect" id="Node000004" href="$d3/dbb/stack_8c.html#a60c7fd02f37ae5fde0971720e8e00ad8" title="Pops a value from the stack." alt="" coords="378,92,425,117"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="328,90,365,96,364,101,327,95"/>
+<area shape="rect" id="Node000005" href="$d3/dbb/stack_8c.html#aeda5460a4306b1c90f61ac5bf8ba49bc" title="Checks if the stack is empty." alt="" coords="476,92,559,117"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="425,102,462,102,462,107,425,107"/>
+<area shape="poly" id="edge6_Node000006_Node000004" title=" " alt="" coords="274,123,364,108,365,113,275,128"/>
+<area shape="rect" id="Node000008" href="$d3/dbb/stack_8c.html#ab8e2bdf44038600ab2a71d4d09d8f11f" title="Pushes a value onto the stack." alt="" coords="375,169,428,195"/>
+<area shape="poly" id="edge8_Node000007_Node000008" title=" " alt="" coords="278,179,361,179,361,185,278,185"/>
+<area shape="rect" id="Node000009" href="$d3/dbb/stack_8c.html#a82adb67aa3f68f9f67a9b88475296933" title="Checks if the stack is full." alt="" coords="487,169,548,195"/>
+<area shape="poly" id="edge9_Node000008_Node000009" title=" " alt="" coords="428,179,473,179,473,185,428,185"/>
 </map>

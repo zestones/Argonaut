@@ -1,7 +1,11 @@
 <map id="get_current_region_nis" name="get_current_region_nis">
-<area shape="rect" id="node1" title="Gets the NIS of the current region." alt="" coords="5,31,176,57"/>
-<area shape="rect" id="node2" href="$d8/d88/region__table_8c.html#a95e102cd58c1b0edad8f6af8aa245761" title=" " alt="" coords="224,5,341,32"/>
-<area shape="rect" id="node3" href="$d3/d91/region__stack_8c.html#a367ecd3e3c76f083c2ef6b296cfa8030" title="Peeks at the top region of the stack without removing it." alt="" coords="231,56,334,83"/>
-<area shape="rect" id="node4" href="$d3/dbb/stack_8c.html#a9cf0786f5f2fb0c4c025b7e9bb552881" title="Peeks at the top value of the stack without popping it." alt="" coords="389,56,444,83"/>
-<area shape="rect" id="node5" href="$d3/dbb/stack_8c.html#aeda5460a4306b1c90f61ac5bf8ba49bc" title="Checks if the stack is empty." alt="" coords="492,56,575,83"/>
+<area shape="rect" id="Node000001" title="Gets the NIS of the current region." alt="" coords="5,31,176,56"/>
+<area shape="rect" id="Node000002" href="$d8/d8a/region__table_8h.html#ad945ddb6e123a9899a9a8b4af68f810e" title="Gets the NIS of the current region." alt="" coords="224,5,341,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="176,29,210,25,211,30,177,35"/>
+<area shape="rect" id="Node000003" href="$d3/d91/region__stack_8c.html#a367ecd3e3c76f083c2ef6b296cfa8030" title="Peeks at the top region of the stack without removing it." alt="" coords="231,55,334,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="176,51,218,57,217,62,176,57"/>
+<area shape="rect" id="Node000004" href="$d3/dbb/stack_8c.html#accd7164d8805b31ef2bba785ce12a209" title="Peeks at the top value of the stack without popping it." alt="" coords="389,55,444,80"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="334,65,376,65,376,70,334,70"/>
+<area shape="rect" id="Node000005" href="$d3/dbb/stack_8c.html#aeda5460a4306b1c90f61ac5bf8ba49bc" title="Checks if the stack is empty." alt="" coords="492,55,575,80"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="444,65,478,65,478,70,444,70"/>
 </map>

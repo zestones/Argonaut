@@ -1,0 +1,7 @@
+<map id="find_stack_frame_by_region_index" name="find_stack_frame_by_region_index">
+<area shape="rect" id="Node000001" title="Finds a stack frame by its region index." alt="" coords="5,23,163,63"/>
+<area shape="rect" id="Node000002" href="$d3/dbb/stack_8c.html#a77cf298d71db154b16def49afd37cf6c" title="Gets the value at a specific index in the stack." alt="" coords="211,5,339,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="163,30,196,26,197,31,163,36"/>
+<area shape="rect" id="Node000003" href="$d3/dbb/stack_8c.html#a05857cdc7b90e2fbf5d2fb5f050911d3" title="Returns the size of the stack." alt="" coords="251,55,299,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="163,51,237,60,237,65,163,56"/>
+</map>

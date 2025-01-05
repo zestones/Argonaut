@@ -1,5 +1,7 @@
 <map id="resolve_func_proc_parameter_type_at" name="resolve_func_proc_parameter_type_at">
-<area shape="rect" id="node1" title="Resolves the type of a specific parameter in a function or procedure." alt="" coords="5,27,220,69"/>
-<area shape="rect" id="node2" href="$dd/d3e/declaration__table_8c.html#a6d7cfaa61de7241348ef4a08f55bd9a0" title="Gets the description of a declaration." alt="" coords="268,5,471,32"/>
-<area shape="rect" id="node3" href="$dd/dfd/representation__table_8c.html#a64bb130b5e07aeebfd4333567ecc9a0e" title="Retrieves the value of a representation from the table." alt="" coords="297,57,442,98"/>
+<area shape="rect" id="Node000001" title="Resolves the type of a specific parameter in a function or procedure." alt="" coords="5,27,220,67"/>
+<area shape="rect" id="Node000002" href="$dd/d3e/declaration__table_8c.html#a6d7cfaa61de7241348ef4a08f55bd9a0" title="Gets the description of a declaration." alt="" coords="268,5,471,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="220,32,254,28,255,34,221,38"/>
+<area shape="rect" id="Node000003" href="$dd/dfd/representation__table_8c.html#a64bb130b5e07aeebfd4333567ecc9a0e" title="Retrieves the value of a representation from the table." alt="" coords="297,55,442,95"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="221,56,283,63,283,69,220,62"/>
 </map>

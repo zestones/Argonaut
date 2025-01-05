@@ -1,8 +1,15 @@
 <map id="get_array_size" name="get_array_size">
-<area shape="rect" id="node1" title="Calculates the total size of an array based on its dimensions." alt="" coords="5,60,123,87"/>
-<area shape="rect" id="node2" href="$d0/d41/utility_8c.html#a090389fef823ec0d609d12973dbd5ac3" title="Retrieves the number of dimensions in an array." alt="" coords="185,60,343,87"/>
-<area shape="rect" id="node5" href="$d0/d41/utility_8c.html#ac167e84e15f5c86539c4fa275dfda0e0" title="Retrieves the bounds of a specific dimension of an array." alt="" coords="171,9,357,36"/>
-<area shape="rect" id="node6" href="$d3/dbb/stack_8c.html#a05857cdc7b90e2fbf5d2fb5f050911d3" title="Returns the size of the stack." alt="" coords="240,111,288,137"/>
-<area shape="rect" id="node3" href="$dd/d3e/declaration__table_8c.html#a6d7cfaa61de7241348ef4a08f55bd9a0" title="Gets the description of a declaration." alt="" coords="405,5,608,32"/>
-<area shape="rect" id="node4" href="$dd/dfd/representation__table_8c.html#a64bb130b5e07aeebfd4333567ecc9a0e" title="Retrieves the value of a representation from the table." alt="" coords="434,57,579,98"/>
+<area shape="rect" id="Node000001" title="Calculates the total size of an array based on its dimensions." alt="" coords="5,59,123,84"/>
+<area shape="rect" id="Node000002" href="$d0/d41/utility_8c.html#a090389fef823ec0d609d12973dbd5ac3" title="Retrieves the number of dimensions in an array." alt="" coords="185,59,343,84"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="123,69,171,69,171,74,123,74"/>
+<area shape="rect" id="Node000005" href="$d0/d41/utility_8c.html#ac167e84e15f5c86539c4fa275dfda0e0" title="Retrieves the bounds of a specific dimension of an array." alt="" coords="171,9,357,35"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="116,56,198,35,199,41,117,61"/>
+<area shape="rect" id="Node000006" href="$d3/dbb/stack_8c.html#a05857cdc7b90e2fbf5d2fb5f050911d3" title="Returns the size of the stack." alt="" coords="240,108,288,133"/>
+<area shape="poly" id="edge7_Node000001_Node000006" title=" " alt="" coords="117,81,227,109,226,114,116,87"/>
+<area shape="rect" id="Node000003" href="$dd/d3e/declaration__table_8c.html#a6d7cfaa61de7241348ef4a08f55bd9a0" title="Gets the description of a declaration." alt="" coords="405,5,608,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="322,56,434,31,436,36,323,61"/>
+<area shape="rect" id="Node000004" href="$dd/dfd/representation__table_8c.html#a64bb130b5e07aeebfd4333567ecc9a0e" title="Retrieves the value of a representation from the table." alt="" coords="434,55,579,95"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="344,70,420,71,420,77,344,75"/>
+<area shape="poly" id="edge5_Node000005_Node000003" title=" " alt="" coords="357,18,392,17,392,23,357,23"/>
+<area shape="poly" id="edge6_Node000005_Node000004" title=" " alt="" coords="323,32,421,54,420,59,322,37"/>
 </map>

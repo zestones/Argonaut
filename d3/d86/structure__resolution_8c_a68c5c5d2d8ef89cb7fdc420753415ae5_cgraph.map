@@ -1,5 +1,33 @@
 <map id="resolve_field_access" name="resolve_field_access">
-<area shape="rect" id="node1" title="Resolves the access to a field within a struct." alt="" coords="5,35,161,61"/>
-<area shape="rect" id="node2" href="$dd/d3e/declaration__table_8c.html#a6d7cfaa61de7241348ef4a08f55bd9a0" title="Gets the description of a declaration." alt="" coords="209,5,412,32"/>
-<area shape="rect" id="node3" href="$dd/dfd/representation__table_8c.html#a64bb130b5e07aeebfd4333567ecc9a0e" title="Retrieves the value of a representation from the table." alt="" coords="238,57,383,98"/>
+<area shape="rect" id="Node000001" title="Resolves the access to a field within a struct." alt="" coords="5,311,161,337"/>
+<area shape="rect" id="Node000002" href="$dd/d3e/declaration__table_8c.html#a6d7cfaa61de7241348ef4a08f55bd9a0" title="Gets the description of a declaration." alt="" coords="475,42,677,67"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="85,310,98,269,122,213,158,154,181,128,208,106,252,87,315,74,461,58,461,63,316,79,253,93,211,110,185,132,162,158,126,216,103,271,90,312"/>
+<area shape="rect" id="Node000003" href="$dd/d3e/declaration__table_8c.html#a0638983c5b6c92d76d08e2cd3e78e96a" title="Gets the lexicographic index of a declaration. The objective is to find the first declaration in the ..." alt="" coords="209,120,427,160"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="90,310,135,247,169,209,208,176,231,163,233,168,211,181,172,213,139,250,95,313"/>
+<area shape="rect" id="Node000004" href="$dd/d3e/declaration__table_8c.html#a4dbfeaf06f3a4883c8d357fec6cbcc21" title="Gets the nature of a declaration." alt="" coords="490,198,662,223"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="112,309,157,291,209,273,348,242,476,220,477,226,349,247,210,279,159,296,114,314"/>
+<area shape="rect" id="Node000005" href="$d0/d15/errors_8c.html#a01b14b54cd994f514849c320aac8c3a2" title="Returns a formatted string containing the current file, line, and column." alt="" coords="489,261,663,286"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="158,309,209,301,348,287,475,277,475,282,348,292,210,307,159,314"/>
+<area shape="rect" id="Node000006" href="$d0/d92/lexeme__table_8c.html#ac6921fee118304352fc1df16366aaf23" title="Retrieves the lexeme at the given index." alt="" coords="527,323,625,349"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="161,320,286,319,427,321,513,327,513,333,427,327,286,324,161,325"/>
+<area shape="rect" id="Node000007" href="$dd/dfd/representation__table_8c.html#a64bb130b5e07aeebfd4333567ecc9a0e" title="Retrieves the value of a representation from the table." alt="" coords="245,539,391,579"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="92,336,107,372,132,421,167,473,211,518,234,532,231,537,208,522,163,476,128,423,102,374,87,338"/>
+<area shape="rect" id="Node000008" href="$d0/d41/utility_8c.html#a498f30f7c5c13fe3642fb66bd813a519" title=" " alt="" coords="243,5,393,45"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="85,310,96,264,119,198,156,126,180,92,208,62,229,47,232,52,211,66,184,95,160,128,124,200,101,266,90,312"/>
+<area shape="rect" id="Node000009" href="$de/dfd/array__resolution_8c.html#ac073eb00ceefd91641635ffc9d407e84" title="Resolves the type of an array access expression." alt="" coords="219,337,417,362"/>
+<area shape="poly" id="edge9_Node000001_Node000009" title=" " alt="" coords="133,334,205,344,205,349,132,339"/>
+<area shape="rect" id="Node000010" href="$d0/d15/errors_8c.html#a4eba1d90a88e13e4b1beada48a1c2b9d" title="Sets the error message of the provided Error struct." alt="" coords="503,381,649,406"/>
+<area shape="poly" id="edge17_Node000001_Node000010" title=" " alt="" coords="111,334,156,354,210,371,283,383,356,390,489,394,489,399,356,396,282,388,209,376,154,359,109,339"/>
+<area shape="rect" id="Node000011" href="$d0/d15/errors_8c.html#aff32bbfac01af1967382165ffc1d5607" title="Sets the error type of the provided Error struct." alt="" coords="518,438,634,463"/>
+<area shape="poly" id="edge18_Node000001_Node000011" title=" " alt="" coords="102,335,149,368,179,385,210,399,287,421,366,435,441,443,505,447,504,453,440,449,365,440,286,426,208,404,176,390,146,372,99,339"/>
+<area shape="rect" id="Node000012" href="$d0/d15/errors_8c.html#a362b4d026b806baabf4d0654eea096a8" title="Prints a formatted error message based on the provided Error struct and exits the program." alt="" coords="545,487,607,513"/>
+<area shape="poly" id="edge19_Node000001_Node000012" title=" " alt="" coords="95,335,139,392,172,423,211,448,252,466,295,479,384,495,466,501,531,500,531,506,466,506,383,500,294,484,250,471,208,453,169,427,135,395,91,338"/>
+<area shape="poly" id="edge8_Node000008_Node000002" title=" " alt="" coords="394,31,462,39,461,44,393,37"/>
+<area shape="poly" id="edge13_Node000009_Node000001" title=" " alt="" coords="268,339,175,328,176,322,269,334"/>
+<area shape="poly" id="edge10_Node000009_Node000004" title=" " alt="" coords="335,334,395,292,473,246,521,225,523,230,476,250,397,297,338,339"/>
+<area shape="poly" id="edge11_Node000009_Node000005" title=" " alt="" coords="361,334,518,288,519,293,363,339"/>
+<area shape="poly" id="edge12_Node000009_Node000006" title=" " alt="" coords="418,342,513,337,513,342,418,347"/>
+<area shape="poly" id="edge14_Node000009_Node000010" title=" " alt="" coords="393,359,490,376,489,381,392,365"/>
+<area shape="poly" id="edge15_Node000009_Node000011" title=" " alt="" coords="348,360,476,415,522,431,520,436,474,420,345,365"/>
+<area shape="poly" id="edge16_Node000009_Node000012" title=" " alt="" coords="333,360,391,416,432,447,476,474,504,484,532,491,531,497,502,490,473,478,429,451,388,420,329,364"/>
 </map>

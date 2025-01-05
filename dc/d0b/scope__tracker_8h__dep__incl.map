@@ -1,7 +1,11 @@
 <map id="src/utils/scope_tracker.h" name="src/utils/scope_tracker.h">
-<area shape="rect" id="node1" title=" " alt="" coords="365,5,543,32"/>
-<area shape="rect" id="node2" href="$d6/da5/scope__validation_8c.html" title=" " alt="" coords="5,80,247,121"/>
-<area shape="rect" id="node3" href="$dc/d66/func__proc__manager_8c.html" title=" " alt="" coords="271,80,443,121"/>
-<area shape="rect" id="node4" href="$d1/da1/structure__manager_8c.html" title=" " alt="" coords="467,80,639,121"/>
-<area shape="rect" id="node5" href="$dd/d4a/scope__tracker_8c.html" title=" " alt="" coords="663,87,840,114"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="365,5,543,31"/>
+<area shape="rect" id="Node000002" href="$d6/da5/scope__validation_8c.html" title=" " alt="" coords="5,79,247,119"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="394,36,205,81,204,76,392,31"/>
+<area shape="rect" id="Node000003" href="$dc/d66/func__proc__manager_8c.html" title=" " alt="" coords="271,79,443,119"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="431,41,382,81,378,76,427,37"/>
+<area shape="rect" id="Node000004" href="$d1/da1/structure__manager_8c.html" title=" " alt="" coords="467,79,639,119"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="481,37,531,76,527,81,478,41"/>
+<area shape="rect" id="Node000005" href="$dd/d4a/scope__tracker_8c.html" title=" " alt="" coords="663,86,840,111"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="511,32,709,83,707,89,510,37"/>
 </map>

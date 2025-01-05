@@ -1,4 +1,24 @@
 <map id="resolve_struct_field_access_type" name="resolve_struct_field_access_type">
-<area shape="rect" id="node1" title="Resolves the type of a struct field access expression." alt="" coords="240,5,389,47"/>
-<area shape="rect" id="node2" href="$d6/d4c/assignment__validation_8c.html#afaa433496bef6af1b952c37f239afad2" title="Ensures type compatibility for struct field assignments." alt="" coords="5,13,192,39"/>
+<area shape="rect" id="Node000001" title="Resolves the type of a struct field access expression." alt="" coords="692,85,841,125"/>
+<area shape="rect" id="Node000002" href="$d6/d4c/assignment__validation_8c.html#afaa433496bef6af1b952c37f239afad2" title="Ensures type compatibility for struct field assignments." alt="" coords="203,5,389,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="678,91,365,33,366,28,679,86"/>
+<area shape="rect" id="Node000003" href="$d2/d18/expression__resolution_8c.html#ad2fa6a52f7590a4fe58adc41e6fab427" title="Resolves the type of an expression." alt="" coords="460,129,644,155"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="679,123,626,132,625,127,678,117"/>
+<area shape="poly" id="edge7_Node000003_Node000002" title=" " alt="" coords="525,122,475,82,444,62,411,44,379,33,380,28,413,40,446,57,478,78,529,118"/>
+<area shape="poly" id="edge12_Node000003_Node000003" title=" " alt="" coords="590,120,580,111,552,108,529,110,517,115,515,120,521,128,517,131,510,121,513,111,528,105,552,103,582,106,593,115"/>
+<area shape="rect" id="Node000004" href="$d6/d4c/assignment__validation_8c.html#adafad0061063a9ae298f6233978de3b1" title="Validates type compatibility for array assignments." alt="" coords="204,55,388,80"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="506,127,411,94,366,83,367,77,413,89,508,122"/>
+<area shape="rect" id="Node000005" href="$d0/d8b/func__proc__validation_8c.html#ae8847b0a477fa9ae2766940f78a5c90f" title="Validates the return statement of a function." alt="" coords="213,104,379,129"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="446,134,379,127,379,122,446,129"/>
+<area shape="rect" id="Node000006" href="$dd/d08/input__validation_8c.html#ad3dd17f0853fcdf49904fd5847b0e4b3" title="Validates the arguments provided to an input&#45;like procedure against a format string." alt="" coords="180,153,412,179"/>
+<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="447,155,412,158,412,152,446,149"/>
+<area shape="rect" id="Node000007" href="$d5/da0/print__validation_8c.html#a2e389d9645c7b92911f4c86af31b14a8" title="Validates the arguments provided to a print&#45;like procedure against a format string." alt="" coords="181,203,411,228"/>
+<area shape="poly" id="edge6_Node000003_Node000007" title=" " alt="" coords="505,162,413,193,362,205,361,200,411,187,504,157"/>
+<area shape="rect" id="Node000008" href="$d6/d4c/assignment__validation_8c.html#a4fde6de79346a9e0cdb168b7c802fccc" title="Checks type compatibility during variable assignments." alt="" coords="195,252,397,277"/>
+<area shape="poly" id="edge8_Node000003_Node000008" title=" " alt="" coords="528,166,477,205,413,242,376,254,374,249,411,237,474,200,525,162"/>
+<area shape="rect" id="Node000009" href="$d6/dbc/condition__resolution_8c.html#a7af42b525181329829b7ed96a0cca487" title="Resolves the type of a condition expression." alt="" coords="209,325,383,351"/>
+<area shape="poly" id="edge9_Node000003_Node000009" title=" " alt="" coords="536,167,485,228,451,262,413,292,377,313,340,328,338,323,375,308,411,288,447,258,481,225,532,164"/>
+<area shape="poly" id="edge11_Node000009_Node000009" title=" " alt="" coords="337,316,326,307,296,304,272,306,259,311,256,316,263,323,259,327,251,317,255,307,271,301,296,299,328,303,340,312"/>
+<area shape="rect" id="Node000010" href="$d6/d35/condition__validation_8c.html#a71704b89d5560a369eccc90b03ee22eb" title="Validates the type of a condition expression." alt="" coords="5,325,132,351"/>
+<area shape="poly" id="edge10_Node000009_Node000010" title=" " alt="" coords="195,341,132,341,132,335,195,335"/>
 </map>

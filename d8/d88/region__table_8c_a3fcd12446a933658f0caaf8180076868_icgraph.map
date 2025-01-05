@@ -1,4 +1,5 @@
 <map id="end_region" name="end_region">
-<area shape="rect" id="node1" title="Ends the current region." alt="" coords="249,5,344,32"/>
-<area shape="rect" id="node2" href="$dc/d66/func__proc__manager_8c.html#af3dc7c5760795f233da276c3204091e1" title="Ends the declaration of a function or procedure." alt="" coords="5,5,201,32"/>
+<area shape="rect" id="Node000001" title="Ends the current region." alt="" coords="249,5,344,31"/>
+<area shape="rect" id="Node000002" href="$dc/d66/func__proc__manager_8c.html#af3dc7c5760795f233da276c3204091e1" title="Ends the declaration of a function or procedure." alt="" coords="5,5,201,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="236,21,202,21,202,15,236,15"/>
 </map>

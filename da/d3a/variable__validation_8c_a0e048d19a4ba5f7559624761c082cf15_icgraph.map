@@ -1,4 +1,5 @@
 <map id="check_variable_definition" name="check_variable_definition">
-<area shape="rect" id="node1" title="Validates the definition of a variable." alt="" coords="285,5,473,32"/>
-<area shape="rect" id="node2" href="$dd/d08/input__validation_8c.html#ad3dd17f0853fcdf49904fd5847b0e4b3" title="Validates the arguments provided to an input&#45;like procedure against a format string." alt="" coords="5,5,237,32"/>
+<area shape="rect" id="Node000001" title="Validates the definition of a variable." alt="" coords="285,5,473,31"/>
+<area shape="rect" id="Node000002" href="$dd/d08/input__validation_8c.html#ad3dd17f0853fcdf49904fd5847b0e4b3" title="Validates the arguments provided to an input&#45;like procedure against a format string." alt="" coords="5,5,237,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="272,21,238,21,238,15,272,15"/>
 </map>

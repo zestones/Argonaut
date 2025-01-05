@@ -1,4 +1,5 @@
 <map id="check_variable_redefinition" name="check_variable_redefinition">
-<area shape="rect" id="node1" title="Checks if a variable has been redefined." alt="" coords="208,13,409,39"/>
-<area shape="rect" id="node2" href="$de/d23/variable__manager_8c.html#af85e197b346ed860553f44112be19c28" title="Starts the declaration of a variable." alt="" coords="5,5,160,47"/>
+<area shape="rect" id="Node000001" title="Checks if a variable has been redefined." alt="" coords="208,13,409,38"/>
+<area shape="rect" id="Node000002" href="$de/d23/variable__manager_8c.html#af85e197b346ed860553f44112be19c28" title="Starts the declaration of a variable." alt="" coords="5,5,160,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="194,28,160,28,160,23,194,23"/>
 </map>

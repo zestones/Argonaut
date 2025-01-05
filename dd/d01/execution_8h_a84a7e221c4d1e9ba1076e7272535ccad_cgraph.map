@@ -1,0 +1,15 @@
+<map id="get_return_cell" name="get_return_cell">
+<area shape="rect" id="Node000001" title="Retrieves the return value cell from the current function&#39;s stack frame." alt="" coords="5,35,124,60"/>
+<area shape="rect" id="Node000002" href="$d5/dae/stack__management_8c.html#aa2ef970592fa16ffd9c0a13d6b00d0ed" title="Retrieves a stack frame by its ID." alt="" coords="172,8,345,33"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="124,37,158,32,159,37,125,42"/>
+<area shape="rect" id="Node000004" href="$d5/dae/stack__management_8c.html#a1355ab2e4c983fe8ddae499e1d3f802d" title="Peeks at the top stack frame in a read&#45;only way." alt="" coords="175,59,342,84"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="125,52,162,57,162,62,124,57"/>
+<area shape="rect" id="Node000003" href="$d3/dbb/stack_8c.html#a77cf298d71db154b16def49afd37cf6c" title="Gets the value at a specific index in the stack." alt="" coords="413,5,541,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="346,17,399,16,399,22,346,22"/>
+<area shape="rect" id="Node000005" href="$d5/dae/stack__management_8c.html#ac5588cf2fdc4974ec292bb9e6c126435" title="Peeks at the top stack frame in a mutable way." alt="" coords="393,55,560,95"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="342,70,380,71,380,76,342,76"/>
+<area shape="rect" id="Node000006" href="$d3/dbb/stack_8c.html#accd7164d8805b31ef2bba785ce12a209" title="Peeks at the top value of the stack without popping it." alt="" coords="608,63,663,88"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="560,73,594,73,594,78,560,78"/>
+<area shape="rect" id="Node000007" href="$d3/dbb/stack_8c.html#aeda5460a4306b1c90f61ac5bf8ba49bc" title="Checks if the stack is empty." alt="" coords="711,63,793,88"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="663,73,697,73,697,78,663,78"/>
+</map>

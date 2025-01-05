@@ -1,4 +1,5 @@
 <map id="get_cell_from_stack_frame" name="get_cell_from_stack_frame">
-<area shape="rect" id="node1" title="Retrieves the value of a cell from the stack frame." alt="" coords="5,5,159,47"/>
-<area shape="rect" id="node2" href="$d3/dbb/stack_8c.html#a6b5edf43250cada4964d61ce37603c45" title="Gets the value at a specific index in the stack." alt="" coords="207,13,335,39"/>
+<area shape="rect" id="Node000001" title="Retrieves the value of a cell from the stack frame." alt="" coords="5,5,159,45"/>
+<area shape="rect" id="Node000002" href="$d3/dbb/stack_8c.html#a77cf298d71db154b16def49afd37cf6c" title="Gets the value at a specific index in the stack." alt="" coords="207,13,335,38"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="159,23,193,23,193,28,159,28"/>
 </map>

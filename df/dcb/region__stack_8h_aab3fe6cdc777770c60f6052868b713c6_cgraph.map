@@ -1,5 +1,7 @@
 <map id="push_region" name="push_region">
-<area shape="rect" id="node1" title="Pushes a region onto the stack." alt="" coords="5,5,107,32"/>
-<area shape="rect" id="node2" href="$d3/dbb/stack_8c.html#ab8e2bdf44038600ab2a71d4d09d8f11f" title="Pushes a value onto the stack." alt="" coords="155,5,208,32"/>
-<area shape="rect" id="node3" href="$d3/dbb/stack_8c.html#a82adb67aa3f68f9f67a9b88475296933" title="Checks if the stack is full." alt="" coords="256,5,317,32"/>
+<area shape="rect" id="Node000001" title="Pushes a region onto the stack." alt="" coords="5,5,107,31"/>
+<area shape="rect" id="Node000002" href="$d3/dbb/stack_8c.html#ab8e2bdf44038600ab2a71d4d09d8f11f" title="Pushes a value onto the stack." alt="" coords="155,5,208,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="107,15,141,15,141,21,107,21"/>
+<area shape="rect" id="Node000003" href="$d3/dbb/stack_8c.html#a82adb67aa3f68f9f67a9b88475296933" title="Checks if the stack is full." alt="" coords="256,5,317,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="208,15,243,15,243,21,208,21"/>
 </map>

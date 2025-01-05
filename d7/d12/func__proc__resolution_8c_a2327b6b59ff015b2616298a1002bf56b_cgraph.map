@@ -1,6 +1,9 @@
 <map id="resolve_func_proc_return_type" name="resolve_func_proc_return_type">
-<area shape="rect" id="node1" title="Resolves the return type of a function or procedure call." alt="" coords="5,56,228,83"/>
-<area shape="rect" id="node2" href="$dd/d3e/declaration__table_8c.html#a6d7cfaa61de7241348ef4a08f55bd9a0" title="Gets the description of a declaration." alt="" coords="276,5,479,32"/>
-<area shape="rect" id="node3" href="$dd/d3e/declaration__table_8c.html#a4dbfeaf06f3a4883c8d357fec6cbcc21" title="Gets the nature of a declaration." alt="" coords="291,56,463,83"/>
-<area shape="rect" id="node4" href="$dd/dfd/representation__table_8c.html#a64bb130b5e07aeebfd4333567ecc9a0e" title="Retrieves the value of a representation from the table." alt="" coords="305,107,450,149"/>
+<area shape="rect" id="Node000001" title="Resolves the return type of a function or procedure call." alt="" coords="5,55,228,80"/>
+<area shape="rect" id="Node000002" href="$dd/d3e/declaration__table_8c.html#a6d7cfaa61de7241348ef4a08f55bd9a0" title="Gets the description of a declaration." alt="" coords="276,5,479,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="184,52,295,31,296,36,185,57"/>
+<area shape="rect" id="Node000003" href="$dd/d3e/declaration__table_8c.html#a4dbfeaf06f3a4883c8d357fec6cbcc21" title="Gets the nature of a declaration." alt="" coords="291,55,463,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="228,65,278,65,278,70,228,70"/>
+<area shape="rect" id="Node000004" href="$dd/dfd/representation__table_8c.html#a64bb130b5e07aeebfd4333567ecc9a0e" title="Retrieves the value of a representation from the table." alt="" coords="305,105,450,145"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="176,77,292,103,291,108,175,83"/>
 </map>

@@ -1,5 +1,7 @@
 <map id="get_array_nth_dimension" name="get_array_nth_dimension">
-<area shape="rect" id="node1" title="Retrieves the bounds of a specific dimension of an array." alt="" coords="5,35,192,61"/>
-<area shape="rect" id="node2" href="$dd/d3e/declaration__table_8c.html#a6d7cfaa61de7241348ef4a08f55bd9a0" title="Gets the description of a declaration." alt="" coords="240,5,443,32"/>
-<area shape="rect" id="node3" href="$dd/dfd/representation__table_8c.html#a64bb130b5e07aeebfd4333567ecc9a0e" title="Retrieves the value of a representation from the table." alt="" coords="269,57,414,98"/>
+<area shape="rect" id="Node000001" title="Retrieves the bounds of a specific dimension of an array." alt="" coords="5,35,192,60"/>
+<area shape="rect" id="Node000002" href="$dd/d3e/declaration__table_8c.html#a6d7cfaa61de7241348ef4a08f55bd9a0" title="Gets the description of a declaration." alt="" coords="240,5,443,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="192,33,226,29,227,35,192,39"/>
+<area shape="rect" id="Node000003" href="$dd/dfd/representation__table_8c.html#a64bb130b5e07aeebfd4333567ecc9a0e" title="Retrieves the value of a representation from the table." alt="" coords="269,55,414,95"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="192,55,255,63,255,68,192,61"/>
 </map>

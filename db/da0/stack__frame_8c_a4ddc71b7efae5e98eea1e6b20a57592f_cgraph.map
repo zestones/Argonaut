@@ -1,5 +1,7 @@
 <map id="construct_stack_frame" name="construct_stack_frame">
-<area shape="rect" id="node1" title="Constructs a new stack frame for the function or procedure call." alt="" coords="5,31,176,57"/>
-<area shape="rect" id="node2" href="$d3/dbb/stack_8c.html#a65244e2319afc87bb396f300373e35dc" title="Constructs a new stack." alt="" coords="232,5,356,32"/>
-<area shape="rect" id="node3" href="$d8/d33/vm__cell_8c.html#a204f7bd018dfed72ca842d1f3cae11f1" title="Constructs a vm_cell with a specific type and value." alt="" coords="224,56,364,83"/>
+<area shape="rect" id="Node000001" title="Constructs a new stack frame for the function or procedure call." alt="" coords="5,31,176,56"/>
+<area shape="rect" id="Node000002" href="$d3/dbb/stack_8c.html#a65244e2319afc87bb396f300373e35dc" title="Constructs a new stack." alt="" coords="232,5,356,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="176,30,218,25,218,30,177,35"/>
+<area shape="rect" id="Node000003" href="$d8/d33/vm__cell_8c.html#a204f7bd018dfed72ca842d1f3cae11f1" title="Constructs a vm_cell with a specific type and value." alt="" coords="224,55,364,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="177,51,210,55,210,60,176,56"/>
 </map>

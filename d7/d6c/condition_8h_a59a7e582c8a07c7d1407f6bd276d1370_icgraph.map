@@ -1,6 +1,10 @@
 <map id="execute_loop" name="execute_loop">
-<area shape="rect" id="node1" title="Executes a loop statement (while loop)." alt="" coords="412,31,520,57"/>
-<area shape="rect" id="node2" href="$dc/d30/interpreter_8c.html#ad22185b4006e50b6d4fb026dd83a6bd2" title="Resolves and executes a list of statements." alt="" coords="193,31,364,57"/>
-<area shape="rect" id="node3" href="$dd/d57/condition_8c.html#a7fb8e5acd57b590993223b0c48bed85c" title="Executes a conditional statement (if&#45;else)." alt="" coords="5,5,145,32"/>
-<area shape="rect" id="node4" href="$dd/d57/condition_8c.html#a59a7e582c8a07c7d1407f6bd276d1370" title="Executes a loop statement (while loop)." alt="" coords="21,56,129,83"/>
+<area shape="rect" id="Node000001" title="Executes a loop statement (while loop)." alt="" coords="412,29,520,55"/>
+<area shape="rect" id="Node000002" href="$dc/d30/interpreter_8c.html#ad22185b4006e50b6d4fb026dd83a6bd2" title="Resolves and executes a list of statements." alt="" coords="193,29,364,55"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="398,53,364,54,364,48,398,48"/>
+<area shape="poly" id="edge4_Node000002_Node000001" title=" " alt="" coords="378,30,412,31,412,36,378,36"/>
+<area shape="poly" id="edge5_Node000002_Node000002" title=" " alt="" coords="312,19,302,11,279,8,259,10,249,15,246,20,252,28,248,31,241,21,245,11,257,5,279,3,304,6,315,15"/>
+<area shape="rect" id="Node000003" href="$dd/d57/condition_8c.html#a7fb8e5acd57b590993223b0c48bed85c" title="Executes a conditional statement (if&#45;else)." alt="" coords="5,29,145,55"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="179,54,146,53,146,48,179,48"/>
+<area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="159,30,193,30,193,36,159,36"/>
 </map>

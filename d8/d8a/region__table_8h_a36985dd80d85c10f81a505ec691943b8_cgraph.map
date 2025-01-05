@@ -1,0 +1,5 @@
+<map id="update_region_size" name="update_region_size">
+<area shape="rect" id="Node000001" title="Updates the size of the region at the specified index." alt="" coords="5,5,153,31"/>
+<area shape="rect" id="Node000002" href="$d3/dbb/stack_8c.html#a05857cdc7b90e2fbf5d2fb5f050911d3" title="Returns the size of the stack." alt="" coords="201,5,249,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="154,15,187,15,187,21,154,21"/>
+</map>

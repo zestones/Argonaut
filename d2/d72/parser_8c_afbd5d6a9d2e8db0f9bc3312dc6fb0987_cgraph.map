@@ -1,0 +1,12 @@
+<map id="yyrun" name="yyrun">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,31,64,56"/>
+<area shape="rect" id="Node000002" href="$dc/d30/interpreter_8c.html#aeec8fb0aa4c6922ab518df077d175f1c" title="Interprets and executes the entire program." alt="" coords="112,31,191,56"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="64,41,98,41,98,46,64,46"/>
+<area shape="rect" id="Node000003" href="$d5/dae/stack__management_8c.html#abd5eadaccccada431ac49d2f8edd2a39" title="Initializes the execution stack." alt="" coords="239,5,393,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="191,35,224,29,225,35,191,40"/>
+<area shape="rect" id="Node000005" href="$d3/d91/region__stack_8c.html#ac1bd4073b64abf05827d96f875b2b7a3" title="Initializes the region stack." alt="" coords="249,55,383,80"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="191,46,236,53,235,58,191,52"/>
+<area shape="rect" id="Node000004" href="$d3/dbb/stack_8c.html#a65244e2319afc87bb396f300373e35dc" title="Constructs a new stack." alt="" coords="441,31,565,56"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="394,26,428,30,427,36,393,31"/>
+<area shape="poly" id="edge5_Node000005_Node000004" title=" " alt="" coords="383,56,427,50,428,56,383,61"/>
+</map>

@@ -1,5 +1,7 @@
 <map id="resolve_func_proc_parameter_type_at" name="resolve_func_proc_parameter_type_at">
-<area shape="rect" id="node1" title="Resolves the type of a specific parameter in a function or procedure." alt="" coords="511,5,725,47"/>
-<area shape="rect" id="node2" href="$d8/df9/argument__validation_8c.html#a54918205825f0889509b660b5fc4db90" title="Validates the type of each argument in a function or procedure call." alt="" coords="280,13,463,39"/>
-<area shape="rect" id="node3" href="$d0/d8b/func__proc__validation_8c.html#afafcd50f3eee0ad1e7debef6b3df9f2e" title="Validates the argument list of a function." alt="" coords="5,13,232,39"/>
+<area shape="rect" id="Node000001" title="Resolves the type of a specific parameter in a function or procedure." alt="" coords="511,5,725,45"/>
+<area shape="rect" id="Node000002" href="$d8/df9/argument__validation_8c.html#a54918205825f0889509b660b5fc4db90" title="Validates the type of each argument in a function or procedure call." alt="" coords="280,13,463,38"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="497,28,463,28,463,23,497,23"/>
+<area shape="rect" id="Node000003" href="$d0/d8b/func__proc__validation_8c.html#afafcd50f3eee0ad1e7debef6b3df9f2e" title="Validates the argument list of a function." alt="" coords="5,13,232,38"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="266,28,232,28,232,23,266,23"/>
 </map>

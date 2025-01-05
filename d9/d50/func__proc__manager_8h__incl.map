@@ -1,5 +1,7 @@
 <map id="src/table_management/func_proc_manager.h" name="src/table_management/func_proc_manager.h">
-<area shape="rect" id="node1" title="Header file for managing function and procedure declarations." alt="" coords="5,5,177,47"/>
-<area shape="rect" id="node2" title=" " alt="" coords="11,95,78,121"/>
-<area shape="rect" id="node3" title=" " alt="" coords="103,95,173,121"/>
+<area shape="rect" id="Node000001" title="Header file for managing function and procedure declarations." alt="" coords="5,5,177,45"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="11,93,78,119"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="82,47,61,83,56,80,78,44"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="103,93,173,119"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="105,44,126,80,122,83,100,47"/>
 </map>

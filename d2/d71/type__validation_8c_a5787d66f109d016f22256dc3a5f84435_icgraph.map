@@ -1,4 +1,9 @@
 <map id="check_base_type" name="check_base_type">
-<area shape="rect" id="node1" title="Validates that the lexicographic index is a base type." alt="" coords="235,5,369,32"/>
-<area shape="rect" id="node2" href="$de/d23/variable__manager_8c.html#a0156a227fd1b11089557e8562aabb8dc" title="Starts the declaration of a parameter." alt="" coords="5,5,187,32"/>
+<area shape="rect" id="Node000001" title="Validates that the lexicographic index is a base type." alt="" coords="473,35,608,60"/>
+<area shape="rect" id="Node000002" href="$de/d23/variable__manager_8c.html#a0156a227fd1b11089557e8562aabb8dc" title="Starts the declaration of a parameter." alt="" coords="244,5,425,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="459,38,424,33,424,28,460,33"/>
+<area shape="rect" id="Node000004" href="$dc/d66/func__proc__manager_8c.html#a33b374d8276ae3ff4ba9b9f1a4f6bd15" title="Updates the return type of the current function." alt="" coords="261,55,408,95"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="460,61,408,68,408,63,459,56"/>
+<area shape="rect" id="Node000003" href="$dc/d66/func__proc__manager_8c.html#a0f1715a0fb584002923b90035a0405cd" title="Adds a parameter to the current function or procedure context." alt="" coords="5,5,196,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="230,21,196,21,196,15,230,15"/>
 </map>

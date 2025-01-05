@@ -1,0 +1,17 @@
+<map id="start_region" name="start_region">
+<area shape="rect" id="Node000001" title="Starts a new region." alt="" coords="5,81,105,107"/>
+<area shape="rect" id="Node000002" href="$d8/d88/region__table_8c.html#a5882a833ad1229001016a3eb131cdc48" title="Constructs a new region with the given size and NIS." alt="" coords="171,5,302,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="82,79,152,48,188,33,190,38,154,52,85,84"/>
+<area shape="rect" id="Node000003" href="$d3/dbb/stack_8c.html#a05857cdc7b90e2fbf5d2fb5f050911d3" title="Returns the size of the stack." alt="" coords="371,56,419,81"/>
+<area shape="poly" id="edge8_Node000001_Node000003" title=" " alt="" coords="105,88,357,69,357,74,106,93"/>
+<area shape="rect" id="Node000004" href="$d3/d91/region__stack_8c.html#a4d88b753f448e32f45afc4b0105f52ed" title="Gets the size of the region stack." alt="" coords="153,107,320,132"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="106,98,140,103,139,108,105,104"/>
+<area shape="rect" id="Node000005" href="$d3/d91/region__stack_8c.html#aab3fe6cdc777770c60f6052868b713c6" title="Pushes a region onto the stack." alt="" coords="186,156,287,181"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="79,104,154,142,174,149,172,154,152,147,77,109"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="278,28,359,55,357,60,276,33"/>
+<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="276,104,357,78,359,83,278,109"/>
+<area shape="rect" id="Node000006" href="$d3/dbb/stack_8c.html#ab8e2bdf44038600ab2a71d4d09d8f11f" title="Pushes a value onto the stack." alt="" coords="368,156,421,181"/>
+<area shape="poly" id="edge6_Node000005_Node000006" title=" " alt="" coords="288,166,354,166,354,171,288,171"/>
+<area shape="rect" id="Node000007" href="$d3/dbb/stack_8c.html#a82adb67aa3f68f9f67a9b88475296933" title="Checks if the stack is full." alt="" coords="469,156,531,181"/>
+<area shape="poly" id="edge7_Node000006_Node000007" title=" " alt="" coords="421,166,456,166,456,171,421,171"/>
+</map>

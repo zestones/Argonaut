@@ -1,0 +1,5 @@
+<map id="init_execution_stack" name="init_execution_stack">
+<area shape="rect" id="Node000001" title="Initializes the execution stack." alt="" coords="5,5,160,31"/>
+<area shape="rect" id="Node000002" href="$d3/dbb/stack_8c.html#a65244e2319afc87bb396f300373e35dc" title="Constructs a new stack." alt="" coords="208,5,332,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="160,15,194,15,194,21,160,21"/>
+</map>

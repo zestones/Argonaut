@@ -1,4 +1,0 @@
-<map id="get_stack_frame_by_id" name="get_stack_frame_by_id">
-<area shape="rect" id="node1" title="Retrieves a stack frame by its ID." alt="" coords="5,5,179,32"/>
-<area shape="rect" id="node2" href="$d3/dbb/stack_8c.html#a6b5edf43250cada4964d61ce37603c45" title="Gets the value at a specific index in the stack." alt="" coords="227,5,355,32"/>
-</map>

@@ -1,0 +1,7 @@
+<map id="update_declaration_execution" name="update_declaration_execution">
+<area shape="rect" id="Node000001" title="Updates the execution information of a declaration." alt="" coords="244,23,391,63"/>
+<area shape="rect" id="Node000002" href="$d3/d13/array__manager_8c.html#aed3142335b3245bff94bbd4dde0d47f9" title=" " alt="" coords="17,5,184,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="230,36,184,30,185,25,230,30"/>
+<area shape="rect" id="Node000003" href="$d1/da1/structure__manager_8c.html#abe60688a4fcbbe68d36c0b6157133807" title="Ends the declaration of a structure." alt="" coords="5,55,196,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="230,56,197,59,196,54,230,50"/>
+</map>

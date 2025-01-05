@@ -1,0 +1,7 @@
+<map id="fprintf_region_table" name="fprintf_region_table">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,31,156,56"/>
+<area shape="rect" id="Node000002" href="$d8/d01/ast_8c.html#af8079cf1c4a10b9daadb41932f5dfbc7" title="Prints the AST in a human&#45;readable format." alt="" coords="204,5,293,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="156,29,190,24,191,29,157,35"/>
+<area shape="rect" id="Node000003" href="$d3/dbb/stack_8c.html#a05857cdc7b90e2fbf5d2fb5f050911d3" title="Returns the size of the stack." alt="" coords="225,55,273,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="157,52,211,59,210,65,156,57"/>
+</map>

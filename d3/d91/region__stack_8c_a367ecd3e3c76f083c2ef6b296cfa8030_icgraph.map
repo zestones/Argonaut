@@ -1,11 +1,23 @@
 <map id="peek_region" name="peek_region">
-<area shape="rect" id="node1" title="Peeks at the top region of the stack without removing it." alt="" coords="485,136,588,163"/>
-<area shape="rect" id="node2" href="$d0/d8b/func__proc__validation_8c.html#a8411cbcac96e774b3d92ba56cd92d927" title="Checks if a function or procedure has been redefined." alt="" coords="227,56,437,83"/>
-<area shape="rect" id="node5" href="$d2/d71/type__validation_8c.html#ad0ff0ffaf64af0526cea2fc312001686" title="Checks if a type has been redefined." alt="" coords="243,107,421,133"/>
-<area shape="rect" id="node8" href="$de/d23/variable__manager_8c.html#af85e197b346ed860553f44112be19c28" title="Starts the declaration of a variable." alt="" coords="255,158,409,199"/>
-<area shape="rect" id="node9" href="$d8/d88/region__table_8c.html#a7c1df0c1c144c34b4089f04c631c3127" title="Gets the NIS of the current region." alt="" coords="247,224,417,251"/>
-<area shape="rect" id="node3" href="$dc/d66/func__proc__manager_8c.html#ad308181286b701d8a073ea5416924e1d" title="Starts the declaration of a function." alt="" coords="9,5,175,32"/>
-<area shape="rect" id="node4" href="$dc/d66/func__proc__manager_8c.html#a1423e71098aec906db6b648a65845296" title="Starts the declaration of a procedure." alt="" coords="9,56,175,83"/>
-<area shape="rect" id="node6" href="$d3/d13/array__manager_8c.html#a2bb30a00cd527c3decfe286173f052e1" title="Starts the declaration of an array." alt="" coords="5,107,179,133"/>
-<area shape="rect" id="node7" href="$d1/da1/structure__manager_8c.html#aa577dea532d7d7c93aca4df9fa53235c" title="Starts the declaration of a structure." alt="" coords="12,158,172,199"/>
+<area shape="rect" id="Node000001" title="Peeks at the top region of the stack without removing it." alt="" coords="485,177,588,203"/>
+<area shape="rect" id="Node000002" href="$d0/d8b/func__proc__validation_8c.html#a8411cbcac96e774b3d92ba56cd92d927" title="Checks if a function or procedure has been redefined." alt="" coords="227,51,437,76"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="515,168,480,132,436,98,391,79,393,74,439,93,484,128,518,164"/>
+<area shape="rect" id="Node000003" href="$dc/d66/func__proc__manager_8c.html#ad308181286b701d8a073ea5416924e1d" title="Starts the declaration of a function." alt="" coords="9,25,175,51"/>
+<area shape="poly" id="edge8_Node000001_Node000003" title=" " alt="" coords="525,165,512,134,494,99,468,66,436,40,399,24,359,14,318,9,278,8,201,15,138,28,137,23,200,10,277,3,319,4,360,9,401,19,439,36,472,62,498,96,517,132,530,163"/>
+<area shape="rect" id="Node000004" href="$dc/d66/func__proc__manager_8c.html#a1423e71098aec906db6b648a65845296" title="Starts the declaration of a procedure." alt="" coords="9,88,175,113"/>
+<area shape="poly" id="edge9_Node000001_Node000004" title=" " alt="" coords="471,180,437,173,156,116,157,111,438,167,472,174"/>
+<area shape="rect" id="Node000005" href="$d2/d71/type__validation_8c.html#ad0ff0ffaf64af0526cea2fc312001686" title="Checks if a type has been redefined." alt="" coords="243,203,421,228"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="472,201,421,207,421,202,471,195"/>
+<area shape="rect" id="Node000006" href="$d3/d13/array__manager_8c.html#a2bb30a00cd527c3decfe286173f052e1" title="Starts the declaration of an array." alt="" coords="5,173,179,199"/>
+<area shape="poly" id="edge7_Node000001_Node000006" title=" " alt="" coords="471,192,179,189,179,184,471,187"/>
+<area shape="rect" id="Node000007" href="$d1/da1/structure__manager_8c.html#aa577dea532d7d7c93aca4df9fa53235c" title="Starts the declaration of a structure." alt="" coords="12,234,172,274"/>
+<area shape="poly" id="edge10_Node000001_Node000007" title=" " alt="" coords="507,212,475,230,438,243,369,257,298,263,172,263,172,258,298,258,368,252,437,238,472,225,504,207"/>
+<area shape="rect" id="Node000008" href="$de/d23/variable__manager_8c.html#af85e197b346ed860553f44112be19c28" title="Starts the declaration of a variable." alt="" coords="255,303,409,343"/>
+<area shape="poly" id="edge11_Node000001_Node000008" title=" " alt="" coords="518,215,483,252,439,287,401,306,399,301,436,282,480,248,514,212"/>
+<area shape="rect" id="Node000009" href="$d8/d88/region__table_8c.html#a7c1df0c1c144c34b4089f04c631c3127" title="Gets the NIS of the current region." alt="" coords="247,368,417,393"/>
+<area shape="poly" id="edge12_Node000001_Node000009" title=" " alt="" coords="530,217,517,249,498,287,472,325,439,358,415,370,413,366,436,353,468,322,493,285,512,247,525,215"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="213,53,175,49,176,44,213,48"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="237,81,174,91,174,85,236,76"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="230,206,179,199,179,194,230,200"/>
+<area shape="poly" id="edge6_Node000005_Node000007" title=" " alt="" coords="239,233,172,244,172,239,238,228"/>
 </map>

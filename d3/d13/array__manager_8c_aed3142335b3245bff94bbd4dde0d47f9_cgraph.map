@@ -1,12 +1,27 @@
 <map id="declaration_array_end" name="declaration_array_end">
-<area shape="rect" id="node1" title=" " alt="" coords="5,173,172,199"/>
-<area shape="rect" id="node2" href="$d2/d71/type__validation_8c.html#ab2be243b7af9ae3fdecace4260ed430d" title="Validates the definition of a type." alt="" coords="223,147,387,174"/>
-<area shape="rect" id="node10" href="$dc/de9/declaration__table_8h.html#aa3f16ed63745dfbda78a449e4a354d5f" title="Finds the index of a declaration with the specified lexicographic index. This function is used to ens..." alt="" coords="220,198,389,225"/>
-<area shape="rect" id="node3" href="$d2/d71/type__validation_8c.html#a2826420c3e7c29f271899a3b50ac40c8" title="Retrieves the declaration index of an array or struct." alt="" coords="437,5,629,47"/>
-<area shape="rect" id="node5" href="$d0/d15/errors_8c.html#a68d1ccae372534af850e06d48b45d638" title="Returns a formatted string containing the current file, line, and column." alt="" coords="446,71,621,98"/>
-<area shape="rect" id="node6" href="$d0/d92/lexeme__table_8c.html#ab176cfe8b410c1f87237ed115a0d8df4" title="Retrieves the lexeme at the given index." alt="" coords="484,122,583,149"/>
-<area shape="rect" id="node7" href="$d0/d15/errors_8c.html#a4eba1d90a88e13e4b1beada48a1c2b9d" title="Sets the error message of the provided Error struct." alt="" coords="460,173,607,199"/>
-<area shape="rect" id="node8" href="$d0/d15/errors_8c.html#aff32bbfac01af1967382165ffc1d5607" title="Sets the error type of the provided Error struct." alt="" coords="475,223,591,250"/>
-<area shape="rect" id="node9" href="$d0/d15/errors_8c.html#a362b4d026b806baabf4d0654eea096a8" title="Prints a formatted error message based on the provided Error struct and exits the program." alt="" coords="503,274,564,301"/>
-<area shape="rect" id="node4" href="$dc/de9/declaration__table_8h.html#a8d20d657d482952631adde5763e985c8" title="Finds the index of a declaration with the specified lexicographic index and nature...." alt="" coords="677,5,847,47"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,242,172,267"/>
+<area shape="rect" id="Node000002" href="$d2/d71/type__validation_8c.html#ab2be243b7af9ae3fdecace4260ed430d" title="Validates the definition of a type." alt="" coords="235,143,399,169"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="107,240,156,209,219,178,240,170,242,175,221,182,159,213,110,244"/>
+<area shape="rect" id="Node000010" href="$d8/da9/name__association_8c.html#a2ee7cf5712a13de73c37fca36f1f6560" title="Finds the index of a declaration with the specified lexicographic index. This function is used to ens..." alt="" coords="232,193,401,218"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="147,239,243,218,244,224,149,245"/>
+<area shape="rect" id="Node000011" href="$dd/d3e/declaration__table_8c.html#aaac3e6193717aaccc629ddcb3c678f81" title="Gets the execution information of a declaration." alt="" coords="220,242,413,267"/>
+<area shape="poly" id="edge10_Node000001_Node000011" title=" " alt="" coords="173,252,206,252,206,257,173,257"/>
+<area shape="rect" id="Node000012" href="$dd/d3e/declaration__table_8c.html#aaa61282af88405f7e1fea0d3c4f8a84a" title="Updates the execution information of a declaration." alt="" coords="243,292,390,332"/>
+<area shape="poly" id="edge11_Node000001_Node000012" title=" " alt="" coords="141,265,231,288,229,293,139,270"/>
+<area shape="rect" id="Node000013" href="$dd/dfd/representation__table_8c.html#a9d03158f7b9f90296535c941fd91022a" title="Updates a representation in the table." alt="" coords="232,357,401,382"/>
+<area shape="poly" id="edge12_Node000001_Node000013" title=" " alt="" coords="107,265,156,303,221,342,243,350,241,355,219,346,153,307,103,270"/>
+<area shape="rect" id="Node000003" href="$d2/d71/type__validation_8c.html#a2826420c3e7c29f271899a3b50ac40c8" title="Retrieves the declaration index of an array or struct." alt="" coords="461,5,653,45"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="332,141,387,100,460,55,475,48,477,53,463,60,390,104,335,145"/>
+<area shape="rect" id="Node000005" href="$d0/d15/errors_8c.html#a01b14b54cd994f514849c320aac8c3a2" title="Returns a formatted string containing the current file, line, and column." alt="" coords="470,70,645,95"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="352,141,461,104,489,96,491,101,462,109,353,146"/>
+<area shape="rect" id="Node000006" href="$d0/d92/lexeme__table_8c.html#ac6921fee118304352fc1df16366aaf23" title="Retrieves the lexeme at the given index." alt="" coords="508,119,607,145"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="399,145,494,136,495,141,400,150"/>
+<area shape="rect" id="Node000007" href="$d0/d15/errors_8c.html#a4eba1d90a88e13e4b1beada48a1c2b9d" title="Sets the error message of the provided Error struct." alt="" coords="484,169,631,194"/>
+<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="400,162,471,170,470,175,399,167"/>
+<area shape="rect" id="Node000008" href="$d0/d15/errors_8c.html#aff32bbfac01af1967382165ffc1d5607" title="Sets the error type of the provided Error struct." alt="" coords="499,218,615,243"/>
+<area shape="poly" id="edge7_Node000002_Node000008" title=" " alt="" coords="378,166,414,178,439,190,462,203,488,212,486,217,460,208,436,195,412,182,377,171"/>
+<area shape="rect" id="Node000009" href="$d0/d15/errors_8c.html#a362b4d026b806baabf4d0654eea096a8" title="Prints a formatted error message based on the provided Error struct and exits the program." alt="" coords="527,267,588,293"/>
+<area shape="poly" id="edge8_Node000002_Node000009" title=" " alt="" coords="394,166,415,178,432,197,440,216,447,235,463,253,487,265,514,273,512,278,485,270,460,257,443,238,435,218,428,200,412,182,391,171"/>
+<area shape="rect" id="Node000004" href="$d8/da9/name__association_8c.html#a8d20d657d482952631adde5763e985c8" title="Finds the index of a declaration with the specified lexicographic index and nature...." alt="" coords="701,5,871,45"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="654,23,688,23,688,28,654,28"/>
 </map>

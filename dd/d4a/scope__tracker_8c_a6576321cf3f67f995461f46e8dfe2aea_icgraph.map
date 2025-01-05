@@ -1,0 +1,7 @@
+<map id="initialize_scope_identifier_tracker" name="initialize_scope_identifier_tracker">
+<area shape="rect" id="Node000001" title="Initializes the scope identifier tracker." alt="" coords="205,37,393,77"/>
+<area shape="rect" id="Node000002" href="$dc/d66/func__proc__manager_8c.html#acefc99281cae40a2ce5f1056bde3c7ca" title="Constructs the context for a function or procedure declaration." alt="" coords="5,5,157,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="191,44,157,39,158,34,192,39"/>
+<area shape="rect" id="Node000003" href="$d1/da1/structure__manager_8c.html#ab3a691ba23dba15d6bcc1300839f1b67" title="Constructs the structure manager context." alt="" coords="8,69,155,109"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="192,76,156,81,155,76,191,71"/>
+</map>

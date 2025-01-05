@@ -1,0 +1,5 @@
+<map id="insert_hash" name="insert_hash">
+<area shape="rect" id="Node000001" title="Compute hash code for a given lexeme and insert it into the hash table." alt="" coords="168,5,265,31"/>
+<area shape="rect" id="Node000002" href="$d0/d92/lexeme__table_8c.html#a60fa759ae85aef60d4a5bf4e8370f185" title="Inserts a lexeme into the lexeme table." alt="" coords="5,5,120,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="154,21,120,21,120,15,154,15"/>
+</map>

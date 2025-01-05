@@ -1,4 +1,15 @@
 <map id="fprintf_vm_stack" name="fprintf_vm_stack">
-<area shape="rect" id="node1" title="Prints the contents of the execution stack." alt="" coords="5,5,137,32"/>
-<area shape="rect" id="node2" href="$d3/dbb/stack_8c.html#a05857cdc7b90e2fbf5d2fb5f050911d3" title="Returns the size of the stack." alt="" coords="185,5,233,32"/>
+<area shape="rect" id="Node000001" title="Prints the contents of the execution stack." alt="" coords="5,104,137,129"/>
+<area shape="rect" id="Node000002" href="$db/da0/stack__frame_8c.html#a8d775ad4a4f47a5cecb25813efe7597d" title="Prints a detailed representation of a stack frame." alt="" coords="185,55,336,80"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="120,101,197,81,198,86,121,107"/>
+<area shape="rect" id="Node000006" href="$d3/dbb/stack_8c.html#a77cf298d71db154b16def49afd37cf6c" title="Gets the value at a specific index in the stack." alt="" coords="197,104,325,129"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="137,114,183,114,183,119,137,119"/>
+<area shape="rect" id="Node000007" href="$d3/dbb/stack_8c.html#a05857cdc7b90e2fbf5d2fb5f050911d3" title="Returns the size of the stack." alt="" coords="237,153,285,179"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="121,127,224,154,222,159,120,132"/>
+<area shape="rect" id="Node000003" href="$d8/d33/vm__cell_8c.html#a205104b6b6a8faa8b5e9ea06751d638d" title="Formats a vm_cell as a human&#45;readable string." alt="" coords="396,5,492,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="308,52,382,32,383,37,309,57"/>
+<area shape="rect" id="Node000004" href="$d8/d33/vm__cell_8c.html#a726f4253a6ea3f150895be80639308e1" title="Prints a vm_cell to a file stream in a tabular format." alt="" coords="384,55,504,80"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="336,65,370,65,370,70,336,70"/>
+<area shape="rect" id="Node000005" href="$d3/dbb/stack_8c.html#a66667ae625f58a0140fbdf591d8c3646" title="Prints the contents of the stack." alt="" coords="397,104,491,129"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="309,77,384,98,383,103,308,83"/>
 </map>

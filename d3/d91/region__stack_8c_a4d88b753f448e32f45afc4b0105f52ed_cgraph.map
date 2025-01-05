@@ -1,4 +1,5 @@
 <map id="get_region_stack_size" name="get_region_stack_size">
-<area shape="rect" id="node1" title="Gets the size of the region stack." alt="" coords="5,5,172,32"/>
-<area shape="rect" id="node2" href="$d3/dbb/stack_8c.html#a05857cdc7b90e2fbf5d2fb5f050911d3" title="Returns the size of the stack." alt="" coords="220,5,268,32"/>
+<area shape="rect" id="Node000001" title="Gets the size of the region stack." alt="" coords="5,5,172,31"/>
+<area shape="rect" id="Node000002" href="$d3/dbb/stack_8c.html#a05857cdc7b90e2fbf5d2fb5f050911d3" title="Returns the size of the stack." alt="" coords="220,5,268,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="172,15,206,15,206,21,172,21"/>
 </map>

@@ -1,7 +1,11 @@
 <map id="validate_each_argument" name="validate_each_argument">
-<area shape="rect" id="node1" title="Validates the type of each argument in a function or procedure call." alt="" coords="5,46,188,73"/>
-<area shape="rect" id="node2" href="$dc/de9/declaration__table_8h.html#a8d20d657d482952631adde5763e985c8" title="Finds the index of a declaration with the specified lexicographic index and nature...." alt="" coords="259,5,428,47"/>
-<area shape="rect" id="node3" href="$d7/d12/func__proc__resolution_8c.html#a443b17c469927fff30a597a812997fa7" title="Resolves the type of a specific parameter in a function or procedure." alt="" coords="236,71,451,112"/>
-<area shape="rect" id="node4" href="$dd/d3e/declaration__table_8c.html#a6d7cfaa61de7241348ef4a08f55bd9a0" title="Gets the description of a declaration." alt="" coords="499,49,701,75"/>
-<area shape="rect" id="node5" href="$dd/dfd/representation__table_8c.html#a64bb130b5e07aeebfd4333567ecc9a0e" title="Retrieves the value of a representation from the table." alt="" coords="527,100,673,141"/>
+<area shape="rect" id="Node000001" title="Validates the type of each argument in a function or procedure call." alt="" coords="5,45,188,70"/>
+<area shape="rect" id="Node000002" href="$d8/da9/name__association_8c.html#a8d20d657d482952631adde5763e985c8" title="Finds the index of a declaration with the specified lexicographic index and nature...." alt="" coords="259,5,428,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="188,43,244,35,245,41,189,48"/>
+<area shape="rect" id="Node000003" href="$d7/d12/func__proc__resolution_8c.html#a443b17c469927fff30a597a812997fa7" title="Resolves the type of a specific parameter in a function or procedure." alt="" coords="236,69,451,109"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="189,67,223,71,222,76,188,72"/>
+<area shape="rect" id="Node000004" href="$dd/d3e/declaration__table_8c.html#a6d7cfaa61de7241348ef4a08f55bd9a0" title="Gets the description of a declaration." alt="" coords="499,47,701,73"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="451,74,485,70,486,76,451,80"/>
+<area shape="rect" id="Node000005" href="$dd/dfd/representation__table_8c.html#a64bb130b5e07aeebfd4333567ecc9a0e" title="Retrieves the value of a representation from the table." alt="" coords="527,97,673,137"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="451,98,514,105,513,111,451,104"/>
 </map>

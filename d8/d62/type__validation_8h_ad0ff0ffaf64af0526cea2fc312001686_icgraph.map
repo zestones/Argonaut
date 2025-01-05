@@ -1,5 +1,7 @@
 <map id="check_type_redefinition" name="check_type_redefinition">
-<area shape="rect" id="node1" title="Checks if a type has been redefined." alt="" coords="227,35,404,61"/>
-<area shape="rect" id="node2" href="$d3/d13/array__manager_8c.html#a2bb30a00cd527c3decfe286173f052e1" title="Starts the declaration of an array." alt="" coords="5,5,179,32"/>
-<area shape="rect" id="node3" href="$d1/da1/structure__manager_8c.html#aa577dea532d7d7c93aca4df9fa53235c" title="Starts the declaration of a structure." alt="" coords="12,57,172,98"/>
+<area shape="rect" id="Node000001" title="Checks if a type has been redefined." alt="" coords="227,35,404,60"/>
+<area shape="rect" id="Node000002" href="$d3/d13/array__manager_8c.html#a2bb30a00cd527c3decfe286173f052e1" title="Starts the declaration of an array." alt="" coords="5,5,179,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="212,37,178,32,179,27,213,31"/>
+<area shape="rect" id="Node000003" href="$d1/da1/structure__manager_8c.html#aa577dea532d7d7c93aca4df9fa53235c" title="Starts the declaration of a structure." alt="" coords="12,55,172,95"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="213,63,173,68,172,63,212,58"/>
 </map>

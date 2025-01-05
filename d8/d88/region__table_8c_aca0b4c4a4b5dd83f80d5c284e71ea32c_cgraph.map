@@ -1,0 +1,7 @@
+<map id="init_region_table" name="init_region_table">
+<area shape="rect" id="Node000001" title="Initializes the region table." alt="" coords="5,5,136,31"/>
+<area shape="rect" id="Node000002" href="$d3/d91/region__stack_8c.html#ac1bd4073b64abf05827d96f875b2b7a3" title="Initializes the region stack." alt="" coords="184,5,317,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="136,15,170,15,170,21,136,21"/>
+<area shape="rect" id="Node000003" href="$d3/dbb/stack_8c.html#a65244e2319afc87bb396f300373e35dc" title="Constructs a new stack." alt="" coords="365,5,489,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="318,15,352,15,352,21,318,21"/>
+</map>

@@ -1,6 +1,10 @@
 <map id="find_struct_field_index_lexicographic" name="find_struct_field_index_lexicographic">
-<area shape="rect" id="node1" title="Finds the index of a struct field by its lexicographic index." alt="" coords="5,27,173,69"/>
-<area shape="rect" id="node2" href="$d0/d41/utility_8c.html#a0c355fb97635cff55dbce62d9ccf023a" title="Retrieves the total number of fields in a struct." alt="" coords="221,35,387,61"/>
-<area shape="rect" id="node3" href="$dd/d3e/declaration__table_8c.html#a6d7cfaa61de7241348ef4a08f55bd9a0" title="Gets the description of a declaration." alt="" coords="435,5,637,32"/>
-<area shape="rect" id="node4" href="$dd/dfd/representation__table_8c.html#a64bb130b5e07aeebfd4333567ecc9a0e" title="Retrieves the value of a representation from the table." alt="" coords="463,57,609,98"/>
+<area shape="rect" id="Node000001" title="Finds the index of a struct field by its lexicographic index." alt="" coords="5,23,173,63"/>
+<area shape="rect" id="Node000002" href="$dd/d3e/declaration__table_8c.html#a6d7cfaa61de7241348ef4a08f55bd9a0" title="Gets the description of a declaration." alt="" coords="435,5,637,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="174,36,421,22,421,27,174,41"/>
+<area shape="rect" id="Node000003" href="$d0/d41/utility_8c.html#a0c355fb97635cff55dbce62d9ccf023a" title="Retrieves the total number of fields in a struct." alt="" coords="221,56,387,81"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="174,51,208,55,207,60,174,56"/>
+<area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="363,53,464,31,465,36,364,58"/>
+<area shape="rect" id="Node000004" href="$dd/dfd/representation__table_8c.html#a64bb130b5e07aeebfd4333567ecc9a0e" title="Retrieves the value of a representation from the table." alt="" coords="463,55,609,95"/>
+<area shape="poly" id="edge4_Node000003_Node000004" title=" " alt="" coords="387,68,450,70,450,76,387,74"/>
 </map>

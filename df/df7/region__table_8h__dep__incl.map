@@ -1,35 +1,69 @@
 <map id="src/data/region_table.h" name="src/data/region_table.h">
-<area shape="rect" id="node1" title="Header file for managing regions in the compiler." alt="" coords="3123,5,3293,32"/>
-<area shape="rect" id="node2" href="$d8/d88/region__table_8c.html" title=" " alt="" coords="5,95,176,121"/>
-<area shape="rect" id="node3" href="$d5/d36/parser_8h.html" title=" " alt="" coords="201,95,343,121"/>
-<area shape="rect" id="node5" href="$d6/d4c/assignment__validation_8c.html" title=" " alt="" coords="368,80,603,136"/>
-<area shape="rect" id="node6" href="$d6/d35/condition__validation_8c.html" title=" " alt="" coords="627,80,829,136"/>
-<area shape="rect" id="node7" href="$d8/df9/argument__validation_8c.html" title=" " alt="" coords="853,80,1045,136"/>
-<area shape="rect" id="node8" href="$d0/d8b/func__proc__validation_8c.html" title=" " alt="" coords="1069,80,1320,136"/>
-<area shape="rect" id="node9" href="$dd/d08/input__validation_8c.html" title=" " alt="" coords="1345,80,1549,136"/>
-<area shape="rect" id="node10" href="$d5/da0/print__validation_8c.html" title=" " alt="" coords="1573,80,1777,136"/>
-<area shape="rect" id="node11" href="$d2/d71/type__validation_8c.html" title=" " alt="" coords="1801,87,2023,129"/>
-<area shape="rect" id="node12" href="$da/d3a/variable__validation_8c.html" title=" " alt="" coords="2047,80,2235,136"/>
-<area shape="rect" id="node13" href="$dd/d3e/declaration__table_8c.html" title=" " alt="" coords="2260,87,2471,129"/>
-<area shape="rect" id="node14" href="$d8/da9/name__association_8c.html" title=" " alt="" coords="2495,87,2705,129"/>
-<area shape="rect" id="node15" href="$d3/d13/array__manager_8c.html" title=" " alt="" coords="2730,87,2902,129"/>
-<area shape="rect" id="node16" href="$dc/d66/func__proc__manager_8c.html" title=" " alt="" coords="2926,87,3098,129"/>
-<area shape="rect" id="node17" href="$d1/da1/structure__manager_8c.html" title=" " alt="" coords="3122,87,3294,129"/>
-<area shape="rect" id="node18" href="$de/d23/variable__manager_8c.html" title=" " alt="" coords="3318,87,3490,129"/>
-<area shape="rect" id="node19" href="$d8/d9a/expression__format_8c.html" title=" " alt="" coords="3514,87,3691,129"/>
-<area shape="rect" id="node20" href="$d6/dbc/condition__resolution_8c.html" title=" " alt="" coords="3716,80,3879,136"/>
-<area shape="rect" id="node21" href="$d2/d18/expression__resolution_8c.html" title=" " alt="" coords="3903,80,4068,136"/>
-<area shape="rect" id="node22" href="$d7/d12/func__proc__resolution_8c.html" title=" " alt="" coords="4092,80,4255,136"/>
-<area shape="rect" id="node23" href="$d3/d86/structure__resolution_8c.html" title=" " alt="" coords="4279,80,4441,136"/>
-<area shape="rect" id="node24" href="$dc/dcc/array_8c.html" title=" " alt="" coords="4466,87,4622,129"/>
-<area shape="rect" id="node25" href="$df/d20/structure_8c.html" title=" " alt="" coords="4646,87,4829,129"/>
-<area shape="rect" id="node26" href="$d0/d2a/variable_8c.html" title=" " alt="" coords="4853,87,5030,129"/>
-<area shape="rect" id="node27" href="$d0/dda/execution_8c.html" title=" " alt="" coords="5054,87,5205,129"/>
-<area shape="rect" id="node28" href="$d5/d55/assignement_8c.html" title=" " alt="" coords="5229,80,5411,136"/>
-<area shape="rect" id="node29" href="$de/d5f/assignement_8h.html" title=" " alt="" coords="5435,80,5618,136"/>
-<area shape="rect" id="node31" href="$d7/d6c/condition_8h.html" title=" " alt="" coords="5642,80,5801,136"/>
-<area shape="rect" id="node33" href="$d2/db0/func__proc_8c.html" title=" " alt="" coords="5825,80,5988,136"/>
-<area shape="rect" id="node4" href="$d2/d72/parser_8c.html" title=" " alt="" coords="201,199,343,225"/>
-<area shape="rect" id="node30" href="$dc/d30/interpreter_8c.html" title=" " alt="" coords="5437,191,5616,233"/>
-<area shape="rect" id="node32" href="$dd/d57/condition_8c.html" title=" " alt="" coords="5642,184,5801,240"/>
+<area shape="rect" id="Node000001" title="Header file for managing regions in the compiler." alt="" coords="3123,5,3293,31"/>
+<area shape="rect" id="Node000002" href="$d8/d88/region__table_8c.html" title=" " alt="" coords="5,93,176,119"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="3109,23,2488,27,1575,37,700,55,378,67,188,81,126,96,125,91,188,76,378,62,700,50,1575,32,2488,22,3109,17"/>
+<area shape="rect" id="Node000003" href="$d5/d36/parser_8h.html" title=" " alt="" coords="201,93,343,119"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="3109,22,2519,26,1659,36,836,54,534,66,356,81,303,96,301,91,356,76,534,61,836,48,1659,31,2519,21,3109,17"/>
+<area shape="rect" id="Node000005" href="$d6/d4c/assignment__validation_8c.html" title=" " alt="" coords="368,79,603,133"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="3108,22,2614,24,1893,31,1513,38,1156,49,848,63,615,81,603,83,603,77,614,76,847,58,1156,43,1513,33,1893,26,2614,18,3108,17"/>
+<area shape="rect" id="Node000006" href="$d6/d35/condition__validation_8c.html" title=" " alt="" coords="627,79,829,133"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="3109,22,2653,23,1997,30,1653,38,1330,48,1052,63,842,81,830,83,829,78,841,76,1052,57,1330,43,1653,32,1997,25,2653,18,3109,17"/>
+<area shape="rect" id="Node000007" href="$d8/df9/argument__validation_8c.html" title=" " alt="" coords="853,79,1045,133"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="3109,22,2690,24,2097,32,1497,49,1247,63,1058,81,1046,83,1045,78,1057,76,1246,58,1497,44,2097,26,2690,19,3109,17"/>
+<area shape="rect" id="Node000008" href="$d0/d8b/func__proc__validation_8c.html" title=" " alt="" coords="1069,79,1320,133"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="3109,23,2226,39,1710,57,1495,68,1332,81,1321,83,1320,77,1332,76,1495,63,1710,51,2225,34,3109,18"/>
+<area shape="rect" id="Node000009" href="$dd/d08/input__validation_8c.html" title=" " alt="" coords="1345,79,1549,133"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="3109,23,2779,28,2332,39,1886,56,1701,68,1560,81,1549,83,1549,78,1560,76,1700,62,1886,51,2332,33,2779,23,3109,18"/>
+<area shape="rect" id="Node000010" href="$d5/da0/print__validation_8c.html" title=" " alt="" coords="1573,79,1777,133"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="3109,24,2440,42,2063,59,1907,69,1788,81,1777,83,1777,78,1788,76,1907,64,2063,53,2440,36,3109,18"/>
+<area shape="rect" id="Node000011" href="$d2/d71/type__validation_8c.html" title=" " alt="" coords="1801,86,2023,126"/>
+<area shape="poly" id="edge10_Node000001_Node000011" title=" " alt="" coords="3109,22,2911,24,2644,32,2341,50,2186,64,2035,81,1992,89,1991,83,2034,76,2186,59,2341,45,2644,27,2911,19,3109,16"/>
+<area shape="rect" id="Node000012" href="$da/d3a/variable__validation_8c.html" title=" " alt="" coords="2047,79,2235,133"/>
+<area shape="poly" id="edge11_Node000001_Node000012" title=" " alt="" coords="3108,22,2944,26,2729,35,2489,52,2248,81,2236,83,2235,78,2248,76,2489,47,2729,30,2944,20,3108,17"/>
+<area shape="rect" id="Node000013" href="$dd/d3e/declaration__table_8c.html" title=" " alt="" coords="2260,86,2471,126"/>
+<area shape="poly" id="edge12_Node000001_Node000013" title=" " alt="" coords="3109,26,2827,43,2655,59,2483,81,2443,89,2442,83,2482,76,2654,54,2826,38,3108,21"/>
+<area shape="rect" id="Node000014" href="$d8/da9/name__association_8c.html" title=" " alt="" coords="2495,86,2705,126"/>
+<area shape="poly" id="edge13_Node000001_Node000014" title=" " alt="" coords="3109,31,2927,51,2718,81,2680,89,2679,83,2717,76,2926,46,3109,26"/>
+<area shape="rect" id="Node000015" href="$d3/d13/array__manager_8c.html" title=" " alt="" coords="2730,86,2902,126"/>
+<area shape="poly" id="edge14_Node000001_Node000015" title=" " alt="" coords="3133,36,2914,81,2885,89,2883,83,2913,76,3132,31"/>
+<area shape="rect" id="Node000016" href="$dc/d66/func__proc__manager_8c.html" title=" " alt="" coords="2926,86,3098,126"/>
+<area shape="poly" id="edge15_Node000001_Node000016" title=" " alt="" coords="3170,39,3056,88,3054,83,3168,34"/>
+<area shape="rect" id="Node000017" href="$d1/da1/structure__manager_8c.html" title=" " alt="" coords="3122,86,3294,126"/>
+<area shape="poly" id="edge16_Node000001_Node000017" title=" " alt="" coords="3211,44,3211,86,3205,86,3205,44"/>
+<area shape="rect" id="Node000018" href="$de/d23/variable__manager_8c.html" title=" " alt="" coords="3318,86,3490,126"/>
+<area shape="poly" id="edge17_Node000001_Node000018" title=" " alt="" coords="3248,34,3362,83,3360,88,3246,39"/>
+<area shape="rect" id="Node000019" href="$d8/d9a/expression__format_8c.html" title=" " alt="" coords="3514,86,3691,126"/>
+<area shape="poly" id="edge18_Node000001_Node000019" title=" " alt="" coords="3283,31,3502,76,3532,83,3531,88,3501,81,3282,36"/>
+<area shape="rect" id="Node000020" href="$d6/dbc/condition__resolution_8c.html" title=" " alt="" coords="3716,79,3879,133"/>
+<area shape="poly" id="edge19_Node000001_Node000020" title=" " alt="" coords="3308,24,3492,43,3598,58,3703,76,3716,79,3715,84,3702,81,3597,63,3491,49,3307,30"/>
+<area shape="rect" id="Node000021" href="$d2/d18/expression__resolution_8c.html" title=" " alt="" coords="3903,79,4068,133"/>
+<area shape="poly" id="edge20_Node000001_Node000021" title=" " alt="" coords="3307,20,3572,36,3732,52,3891,76,3903,78,3902,84,3890,81,3731,58,3572,41,3307,25"/>
+<area shape="rect" id="Node000022" href="$d7/d12/func__proc__resolution_8c.html" title=" " alt="" coords="4092,79,4255,133"/>
+<area shape="poly" id="edge21_Node000001_Node000022" title=" " alt="" coords="3307,17,3458,20,3651,29,3865,47,4080,76,4092,78,4091,84,4080,81,3865,52,3650,35,3458,26,3307,22"/>
+<area shape="rect" id="Node000023" href="$d3/d86/structure__resolution_8c.html" title=" " alt="" coords="4279,79,4441,133"/>
+<area shape="poly" id="edge22_Node000001_Node000023" title=" " alt="" coords="3307,19,3803,39,4072,55,4183,65,4267,76,4279,78,4278,83,4266,81,4182,70,4071,61,3803,44,3307,25"/>
+<area shape="rect" id="Node000024" href="$dc/dcc/array_8c.html" title=" " alt="" coords="4466,86,4622,126"/>
+<area shape="poly" id="edge23_Node000001_Node000024" title=" " alt="" coords="3307,18,3894,36,4218,52,4352,63,4454,76,4487,83,4486,89,4453,81,4351,69,4217,58,3893,41,3307,24"/>
+<area shape="rect" id="Node000025" href="$df/d20/structure_8c.html" title=" " alt="" coords="4646,86,4829,126"/>
+<area shape="poly" id="edge24_Node000001_Node000025" title=" " alt="" coords="3307,18,3979,35,4357,52,4514,63,4634,76,4672,83,4671,89,4633,81,4514,68,4357,57,3979,40,3307,24"/>
+<area shape="rect" id="Node000026" href="$d0/d2a/variable_8c.html" title=" " alt="" coords="4853,86,5030,126"/>
+<area shape="poly" id="edge25_Node000001_Node000026" title=" " alt="" coords="3307,17,3634,22,4077,32,4518,49,4701,61,4840,76,4877,83,4876,89,4840,81,4701,67,4518,54,4076,37,3634,27,3307,23"/>
+<area shape="rect" id="Node000027" href="$d0/dda/execution_8c.html" title=" " alt="" coords="5054,86,5205,126"/>
+<area shape="poly" id="edge26_Node000001_Node000027" title=" " alt="" coords="3307,17,3670,18,4172,26,4431,33,4674,44,4884,58,5042,76,5075,83,5073,89,5041,81,4883,63,4674,49,4431,39,4172,31,3670,24,3307,22"/>
+<area shape="rect" id="Node000028" href="$d5/d55/assignement_8c.html" title=" " alt="" coords="5229,79,5411,133"/>
+<area shape="poly" id="edge27_Node000001_Node000028" title=" " alt="" coords="3307,17,3701,19,4253,27,4809,45,5041,59,5216,76,5229,78,5228,83,5216,81,5040,64,4809,50,4252,33,3701,24,3307,22"/>
+<area shape="rect" id="Node000029" href="$de/d5f/assignement_8h.html" title=" " alt="" coords="5618,79,5801,133"/>
+<area shape="poly" id="edge28_Node000001_Node000029" title=" " alt="" coords="3307,16,3768,16,4433,22,4782,30,5110,40,5392,56,5606,76,5618,78,5617,83,5605,81,5392,61,5110,46,4782,35,4433,28,3768,22,3307,22"/>
+<area shape="rect" id="Node000032" href="$d7/d6c/condition_8h.html" title=" " alt="" coords="5435,79,5594,133"/>
+<area shape="poly" id="edge31_Node000001_Node000032" title=" " alt="" coords="3307,16,3737,16,4349,22,4669,29,4969,40,5228,55,5423,76,5436,78,5435,84,5422,81,5227,60,4969,45,4669,34,4349,27,3737,21,3307,21"/>
+<area shape="rect" id="Node000033" href="$d2/db0/func__proc_8c.html" title=" " alt="" coords="5825,79,5988,133"/>
+<area shape="poly" id="edge34_Node000001_Node000033" title=" " alt="" coords="3307,17,3851,23,4633,34,5379,52,5652,63,5814,76,5825,78,5825,83,5813,81,5652,68,5378,57,4633,40,3851,28,3307,23"/>
+<area shape="rect" id="Node000004" href="$d2/d72/parser_8c.html" title=" " alt="" coords="201,196,343,221"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="275,133,275,196,269,196,269,133"/>
+<area shape="rect" id="Node000030" href="$dd/d57/condition_8c.html" title=" " alt="" coords="5629,181,5787,236"/>
+<area shape="poly" id="edge29_Node000029_Node000030" title=" " alt="" coords="5711,147,5711,181,5706,181,5706,147"/>
+<area shape="rect" id="Node000031" href="$dc/d30/interpreter_8c.html" title=" " alt="" coords="5425,189,5604,229"/>
+<area shape="poly" id="edge30_Node000029_Node000031" title=" " alt="" coords="5648,142,5553,191,5550,186,5645,137"/>
+<area shape="poly" id="edge32_Node000032_Node000030" title=" " alt="" coords="5578,137,5659,179,5656,184,5576,142"/>
+<area shape="poly" id="edge33_Node000032_Node000031" title=" " alt="" coords="5517,147,5517,188,5512,188,5512,147"/>
 </map>

@@ -1,23 +1,55 @@
 <map id="declaration_variable_start" name="declaration_variable_start">
-<area shape="rect" id="node1" title="Starts the declaration of a variable." alt="" coords="5,419,160,460"/>
-<area shape="rect" id="node2" href="$d2/d71/type__validation_8c.html#ab2be243b7af9ae3fdecace4260ed430d" title="Validates the definition of a type." alt="" coords="227,173,391,199"/>
-<area shape="rect" id="node3" href="$d2/d71/type__validation_8c.html#a2826420c3e7c29f271899a3b50ac40c8" title="Retrieves the declaration index of an array or struct." alt="" coords="457,5,649,47"/>
-<area shape="rect" id="node10" href="$da/d3a/variable__validation_8c.html#a9516a6e44a11928cf63ddf2d18960920" title="Checks if a variable has been redefined." alt="" coords="208,299,409,326"/>
-<area shape="rect" id="node11" href="$d8/d88/region__table_8c.html#a49272dbdea0b5157804dc85964e15469" title="Gets the ID of the current region." alt="" coords="472,477,635,503"/>
-<area shape="rect" id="node14" href="$dd/d3e/declaration__table_8c.html#aaac3e6193717aaccc629ddcb3c678f81" title="Gets the execution information of a declaration." alt="" coords="212,426,405,453"/>
-<area shape="rect" id="node15" href="$d8/d88/region__table_8c.html#a6174d3ae3d2b95fc38b10285c2dd14f9" title="Gets the size of the region at the specified index." alt="" coords="247,477,371,503"/>
-<area shape="rect" id="node16" href="$dd/d3e/declaration__table_8c.html#a9dbc7c59cf6024a86dac39cc77daaac5" title="Inserts a variable declaration into the table." alt="" coords="225,527,392,554"/>
-<area shape="rect" id="node18" href="$d3/d91/region__stack_8c.html#a367ecd3e3c76f083c2ef6b296cfa8030" title="Peeks at the top region of the stack without removing it." alt="" coords="257,578,360,605"/>
-<area shape="rect" id="node21" href="$d8/d88/region__table_8c.html#a36985dd80d85c10f81a505ec691943b8" title="Updates the size of the region at the specified index." alt="" coords="235,629,383,655"/>
-<area shape="rect" id="node5" href="$d0/d15/errors_8c.html#a68d1ccae372534af850e06d48b45d638" title="Returns a formatted string containing the current file, line, and column." alt="" coords="466,173,641,199"/>
-<area shape="rect" id="node6" href="$d0/d92/lexeme__table_8c.html#ab176cfe8b410c1f87237ed115a0d8df4" title="Retrieves the lexeme at the given index." alt="" coords="504,223,603,250"/>
-<area shape="rect" id="node7" href="$d0/d15/errors_8c.html#a4eba1d90a88e13e4b1beada48a1c2b9d" title="Sets the error message of the provided Error struct." alt="" coords="480,274,627,301"/>
-<area shape="rect" id="node8" href="$d0/d15/errors_8c.html#aff32bbfac01af1967382165ffc1d5607" title="Sets the error type of the provided Error struct." alt="" coords="495,71,611,98"/>
-<area shape="rect" id="node9" href="$d0/d15/errors_8c.html#a362b4d026b806baabf4d0654eea096a8" title="Prints a formatted error message based on the provided Error struct and exits the program." alt="" coords="523,122,584,149"/>
-<area shape="rect" id="node4" href="$dc/de9/declaration__table_8h.html#a8d20d657d482952631adde5763e985c8" title="Finds the index of a declaration with the specified lexicographic index and nature...." alt="" coords="697,161,867,203"/>
-<area shape="rect" id="node12" href="$dd/d3e/declaration__table_8c.html#a3a2a92436534333020848016833c3abc" title="Gets the region of a declaration." alt="" coords="468,375,639,402"/>
-<area shape="rect" id="node13" href="$d0/d15/errors_8c.html#acb2bca670a5423d964979952c64603e2" title="Prints a formatted warning message based on the provided Error struct." alt="" coords="518,426,589,453"/>
-<area shape="rect" id="node17" href="$dd/d3e/declaration__table_8c.html#a43c491a0b81e9249ceccebe651dc9a87" title="Inserts a declaration into the table." alt="" coords="484,527,623,554"/>
-<area shape="rect" id="node19" href="$d3/dbb/stack_8c.html#a9cf0786f5f2fb0c4c025b7e9bb552881" title="Peeks at the top value of the stack without popping it." alt="" coords="526,578,581,605"/>
-<area shape="rect" id="node20" href="$d3/dbb/stack_8c.html#aeda5460a4306b1c90f61ac5bf8ba49bc" title="Checks if the stack is empty." alt="" coords="741,578,823,605"/>
+<area shape="rect" id="Node000001" title="Starts the declaration of a variable." alt="" coords="5,411,160,451"/>
+<area shape="rect" id="Node000002" href="$d2/d71/type__validation_8c.html#ab2be243b7af9ae3fdecace4260ed430d" title="Validates the definition of a type." alt="" coords="227,169,391,194"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="97,409,145,349,206,277,282,201,285,205,210,280,149,352,101,412"/>
+<area shape="rect" id="Node000003" href="$d2/d71/type__validation_8c.html#a2826420c3e7c29f271899a3b50ac40c8" title="Retrieves the declaration index of an array or struct." alt="" coords="457,5,649,45"/>
+<area shape="poly" id="edge19_Node000001_Node000003" title=" " alt="" coords="85,410,97,359,120,291,156,218,179,184,206,154,260,113,321,81,384,57,443,41,445,46,386,62,324,86,263,117,210,158,183,188,160,221,125,293,102,361,90,411"/>
+<area shape="rect" id="Node000010" href="$da/d3a/variable__validation_8c.html#a9516a6e44a11928cf63ddf2d18960920" title="Checks if a variable has been redefined." alt="" coords="208,291,409,317"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="118,408,271,322,274,326,121,413"/>
+<area shape="rect" id="Node000011" href="$d8/d88/region__table_8c.html#a49272dbdea0b5157804dc85964e15469" title="Gets the ID of the current region." alt="" coords="472,467,635,493"/>
+<area shape="poly" id="edge20_Node000001_Node000011" title=" " alt="" coords="145,408,202,395,270,386,341,387,376,393,410,403,426,412,436,423,445,435,459,446,491,460,488,465,456,450,441,439,432,427,423,416,408,408,375,398,341,392,270,391,203,400,146,413"/>
+<area shape="rect" id="Node000014" href="$dd/d3e/declaration__table_8c.html#aaac3e6193717aaccc629ddcb3c678f81" title="Gets the execution information of a declaration." alt="" coords="212,418,405,443"/>
+<area shape="poly" id="edge21_Node000001_Node000014" title=" " alt="" coords="160,428,198,428,198,433,160,433"/>
+<area shape="rect" id="Node000015" href="$d8/d88/region__table_8c.html#a6174d3ae3d2b95fc38b10285c2dd14f9" title="Gets the size of the region at the specified index." alt="" coords="247,467,371,493"/>
+<area shape="poly" id="edge22_Node000001_Node000015" title=" " alt="" coords="161,445,237,462,236,467,160,450"/>
+<area shape="rect" id="Node000016" href="$dd/d3e/declaration__table_8c.html#a9dbc7c59cf6024a86dac39cc77daaac5" title="Inserts a variable declaration into the table." alt="" coords="225,517,392,542"/>
+<area shape="poly" id="edge23_Node000001_Node000016" title=" " alt="" coords="114,449,158,476,209,502,234,510,232,515,207,506,155,481,111,453"/>
+<area shape="rect" id="Node000019" href="$d3/d91/region__stack_8c.html#a367ecd3e3c76f083c2ef6b296cfa8030" title="Peeks at the top region of the stack without removing it." alt="" coords="257,566,360,591"/>
+<area shape="poly" id="edge26_Node000001_Node000019" title=" " alt="" coords="101,449,146,501,176,528,209,551,245,565,243,570,207,556,173,532,142,504,97,453"/>
+<area shape="rect" id="Node000022" href="$d8/d88/region__table_8c.html#a36985dd80d85c10f81a505ec691943b8" title="Updates the size of the region at the specified index." alt="" coords="235,615,383,641"/>
+<area shape="poly" id="edge29_Node000001_Node000022" title=" " alt="" coords="95,450,112,483,137,525,170,567,210,602,223,609,221,614,206,606,166,570,132,528,107,486,90,452"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="323,167,456,55,469,48,471,53,459,60,327,171"/>
+<area shape="rect" id="Node000005" href="$d0/d15/errors_8c.html#a01b14b54cd994f514849c320aac8c3a2" title="Returns a formatted string containing the current file, line, and column." alt="" coords="466,119,641,145"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="372,166,475,145,477,150,373,171"/>
+<area shape="rect" id="Node000006" href="$d0/d92/lexeme__table_8c.html#ac6921fee118304352fc1df16366aaf23" title="Retrieves the lexeme at the given index." alt="" coords="504,169,603,194"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="391,179,491,179,491,184,391,184"/>
+<area shape="rect" id="Node000007" href="$d0/d15/errors_8c.html#a4eba1d90a88e13e4b1beada48a1c2b9d" title="Sets the error message of the provided Error struct." alt="" coords="480,218,627,243"/>
+<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="373,191,477,213,475,218,372,197"/>
+<area shape="rect" id="Node000008" href="$d0/d15/errors_8c.html#aff32bbfac01af1967382165ffc1d5607" title="Sets the error type of the provided Error struct." alt="" coords="495,267,611,293"/>
+<area shape="poly" id="edge7_Node000002_Node000008" title=" " alt="" coords="334,192,389,222,458,252,485,261,483,266,456,257,387,226,331,197"/>
+<area shape="rect" id="Node000009" href="$d0/d15/errors_8c.html#a362b4d026b806baabf4d0654eea096a8" title="Prints a formatted error message based on the provided Error struct and exits the program." alt="" coords="523,70,584,95"/>
+<area shape="poly" id="edge8_Node000002_Node000009" title=" " alt="" coords="330,166,386,136,456,104,509,89,510,94,458,109,388,141,333,171"/>
+<area shape="rect" id="Node000004" href="$d8/da9/name__association_8c.html#a8d20d657d482952631adde5763e985c8" title="Finds the index of a declaration with the specified lexicographic index and nature...." alt="" coords="697,208,867,248"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="630,43,651,55,688,87,720,124,766,194,761,197,716,128,684,91,648,60,627,48"/>
+<area shape="poly" id="edge10_Node000010_Node000004" title=" " alt="" coords="328,315,395,364,431,387,458,400,512,416,555,424,598,420,648,400,688,372,721,335,747,295,765,260,769,262,751,298,725,338,692,376,651,405,599,425,555,429,510,421,456,405,428,391,392,368,325,319"/>
+<area shape="poly" id="edge13_Node000010_Node000005" title=" " alt="" coords="321,289,407,204,429,177,440,165,456,154,469,147,471,152,459,158,443,169,433,180,411,207,325,293"/>
+<area shape="poly" id="edge14_Node000010_Node000006" title=" " alt="" coords="324,289,380,247,417,223,456,203,490,191,492,196,458,208,420,228,383,251,327,293"/>
+<area shape="poly" id="edge15_Node000010_Node000007" title=" " alt="" coords="345,289,457,252,485,244,487,249,458,257,346,294"/>
+<area shape="poly" id="edge16_Node000010_Node000008" title=" " alt="" coords="409,291,481,284,482,290,410,297"/>
+<area shape="poly" id="edge17_Node000010_Node000009" title=" " alt="" coords="324,289,364,253,407,204,421,177,427,152,436,128,456,105,481,90,508,83,510,88,483,95,459,109,440,131,432,153,426,178,412,207,368,257,328,293"/>
+<area shape="poly" id="edge11_Node000010_Node000011" title=" " alt="" coords="343,314,378,333,411,360,427,383,435,405,442,426,459,446,481,460,478,464,456,450,438,428,430,407,423,385,407,363,375,338,340,319"/>
+<area shape="rect" id="Node000012" href="$dd/d3e/declaration__table_8c.html#a3a2a92436534333020848016833c3abc" title="Gets the region of a declaration." alt="" coords="468,317,639,342"/>
+<area shape="poly" id="edge12_Node000010_Node000012" title=" " alt="" coords="410,312,455,316,454,322,409,317"/>
+<area shape="rect" id="Node000013" href="$d0/d15/errors_8c.html#acb2bca670a5423d964979952c64603e2" title="Prints a formatted warning message based on the provided Error struct." alt="" coords="518,366,589,391"/>
+<area shape="poly" id="edge18_Node000010_Node000013" title=" " alt="" coords="347,314,458,351,505,364,504,369,457,356,345,319"/>
+<area shape="rect" id="Node000017" href="$dd/d3e/declaration__table_8c.html#a43c491a0b81e9249ceccebe651dc9a87" title="Inserts a declaration into the table." alt="" coords="484,517,623,542"/>
+<area shape="poly" id="edge24_Node000016_Node000017" title=" " alt="" coords="392,527,470,527,470,532,392,532"/>
+<area shape="rect" id="Node000018" href="$dd/d3e/declaration__table_8c.html#aa8a7cdebf527233e95ecd24def975f20" title=" " alt="" coords="701,517,863,542"/>
+<area shape="poly" id="edge25_Node000017_Node000018" title=" " alt="" coords="623,527,687,527,687,532,623,532"/>
+<area shape="rect" id="Node000020" href="$d3/dbb/stack_8c.html#accd7164d8805b31ef2bba785ce12a209" title="Peeks at the top value of the stack without popping it." alt="" coords="526,566,581,591"/>
+<area shape="poly" id="edge27_Node000019_Node000020" title=" " alt="" coords="360,576,512,576,512,581,360,581"/>
+<area shape="rect" id="Node000021" href="$d3/dbb/stack_8c.html#aeda5460a4306b1c90f61ac5bf8ba49bc" title="Checks if the stack is empty." alt="" coords="741,566,823,591"/>
+<area shape="poly" id="edge28_Node000020_Node000021" title=" " alt="" coords="581,576,727,576,727,581,581,581"/>
+<area shape="rect" id="Node000023" href="$d3/dbb/stack_8c.html#a05857cdc7b90e2fbf5d2fb5f050911d3" title="Returns the size of the stack." alt="" coords="529,615,577,641"/>
+<area shape="poly" id="edge30_Node000022_Node000023" title=" " alt="" coords="383,625,515,625,515,631,383,631"/>
 </map>

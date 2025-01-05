@@ -1,0 +1,23 @@
+<map id="resolve_func_proc_return_type" name="resolve_func_proc_return_type">
+<area shape="rect" id="Node000001" title="Resolves the return type of a function or procedure call." alt="" coords="692,153,915,179"/>
+<area shape="rect" id="Node000002" href="$d2/d18/expression__resolution_8c.html#ad2fa6a52f7590a4fe58adc41e6fab427" title="Resolves the type of an expression." alt="" coords="460,153,644,179"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="678,169,644,169,644,163,678,163"/>
+<area shape="poly" id="edge11_Node000002_Node000002" title=" " alt="" coords="597,144,594,139,586,136,552,132,525,134,511,139,508,144,515,151,511,155,503,145,507,135,524,129,552,127,587,131,597,135,601,141"/>
+<area shape="rect" id="Node000003" href="$d6/d4c/assignment__validation_8c.html#adafad0061063a9ae298f6233978de3b1" title="Validates type compatibility for array assignments." alt="" coords="204,5,388,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="530,145,479,93,447,67,411,44,382,33,384,28,413,40,450,62,483,89,534,141"/>
+<area shape="rect" id="Node000004" href="$d0/d8b/func__proc__validation_8c.html#ae8847b0a477fa9ae2766940f78a5c90f" title="Validates the return statement of a function." alt="" coords="213,55,379,80"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="518,148,469,120,411,94,373,83,374,77,413,89,471,115,521,144"/>
+<area shape="rect" id="Node000005" href="$dd/d08/input__validation_8c.html#ad3dd17f0853fcdf49904fd5847b0e4b3" title="Validates the arguments provided to an input&#45;like procedure against a format string." alt="" coords="180,104,412,129"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="472,153,362,132,363,127,473,148"/>
+<area shape="rect" id="Node000006" href="$d5/da0/print__validation_8c.html#a2e389d9645c7b92911f4c86af31b14a8" title="Validates the arguments provided to a print&#45;like procedure against a format string." alt="" coords="181,153,411,179"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="446,169,411,169,411,163,446,163"/>
+<area shape="rect" id="Node000007" href="$d6/d4c/assignment__validation_8c.html#afaa433496bef6af1b952c37f239afad2" title="Ensures type compatibility for struct field assignments." alt="" coords="203,203,389,228"/>
+<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="473,184,363,205,362,200,472,179"/>
+<area shape="rect" id="Node000008" href="$d6/d4c/assignment__validation_8c.html#a4fde6de79346a9e0cdb168b7c802fccc" title="Checks type compatibility during variable assignments." alt="" coords="195,252,397,277"/>
+<area shape="poly" id="edge7_Node000002_Node000008" title=" " alt="" coords="521,188,471,216,413,242,370,254,368,249,411,237,469,211,518,183"/>
+<area shape="rect" id="Node000009" href="$d6/dbc/condition__resolution_8c.html#a7af42b525181329829b7ed96a0cca487" title="Resolves the type of a condition expression." alt="" coords="209,325,383,351"/>
+<area shape="poly" id="edge8_Node000002_Node000009" title=" " alt="" coords="531,191,480,240,413,291,374,312,336,328,334,323,372,307,411,286,476,236,527,187"/>
+<area shape="poly" id="edge10_Node000009_Node000009" title=" " alt="" coords="337,316,326,307,296,304,272,306,259,311,256,316,263,323,259,327,251,317,255,307,271,301,296,299,328,303,340,312"/>
+<area shape="rect" id="Node000010" href="$d6/d35/condition__validation_8c.html#a71704b89d5560a369eccc90b03ee22eb" title="Validates the type of a condition expression." alt="" coords="5,325,132,351"/>
+<area shape="poly" id="edge9_Node000009_Node000010" title=" " alt="" coords="195,341,132,341,132,335,195,335"/>
+</map>

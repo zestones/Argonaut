@@ -1,4 +1,5 @@
 <map id="validate_each_argument" name="validate_each_argument">
-<area shape="rect" id="node1" title="Validates the type of each argument in a function or procedure call." alt="" coords="280,5,463,32"/>
-<area shape="rect" id="node2" href="$d0/d8b/func__proc__validation_8c.html#afafcd50f3eee0ad1e7debef6b3df9f2e" title="Validates the argument list of a function." alt="" coords="5,5,232,32"/>
+<area shape="rect" id="Node000001" title="Validates the type of each argument in a function or procedure call." alt="" coords="280,5,463,31"/>
+<area shape="rect" id="Node000002" href="$d0/d8b/func__proc__validation_8c.html#afafcd50f3eee0ad1e7debef6b3df9f2e" title="Validates the argument list of a function." alt="" coords="5,5,232,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="266,21,232,21,232,15,266,15"/>
 </map>

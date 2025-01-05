@@ -1,6 +1,9 @@
 <map id="add_chain" name="add_chain">
-<area shape="rect" id="node1" title="Adds a chain of nodes to the given parent node. This function will add the first non&#45;NULL node as the..." alt="" coords="5,56,93,83"/>
-<area shape="rect" id="node2" href="$d0/d94/lcrs_8c.html#a652ffa0133e7e3433df60997e1fed1cf" title="Adds a child node to the given parent node." alt="" coords="151,5,235,32"/>
-<area shape="rect" id="node3" href="$d0/d94/lcrs_8c.html#a0046e15921b2b8cb6f557afe7c56b411" title="Adds a sibling node to the given node." alt="" coords="145,56,241,83"/>
-<area shape="rect" id="node4" href="$d0/d94/lcrs_8c.html#a1cb9fe9f883e601625f76f82adccf439" title="Checks if the given node is NULL." alt="" coords="141,107,244,133"/>
+<area shape="rect" id="Node000001" title="Adds a chain of nodes to the given parent node. This function will add the first non&#45;NULL node as the..." alt="" coords="5,55,93,80"/>
+<area shape="rect" id="Node000002" href="$d0/d94/lcrs_8c.html#a652ffa0133e7e3433df60997e1fed1cf" title="Adds a child node to the given parent node." alt="" coords="151,5,235,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="86,52,141,33,143,38,88,57"/>
+<area shape="rect" id="Node000003" href="$d0/d94/lcrs_8c.html#a0046e15921b2b8cb6f557afe7c56b411" title="Adds a sibling node to the given node." alt="" coords="145,55,241,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="94,65,131,65,131,70,94,70"/>
+<area shape="rect" id="Node000004" href="$d0/d94/lcrs_8c.html#a1cb9fe9f883e601625f76f82adccf439" title="Checks if the given node is NULL." alt="" coords="141,104,244,129"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="88,78,143,97,141,102,86,83"/>
 </map>

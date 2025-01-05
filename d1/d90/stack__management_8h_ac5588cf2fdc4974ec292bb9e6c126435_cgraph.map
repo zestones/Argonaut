@@ -1,0 +1,7 @@
+<map id="peek_execution_stack_as_mutable" name="peek_execution_stack_as_mutable">
+<area shape="rect" id="Node000001" title="Peeks at the top stack frame in a mutable way." alt="" coords="5,5,172,45"/>
+<area shape="rect" id="Node000002" href="$d3/dbb/stack_8c.html#accd7164d8805b31ef2bba785ce12a209" title="Peeks at the top value of the stack without popping it." alt="" coords="220,13,275,38"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="172,23,206,23,206,28,172,28"/>
+<area shape="rect" id="Node000003" href="$d3/dbb/stack_8c.html#aeda5460a4306b1c90f61ac5bf8ba49bc" title="Checks if the stack is empty." alt="" coords="323,13,405,38"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="275,23,309,23,309,28,275,28"/>
+</map>

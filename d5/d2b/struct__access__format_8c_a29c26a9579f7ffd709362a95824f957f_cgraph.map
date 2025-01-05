@@ -1,0 +1,9 @@
+<map id="format_struct_access" name="format_struct_access">
+<area shape="rect" id="Node000001" title="Formats a struct access expression into a string representation." alt="" coords="5,5,167,31"/>
+<area shape="rect" id="Node000002" href="$d8/d00/array__access__format_8c.html#aac0db3edce2bfee2d8d335fda891ac85" title="Formats an array access expression into a string representation." alt="" coords="215,5,373,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="167,24,201,24,201,30,167,29"/>
+<area shape="rect" id="Node000003" href="$d0/d92/lexeme__table_8c.html#ac6921fee118304352fc1df16366aaf23" title="Retrieves the lexeme at the given index." alt="" coords="421,31,520,56"/>
+<area shape="poly" id="edge4_Node000001_Node000003" title=" " alt="" coords="143,28,215,39,316,44,407,43,407,49,316,50,214,45,142,33"/>
+<area shape="poly" id="edge2_Node000002_Node000001" title=" " alt="" coords="214,12,180,12,180,6,215,7"/>
+<area shape="poly" id="edge3_Node000002_Node000003" title=" " alt="" coords="374,27,408,32,408,37,373,32"/>
+</map>

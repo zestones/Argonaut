@@ -1,6 +1,9 @@
 <map id="get_variable_address" name="get_variable_address">
-<area shape="rect" id="node1" title="Computes the address of a variable in the stack frame based on its declaration index." alt="" coords="5,56,167,83"/>
-<area shape="rect" id="node2" href="$dd/d3e/declaration__table_8c.html#aaac3e6193717aaccc629ddcb3c678f81" title="Gets the execution information of a declaration." alt="" coords="215,5,408,32"/>
-<area shape="rect" id="node3" href="$dd/d3e/declaration__table_8c.html#a3a2a92436534333020848016833c3abc" title="Gets the region of a declaration." alt="" coords="226,56,397,83"/>
-<area shape="rect" id="node4" href="$d8/d88/region__table_8c.html#a95e102cd58c1b0edad8f6af8aa245761" title=" " alt="" coords="253,107,370,133"/>
+<area shape="rect" id="Node000001" title="Computes the address of a variable in the stack frame based on its declaration index." alt="" coords="5,55,167,80"/>
+<area shape="rect" id="Node000002" href="$dd/d3e/declaration__table_8c.html#aaac3e6193717aaccc629ddcb3c678f81" title="Gets the execution information of a declaration." alt="" coords="215,5,408,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="144,52,239,31,240,36,145,57"/>
+<area shape="rect" id="Node000003" href="$dd/d3e/declaration__table_8c.html#a3a2a92436534333020848016833c3abc" title="Gets the region of a declaration." alt="" coords="226,55,397,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="167,65,212,65,212,70,167,70"/>
+<area shape="rect" id="Node000004" href="$d8/d8a/region__table_8h.html#ad945ddb6e123a9899a9a8b4af68f810e" title="Gets the NIS of the current region." alt="" coords="253,104,370,129"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="145,77,240,98,239,104,144,83"/>
 </map>

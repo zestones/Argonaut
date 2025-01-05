@@ -1,4 +1,5 @@
 <map id="export_declaration_table" name="export_declaration_table">
-<area shape="rect" id="node1" title="Exports the declaration table to a file." alt="" coords="5,5,149,47"/>
-<area shape="rect" id="node2" href="$d0/d41/utility_8c.html#ae0ed135c525b7672bbbfe6de611971d9" title="Exports a table to a file in a formatted manner." alt="" coords="197,13,301,39"/>
+<area shape="rect" id="Node000001" title="Exports the declaration table to a file." alt="" coords="5,5,149,45"/>
+<area shape="rect" id="Node000002" href="$d0/d41/utility_8c.html#ae0ed135c525b7672bbbfe6de611971d9" title="Exports a table to a file in a formatted manner." alt="" coords="197,13,301,38"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="149,23,183,23,183,28,149,28"/>
 </map>

@@ -1,0 +1,5 @@
+<map id="construct_func_proc_manager_context" name="construct_func_proc_manager_context">
+<area shape="rect" id="Node000001" title="Constructs the context for a function or procedure declaration." alt="" coords="5,5,157,45"/>
+<area shape="rect" id="Node000002" href="$dd/d4a/scope__tracker_8c.html#a6576321cf3f67f995461f46e8dfe2aea" title="Initializes the scope identifier tracker." alt="" coords="205,5,393,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="157,23,192,23,192,28,157,28"/>
+</map>

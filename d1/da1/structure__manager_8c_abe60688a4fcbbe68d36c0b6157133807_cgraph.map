@@ -1,4 +1,11 @@
 <map id="declaration_structure_end" name="declaration_structure_end">
-<area shape="rect" id="node1" title="Ends the declaration of a structure." alt="" coords="5,5,196,32"/>
-<area shape="rect" id="node2" href="$dc/de9/declaration__table_8h.html#aa3f16ed63745dfbda78a449e4a354d5f" title="Finds the index of a declaration with the specified lexicographic index. This function is used to ens..." alt="" coords="244,5,413,32"/>
+<area shape="rect" id="Node000001" title="Ends the declaration of a structure." alt="" coords="5,99,196,125"/>
+<area shape="rect" id="Node000002" href="$dd/d4a/scope__tracker_8c.html#afa589585d342047eba2c603b33953122" title="Clears the scope identifier tracker." alt="" coords="247,5,411,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="134,97,243,55,261,48,263,53,245,60,136,102"/>
+<area shape="rect" id="Node000003" href="$d8/da9/name__association_8c.html#a2ee7cf5712a13de73c37fca36f1f6560" title="Finds the index of a declaration with the specified lexicographic index. This function is used to ens..." alt="" coords="244,70,413,95"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="196,97,230,93,231,98,197,102"/>
+<area shape="rect" id="Node000004" href="$dd/d3e/declaration__table_8c.html#aaa61282af88405f7e1fea0d3c4f8a84a" title="Updates the execution information of a declaration." alt="" coords="255,120,402,160"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="197,121,242,127,241,132,196,126"/>
+<area shape="rect" id="Node000005" href="$dd/dfd/representation__table_8c.html#a9d03158f7b9f90296535c941fd91022a" title="Updates a representation in the table." alt="" coords="244,185,413,210"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="131,122,245,170,270,178,268,183,243,174,129,127"/>
 </map>

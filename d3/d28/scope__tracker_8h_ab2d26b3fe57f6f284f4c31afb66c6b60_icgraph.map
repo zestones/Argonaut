@@ -1,6 +1,9 @@
 <map id="is_identifier_already_tracked" name="is_identifier_already_tracked">
-<area shape="rect" id="node1" title="Checks if an identifier is already tracked within the current scope." alt="" coords="479,23,633,65"/>
-<area shape="rect" id="node2" href="$d6/da5/scope__validation_8c.html#a01d2012cbc4acbf0920f4060463c2c83" title="Checks if a scope entity has been redefined." alt="" coords="244,31,431,57"/>
-<area shape="rect" id="node3" href="$dc/d66/func__proc__manager_8c.html#a0f1715a0fb584002923b90035a0405cd" title="Adds a parameter to the current function or procedure context." alt="" coords="5,5,196,32"/>
-<area shape="rect" id="node4" href="$d1/da1/structure__manager_8c.html#a91ddb0e97f567e2ee1c85cdf6cb4833c" title="Adds a field to the current structure declaration." alt="" coords="27,56,174,83"/>
+<area shape="rect" id="Node000001" title="Checks if an identifier is already tracked within the current scope." alt="" coords="479,23,633,63"/>
+<area shape="rect" id="Node000002" href="$d6/da5/scope__validation_8c.html#a01d2012cbc4acbf0920f4060463c2c83" title="Checks if a scope entity has been redefined." alt="" coords="244,31,431,56"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="465,46,431,46,431,41,465,41"/>
+<area shape="rect" id="Node000003" href="$dc/d66/func__proc__manager_8c.html#a0f1715a0fb584002923b90035a0405cd" title="Adds a parameter to the current function or procedure context." alt="" coords="5,5,196,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="230,35,196,31,197,26,231,29"/>
+<area shape="rect" id="Node000004" href="$d1/da1/structure__manager_8c.html#a91ddb0e97f567e2ee1c85cdf6cb4833c" title="Adds a field to the current structure declaration." alt="" coords="27,55,174,80"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="230,57,174,63,174,57,230,52"/>
 </map>

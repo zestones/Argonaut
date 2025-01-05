@@ -1,4 +1,9 @@
 <map id="init_stack_region" name="init_stack_region">
-<area shape="rect" id="node1" title="Initializes the region stack." alt="" coords="132,5,265,32"/>
-<area shape="rect" id="node2" href="$dc/d30/interpreter_8c.html#aeec8fb0aa4c6922ab518df077d175f1c" title="Interprets and executes the entire program." alt="" coords="5,5,84,32"/>
+<area shape="rect" id="Node000001" title="Initializes the region stack." alt="" coords="291,31,424,56"/>
+<area shape="rect" id="Node000002" href="$d8/d88/region__table_8c.html#aca0b4c4a4b5dd83f80d5c284e71ea32c" title="Initializes the region table." alt="" coords="112,5,243,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="277,35,242,30,243,25,277,29"/>
+<area shape="rect" id="Node000003" href="$dc/d30/interpreter_8c.html#aeec8fb0aa4c6922ab518df077d175f1c" title="Interprets and executes the entire program." alt="" coords="138,55,217,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="277,57,218,65,217,59,277,51"/>
+<area shape="rect" id="Node000004" href="$d2/d72/parser_8c.html#afbd5d6a9d2e8db0f9bc3312dc6fb0987" title=" " alt="" coords="5,55,64,80"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="124,70,64,70,64,65,124,65"/>
 </map>

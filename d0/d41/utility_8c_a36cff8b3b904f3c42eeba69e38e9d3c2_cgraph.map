@@ -1,5 +1,7 @@
 <map id="get_array_element_type" name="get_array_element_type">
-<area shape="rect" id="node1" title="Retrieves the type of elements stored in an array." alt="" coords="5,35,187,61"/>
-<area shape="rect" id="node2" href="$dd/d3e/declaration__table_8c.html#a6d7cfaa61de7241348ef4a08f55bd9a0" title="Gets the description of a declaration." alt="" coords="235,5,437,32"/>
-<area shape="rect" id="node3" href="$dd/dfd/representation__table_8c.html#a64bb130b5e07aeebfd4333567ecc9a0e" title="Retrieves the value of a representation from the table." alt="" coords="263,57,409,98"/>
+<area shape="rect" id="Node000001" title="Retrieves the type of elements stored in an array." alt="" coords="5,35,187,60"/>
+<area shape="rect" id="Node000002" href="$dd/d3e/declaration__table_8c.html#a6d7cfaa61de7241348ef4a08f55bd9a0" title="Gets the description of a declaration." alt="" coords="235,5,437,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="186,34,221,29,221,35,187,39"/>
+<area shape="rect" id="Node000003" href="$dd/dfd/representation__table_8c.html#a64bb130b5e07aeebfd4333567ecc9a0e" title="Retrieves the value of a representation from the table." alt="" coords="263,55,409,95"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="187,55,250,63,249,68,186,61"/>
 </map>

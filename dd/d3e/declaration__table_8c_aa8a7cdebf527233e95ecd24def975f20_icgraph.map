@@ -1,4 +1,33 @@
 <map id="construct_declaration" name="construct_declaration">
-<area shape="rect" id="node1" title=" " alt="" coords="224,5,387,32"/>
-<area shape="rect" id="node2" href="$dd/d3e/declaration__table_8c.html#a6791faeba6bf1a4bc767e369679c2a68" title="Inserts a declaration row into the table." alt="" coords="5,5,176,32"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="915,182,1077,207"/>
+<area shape="rect" id="Node000002" href="$dd/d3e/declaration__table_8c.html#a43c491a0b81e9249ceccebe651dc9a87" title="Inserts a declaration into the table." alt="" coords="712,157,851,182"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="901,186,850,180,851,175,901,181"/>
+<area shape="rect" id="Node000016" href="$dd/d3e/declaration__table_8c.html#a6791faeba6bf1a4bc767e369679c2a68" title="Inserts a declaration row into the table." alt="" coords="696,206,867,231"/>
+<area shape="poly" id="edge15_Node000001_Node000016" title=" " alt="" coords="902,208,867,212,867,206,901,203"/>
+<area shape="rect" id="Node000003" href="$dd/d3e/declaration__table_8c.html#a82aedfbec371408f8aae74830e54ee65" title="Inserts an array declaration into the table." alt="" coords="491,5,630,45"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="757,149,709,104,647,60,623,48,625,43,649,55,712,100,760,145"/>
+<area shape="rect" id="Node000005" href="$dd/d3e/declaration__table_8c.html#a7bea0a38393e4eb7c8f0cf8f8c3cfe87" title="Inserts a function declaration into the table." alt="" coords="473,70,648,95"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="742,153,647,110,609,98,611,93,649,106,744,148"/>
+<area shape="rect" id="Node000007" href="$dd/d3e/declaration__table_8c.html#a73848ad30539999525bd2df078e09cf3" title="Inserts a parameter declaration into the table." alt="" coords="491,120,630,160"/>
+<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="698,161,630,152,630,147,698,156"/>
+<area shape="rect" id="Node000010" href="$dd/d3e/declaration__table_8c.html#a36829dbee9d5e49770792e5d6c8d8767" title="Inserts a procedure declaration into the table." alt="" coords="473,185,648,210"/>
+<area shape="poly" id="edge9_Node000002_Node000010" title=" " alt="" coords="698,182,649,189,648,184,698,177"/>
+<area shape="rect" id="Node000012" href="$dd/d3e/declaration__table_8c.html#a085b8b7c5cf3c079dff076c466901f7c" title="Inserts a structure declaration into the table." alt="" coords="491,235,630,275"/>
+<area shape="poly" id="edge11_Node000002_Node000012" title=" " alt="" coords="719,189,697,197,673,211,649,225,621,237,619,232,647,220,671,206,695,192,717,184"/>
+<area shape="rect" id="Node000014" href="$dd/d3e/declaration__table_8c.html#a9dbc7c59cf6024a86dac39cc77daaac5" title="Inserts a variable declaration into the table." alt="" coords="477,302,644,327"/>
+<area shape="poly" id="edge13_Node000002_Node000014" title=" " alt="" coords="706,191,698,197,681,218,674,241,668,265,650,289,623,304,620,300,646,285,663,263,669,240,676,216,694,193,703,186"/>
+<area shape="rect" id="Node000004" href="$d3/d13/array__manager_8c.html#a2bb30a00cd527c3decfe286173f052e1" title="Starts the declaration of an array." alt="" coords="248,13,421,38"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="477,28,422,28,422,23,477,23"/>
+<area shape="rect" id="Node000006" href="$dc/d66/func__proc__manager_8c.html#ad308181286b701d8a073ea5416924e1d" title="Starts the declaration of a function." alt="" coords="251,70,418,95"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="459,85,418,85,418,80,459,80"/>
+<area shape="rect" id="Node000008" href="$de/d23/variable__manager_8c.html#a0156a227fd1b11089557e8562aabb8dc" title="Starts the declaration of a parameter." alt="" coords="244,127,425,153"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="478,143,426,143,426,137,478,137"/>
+<area shape="rect" id="Node000009" href="$dc/d66/func__proc__manager_8c.html#a0f1715a0fb584002923b90035a0405cd" title="Adds a parameter to the current function or procedure context." alt="" coords="5,127,196,153"/>
+<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="230,143,196,143,196,137,230,137"/>
+<area shape="rect" id="Node000011" href="$dc/d66/func__proc__manager_8c.html#a1423e71098aec906db6b648a65845296" title="Starts the declaration of a procedure." alt="" coords="251,185,418,210"/>
+<area shape="poly" id="edge10_Node000010_Node000011" title=" " alt="" coords="459,200,418,200,418,195,459,195"/>
+<area shape="rect" id="Node000013" href="$d1/da1/structure__manager_8c.html#aa577dea532d7d7c93aca4df9fa53235c" title="Starts the declaration of a structure." alt="" coords="255,235,415,275"/>
+<area shape="poly" id="edge12_Node000012_Node000013" title=" " alt="" coords="477,257,415,257,415,252,477,252"/>
+<area shape="rect" id="Node000015" href="$de/d23/variable__manager_8c.html#af85e197b346ed860553f44112be19c28" title="Starts the declaration of a variable." alt="" coords="257,299,412,339"/>
+<area shape="poly" id="edge14_Node000014_Node000015" title=" " alt="" coords="463,319,412,320,412,315,463,314"/>
 </map>

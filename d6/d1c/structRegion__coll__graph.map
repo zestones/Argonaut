@@ -1,4 +1,6 @@
 <map id="Region" name="Region">
-<area shape="rect" id="node1" title="Represents a region in the compiler." alt="" coords="55,175,122,267"/>
-<area shape="rect" id="node2" href="$d8/d49/structNode.html" title=" " alt="" coords="5,5,172,112"/>
+<area shape="rect" id="Node000001" title="Represents a region in the compiler." alt="" coords="55,173,114,259"/>
+<area shape="rect" id="Node000002" href="$d8/d49/structNode.html" title=" " alt="" coords="5,5,164,111"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="87,111,87,157,82,157,82,111"/>
+<area shape="poly" id="edge2_Node000002_Node000002" title=" " alt="" coords="165,41,183,46,191,58,182,70,178,66,185,58,180,51,164,46"/>
 </map>

@@ -1,5 +1,11 @@
 <map id="print_stack" name="print_stack">
-<area shape="rect" id="node1" title="Prints the contents of the stack." alt="" coords="204,31,299,57"/>
-<area shape="rect" id="node2" href="$db/da0/stack__frame_8c.html#a8d775ad4a4f47a5cecb25813efe7597d" title="Prints a detailed representation of a stack frame." alt="" coords="5,5,156,32"/>
-<area shape="rect" id="node3" href="$d3/d91/region__stack_8c.html#ad91a06fc6a49e3090ee66d97e9aa6307" title="Prints the contents of the region stack." alt="" coords="9,56,152,83"/>
+<area shape="rect" id="Node000001" title="Prints the contents of the stack." alt="" coords="503,31,597,56"/>
+<area shape="rect" id="Node000002" href="$db/da0/stack__frame_8c.html#a8d775ad4a4f47a5cecb25813efe7597d" title="Prints a detailed representation of a stack frame." alt="" coords="304,5,455,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="489,37,455,32,456,27,489,32"/>
+<area shape="rect" id="Node000005" href="$d3/d91/region__stack_8c.html#ad91a06fc6a49e3090ee66d97e9aa6307" title="Prints the contents of the region stack." alt="" coords="308,55,451,80"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="489,55,451,60,450,55,488,49"/>
+<area shape="rect" id="Node000003" href="$d5/dae/stack__management_8c.html#adef4d70a6b734e6c672b820d9e77024f" title="Prints the contents of the execution stack." alt="" coords="124,5,256,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="290,21,256,21,256,15,290,15"/>
+<area shape="rect" id="Node000004" href="$d2/d72/parser_8c.html#ac1a49a7422116c6159132fa7f542ed39" title="Prints internal tables and the AST to standard output in verbose mode." alt="" coords="5,5,76,31"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="110,21,76,21,76,15,110,15"/>
 </map>

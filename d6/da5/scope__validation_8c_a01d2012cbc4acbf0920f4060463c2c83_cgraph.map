@@ -1,9 +1,15 @@
 <map id="check_scope_redefinition" name="check_scope_redefinition">
-<area shape="rect" id="node1" title="Checks if a scope entity has been redefined." alt="" coords="5,144,192,171"/>
-<area shape="rect" id="node2" href="$d0/d15/errors_8c.html#a68d1ccae372534af850e06d48b45d638" title="Returns a formatted string containing the current file, line, and column." alt="" coords="240,5,415,32"/>
-<area shape="rect" id="node3" href="$d0/d92/lexeme__table_8c.html#ab176cfe8b410c1f87237ed115a0d8df4" title="Retrieves the lexeme at the given index." alt="" coords="278,56,377,83"/>
-<area shape="rect" id="node4" href="$dd/d4a/scope__tracker_8c.html#ab2d26b3fe57f6f284f4c31afb66c6b60" title="Checks if an identifier is already tracked within the current scope." alt="" coords="250,107,405,149"/>
-<area shape="rect" id="node5" href="$d0/d15/errors_8c.html#a4eba1d90a88e13e4b1beada48a1c2b9d" title="Sets the error message of the provided Error struct." alt="" coords="254,173,401,200"/>
-<area shape="rect" id="node6" href="$d0/d15/errors_8c.html#aff32bbfac01af1967382165ffc1d5607" title="Sets the error type of the provided Error struct." alt="" coords="269,224,385,251"/>
-<area shape="rect" id="node7" href="$d0/d15/errors_8c.html#a362b4d026b806baabf4d0654eea096a8" title="Prints a formatted error message based on the provided Error struct and exits the program." alt="" coords="297,275,358,301"/>
+<area shape="rect" id="Node000001" title="Checks if a scope entity has been redefined." alt="" coords="5,141,192,167"/>
+<area shape="rect" id="Node000002" href="$d0/d15/errors_8c.html#a01b14b54cd994f514849c320aac8c3a2" title="Returns a formatted string containing the current file, line, and column." alt="" coords="240,5,415,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="110,139,163,91,199,63,239,40,254,33,256,38,241,44,202,68,167,95,114,143"/>
+<area shape="rect" id="Node000003" href="$d0/d92/lexeme__table_8c.html#ac6921fee118304352fc1df16366aaf23" title="Retrieves the lexeme at the given index." alt="" coords="278,55,377,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="125,139,239,90,265,82,266,87,241,95,127,144"/>
+<area shape="rect" id="Node000004" href="$dd/d4a/scope__tracker_8c.html#ab2d26b3fe57f6f284f4c31afb66c6b60" title="Checks if an identifier is already tracked within the current scope." alt="" coords="250,105,405,145"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="192,139,236,134,237,139,193,145"/>
+<area shape="rect" id="Node000005" href="$d0/d15/errors_8c.html#a4eba1d90a88e13e4b1beada48a1c2b9d" title="Sets the error message of the provided Error struct." alt="" coords="254,169,401,195"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="193,163,241,169,240,174,192,168"/>
+<area shape="rect" id="Node000006" href="$d0/d15/errors_8c.html#aff32bbfac01af1967382165ffc1d5607" title="Sets the error type of the provided Error struct." alt="" coords="269,219,385,244"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="133,164,241,203,268,212,267,217,239,209,132,169"/>
+<area shape="rect" id="Node000007" href="$d0/d15/errors_8c.html#a362b4d026b806baabf4d0654eea096a8" title="Prints a formatted error message based on the provided Error struct and exits the program." alt="" coords="297,268,358,293"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="116,165,169,208,204,232,241,253,284,269,282,274,239,258,201,236,166,212,112,169"/>
 </map>
