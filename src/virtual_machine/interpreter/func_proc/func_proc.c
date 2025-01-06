@@ -37,7 +37,6 @@ static void handle_parameters(AST parameter_list, AST argument_list) {
 
             vm_cell cell = resolve_expression(arg_node->child);
             int address = get_variable_address(param_node->index_declaration);
-
             update_cell_in_stack_frame(current_frame, address, cell);
         }
 
@@ -49,15 +48,11 @@ static void handle_parameters(AST parameter_list, AST argument_list) {
 void execute_func_proc_call(AST ast) {
     if (ast == NULL) return;
 
-    int static_link;
     int dynamic_link = get_execution_stack_current_frame_id();
-    int target_region_index = get_declaration_region(ast->index_declaration);
 
-    stack_frame current_frame = peek_execution_stack();
-    stack_frame frame = construct_stack_frame(target_region_index, dynamic_link, get_declaration_execution(ast->index_declaration));
-
+    stack_frame frame = construct_stack_frame(dynamic_link, get_declaration_execution(ast->index_declaration));
     push_frame_to_execution_stack(frame);
-    
+
     int index_region = get_declaration_execution(ast->index_declaration);
     AST parameter_list = get_region_ast(index_region)->child;
 

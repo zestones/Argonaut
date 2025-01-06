@@ -25,13 +25,12 @@ typedef struct {
  * in the frame. Additionally, it initializes the `region_value` to indicate the return 
  * value or state of the region.
  * 
- * @param static_link The static link, which points to the enclosing frame (if any).
  * @param dynamic_link The dynamic link, which points to the calling function's frame.
  * @param region_index The index of the region this frame belongs to.
  * 
  * @return A `stack_frame` that is initialized with the provided values.
  */
-stack_frame construct_stack_frame(int static_link, int dynamic_link, int region_index);
+stack_frame construct_stack_frame(int dynamic_link, int region_index);
 
 /**
  * @brief Allocates multiple cells to a stack frame.

@@ -139,7 +139,7 @@ static void execute_global_program() {
     int program_region = 0;
 
     push_region(program_region);
-    stack_frame frame = construct_stack_frame(program_region, program_region, program_region);
+    stack_frame frame = construct_stack_frame(program_region, program_region);
     push_frame_to_execution_stack(frame);
 
     interpret_ast(get_region_ast(program_region));
