@@ -1,0 +1,12 @@
+PROG
+
+func fibonacci(num : int) -> int {
+    if (num <= 1) { 
+        return num; 
+    } else {
+        print("fibonacci(%d) + fibonacci(%d)\n", num - 1, num - 2);
+        return fibonacci(num - 1) + fibonacci(num - 2);
+    }
+}
+
+print("%d\n", fibonacci(3));
