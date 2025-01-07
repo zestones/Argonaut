@@ -1,6 +1,13 @@
 #ifndef __INTERPRETER_H__
 #define __INTERPRETER_H__
 
+typedef enum {
+    CONTROL_NONE,    // Continue execution
+    CONTROL_BREAK,   // Stop loop execution
+    CONTROL_CONTINUE // Next loop execution
+} ControlFlow;
+
+
 /**
  * @brief Resolves and executes a list of statements.
  * 
@@ -10,8 +17,9 @@
  * Depending on the type of statement, the function delegates execution to the appropriate handler.
  * 
  * @param statement_list A pointer to the AST node representing the list of statements to resolve.
+ * @return
  */
-void resolve_statement_list(AST statement_list);
+ControlFlow resolve_statement_list(AST statement_list);
 
 /**
  * @brief Executes the code for a specific region in the program.

@@ -10,6 +10,8 @@
     #include "../symbol_table/utility.h"
     #include "../data/region_table.h"
 
+    #include "../syntax_analysis/loop_statement.h"
+
     #include "parser.h"
 
     #include "../utils/errors.h"
@@ -22,6 +24,7 @@
 
 
     int yylex();
+    int is_in_loop = 0;
 
     extern FILE *yyin;
     extern FILE *yyout;
@@ -80,6 +83,7 @@
 %token IF ELSE WHILE FOR
 %token EQUAL NOT_EQUAL LESS_THAN GREATER_THAN LESS_EQUAL GREATER_EQUAL
 %token PRINT INPUT
+%token BREAK CONTINUE
 
 %token <lexicographic_index> BOOLEAN_VALUE STRING_VALUE INTEGER_VALUE CHARACTER_VALUE FLOAT_VALUE
 %token <lexicographic_index> INCREMENT DECREMENT
@@ -95,8 +99,9 @@
 
 %type <lexicographic_index> type 
 
-%type <ast> assignment_statement if_statement loop_statement for_statement standalone_func_proc_call_statement func_proc_call_expression
+%type <ast> assignment_statement if_statement standalone_func_proc_call_statement func_proc_call_expression
 %type <ast> array_access_statement array_indices struct_access_statement print_statement input_statement
+%type <ast> loop_statement while_statement for_statement
 
 %type <ast> variable_declaration type_declaration complex_type_fields type_field
 %type <ast> function_declaration return_statement procedure_declaration parameter_list parameter argument_list
@@ -390,8 +395,7 @@ statement: assignment_statement SEMICOLON {
         }
         | if_statement { $$ = $1; }
         | standalone_func_proc_call_statement { $$ = $1; }
-        | loop_statement  { $$ = $1; }
-        | for_statement   { $$ = $1; }  
+        | loop_statement { $$ = $1; }
         | print_statement { $$ = $1; }
         | input_statement { $$ = $1; }
         | return_statement{ $$ = $1; }
@@ -491,14 +495,32 @@ if_statement: IF OPEN_PARENTHESIS condition CLOSE_PARENTHESIS statement_block {
             }
 ;
 
-loop_statement: WHILE OPEN_PARENTHESIS condition CLOSE_PARENTHESIS statement_block {
-                $$ = construct_node_default(A_WHILE); 
+loop_statement: while_statement { $$ = $1; }
+              | for_statement   { $$ = $1; }
+              | BREAK SEMICOLON {
+                if (!loop_context_active()) {
+                    yyerror("Do not use 'break' outside of a loop !");
+                }
+                $$ = construct_node_default(A_BREAK);
+              }
+              | CONTINUE SEMICOLON {
+                if (!loop_context_active()) {
+                    yyerror("Do not use 'continue' outside of a loop !");
+                }
+                $$ = construct_node_default(A_CONTINUE);
+              }
+;
+
+while_statement: WHILE OPEN_PARENTHESIS condition CLOSE_PARENTHESIS { activate_loop_context(); } statement_block {
+                $$ = construct_node_default(A_WHILE);
                 add_child($$, $3);
-                add_sibling($3, $5);
+                add_sibling($3, $6);
+
+                deactivate_loop_context();
             }
 ;
 
-for_statement: FOR OPEN_PARENTHESIS assignment_statement SEMICOLON condition SEMICOLON assignment_statement CLOSE_PARENTHESIS statement_block {
+for_statement: FOR OPEN_PARENTHESIS assignment_statement SEMICOLON condition SEMICOLON assignment_statement CLOSE_PARENTHESIS { activate_loop_context(); } statement_block {
         $$ = construct_node_default(A_FOR_LOOP);
         Node *initialization = construct_node_default(A_VARIABLE_ASSIGNMENT);
         add_child($$, initialization);
@@ -510,7 +532,7 @@ for_statement: FOR OPEN_PARENTHESIS assignment_statement SEMICOLON condition SEM
         add_sibling($5, update);
         add_child(update, $7);
 
-        add_sibling(update, $9);
+        add_sibling(update, $10);
 }
 ;
 

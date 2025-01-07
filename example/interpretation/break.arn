@@ -2,12 +2,25 @@ PROG
 
 var n : int;
 
-n := 4;
+proc main() {
+    while(n > 0) {
+        if (n % 2 == 0) {
+            print("n: %d\n", n);
+            break;
+        }
+        
+        n--;
+    }
+}
 
-while(n > 0) {
-    if (n % 2 == 0) {
-        print("n: %d\n", n);
+n := 4;
+main();
+
+print("FOR LOOP\n");
+for (n := 0; n < 5; n++) {
+    if (n == 2) {
+        break;
     }
     
-    n--;
+    print("n = %d\n", n);
 }

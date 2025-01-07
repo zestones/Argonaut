@@ -43,6 +43,10 @@ letter [a-zA-Z]
 "while"                         { error.column += yyleng; return WHILE; }
 "for"                           { error.column += yyleng; return FOR; }
 
+"break"                         {error.column += yyleng; return BREAK; }
+"continue"                         {error.column += yyleng; return CONTINUE; }
+
+
 "int"                           { error.column += yyleng; return INTEGER_TYPE; }
 "float"                         { error.column += yyleng; return FLOAT_TYPE; }
 "bool"                          { error.column += yyleng; return BOOLEAN_TYPE; }
