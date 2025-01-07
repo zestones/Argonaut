@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['mode_0',['Mode',['../d5/d36/parser_8h.html#a46c8a310cf4c094f8c80e1cb8dc1f911',1,'parser.h']]]
+  ['errortype_0',['ErrorType',['../de/d45/errors_8h.html#ab0df38968e4f03a3f1f6d6df0f31f45a',1,'errors.h']]]
 ];

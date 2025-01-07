@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['nature_0',['Nature',['../dc/de9/declaration__table_8h.html#ae91e88640b9781b1ddf313bf584e8576',1,'declaration_table.h']]],
-  ['nodetype_1',['NodeType',['../d5/d1e/node__type_8h.html#acac9cbaeea226ed297804c012dc12b16',1,'node_type.h']]]
+  ['mode_0',['Mode',['../d5/d36/parser_8h.html#a46c8a310cf4c094f8c80e1cb8dc1f911',1,'parser.h']]]
 ];

@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['vm_5ftype_0',['vm_type',['../da/d55/vm__cell_8h.html#ab4a1297ec2b98cc0e881b40d624ac331',1,'vm_cell.h']]]
+  ['nature_0',['Nature',['../dc/de9/declaration__table_8h.html#ae91e88640b9781b1ddf313bf584e8576',1,'declaration_table.h']]],
+  ['nodetype_1',['NodeType',['../d5/d1e/node__type_8h.html#acac9cbaeea226ed297804c012dc12b16',1,'node_type.h']]]
 ];

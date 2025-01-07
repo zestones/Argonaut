@@ -1,15 +1,21 @@
 <map id="src/virtual_machine/interpreter/interpreter.h" name="src/virtual_machine/interpreter/interpreter.h">
-<area shape="rect" id="Node000001" title=" " alt="" coords="351,5,530,45"/>
-<area shape="rect" id="Node000002" href="$d5/d36/parser_8h.html" title=" " alt="" coords="5,108,148,133"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="343,51,161,96,112,110,111,105,160,91,342,46"/>
-<area shape="rect" id="Node000004" href="$dd/d57/condition_8c.html" title=" " alt="" coords="172,93,331,148"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="391,54,306,96,303,91,389,49"/>
-<area shape="rect" id="Node000005" href="$d0/d4a/expression_8c.html" title=" " alt="" coords="355,93,526,148"/>
-<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="443,59,443,93,438,93,438,59"/>
-<area shape="rect" id="Node000006" href="$d2/db0/func__proc_8c.html" title=" " alt="" coords="550,93,713,148"/>
-<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="493,49,579,91,576,96,490,54"/>
-<area shape="rect" id="Node000007" href="$dc/d30/interpreter_8c.html" title=" " alt="" coords="737,101,915,141"/>
-<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="537,46,725,91,754,98,753,103,724,96,535,51"/>
-<area shape="rect" id="Node000003" href="$d2/d72/parser_8c.html" title=" " alt="" coords="6,196,147,221"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="79,147,79,195,74,195,74,147"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="355,5,533,45"/>
+<area shape="rect" id="Node000002" href="$d5/d36/parser_8h.html" title=" " alt="" coords="17,108,159,133"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="360,51,133,110,131,105,358,46"/>
+<area shape="rect" id="Node000004" href="$dd/d57/condition_8c.html" title=" " alt="" coords="171,196,330,251"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="342,37,312,45,283,57,258,73,237,95,227,119,226,145,232,171,240,195,235,197,226,173,221,145,222,117,232,92,254,69,281,52,310,40,340,31"/>
+<area shape="rect" id="Node000005" href="$d7/d6c/condition_8h.html" title=" " alt="" coords="247,93,406,148"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="411,56,361,95,358,91,408,52"/>
+<area shape="rect" id="Node000006" href="$dc/d30/interpreter_8c.html" title=" " alt="" coords="355,203,533,243"/>
+<area shape="poly" id="edge9_Node000001_Node000006" title=" " alt="" coords="447,59,447,203,441,203,441,59"/>
+<area shape="rect" id="Node000007" href="$d0/d4a/expression_8c.html" title=" " alt="" coords="481,93,652,148"/>
+<area shape="poly" id="edge7_Node000001_Node000007" title=" " alt="" coords="481,52,534,91,531,95,478,56"/>
+<area shape="rect" id="Node000008" href="$d2/db0/func__proc_8c.html" title=" " alt="" coords="676,93,839,148"/>
+<area shape="poly" id="edge8_Node000001_Node000008" title=" " alt="" coords="521,47,676,93,675,98,520,52"/>
+<area shape="rect" id="Node000009" href="$d6/db2/loop_8c.html" title=" " alt="" coords="863,101,1033,141"/>
+<area shape="poly" id="edge10_Node000001_Node000009" title=" " alt="" coords="548,38,692,61,851,91,882,98,881,103,850,96,691,66,547,43"/>
+<area shape="rect" id="Node000003" href="$d2/d72/parser_8c.html" title=" " alt="" coords="5,211,147,236"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="88,148,80,211,75,210,82,147"/>
+<area shape="poly" id="edge5_Node000005_Node000004" title=" " alt="" coords="301,161,273,198,268,194,296,157"/>
+<area shape="poly" id="edge6_Node000005_Node000006" title=" " alt="" coords="370,155,424,201,420,205,366,159"/>
 </map>

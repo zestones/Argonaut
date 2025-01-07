@@ -2,16 +2,13 @@
 <area shape="rect" id="Node000001" title="Retrieves a stack frame by its ID." alt="" coords="632,35,805,60"/>
 <area shape="rect" id="Node000002" href="$d0/dda/execution_8c.html#a84a7e221c4d1e9ba1076e7272535ccad" title="Retrieves the return value cell from the current function&#39;s stack frame." alt="" coords="439,5,557,31"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="618,37,557,29,558,23,619,31"/>
-<area shape="rect" id="Node000006" href="$d0/dda/execution_8c.html#af40b7bc766c068584bd2cd69c5841021" title="Stores the return value of a function in the caller&#39;s stack frame." alt="" coords="412,55,584,95"/>
-<area shape="poly" id="edge8_Node000001_Node000006" title=" " alt="" coords="619,63,585,67,584,62,618,57"/>
-<area shape="rect" id="Node000003" href="$dc/d30/interpreter_8c.html#ad22185b4006e50b6d4fb026dd83a6bd2" title="Resolves and executes a list of statements." alt="" coords="193,35,364,60"/>
+<area shape="rect" id="Node000005" href="$d0/dda/execution_8c.html#af40b7bc766c068584bd2cd69c5841021" title="Stores the return value of a function in the caller&#39;s stack frame." alt="" coords="412,55,584,95"/>
+<area shape="poly" id="edge6_Node000001_Node000005" title=" " alt="" coords="619,63,585,67,584,62,618,57"/>
+<area shape="rect" id="Node000003" href="$dc/d30/interpreter_8c.html#ab9a3da5caa208696b22cab3136303d71" title="Resolves and executes a list of statements." alt="" coords="193,35,364,60"/>
 <area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="425,30,365,39,364,33,424,25"/>
-<area shape="poly" id="edge7_Node000003_Node000003" title=" " alt="" coords="315,25,305,17,279,13,257,15,246,20,243,26,250,33,245,36,238,26,242,16,256,10,279,8,307,12,318,21"/>
-<area shape="rect" id="Node000004" href="$dd/d57/condition_8c.html#a7fb8e5acd57b590993223b0c48bed85c" title="Executes a conditional statement (if&#45;else)." alt="" coords="5,9,145,35"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="179,47,118,37,119,32,180,41"/>
-<area shape="rect" id="Node000005" href="$dd/d57/condition_8c.html#a59a7e582c8a07c7d1407f6bd276d1370" title="Executes a loop statement (while loop)." alt="" coords="21,59,129,84"/>
-<area shape="poly" id="edge5_Node000003_Node000005" title=" " alt="" coords="221,65,130,76,129,70,220,60"/>
-<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="159,21,236,32,235,37,159,26"/>
-<area shape="poly" id="edge6_Node000005_Node000003" title=" " alt="" coords="133,54,192,46,193,51,134,59"/>
-<area shape="poly" id="edge9_Node000006_Node000003" title=" " alt="" coords="398,65,364,61,364,56,399,60"/>
+<area shape="poly" id="edge5_Node000003_Node000003" title=" " alt="" coords="315,25,305,17,279,13,257,15,246,20,243,26,250,33,245,36,238,26,242,16,256,10,279,8,307,12,318,21"/>
+<area shape="rect" id="Node000004" href="$dd/d57/condition_8c.html#a6af8daa1db7d1dfc4c2f26d340b53e56" title="Executes a conditional statement (if&#45;else)." alt="" coords="5,35,145,60"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="179,59,146,59,146,53,179,54"/>
+<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="159,36,193,36,193,41,159,41"/>
+<area shape="poly" id="edge7_Node000005_Node000003" title=" " alt="" coords="398,65,364,61,364,56,399,60"/>
 </map>
