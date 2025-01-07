@@ -1,32 +1,32 @@
-[Type Error] Type mismatch during operation '*' at example/compilation/errors/semantic/variable/assignement.txt:39:43.
+[Type Error] Type mismatch during operation '*' at example/compilation/errors/semantic/variable/assignement.arn:39:43.
   Left operand type: 'int', right operand type: 'float'.
   Ensure both operands are of compatible types for the operation.
 
-[Type Error] Type mismatch during operation '+' at example/compilation/errors/semantic/variable/assignement.txt:39:43.
+[Type Error] Type mismatch during operation '+' at example/compilation/errors/semantic/variable/assignement.arn:39:43.
   Left operand type: 'int', right operand type: 'UNKNOWN'.
   Ensure both operands are of compatible types for the operation.
 
-[Type Error] Type mismatch during operation '+' at example/compilation/errors/semantic/variable/assignement.txt:39:43.
+[Type Error] Type mismatch during operation '+' at example/compilation/errors/semantic/variable/assignement.arn:39:43.
   Left operand type: 'UNKNOWN', right operand type: 'int'.
   Ensure both operands are of compatible types for the operation.
 
-[Type Error] Type mismatch during assignement at example/compilation/errors/semantic/variable/assignement.txt:39:43.
+[Type Error] Type mismatch during assignement at example/compilation/errors/semantic/variable/assignement.arn:39:43.
   Cannot assign expression of type 'UNKNOWN' to variable 'x' of type 'int'.
   Ensure that the expression type matches the expected type for the variable.
 
-[Type Error] Type mismatch during assignement at example/compilation/errors/semantic/variable/assignement.txt:40:11.
+[Type Error] Type mismatch during assignement at example/compilation/errors/semantic/variable/assignement.arn:40:11.
   Cannot assign expression of type 'bool' to variable 'x' of type 'int'.
   Ensure that the expression type matches the expected type for the variable.
 
-[Type Error] Type mismatch during assignement at example/compilation/errors/semantic/variable/assignement.txt:42:15.
+[Type Error] Type mismatch during assignement at example/compilation/errors/semantic/variable/assignement.arn:42:15.
   Cannot assign expression of type 'float' to variable 'x' of type 'int'.
   Ensure that the expression type matches the expected type for the variable.
 
-[Type Error] Type mismatch during assignement at example/compilation/errors/semantic/variable/assignement.txt:43:18.
+[Type Error] Type mismatch during assignement at example/compilation/errors/semantic/variable/assignement.arn:43:18.
   Cannot assign expression of type 'date' to variable 'x' of type 'int'.
   Ensure that the expression type matches the expected type for the variable.
 
-[Type Error] Type mismatch during assignement at example/compilation/errors/semantic/variable/assignement.txt:44:24.
+[Type Error] Type mismatch during assignement at example/compilation/errors/semantic/variable/assignement.arn:44:24.
   Cannot assign expression of type 'float' to variable 'x' of type 'int'.
   Ensure that the expression type matches the expected type for the variable.
 

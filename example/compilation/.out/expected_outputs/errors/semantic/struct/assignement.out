@@ -1,16 +1,16 @@
-[Type Error] Type mismatch during operation '+' at example/compilation/errors/semantic/struct/assignement.txt:29:59.
+[Type Error] Type mismatch during operation '+' at example/compilation/errors/semantic/struct/assignement.arn:29:59.
   Left operand type: 'float', right operand type: 'int'.
   Ensure both operands are of compatible types for the operation.
 
-[Type Error] Type mismatch during assignement at example/compilation/errors/semantic/struct/assignement.txt:29:59.
+[Type Error] Type mismatch during assignement at example/compilation/errors/semantic/struct/assignement.arn:29:59.
   Cannot assign expression of type 'UNKNOWN' to struct field 'p.naissance.annee' of type 'float'.
   Ensure the expression type matches the expected type for the struct field.
 
-[Semantic Error] Field access error at example/compilation/errors/semantic/struct/assignement.txt:30:21.
+[Semantic Error] Field access error at example/compilation/errors/semantic/struct/assignement.arn:30:21.
   The field 'e' does not exist in the struct 'personne'.
   Ensure the field name is correct and defined within the struct type.
 
-[Type Error] Type mismatch during assignement at example/compilation/errors/semantic/struct/assignement.txt:30:21.
+[Type Error] Type mismatch during assignement at example/compilation/errors/semantic/struct/assignement.arn:30:21.
   Cannot assign expression of type 'float' to struct field 'UNKNOWN' of type 'UNKNOWN'.
   Ensure the expression type matches the expected type for the struct field.
 

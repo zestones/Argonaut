@@ -1,12 +1,12 @@
-[Type Error] Function 'main' expects argument 1 to be of type 'int' at example/compilation/errors/semantic/func_proc/argument/function.txt:22:31.
+[Type Error] Function 'main' expects argument 1 to be of type 'int' at example/compilation/errors/semantic/func_proc/argument/function.arn:22:31.
   But the provided argument 'one_float()' is of type 'float'.
   Ensure the argument type matches the expected type for the function or procedure.
 
-[Type Error] Type mismatch during operation '+' at example/compilation/errors/semantic/func_proc/argument/function.txt:23:36.
+[Type Error] Type mismatch during operation '+' at example/compilation/errors/semantic/func_proc/argument/function.arn:23:36.
   Left operand type: 'int', right operand type: 'bool'.
   Ensure both operands are of compatible types for the operation.
 
-[Type Error] Function 'main' expects argument 1 to be of type 'int' at example/compilation/errors/semantic/func_proc/argument/function.txt:23:36.
+[Type Error] Function 'main' expects argument 1 to be of type 'int' at example/compilation/errors/semantic/func_proc/argument/function.arn:23:36.
   But the provided argument '(one_int() + true)' is of type 'UNKNOWN'.
   Ensure the argument type matches the expected type for the function or procedure.
 

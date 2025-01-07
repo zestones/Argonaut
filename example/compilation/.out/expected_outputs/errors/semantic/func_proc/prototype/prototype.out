@@ -1,4 +1,4 @@
-[Type Error] Type mismatch for function return value at example/compilation/errors/semantic/func_proc/prototype/prototype.txt:16:23.
+[Type Error] Type mismatch for function return value at example/compilation/errors/semantic/func_proc/prototype/prototype.arn:16:23.
   Function returned value has type 'float', but it should be of type 'int'.
   Ensure the function return type matches the expected type.
 

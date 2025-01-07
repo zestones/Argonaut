@@ -1,8 +1,8 @@
-[Type Error] Invalid comparison at example/compilation/errors/semantic/condition/if_statement.txt:9:33.
+[Type Error] Invalid comparison at example/compilation/errors/semantic/condition/if_statement.arn:9:33.
   Boolean cannot be compared with '>=' operator.
   Ensure the operator is used with compatible types.
 
-[Type Error] Invalid condition at example/compilation/errors/semantic/condition/if_statement.txt:9:33.
+[Type Error] Invalid condition at example/compilation/errors/semantic/condition/if_statement.arn:9:33.
   Expected a boolean expression, but received 'UNKNOWN'.
   Ensure the expression evaluates to a boolean value.
 

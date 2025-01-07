@@ -1,12 +1,12 @@
-[Type Error] Type mismatch for argument 1 at example/compilation/errors/semantic/func_proc/predefined/input_proc.txt:22:39.
+[Type Error] Type mismatch for argument 1 at example/compilation/errors/semantic/func_proc/predefined/input_proc.arn:22:39.
   Input entity 1 has type 'float', but specifier 'd' requires a different type.
   Ensure the input type matches the expected type for the specifier.
 
-[Semantic Error] Argument mismatch in format string at example/compilation/errors/semantic/func_proc/predefined/input_proc.txt:23:35.
+[Semantic Error] Argument mismatch in format string at example/compilation/errors/semantic/func_proc/predefined/input_proc.arn:23:35.
   Format string expects 1 arguments, but 2 were provided.
   Ensure the correct number of arguments are passed to match the format string.
 
-[Semantic Error] Argument mismatch in format string at example/compilation/errors/semantic/func_proc/predefined/input_proc.txt:24:22.
+[Semantic Error] Argument mismatch in format string at example/compilation/errors/semantic/func_proc/predefined/input_proc.arn:24:22.
   Format string expects 2 arguments, but 1 were provided.
   Ensure the correct number of arguments are passed to match the format string.
 

@@ -1,8 +1,8 @@
-[Semantic Error] Undeclared variable at example/compilation/errors/semantic/array/undefined.txt:6:13.
+[Semantic Error] Undeclared variable at example/compilation/errors/semantic/array/undefined.arn:6:13.
   The variable 'tab' is used before being defined or declared.
   Ensure the variable is declared in the correct scope before use.
 
-[Type Error] Type mismatch during assignement at example/compilation/errors/semantic/array/undefined.txt:6:13.
+[Type Error] Type mismatch during assignement at example/compilation/errors/semantic/array/undefined.arn:6:13.
   Cannot assign expression of type 'UNKNOWN' to variable 'x' of type 'int'.
   Ensure that the expression type matches the expected type for the variable.
 

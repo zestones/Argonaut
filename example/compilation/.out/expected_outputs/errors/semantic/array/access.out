@@ -1,20 +1,20 @@
-[Type Error] Undefined type at example/compilation/errors/semantic/array/access.txt:18:11.
+[Type Error] Undefined type at example/compilation/errors/semantic/array/access.arn:18:11.
   The type 'x' is not defined in the current scope.
   Ensure the type is properly declared before use.
 
-[Semantic Error] Array access error at example/compilation/errors/semantic/array/access.txt:26:11.
+[Semantic Error] Array access error at example/compilation/errors/semantic/array/access.arn:26:11.
   The expression 'z[0]' attempts to access an array, but 'z' is not an array.
   'z' is of type 'UNKNOWN', which is incompatible with array access.
 
-[Type Error] Type mismatch during assignement at example/compilation/errors/semantic/array/access.txt:26:11.
+[Type Error] Type mismatch during assignement at example/compilation/errors/semantic/array/access.arn:26:11.
   Cannot assign expression of type 'int' to array 'UNKNOWN' of type 'UNKNOWN'.
   Please ensure the expression type is compatible with the array type.
 
-[Semantic Error] Invalid field access at example/compilation/errors/semantic/array/access.txt:27:16.
+[Semantic Error] Invalid field access at example/compilation/errors/semantic/array/access.arn:27:16.
   'y' is of type 'int', which is incompatible with field access.
   Ensure the entity is a struct before attempting to access its fields.
 
-[Type Error] Type mismatch during assignement at example/compilation/errors/semantic/array/access.txt:27:16.
+[Type Error] Type mismatch during assignement at example/compilation/errors/semantic/array/access.arn:27:16.
   Cannot assign expression of type 'int' to array 'UNKNOWN' of type 'UNKNOWN'.
   Please ensure the expression type is compatible with the array type.
 

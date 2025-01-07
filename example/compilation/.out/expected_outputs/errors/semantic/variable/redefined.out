@@ -1,4 +1,4 @@
-[Semantic Error] Redefinition of variable 'x' at example/compilation/errors/semantic/variable/redefined.txt:4:12.
+[Semantic Error] Redefinition of variable 'x' at example/compilation/errors/semantic/variable/redefined.arn:4:12.
   This variable has already been defined in the current scope.
   Consider renaming or modifying the existing definition.
 

@@ -1,36 +1,36 @@
-[Type Error] Type mismatch during operation '*' at example/compilation/errors/semantic/expression/expression.txt:44:23.
+[Type Error] Type mismatch during operation '*' at example/compilation/errors/semantic/expression/expression.arn:44:23.
   Left operand type: 'int', right operand type: 'float'.
   Ensure both operands are of compatible types for the operation.
 
-[Type Error] Type mismatch during assignement at example/compilation/errors/semantic/expression/expression.txt:44:23.
+[Type Error] Type mismatch during assignement at example/compilation/errors/semantic/expression/expression.arn:44:23.
   Cannot assign expression of type 'UNKNOWN' to variable 'a' of type 'int'.
   Ensure that the expression type matches the expected type for the variable.
 
-[Type Error] Type mismatch during operation '*' at example/compilation/errors/semantic/expression/expression.txt:45:19.
+[Type Error] Type mismatch during operation '*' at example/compilation/errors/semantic/expression/expression.arn:45:19.
   Left operand type: 'int', right operand type: 'float'.
   Ensure both operands are of compatible types for the operation.
 
-[Type Error] Type mismatch during operation '/' at example/compilation/errors/semantic/expression/expression.txt:45:19.
+[Type Error] Type mismatch during operation '/' at example/compilation/errors/semantic/expression/expression.arn:45:19.
   Left operand type: 'UNKNOWN', right operand type: 'bool'.
   Ensure both operands are of compatible types for the operation.
 
-[Type Error] Type mismatch during assignement at example/compilation/errors/semantic/expression/expression.txt:45:19.
+[Type Error] Type mismatch during assignement at example/compilation/errors/semantic/expression/expression.arn:45:19.
   Cannot assign expression of type 'UNKNOWN' to variable 'a' of type 'int'.
   Ensure that the expression type matches the expected type for the variable.
 
-[Type Error] Type mismatch during operation '*' at example/compilation/errors/semantic/expression/expression.txt:46:38.
+[Type Error] Type mismatch during operation '*' at example/compilation/errors/semantic/expression/expression.arn:46:38.
   Left operand type: 'date', right operand type: 'int'.
   Ensure both operands are of compatible types for the operation.
 
-[Type Error] Type mismatch during operation '+' at example/compilation/errors/semantic/expression/expression.txt:46:38.
+[Type Error] Type mismatch during operation '+' at example/compilation/errors/semantic/expression/expression.arn:46:38.
   Left operand type: 'int', right operand type: 'UNKNOWN'.
   Ensure both operands are of compatible types for the operation.
 
-[Type Error] Type mismatch during operation '+' at example/compilation/errors/semantic/expression/expression.txt:46:38.
+[Type Error] Type mismatch during operation '+' at example/compilation/errors/semantic/expression/expression.arn:46:38.
   Left operand type: 'UNKNOWN', right operand type: 'int'.
   Ensure both operands are of compatible types for the operation.
 
-[Type Error] Type mismatch during assignement at example/compilation/errors/semantic/expression/expression.txt:46:38.
+[Type Error] Type mismatch during assignement at example/compilation/errors/semantic/expression/expression.arn:46:38.
   Cannot assign expression of type 'UNKNOWN' to variable 'x' of type 'int'.
   Ensure that the expression type matches the expected type for the variable.
 

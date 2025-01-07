@@ -1,8 +1,8 @@
-[Type Error] Type mismatch in condition at example/compilation/errors/semantic/condition/while_statement.txt:8:15.
+[Type Error] Type mismatch in condition at example/compilation/errors/semantic/condition/while_statement.arn:8:15.
   Left operand type: 'int', right operand type: 'float'.
   Ensure both operands are of compatible types for the condition.
 
-[Type Error] Invalid condition at example/compilation/errors/semantic/condition/while_statement.txt:8:15.
+[Type Error] Invalid condition at example/compilation/errors/semantic/condition/while_statement.arn:8:15.
   Expected a boolean expression, but received 'UNKNOWN'.
   Ensure the expression evaluates to a boolean value.
 

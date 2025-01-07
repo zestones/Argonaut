@@ -1,16 +1,16 @@
-[Type Error] Function 'main' expects argument 1 to be of type 'int' at example/compilation/errors/semantic/func_proc/argument/array.txt:26:35.
+[Type Error] Function 'main' expects argument 1 to be of type 'int' at example/compilation/errors/semantic/func_proc/argument/array.arn:26:35.
   But the provided argument 'p[0, 1].naissance.annee' is of type 'float'.
   Ensure the argument type matches the expected type for the function or procedure.
 
-[Semantic Error] Field access error at example/compilation/errors/semantic/func_proc/argument/array.txt:27:26.
+[Semantic Error] Field access error at example/compilation/errors/semantic/func_proc/argument/array.arn:27:26.
   The field 'e' does not exist in the struct 'personne'.
   Ensure the field name is correct and defined within the struct type.
 
-[Type Error] Function 'main' expects argument 1 to be of type 'int' at example/compilation/errors/semantic/func_proc/argument/array.txt:27:26.
+[Type Error] Function 'main' expects argument 1 to be of type 'int' at example/compilation/errors/semantic/func_proc/argument/array.arn:27:26.
   But the provided argument 'p[0, 1].e.mois' is of type 'UNKNOWN'.
   Ensure the argument type matches the expected type for the function or procedure.
 
-[Type Error] Function 'main' expects argument 1 to be of type 'int' at example/compilation/errors/semantic/func_proc/argument/array.txt:28:19.
+[Type Error] Function 'main' expects argument 1 to be of type 'int' at example/compilation/errors/semantic/func_proc/argument/array.arn:28:19.
   But the provided argument 'p[0, 1]' is of type 'personne'.
   Ensure the argument type matches the expected type for the function or procedure.
 

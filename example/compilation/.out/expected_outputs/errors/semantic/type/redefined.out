@@ -1,4 +1,4 @@
-[Type Error] Redefinition of the structure at example/compilation/errors/semantic/type/redefined.txt:9:22.
+[Type Error] Redefinition of the structure at example/compilation/errors/semantic/type/redefined.arn:9:22.
   The type 'date' has already been defined in the current scope.
   Consider renaming or modifying the existing definition to avoid conflict.
 

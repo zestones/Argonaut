@@ -1,8 +1,8 @@
-[Type Error] Invalid type 'date' at example/compilation/errors/semantic/type/base_type.txt:11:23.
+[Type Error] Invalid type 'date' at example/compilation/errors/semantic/type/base_type.arn:11:23.
   The type 'date' should be a base type (int, float, bool, char).
   Ensure the type is one of the supported base types.
 
-[Type Error] Invalid type 'date' at example/compilation/errors/semantic/type/base_type.txt:16:26.
+[Type Error] Invalid type 'date' at example/compilation/errors/semantic/type/base_type.arn:16:26.
   The type 'date' should be a base type (int, float, bool, char).
   Ensure the type is one of the supported base types.
 
