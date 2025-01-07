@@ -1,16 +1,20 @@
 PROG
 
 var n : int;
-n := 4;
 
-while(n > 0) {
-    if (n % 2 == 0) {
-        print("n: %d\n", n);
-        break;
+proc main() {
+    while(n > 0) {
+        if (n % 2 == 0) {
+            print("n: %d\n", n);
+            break;
+        }
+        
+        n--;
     }
-    
-    n--;
 }
+
+n := 4;
+main();
 
 print("FOR LOOP\n");
 for (n := 0; n < 5; n++) {
