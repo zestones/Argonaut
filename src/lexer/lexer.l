@@ -44,6 +44,7 @@ letter [a-zA-Z]
 "for"                           { error.column += yyleng; return FOR; }
 
 "break"                         {error.column += yyleng; return BREAK; }
+"continue"                         {error.column += yyleng; return CONTINUE; }
 
 
 "int"                           { error.column += yyleng; return INTEGER_TYPE; }

@@ -83,7 +83,7 @@
 %token IF ELSE WHILE FOR
 %token EQUAL NOT_EQUAL LESS_THAN GREATER_THAN LESS_EQUAL GREATER_EQUAL
 %token PRINT INPUT
-%token BREAK
+%token BREAK CONTINUE
 
 %token <lexicographic_index> BOOLEAN_VALUE STRING_VALUE INTEGER_VALUE CHARACTER_VALUE FLOAT_VALUE
 %token <lexicographic_index> INCREMENT DECREMENT
@@ -499,10 +499,16 @@ loop_statement: while_statement { $$ = $1; }
               | for_statement   { $$ = $1; }
               | BREAK SEMICOLON {
                 if (!loop_context_active()) {
-                    yyerror("Do not use break outside of a loop !");
+                    yyerror("Do not use 'break' outside of a loop !");
                 }
                 $$ = construct_node_default(A_BREAK);
-            }
+              }
+              | CONTINUE SEMICOLON {
+                if (!loop_context_active()) {
+                    yyerror("Do not use 'continue' outside of a loop !");
+                }
+                $$ = construct_node_default(A_CONTINUE);
+              }
 ;
 
 while_statement: WHILE OPEN_PARENTHESIS condition CLOSE_PARENTHESIS { activate_loop_context(); } statement_block {

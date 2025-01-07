@@ -1,0 +1,11 @@
+PROG
+
+var n : int;
+
+for (n := 0; n < 5; n++) {
+    if (n == 2) {
+        continue;
+    }
+    
+    print("n = %d\n", n);
+}

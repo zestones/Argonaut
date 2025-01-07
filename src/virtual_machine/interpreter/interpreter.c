@@ -64,7 +64,7 @@ ControlFlow resolve_statement_list(AST statement_list) {
             break;
         
         case A_BREAK: return CONTROL_BREAK;
-        // case A_CONTINUE: return CONTROL_CONTINUE;
+        case A_CONTINUE: return CONTROL_CONTINUE;
 
         case A_FUNC_PROC_CALL_STATEMENT: {
             execute_func_proc_call(statement_list);

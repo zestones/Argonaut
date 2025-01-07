@@ -50,6 +50,7 @@
     NODE(A_WHILE)                           \
     NODE(A_FOR_LOOP)                        \
     NODE(A_BREAK)                           \
+    NODE(A_CONTINUE)                        \
     NODE(A_ARRAY_ACCESS)                    \
     NODE(A_ARRAY_INDEX_LIST)                \
     NODE(A_ARRAY_INDEX)                     \
