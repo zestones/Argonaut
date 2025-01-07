@@ -10,6 +10,8 @@
     #include "../symbol_table/utility.h"
     #include "../data/region_table.h"
 
+    #include "../syntax_analysis/loop_statement.h"
+
     #include "parser.h"
 
     #include "../utils/errors.h"
@@ -22,6 +24,7 @@
 
 
     int yylex();
+    int is_in_loop = 0;
 
     extern FILE *yyin;
     extern FILE *yyout;
@@ -492,17 +495,26 @@ if_statement: IF OPEN_PARENTHESIS condition CLOSE_PARENTHESIS statement_block {
             }
 ;
 
-loop_statement: while_statement  { $$ = $1; }
-              | for_statement   { $$ = $1; }  
-
-while_statement: WHILE OPEN_PARENTHESIS condition CLOSE_PARENTHESIS statement_block {
-                $$ = construct_node_default(A_WHILE); 
-                add_child($$, $3);
-                add_sibling($3, $5);
+loop_statement: while_statement { $$ = $1; }
+              | for_statement   { $$ = $1; }
+              | BREAK SEMICOLON {
+                if (!loop_context_active()) {
+                    yyerror("Do not use break outside of a loop !");
+                }
+                $$ = construct_node_default(A_BREAK);
             }
 ;
 
-for_statement: FOR OPEN_PARENTHESIS assignment_statement SEMICOLON condition SEMICOLON assignment_statement CLOSE_PARENTHESIS statement_block {
+while_statement: WHILE OPEN_PARENTHESIS condition CLOSE_PARENTHESIS { activate_loop_context(); } statement_block {
+                $$ = construct_node_default(A_WHILE);
+                add_child($$, $3);
+                add_sibling($3, $6);
+
+                deactivate_loop_context();
+            }
+;
+
+for_statement: FOR OPEN_PARENTHESIS assignment_statement SEMICOLON condition SEMICOLON assignment_statement CLOSE_PARENTHESIS { activate_loop_context(); } statement_block {
         $$ = construct_node_default(A_FOR_LOOP);
         Node *initialization = construct_node_default(A_VARIABLE_ASSIGNMENT);
         add_child($$, initialization);
@@ -514,7 +526,7 @@ for_statement: FOR OPEN_PARENTHESIS assignment_statement SEMICOLON condition SEM
         add_sibling($5, update);
         add_child(update, $7);
 
-        add_sibling(update, $9);
+        add_sibling(update, $10);
 }
 ;
 

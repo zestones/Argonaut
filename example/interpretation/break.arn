@@ -1,13 +1,12 @@
 PROG
 
 var n : int;
-
 n := 4;
 
 while(n > 0) {
     if (n % 2 == 0) {
         print("n: %d\n", n);
-        // break;
+        break;
     }
     
     n--;
@@ -15,5 +14,9 @@ while(n > 0) {
 
 print("FOR LOOP\n");
 for (n := 0; n < 5; n++) {
+    if (n == 2) {
+        break;
+    }
+    
     print("n = %d\n", n);
 }

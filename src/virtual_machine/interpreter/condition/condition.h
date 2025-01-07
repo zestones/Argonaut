@@ -1,6 +1,7 @@
 #ifndef __CONDITION_H__
 #define __CONDITION_H__
 
+#include "../interpreter.h"
 #include "../../../data/region_table.h"
 
 /**
@@ -13,7 +14,7 @@
  * @param ast The root node of the conditional statement in the AST. 
  *            It should represent either an 'if' statement with an optional 'else' branch.
  */
-void execute_condition(AST ast);
+ControlFlow execute_condition(AST ast);
 
 /**
  * @brief Executes a loop statement (while loop).

@@ -5,6 +5,7 @@
 #include "expression/expression.h"
 #include "condition/condition.h"
 #include "func_proc/func_proc.h"
+#include "loop/loop.h"
 
 #include "../core/execution.h"
 #include "interpreter.h"
@@ -32,8 +33,10 @@ static void resolve_declaration_list(Node *declaration_list) {
     }
 }
 
-void resolve_statement_list(AST statement_list) {
-    if (statement_list == NULL || get_return_cell().is_initialized) return;   
+ControlFlow resolve_statement_list(AST statement_list) {
+    // In case the return value cell has been filled we stop the execution
+    if (statement_list == NULL || get_return_cell().is_initialized) return CONTROL_NONE;   
+    ControlFlow ctrl_flow = CONTROL_NONE;
 
     switch (statement_list->type) {
         case A_ASSIGNMENT_STATEMENT:
@@ -42,8 +45,9 @@ void resolve_statement_list(AST statement_list) {
 
         case A_IF:
         case A_IF_ELSE:
-        case A_IF_ELSE_IF:
-            execute_condition(statement_list);
+        case A_IF_ELSE_IF: 
+            ctrl_flow = execute_condition(statement_list);
+            if (ctrl_flow != CONTROL_NONE) return ctrl_flow;
             break;
 
         case A_INPUT_STATEMENT:
@@ -58,6 +62,9 @@ void resolve_statement_list(AST statement_list) {
         case A_WHILE:
             execute_loop(statement_list);
             break;
+        
+        case A_BREAK: return CONTROL_BREAK;
+        // case A_CONTINUE: return CONTROL_CONTINUE;
 
         case A_FUNC_PROC_CALL_STATEMENT: {
             execute_func_proc_call(statement_list);
@@ -70,12 +77,19 @@ void resolve_statement_list(AST statement_list) {
         }
 
         default:
-            resolve_statement_list(statement_list->child);
-            resolve_statement_list(statement_list->sibling);
+            // Propager les flux de contrôle si rencontrés dans les enfants ou les frères
+            ctrl_flow = resolve_statement_list(statement_list->child);
+            if (ctrl_flow != CONTROL_NONE) return ctrl_flow;
+
+            ctrl_flow = resolve_statement_list(statement_list->sibling);
+            if (ctrl_flow != CONTROL_NONE) return ctrl_flow;
             break;
     }
 
-    resolve_statement_list(statement_list->sibling);
+    ctrl_flow = resolve_statement_list(statement_list->sibling);
+    if (ctrl_flow != CONTROL_NONE) return ctrl_flow;
+
+    return CONTROL_NONE;
 }
 
 /**
