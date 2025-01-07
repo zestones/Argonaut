@@ -1,4 +1,4 @@
-PROG
+
 
 func fibonacci(num : int) -> int {
     if (num <= 1) { 

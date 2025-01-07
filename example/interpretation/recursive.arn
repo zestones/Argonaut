@@ -1,4 +1,4 @@
-PROG
+
 
 func main(n: int) -> int {
     print("%d\n", n);

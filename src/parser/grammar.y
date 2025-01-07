@@ -72,7 +72,6 @@
 }
 
 
-%token PROG
 %token SEMICOLON TWO_POINTS COMMA OPEN_PARENTHESIS CLOSE_PARENTHESIS DOT
 %token START END
 %token ARRAY OF OPEN_BRACKET CLOSE_BRACKET
@@ -115,16 +114,15 @@
 %debug
 %%
 
-program: PROG declaration_list statement_list { 
+program: declaration_list statement_list { 
             $$ = construct_node_default(A_PROGRAM); 
 
-            add_child($$, $2); 
-            add_sibling($2, $3);
+            add_child($$, $1); 
+            add_sibling($1, $2);
 
             update_region_ast(peek_region(), $$);
         }
-        | { $$ = NULL; }
-       ;
+;
      
 // Declarations
 declaration_list: declaration declaration_list {    

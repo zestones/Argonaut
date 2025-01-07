@@ -1,31 +1,11 @@
-PROG
-
 type date : struct {
     day : int;
     month : int;
     year : int;
 } fstruct;
 
-type details : struct {
-    age : int;
-    salary : float;
-    birthday : date;
-} fstruct;
+var today : date;
 
-type arr : array[0:1] of details;
-var arr : arr;
+today.day := 4;
 
-arr[0].age := 2;
-arr[0].salary := 1250.50;
-
-arr[0].birthday.day := 13;
-arr[0].birthday.month := 12;
-arr[0].birthday.year := 2024;
-
-arr[1].age := 25;
-arr[1].salary := 999.99;
-
-arr[1].birthday.day := 1;
-arr[1].birthday.month := 8;
-arr[1].birthday.year := 1999;
-
+print("%d/%d/%d\n", today.day, today.month, today.year);

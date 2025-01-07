@@ -1,4 +1,4 @@
-PROG
+
 type date : struct {
     day : int;
     month : int;

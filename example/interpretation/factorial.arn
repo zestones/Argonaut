@@ -1,4 +1,4 @@
-PROG
+
 
 var n : int;        // Nombre pour lequel on calcule la factorielle
 var fact : int;     // Résultat de la factorielle

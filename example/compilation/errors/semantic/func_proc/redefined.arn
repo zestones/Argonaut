@@ -1,4 +1,4 @@
-PROG
+
 
 func main() -> int {
     return 0;

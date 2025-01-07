@@ -1,4 +1,4 @@
-PROG
+
 
 var n : int;           
 var fib : int;         

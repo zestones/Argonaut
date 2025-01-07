@@ -21,7 +21,6 @@ letter [a-zA-Z]
 
 \n                              { error.line++; error.column = 1; } // Reset column number on new line
 
-"PROG"                          { error.column += yyleng; return PROG; }
 "{"                             { error.column += yyleng; return START; }
 "}"                             { error.column += yyleng; return END; }
 

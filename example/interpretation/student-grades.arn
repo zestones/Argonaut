@@ -1,4 +1,4 @@
-PROG
+
 
 // Define date structure
 type date : struct {

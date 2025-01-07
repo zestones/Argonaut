@@ -1,4 +1,4 @@
-PROG
+
 
 type tab : array[0:1, 0:1, 0:1] of int; 
 var tab : tab;

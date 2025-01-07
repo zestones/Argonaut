@@ -1,4 +1,4 @@
-PROG
+
 
 type matrix : array[0:1, 0:1] of int;
 var mat1 : matrix;
