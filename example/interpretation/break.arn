@@ -7,7 +7,13 @@ n := 4;
 while(n > 0) {
     if (n % 2 == 0) {
         print("n: %d\n", n);
+        // break;
     }
     
     n--;
+}
+
+print("FOR LOOP\n");
+for (n := 0; n < 5; n++) {
+    print("n = %d\n", n);
 }

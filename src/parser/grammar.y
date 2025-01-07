@@ -80,6 +80,7 @@
 %token IF ELSE WHILE FOR
 %token EQUAL NOT_EQUAL LESS_THAN GREATER_THAN LESS_EQUAL GREATER_EQUAL
 %token PRINT INPUT
+%token BREAK
 
 %token <lexicographic_index> BOOLEAN_VALUE STRING_VALUE INTEGER_VALUE CHARACTER_VALUE FLOAT_VALUE
 %token <lexicographic_index> INCREMENT DECREMENT
@@ -95,8 +96,9 @@
 
 %type <lexicographic_index> type 
 
-%type <ast> assignment_statement if_statement loop_statement for_statement standalone_func_proc_call_statement func_proc_call_expression
+%type <ast> assignment_statement if_statement standalone_func_proc_call_statement func_proc_call_expression
 %type <ast> array_access_statement array_indices struct_access_statement print_statement input_statement
+%type <ast> loop_statement while_statement for_statement
 
 %type <ast> variable_declaration type_declaration complex_type_fields type_field
 %type <ast> function_declaration return_statement procedure_declaration parameter_list parameter argument_list
@@ -390,8 +392,7 @@ statement: assignment_statement SEMICOLON {
         }
         | if_statement { $$ = $1; }
         | standalone_func_proc_call_statement { $$ = $1; }
-        | loop_statement  { $$ = $1; }
-        | for_statement   { $$ = $1; }  
+        | loop_statement { $$ = $1; }
         | print_statement { $$ = $1; }
         | input_statement { $$ = $1; }
         | return_statement{ $$ = $1; }
@@ -491,7 +492,10 @@ if_statement: IF OPEN_PARENTHESIS condition CLOSE_PARENTHESIS statement_block {
             }
 ;
 
-loop_statement: WHILE OPEN_PARENTHESIS condition CLOSE_PARENTHESIS statement_block {
+loop_statement: while_statement  { $$ = $1; }
+              | for_statement   { $$ = $1; }  
+
+while_statement: WHILE OPEN_PARENTHESIS condition CLOSE_PARENTHESIS statement_block {
                 $$ = construct_node_default(A_WHILE); 
                 add_child($$, $3);
                 add_sibling($3, $5);
