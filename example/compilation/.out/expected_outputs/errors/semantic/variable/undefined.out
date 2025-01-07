@@ -1,16 +1,16 @@
-[Semantic Error] Undeclared variable at example/compilation/errors/semantic/variable/undefined.txt:8:9.
+[Semantic Error] Undeclared variable at example/compilation/errors/semantic/variable/undefined.arn:8:9.
   The variable 'x' is used before being defined or declared.
   Ensure the variable is declared in the correct scope before use.
 
-[Type Error] Type mismatch during assignement at example/compilation/errors/semantic/variable/undefined.txt:8:12.
+[Type Error] Type mismatch during assignement at example/compilation/errors/semantic/variable/undefined.arn:8:12.
   Cannot assign expression of type 'int' to variable 'UNKNOWN' of type 'UNKNOWN'.
   Ensure that the expression type matches the expected type for the variable.
 
-[Semantic Error] Undeclared variable at example/compilation/errors/semantic/variable/undefined.txt:12:5.
+[Semantic Error] Undeclared variable at example/compilation/errors/semantic/variable/undefined.arn:12:5.
   The variable 'x' is used before being defined or declared.
   Ensure the variable is declared in the correct scope before use.
 
-[Type Error] Type mismatch during assignement at example/compilation/errors/semantic/variable/undefined.txt:12:8.
+[Type Error] Type mismatch during assignement at example/compilation/errors/semantic/variable/undefined.arn:12:8.
   Cannot assign expression of type 'int' to variable 'UNKNOWN' of type 'UNKNOWN'.
   Ensure that the expression type matches the expected type for the variable.
 

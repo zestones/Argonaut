@@ -1,8 +1,8 @@
-[Type Error] Type mismatch in condition at example/compilation/errors/semantic/condition/valid_type.txt:24:12.
+[Type Error] Type mismatch in condition at example/compilation/errors/semantic/condition/valid_type.arn:24:12.
   Left operand type: 'date', right operand type: 'bool'.
   Ensure both operands are of compatible types for the condition.
 
-[Type Error] Invalid condition at example/compilation/errors/semantic/condition/valid_type.txt:24:12.
+[Type Error] Invalid condition at example/compilation/errors/semantic/condition/valid_type.arn:24:12.
   Expected a boolean expression, but received 'UNKNOWN'.
   Ensure the expression evaluates to a boolean value.
 

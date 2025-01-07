@@ -13,10 +13,10 @@ class OutputGenerator:
 
         for root, _, files in os.walk(TEST_DIR):
             for file in files:
-                if file.endswith(".txt"):
+                if file.endswith(".arn"):
                     input_file = os.path.join(root, file)
                     relative_path = os.path.relpath(input_file, TEST_DIR)
-                    expected_output_file = os.path.join(OUTPUTS_DIR, relative_path.replace(".txt", ".out"))
+                    expected_output_file = os.path.join(OUTPUTS_DIR, relative_path.replace(".arn", ".out"))
 
                     ensure_directory_exists(os.path.dirname(expected_output_file))
 

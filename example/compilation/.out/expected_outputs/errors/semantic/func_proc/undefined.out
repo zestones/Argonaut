@@ -1,8 +1,8 @@
-[Semantic Error] Undeclared function or procedure at example/compilation/errors/semantic/func_proc/undefined.txt:6:14.
+[Semantic Error] Undeclared function or procedure at example/compilation/errors/semantic/func_proc/undefined.arn:6:14.
   The function or procedure 'my_func' is not defined in the current scope.
   Ensure that the function or procedure is declared before usage.
 
-[Type Error] Type mismatch during assignement at example/compilation/errors/semantic/func_proc/undefined.txt:6:16.
+[Type Error] Type mismatch during assignement at example/compilation/errors/semantic/func_proc/undefined.arn:6:16.
   Cannot assign expression of type 'UNKNOWN' to variable 'x' of type 'int'.
   Ensure that the expression type matches the expected type for the variable.
 

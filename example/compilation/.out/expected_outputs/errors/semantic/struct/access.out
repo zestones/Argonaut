@@ -1,16 +1,16 @@
-[Semantic Error] Field access error at example/compilation/errors/semantic/struct/access.txt:22:28.
+[Semantic Error] Field access error at example/compilation/errors/semantic/struct/access.arn:22:28.
   The entity 'numero' is not a struct, so field access is not possible.
   Verify that the entity is a struct before attempting to access its fields.
 
-[Type Error] Type mismatch during assignement at example/compilation/errors/semantic/struct/access.txt:22:28.
+[Type Error] Type mismatch during assignement at example/compilation/errors/semantic/struct/access.arn:22:28.
   Cannot assign expression of type 'float' to struct field 'UNKNOWN' of type 'UNKNOWN'.
   Ensure the expression type matches the expected type for the struct field.
 
-[Semantic Error] Field access error at example/compilation/errors/semantic/struct/access.txt:23:19.
+[Semantic Error] Field access error at example/compilation/errors/semantic/struct/access.arn:23:19.
   The entity 'x' is not a struct but is of type 'int'.
   Ensure that the entity is a struct before attempting to access its fields.
 
-[Type Error] Type mismatch during assignement at example/compilation/errors/semantic/struct/access.txt:23:19.
+[Type Error] Type mismatch during assignement at example/compilation/errors/semantic/struct/access.arn:23:19.
   Cannot assign expression of type 'float' to struct field 'UNKNOWN' of type 'UNKNOWN'.
   Ensure the expression type matches the expected type for the struct field.
 

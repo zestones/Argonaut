@@ -1,8 +1,8 @@
-[Type Error] Function 'main' expects argument 1 to be of type 'int' at example/compilation/errors/semantic/func_proc/argument/structure.txt:23:23.
+[Type Error] Function 'main' expects argument 1 to be of type 'int' at example/compilation/errors/semantic/func_proc/argument/structure.arn:23:23.
   But the provided argument 'p.naissance' is of type 'date'.
   Ensure the argument type matches the expected type for the function or procedure.
 
-[Type Error] Function 'main' expects argument 1 to be of type 'int' at example/compilation/errors/semantic/func_proc/argument/structure.txt:24:29.
+[Type Error] Function 'main' expects argument 1 to be of type 'int' at example/compilation/errors/semantic/func_proc/argument/structure.arn:24:29.
   But the provided argument 'p.naissance.annee' is of type 'float'.
   Ensure the argument type matches the expected type for the function or procedure.
 

@@ -60,6 +60,7 @@ vm_cell resolve_expression(Node *expression) {
         case A_ADD_OP:
         case A_SUB_OP:
         case A_MUL_OP:
+        case A_MODULO_OP:
         case A_DIV_OP: {
             vm_cell left = resolve_expression(expression->child);
             vm_cell right = resolve_expression(expression->child->sibling);

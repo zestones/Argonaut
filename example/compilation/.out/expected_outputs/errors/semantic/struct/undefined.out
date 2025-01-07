@@ -1,12 +1,12 @@
-[Semantic Error] Redefinition error at example/compilation/errors/semantic/struct/undefined.txt:6:16.
+[Semantic Error] Redefinition error at example/compilation/errors/semantic/struct/undefined.arn:6:16.
   The identifier 'mois' is already defined in the current scope as a structure field.
   Consider renaming the identifier or altering the existing definition to resolve the conflict.
 
-[Semantic Error] Field access error at example/compilation/errors/semantic/struct/undefined.txt:21:29.
+[Semantic Error] Field access error at example/compilation/errors/semantic/struct/undefined.arn:21:29.
   The field 'annee' does not exist in the struct 'date'.
   Ensure the field name is correct and defined within the struct type.
 
-[Type Error] Type mismatch during assignement at example/compilation/errors/semantic/struct/undefined.txt:21:29.
+[Type Error] Type mismatch during assignement at example/compilation/errors/semantic/struct/undefined.arn:21:29.
   Cannot assign expression of type 'int' to struct field 'UNKNOWN' of type 'UNKNOWN'.
   Ensure the expression type matches the expected type for the struct field.
 

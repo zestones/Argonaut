@@ -25,6 +25,7 @@
     NODE(A_SUB_OP)                          \
     NODE(A_MUL_OP)                          \
     NODE(A_DIV_OP)                          \
+    NODE(A_MODULO_OP)                       \
     NODE(A_DECLARATION_LIST)                \
     NODE(A_VARIABLE_DECLARATION)            \
     NODE(A_FUNCTION_DECLARATION)            \
@@ -48,6 +49,8 @@
     NODE(A_IF_ELSE_IF)                      \
     NODE(A_WHILE)                           \
     NODE(A_FOR_LOOP)                        \
+    NODE(A_BREAK)                           \
+    NODE(A_CONTINUE)                        \
     NODE(A_ARRAY_ACCESS)                    \
     NODE(A_ARRAY_INDEX_LIST)                \
     NODE(A_ARRAY_INDEX)                     \
@@ -80,6 +83,7 @@ static inline char node_type_to_operator_char(NodeType type) {
         case A_SUB_OP: return '-';
         case A_MUL_OP: return '*';
         case A_DIV_OP: return '/';
+        case A_MODULO_OP: return '%';
         default: return '\0';
     }
 }

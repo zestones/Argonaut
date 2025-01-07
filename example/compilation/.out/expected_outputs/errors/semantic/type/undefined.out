@@ -1,4 +1,4 @@
-[Type Error] Undefined type at example/compilation/errors/semantic/type/undefined.txt:3:11.
+[Type Error] Undefined type at example/compilation/errors/semantic/type/undefined.arn:3:11.
   The type 'x' is not defined in the current scope.
   Ensure the type is properly declared before use.
 

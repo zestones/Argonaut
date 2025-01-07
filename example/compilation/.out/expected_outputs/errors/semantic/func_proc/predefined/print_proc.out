@@ -1,12 +1,12 @@
-[Semantic Error] Argument mismatch in format string at example/compilation/errors/semantic/func_proc/predefined/print_proc.txt:7:32.
+[Semantic Error] Argument mismatch in format string at example/compilation/errors/semantic/func_proc/predefined/print_proc.arn:7:32.
   Format string expects 1 arguments, but 2 were provided.
   Ensure the correct number of arguments are passed to match the format string.
 
-[Semantic Error] Argument mismatch in format string at example/compilation/errors/semantic/func_proc/predefined/print_proc.txt:8:35.
+[Semantic Error] Argument mismatch in format string at example/compilation/errors/semantic/func_proc/predefined/print_proc.arn:8:35.
   Format string expects 2 arguments, but 1 were provided.
   Ensure the correct number of arguments are passed to match the format string.
 
-[Type Error] Type mismatch for argument 2 at example/compilation/errors/semantic/func_proc/predefined/print_proc.txt:9:43.
+[Type Error] Type mismatch for argument 2 at example/compilation/errors/semantic/func_proc/predefined/print_proc.arn:9:43.
   Argument '2' has type '"Hello %d"', but specifier 'f' expects a different type.
   Ensure the argument type matches the expected type for the specifier.
 

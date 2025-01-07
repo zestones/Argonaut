@@ -1,20 +1,20 @@
-[Semantic Error] Function expects 2 arguments at example/compilation/errors/semantic/func_proc/argument/procedure.txt:20:7.
+[Semantic Error] Function expects 2 arguments at example/compilation/errors/semantic/func_proc/argument/procedure.arn:20:7.
   However, only 0 arguments were provided.
   Ensure the correct number of arguments are passed to the function.
 
-[Type Error] Procedure 'main' expects argument 1 to be of type 'int' at example/compilation/errors/semantic/func_proc/argument/procedure.txt:21:13.
+[Type Error] Procedure 'main' expects argument 1 to be of type 'int' at example/compilation/errors/semantic/func_proc/argument/procedure.arn:21:13.
   But the provided argument 'x' is of type 'bool'.
   Ensure the argument type matches the expected type for the function or procedure.
 
-[Type Error] Procedure 'main' expects argument 1 to be of type 'int' at example/compilation/errors/semantic/func_proc/argument/procedure.txt:22:18.
+[Type Error] Procedure 'main' expects argument 1 to be of type 'int' at example/compilation/errors/semantic/func_proc/argument/procedure.arn:22:18.
   But the provided argument 'test()' is of type 'UNKNOWN'.
   Ensure the argument type matches the expected type for the function or procedure.
 
-[Semantic Error] Function expects 2 arguments at example/compilation/errors/semantic/func_proc/argument/procedure.txt:23:23.
+[Semantic Error] Function expects 2 arguments at example/compilation/errors/semantic/func_proc/argument/procedure.arn:23:23.
   However, more arguments were provided.
   Ensure the correct number of arguments are passed to the function.
 
-[Type Error] Procedure 'main' expects argument 1 to be of type 'int' at example/compilation/errors/semantic/func_proc/argument/procedure.txt:23:23.
+[Type Error] Procedure 'main' expects argument 1 to be of type 'int' at example/compilation/errors/semantic/func_proc/argument/procedure.arn:23:23.
   But the provided argument 'test()' is of type 'UNKNOWN'.
   Ensure the argument type matches the expected type for the function or procedure.
 

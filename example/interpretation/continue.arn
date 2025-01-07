@@ -1,0 +1,16 @@
+PROG
+
+var n : int;
+for (n := 0; n < 10; n++) {
+    if (n % 2 == 0) { continue; }
+    
+    print("n = %d\n", n);
+}
+
+print("WHILE LOOP : %d\n", n);
+while (n > 0) {
+    if (n % 2 == 0) { n--; continue; }
+
+    print("n -> %d\n", n);
+    n--;
+} 

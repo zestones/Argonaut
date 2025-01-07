@@ -1,12 +1,12 @@
-[Type Error] Function 'main' expects argument 1 to be of type 'int' at example/compilation/errors/semantic/func_proc/argument/nested_array.txt:24:31.
+[Type Error] Function 'main' expects argument 1 to be of type 'int' at example/compilation/errors/semantic/func_proc/argument/nested_array.arn:24:31.
   But the provided argument 'my_struct.field1[2]' is of type 'date'.
   Ensure the argument type matches the expected type for the function or procedure.
 
-[Type Error] Function 'main' expects argument 1 to be of type 'int' at example/compilation/errors/semantic/func_proc/argument/nested_array.txt:25:37.
+[Type Error] Function 'main' expects argument 1 to be of type 'int' at example/compilation/errors/semantic/func_proc/argument/nested_array.arn:25:37.
   But the provided argument 'my_struct.field1[2].annee' is of type 'float'.
   Ensure the argument type matches the expected type for the function or procedure.
 
-[Type Error] Function 'main' expects argument 2 to be of type 'float' at example/compilation/errors/semantic/func_proc/argument/nested_array.txt:26:26.
+[Type Error] Function 'main' expects argument 2 to be of type 'float' at example/compilation/errors/semantic/func_proc/argument/nested_array.arn:26:26.
   But the provided argument 'my_struct.field2' is of type 'int'.
   Ensure the argument type matches the expected type for the function or procedure.
 

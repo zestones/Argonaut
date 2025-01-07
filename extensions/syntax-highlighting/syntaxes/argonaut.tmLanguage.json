@@ -18,7 +18,7 @@
             "patterns": [
                 {
                     "name": "keyword.control.argonaut",
-                    "match": "\\b(if|while|for|return|else|PROG)\\b"
+                    "match": "\\b(if|while|for|return|else|break|continue|PROG)\\b"
                 },
                 {
                     "name": "keyword.other.argonaut",

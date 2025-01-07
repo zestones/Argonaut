@@ -1,8 +1,8 @@
-[Semantic Error] Redefinition of function 'main' at example/compilation/errors/semantic/func_proc/redefined.txt:7:10.
+[Semantic Error] Redefinition of function 'main' at example/compilation/errors/semantic/func_proc/redefined.arn:7:10.
   This identifier 'main' has already been defined.
   Consider renaming or modifying the existing definition.
 
-[Semantic Error] Redefinition of procedure 'main' at example/compilation/errors/semantic/func_proc/redefined.txt:11:10.
+[Semantic Error] Redefinition of procedure 'main' at example/compilation/errors/semantic/func_proc/redefined.arn:11:10.
   This identifier 'main' has already been defined.
   Consider renaming or modifying the existing definition.
 

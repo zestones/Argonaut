@@ -1,12 +1,12 @@
-[Type Error] Redefinition of the array at example/compilation/errors/semantic/overload/assignement.txt:8:15.
+[Type Error] Redefinition of the array at example/compilation/errors/semantic/overload/assignement.arn:8:15.
   The type 'x' has already been defined in the current scope.
   Consider renaming or modifying the existing definition to avoid conflict.
 
-[Semantic Error] Redefinition of variable 'x' at example/compilation/errors/semantic/overload/assignement.txt:10:13.
+[Semantic Error] Redefinition of variable 'x' at example/compilation/errors/semantic/overload/assignement.arn:10:13.
   This variable has already been defined in the current scope.
   Consider renaming or modifying the existing definition.
 
-[Semantic Warning] Redefinition of variable 'x' at example/compilation/errors/semantic/overload/assignement.txt:13:17.
+[Semantic Warning] Redefinition of variable 'x' at example/compilation/errors/semantic/overload/assignement.arn:13:17.
   This variable has already been defined in the current scope.
   Consider renaming or modifying the existing definition.
 
