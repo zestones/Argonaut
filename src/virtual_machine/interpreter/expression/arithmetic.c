@@ -7,7 +7,7 @@
 
 
 vm_cell resolve_arithmetic_operation(int operation, vm_cell left, vm_cell right) {
-    if (operation == A_DIV_OP && (right.type == INTEGER && right.value.integer == 0) ||
+    if ((operation == A_DIV_OP || operation == A_MODULO_OP) && (right.type == INTEGER && right.value.integer == 0) ||
         (right.type == REAL && right.value.real == 0.0)) {
         set_error_type(&error, DIVISION_BY_ZERO);
         set_error_message(
@@ -78,6 +78,16 @@ vm_cell resolve_arithmetic_operation(int operation, vm_cell left, vm_cell right)
             else if (left.type == REAL && right.type == REAL) {
                 double result = left.value.real / right.value.real;
                 return construct_vm_cell(REAL, &result);
+            }
+            break;
+
+        case A_MODULO_OP:
+            if (left.type == INTEGER && right.type == INTEGER) {
+                int result = left.value.integer % right.value.integer;
+                return construct_vm_cell(INTEGER, &result);
+            }
+            else if (left.type == REAL && right.type == REAL) {
+                printf("modulos can be performed on integers only\n");
             }
             break;
     }

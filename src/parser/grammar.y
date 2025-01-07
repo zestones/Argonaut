@@ -91,7 +91,7 @@
 %left SEMICOLON COMMA
 
 %left PLUS MINUS
-%left MULTIPLY DIVIDE
+%left MULTIPLY DIVIDE MODULO
 
 %type <lexicographic_index> type 
 
@@ -266,6 +266,11 @@ expression: expression PLUS expression {
           }
           | expression DIVIDE expression {
                 $$ = construct_node_default(A_DIV_OP);
+                add_child($$, $1);
+                add_sibling($1, $3);
+          }
+          | expression MODULO expression {
+                $$ = construct_node_default(A_MODULO_OP);
                 add_child($$, $1);
                 add_sibling($1, $3);
           }

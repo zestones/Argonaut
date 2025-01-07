@@ -27,6 +27,7 @@ int resolve_expression_type(Node *expression) {
         case A_ADD_OP:
         case A_SUB_OP:
         case A_MUL_OP:
+        case A_MODULO_OP:
         case A_DIV_OP: {
             int left_type = resolve_expression_type(expression->child);
             int right_type = resolve_expression_type(expression->child->sibling);
