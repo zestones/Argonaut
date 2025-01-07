@@ -77,7 +77,6 @@ ControlFlow resolve_statement_list(AST statement_list) {
         }
 
         default:
-            // Propager les flux de contrôle si rencontrés dans les enfants ou les frères
             ctrl_flow = resolve_statement_list(statement_list->child);
             if (ctrl_flow != CONTROL_NONE) return ctrl_flow;
 
@@ -139,7 +138,8 @@ void execute(int region_index) {
     interpret_ast(get_region_ast(region_index));
     
     pop_region();
-    pop_frame_from_execution_stack();
+    stack_frame frame = pop_frame_from_execution_stack();
+    // fprintf_stack_frame(stdout, frame);
 }
 
 /**
