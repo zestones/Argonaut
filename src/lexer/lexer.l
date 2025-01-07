@@ -67,6 +67,7 @@ letter [a-zA-Z]
 "-"                             { error.column += yyleng; return MINUS; }
 "*"                             { error.column += yyleng; return MULTIPLY; }
 "/"                             { error.column += yyleng; return DIVIDE; }
+"%"                             { error.column += yyleng; return MODULO; }
 
 ":="                            { error.column += yyleng; return OPAFF; }
 

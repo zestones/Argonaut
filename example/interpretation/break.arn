@@ -1,0 +1,13 @@
+PROG
+
+var n : int;
+
+n := 4;
+
+while(n > 0) {
+    if (n % 2 == 0) {
+        print("n: %d\n", n);
+    }
+    
+    n--;
+}
