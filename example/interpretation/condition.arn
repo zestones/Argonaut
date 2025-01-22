@@ -1,96 +1,103 @@
+proc test_nested_conditions_within_if() {
+    var n : int;
+    var m : int;
 
-type date : struct {
-    day : int;
-    month : int;
-    year : int;
-} fstruct;
+    // Test case 1: Testing with n = 5 and m = 10
+    print("Test Case 1: Testing with n = 5 and m = 10\n");
+    n := 5;
+    m := 10;
 
-type details : struct {
-    age : int;
-    salary : float;
-    birthday : date;
-} fstruct;
-
-var person1 : details;
-var person2 : details;
-var person3 : details;
-var reference_date : date;
-var total_salary : float;
-
-person1.age := 25;
-person1.salary := 2500.00;
-person1.birthday.day := 15;
-person1.birthday.month := 7;
-person1.birthday.year := 1998;
-
-person2.age := 30;
-person2.salary := 3000.00;
-person2.birthday.day := 12;
-person2.birthday.month := 3;
-person2.birthday.year := 1994;
-
-person3.age := 40;
-person3.salary := 4000.00;
-person3.birthday.day := 20;
-person3.birthday.month := 5;
-person3.birthday.year := 1984;
-
-reference_date.day := 1;
-reference_date.month := 1;
-reference_date.year := 1995;
-
-total_salary := 0.00;
-
-// Check person1
-if (person1.birthday.year > reference_date.year) {
-    total_salary := total_salary + person1.salary;
-} else {
-    if (person1.birthday.year == reference_date.year) {
-        if (person1.birthday.month > reference_date.month) {
-            total_salary := total_salary + person1.salary;
+    if (n > 0) {
+        if (m > 5) {
+            print("Both n > 0 and m > 5\n");
+            if (n == 5) {
+                print("n is exactly 5\n");
+            } else {
+                print("n is greater than 0 but not 5\n");
+            }
         } else {
-            if (person1.birthday.month == reference_date.month) {
-                if (person1.birthday.day >= reference_date.day) {
-                    total_salary := total_salary + person1.salary;
-                }
+            print("m is less than or equal to 5\n");
+        }
+    } else {
+        print("n is not greater than 0\n");
+    }
+
+    // Test case 2: Testing with n = -2 and m = 3
+    print("\nTest Case 2: Testing with n = -2 and m = 3\n");
+    n := -2;
+    m := 3;
+
+    if (n <= 0) {
+        if (m > 5) {
+            print("n is less than or equal to 0, but m is greater than 5\n");
+        } else {
+            print("n is less than or equal to 0, and m is less than or equal to 5\n");
+            if (m == 3) {
+                print("m is exactly 3\n");
+            } else {
+                print("m is less than or equal to 5 but not 3\n");
             }
         }
+    } else {
+        print("n is greater than 0\n");
+    }
+
+    // Test case 3: Testing with n = 0 and m = 5
+    print("\nTest Case 3: Testing with n = 0 and m = 5\n");
+    n := 0;
+    m := 5;
+
+    if (n == 0) {
+        print("n is 0\n");
+        if (m < 5) {
+            print("m is less than 5\n");
+        } else if (m == 5) {
+            print("m is exactly 5\n");
+        } else {
+            print("m is greater than 5\n");
+        }
+    } else {
+        print("n is not 0\n");
+    }
+
+    // Test case 4: Testing with n = 10 and m = -5
+    print("\nTest Case 4: Testing with n = 10 and m = -5\n");
+    n := 10;
+    m := -5;
+
+    if (n > 0) {
+        if (m < 0) {
+            print("n is greater than 0 and m is negative\n");
+            if (n > 5) {
+                print("n is greater than 5\n");
+            } else {
+                print("n is not greater than 5\n");
+            }
+        } else {
+            print("m is non-negative\n");
+        }
+    } else {
+        print("n is not greater than 0\n");
+    }
+
+    // Test case 5: Testing with n = 0 and m = 0
+    print("\nTest Case 5: Testing with n = 0 and m = 0\n");
+    n := 0;
+    m := 0;
+
+    if (n == 0) {
+        if (m == 0) {
+            print("Both n and m are 0\n");
+        } else {
+            print("n is 0 but m is not 0\n");
+        }
+    } else {
+        print("n is not 0\n");
     }
 }
 
-// Check person2
-if (person2.birthday.year > reference_date.year) {
-    total_salary := total_salary + person2.salary;
-} else {
-    if (person2.birthday.year == reference_date.year) {
-        if (person2.birthday.month > reference_date.month) {
-            total_salary := total_salary + person2.salary;
-        } else {
-            if (person2.birthday.month == reference_date.month) {
-                if (person2.birthday.day >= reference_date.day) {
-                    total_salary := total_salary + person2.salary;
-                }
-            }
-        }
-    }
+proc main() {
+    test_nested_conditions_within_if();
 }
 
-// Check person3
-if (person3.birthday.year > reference_date.year) {
-    total_salary := total_salary + person3.salary;
-} else {
-    if (person3.birthday.year == reference_date.year) {
-        if (person3.birthday.month > reference_date.month) {
-            total_salary := total_salary + person3.salary;
-        } else {
-            if (person3.birthday.month == reference_date.month) {
-                if (person3.birthday.day >= reference_date.day) {
-                    total_salary := total_salary + person3.salary;
-                }
-            }
-        }
-    }
-}
-
-total_salary := total_salary;
-print("%f\n", total_salary);
+main();

@@ -9,27 +9,9 @@
 #include "execution.h"
 
 
-/**
- * @brief Allocates memory in the stack frame for a variable based on its type declaration.
- *
- * This function recursively allocates the required memory for variables, including 
- * primitive types, arrays, and structs. It handles complex types by traversing their 
- * structure and allocating memory for each component.
- *
- * @param index_type_declaration The index of the type declaration for the variable. 
- *        This is used to determine the nature and structure of the type.
- *
- * @details
- * - For base types (e.g., integers, floats), the function allocates the necessary 
- *   stack space directly.
- * - For arrays, the function recursively allocates memory for each element based 
- *   on the array's size and element type.
- * - For structs, the function iterates over each field in the struct and allocates 
- *   memory according to the field's type declaration.
- */
-static void declare_variable(int index_type_declaration) {
+void declare_variable(stack_frame *frame, int index_type_declaration) {
     if (is_declaration_base_type(index_type_declaration)) {
-        allocate_cells_to_stack_frame(peek_execution_stack_as_mutable(), get_declaration_description(index_type_declaration), get_declaration_execution(index_type_declaration));
+        allocate_cells_to_stack_frame(frame, get_declaration_description(index_type_declaration), get_declaration_execution(index_type_declaration));
         return;
     }
 
@@ -37,21 +19,21 @@ static void declare_variable(int index_type_declaration) {
         int element_type = get_array_element_type(index_type_declaration);
         int size = get_array_size(index_type_declaration);
 
-        for (int i = 0; i < size; i++) declare_variable(element_type);
+        for (int i = 0; i < size; i++) declare_variable(frame, element_type);
     } 
     else if (get_declaration_nature(index_type_declaration) == TYPE_STRUCT) {
         int field_count = get_struct_field_count(index_type_declaration);
 
         for (int i = 0; i < field_count; i++) {
             int field_type = get_struct_nth_field_declaration(index_type_declaration, i);
-            declare_variable(field_type);
+            declare_variable(frame, field_type);
         }
     }
 }
 
 void handle_variable_declaration(int index_declaration) {
     int index_type_declaration = get_declaration_description(index_declaration);
-    declare_variable(index_type_declaration);
+    declare_variable(peek_execution_stack_as_mutable(), index_type_declaration);
 }
 
 vm_cell get_struct_cell(Node *struct_access) {

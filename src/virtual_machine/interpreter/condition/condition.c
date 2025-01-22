@@ -18,14 +18,12 @@ ControlFlow execute_condition(AST ast) {
         if (current_node->type == A_IF_ELSE_IF || current_node->type == A_IF_ELSE || A_IF) {
             if (condition.value.boolean) {
                 return resolve_statement_list(current_node->child->sibling->child);
-                break;
             }
 
             // Move to the next branch (else if or else)
             Node *next_branch = current_node->child->sibling->sibling;
-            if ((current_node->type == A_IF_ELSE || A_IF) && next_branch && next_branch->child) {
+            if ((current_node->type == A_IF_ELSE) && next_branch && next_branch->child) {
                 return resolve_statement_list(next_branch->child);
-                break;
             }
             current_node = next_branch;
         }         

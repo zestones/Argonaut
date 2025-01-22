@@ -31,9 +31,10 @@ stack_frame *get_stack_frame_by_id(int id) {
 }
 
 stack_frame *find_stack_frame_by_region_index(int region_index) {
-    for (int i = 0; i < size(execution_stack); i++) {
-        stack_frame *frame = (stack_frame *) get_stack_value(execution_stack, i);
-        if (frame->region_index == region_index) return frame;
+    stack_frame *current_frame = peek_execution_stack_as_mutable();
+    while(current_frame != NULL) {
+        if (current_frame->region_index == region_index) return current_frame;
+        current_frame = get_stack_frame_by_id(current_frame->dynamic_link);
     }
 
     printf("Error no stack frame found ! (find_stack_frame_by_region_index)\n");
