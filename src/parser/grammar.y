@@ -595,6 +595,7 @@ print_statement: PRINT OPEN_PARENTHESIS format_string COMMA argument_list CLOSE_
                 | PRINT OPEN_PARENTHESIS format_string CLOSE_PARENTHESIS SEMICOLON {
                       $$ = construct_node_default(A_PRINT_STATEMENT);
                       add_child($$, $3);
+                      check_print_proc_argument_list($3, construct_node_default(A_ARGUMENT_LIST));
                 }
 ;
 
@@ -612,6 +613,7 @@ input_statement: INPUT OPEN_PARENTHESIS format_string COMMA input_argument_list 
                | INPUT OPEN_PARENTHESIS format_string CLOSE_PARENTHESIS SEMICOLON {
                     $$ = construct_node_default(A_INPUT_STATEMENT);
                     add_child($$, $3);
+                    check_print_proc_argument_list($3, construct_node_default(A_ARGUMENT_LIST));
                }
 ;
 
