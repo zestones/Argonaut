@@ -8,4 +8,5 @@ var today : date;
 
 today.day := 4;
 
-print("%d/%d/%d\n", today.day, today.month, today.year);
+// print("%d/%d/%d\n", today.day, today.month, today.year);
+// print("Hello %d, here is %s");
