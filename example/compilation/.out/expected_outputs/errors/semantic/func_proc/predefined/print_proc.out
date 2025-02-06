@@ -10,6 +10,10 @@
   Argument '2' has type '"Hello %d"', but specifier 'f' expects a different type.
   Ensure the argument type matches the expected type for the specifier.
 
+[Semantic Error] Argument mismatch in format string at example/compilation/errors/semantic/func_proc/predefined/print_proc.arn:10:31.
+  Format string expects 2 arguments, but 0 were provided.
+  Ensure the correct number of arguments are passed to match the format string.
+
 Verbose mode enabled. Printing tables and ast...
 
 +----------------------------+
