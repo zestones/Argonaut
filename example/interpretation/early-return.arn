@@ -1,11 +1,4 @@
 
-
-var n : int;           
-var fib : int;         
-var fib_1 : int;       
-var fib_2 : int;       
-
-
 func main(n: int) -> int {
     if (n < 1) {
         return -1;
@@ -13,6 +6,32 @@ func main(n: int) -> int {
 
     return 4;
 }
+
+func early_return_in_while() -> int {
+    var i : int;
+    i := 0;
+
+    while(i < 10) {
+        if (i == 6) { return i; }
+        i++;
+    }
+
+    return i;
+}
+
+func early_return_in_for() -> int {
+    var i : int;
+
+    for (i := 0; i <= 10; i++) {
+        if (i == 6) { return i; }
+    }
+
+    return i;
+}
+
+
+print("%d\n", early_return_in_for());
+print("value: %d\n", early_return_in_while());
 
 print("%d\n", main(4));
 print("%d\n", main(0));
