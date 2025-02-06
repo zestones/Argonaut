@@ -138,7 +138,8 @@ void execute(int region_index) {
     interpret_ast(get_region_ast(region_index));
     
     pop_region();
-    stack_frame frame = pop_frame_from_execution_stack();
+    pop_frame_from_execution_stack();
+    // stack_frame frame = 
     // fprintf_stack_frame(stdout, frame);
 }
 

@@ -10,6 +10,8 @@
     extern int yyerror(const char *s);
 %}
 
+%option noinput nounput
+
 number [0-9]
 letter [a-zA-Z]
 

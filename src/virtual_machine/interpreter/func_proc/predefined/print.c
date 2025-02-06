@@ -100,9 +100,6 @@ void execute_print(AST ast) {
         return;
     }
 
-    int expected_arg_count = count_format_specifiers(format);
-    int actual_arg_count = count_argument_list(arg_list);
-
     char buffer[BUFFER_SIZE] = {0};
     process_format_string(format, arg_list, buffer);
 

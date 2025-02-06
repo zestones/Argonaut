@@ -71,7 +71,7 @@ typedef enum {
 
 // Generate the string representations
 #define GENERATE_STRING(STRING) #STRING,
-static const char *NodeTypeStrings[] = {
+static const char *NodeTypeStrings[] __attribute__((unused)) = {
     FOREACH_NODE_TYPE(GENERATE_STRING)
 };
 #undef GENERATE_STRING

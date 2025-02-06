@@ -13,7 +13,7 @@
 #             defines the compiler and flags             #
 # ------------------------------------------------------ #
 CC      = gcc
-CFLAGS  = -g
+CFLAGS  = -g -Wall -Wextra -pedantic
 LEX     = lex
 YACC    = yacc
 
@@ -49,6 +49,7 @@ all: compiler vm simple-clean
 install: 
 	sudo apt install flex bison
 	sudo apt install doxygen
+	sudo apt install gdb
 
 extension-install:
 	@if [ -d ~/.vscode/extensions/ ]; then \

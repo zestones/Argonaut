@@ -46,7 +46,7 @@ int get_execution_stack_current_frame_id() {
 }
 
 void fprintf_vm_stack(FILE *out) {
-    char title[15];
+    char title[32];
 
     for (int i = 0; i < size(execution_stack); i++) {
         stack_frame frame = *(stack_frame *) get_stack_value(execution_stack, i);

@@ -39,6 +39,8 @@ static int resolve_struct_declaration(Node *current_node) {
 
         return struct_index_declaration;
     }
+
+    return NULL_VALUE;
 }
 
 /**
