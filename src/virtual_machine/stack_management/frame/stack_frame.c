@@ -23,17 +23,15 @@ stack_frame construct_stack_frame(int dynamic_link, int region_index) {
  * 
  * @param frame A pointer to the stack frame to which the cell will be added.
  * @param type The type of the cell to be added.
- * @param value A pointer to the value that the cell will hold (currently not used).
  */
-static void add_cell_to_stack_frame(stack_frame *frame, int type, void *value) {
+static void add_cell_to_stack_frame(stack_frame *frame, int type) {
     vm_cell cell = construct_vm_cell(type, NULL);
     push(&frame->cells, &cell, sizeof(vm_cell));
 }
 
 void allocate_cells_to_stack_frame(stack_frame *frame, int type, int size) {
     for (int i = 0; i < size; i++) {
-        vm_cell cell = construct_vm_cell(type, NULL);
-        add_cell_to_stack_frame(frame, type, &cell);
+        add_cell_to_stack_frame(frame, type);
     }
 }
 

@@ -7,7 +7,7 @@
 
 
 vm_cell resolve_arithmetic_operation(int operation, vm_cell left, vm_cell right) {
-    if ((operation == A_DIV_OP || operation == A_MODULO_OP) && (right.type == INTEGER && right.value.integer == 0) ||
+    if (((operation == A_DIV_OP || operation == A_MODULO_OP) && (right.type == INTEGER && right.value.integer == 0)) ||
         (right.type == REAL && right.value.real == 0.0)) {
         set_error_type(&error, DIVISION_BY_ZERO);
         set_error_message(
@@ -91,5 +91,9 @@ vm_cell resolve_arithmetic_operation(int operation, vm_cell left, vm_cell right)
             }
             break;
     }
+
+    // The compiler should have already checked all issues within the argonaut code if an
+    // arithmetic operation reach this line this means that the code executed containes compilation errors.
+    // Thus the code here is unreachable for good argonaut code.
+    __builtin_unreachable();
 }
-        

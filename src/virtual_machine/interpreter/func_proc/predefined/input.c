@@ -71,9 +71,6 @@ void execute_input(AST ast) {
         return;
     }
 
-    int expected_arg_count = count_format_specifiers(format);
-    int actual_arg_count = count_argument_list(arg_list);
-
     char buffer[BUFFER_SIZE] = {0};
     arg_list = arg_list->child;
     while (format[0] != '\0') {

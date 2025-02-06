@@ -1,0 +1,50 @@
+var n : int;        // Nombre pour lequel on calcule la factorielle
+var fact : int;     // Résultat de la factorielle
+var res : int;      // Variable pour vérifier les débordements
+
+// Fonction pour calculer la factorielle
+func factorial(num : int) -> int {
+    var result : int;
+    var i : int;
+
+    result := 1;
+    i := 1;
+
+    if (num == 0) {
+        return 1; // Factorielle de 0 est 1
+    }
+    
+    while (i <= num) {
+        res := result * i / i;
+        if (res != result) {
+            print("Error: Factorial calculation overflowed for %d.\n", num);
+            return -1; // Retourner -1 en cas de débordement
+        }
+        
+        result := result * i;
+        i := i + 1;
+    }
+    
+    return result; // Retourne la factorielle calculée
+}
+
+// Procédure pour afficher le résultat
+proc display_factorial(num : int, result : int) {
+    if (result < 0) {
+        print("Factorial calculation failed due to overflow.\n");
+    } else {
+        print("Factorial of %d is %d\n", num, result);
+    }
+}
+
+// Début du programme principal
+print("Enter a number to compute its factorial: ");
+input("%d", n);
+
+// Gérer les cas particuliers
+if (n < 0) {
+    print("Factorial is undefined for negative numbers.\n");
+} else {
+    fact := factorial(n);
+    display_factorial(n, fact);
+}

@@ -13,7 +13,7 @@
 #             defines the compiler and flags             #
 # ------------------------------------------------------ #
 CC      = gcc
-CFLAGS  = -g
+CFLAGS  = -g -Wall -Wextra -pedantic
 LEX     = lex
 YACC    = yacc
 

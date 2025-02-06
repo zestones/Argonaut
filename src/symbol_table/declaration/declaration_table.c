@@ -53,7 +53,7 @@ void insert_declaration(int index, Nature nature, int region, int description, i
     }
 
     // If the index is empty, insert the declaration otherwise insert it in the overflow zone //
-    if (declaration_table[index].nature == NULL_VALUE) {
+    if (declaration_table[index].nature == (Nature)NULL_VALUE) {
         declaration_table[index] = construct_declaration(nature, NULL_VALUE, region, description, execution);
         declaration_table_size++;
     } 
@@ -172,7 +172,7 @@ static char* format_declaration_row(void* data) {
     char* formatted_row = (char*)malloc(256 * sizeof(char));
 
     // save some memory by not formatting empty rows
-    if (declaration->nature == NULL_VALUE) return NULL;
+    if (declaration->nature == (Nature)NULL_VALUE) return NULL;
     sprintf(formatted_row, "%d|%d|%d|%d|%d", 
             declaration->nature, 
             declaration->next, 
@@ -207,7 +207,7 @@ void fprintf_declaration_table(FILE* out) {
     print_table_separator(out, 6, col_width_index, col_width_nature, col_width_next, col_width_region, col_width_description, col_width_execution);
 
     for (int i = 0; i < MAX_DECLARATION_COUNT; i++) {
-        if (declaration_table[i].nature == NULL_VALUE) continue;
+        if (declaration_table[i].nature == (Nature)NULL_VALUE) continue;
         if (i == MAX_LEXEME_COUNT) {
             print_table_separator(out, 6, col_width_index, col_width_nature, col_width_next, col_width_region, col_width_description, col_width_execution);
             print_table_separator(out, 6, col_width_index, col_width_nature, col_width_next, col_width_region, col_width_description, col_width_execution);
