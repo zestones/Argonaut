@@ -23,6 +23,12 @@ proc print_date(date : date_t, a: int) {
     print("a: %d\n", a);
 }
 
+func next_day(student : student_t) -> student {
+    student.birth_date.day := student.birth_date.day + 1;
+
+    return student; 
+}
+
 proc print_student(z : float, student : student_t, a : int) {
     print("ID = %d\n", student.id);
     print("%d:%d:%d\n", student.birth_date.day, student.birth_date.month, student.birth_date.year);
@@ -40,5 +46,7 @@ student.id := 2;
 
 a := 44;
 z := 88.5;
+
+next_day(student);
 
 print_student(z, student, a);
