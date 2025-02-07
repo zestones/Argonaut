@@ -19,7 +19,7 @@
  * @warning Memory errors or incorrect type declarations may cause unexpected behavior or errors.
  */
 static int resolve_array_declaration_type(Node *array_access) {
-    if (get_declaration_nature(array_access->index_declaration) == TYPE_VAR) {
+    if (get_declaration_nature(array_access->index_declaration) == TYPE_VAR || get_declaration_nature(array_access->index_declaration) == TYPE_PARAM) {
         int index_array_declaration = get_declaration_description(array_access->index_declaration);
         
         if (get_declaration_nature(index_array_declaration) != TYPE_ARRAY) {

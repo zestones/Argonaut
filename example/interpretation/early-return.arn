@@ -39,8 +39,11 @@ func test(n: int) -> int {
     return 4;
 }
 
-print("early_return_in_for = %d\n", early_return_in_for());
-print("early_return_in_while = %d\n", early_return_in_while());
+early_return_in_for();
+
+print("test ----- \n");
+
+early_return_in_while();
 
 print("main = %d\n", main(4));
 print("main = %d\n", main(0));

@@ -46,7 +46,7 @@ static stack_frame construct_frame_with_parameters(AST parameter_list, AST argum
                 int address = get_variable_address(param_node->index_declaration);
                 update_cell_in_stack_frame(&current_frame, address, cell);
             }
-            else if (get_declaration_nature(index_type_declaration) == TYPE_STRUCT) {
+            else if (get_declaration_nature(index_type_declaration) == TYPE_STRUCT || get_declaration_nature(index_type_declaration) == TYPE_ARRAY) {
                 int base_address         = get_variable_address(arg_node->child->index_declaration);
                 int size                 = get_declaration_execution(index_type_declaration);
                 int address              = get_variable_address(param_node->index_declaration);
@@ -56,10 +56,6 @@ static stack_frame construct_frame_with_parameters(AST parameter_list, AST argum
                     update_cell_in_stack_frame(&current_frame, address + i, cell);
                     // TODO: handle nested array in struct
                 }
-            }
-            else if (get_declaration_nature(index_type_declaration) == TYPE_ARRAY) {
-                // TODO: handle arrays as param
-                printf("idnex : %d\n", index_type_declaration);
             }
         }
 
