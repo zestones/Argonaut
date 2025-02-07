@@ -20,7 +20,7 @@
 static int resolve_struct_declaration(Node *current_node) {
     check_variable_definition(current_node->index_lexicographic);
 
-    if (get_declaration_nature(current_node->index_declaration) == TYPE_VAR) {
+    if (get_declaration_nature(current_node->index_declaration) == TYPE_VAR || get_declaration_nature(current_node->index_declaration) == TYPE_PARAM) {
         int struct_index_declaration = get_declaration_description(current_node->index_declaration);
         
         if (get_declaration_nature(struct_index_declaration) != TYPE_STRUCT) {

@@ -54,7 +54,7 @@ void declaration_func_start() {
 void update_declaration_func_return_type(int index_return_type_lexicographic) {
     context.index_return_type_lexicographic = index_return_type_lexicographic;
 
-    check_base_type(context.index_return_type_lexicographic);
+    // check_base_type(context.index_return_type_lexicographic);
     update_representation(context.index_return_type_representation, context.index_return_type_lexicographic);
 }
 

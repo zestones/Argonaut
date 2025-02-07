@@ -1,0 +1,18 @@
+type date : struct {
+    day : int;
+    month : int;
+    year : int;
+} fstruct;
+
+var today : date;
+var tomorrow : date;
+
+func next_day(today : date) -> date {
+    return today + 1; 
+}
+
+today.day := 1;
+today.month := 8;
+today.year := 1999;
+
+tomorrow := next_day(today);

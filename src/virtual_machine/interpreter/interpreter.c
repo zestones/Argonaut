@@ -34,8 +34,12 @@ static void resolve_declaration_list(Node *declaration_list) {
 }
 
 ControlFlow resolve_statement_list(AST statement_list) {
-    // In case the return value cell has been filled we stop the execution
-    if (statement_list == NULL || get_return_cell().is_initialized) return CONTROL_NONE;   
+    // If the return value cell has already been initialized, we halt the execution of the current statement list.
+    // This check is only performed if we are not operating within the global scope (i.e., peek_region() > 0).
+    // The purpose of this condition is to allow the execution to proceed if there are subsequent statements
+    // that need to be processed, ensuring that the entire statement list is evaluated unless explicitly stopped.
+    // view issue #35 for more context
+    if (statement_list == NULL || (get_return_cell().is_initialized && peek_region() > 0)) return CONTROL_NONE;
     ControlFlow ctrl_flow = CONTROL_NONE;
 
     switch (statement_list->type) {
