@@ -1,6 +1,7 @@
 #include "../../stack_management/frame/stack_frame.h"
 #include "../../stack_management/stack_management.h"
 
+#include "../../../symbol_table/utility.h"
 #include "../../../data/region_table.h"
 
 #include "../../core/address/address_calculation.h"
@@ -40,10 +41,26 @@ static stack_frame construct_frame_with_parameters(AST parameter_list, AST argum
         if (param_node->type == A_PARAMETER && arg_node->type == A_ARGUMENT) {
             int index_type_declaration = get_declaration_description(param_node->index_declaration);
             declare_variable(&current_frame, index_type_declaration);
-            vm_cell cell = resolve_expression(arg_node->child);
+            if (is_declaration_base_type(index_type_declaration)) {
+                vm_cell cell = resolve_expression(arg_node->child);
+                int address = get_variable_address(param_node->index_declaration);
+                update_cell_in_stack_frame(&current_frame, address, cell);
+            }
+            else if (get_declaration_nature(index_type_declaration) == TYPE_STRUCT) {
+                int base_address         = get_variable_address(arg_node->child->index_declaration);
+                int size                 = get_declaration_execution(index_type_declaration);
+                int address              = get_variable_address(param_node->index_declaration);
 
-            int address = get_variable_address(param_node->index_declaration);
-            update_cell_in_stack_frame(&current_frame, address, cell);
+                for (int i = 0; i < size; i++) {
+                    vm_cell cell = get_cell_from_stack_frame(peek_execution_stack(), base_address + i);
+                    update_cell_in_stack_frame(&current_frame, address + i, cell);
+                    // TODO: handle nested array in struct
+                }
+            }
+            else if (get_declaration_nature(index_type_declaration) == TYPE_ARRAY) {
+                // TODO: handle arrays as param
+                printf("idnex : %d\n", index_type_declaration);
+            }
         }
 
         param_node = param_node->sibling;
