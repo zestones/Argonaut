@@ -29,9 +29,23 @@ func early_return_in_for() -> int {
     return i;
 }
 
+func test(n: int) -> int {
+    if (n < 1) {
+        early_return_in_while();
+        print("early return\n");
+        return n;
+    }
 
-print("%d\n", early_return_in_for());
-print("value: %d\n", early_return_in_while());
+    return 4;
+}
 
-print("%d\n", main(4));
-print("%d\n", main(0));
+early_return_in_for();
+
+print("test ----- \n");
+
+early_return_in_while();
+
+print("main = %d\n", main(4));
+print("main = %d\n", main(0));
+
+print("test = %d\n", test(0));

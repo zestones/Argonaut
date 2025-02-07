@@ -1,12 +1,14 @@
-type date : struct {
-    day : int;
-    month : int;
-    year : int;
-} fstruct;
+func next_day(a : int) -> int {
+    a := a + 1;
+    return a; 
+}
 
-var today : date;
+proc print_student() {
+    print("=============================\n");
+}
 
-today.day := 4;
+next_day(44);
 
-// print("%d/%d/%d\n", today.day, today.month, today.year);
-// print("Hello %d, here is %s");
+print_student();
+
+print("--------------\n");

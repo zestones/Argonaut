@@ -34,8 +34,11 @@ static void resolve_declaration_list(Node *declaration_list) {
 }
 
 ControlFlow resolve_statement_list(AST statement_list) {
-    // In case the return value cell has been filled we stop the execution
-    if (statement_list == NULL || get_return_cell().is_initialized) return CONTROL_NONE;   
+    // If the return value cell has already been initialized, we halt the execution of the current statement list.
+    // This check is only performed if we are not operating within the global scope (i.e., peek_region() > 0).
+    // The purpose of this condition is to allow the execution to proceed if there are subsequent statements
+    // that need to be processed, ensuring that the entire statement list is evaluated unless explicitly stopped.
+    if (statement_list == NULL || (get_return_cell().is_initialized && peek_region() > 0)) return CONTROL_NONE;
     ControlFlow ctrl_flow = CONTROL_NONE;
 
     switch (statement_list->type) {
@@ -68,6 +71,20 @@ ControlFlow resolve_statement_list(AST statement_list) {
 
         case A_FUNC_PROC_CALL_STATEMENT: {
             execute_func_proc_call(statement_list);
+
+            // When a function is called within this `resolve_statement_list` context, it implies that the returned value
+            // is not being used or assigned to any variable. This is because all assignment calls (affectations) are
+            // handled separately in the `assignement.c` module.
+
+            // To ensure that the execution flow continues smoothly after the function call, we need to reset the
+            // `is_initialized` flag of the `region_value` in the current stack frame. This prevents the early return
+            // mechanism from being triggered prematurely due to the `get_return_cell().is_initialized` condition.
+
+            // By setting `is_initialized` to 0, we indicate that the return value cell is not initialized, allowing
+            // subsequent statements in the current scope to execute as intended. This is crucial for maintaining
+            // the correct execution flow, especially in non-global scopes where functions might be called without
+            // immediately using their return values.
+            peek_execution_stack_as_mutable()->region_value.is_initialized = 0;
             break;
         }
 

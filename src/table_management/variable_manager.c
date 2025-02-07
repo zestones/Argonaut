@@ -25,8 +25,6 @@ void declaration_param_start(int index_lexeme_lexicographic, int index_type_lexi
     int index_type_declaration = find_declaration_index(index_type_lexicographic);
     int execution = get_declaration_execution(index_type_declaration); 
 
-    check_base_type(index_type_lexicographic);
-
     insert_declaration_param(index_lexeme_lexicographic, get_current_region_id(), index_type_declaration, get_region_size(get_current_region_id()));
     update_region_size(get_current_region_id(), get_region_size(get_current_region_id()) + execution);
 }

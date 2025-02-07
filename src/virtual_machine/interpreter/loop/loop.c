@@ -35,6 +35,7 @@ static void execute_for_loop(AST ast) {
 
     vm_cell cond_result = resolve_boolean_expression(condition);
     while (cond_result.value.boolean) {
+        if (get_return_cell().is_initialized) return;
         ControlFlow flow = resolve_statement_list(statement_block);
 
         if (flow == CONTROL_BREAK) break;
