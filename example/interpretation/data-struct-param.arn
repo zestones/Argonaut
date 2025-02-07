@@ -57,7 +57,7 @@ for (i := 0; i < 10; i++) {
     tab[i] := (i + 1) * 10;
 }
 
-a := next_day(student);
+next_day(student);
 print_student(z, student, a);
 
 print_array(tab);
