@@ -1,18 +1,7 @@
 <map id="count_format_specifiers" name="count_format_specifiers">
-<area shape="rect" id="Node000001" title=" " alt="" coords="692,80,871,105"/>
-<area shape="rect" id="Node000002" href="$dd/d08/input__validation_8c.html#ad3dd17f0853fcdf49904fd5847b0e4b3" title="Validates the arguments provided to an input&#45;like procedure against a format string." alt="" coords="412,5,644,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="736,77,643,45,598,33,599,28,645,39,738,72"/>
-<area shape="rect" id="Node000003" href="$d5/da0/print__validation_8c.html#a2e389d9645c7b92911f4c86af31b14a8" title="Validates the arguments provided to a print&#45;like procedure against a format string." alt="" coords="413,55,643,80"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="678,85,643,81,643,76,679,80"/>
-<area shape="rect" id="Node000004" href="$d1/d06/input_8c.html#a539fbc87af68ac31d5ba14ef1b30112c" title="Executes the input function for reading values from the user." alt="" coords="471,104,585,129"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="679,105,585,114,584,109,678,100"/>
-<area shape="rect" id="Node000007" href="$d6/db1/print_8c.html#a9b38818de8dbf519a23ac67cdbde43ad" title="Executes the print function for displaying formatted output." alt="" coords="473,153,583,179"/>
-<area shape="poly" id="edge8_Node000001_Node000007" title=" " alt="" coords="736,113,645,143,584,158,583,153,643,138,734,108"/>
-<area shape="rect" id="Node000005" href="$dc/d30/interpreter_8c.html#ab9a3da5caa208696b22cab3136303d71" title="Resolves and executes a list of statements." alt="" coords="193,129,364,155"/>
-<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="458,126,365,136,364,131,458,121"/>
-<area shape="poly" id="edge7_Node000005_Node000005" title=" " alt="" coords="315,120,305,111,279,108,257,110,246,115,243,120,250,128,245,131,238,121,242,111,256,105,279,103,307,106,318,116"/>
-<area shape="rect" id="Node000006" href="$dd/d57/condition_8c.html#a6af8daa1db7d1dfc4c2f26d340b53e56" title="Executes a conditional statement (if&#45;else)." alt="" coords="5,129,145,155"/>
-<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="179,154,146,153,146,148,179,148"/>
-<area shape="poly" id="edge6_Node000006_Node000005" title=" " alt="" coords="159,130,193,130,193,136,159,136"/>
-<area shape="poly" id="edge9_Node000007_Node000005" title=" " alt="" coords="459,162,364,153,364,148,459,157"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="285,31,464,56"/>
+<area shape="rect" id="Node000002" href="$dd/d08/input__validation_8c.html#ad3dd17f0853fcdf49904fd5847b0e4b3" title="Validates the arguments provided to an input&#45;like procedure against a format string." alt="" coords="5,5,237,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="272,36,237,32,238,27,272,30"/>
+<area shape="rect" id="Node000003" href="$d5/da0/print__validation_8c.html#a2e389d9645c7b92911f4c86af31b14a8" title="Validates the arguments provided to a print&#45;like procedure against a format string." alt="" coords="7,55,236,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="272,56,237,59,236,54,272,50"/>
 </map>

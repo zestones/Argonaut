@@ -159,7 +159,7 @@ $(document).ready(function() { init_codefold(1); });
 <div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span> </div>
 <div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span><span class="comment">// Generate the string representations</span></div>
 <div class="line"><a id="l00073" name="l00073"></a><span class="lineno"><a class="line" href="../../d5/d1e/node__type_8h.html#adf58d994c35f18ec84b628d8321f52e5">   73</a></span><span class="preprocessor">#define GENERATE_STRING(STRING) #STRING,</span></div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span><span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span> *NodeTypeStrings[] = {</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span><span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span> *NodeTypeStrings[] __attribute__((unused)) = {</div>
 <div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    <a class="code hl_define" href="../../d5/d1e/node__type_8h.html#a8f5b218de0103f61047220e7823c818c">FOREACH_NODE_TYPE</a>(<a class="code hl_define" href="../../d5/d1e/node__type_8h.html#adf58d994c35f18ec84b628d8321f52e5">GENERATE_STRING</a>)</div>
 <div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>};</div>
 <div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span><span class="preprocessor">#undef GENERATE_STRING</span></div>

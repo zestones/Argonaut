@@ -1,0 +1,8 @@
+<map id="get_array_size" name="get_array_size">
+<area shape="rect" id="Node000001" title="Calculates the total size of an array based on its dimensions." alt="" coords="439,29,556,55"/>
+<area shape="rect" id="Node000002" href="$d0/dda/execution_8c.html#a4be12a42641bf797eb058c1e3ba8e056" title="Allocates memory in the stack frame for a variable based on its type declaration." alt="" coords="260,29,391,55"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="425,45,391,45,391,39,425,39"/>
+<area shape="poly" id="edge2_Node000002_Node000002" title=" " alt="" coords="355,19,346,11,325,8,307,10,298,15,296,20,301,28,297,31,291,21,294,11,306,5,325,3,349,6,359,15"/>
+<area shape="rect" id="Node000003" href="$d0/dda/execution_8c.html#a06a0759c5bd15b42c5882b98801ce4cc" title="Handles the declaration of a variable by allocating memory in the stack frame." alt="" coords="5,29,212,55"/>
+<area shape="poly" id="edge3_Node000002_Node000003" title=" " alt="" coords="246,45,212,45,212,39,246,39"/>
+</map>

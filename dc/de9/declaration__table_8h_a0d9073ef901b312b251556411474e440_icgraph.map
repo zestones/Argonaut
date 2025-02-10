@@ -1,11 +1,12 @@
 <map id="is_declaration_base_type" name="is_declaration_base_type">
-<area shape="rect" id="Node000001" title="Checks if a declaration is a base type." alt="" coords="656,35,843,60"/>
-<area shape="rect" id="Node000002" href="$d2/d71/type__validation_8c.html#a5787d66f109d016f22256dc3a5f84435" title="Validates that the lexicographic index is a base type." alt="" coords="473,35,608,60"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="642,50,608,50,608,45,642,45"/>
-<area shape="rect" id="Node000003" href="$de/d23/variable__manager_8c.html#a0156a227fd1b11089557e8562aabb8dc" title="Starts the declaration of a parameter." alt="" coords="244,5,425,31"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="459,38,424,33,424,28,460,33"/>
-<area shape="rect" id="Node000005" href="$dc/d66/func__proc__manager_8c.html#a33b374d8276ae3ff4ba9b9f1a4f6bd15" title="Updates the return type of the current function." alt="" coords="261,55,408,95"/>
-<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="460,61,408,68,408,63,459,56"/>
-<area shape="rect" id="Node000004" href="$dc/d66/func__proc__manager_8c.html#a0f1715a0fb584002923b90035a0405cd" title="Adds a parameter to the current function or procedure context." alt="" coords="5,5,196,31"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="230,21,196,21,196,15,230,15"/>
+<area shape="rect" id="Node000001" title="Checks if a declaration is a base type." alt="" coords="443,50,629,75"/>
+<area shape="rect" id="Node000002" href="$d2/d71/type__validation_8c.html#a5787d66f109d016f22256dc3a5f84435" title="Validates that the lexicographic index is a base type." alt="" coords="260,13,395,38"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="450,50,394,40,395,35,451,45"/>
+<area shape="rect" id="Node000004" href="$d0/dda/execution_8c.html#a4be12a42641bf797eb058c1e3ba8e056" title="Allocates memory in the stack frame for a variable based on its type declaration." alt="" coords="262,86,393,111"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="449,80,393,90,392,85,448,75"/>
+<area shape="rect" id="Node000003" href="$dc/d66/func__proc__manager_8c.html#a33b374d8276ae3ff4ba9b9f1a4f6bd15" title="Updates the return type of the current function." alt="" coords="35,5,182,45"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="246,28,182,28,182,23,246,23"/>
+<area shape="poly" id="edge4_Node000004_Node000004" title=" " alt="" coords="364,76,354,68,327,65,305,67,293,71,291,77,297,84,293,88,286,78,290,68,304,62,327,59,356,63,368,72"/>
+<area shape="rect" id="Node000005" href="$d0/dda/execution_8c.html#a06a0759c5bd15b42c5882b98801ce4cc" title="Handles the declaration of a variable by allocating memory in the stack frame." alt="" coords="5,86,212,111"/>
+<area shape="poly" id="edge5_Node000004_Node000005" title=" " alt="" coords="248,101,212,101,212,96,248,96"/>
 </map>

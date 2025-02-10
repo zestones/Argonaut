@@ -1,7 +1,13 @@
 <map id="find_stack_frame_by_region_index" name="find_stack_frame_by_region_index">
-<area shape="rect" id="Node000001" title="Finds a stack frame by its region index." alt="" coords="5,23,163,63"/>
-<area shape="rect" id="Node000002" href="$d3/dbb/stack_8c.html#a77cf298d71db154b16def49afd37cf6c" title="Gets the value at a specific index in the stack." alt="" coords="211,5,339,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="163,30,196,26,197,31,163,36"/>
-<area shape="rect" id="Node000003" href="$d3/dbb/stack_8c.html#a05857cdc7b90e2fbf5d2fb5f050911d3" title="Returns the size of the stack." alt="" coords="251,55,299,80"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="163,51,237,60,237,65,163,56"/>
+<area shape="rect" id="Node000001" title="Finds a stack frame by its region index." alt="" coords="5,27,163,67"/>
+<area shape="rect" id="Node000002" href="$d5/dae/stack__management_8c.html#aa2ef970592fa16ffd9c0a13d6b00d0ed" title="Retrieves a stack frame by its ID." alt="" coords="211,5,384,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="163,34,197,29,197,34,164,39"/>
+<area shape="rect" id="Node000004" href="$d5/dae/stack__management_8c.html#ac5588cf2fdc4974ec292bb9e6c126435" title="Peeks at the top stack frame in a mutable way." alt="" coords="214,55,381,95"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="164,55,201,60,200,65,163,60"/>
+<area shape="rect" id="Node000003" href="$d3/dbb/stack_8c.html#a77cf298d71db154b16def49afd37cf6c" title="Gets the value at a specific index in the stack." alt="" coords="432,5,560,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="384,15,418,15,418,21,384,21"/>
+<area shape="rect" id="Node000005" href="$d3/dbb/stack_8c.html#accd7164d8805b31ef2bba785ce12a209" title="Peeks at the top value of the stack without popping it." alt="" coords="469,63,523,88"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="381,73,455,73,455,78,381,78"/>
+<area shape="rect" id="Node000006" href="$d3/dbb/stack_8c.html#aeda5460a4306b1c90f61ac5bf8ba49bc" title="Checks if the stack is empty." alt="" coords="608,63,691,88"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="524,73,595,73,595,78,524,78"/>
 </map>

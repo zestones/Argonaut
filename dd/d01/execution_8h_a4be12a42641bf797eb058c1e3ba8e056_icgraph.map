@@ -1,0 +1,6 @@
+<map id="declare_variable" name="declare_variable">
+<area shape="rect" id="Node000001" title="Allocates memory in the stack frame for a variable based on its type declaration." alt="" coords="260,29,391,55"/>
+<area shape="poly" id="edge1_Node000001_Node000001" title=" " alt="" coords="364,20,353,11,325,8,302,10,290,15,288,20,294,28,290,31,282,21,286,11,301,5,325,3,355,6,367,15"/>
+<area shape="rect" id="Node000002" href="$d0/dda/execution_8c.html#a06a0759c5bd15b42c5882b98801ce4cc" title="Handles the declaration of a variable by allocating memory in the stack frame." alt="" coords="5,29,212,55"/>
+<area shape="poly" id="edge2_Node000001_Node000002" title=" " alt="" coords="246,45,212,45,212,39,246,39"/>
+</map>
