@@ -1,0 +1,14 @@
+func sum_n(n : int) -> int {
+    return (n * (n + 1)) / 2;
+}
+
+proc main() {
+    var n : int;
+
+    print("Enter a number: ");
+    input("%d", n);
+
+    print("Sum of first %d numbers is %d\n", n, sum_n(n));
+}
+
+main();

@@ -1,0 +1,27 @@
+type point2D : struct {
+    x : int;
+    y : int;
+} fstruct;
+
+func distance(p1 : point2D, p2 : point2D) -> int {
+    var dx : int;
+    var dy : int;
+    dx := p2.x - p1.x;
+    dy := p2.y - p1.y;
+    return dx * dx + dy * dy;  // Distance au carré
+}
+
+proc main() {
+    var a  : point2D;
+    var b  : point2D;
+    
+    a.x := 3;
+    a.y := 4;
+    
+    b.x := 7;
+    b.y := 1;
+    
+    print("Distance squared: %d\n", distance(a, b));
+}
+
+main();

@@ -1,0 +1,58 @@
+type date : struct {
+    day : int;
+    month : int;
+    year : int;
+} fstruct;
+
+type list : array[1:12] of int;
+
+proc print_date(d : date) {
+    print("Date: %d/%d/%d\n", d.day, d.month, d.year);
+}
+
+func is_leap_year(y : int) -> bool {
+    if (((y % 4 == 0) && (y % 100 != 0)) || (y % 400) == 0) {
+        return true;
+    }
+}
+
+func days_in_month(m : int, y : int) -> int {
+    var days : list;
+
+    days[1] := 31; days[2] := 28; days[3] := 31; days[4] := 30;
+    days[5] := 31; days[6] := 30; days[7] := 31; days[8] := 31;
+    days[9] := 30; days[10] := 31; days[11] := 30; days[12] := 31;
+
+    if (m == 2 && is_leap_year(y) == true) {
+        return 29;
+    }
+
+    return days[m];
+}
+
+proc increment_date(d : date) {
+    d.day := d.day + 1;
+    if (d.day > days_in_month(d.month, d.year)) {
+        d.day := 1;
+        d.month := d.month + 1;
+        if (d.month > 12) {
+            d.month := 1;
+            d.year := d.year + 1;
+        }
+    }
+
+    print_date(d);
+}
+
+proc main() {
+    var today : date;
+
+    today.day := 29;
+    today.month := 2;
+    today.year := 2024;
+
+    print_date(today);
+    increment_date(today);
+}
+
+main();

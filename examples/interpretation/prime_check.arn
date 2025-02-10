@@ -1,0 +1,30 @@
+func is_prime(n : int) -> bool {
+    var i : int;
+
+    if (n < 2) {
+        return false;
+    }
+
+    for (i := 2; i * i <= n; i++) {
+        if (n % i == 0) {
+            return false;
+        }
+    }
+
+    return true;
+}
+
+proc main() {
+    var num : int;
+
+    print("Enter a number: ");
+    input("%d", num);
+
+    if (is_prime(num) == true) {
+        print("%d is a prime number.\n", num);
+    } else {
+        print("%d is not a prime number.\n", num);
+    }
+}
+
+main();
