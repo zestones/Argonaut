@@ -159,21 +159,21 @@ static void print_usage(const char *program_name) {
 
     // Arguments section (merged short and long options)
     fprintf(stdout, COLOR_BOLD_YELLOW "Arguments:\n" COLOR_RESET);
-    fprintf(stdout, COLOR_GREEN "  -i <file>          " COLOR_RESET ": The input file to be interpreted (required).\n");
+    fprintf(stdout, COLOR_GREEN "  -a <file>          " COLOR_RESET ": The input file to be interpreted (required).\n");
     fprintf(stdout, COLOR_GREEN "  -v, --verbose      " COLOR_RESET ": Enable verbose mode (display symbol tables, AST and execution Stack).\n");
     fprintf(stdout, COLOR_GREEN "  -h, --help         " COLOR_RESET ": Show this help message and exit.\n");
 
     // Examples section
     fprintf(stdout, "\n" COLOR_BOLD_YELLOW "Examples:\n" COLOR_RESET);
-    fprintf(stdout, COLOR_CYAN "  %s -i my_program.arg -v\n" COLOR_RESET, program_name);
+    fprintf(stdout, COLOR_CYAN "  %s -a my_program.arg -v\n" COLOR_RESET, program_name);
     fprintf(stdout, "    - Interprets 'my_program.arg' with verbose output (symbol tables, AST, execution Stack, etc.).\n\n");
 
-    fprintf(stdout, COLOR_CYAN "  %s -i my_program.arg --verbose\n" COLOR_RESET, program_name);
+    fprintf(stdout, COLOR_CYAN "  %s -a my_program.arg --verbose\n" COLOR_RESET, program_name);
     fprintf(stdout, "    - Long option equivalent of the above example.\n\n");
 
     // Constraints section
     fprintf(stdout, COLOR_BOLD_YELLOW "Constraints:\n" COLOR_RESET);
-    fprintf(stdout, COLOR_RED "  - The input file must be specified with the '-i <file>' option.\n");
+    fprintf(stdout, COLOR_RED "  - The input file must be specified with the '-a <file>' option.\n");
     fprintf(stdout, COLOR_RED "  - If no file is specified, the program will terminate with an error.\n\n");
 
     exit(EXIT_SUCCESS);
@@ -200,9 +200,9 @@ int main(int argc, char **argv) {
     };
 
     // Parse command-line options
-    while ((opt = getopt_long(argc, argv, "i:vh", long_options, NULL)) != -1) {
+    while ((opt = getopt_long(argc, argv, "a:vh", long_options, NULL)) != -1) {
         switch (opt) {
-            case 'i':
+            case 'a':
                 input_file = optarg;  // Capture the file argument
                 break;
             case 'v':

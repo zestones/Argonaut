@@ -2,59 +2,15 @@
   <img src="./extensions/custom-icons/icons/icon.png" alt="Argonaut">
   
   [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-  [![Build Status](https://img.shields.io/github/actions/workflow/status/zestones/argonaut/build.yml?branch=main)](https://github.com/zestones/argonaut/actions)
+  [![Build Status](https://img.shields.io/github/actions/workflow/status/zestones/Argonaut/build.yml?branch=main)](https://github.com/zestones/Argonaut/actions)
   [![Dependencies](https://img.shields.io/badge/dependencies-GCC%2C%20Flex%2C%20Bison-orange)](https://gcc.gnu.org/)
 
   <p>Argonaut is a procedural programming language designed for educational purposes, featuring a compiler and virtual machine implemented in C. This project aims to provide a comprehensive understanding of how compilers and interpreters function.
   </p>
 </div>
 
-## 🚀 Key Features
-
-### Compiler Architecture
-
-- **Three-phase compilation process**  
-  ```mermaid
-  graph LR
-  subgraph "Compiler Pipeline"
-    direction LR
-    Frontend["Frontend (Lexer/Parser)"] --> Middleend["Middleend (Semantic Analysis)"]
-    Middleend --> Backend["Backend (Code Generation)"]
-  end
-  
-  Frontend -.-> SymbolTable["Symbol Tables"]
-  Middleend -.-> TypeSystem["Type System"]
-  Backend -.-> IR["Intermediate Representation"]
-  IR --> VM["Virtual Machine Execution"]
-  ```
-
-- Modular design with clean separation between:
-  - Frontend (Lexer/Parser)
-  - Middleend (Semantic Analysis)
-  - Backend (Code Generation)
-  
-## 📜 Language Overview
-
-### Sample Program
-```js
-PROG fibonacci;
-
-func int fib(int n) {
-    if n <= 1 {
-        return n;
-    }
-    return fib(n-1) + fib(n-2);
-}
-
-VAR x: int = 10;
-
-MAIN {
-    print("Fibonacci sequence:");
-    for var i = 0; i < x; i++ {
-        print(fib(i));
-    }
-}
-```
+> [!IMPORTANT]
+> Checkout **[wiki](#link)** documentation to understand how the Argonaut compiler and vm works.
 
 ## 🛠️ Getting Started
 
@@ -71,12 +27,48 @@ Before you begin, ensure you have the following installed:
 ### Installation
 
 ```bash
-git clone https://github.com/zestones/argonaut.git
-cd argonaut
+git clone https://github.com/zestones/Argonaut.git
+cd Argonaut
 
 # Build compiler and VM
 make
 ```
+
+The executable files will be generated in the `bin` directory. ``argoc`` stand for Argonaut compiler and ``argov`` stand for Argonaut virtual machine.
+
+## 🚀 Usage
+
+- **Compiler:** Run ``./bin/argoc -a <source-file> -o <output-file>``. Use ./``./bin/argov --help`` for more options.
+- **Virtual Machine:** Run ``./bin/argov –a <intermediate-file>``. Use ``./bin/argov –h`` for more options.
+
+## 📜 Language Overview
+
+Checkout the **[Argonaut Language Guide](#link)** documentation to write your own programs in Argonaut.
+
+### Sample Program
+
+```js
+func fibonacci(num : int) -> int {
+    if (num <= 1) {
+        return num;
+    }
+
+    return fibonacci(num - 1) + fibonacci(num - 2);
+}
+
+proc main()  {
+    var num : int;
+    print("Enter a number: ");
+    input("%d", num);
+
+    print("fibonacci(%d) = %d\n", num, fibonacci(num));
+}
+
+main();
+```
+
+> [!NOTE]
+> Example programs are provided in the `examples/interpretation` directory.
 
 ## 📂 Project Structure
 
@@ -85,15 +77,15 @@ make
 ├── bin/                    # Compiled binaries
 ├── docs/                   # Generated documentation
 ├── examples/               # Sample programs
-│   ├── hello.ag           # Basic example
-│   └── algorithms/        # Complex programs
+│   ├── hello.arn           # Basic example
+│   └── algorithms/         # Complex programs
 ├── include/                # Header files
 ├── lib/                    # Utility libraries
 ├── src/                    # Core implementation
-│   ├── frontend/          # Lexer/Parser
-│   ├── middleend/         # Semantic analysis
-│   └── backend/           # Code generation
-└── tests/                  # Test suite
+│   ├── frontend/           # Lexer/Parser
+│   ├── middleend/          # Semantic analysis
+│   └── backend/            # Code generation
+└── tests/                  # Regression tests
 ```
 
 ## 🤝 Contributing
@@ -118,7 +110,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 <div align="center">
   <p>Made with ❤️ by the Argonaut Contributors</p>
-  <a href="https://github.com/zestones/argonaut/graphs/contributors">
-    <img src="https://contrib.rocks/image?repo=zestones/argonaut" />
+  <a href="https://github.com/zestones/Argonaut/graphs/contributors">
+    <img src="https://contrib.rocks/image?repo=zestones/Argonaut" />
   </a>
 </div>
