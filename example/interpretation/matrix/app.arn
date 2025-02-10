@@ -1,4 +1,4 @@
-PROG
+
 
 type matrix: array[0:9, 0:9] of int;
 

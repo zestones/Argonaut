@@ -3,6 +3,7 @@
 Error construct_error(ErrorType type, int line, int column, const char *format, ...) {
     Error error;
 
+    error.type = type;
     error.line = line;
     error.column = column;
 

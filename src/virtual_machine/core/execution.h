@@ -4,11 +4,32 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#include "../stack_management/frame/stack_frame.h"
+
 #include "../../ast/ast.h"
 #include "vm_cell.h"
 
 
-
+/**
+ * @brief Allocates memory in the stack frame for a variable based on its type declaration.
+ *
+ * This function recursively allocates the required memory for variables, including 
+ * primitive types, arrays, and structs. It handles complex types by traversing their 
+ * structure and allocating memory for each component.
+ *
+ * @param index_type_declaration The index of the type declaration for the variable. 
+ *        This is used to determine the nature and structure of the type.
+ * @param frame The stack frame to declare variable in.
+ *
+ * @details
+ * - For base types (e.g., integers, floats), the function allocates the necessary 
+ *   stack space directly.
+ * - For arrays, the function recursively allocates memory for each element based 
+ *   on the array's size and element type.
+ * - For structs, the function iterates over each field in the struct and allocates 
+ *   memory according to the field's type declaration.
+ */
+void declare_variable(stack_frame *frame, int index_type_declaration);
 
 /**
  * @brief Handles the declaration of a variable by allocating memory in the stack frame.

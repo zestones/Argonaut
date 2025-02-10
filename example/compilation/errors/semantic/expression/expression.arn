@@ -1,4 +1,4 @@
-PROG
+
 
 var a : int;
 var b : float;

@@ -65,14 +65,6 @@ char *get_lexeme(int index) {
     return lexeme_table[index].lexeme;
 }
 
-int find_lexeme_index(const char* lexeme) {
-    int index = get_lexeme_index(lexeme);
-    if (index == NULL_VALUE) {
-        fprintf(stderr, COLOR_RED "<Error> Lexeme not found in the table\n" COLOR_RESET);
-        exit(EXIT_FAILURE);
-    }
-}
-
 static char* format_lexeme_row(void* data) {
     Lexeme* row = (Lexeme*)data;
     char* formatted_row = (char*)malloc(512 * sizeof(char));

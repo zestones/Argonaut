@@ -12,6 +12,7 @@ static void execute_while_loop(AST ast) {
     vm_cell condition = resolve_boolean_expression(ast->child->child);
 
     while (condition.value.boolean) {
+        if (get_return_cell().is_initialized) return;
         ControlFlow flow = resolve_statement_list(ast->child->sibling);
 
         if (flow == CONTROL_BREAK) break;
@@ -34,6 +35,7 @@ static void execute_for_loop(AST ast) {
 
     vm_cell cond_result = resolve_boolean_expression(condition);
     while (cond_result.value.boolean) {
+        if (get_return_cell().is_initialized) return;
         ControlFlow flow = resolve_statement_list(statement_block);
 
         if (flow == CONTROL_BREAK) break;

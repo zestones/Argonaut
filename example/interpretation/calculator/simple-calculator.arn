@@ -1,4 +1,4 @@
-PROG
+
 
 // Calculator Program with Enhanced ASCII Display
 var choice: int;

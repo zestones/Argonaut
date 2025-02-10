@@ -1,10 +1,3 @@
-PROG
-
-var n : int;           
-var fib : int;         
-var fib_1 : int;       
-var fib_2 : int;       
-
 
 func main(n: int) -> int {
     if (n < 1) {
@@ -14,5 +7,45 @@ func main(n: int) -> int {
     return 4;
 }
 
-print("%d\n", main(4));
-print("%d\n", main(0));
+func early_return_in_while() -> int {
+    var i : int;
+    i := 0;
+
+    while(i < 10) {
+        if (i == 6) { return i; }
+        i++;
+    }
+
+    return i;
+}
+
+func early_return_in_for() -> int {
+    var i : int;
+
+    for (i := 0; i <= 10; i++) {
+        if (i == 6) { return i; }
+    }
+
+    return i;
+}
+
+func test(n: int) -> int {
+    if (n < 1) {
+        early_return_in_while();
+        print("early return\n");
+        return n;
+    }
+
+    return 4;
+}
+
+early_return_in_for();
+
+print("test ----- \n");
+
+early_return_in_while();
+
+print("main = %d\n", main(4));
+print("main = %d\n", main(0));
+
+print("test = %d\n", test(0));

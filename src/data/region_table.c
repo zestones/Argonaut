@@ -144,7 +144,7 @@ void fprintf_region_table(FILE* out) {
         if (region_table[i].nis == NULL_VALUE) continue;
 
         int char_length = 20;
-        char index_str[char_length], size_str[char_length], nis_str[char_length], ast_str[char_length];
+        char index_str[char_length], size_str[char_length], nis_str[char_length];
 
         sprintf(index_str, "%d", i);
         sprintf(size_str, "%d", region_table[i].size);

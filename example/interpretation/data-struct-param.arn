@@ -1,0 +1,63 @@
+type date_t : struct {
+    day : int;
+    month : int;
+    year : int;
+} fstruct;
+
+type arrayOfInt : array[0:10] of int;
+
+type student_t : struct {
+    birth_date : date_t;
+    id : int;
+    tab : arrayOfInt;
+} fstruct;
+
+var tomorrow : date_t;
+var student : student_t;
+var a : int;
+var z : float;
+var i : int;
+var tab : arrayOfInt;
+
+
+proc print_date(date : date_t, a: int) {
+    print("%d:%d:%d\n", date.day, date.month, date.year);
+    print("a: %d\n", a);
+}
+
+func next_day(student : student_t) -> int {
+    student.birth_date.day := student.birth_date.day + 1;
+    return student.birth_date.day; 
+}
+
+proc print_student(z : float, student : student_t, a : int) {
+    print("ID = %d\n", student.id);
+    print("%d:%d:%d\n", student.birth_date.day, student.birth_date.month, student.birth_date.year);
+    print("z -> %f\n", z);
+    print("a -> %d\n", a);
+    
+    print("=============================\n");
+    print_date(student.birth_date, a);
+}
+
+proc print_array(tab : arrayOfInt) {
+    for (i := 0; i < 10; i++) {
+        print("tab[%d] = %d\n", i, tab[i]);
+    }
+}
+
+student.birth_date.year := 1999;
+student.birth_date.day := 4;
+student.birth_date.month := 8;
+student.id := 2;
+
+a := 44;
+z := 88.5;
+for (i := 0; i < 10; i++) {
+    tab[i] := (i + 1) * 10;
+}
+
+next_day(student);
+print_student(z, student, a);
+
+print_array(tab);

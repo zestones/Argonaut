@@ -1,4 +1,4 @@
-PROG
+
 
 var n : int;         // Number to calculate factorial for
 var fact : int;      // Holds the factorial result

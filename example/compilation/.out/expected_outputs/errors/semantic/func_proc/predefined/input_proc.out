@@ -10,6 +10,10 @@
   Format string expects 2 arguments, but 1 were provided.
   Ensure the correct number of arguments are passed to match the format string.
 
+[Semantic Error] Argument mismatch in format string at example/compilation/errors/semantic/func_proc/predefined/input_proc.arn:25:16.
+  Format string expects 2 arguments, but 0 were provided.
+  Ensure the correct number of arguments are passed to match the format string.
+
 Verbose mode enabled. Printing tables and ast...
 
 +----------------------------+
@@ -168,5 +172,7 @@ Root of the AST:
 │   │   │   │   ├── A_ARGUMENT, Lexico Idx: -1, Decl Idx: -1
 │   │   │   │   │   ├── A_IDENTIFIER, Lexico Idx: 5, Decl Idx: 5 -- Lexeme: 'name'
 │   │   │   └── A_FORMAT_STRING, Lexico Idx: 17, Decl Idx: -1 -- Lexeme: '"%c %d"'
+│   │   └── A_INPUT_STATEMENT, Lexico Idx: -1, Decl Idx: -1
+│   │   │   ├── A_FORMAT_STRING, Lexico Idx: 17, Decl Idx: -1 -- Lexeme: '"%c %d"'
 +------------------------------------------------------------------------+
 

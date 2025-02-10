@@ -1,4 +1,4 @@
-PROG
+
 // Assuming the following types are defined as:
 type date : struct {
     jour : int;

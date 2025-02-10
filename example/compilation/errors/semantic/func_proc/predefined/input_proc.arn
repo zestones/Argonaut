@@ -1,4 +1,4 @@
-PROG
+
 
 var x : int;
 var name : char;
@@ -22,3 +22,4 @@ input("%d %c", my_struct.jour, name);
 input("%d %c", my_struct.annee, name);
 input("%d", my_struct.mois, name);
 input("%c %d", name);
+input("%c %d");

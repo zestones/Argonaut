@@ -5,7 +5,7 @@
 #include "../../utils/utils.h"
 #include "../../utils/stack.h"
 
-static int find_declaration_index_in_region_by_nature(int tlex_index, int region, int nature_filter) {
+static int find_declaration_index_in_region_by_nature(int tlex_index, int region, Nature nature_filter) {
     Declaration *declaration_table = get_declaration_table();    
     int index = tlex_index;
     
@@ -15,7 +15,7 @@ static int find_declaration_index_in_region_by_nature(int tlex_index, int region
 
     while (index != NULL_VALUE) {
         if (declaration_table[index].region == region && 
-            (nature_filter == NULL_VALUE || declaration_table[index].nature == nature_filter)
+            (nature_filter == (Nature) NULL_VALUE || declaration_table[index].nature == nature_filter)
         ) {
             push(&overload_stack, &index, sizeof(int));
         }

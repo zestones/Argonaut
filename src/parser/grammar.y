@@ -72,7 +72,6 @@
 }
 
 
-%token PROG
 %token SEMICOLON TWO_POINTS COMMA OPEN_PARENTHESIS CLOSE_PARENTHESIS DOT
 %token START END
 %token ARRAY OF OPEN_BRACKET CLOSE_BRACKET
@@ -115,16 +114,15 @@
 %debug
 %%
 
-program: PROG declaration_list statement_list { 
+program: declaration_list statement_list { 
             $$ = construct_node_default(A_PROGRAM); 
 
-            add_child($$, $2); 
-            add_sibling($2, $3);
+            add_child($$, $1); 
+            add_sibling($1, $2);
 
             update_region_ast(peek_region(), $$);
         }
-        | { $$ = NULL; }
-       ;
+;
      
 // Declarations
 declaration_list: declaration declaration_list {    
@@ -597,6 +595,7 @@ print_statement: PRINT OPEN_PARENTHESIS format_string COMMA argument_list CLOSE_
                 | PRINT OPEN_PARENTHESIS format_string CLOSE_PARENTHESIS SEMICOLON {
                       $$ = construct_node_default(A_PRINT_STATEMENT);
                       add_child($$, $3);
+                      check_print_proc_argument_list($3, construct_node_default(A_ARGUMENT_LIST));
                 }
 ;
 
@@ -614,6 +613,7 @@ input_statement: INPUT OPEN_PARENTHESIS format_string COMMA input_argument_list 
                | INPUT OPEN_PARENTHESIS format_string CLOSE_PARENTHESIS SEMICOLON {
                     $$ = construct_node_default(A_INPUT_STATEMENT);
                     add_child($$, $3);
+                    check_print_proc_argument_list($3, construct_node_default(A_ARGUMENT_LIST));
                }
 ;
 

@@ -3,7 +3,6 @@
 #include "../../data/region_table.h"
 #include "type_inference.h"
 
-
 int resolve_expression_type(Node *expression) {
     switch (expression->type) {
         case A_IDENTIFIER:
