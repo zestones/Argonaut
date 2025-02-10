@@ -44,6 +44,8 @@ vm_cell resolve_boolean_expression(Node *expression) {
                 return construct_vm_cell(BOOLEAN, &(int){left.value.integer == right.value.integer});
             } else if (left.type == REAL) {
                 return construct_vm_cell(BOOLEAN, &(int){left.value.real == right.value.real});
+            } else if (left.type == CHARACTER)  {
+                return construct_vm_cell(BOOLEAN, &(int){left.value.character == right.value.character});
             }
             break;
         }
@@ -59,6 +61,8 @@ vm_cell resolve_boolean_expression(Node *expression) {
                 return construct_vm_cell(BOOLEAN, &(int){left.value.integer != right.value.integer});
             } else if (left.type == REAL) {
                 return construct_vm_cell(BOOLEAN, &(int){left.value.real != right.value.real});
+            } else if (left.type == CHARACTER)  {
+                return construct_vm_cell(BOOLEAN, &(int){left.value.character != right.value.character});
             }
             break;
         }
