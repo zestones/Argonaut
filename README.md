@@ -39,6 +39,14 @@ make
 
 The executable files will be generated in the `bin` directory. ``argoc`` stand for Argonaut compiler and ``argov`` stand for Argonaut virtual machine.
 
+You can also install the VSCode extension for Argonaut to higlight the Argonaut language.
+
+```bash
+make extension-install
+```
+
+To delete the VSCode extension, run ``make extension-uninstall``.
+
 ## 🚀 Usage
 
 - **Compiler:** Run ``./bin/argoc -a <source-file> -o <output-file>``. Use ./``./bin/argov --help`` for more options.
@@ -52,9 +60,7 @@ Checkout the **[Argonaut Language Guide](#link)** documentation to write your ow
 
 ```js
 func fibonacci(num : int) -> int {
-    if (num <= 1) {
-        return num;
-    }
+    if (num <= 1) { return num; }
 
     return fibonacci(num - 1) + fibonacci(num - 2);
 }
@@ -79,15 +85,12 @@ main();
 .
 ├── bin/                    # Compiled binaries
 ├── docs/                   # Generated documentation
+├── extensions/             # Custom extensions (for Argonaut syntax highlighting)
 ├── examples/               # Sample programs
-│   ├── hello.arn           # Basic example
-│   └── algorithms/         # Complex programs
-├── include/                # Header files
-├── lib/                    # Utility libraries
+│   ├── compilation/        # Compiler examples
+│   └── interpretation/     # Interpreter examples        
+├── lib/                    # Utility libraries (colors, and table formatting)
 ├── src/                    # Core implementation
-│   ├── frontend/           # Lexer/Parser
-│   ├── middleend/          # Semantic analysis
-│   └── backend/            # Code generation
 └── tests/                  # Regression tests
 ```
 

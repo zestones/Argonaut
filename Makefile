@@ -129,7 +129,7 @@ clean: simple-clean
 	rm -rf ./.pytest_cache/
 	rm -f log.txt
 
-extension-clean:
+extension-uninstall:
 	rm -rf ~/.vscode/extensions/custom-icons
 	rm -rf ~/.vscode-server/extensions/custom-icons
 	rm -rf ~/.vscode/extensions/syntax-highlighting
