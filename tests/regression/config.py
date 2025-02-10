@@ -3,7 +3,7 @@ import os
 TEST_DIR = "example/compilation/"
 OUTPUTS_DIR = "example/compilation/.out/expected_outputs/"
 ACTUAL_OUTPUTS_DIR = "example/compilation/.out/actual_outputs/"
-COMPILER_CMD = os.path.join(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')), 'argoc')
+COMPILER_CMD = os.path.join(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', 'bin')), 'argoc')
 COMPILER_OPTIONS = "-va"
 
 def ensure_directory_exists(path: str):

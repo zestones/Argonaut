@@ -1,6 +1,9 @@
 <div align="center">
   <img src="./extensions/custom-icons/icons/icon.png" alt="Argonaut">
   
+  <br />
+  <br />
+  
   [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
   [![Build Status](https://img.shields.io/github/actions/workflow/status/zestones/Argonaut/build.yml?branch=main)](https://github.com/zestones/Argonaut/actions)
   [![Dependencies](https://img.shields.io/badge/dependencies-GCC%2C%20Flex%2C%20Bison-orange)](https://gcc.gnu.org/)
