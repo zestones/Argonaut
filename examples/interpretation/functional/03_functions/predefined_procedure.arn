@@ -1,0 +1,14 @@
+// Example of using input and print in Argonaut
+
+proc main() {
+    var age : int;
+
+    // Prompt the user for their age
+    print("Enter your age: ");
+    input("%d", age);    // Read input as an integer
+
+    // Display the collected information
+    print("\nHello ! You are %d years old.\n", age);
+}
+
+main();

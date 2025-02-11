@@ -1,0 +1,30 @@
+// Example of nested functions in Argonaut
+
+// Define a function that performs a sequence of operations using nested functions
+func process_sequence(value : int) -> int {
+    // Nested function to double the input value
+    func double() -> int {
+        return value * 2;
+    }
+
+    // Nested function to square the input value
+    func square() -> int {
+        return value * value;
+    }
+
+    // Nested function to add a constant to the input value
+    func add_constant(constant : int) -> int {
+        return value + constant;
+    }
+
+    return double() +  square() + add_constant(5);
+}
+
+proc main() {
+    var initial_value : int;
+
+    initial_value := 3;
+    print("Final result after processing sequence: %d\n", process_sequence(initial_value));
+}
+
+main();

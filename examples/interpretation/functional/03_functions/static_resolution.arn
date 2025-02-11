@@ -1,0 +1,28 @@
+// Example of static resolution of variables in Argonaut
+
+// Define a function with nested functions
+func static_resolution() -> int {
+    var outer_value : int;
+
+    // Nested function that uses the outer variable
+    func inner_function() -> int {
+        var inner_value : int;
+
+        // Nested function that uses both outer and inner variables
+        func deep_inner_function() -> int {
+            return outer_value + inner_value;
+        }
+
+        inner_value := 5;
+        return deep_inner_function();
+    }
+
+    outer_value := 10;
+    return inner_function();
+}
+
+proc main() {
+    print("Result of static resolution: %d\n", static_resolution());
+}
+
+main();

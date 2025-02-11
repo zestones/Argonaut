@@ -1,0 +1,47 @@
+// Example of nested structures with numerical data in Argonaut
+
+// Define a custom type 'Point' as a struct
+type Point : struct {
+    x : int;
+    y : int;
+} fstruct;
+
+// Define a custom type 'Rectangle' as a struct containing two 'Point' structures
+type Rectangle : struct {
+    top_left : Point;
+    bottom_right : Point;
+} fstruct;
+
+// Function to calculate the area of a rectangle
+func calculate_area(rect : Rectangle) -> int {
+    var width : int;
+    var height : int;
+    
+    width  := rect.bottom_right.x - rect.top_left.x;
+    height := rect.bottom_right.y - rect.top_left.y;
+    
+    return width * height;
+}
+
+// Function to print the details of a rectangle
+proc print_rectangle(rect : Rectangle) {
+    print("Top-left corner: (%d, %d)\n", rect.top_left.x, rect.top_left.y);
+    print("Bottom-right corner: (%d, %d)\n", rect.bottom_right.x, rect.bottom_right.y);
+    print("Area: %d\n", calculate_area(rect));
+}
+
+proc main() {
+    // Declare a variable of type 'Rectangle'
+    var rect : Rectangle;
+
+    rect.top_left.x := 1;
+    rect.top_left.y := 1;
+    
+    rect.bottom_right.x := 4;
+    rect.bottom_right.y := 5;
+
+    // Print the rectangle details
+    print_rectangle(rect);
+}
+
+main();

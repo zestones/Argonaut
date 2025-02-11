@@ -1,0 +1,19 @@
+// Example of early return in Argonaut
+
+func safe_divide(a : int, b : int) -> int {
+    if (b == 0) {
+        print("\nError: Division by zero is not allowed.\n");
+        return -1; // Early return with default value
+    }
+    
+    return a / b;
+}
+
+// Main procedure
+proc main() {
+    print("Safe division examples:\n");
+    print("10 / 2 = %d\n", safe_divide(10, 2));
+    print("10 / 0 = %d\n", safe_divide(10, 0));
+}
+
+main();

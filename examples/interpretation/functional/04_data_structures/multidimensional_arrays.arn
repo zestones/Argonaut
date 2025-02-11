@@ -1,0 +1,65 @@
+// Example of multidimensional arrays and arrays of custom types in Argonaut
+
+// Define a custom type 'Point' as a struct
+type Point : struct {
+    x : int;
+    y : int;
+} fstruct;
+
+type matrix : array[0:2, 0:2] of int;
+
+var i : int;
+var j : int;
+
+proc multidimensional_arrays()  {
+    // Declare and initialize a 2D array of integers
+    var matrix : matrix;
+    matrix[0, 0] := 1;
+    matrix[0, 1] := 2;
+    matrix[0, 2] := 3;
+    matrix[1, 0] := 4;
+    matrix[1, 1] := 5;
+    matrix[1, 2] := 6;
+    matrix[2, 0] := 7;
+    matrix[2, 1] := 8;
+    matrix[2, 2] := 9;
+
+    // Print the 2D array elements
+    print("2D Array elements:\n");
+    for (i := 0; i < 3; i++)  {
+        for (j := 0; j < 3; j++)  {
+            print("matrix[%d, %d] = %d\n", i, j, matrix[i, j]);
+        }
+        print("\n");
+    }
+}
+
+proc custom_type_arrays()  {
+    // Declare and initialize an array of 'Point' structures
+    type list   : array[0:5] of Point;
+    var points  : list;
+    points[0].x :=  1;
+    points[0].y :=  2;
+    points[1].x :=  3;
+    points[1].y :=  4;
+    points[2].x :=  5;
+    points[2].y :=  6;
+    points[3].x :=  7;
+    points[3].y :=  8;
+    points[4].x :=  9;
+    points[4].y :=  10;
+
+    // Print the array elements
+    print("Array Point elements:\n");
+    for (i := 0; i < 5; i++)  {
+        print("Point(%d): <%d, %d>\n", i, points[i].x, points[i].y);
+    }
+}
+
+
+proc main() {
+    multidimensional_arrays();
+    custom_type_arrays();
+}
+
+main();
