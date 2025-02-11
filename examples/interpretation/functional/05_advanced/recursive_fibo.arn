@@ -93,8 +93,7 @@ proc display_fibonacci_chart(num : int) {
 }
 
 proc main() {
-    print("Enter the position in Fibonacci sequence (max 50): ");
-    input("%d", n);
+    n := 12;
 
     if (n < 0) {
         print("Fibonacci is undefined for negative numbers.\n");
