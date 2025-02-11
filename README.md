@@ -5,7 +5,8 @@
   <br />
   
   [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-  [![Build Status](https://img.shields.io/github/actions/workflow/status/zestones/Argonaut/build.yml?branch=main)](https://github.com/zestones/Argonaut/actions)
+  [![Regression Tests](https://github.com/zestones/Argonaut/actions/workflows/regression.yml/badge.svg?branch=main)](https://github.com/zestones/Argonaut/actions/workflows/regression.yml)
+  [![pages-build-deployment](https://github.com/zestones/Argonaut/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/zestones/Argonaut/actions/workflows/pages/pages-build-deployment)
   [![Dependencies](https://img.shields.io/badge/dependencies-GCC%2C%20Flex%2C%20Bison-orange)](https://gcc.gnu.org/)
 
   <p>Argonaut is a procedural programming language designed for educational purposes, featuring a compiler and virtual machine implemented in C. This project aims to provide a comprehensive understanding of how compilers and interpreters function.
