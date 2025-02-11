@@ -49,8 +49,16 @@ To delete the VSCode extension, run ``make extension-uninstall``.
 
 ## 🚀 Usage
 
-- **Compiler:** Run ``./bin/argoc -a <source-file> -o <output-file>``. Use ./``./bin/argov --help`` for more options.
-- **Virtual Machine:** Run ``./bin/argov –a <intermediate-file>``. Use ``./bin/argov –h`` for more options.
+- **Compiler:** Run :
+  ```bash
+  ./bin/argoc -a <source-file> -o <output-file>
+  ```
+  Use ./``./bin/argov --help`` for more options.
+- **Virtual Machine:** Run :
+  ```bash
+  ./bin/argov –a <intermediate-file>
+  ```
+  Use ``./bin/argov –h`` for more options.
 
 ## 📜 Language Overview
 

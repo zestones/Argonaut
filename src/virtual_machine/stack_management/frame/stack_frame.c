@@ -54,7 +54,7 @@ void fprintf_stack_frame(FILE *out, stack_frame frame) {
 
 
     print_table_separator(out, num_col, width, width, width, width);
-    printf("\n");
+    fprintf(stdout, "\n");
 
     print_table_separator(out, num_col, width, width, width, width);
     print_table_header(out, num_col, width, "DYNAMIC LINK", width, "REGION INDEX");
@@ -76,7 +76,7 @@ void fprintf_stack_frame(FILE *out, stack_frame frame) {
     print_table_title(out, "Return Value");
     fprintf_vm_cell(out, frame.region_value);
 
-    printf("\n");
+    fprintf(stdout, "\n");
     print_table_separator(out, num_col, width, width, width, width);
-    printf("\n");
+    fprintf(stdout, "\n");
 }

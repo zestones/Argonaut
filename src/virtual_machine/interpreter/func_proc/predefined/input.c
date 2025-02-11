@@ -44,7 +44,7 @@ static void resolve_argument_assignement(AST arg_list, vm_cell cell) {
             break;
         
         default:
-            printf("Error: Invalid argument list.\n");
+            fprintf(stderr, "<input.c> - Invalid argument list.\n");
             break;
         }
 }
@@ -54,28 +54,19 @@ void execute_input(AST ast) {
 
     AST arg_list = ast->child;
     AST format_node = arg_list->sibling;
-    if (format_node == NULL) {
-        printf("Error: Missing format string.\n");
-        return;
-    }
 
     const char *raw_format = get_lexeme(format_node->index_lexicographic);
-    if (raw_format == NULL) {
-        printf("Invalid format string.\n");
-        return;
-    }
-
     char *format = strip_quotes(raw_format);
-    if (format == NULL) {
-        printf("Malformed format string.\n");
-        return;
-    }
+
+    // Note: No validation checks are performed on the 'raw_format' string or the processed 'format' string
+    // at this stage. It is assumed that these strings have already been validated by the compiler. If the
+    // compiler detected any errors in the format string, the program should not reach this execution point.
+    // This function trusts that the input format is correct and directly processes it for output.
 
     char buffer[BUFFER_SIZE] = {0};
     arg_list = arg_list->child;
     while (format[0] != '\0') {
-        if (format[0] == '%' && 
-           (format[1] == 'd' || format[1] == 'f' || format[1] == 's' || format[1] == 'c')) {
+        if (format[0] == '%' && (format[1] == 'd' || format[1] == 'f' || format[1] == 's' || format[1] == 'c')) {
             char specifier = format[1];
             vm_cell cell;
 
@@ -103,9 +94,7 @@ void execute_input(AST ast) {
                     cell = construct_vm_cell(CHARACTER, &value);
                     break;
                 }
-                default:
-                    printf("Error: Unsupported format specifier '%c'.\n", specifier);
-                    return;
+                // No default case as the format is already checked for 'd', 'f', 's', or 'c'
             }
 
             resolve_argument_assignement(arg_list->child, cell); 

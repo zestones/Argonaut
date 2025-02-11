@@ -141,8 +141,8 @@ vm_cell resolve_boolean_expression(Node *expression) {
             return resolve_boolean_expression(expression->child);
 
         default:
-           printf("Invalid boolean expression type: %d\n", expression->type);
-           exit(EXIT_FAILURE);
+            fprintf(stderr, "<boolean.c> - boolean expression type not implemented: %d\n", expression->type);
+            exit(EXIT_FAILURE);
     }
 
     return construct_vm_cell(NULL_VALUE, NULL);

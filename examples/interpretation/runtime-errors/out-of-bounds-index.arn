@@ -1,0 +1,4 @@
+type matrix : array[0:10, 0:10] of int;
+var list : matrix;
+
+list[11, 5] := 1;

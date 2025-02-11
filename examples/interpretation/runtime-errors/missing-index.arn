@@ -1,0 +1,4 @@
+type list : array[0:10, 0:10] of int;
+
+var list: list;
+list[5] := 1;

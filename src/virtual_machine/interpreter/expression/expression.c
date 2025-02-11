@@ -84,7 +84,7 @@ vm_cell resolve_expression(Node *expression) {
         }
 
         default:
-            printf("Expression type not yet implemented.\n");
+            fprintf(stderr, "<Expression.c> - Expression type not yet implemented.\n");
             break;
     } 
 
