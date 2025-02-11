@@ -83,5 +83,40 @@ Verbose mode enabled. Printing tables and ast...
 +------------------------------------------------------------------------+
 Root of the AST:
 ├── A_PROGRAM, Lexico Idx: -1, Decl Idx: -1
+│   ├── A_DECLARATION_LIST, Lexico Idx: -1, Decl Idx: -1
+│   └── A_STATEMENT_LIST, Lexico Idx: -1, Decl Idx: -1
+│   │   ├── A_PRINT_STATEMENT, Lexico Idx: -1, Decl Idx: -1
+│   │   │   ├── A_ARGUMENT_LIST, Lexico Idx: -1, Decl Idx: -1
+│   │   │   │   ├── A_ARGUMENT, Lexico Idx: -1, Decl Idx: -1
+│   │   │   │   │   ├── A_INTEGER_LITERAL, Lexico Idx: 5, Decl Idx: -1 -- Lexeme: '42'
+│   │   │   └── A_FORMAT_STRING, Lexico Idx: 4, Decl Idx: -1 -- Lexeme: '"Hello %d"'
+│   │   └── A_PRINT_STATEMENT, Lexico Idx: -1, Decl Idx: -1
+│   │   │   ├── A_ARGUMENT_LIST, Lexico Idx: -1, Decl Idx: -1
+│   │   │   │   ├── A_ARGUMENT, Lexico Idx: -1, Decl Idx: -1
+│   │   │   │   │   ├── A_INTEGER_LITERAL, Lexico Idx: 5, Decl Idx: -1 -- Lexeme: '42'
+│   │   │   │   └── A_ARGUMENT, Lexico Idx: -1, Decl Idx: -1
+│   │   │   │   │   ├── A_STRING_LITERAL, Lexico Idx: 7, Decl Idx: -1 -- Lexeme: '"world"'
+│   │   │   └── A_FORMAT_STRING, Lexico Idx: 6, Decl Idx: -1 -- Lexeme: '"Hello %d, here is %s"'
+│   │   └── A_PRINT_STATEMENT, Lexico Idx: -1, Decl Idx: -1
+│   │   │   ├── A_ARGUMENT_LIST, Lexico Idx: -1, Decl Idx: -1
+│   │   │   │   ├── A_ARGUMENT, Lexico Idx: -1, Decl Idx: -1
+│   │   │   │   │   ├── A_INTEGER_LITERAL, Lexico Idx: 5, Decl Idx: -1 -- Lexeme: '42'
+│   │   │   │   └── A_ARGUMENT, Lexico Idx: -1, Decl Idx: -1
+│   │   │   │   │   ├── A_STRING_LITERAL, Lexico Idx: 8, Decl Idx: -1 -- Lexeme: '"extra"'
+│   │   │   └── A_FORMAT_STRING, Lexico Idx: 4, Decl Idx: -1 -- Lexeme: '"Hello %d"'
+│   │   └── A_PRINT_STATEMENT, Lexico Idx: -1, Decl Idx: -1
+│   │   │   ├── A_ARGUMENT_LIST, Lexico Idx: -1, Decl Idx: -1
+│   │   │   │   ├── A_ARGUMENT, Lexico Idx: -1, Decl Idx: -1
+│   │   │   │   │   ├── A_INTEGER_LITERAL, Lexico Idx: 5, Decl Idx: -1 -- Lexeme: '42'
+│   │   │   └── A_FORMAT_STRING, Lexico Idx: 6, Decl Idx: -1 -- Lexeme: '"Hello %d, here is %s"'
+│   │   └── A_PRINT_STATEMENT, Lexico Idx: -1, Decl Idx: -1
+│   │   │   ├── A_ARGUMENT_LIST, Lexico Idx: -1, Decl Idx: -1
+│   │   │   │   ├── A_ARGUMENT, Lexico Idx: -1, Decl Idx: -1
+│   │   │   │   │   ├── A_INTEGER_LITERAL, Lexico Idx: 5, Decl Idx: -1 -- Lexeme: '42'
+│   │   │   │   └── A_ARGUMENT, Lexico Idx: -1, Decl Idx: -1
+│   │   │   │   │   ├── A_STRING_LITERAL, Lexico Idx: 10, Decl Idx: -1 -- Lexeme: '"oops"'
+│   │   │   └── A_FORMAT_STRING, Lexico Idx: 9, Decl Idx: -1 -- Lexeme: '"Hello %d, here is %f"'
+│   │   └── A_PRINT_STATEMENT, Lexico Idx: -1, Decl Idx: -1
+│   │   │   ├── A_FORMAT_STRING, Lexico Idx: 6, Decl Idx: -1 -- Lexeme: '"Hello %d, here is %s"'
 +------------------------------------------------------------------------+
 
