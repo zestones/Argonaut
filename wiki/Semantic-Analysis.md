@@ -8,7 +8,28 @@ This documentation provides an in-depth look at the semantic analysis performed 
 
 ---
 
-[toc]
+## Table of Contents
+
+- [Semantic Analysis in the Argonaut Compiler](#semantic-analysis-in-the-argonaut-compiler)
+  - [Introduction](#introduction)
+  - [Table of Contents](#table-of-contents)
+  - [Overview](#overview)
+  - [Components of the Semantic Analyzer](#components-of-the-semantic-analyzer)
+    - [Symbol Tables](#symbol-tables)
+    - [Abstract Syntax Tree (AST)](#abstract-syntax-tree-ast)
+    - [Type System and Type Inference](#type-system-and-type-inference)
+  - [Type Inference Module](#type-inference-module)
+    - [Function Example](#function-example)
+    - [Type Inference Functions](#type-inference-functions)
+  - [Semantic Analysis Processes](#semantic-analysis-processes)
+    - [Detailed Semantic Checks](#detailed-semantic-checks)
+      - [Variable Validation](#variable-validation)
+      - [Type Validation](#type-validation)
+      - [Condition Validation](#condition-validation)
+      - [Assignment Validation](#assignment-validation)
+    - [More Validations](#more-validations)
+  - [Example: Semantic Analysis in Action](#example-semantic-analysis-in-action)
+  - [Conclusion](#conclusion)
 
 ---
 
