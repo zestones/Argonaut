@@ -240,7 +240,7 @@ graph TD
 
 ## Stack Management Functions
 
-The stack management module provides several key functions to manage stack frames effectively:
+The stack management system is responsible for handling function calls and managing memory allocation efficiently. It ensures that local variables, return values, and control links are correctly placed in stack frames.
 
 ### Frame Creation and Initialization
 
@@ -272,6 +272,8 @@ The stack management module provides several key functions to manage stack frame
 
 ## Memory Allocation in Stack Frames
 
+When a variable is declared within a function, the system retrieves its size from the declaration table and allocates memory within the current stack frame.
+
 ### Variable Declaration and Allocation
 
 When a variable is declared within a function:
@@ -279,7 +281,7 @@ When a variable is declared within a function:
 1. **Identify Type**: Determine if the variable is a base type, array, or structure.
 2. **Allocate Memory**:
    - **Base Types**: Allocate a fixed number of cells based on the type.
-   - **Arrays**: Allocate cells for each array element.
+   - **Arrays**: Allocate cells for each array element based on the size of each element.
    - **Structures**: Allocate cells for each field within the structure.
 3. **Store in Stack Frame**: Place the allocated cells within the current stack frame, initializing them as needed.
 
