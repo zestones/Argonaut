@@ -85,7 +85,7 @@ main();
 ```
 
 > [!NOTE]
-> Example programs are provided in the `examples/interpretation` directory.
+> Example programs are provided in the `examples/interpretation/functional/` directory.
 
 ## 📂 Project Structure
 
@@ -114,7 +114,7 @@ We welcome contributions from the community! To contribute:
 
 ## 📚 Documentation
 
-For detailed documentation, including language syntax, compiler architecture, and virtual machine specifications, please visit our [Wiki](link-to-your-wiki).
+For detailed documentation, including language syntax, compiler architecture, and virtual machine specifications, please visit the [Wiki](link-to-your-wiki).
 
 ## 📜 License
 

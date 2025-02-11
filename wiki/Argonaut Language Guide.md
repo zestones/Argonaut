@@ -1,4 +1,4 @@
-# Argonaut Language Documentation
+# Argonaut Language Guide
 
 ## Introduction
 
@@ -11,7 +11,7 @@ Argonaut is a statically-typed, procedural programming language designed for sim
 
 ## Table of Contents
 
-- [Argonaut Language Documentation](#argonaut-language-documentation)
+- [Argonaut Language Guide](#argonaut-language-guide)
   - [Introduction](#introduction)
   - [Table of Contents](#table-of-contents)
   - [Basic Syntax](#basic-syntax)
