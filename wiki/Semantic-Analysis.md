@@ -1,39 +1,74 @@
 # Semantic Analysis in the Argonaut Compiler
 
-Semantic analysis is a pivotal phase in the compiler's process, focusing on verifying the meaning of the program and ensuring that it adheres to the language's rules and constraints. This stage follows lexical and syntax analysis and precedes the generation of the intermediate representation. It involves checking for semantic errors that cannot be detected during earlier phases, such as type compatibility, variable scoping, and function signatures.
+## Introduction
+
+Semantic analysis is a crucial phase in the compilation process, coming after lexical and syntax analysis and before code generation. In the Argonaut compiler, semantic analysis ensures that the source code is not only syntactically correct but also semantically meaningful according to the language's rules and type system. It verifies that all variables, functions, types, and expressions are used appropriately, adhering to the language's constraints.
+
+This documentation provides an in-depth look at the semantic analysis performed by the Argonaut compiler, detailing its components, processes, and how it integrates with other modules like the symbol table, abstract syntax tree (AST), and type inference system.
+
+---
 
 [toc]
 
+---
+
 ## Overview
 
-Semantic analysis ensures that the program is semantically correct and that all entities (variables, functions, types) are used appropriately. It relies heavily on the Symbol Table and the AST (Abstract Syntax Tree).
+Semantic analysis in the Argonaut compiler serves to ensure that the program is semantically correct, meaning it makes sense according to the language rules and conventions. Unlike syntax analysis, which checks the structure of the code, semantic analysis checks the meaning. It verifies:
+
+- **Type correctness**: Ensuring that operations are performed on compatible types.
+- **Scope rules**: Variables and functions are used within their valid scopes.
+- **Function calls**: Correct number and types of arguments are passed.
+- **Variable usage**: Variables are declared before use and not redeclared in the same scope.
 
 <figure>
     <img src="./diagrams/overview-semantic-analysis.png" alt="Semantic Analysis Components" style="width: 100%; height: auto;">
-    <figcaption>Figure 1: Overview of the Semantic Analysis in the Argonaut Compiler</figcaption>
+    <figcaption>Figure 1: Semantic Analysis in the Compiler Pipeline</figcaption>
 </figure>
 
-To ensure type validity for the Argonaut code, we need to introduce another module called ``type inference``, which helps determine the types of various elements during the semantic analysis phase. For example, when checking the assignment of a value to a variable, we need to determine both the type of the value and the type of the variable it is assigned to. This will be facilitated by the ``type inference`` module, which provides functions to retrieve the types of these elements efficiently.
+---
 
-So the main components our semantic analysis relies on is :
+## Components of the Semantic Analyzer
 
-- The `symbol_table`: module that store all the information relative to the symbols found in the source file,
-- The `data`: module that integrate the region table to store data relative to the scopes of the source code,
-- The `ast`: that store the overall structure of the programm,
-- The `type_system`: module that contain the ``type_inference`` module that provide helpful functions to resolve the type of a variable, returned type of a function, expression, type of the field of a structure ect...
+The semantic analyzer relies on several key components:
 
-## Type Inference
+### Symbol Tables
 
-The type inference module consists of five submodules: 
+The **Symbol Tables** are data structures that stores information about identifiers (variables, functions, types, etc.) in the program. It keeps track of:
+
+- Identifier names
+- Types
+- Scopes and visibility
+- Memory locations or offsets
+
+### Abstract Syntax Tree (AST)
+
+The **Abstract Syntax Tree (AST)** is a hierarchical tree representation of the source code structure. Each node represents a language construct (e.g., expressions, statements, declarations). During semantic analysis, the AST is traversed to check for semantic correctness.
+
+### Type System and Type Inference
+
+The **Type System** defines the rules for how types interact within the language. The **Type Inference** module assists in determining the types of expressions and ensuring type compatibility across operations.
+
+---
+
+## Type Inference Module
+
+The `type_inference` module plays a crucial role in resolving the types of various elements during semantic analysis. It consists of several submodules that provide functions to retrieve and infer types for:
+
+- Variables
+- Functions and procedures
+- Expressions
+- Array elements
+- Structure fields
 
 <figure>
     <img src="./diagrams/type-inference.jpg" alt="Semantic Analysis Components" style="width: 100%; height: auto;">
     <figcaption>Figure 2: Type Inference Components</figcaption>
 </figure>
 
-Additionally, there is a header file, `type_inference.h`, that contains the function declarations.
+### Function Example
 
-Here is an example of a function implemented inside the `type_inference` module:
+An example function implemented in the `type_inference` module is `resolve_func_proc_return_type`, which determines the return type of a function call:
 
 ```c
 int resolve_func_proc_return_type(Node *function_call) {
@@ -45,24 +80,38 @@ int resolve_func_proc_return_type(Node *function_call) {
         return get_representation_value(index_representation);
     }
 
-    return NULL_VALUE;
+    return NULL_VALUE; // Procedures do not return a value
 }
 ```
 
-This function returns the type of the value returned by a function call. A procedure does not return anything, so it must be handled separately. By taking a function call node from the AST, we can determine whether the call corresponds to a function or a procedure. If it is a function, we retrieve the type of the returned value stored in the representation table.
+This function:
 
-Check the `src/type_system/type_inference.h` file for more details on each defined function used for type resolution.
+1. Checks if the identifier corresponds to a function (not a procedure).
+2. Retrieves the return type of the function from the declaration and representation tables.
+3. Returns the inferred type for further semantic checks.
 
-## Semantic Analysis Components
+### Type Inference Functions
 
-The semantic analysis is performed by the `semantic_analysis` module, which consists of several submodules, each responsible for performing a specific semantic check.
+The `type_inference` module provides functions such as:
+
+- `resolve_variable_type(Node *variable)`: Determines the type of a variable.
+- `resolve_expression_type(Node *expression)`: Infers the type of an expression.
+- `resolve_array_access_type(Node *array_access)`: Resolves the type of an array element.
+- `resolve_struct_field_access_type(Node *struct_access)`: Resolves the type of a structure field.
+- `resolve_condition_type(Node *condition)`: Determines if a condition evaluates to a boolean type.
+
+These functions are essential for ensuring type correctness throughout the semantic analysis phase.
+
+---
+
+## Semantic Analysis Processes
+
+Semantic analysis involves several processes to validate the program's correctness. Key semantic checks include variable validation, type validation, condition validation, assignment validation, etc.
 
 <figure>
     <img src="./diagrams/semantic-analysis.jpg" alt="Semantic Analysis Components" style="width: 100%; height: auto;">
     <figcaption>Figure 3: Semantic Analysis Components</figcaption>
 </figure>
-
-These components ensure that the program follows all semantic rules defined by the Argonaut language, guaranteeing that constructs such as type checking, scope validation, and function calls are correctly handled.
 
 ### Detailed Semantic Checks
 
@@ -271,22 +320,68 @@ Many more validations are done during the semantic phase, all the code relating 
 
 ## Example: Semantic Analysis in Action
 
-Consider the following code snippet:
+Consider the following Argonaut code snippet:
 
-```js
+```argonaut
 var x : int;
 
-func my_func(a: int) -> int {
+func my_func(a : int) -> int {
     return 42 + a;
 }
 
 x := my_func(5);
 ```
 
-The assignment `x := my_func();` involves several semantic checks:
+**Semantic Analysis Steps**:
 
-1. **Variable Declaration Check**: Ensure that `x` is declared before being used.
-2. **Function Declaration Check**: Ensure that `my_func` is declared before being called.
-3. **Function Parameter Check**: Ensure that `my_func` is called with the correct number and type of parameters.
-4. **Type Compatibility Check**: Ensure that the return type of `my_func` is compatible with the type of `x`.
-5. **Variable Assignment Check**: Ensure that `x` is assigned a value of the correct type.
+1. **Variable Declaration Check**:
+   - Ensure `x` is declared before use.
+   - `x` is declared as `int`, so the check passes.
+
+2. **Function Declaration Check**:
+   - Ensure `my_func` is declared before being called.
+   - `my_func` is properly declared, so the check passes.
+
+3. **Function Parameter Check**:
+   - Check that `my_func` is called with the correct number and type of arguments.
+   - `my_func` expects an `int`; it is called with `5` (`int`), so the check passes.
+
+4. **Return Type Verification**:
+   - Ensure the expression `42 + a` in `my_func` returns an `int`.
+   - Both `42` and `a` are integers; the addition results in an `int`, so the return type is valid.
+
+5. **Type Compatibility Check**:
+   - `x` is of type `int`.
+   - `my_func(5)` returns an `int`.
+   - The types are compatible, so the assignment `x := my_func(5);` is valid.
+
+6. **Variable Assignment Check**:
+   - Verify that `x` is assigned a value of the correct type (`int`).
+   - The value being assigned is `int`, so the check passes.
+
+**Result**: No semantic errors are detected, and the code is semantically correct.
+
+---
+
+## Conclusion
+
+Semantic analysis is a vital phase in the Argonaut compiler, ensuring that code not only follows syntactical rules but also makes logical sense within the language's semantics. By thoroughly checking variable declarations, type usage, expression validity, and assignment compatibility, the compiler can catch a wide range of errors before code generation.
+
+The integration of the **Symbol Table**, **AST**, and **Type Inference** modules allows the semantic analyzer to perform comprehensive checks efficiently. Understanding these components and their interactions is crucial for anyone looking to extend or debug the Argonaut compiler.
+
+**Key Takeaways**:
+
+- **Semantic Analysis Checks**:
+  - Variable definitions and scopes.
+  - Type definitions and usage.
+  - Expression and condition validity.
+  - Assignment type compatibility.
+  - Function and procedure correctness.
+
+- **Type Inference**:
+  - Essential for resolving types in expressions.
+  - Supports complex structures like arrays and structs.
+
+- **Error Handling**:
+  - Clear and informative error messages aid in debugging.
+  - Early detection of issues prevents cascading errors in later stages.
