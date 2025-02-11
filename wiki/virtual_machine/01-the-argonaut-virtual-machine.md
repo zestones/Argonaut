@@ -68,11 +68,9 @@ For a detailed view of the compilation stages and how the VM fits into the broad
 To gain a deeper understanding of specific aspects of the Argonaut VM, refer to the following detailed documents:
 
 - [VM Architecture and Components](vm-architecture-and-components.md)
-- [Execution Environment and Memory Management](Execution_Environment_and_Memory_Management.md)
+- [Stack Management](stack_management.md)
 - [Stack Frames and the Call Stack](Stack_Frames_and_Call_Stack.md)
 - [Static and Dynamic Links](Static_and_Dynamic_Links.md)
-- [Function Call Mechanism](Function_Call_Mechanism.md)
-- [Recursive Function Handling](Recursive_Function_Handling.md)
-- [Address Computation and Memory Allocation](Address_Computation_and_Memory_Allocation.md)
+- [Address Computation and Memory Allocation](address_computation_and_memory_access)
 
 Each document provides comprehensive insights into the respective topics, ensuring a thorough understanding of the Argonaut VM's inner workings.
