@@ -337,6 +337,6 @@ The error handling module in the Argonaut compiler provides a structured and rob
 
 ---
 
-**Disclaimer:**
-
-This documentation is intended to provide a comprehensive understanding of the error handling mechanisms within the Argonaut compiler. For further details, refer to the source code repository.
+> [!NOTE]
+> **Disclaimer:**
+> This documentation is intended to provide a comprehensive understanding of the error handling mechanisms within the Argonaut compiler. For further details, refer to the source code repository.

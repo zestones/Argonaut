@@ -3,7 +3,7 @@
 The **Symbol Tables** are essential data structures used in the Argonaut compiler to store information about identifiers, such as variables, functions, and types, encountered during the compilation process. These tables facilitate efficient lookup, insertion, and management of symbols, ensuring correct scoping and type checking in the compiler.
 
 <figure>
-    <img src="./diagrams/symbol-table.jpg" alt="Symbol Table Components" style="width: 100%; height: auto;">
+    <img src="../_diagrams/symbol-table.jpg" alt="Symbol Table Components" style="width: 100%; height: auto;">
     <figcaption>Figure 1: Components of the Symbol Tables in the Argonaut Compiler</figcaption>
 </figure>
 

@@ -83,7 +83,7 @@ The `type_inference` module plays a crucial role in resolving the types of vario
 - Structure fields
 
 <figure>
-    <img src="./diagrams/type-inference.jpg" alt="Semantic Analysis Components" style="width: 100%; height: auto;">
+    <img src="../_diagrams/type-inference.jpg" alt="Semantic Analysis Components" style="width: 100%; height: auto;">
     <figcaption>Figure 2: Type Inference Components</figcaption>
 </figure>
 
@@ -130,7 +130,7 @@ These functions are essential for ensuring type correctness throughout the seman
 Semantic analysis involves several processes to validate the program's correctness. Key semantic checks include variable validation, type validation, condition validation, assignment validation, etc.
 
 <figure>
-    <img src="./diagrams/semantic-analysis.jpg" alt="Semantic Analysis Components" style="width: 100%; height: auto;">
+    <img src="../_diagrams/semantic-analysis.jpg" alt="Semantic Analysis Components" style="width: 100%; height: auto;">
     <figcaption>Figure 3: Semantic Analysis Components</figcaption>
 </figure>
 
