@@ -89,6 +89,63 @@ main();
 > [!NOTE]
 > Example programs are provided in the `examples/interpretation/functional/` directory.
 
+## 📚 Language Features
+
+I'll organize both the implemented and missing features by categories:
+
+### Data Types & Variables
+
+- [x] Primitive types (int, float, char, bool)
+- [x] Basic string support (print-only)
+- [x] Arrays with custom ranges
+- [x] Multidimensional arrays
+- [x] Struct types
+- [x] Variable declaration with explicit typing
+- [ ] String manipulation functions
+- [ ] Constants/immutable variables
+- [ ] Pointers/references
+
+### Operators
+
+- [x] Arithmetic (+, -, *, /, %)
+- [x] Comparison (==, !=, <, >, <=, >=)
+- [x] Logical (&&, ||, !)
+- [x] Assignment (:=)
+- [x] Increment/decrement operators (++, --)
+- [ ] Compound assignment operators (+=, -=, etc.)
+- [ ] Ternary operator
+
+### Control Flow
+
+- [x] If-else, else-if conditionals
+- [x] While loops
+- [x] For loops
+- [x] Break and continue
+- [x] Return statement
+- [ ] Switch/case statements
+- [ ] Do-while loops
+
+### Functions & Procedures
+
+- [x] Functions with return values (only basic return types)
+- [x] Procedures (void functions)
+- [x] Parameters and arguments
+- [x] Nested functions
+- [x] Scope rules
+- [ ] Function overloading
+
+### I/O & System Integration
+
+- [x] Basic console output (print)
+- [x] Basic input reading
+- [x] Format specifiers (%d, %f, %c, %s)
+- [ ] File I/O
+
+### Documentation & Comments
+
+- [x] Single-line comments (//)
+- [ ] Multi-line comments
+
 ## 📂 Project Structure
 
 ```bash
