@@ -1,0 +1,43 @@
+// Binary Search algorithm in Argonaut
+
+type list : array[0:10] of int;
+
+func binary_search(arr : list, target : int) -> int {
+    var left : int; var right : int; 
+    var mid : int;
+    
+    left := 0; right := 9;
+    while (left <= right) {
+        mid := (left + right) / 2;
+
+        if (arr[mid] == target) { return mid; }
+        if (arr[mid] < target) { left := mid + 1; }
+        else { right := mid - 1; }
+    }
+
+    return -1; // Element not found
+}
+
+proc main() {
+    var arr : list;
+    var target : int;
+    var index : int;
+
+    // Initialize the array
+    arr[0] := 10; arr[1] := 20; arr[2] := 30;
+    arr[3] := 40; arr[4] := 50; arr[5] := 60;
+    arr[6] := 70; arr[7] := 80; arr[8] := 90;
+    arr[9] := 100;
+
+    target := 70;
+    print("We are searching for: %d\n", target);
+    index := binary_search(arr, target);
+
+    if (index != -1) {
+        print("Element found at index: %d\n", index);
+    } else {
+        print("Element not found.\n");
+    }
+}
+
+main();

@@ -1,0 +1,16 @@
+var i  : int;
+var j  : int;
+
+// For loop
+print("For loop example:\n");
+for (i := 0; i < 5; i++) {
+    print("i = %d\n", i);
+}
+
+// While loop
+print("\nWhile loop example:\n");
+j := 0;
+while (j < 5) {
+    print("j = %d\n", j);
+    j := j + 1;
+}

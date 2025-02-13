@@ -1,0 +1,13 @@
+var integerVar : int;
+var floatVar : float;
+var charVar : char;
+var boolVar : bool;
+
+integerVar  := 10;
+floatVar    := 3.14;
+charVar     := 'a';
+
+// Print the variables
+print("Integer: %d\n", integerVar);
+print("Float: %f\n", floatVar);
+print("Char: %c\n", charVar);

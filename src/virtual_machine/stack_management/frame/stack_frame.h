@@ -4,12 +4,9 @@
 #include "../../../utils/stack.h"
 #include "../../core/vm_cell.h"
 
-#define MAX_STACK_SIZE 100
-
 typedef struct {
     Stack cells;
 
-    int static_link;
     int dynamic_link;
     int region_index;
 

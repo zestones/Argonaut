@@ -1,0 +1,18 @@
+var number : int;
+number := 10;
+
+// If-else statement
+if (number > 0) {
+    print("The number is positive.\n");
+} else {
+    print("The number is non-positive.\n");
+}
+
+// If-else if-else statement
+if (number > 10) {
+    print("The number is greater than 10.\n");
+} else if (number == 10) {
+    print("The number is exactly 10.\n");
+} else {
+    print("The number is less than 10.\n");
+}

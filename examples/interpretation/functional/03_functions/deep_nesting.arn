@@ -1,0 +1,26 @@
+// Example of deeply nested functions in Argonaut
+
+// Define a function that performs a series of nested operations
+func deep_nesting(value : int) -> int {
+    // First level nested function
+    func level_one() -> int {
+        // Second level nested function
+        func level_two() -> int {
+            // Third level nested function
+            func level_three() -> int {
+                return value * 3;
+            }
+            return level_three() + value;
+        }
+        return level_two() + value * 2;
+    }
+    return level_one() + value * 4;
+}
+
+proc main() {
+    var initial_value : int;
+    initial_value := 2;
+    print("Result after deep nesting: %d\n", deep_nesting(initial_value));
+}
+
+main();

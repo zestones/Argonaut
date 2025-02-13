@@ -5,7 +5,8 @@
   <br />
   
   [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-  [![Build Status](https://img.shields.io/github/actions/workflow/status/zestones/Argonaut/build.yml?branch=main)](https://github.com/zestones/Argonaut/actions)
+  [![Regression Tests](https://github.com/zestones/Argonaut/actions/workflows/regression.yml/badge.svg?branch=main)](https://github.com/zestones/Argonaut/actions/workflows/regression.yml)
+  [![pages-build-deployment](https://github.com/zestones/Argonaut/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/zestones/Argonaut/actions/workflows/pages/pages-build-deployment)
   [![Dependencies](https://img.shields.io/badge/dependencies-GCC%2C%20Flex%2C%20Bison-orange)](https://gcc.gnu.org/)
 
   <p>Argonaut is a procedural programming language designed for educational purposes, featuring a compiler and virtual machine implemented in C. This project aims to provide a comprehensive understanding of how compilers and interpreters function.
@@ -49,8 +50,16 @@ To delete the VSCode extension, run ``make extension-uninstall``.
 
 ## 🚀 Usage
 
-- **Compiler:** Run ``./bin/argoc -a <source-file> -o <output-file>``. Use ./``./bin/argov --help`` for more options.
-- **Virtual Machine:** Run ``./bin/argov –a <intermediate-file>``. Use ``./bin/argov –h`` for more options.
+- **Compiler:** Run :
+  ```bash
+  ./bin/argoc -a <source-file> -o <output-file>
+  ```
+  Use ./``./bin/argov --help`` for more options.
+- **Virtual Machine:** Run :
+  ```bash
+  ./bin/argov –a <intermediate-file>
+  ```
+  Use ``./bin/argov –h`` for more options.
 
 ## 📜 Language Overview
 
@@ -77,7 +86,7 @@ main();
 ```
 
 > [!NOTE]
-> Example programs are provided in the `examples/interpretation` directory.
+> Example programs are provided in the `examples/interpretation/functional/` directory.
 
 ## 📂 Project Structure
 
@@ -106,7 +115,7 @@ We welcome contributions from the community! To contribute:
 
 ## 📚 Documentation
 
-For detailed documentation, including language syntax, compiler architecture, and virtual machine specifications, please visit our [Wiki](link-to-your-wiki).
+For detailed documentation, including language syntax, compiler architecture, and virtual machine specifications, please visit the [Wiki](link-to-your-wiki).
 
 ## 📜 License
 

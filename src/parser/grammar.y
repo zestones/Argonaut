@@ -117,7 +117,11 @@
 program: declaration_list statement_list { 
             $$ = construct_node_default(A_PROGRAM); 
 
-            add_child($$, $1); 
+            if (is_node_null($1)) {
+                $1 = construct_node_default(A_DECLARATION_LIST);
+            }
+            
+            add_child($$, $1);
             add_sibling($1, $2);
 
             update_region_ast(peek_region(), $$);

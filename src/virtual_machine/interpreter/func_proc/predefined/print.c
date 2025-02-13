@@ -39,12 +39,7 @@ static void process_format_string(const char *format, AST arg_list, char *buffer
     AST current_arg = arg_list->child;
 
     while (format[format_idx] != '\0') {
-        if (format[format_idx] == '%' && 
-           (format[format_idx + 1] == 'd' || format[format_idx + 1] == 'f' || format[format_idx + 1] == 's' || format[format_idx + 1] == 'c')) {
-            if (current_arg == NULL) {
-                printf("Error: Missing argument for format specifier '%c'.\n", format[format_idx + 1]);
-                return;
-            }
+        if (format[format_idx] == '%' && (format[format_idx + 1] == 'd' || format[format_idx + 1] == 'f' || format[format_idx + 1] == 's' || format[format_idx + 1] == 'c')) {
 
             char specifier = format[format_idx + 1];
             vm_cell cell = resolve_expression(current_arg->child);
@@ -62,9 +57,7 @@ static void process_format_string(const char *format, AST arg_list, char *buffer
                 case 'c':
                     buffer_ptr += sprintf(buffer_ptr, "%c", cell.value.character);
                     break;
-                default:
-                    printf("Error: Unsupported format specifier '%c'.\n", specifier);
-                    return;
+                // No default case as the format is already checked for 'd', 'f', 's', or 'c'
             }
 
             current_arg = current_arg->sibling;
@@ -84,24 +77,20 @@ void execute_print(AST ast) {
     AST arg_list = ast->child;
     AST format_node = arg_list->sibling;
     if (format_node == NULL) {
-        printf("%s", process_special_chars(strip_quotes(get_lexeme(arg_list->index_lexicographic))));
+        fprintf(stdout, "%s", process_special_chars(strip_quotes(get_lexeme(arg_list->index_lexicographic))));
         return;
     }
 
     const char *raw_format = get_lexeme(format_node->index_lexicographic);
-    if (raw_format == NULL) {
-        printf("Invalid format string.\n");
-        return;
-    }
-
     char *format = strip_quotes(raw_format);
-    if (format == NULL) {
-        printf("Malformed format string.\n");
-        return;
-    }
+    
+    // Note: No validation checks are performed on the 'raw_format' string or the processed 'format' string
+    // at this stage. It is assumed that these strings have already been validated by the compiler. If the
+    // compiler detected any errors in the format string, the program should not reach this execution point.
+    // This function trusts that the input format is correct and directly processes it for output.
 
     char buffer[BUFFER_SIZE] = {0};
     process_format_string(format, arg_list, buffer);
 
-    printf("%s", process_special_chars(buffer));
+    fprintf(stdout, "%s", process_special_chars(buffer));
 }

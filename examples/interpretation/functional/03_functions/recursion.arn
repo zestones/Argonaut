@@ -1,0 +1,20 @@
+
+// Define a function to calculate the factorial of a number recursively.
+func factorial(n : int) -> int {
+    if (n <= 1) {
+        return 1;
+    }
+    return n * factorial(n - 1);
+}
+
+proc main() {
+    var number : int;
+    var result : int;
+   
+    number := 5;
+    result := factorial(number);
+   
+    print("Factorial of %d = %d\n", number, result);
+}
+
+main();

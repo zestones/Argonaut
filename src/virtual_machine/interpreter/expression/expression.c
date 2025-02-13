@@ -16,7 +16,7 @@ vm_cell resolve_expression(Node *expression) {
         case A_IDENTIFIER: {
             vm_cell cell = get_variable_cell(expression->index_declaration);
             if (!cell.is_initialized) {
-                set_error_type(&error, UNINITIALIZED_VARIABLE);
+                set_error_type(&error, RUN_TIME_ERROR);
                 set_error_message(
                     &error,
                     "Uninitialized variable '%s' at %s.\n"
@@ -84,7 +84,7 @@ vm_cell resolve_expression(Node *expression) {
         }
 
         default:
-            printf("Expression type not yet implemented.\n");
+            fprintf(stderr, "<Expression.c> - Expression type not yet implemented.\n");
             break;
     } 
 

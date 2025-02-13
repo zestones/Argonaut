@@ -22,7 +22,7 @@ void yywarn(const Error error) {
         case SEMANTIC_ERROR:      fprintf(stderr, "Semantic Warning");         break;
         case TYPE_ERROR:          fprintf(stderr, "Type Warning");             break;
         case LEXICAL_ERROR:       fprintf(stderr, "Lexical Warning");          break;
-        case INVALID_INPUT_ERROR: fprintf(stderr, "Invalid Input Warning");    break;
+        case RUN_TIME_ERROR:      fprintf(stderr, "Run Time Warning");         break;
         default:                  fprintf(stderr, "Unknown Warning");          break;
     }
     fprintf(stderr, "]");
@@ -36,9 +36,7 @@ void yerror(const Error error) {
         case SEMANTIC_ERROR:            fprintf(stderr, "Semantic Error");       break;
         case TYPE_ERROR:                fprintf(stderr, "Type Error");           break;
         case LEXICAL_ERROR:             fprintf(stderr, "Lexical Error");        break;
-        case INVALID_INPUT_ERROR:       fprintf(stderr, "Invalid Input Error");  break;
-        case DIVISION_BY_ZERO:          fprintf(stderr, "Division by 0");        break;
-        case UNINITIALIZED_VARIABLE:    fprintf(stderr, "Null Variable");        break; 
+        case RUN_TIME_ERROR:            fprintf(stderr, "Run Time Error");       break;
         default:                        fprintf(stderr, "Unknown Error");        break;
     }
 
