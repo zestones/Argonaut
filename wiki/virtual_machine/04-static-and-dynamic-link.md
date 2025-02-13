@@ -60,6 +60,62 @@ The **Static Link (SL)** implements lexical scoping by pointing to the stack fra
 - **Nested Functions**: When a nested function is called, its stack frame's `region_index` (static link) points to the frame of its enclosing function.
 - **Variable Resolution**: When a variable is not found in the current frame, the static link is used to traverse up the lexical hierarchy to find the variable.
 
+The Argonaut VM uses the ``find_stack_frame_by_region_index()`` function to find a stack frame by its `region_index`:
+
+```c
+stack_frame *find_stack_frame_by_region_index(int region_index) {
+    stack_frame *current_frame = peek_execution_stack_as_mutable();
+    while(current_frame != NULL) {
+        if (current_frame->region_index == region_index) return current_frame;
+        current_frame = get_stack_frame_by_id(current_frame->dynamic_link);
+    }
+
+    // Error handling omitted for brevity
+    return NULL;
+}
+```
+
+- **Traversal**: The function traverses the stack frames using the `dynamic_link`, checking for a matching `region_index`.
+- **Variable Resolution**: When accessing a variable, this function helps find the correct stack frame based on lexical scoping.
+
+**Alternative Approach: Scanning All Stack Frames**
+An alternative method would be to search through all stack frames to locate the one with the correct ``region_index``:
+
+```c
+stack_frame *find_stack_frame_by_region_index(int region_index) {
+    for (int i = size(execution_stack) - 1; i >= 0; i--) {
+        stack_frame *frame = (stack_frame *) get_stack_value(execution_stack, i);
+        if (frame->region_index == region_index) return frame;
+    }
+
+    // Error handling omitted for brevity
+    return NULL;
+}
+```
+
+However, this approach is less efficient because:
+
+- **Unnecessary Searches:** It may examine frames that are not part of the current call chain.
+- **Performance Overhead:** Especially in deep call stacks, scanning all frames can be time-consuming.
+
+By leveraging the ``dynamic_link``, we traverse only the relevant frames in the call chain, improving efficiency.
+
+Finding the correct stack frame is crucial for accessing variables defined in outer scopes. When the proper stack frame is found, only then we can access the proper cell that hold the value thanks to the address. For example, the following function retrieves the cell at the given address from the proper stack frame:
+
+```c
+vm_cell get_variable_cell(int index_declaration) {
+    int address = get_variable_address(index_declaration);
+    int region = get_declaration_region(index_declaration);
+
+    stack_frame *frame = find_stack_frame_by_region_index(region);
+    return get_cell_from_stack_frame(*frame, address);
+}
+```
+
+- **`get_declaration_region`**: Retrieves the `region_index` where the variable is declared.
+- **Static Link Usage**: Uses the `region_index` to locate the correct stack frame via static links.
+- **Dynamic Link Usage**: The traversal uses `dynamic_link` to navigate through the frames.
+
 ### Example Scenario
 
 Consider the following Argonaut code:
@@ -114,44 +170,6 @@ Understanding both links is essential for:
 - **Variable Scope Resolution**: Correctly accessing variables from enclosing scopes.
 - **Control Flow**: Ensuring functions return to the correct location.
 
-## Implementation Details in the Code
-
-The provided code snippet uses these concepts in managing the execution stack and variable access.
-
-### Function for Finding Stack Frames
-
-```c
-stack_frame *find_stack_frame_by_region_index(int region_index) {
-    stack_frame *current_frame = peek_execution_stack_as_mutable();
-    while(current_frame != NULL) {
-        if (current_frame->region_index == region_index) return current_frame;
-        current_frame = get_stack_frame_by_id(current_frame->dynamic_link);
-    }
-
-    // Error handling omitted for brevity
-    return NULL;
-}
-```
-
-- **Traversal**: The function traverses the stack frames using the `dynamic_link`, checking for a matching `region_index`.
-- **Variable Resolution**: When accessing a variable, this function helps find the correct stack frame based on lexical scoping.
-
-### Accessing Variables
-
-```c
-vm_cell get_variable_cell(int index_declaration) {
-    int address = get_variable_address(index_declaration);
-    int region = get_declaration_region(index_declaration);
-
-    stack_frame *frame = find_stack_frame_by_region_index(region);
-    return get_cell_from_stack_frame(*frame, address);
-}
-```
-
-- **`get_declaration_region`**: Retrieves the `region_index` where the variable is declared.
-- **Static Link Usage**: Uses the `region_index` to locate the correct stack frame via static links.
-- **Dynamic Link Usage**: The traversal uses `dynamic_link` to navigate through the frames.
-
 ## Practical Implications
 
 - **Correct Variable Access**: Ensures that variables are accessed from the correct scope, preventing errors due to shadowing or incorrect references.
@@ -163,15 +181,19 @@ vm_cell get_variable_cell(int index_declaration) {
 Suppose we have the following nested functions:
 
 ```c
-void parent() {
-    int a = 5;
-    void child() {
-        int b = 10;
-        void grandchild() {
-            printf("%d\n", a); // Access 'a' from 'parent' scope
+proc parent() {
+    var a : int;
+    proc child() {
+        var b : int;
+        proc grandchild() {
+            print("%d\n", a); // Access 'a' from 'parent' scope
         }
+
+        b := 10;
         grandchild();
     }
+
+    a := 5;
     child();
 }
 ```
