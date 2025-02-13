@@ -78,6 +78,14 @@ void *get_vm_cell_value(vm_cell cell);
 void update_vm_cell(vm_cell *cell, void *value);
 
 /**
+ * @brief Get the cell type string object
+ *
+ * @param cell The `vm_cell` to get the type string from.
+ * @return const char*
+ */
+const char *get_cell_type_string(vm_cell cell);
+
+/**
  * @brief Formats a `vm_cell` as a human-readable string.
  *
  * Converts the contents of a `vm_cell` to a formatted string representation

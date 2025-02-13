@@ -1,0 +1,10 @@
+type date : struct {
+    day : int;
+    month : int;
+    year  : int;
+} fstruct;
+
+var d1 : date;
+d1.day := 1;
+
+d1.year := d1.year + 1;

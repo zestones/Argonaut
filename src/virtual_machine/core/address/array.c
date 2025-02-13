@@ -26,7 +26,14 @@ int get_array_address(Node *start_array_access, int base_address) {
 
     for (int dim = 0; dim < num_dimensions; dim++) {
         if (array_access == NULL) {
-            printf("Error: Insufficient indices provided for array assignment.\n");
+            set_error_type(&error, RUN_TIME_ERROR);
+            set_error_message(
+                &error,
+                "Insufficient indices provided for array assignment.\n"
+                "  Ensure that '%d' indices are specified.",
+                num_dimensions
+            );
+            yerror(error);
             exit(EXIT_FAILURE);
         }
 
@@ -34,7 +41,13 @@ int get_array_address(Node *start_array_access, int base_address) {
             // Resolve the expression for the current index in the current dimension
             vm_cell index_cell = resolve_expression(array_access->child);
             if (index_cell.type != INTEGER) {
-                printf("Error: Index type should be integer, instead got: %d\n", index_cell.type);
+                set_error_type(&error, RUN_TIME_ERROR);
+                set_error_message(
+                    &error,
+                    "Invalid index type, index type should be integer.\n"
+                    "  Instead got type '%s'.",
+                    get_cell_type_string(index_cell));
+                yerror(error);
                 exit(EXIT_FAILURE);
             }
 
@@ -45,7 +58,15 @@ int get_array_address(Node *start_array_access, int base_address) {
             int upper_bound = get_array_nth_dimension(array_decl_index, 2 * dim + 1);
 
             if (index < lower_bound || index > upper_bound) {
-                printf("Error: Index %d out of bounds for dimension %d.\n", index, dim);
+                set_error_type(&error, RUN_TIME_ERROR);
+                set_error_message(
+                    &error,
+                    "Index %d out of bounds for dimension %d.\n"
+                    "  Allowed range: [%d, %d].",
+                    index, dim, lower_bound, upper_bound
+                );
+                yerror(error);
+
                 exit(EXIT_FAILURE);
             }
 

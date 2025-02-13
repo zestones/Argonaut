@@ -11,15 +11,14 @@
  * @enum ErrorType
  * @brief Enumeration of error types.
  */
-typedef enum {
+typedef enum
+{
     NO_ERROR,
     SYNTAX_ERROR,
     SEMANTIC_ERROR,
     TYPE_ERROR,
     LEXICAL_ERROR,
-    INVALID_INPUT_ERROR,
-    DIVISION_BY_ZERO,
-    UNINITIALIZED_VARIABLE
+    RUN_TIME_ERROR,
 } ErrorType;
 
 /**

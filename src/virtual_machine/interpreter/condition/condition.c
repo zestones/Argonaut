@@ -27,10 +27,6 @@ ControlFlow execute_condition(AST ast) {
             }
             current_node = next_branch;
         }         
-        else {
-            printf("Unexpected node type: %d\n", current_node->type);
-            break;
-        }
     }
 
     return CONTROL_NONE;

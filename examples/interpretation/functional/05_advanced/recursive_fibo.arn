@@ -1,0 +1,108 @@
+var n : int;           
+var fib : int;
+type fibonacci_array: array[0:50] of int;
+var sequence : fibonacci_array;
+
+func fibonacci(num : int) -> int {
+    if (num <= 1) {
+        sequence[num] := num;
+        return num;
+    }
+    sequence[num] := fibonacci(num - 1) + fibonacci(num - 2);
+    return sequence[num];
+}
+
+proc print_padding(num : int) {
+    var i : int;
+    i := 0;
+    if (num < 10) {
+        print(" ");
+    }
+    if (num < 100) {
+        print(" ");
+    }
+    if (num < 1000) {
+        print(" ");
+    }
+    if (num < 10000) {
+        print(" ");
+    }
+}
+
+proc print_number_padding(num : int) {
+    var i : int;
+    i := 0;
+    if (num < 10) {
+        print("  ");
+    } else if (num < 100) {
+        print(" ");
+    }
+}
+
+proc draw_bar(index : int, value : int, max_value : int) {
+    var i : int;
+    var bar_length : int;
+    var spaces : int;
+    
+    print_number_padding(index);
+    print("%d", index);
+    print(" ║");
+    
+    // Scale the bar to max 50 characters
+    bar_length := (value * 50) / max_value;
+    
+    i := 0;
+    while (i < bar_length) {
+        print("■");
+        i := i + 1;
+    }
+    
+    // Add padding spaces for alignment
+    spaces := 50 - bar_length;
+    i := 0;
+    while (i < spaces) {
+        print(" ");
+        i := i + 1;
+    }
+    
+    print("║ ");
+    print("%d", value);
+    print_padding(value);
+    print("\n");
+}
+
+proc display_fibonacci_chart(num : int) {
+    var i : int;
+    var max_value : int;
+    
+    max_value := sequence[num];
+    
+    print("\nFibonacci Sequence Visualization (0 to ");
+    print("%d", num);
+    print("):\n");
+    
+    print("   ----------------------------------------------------------------\n");
+    
+    i := 0;
+    while (i <= num) {
+        draw_bar(i, sequence[i], max_value);
+        i := i + 1;
+    }
+    
+    print("   ----------------------------------------------------------------\n");
+}
+
+proc main() {
+    n := 12;
+
+    if (n < 0) {
+        print("Fibonacci is undefined for negative numbers.\n");
+    } else if (n > 50) {
+        print("Please enter a number less than or equal to 50.\n");
+    } else {
+        fib := fibonacci(n);
+        display_fibonacci_chart(n);
+    }
+}
+
+main();

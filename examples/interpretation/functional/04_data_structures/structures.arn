@@ -1,0 +1,19 @@
+// Example of structures in Argonaut
+
+// Define a custom type 'Point' as a struct
+type Point : struct {
+    x : int;
+    y : int;
+} fstruct;
+
+proc main() {
+    // Declare a variable of type 'Point'
+    var p : Point;
+    p.x := 10;
+    p.y := 20;
+
+    // Print the struct fields
+    print("Point coordinates: (%d, %d)\n", p.x, p.y);
+}
+
+main();

@@ -1,0 +1,25 @@
+func gcd(a : int, b : int) -> int {
+    var temp : int;
+
+    while (b != 0) {
+        temp := b;
+
+        b := a % b;
+        a := temp;
+    }
+    return a;
+}
+
+proc main() {
+    var a : int;
+    var b : int;
+    
+    print("Enter two numbers: ");
+
+    input("%d: ", a);
+    input("%d: ", b);
+
+    print("GCD: %d\n", gcd(a, b));
+}
+
+main();

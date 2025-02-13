@@ -24,6 +24,7 @@ BIN_DIR         = $(SRC_DIR)/bin
 LEXER_DIR       = $(SRC_DIR)/lexer
 PARSER_DIR      = $(SRC_DIR)/parser
 INCLUDE_DIRS    = -I$(PARSER_DIR)
+BIN				= bin
 
 COMPILER_RULES      = lexer parser
 INTERPRETER_RULES   = vm_lexer vm_parser
@@ -71,7 +72,7 @@ docs:
 compiler: argoc
 
 argoc: $(COMPILER_RULES) $(ALL_OBJ) $(COMPILER_PARSER_GEN_H)
-	$(CC) $(CFLAGS) $(BIN_DIR)/lex.yy.c $(BIN_DIR)/y.tab.c $(ALL_OBJ) $(INCLUDE_DIRS) -o $@
+	$(CC) $(CFLAGS) $(BIN_DIR)/lex.yy.c $(BIN_DIR)/y.tab.c $(ALL_OBJ) $(INCLUDE_DIRS) -o $(BIN)/$@
 
 # Rule to compile .c files into .o object files for the compiler
 %.o: %.c $(COMPILER_PARSER_GEN_H)
@@ -93,7 +94,7 @@ parser: $(SRC_DIR)/parser/grammar.y
 vm: argov
 
 argov: $(INTERPRETER_RULES) $(ALL_OBJ) $(INTERPRETER_PARSER_GEN_H)
-	$(CC) $(CFLAGS) $(BIN_DIR)/lex.yy.c $(BIN_DIR)/y.tab.c $(ALL_OBJ) $(INCLUDE_DIRS) -o $@
+	$(CC) $(CFLAGS) $(BIN_DIR)/lex.yy.c $(BIN_DIR)/y.tab.c $(ALL_OBJ) $(INCLUDE_DIRS) -o $(BIN)/$@
 
 vm_lexer: $(SRC_DIR)/lexer/interpreter_lexer.l
 	$(LEX) -o $(BIN_DIR)/lex.yy.c $(SRC_DIR)/lexer/interpreter_lexer.l
@@ -128,7 +129,7 @@ clean: simple-clean
 	rm -rf ./.pytest_cache/
 	rm -f log.txt
 
-extension-clean:
+extension-uninstall:
 	rm -rf ~/.vscode/extensions/custom-icons
 	rm -rf ~/.vscode-server/extensions/custom-icons
 	rm -rf ~/.vscode/extensions/syntax-highlighting

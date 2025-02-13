@@ -37,7 +37,15 @@ stack_frame *find_stack_frame_by_region_index(int region_index) {
         current_frame = get_stack_frame_by_id(current_frame->dynamic_link);
     }
 
-    printf("Error no stack frame found ! (find_stack_frame_by_region_index)\n");
+    set_error_type(&error, RUN_TIME_ERROR);
+    set_error_message(
+        &error,
+        "No stack frame found.\n"
+        "  If this message is seen during runtime, it indicates a critical issue.\n"
+        "  Please report this error with details about the context in which it occurred."
+    );
+
+    yerror(error);
     exit(EXIT_FAILURE);
 }
 

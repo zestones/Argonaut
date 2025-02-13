@@ -1,0 +1,21 @@
+type arr : array[0:10] of int;
+
+type date : struct {
+    day : int;
+    month : int;
+    year : int;
+    tableau : arr;
+} fstruct;
+
+var my_date : date;
+
+my_date.day := 23;
+my_date.month := 12;
+my_date.year := 2024;
+
+my_date.tableau[0] := 100;
+my_date.tableau[1] := 101;
+my_date.tableau[2] := 102;
+
+my_date.year := my_date.tableau[0] * my_date.year;
+print("Updated year: %d\n", my_date.year);

@@ -1,0 +1,13 @@
+// Define a function that adds two integers
+func add(a : int, b : int) -> int {
+    return a + b;
+}
+
+// Define a procedure that calls the function
+proc main() {
+    var result : int;
+    result := add(5, 3);
+    print("5 + 3 = %d\n", result);
+}
+
+main();

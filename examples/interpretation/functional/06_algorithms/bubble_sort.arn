@@ -1,0 +1,56 @@
+// Bubble Sort algorithm in Argonaut
+
+type list : array[0:10] of int;
+var arr : list;
+
+proc bubble_sort() {
+    var n : int;
+    var i : int;
+    var j : int;
+    var temp : int;
+    n := 10;
+
+    for (i := 0; i < n - 1; i++) {
+        for (j := 0; j < n - i - 1; j++) {
+            if (arr[j] > arr[j + 1]) {
+                // Swap arr[j] and arr[j + 1]
+                temp := arr[j];
+                arr[j] := arr[j + 1];
+                arr[j + 1] := temp;
+            }
+        }
+    }
+}
+
+proc print_array()  {
+    var i  : int;
+    for (i := 0; i < 10; i++) {
+        print("arr[%d] = %d\n", i, arr[i]);
+    }
+}
+
+proc main() {
+    var i : int;
+
+    // Initialize the array
+    arr[0] := 64;
+    arr[1] := 34;
+    arr[2] := 25;
+    arr[3] := 12;
+    arr[4] := 22;
+    arr[5] := 11;
+    arr[6] := 90;
+    arr[7] := 43;
+    arr[8] := 19;
+    arr[9] := 72;
+
+    print("Unsorted array:\n");
+    print_array();
+
+    bubble_sort();
+
+    print("\nSorted array:\n");
+    print_array();
+}
+
+main();

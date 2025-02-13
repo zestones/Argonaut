@@ -1,0 +1,32 @@
+proc main() {
+    var a : int;
+    var b : int;
+    var op : char;
+    
+    print("Enter first number: ");
+    input("%d", a);
+    
+    print("Enter operation (+, -, *, /): ");
+    input("%c", op);
+    
+    print("Enter second number: ");
+    input("%d", b);
+
+    if (op == '+') {
+        print("%d + %d = %d\n", a, b, a + b);
+    } else if (op == '-') {
+        print("%d - %d = %d\n", a, b, a - b);
+    } else if (op == '*') {
+        print("%d * %d = %d\n", a, b, a * b);
+    } else if (op == '/') {
+        if (b == 0) {
+            print("Error: Division by zero is not allowed.\n");
+        } else {
+            print("%d / %d = %d\n", a, b, a / b);
+        }
+    } else {
+        print("Invalid operation.\n");
+    }
+}
+
+main();

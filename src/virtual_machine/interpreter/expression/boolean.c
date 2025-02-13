@@ -13,7 +13,7 @@ vm_cell resolve_boolean_expression(Node *expression) {
             // Resolve identifier value
             vm_cell cell = get_variable_cell(expression->index_declaration);
             if (!cell.is_initialized) {
-                set_error_type(&error, UNINITIALIZED_VARIABLE);
+                set_error_type(&error, RUN_TIME_ERROR);
                 set_error_message(
                     &error,
                     "Uninitialized variable '%s' at %s.\n"
@@ -44,6 +44,8 @@ vm_cell resolve_boolean_expression(Node *expression) {
                 return construct_vm_cell(BOOLEAN, &(int){left.value.integer == right.value.integer});
             } else if (left.type == REAL) {
                 return construct_vm_cell(BOOLEAN, &(int){left.value.real == right.value.real});
+            } else if (left.type == CHARACTER)  {
+                return construct_vm_cell(BOOLEAN, &(int){left.value.character == right.value.character});
             }
             break;
         }
@@ -59,6 +61,8 @@ vm_cell resolve_boolean_expression(Node *expression) {
                 return construct_vm_cell(BOOLEAN, &(int){left.value.integer != right.value.integer});
             } else if (left.type == REAL) {
                 return construct_vm_cell(BOOLEAN, &(int){left.value.real != right.value.real});
+            } else if (left.type == CHARACTER)  {
+                return construct_vm_cell(BOOLEAN, &(int){left.value.character != right.value.character});
             }
             break;
         }
@@ -137,8 +141,8 @@ vm_cell resolve_boolean_expression(Node *expression) {
             return resolve_boolean_expression(expression->child);
 
         default:
-           printf("Invalid boolean expression type: %d\n", expression->type);
-           exit(EXIT_FAILURE);
+            fprintf(stderr, "<boolean.c> - boolean expression type not implemented: %d\n", expression->type);
+            exit(EXIT_FAILURE);
     }
 
     return construct_vm_cell(NULL_VALUE, NULL);

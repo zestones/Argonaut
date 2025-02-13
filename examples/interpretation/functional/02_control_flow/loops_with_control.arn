@@ -1,0 +1,69 @@
+// Example of loops with break and continue statements in Argonaut
+
+// Example of using 'break' to exit a loop
+proc break_example_in_for() {
+    var i : int;
+    print("Example of 'break' inside for loop:\n");
+    for (i := 0; i < 10; i++) {
+        if (i == 5) {
+            break; // Exit the loop when i equals 5
+        }
+        print("%d ", i);
+    }
+    print("\n");
+}
+
+proc continue_example_in_for() {
+    var j : int;
+    print("Example of 'continue' inside for loop:\n");
+    for (j := 0; j < 10; j++) {
+        if (j % 2 == 0) {
+            continue; // Skip the iteration when j is even
+        }
+        print("%d ", j);
+    }
+    print("\n");
+}
+
+
+// Example of using 'break' to exit a while loop
+proc break_example_in_while() {
+    var i : int;
+    i := 0;
+    print("Example of 'break' inside while loop:\n");
+    
+    while (i < 10) {
+        if (i == 5) {
+            break; // Exit the loop when i equals 5
+        }
+        print("%d ", i);
+        i++;
+    }
+    print("\n");
+}
+
+// Example of using 'continue' to skip an iteration in while loop
+proc continue_example_in_while() {
+    var j : int;
+    j := 0;
+    print("Example of 'continue' inside while loop:\n");
+
+    while (j < 10) {
+        j++;
+        if (j % 2 == 0) {
+            continue; // Skip the iteration when j is even
+        }
+        print("%d ", j);
+    }
+    print("\n");
+}
+
+// Example of using 'continue' to skip an iteration
+proc main() {
+    break_example_in_for();
+    break_example_in_while();
+    continue_example_in_for();
+    continue_example_in_while();
+}
+
+main();
