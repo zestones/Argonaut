@@ -38,7 +38,7 @@ The Argonaut VM performs several key functions to execute Argonaut programs:
 The Argonaut VM operates through a sequential workflow that ensures accurate and efficient program execution. The high-level workflow is illustrated below:
 
 ```mermaid
-flowchart TD
+flowchart LR
     A[Read IR Code] --> B[Parse IR with Lex/Yacc]
     B --> C[Reconstruct Data Structures]
     C --> D[Interpret AST]
@@ -67,10 +67,9 @@ For a detailed view of the compilation stages and how the VM fits into the broad
 
 To gain a deeper understanding of specific aspects of the Argonaut VM, refer to the following detailed documents:
 
-- [VM Architecture and Components](vm-architecture-and-components.md)
-- [Stack Management](stack_management.md)
-- [Stack Frames and the Call Stack](Stack_Frames_and_Call_Stack.md)
-- [Static and Dynamic Links](Static_and_Dynamic_Links.md)
-- [Address Computation and Memory Allocation](address_computation_and_memory_access)
+- [VM Architecture and Components](02-vm-architecture-and-components.md)
+- [Stack Management](03-stack-management.md)
+- [Static and Dynamic Links](04-static-and-dynamic-link.md)
+- [Address Computation and Memory Allocation](06-adress-computation-and-memory-allocation.md)
 
 Each document provides comprehensive insights into the respective topics, ensuring a thorough understanding of the Argonaut VM's inner workings.

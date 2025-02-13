@@ -19,5 +19,4 @@ When a variable is declared within a function:
 
 - **Nested Arrays**: Allocate memory for multi-dimensional arrays by recursively allocating cells for each dimension.
 - **Nested Structures**: Allocate memory for structures containing other structures or arrays by traversing the nested declarations and allocating appropriate cells.
-
-**Function**: `handle_variable_declaration(int index_declaration)`
+- **Function**: `handle_variable_declaration(int index_declaration)`

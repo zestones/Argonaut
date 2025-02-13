@@ -6,10 +6,9 @@ The **Argonaut Virtual Machine (VM)** is designed to execute programs written in
 
 This document provides an overview of the VM's architecture, detailing its main components, their responsibilities, and how they interact to facilitate program execution. For deeper insights into specific areas, refer to the associated documentation:
 
-- [Stack Management](stack_management.md)
-- [Stack Frames and the Call Stack](Stack_Frames_and_Call_Stack.md)
-- [Static and Dynamic Links](Static_and_Dynamic_Links.md)
-- [Address Computation and Memory Allocation](address_computation_and_memory_access)
+- [Stack Management](03-stack-management.md)
+- [Static and Dynamic Links](04-static-and-dynamic-link.md)
+- [Address Computation and Memory Allocation](06-adress-computation-and-memory-allocation.md)
 
 ## Architecture Overview
 

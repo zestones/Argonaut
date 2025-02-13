@@ -217,6 +217,5 @@ The stack management system is responsible for handling function calls and manag
 
 ## Continue Reading
 
-- [Static and Dynamic Links](Static_and_Dynamic_Links.md)
-- [Function Call Mechanism](Function_Call_Mechanism.md)
-- [Address Computation and Memory Allocation](Address_Computation_and_Memory_Allocation.md)
+- [Static and Dynamic Links](04-static-and-dynamic-link.md)
+- [Address Computation and Memory Allocation](06-adress-computation-and-memory-allocation.md)
