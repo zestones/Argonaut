@@ -1,7 +1,7 @@
 <map id="stack_frame" name="stack_frame">
-<area shape="rect" id="Node000001" title=" " alt="" coords="29,273,145,379"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="29,273,145,359"/>
 <area shape="rect" id="Node000002" href="$d7/d17/structStack.html" title="A structure to represent a stack." alt="" coords="5,65,63,151"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="46,150,70,249,72,257,67,258,65,250,41,152"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="46,151,70,249,72,257,67,259,65,250,41,152"/>
 <area shape="rect" id="Node000003" href="$d4/d79/structvm__cell.html" title="Struct representing a cell in the virtual machine." alt="" coords="87,5,197,211"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="125,212,115,250,113,258,108,257,110,249,120,210"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="125,211,115,250,113,259,107,257,110,249,120,210"/>
 </map>

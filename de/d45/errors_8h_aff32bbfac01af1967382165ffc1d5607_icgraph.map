@@ -1,126 +1,140 @@
 <map id="set_error_type" name="set_error_type">
-<area shape="rect" id="Node000001" title="Sets the error type of the provided Error struct." alt="" coords="1921,661,2037,686"/>
-<area shape="rect" id="Node000002" href="$d6/d4c/assignment__validation_8c.html#adafad0061063a9ae298f6233978de3b1" title="Validates type compatibility for array assignments." alt="" coords="645,230,829,256"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1974,648,1965,543,1947,400,1933,327,1916,262,1896,209,1871,174,1828,140,1786,121,1746,112,1704,111,1614,122,1561,128,1503,131,1235,131,1195,134,1142,143,1015,171,783,233,781,228,1013,165,1141,137,1194,129,1235,126,1503,126,1561,123,1613,117,1704,106,1746,106,1788,116,1830,136,1875,170,1900,206,1921,260,1938,326,1952,399,1970,542,1979,647"/>
-<area shape="rect" id="Node000003" href="$d2/d71/type__validation_8c.html#a5787d66f109d016f22256dc3a5f84435" title="Validates that the lexicographic index is a base type." alt="" coords="1701,686,1835,712"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="1908,685,1836,694,1835,688,1907,680"/>
-<area shape="rect" id="Node000005" href="$d6/d35/condition__validation_8c.html#a71704b89d5560a369eccc90b03ee22eb" title="Validates the type of a condition expression." alt="" coords="429,610,556,636"/>
-<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="1907,670,1724,658,1503,651,992,651,750,644,556,631,556,625,751,638,992,646,1503,646,1724,652,1907,665"/>
-<area shape="rect" id="Node000006" href="$d0/d8b/func__proc__validation_8c.html#a3ae1164529326a68c7fd80deeebc846d" title="Validates the definition of a function or procedure." alt="" coords="1669,736,1867,761"/>
-<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="1943,695,1874,725,1831,738,1830,733,1872,720,1941,690"/>
-<area shape="rect" id="Node000007" href="$d0/d8b/func__proc__validation_8c.html#a8411cbcac96e774b3d92ba56cd92d927" title="Checks if a function or procedure has been redefined." alt="" coords="1663,785,1873,810"/>
-<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="1961,699,1924,738,1900,758,1875,775,1844,787,1842,782,1872,770,1897,754,1920,734,1957,695"/>
-<area shape="rect" id="Node000010" href="$d0/d8b/func__proc__validation_8c.html#ae8847b0a477fa9ae2766940f78a5c90f" title="Validates the return statement of a function." alt="" coords="655,69,820,94"/>
-<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="1975,647,1969,524,1954,350,1940,261,1923,181,1900,116,1886,91,1871,73,1828,39,1787,18,1747,10,1705,9,1614,20,1562,27,1503,30,1235,30,1118,34,1001,45,810,72,809,66,1001,39,1118,29,1235,24,1503,24,1561,21,1613,15,1705,3,1747,4,1789,13,1831,34,1875,69,1891,88,1905,113,1928,179,1946,260,1959,349,1975,523,1980,647"/>
-<area shape="rect" id="Node000011" href="$dd/d08/input__validation_8c.html#ad3dd17f0853fcdf49904fd5847b0e4b3" title="Validates the arguments provided to an input&#45;like procedure against a format string." alt="" coords="621,382,853,408"/>
-<area shape="poly" id="edge10_Node000001_Node000011" title=" " alt="" coords="1972,648,1963,602,1945,545,1915,487,1895,462,1872,441,1825,411,1782,393,1741,384,1700,383,1612,391,1503,398,1235,398,854,398,854,392,1235,392,1503,392,1612,385,1700,377,1741,379,1783,388,1827,406,1875,437,1899,459,1920,485,1950,543,1968,600,1977,647"/>
-<area shape="rect" id="Node000012" href="$d5/da0/print__validation_8c.html#a2e389d9645c7b92911f4c86af31b14a8" title="Validates the arguments provided to a print&#45;like procedure against a format string." alt="" coords="623,440,852,465"/>
-<area shape="poly" id="edge11_Node000001_Node000012" title=" " alt="" coords="1962,651,1926,601,1901,576,1872,556,1821,530,1776,513,1735,503,1696,497,1610,497,1503,499,1235,499,1125,496,1015,488,827,468,828,462,1015,483,1125,491,1235,494,1503,494,1610,491,1696,492,1736,498,1778,508,1823,526,1875,551,1904,572,1930,598,1966,648"/>
-<area shape="rect" id="Node000013" href="$d6/da5/scope__validation_8c.html#a01d2012cbc4acbf0920f4060463c2c83" title="Checks if a scope entity has been redefined." alt="" coords="1675,850,1861,876"/>
-<area shape="poly" id="edge12_Node000001_Node000013" title=" " alt="" coords="1968,700,1932,761,1906,795,1875,824,1848,841,1819,853,1817,848,1845,836,1872,819,1902,791,1927,758,1964,698"/>
-<area shape="rect" id="Node000016" href="$d6/d4c/assignment__validation_8c.html#afaa433496bef6af1b952c37f239afad2" title="Ensures type compatibility for struct field assignments." alt="" coords="644,173,831,198"/>
-<area shape="poly" id="edge15_Node000001_Node000016" title=" " alt="" coords="1974,647,1967,533,1950,374,1937,294,1919,221,1898,162,1885,140,1871,124,1828,89,1787,70,1746,61,1705,60,1614,71,1561,78,1503,80,1235,80,1168,83,1100,91,968,117,855,148,774,175,772,170,853,143,967,112,1099,86,1168,78,1235,75,1503,75,1561,72,1613,66,1705,55,1747,55,1788,64,1831,85,1875,120,1890,137,1902,160,1924,219,1942,293,1955,373,1972,532,1980,646"/>
-<area shape="rect" id="Node000017" href="$d2/d71/type__validation_8c.html#ab2be243b7af9ae3fdecace4260ed430d" title="Validates the definition of a type." alt="" coords="1686,950,1850,976"/>
-<area shape="poly" id="edge16_Node000001_Node000017" title=" " alt="" coords="1972,700,1937,788,1909,840,1875,889,1835,926,1794,952,1792,948,1832,922,1871,885,1905,837,1932,786,1967,699"/>
-<area shape="rect" id="Node000021" href="$d2/d71/type__validation_8c.html#ad0ff0ffaf64af0526cea2fc312001686" title="Checks if a type has been redefined." alt="" coords="1679,1057,1857,1082"/>
-<area shape="poly" id="edge22_Node000001_Node000021" title=" " alt="" coords="1981,700,1978,768,1964,859,1951,908,1932,956,1907,1001,1875,1041,1847,1059,1844,1055,1872,1037,1903,998,1928,954,1946,906,1959,858,1973,767,1976,700"/>
-<area shape="rect" id="Node000024" href="$d6/d4c/assignment__validation_8c.html#a4fde6de79346a9e0cdb168b7c802fccc" title="Checks type compatibility during variable assignments." alt="" coords="636,497,839,522"/>
-<area shape="poly" id="edge25_Node000001_Node000024" title=" " alt="" coords="1954,653,1917,624,1872,599,1773,565,1692,551,1609,549,1503,550,1235,550,1129,547,1023,541,839,524,839,519,1023,536,1129,542,1235,544,1503,544,1609,543,1693,546,1774,560,1874,594,1920,620,1957,649"/>
-<area shape="rect" id="Node000025" href="$da/d3a/variable__validation_8c.html#a0e048d19a4ba5f7559624761c082cf15" title="Validates the definition of a variable." alt="" coords="1143,433,1331,458"/>
-<area shape="poly" id="edge26_Node000001_Node000025" title=" " alt="" coords="1970,648,1959,609,1940,562,1911,516,1893,496,1872,480,1830,462,1773,450,1704,441,1627,437,1468,437,1331,442,1331,437,1468,431,1627,432,1704,436,1774,444,1832,457,1875,475,1897,492,1915,513,1944,559,1964,607,1975,647"/>
-<area shape="rect" id="Node000026" href="$da/d3a/variable__validation_8c.html#a9516a6e44a11928cf63ddf2d18960920" title="Checks if a variable has been redefined." alt="" coords="1667,1002,1869,1028"/>
-<area shape="poly" id="edge28_Node000001_Node000026" title=" " alt="" coords="1980,701,1974,760,1958,837,1945,878,1927,919,1904,956,1875,989,1851,1004,1848,1000,1872,985,1900,953,1922,916,1940,876,1953,836,1969,759,1975,700"/>
-<area shape="rect" id="Node000027" href="$d8/d9a/expression__format_8c.html#aa25e96463d92f71df60d78640b1bfb77" title="Formats an expression into a string representation." alt="" coords="1696,1106,1840,1132"/>
-<area shape="poly" id="edge30_Node000001_Node000027" title=" " alt="" coords="1978,700,1965,789,1944,907,1914,1021,1896,1065,1875,1095,1859,1107,1841,1115,1839,1110,1857,1103,1871,1092,1891,1063,1909,1019,1939,906,1960,788,1972,700"/>
-<area shape="rect" id="Node000028" href="$d3/dac/arithmetic_8c.html#af5b4461b8b9c2c669b76c466a9576b02" title="Resolves an arithmetic operation between two operands and returns the resulting value." alt="" coords="1696,1236,1840,1276"/>
-<area shape="poly" id="edge31_Node000001_Node000028" title=" " alt="" coords="1978,700,1967,807,1946,954,1916,1099,1897,1158,1875,1199,1853,1222,1826,1238,1823,1234,1850,1218,1871,1196,1892,1156,1910,1098,1941,953,1962,806,1973,700"/>
-<area shape="rect" id="Node000029" href="$d0/d4a/expression_8c.html#a5c3c94fa7fbf1616f99e899c1c765830" title="Resolves an expression from the abstract syntax tree (AST) and returns the corresponding VM cell." alt="" coords="1427,1253,1575,1278"/>
-<area shape="poly" id="edge74_Node000001_Node000029" title=" " alt="" coords="1978,700,1967,798,1946,930,1932,998,1916,1059,1897,1110,1875,1145,1858,1156,1828,1169,1739,1200,1550,1255,1549,1250,1738,1195,1826,1164,1856,1151,1871,1141,1892,1107,1911,1057,1927,996,1941,929,1962,797,1973,700"/>
-<area shape="rect" id="Node000039" href="$d2/da4/boolean_8c.html#a4672b6b7d70ece84636b4b7d2f750cde" title="Resolves a boolean expression and returns the resulting boolean value." alt="" coords="1133,1378,1340,1404"/>
-<area shape="poly" id="edge72_Node000001_Node000039" title=" " alt="" coords="1980,700,1975,826,1960,1004,1947,1095,1929,1177,1905,1245,1891,1271,1875,1290,1857,1303,1835,1314,1780,1328,1713,1335,1641,1338,1498,1338,1436,1340,1389,1346,1326,1362,1272,1381,1271,1376,1325,1357,1387,1340,1436,1334,1497,1333,1641,1332,1713,1330,1779,1322,1833,1309,1855,1299,1871,1286,1887,1268,1900,1243,1923,1176,1941,1094,1955,1003,1970,826,1975,700"/>
-<area shape="rect" id="Node000040" href="$de/dfd/array__resolution_8c.html#ac073eb00ceefd91641635ffc9d407e84" title="Resolves the type of an array access expression." alt="" coords="1669,230,1867,256"/>
-<area shape="poly" id="edge54_Node000001_Node000040" title=" " alt="" coords="1973,647,1964,586,1946,503,1916,412,1895,368,1871,327,1853,305,1832,286,1791,258,1794,253,1836,282,1857,302,1876,324,1900,366,1921,410,1951,502,1969,585,1978,646"/>
-<area shape="rect" id="Node000041" href="$d2/d18/expression__resolution_8c.html#ad2fa6a52f7590a4fe58adc41e6fab427" title="Resolves the type of an expression." alt="" coords="901,318,1085,344"/>
-<area shape="poly" id="edge75_Node000001_Node000041" title=" " alt="" coords="1975,647,1970,589,1955,515,1942,476,1924,439,1901,406,1872,378,1856,371,1830,364,1754,352,1653,344,1536,338,1289,333,1086,333,1086,327,1289,327,1536,333,1653,338,1754,347,1831,358,1858,366,1875,374,1905,403,1929,437,1947,474,1960,513,1976,588,1980,647"/>
-<area shape="rect" id="Node000042" href="$d6/dbc/condition__resolution_8c.html#a7af42b525181329829b7ed96a0cca487" title="Resolves the type of a condition expression." alt="" coords="651,585,824,610"/>
-<area shape="poly" id="edge73_Node000001_Node000042" title=" " alt="" coords="1941,657,1908,644,1873,632,1771,611,1690,601,1608,600,1503,600,1235,600,824,600,824,595,1235,595,1503,595,1608,594,1690,596,1771,605,1874,627,1910,639,1943,653"/>
-<area shape="rect" id="Node000043" href="$d3/d86/structure__resolution_8c.html#a68c5c5d2d8ef89cb7fdc420753415ae5" title="Resolves the access to a field within a struct." alt="" coords="1423,180,1579,205"/>
-<area shape="poly" id="edge76_Node000001_Node000043" title=" " alt="" coords="1973,648,1964,551,1944,421,1931,356,1914,297,1894,250,1871,220,1835,195,1794,179,1751,169,1706,165,1620,170,1550,182,1549,177,1620,164,1706,160,1751,164,1796,174,1838,190,1875,216,1899,247,1919,295,1936,355,1949,420,1969,550,1979,647"/>
-<area shape="rect" id="Node000045" href="$d8/df9/argument__validation_8c.html#a5e26809437ee721a34383410eee9e05a" title="Validates the number of arguments provided in a function call." alt="" coords="1674,1354,1862,1380"/>
-<area shape="poly" id="edge77_Node000001_Node000045" title=" " alt="" coords="1980,700,1974,833,1959,1023,1945,1121,1927,1211,1904,1285,1891,1314,1875,1337,1848,1356,1845,1352,1871,1333,1886,1312,1899,1283,1922,1210,1940,1120,1953,1022,1969,832,1975,700"/>
-<area shape="rect" id="Node000004" href="$dc/d66/func__proc__manager_8c.html#a33b374d8276ae3ff4ba9b9f1a4f6bd15" title="Updates the return type of the current function." alt="" coords="1428,686,1575,726"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="1687,704,1575,706,1575,701,1687,698"/>
-<area shape="rect" id="Node000008" href="$dc/d66/func__proc__manager_8c.html#ad308181286b701d8a073ea5416924e1d" title="Starts the declaration of a function." alt="" coords="1418,750,1585,776"/>
-<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="1656,786,1584,776,1585,771,1657,781"/>
-<area shape="rect" id="Node000009" href="$dc/d66/func__proc__manager_8c.html#a1423e71098aec906db6b648a65845296" title="Starts the declaration of a procedure." alt="" coords="1418,800,1585,825"/>
-<area shape="poly" id="edge8_Node000007_Node000009" title=" " alt="" coords="1649,807,1585,810,1585,805,1649,801"/>
-<area shape="rect" id="Node000014" href="$dc/d66/func__proc__manager_8c.html#a0f1715a0fb584002923b90035a0405cd" title="Adds a parameter to the current function or procedure context." alt="" coords="1141,900,1332,925"/>
-<area shape="poly" id="edge13_Node000013_Node000014" title=" " alt="" coords="1661,870,1531,878,1388,891,1309,902,1308,897,1388,886,1530,873,1661,865"/>
-<area shape="rect" id="Node000015" href="$d1/da1/structure__manager_8c.html#a91ddb0e97f567e2ee1c85cdf6cb4833c" title="Adds a field to the current structure declaration." alt="" coords="1428,901,1575,926"/>
-<area shape="poly" id="edge14_Node000013_Node000015" title=" " alt="" coords="1687,881,1569,904,1568,898,1686,876"/>
-<area shape="poly" id="edge21_Node000017_Node000015" title=" " alt="" coords="1685,950,1570,929,1571,924,1686,945"/>
-<area shape="rect" id="Node000018" href="$d3/d13/array__manager_8c.html#aed3142335b3245bff94bbd4dde0d47f9" title=" " alt="" coords="1418,1000,1585,1025"/>
-<area shape="poly" id="edge17_Node000017_Node000018" title=" " alt="" coords="1686,981,1571,1002,1570,997,1685,975"/>
-<area shape="rect" id="Node000019" href="$de/d23/variable__manager_8c.html#a0156a227fd1b11089557e8562aabb8dc" title="Starts the declaration of a parameter." alt="" coords="1411,950,1592,976"/>
-<area shape="poly" id="edge18_Node000017_Node000019" title=" " alt="" coords="1672,966,1592,966,1592,960,1672,960"/>
-<area shape="rect" id="Node000020" href="$de/d23/variable__manager_8c.html#af85e197b346ed860553f44112be19c28" title="Starts the declaration of a variable." alt="" coords="1424,1050,1579,1090"/>
-<area shape="poly" id="edge20_Node000017_Node000020" title=" " alt="" coords="1684,983,1664,992,1650,1003,1641,1014,1631,1027,1616,1039,1580,1055,1578,1050,1613,1034,1627,1023,1636,1011,1646,999,1661,987,1682,978"/>
-<area shape="poly" id="edge19_Node000019_Node000014" title=" " alt="" coords="1420,950,1303,928,1304,922,1421,945"/>
-<area shape="rect" id="Node000022" href="$d3/d13/array__manager_8c.html#a2bb30a00cd527c3decfe286173f052e1" title="Starts the declaration of an array." alt="" coords="1415,1114,1588,1140"/>
-<area shape="poly" id="edge23_Node000021_Node000022" title=" " alt="" coords="1695,1088,1562,1117,1561,1112,1694,1083"/>
-<area shape="rect" id="Node000023" href="$d1/da1/structure__manager_8c.html#aa577dea532d7d7c93aca4df9fa53235c" title="Starts the declaration of a structure." alt="" coords="1421,1164,1581,1204"/>
-<area shape="poly" id="edge24_Node000021_Node000023" title=" " alt="" coords="1676,1090,1664,1096,1649,1109,1641,1123,1632,1138,1616,1153,1583,1170,1581,1165,1613,1149,1628,1135,1636,1121,1645,1106,1661,1091,1673,1085"/>
-<area shape="poly" id="edge27_Node000025_Node000011" title=" " alt="" coords="1128,439,901,416,846,410,847,405,902,411,1129,433"/>
-<area shape="poly" id="edge29_Node000026_Node000020" title=" " alt="" coords="1693,1033,1579,1056,1578,1051,1692,1028"/>
-<area shape="poly" id="edge32_Node000028_Node000029" title=" " alt="" coords="1683,1262,1576,1266,1575,1260,1682,1257"/>
-<area shape="poly" id="edge52_Node000029_Node000029" title=" " alt="" coords="1549,1244,1546,1239,1538,1236,1501,1232,1473,1234,1458,1239,1455,1244,1463,1251,1459,1255,1449,1245,1454,1235,1472,1228,1501,1226,1539,1230,1550,1235,1553,1241"/>
-<area shape="rect" id="Node000030" href="$dc/dcc/array_8c.html#aba9c6f08a45baa4051d0ea05a5a97d7d" title="Computes the memory address of an array element in the stack frame." alt="" coords="1165,1152,1308,1177"/>
-<area shape="poly" id="edge33_Node000029_Node000030" title=" " alt="" coords="1457,1250,1339,1199,1281,1180,1283,1174,1341,1194,1460,1245"/>
-<area shape="rect" id="Node000035" href="$d5/d55/assignement_8c.html#a0aaf8493f8cbefac6d8a6271305f403c" title="Resolves an assignment expression and updates the corresponding variable, array, or structure." alt="" coords="412,1202,573,1228"/>
-<area shape="poly" id="edge48_Node000029_Node000035" title=" " alt="" coords="1413,1270,1263,1271,1066,1269,844,1260,621,1242,551,1230,552,1225,622,1236,845,1254,1066,1263,1263,1266,1413,1265"/>
-<area shape="rect" id="Node000036" href="$dc/d30/interpreter_8c.html#ab9a3da5caa208696b22cab3136303d71" title="Resolves and executes a list of statements." alt="" coords="193,1304,364,1329"/>
-<area shape="poly" id="edge53_Node000029_Node000036" title=" " alt="" coords="1414,1282,1222,1306,1108,1315,995,1319,736,1319,364,1319,364,1314,736,1314,995,1314,1108,1310,1221,1301,1413,1277"/>
-<area shape="poly" id="edge49_Node000029_Node000039" title=" " alt="" coords="1428,1285,1389,1300,1365,1317,1342,1337,1265,1381,1262,1376,1338,1333,1362,1313,1387,1295,1426,1280"/>
-<area shape="rect" id="Node000031" href="$d0/dda/execution_8c.html#adb4a7eee238e55c16dfc8299b854c6b0" title="Retrieves the cell associated with an array element from the stack frame." alt="" coords="936,1053,1051,1078"/>
-<area shape="poly" id="edge34_Node000030_Node000031" title=" " alt="" coords="1200,1147,1146,1119,1084,1092,1049,1081,1051,1076,1086,1087,1149,1114,1203,1142"/>
-<area shape="rect" id="Node000032" href="$df/d20/structure_8c.html#aabb788710f42b02a4dc7053de6a99664" title="Computes the memory address of a specific field within a struct or nested struct." alt="" coords="903,1152,1083,1177"/>
-<area shape="poly" id="edge36_Node000030_Node000032" title=" " alt="" coords="1152,1176,1083,1176,1083,1170,1152,1170"/>
-<area shape="rect" id="Node000038" href="$d0/dda/execution_8c.html#af12df05eec384ec6a4e91a31e218386c" title="Updates the memory cell of an array element with a new value." alt="" coords="901,1102,1085,1128"/>
-<area shape="poly" id="edge46_Node000030_Node000038" title=" " alt="" coords="1159,1151,1056,1130,1057,1125,1161,1146"/>
-<area shape="poly" id="edge35_Node000031_Node000029" title=" " alt="" coords="1064,1062,1127,1067,1200,1079,1274,1101,1309,1117,1342,1137,1359,1156,1367,1175,1375,1195,1390,1214,1422,1235,1456,1250,1454,1255,1419,1240,1386,1218,1370,1198,1362,1177,1355,1159,1338,1141,1306,1122,1272,1106,1199,1084,1127,1072,1064,1067"/>
-<area shape="poly" id="edge37_Node000032_Node000030" title=" " alt="" coords="1097,1153,1165,1153,1165,1159,1097,1158"/>
-<area shape="rect" id="Node000033" href="$d0/dda/execution_8c.html#a672f6a960e586a42b5d13fce0834042f" title="Retrieves the cell associated with a structure field from the stack frame." alt="" coords="679,1202,796,1228"/>
-<area shape="poly" id="edge38_Node000032_Node000033" title=" " alt="" coords="915,1182,797,1206,796,1201,914,1177"/>
-<area shape="rect" id="Node000034" href="$d0/dda/execution_8c.html#a79287a8dfe7d040df2cab424cab86ab7" title="Updates the memory cell of a structure field with a new value." alt="" coords="633,1153,841,1178"/>
-<area shape="poly" id="edge40_Node000032_Node000034" title=" " alt="" coords="889,1167,842,1168,842,1162,889,1162"/>
-<area shape="poly" id="edge39_Node000033_Node000029" title=" " alt="" coords="810,1215,1046,1225,1340,1244,1427,1253,1427,1259,1340,1250,1045,1230,810,1220"/>
-<area shape="poly" id="edge41_Node000034_Node000035" title=" " alt="" coords="661,1184,557,1205,556,1200,660,1178"/>
-<area shape="poly" id="edge42_Node000035_Node000036" title=" " alt="" coords="453,1236,308,1306,305,1301,451,1231"/>
-<area shape="poly" id="edge45_Node000036_Node000036" title=" " alt="" coords="315,1294,305,1286,279,1282,257,1284,246,1289,243,1295,250,1302,245,1305,238,1295,242,1285,256,1279,279,1277,307,1281,318,1290"/>
-<area shape="rect" id="Node000037" href="$dd/d57/condition_8c.html#a6af8daa1db7d1dfc4c2f26d340b53e56" title="Executes a conditional statement (if&#45;else)." alt="" coords="5,1304,145,1329"/>
-<area shape="poly" id="edge43_Node000036_Node000037" title=" " alt="" coords="179,1328,146,1328,146,1322,179,1323"/>
-<area shape="poly" id="edge44_Node000037_Node000036" title=" " alt="" coords="159,1305,193,1305,193,1310,159,1310"/>
-<area shape="poly" id="edge47_Node000038_Node000035" title=" " alt="" coords="887,1112,826,1113,759,1117,689,1127,622,1143,590,1156,559,1172,512,1204,509,1200,557,1167,588,1151,621,1138,688,1121,758,1112,826,1107,887,1107"/>
-<area shape="poly" id="edge50_Node000039_Node000037" title=" " alt="" coords="1119,1389,739,1382,491,1382,389,1376,288,1363,127,1332,128,1326,289,1358,390,1371,491,1376,739,1376,1119,1384"/>
-<area shape="poly" id="edge51_Node000039_Node000039" title=" " alt="" coords="1280,1369,1277,1364,1270,1361,1237,1357,1211,1359,1197,1364,1194,1369,1201,1376,1197,1380,1189,1370,1193,1360,1210,1354,1237,1352,1271,1356,1281,1360,1284,1366"/>
-<area shape="poly" id="edge55_Node000040_Node000002" title=" " alt="" coords="1655,246,830,246,830,240,1655,240"/>
-<area shape="poly" id="edge56_Node000040_Node000041" title=" " alt="" coords="1655,259,1615,264,1086,324,1085,318,1614,259,1655,254"/>
-<area shape="poly" id="edge67_Node000040_Node000043" title=" " alt="" coords="1655,233,1536,208,1537,202,1656,228"/>
-<area shape="poly" id="edge57_Node000041_Node000002" title=" " alt="" coords="941,316,774,258,776,253,943,311"/>
-<area shape="poly" id="edge58_Node000041_Node000010" title=" " alt="" coords="973,308,922,239,888,200,852,162,804,125,760,97,763,92,807,120,855,158,892,196,926,236,978,305"/>
-<area shape="poly" id="edge59_Node000041_Node000011" title=" " alt="" coords="929,350,790,385,789,380,927,345"/>
-<area shape="poly" id="edge60_Node000041_Node000012" title=" " alt="" coords="966,354,916,388,854,421,795,442,793,437,852,417,913,383,963,350"/>
-<area shape="poly" id="edge61_Node000041_Node000016" title=" " alt="" coords="969,310,918,265,886,241,852,220,801,201,803,196,854,215,889,236,921,260,972,306"/>
-<area shape="poly" id="edge62_Node000041_Node000024" title=" " alt="" coords="977,357,927,418,893,450,855,479,805,499,803,494,852,474,890,446,923,414,973,353"/>
-<area shape="poly" id="edge66_Node000041_Node000041" title=" " alt="" coords="1037,309,1034,304,1026,301,993,297,967,299,953,304,951,309,958,316,954,320,945,310,950,300,966,294,993,292,1028,296,1037,300,1041,306"/>
-<area shape="poly" id="edge63_Node000041_Node000042" title=" " alt="" coords="982,357,933,442,897,491,855,536,813,566,772,587,769,582,810,561,852,532,893,487,928,439,977,355"/>
-<area shape="poly" id="edge64_Node000042_Node000005" title=" " alt="" coords="637,611,557,619,556,614,636,605"/>
-<area shape="poly" id="edge65_Node000042_Node000042" title=" " alt="" coords="781,576,778,571,770,567,737,564,711,566,697,571,695,576,702,583,698,587,689,577,694,567,710,560,737,558,772,562,781,567,785,573"/>
-<area shape="poly" id="edge68_Node000043_Node000040" title=" " alt="" coords="1594,198,1733,228,1732,233,1593,204"/>
-<area shape="rect" id="Node000044" href="$d3/d86/structure__resolution_8c.html#a05d8b96afc7d3dc4d826eb06596342ea" title="Resolves the type of a struct field access expression." alt="" coords="1162,166,1311,206"/>
-<area shape="poly" id="edge69_Node000043_Node000044" title=" " alt="" coords="1410,193,1312,190,1312,185,1410,187"/>
-<area shape="poly" id="edge70_Node000044_Node000016" title=" " alt="" coords="1148,188,831,188,831,183,1148,183"/>
-<area shape="poly" id="edge71_Node000044_Node000041" title=" " alt="" coords="1191,215,1017,320,1014,316,1189,211"/>
-<area shape="rect" id="Node000046" href="$d0/d8b/func__proc__validation_8c.html#afafcd50f3eee0ad1e7debef6b3df9f2e" title="Validates the argument list of a function." alt="" coords="1388,1354,1615,1380"/>
-<area shape="poly" id="edge78_Node000045_Node000046" title=" " alt="" coords="1660,1370,1615,1370,1615,1364,1660,1364"/>
+<area shape="rect" id="Node000001" title="Sets the error type of the provided Error struct." alt="" coords="2184,704,2300,729"/>
+<area shape="rect" id="Node000002" href="$d6/d4c/assignment__validation_8c.html#adafad0061063a9ae298f6233978de3b1" title="Validates type compatibility for array assignments." alt="" coords="901,104,1085,129"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="2237,690,2229,575,2211,415,2198,333,2180,259,2159,198,2147,174,2134,157,2092,118,2051,92,2011,75,1970,67,1926,64,1878,65,1765,68,1506,68,1388,72,1270,82,1074,106,1073,101,1270,76,1388,67,1506,63,1765,63,1878,60,1926,59,1971,62,2013,70,2054,87,2095,114,2138,153,2152,172,2164,196,2186,257,2203,332,2216,414,2234,575,2242,690"/>
+<area shape="rect" id="Node000003" href="$d2/d71/type__validation_8c.html#a5787d66f109d016f22256dc3a5f84435" title="Validates that the lexicographic index is a base type." alt="" coords="1963,678,2098,704"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="2170,711,2098,702,2099,696,2171,705"/>
+<area shape="rect" id="Node000005" href="$d6/d35/condition__validation_8c.html#a71704b89d5560a369eccc90b03ee22eb" title="Validates the type of a condition expression." alt="" coords="662,598,789,624"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="2208,699,2173,682,2135,668,2034,646,1953,638,1765,639,1259,639,997,632,789,619,789,613,998,626,1259,634,1765,634,1953,632,2034,640,2137,663,2176,677,2210,695"/>
+<area shape="rect" id="Node000006" href="$d0/d8b/func__proc__validation_8c.html#a3ae1164529326a68c7fd80deeebc846d" title="Validates the definition of a function or procedure." alt="" coords="1931,728,2130,753"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="2170,727,2131,732,2130,726,2170,722"/>
+<area shape="rect" id="Node000007" href="$d0/d8b/func__proc__validation_8c.html#a8411cbcac96e774b3d92ba56cd92d927" title="Checks if a function or procedure has been redefined." alt="" coords="1925,777,2136,802"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="2205,738,2137,767,2093,780,2092,775,2135,762,2203,733"/>
+<area shape="rect" id="Node000010" href="$d0/d8b/func__proc__validation_8c.html#ae8847b0a477fa9ae2766940f78a5c90f" title="Validates the return statement of a function." alt="" coords="911,29,1076,54"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="2237,690,2232,563,2216,382,2203,290,2185,206,2162,137,2149,111,2134,92,2092,54,2051,30,2011,16,1970,10,1878,12,1765,18,1506,18,1272,25,1076,38,1076,32,1272,19,1506,12,1765,12,1878,7,1970,4,2012,10,2054,25,2095,50,2138,88,2153,108,2167,135,2190,205,2208,289,2221,382,2237,562,2243,689"/>
+<area shape="rect" id="Node000011" href="$dd/d08/input__validation_8c.html#ad3dd17f0853fcdf49904fd5847b0e4b3" title="Validates the arguments provided to an input&#45;like procedure against a format string." alt="" coords="877,370,1109,396"/>
+<area shape="poly" id="edge10_Node000001_Node000011" title=" " alt="" coords="2237,690,2231,633,2216,561,2202,524,2185,488,2162,455,2134,428,2088,397,2046,378,2005,370,1964,368,1875,378,1824,383,1765,386,1506,386,1109,386,1109,380,1506,380,1765,380,1823,378,1875,373,1964,363,2006,364,2047,373,2091,392,2138,424,2166,452,2189,485,2207,522,2221,560,2237,633,2243,689"/>
+<area shape="rect" id="Node000012" href="$d5/da0/print__validation_8c.html#a2e389d9645c7b92911f4c86af31b14a8" title="Validates the arguments provided to a print&#45;like procedure against a format string." alt="" coords="879,428,1108,453"/>
+<area shape="poly" id="edge11_Node000001_Node000012" title=" " alt="" coords="2231,691,2219,655,2199,613,2171,571,2134,537,2086,509,2042,491,2001,481,1961,478,1874,482,1765,487,1506,487,1393,484,1279,476,1086,456,1087,450,1280,471,1393,479,1506,482,1765,482,1874,477,1961,472,2002,476,2044,486,2088,504,2138,533,2175,568,2203,610,2224,653,2236,690"/>
+<area shape="rect" id="Node000013" href="$d6/da5/scope__validation_8c.html#a01d2012cbc4acbf0920f4060463c2c83" title="Checks if a scope entity has been redefined." alt="" coords="1937,838,2124,864"/>
+<area shape="poly" id="edge12_Node000001_Node000013" title=" " alt="" coords="2223,742,2185,779,2137,816,2109,830,2081,841,2079,836,2107,825,2135,811,2182,775,2219,738"/>
+<area shape="rect" id="Node000016" href="$d6/d4c/assignment__validation_8c.html#afaa433496bef6af1b952c37f239afad2" title="Ensures type compatibility for struct field assignments." alt="" coords="900,269,1087,294"/>
+<area shape="poly" id="edge15_Node000001_Node000016" title=" " alt="" coords="2239,690,2236,626,2222,541,2209,496,2191,453,2166,413,2134,380,2089,348,2047,328,2006,319,1965,318,1876,327,1824,333,1765,335,1506,335,1388,331,1270,322,1073,297,1074,292,1270,316,1388,326,1506,330,1765,330,1823,327,1875,322,1965,312,2007,314,2049,323,2092,343,2138,376,2170,410,2196,450,2214,494,2228,539,2241,625,2244,690"/>
+<area shape="rect" id="Node000017" href="$d2/d71/type__validation_8c.html#ab2be243b7af9ae3fdecace4260ed430d" title="Validates the definition of a type." alt="" coords="1949,938,2113,964"/>
+<area shape="poly" id="edge16_Node000001_Node000017" title=" " alt="" coords="2230,743,2192,806,2167,843,2138,877,2096,913,2056,940,2053,936,2092,909,2134,873,2163,840,2188,804,2226,740"/>
+<area shape="rect" id="Node000021" href="$d2/d71/type__validation_8c.html#ad0ff0ffaf64af0526cea2fc312001686" title="Checks if a type has been redefined." alt="" coords="1942,1102,2119,1128"/>
+<area shape="poly" id="edge22_Node000001_Node000021" title=" " alt="" coords="2241,743,2234,804,2217,886,2186,974,2164,1017,2138,1056,2105,1085,2068,1105,2066,1100,2102,1081,2134,1052,2160,1014,2181,972,2211,884,2229,803,2236,743"/>
+<area shape="rect" id="Node000024" href="$d6/d4c/assignment__validation_8c.html#a4fde6de79346a9e0cdb168b7c802fccc" title="Checks type compatibility during variable assignments." alt="" coords="892,492,1095,517"/>
+<area shape="poly" id="edge25_Node000001_Node000024" title=" " alt="" coords="2227,693,2192,634,2166,605,2135,581,2084,556,2040,540,1999,532,1959,529,1873,533,1765,538,1506,538,1285,531,1095,517,1095,511,1286,525,1506,532,1765,532,1873,528,1959,524,2000,526,2041,535,2087,551,2137,577,2169,601,2196,631,2232,690"/>
+<area shape="rect" id="Node000025" href="$da/d3a/variable__validation_8c.html#a0e048d19a4ba5f7559624761c082cf15" title="Validates the definition of a variable." alt="" coords="1413,421,1601,446"/>
+<area shape="poly" id="edge26_Node000001_Node000025" title=" " alt="" coords="2236,690,2228,641,2211,579,2198,547,2181,517,2160,490,2135,468,2094,449,2038,436,1970,428,1895,423,1738,423,1602,429,1601,424,1738,418,1895,418,1971,422,2039,431,2096,444,2137,464,2164,487,2185,514,2202,545,2216,577,2233,640,2241,690"/>
+<area shape="rect" id="Node000026" href="$da/d3a/variable__validation_8c.html#a9516a6e44a11928cf63ddf2d18960920" title="Checks if a variable has been redefined." alt="" coords="1930,1017,2131,1042"/>
+<area shape="poly" id="edge28_Node000001_Node000026" title=" " alt="" coords="2239,744,2228,792,2208,853,2179,918,2160,949,2138,977,2106,1002,2072,1019,2070,1015,2104,998,2134,973,2156,946,2174,915,2203,851,2223,790,2234,742"/>
+<area shape="rect" id="Node000027" href="$d5/dae/stack__management_8c.html#ab1435476d247c4779f3a19777e8e8ab9" title="Finds a stack frame by its region index." alt="" coords="1952,1362,2109,1402"/>
+<area shape="poly" id="edge30_Node000001_Node000027" title=" " alt="" coords="2242,743,2236,831,2220,959,2207,1031,2189,1105,2167,1179,2138,1250,2120,1283,2098,1314,2055,1363,2051,1360,2094,1311,2115,1280,2134,1247,2161,1177,2184,1104,2201,1030,2215,958,2231,830,2237,743"/>
+<area shape="rect" id="Node000029" href="$d0/d4a/expression_8c.html#a5c3c94fa7fbf1616f99e899c1c765830" title="Resolves an expression from the abstract syntax tree (AST) and returns the corresponding VM cell." alt="" coords="1433,1545,1581,1570"/>
+<area shape="poly" id="edge85_Node000001_Node000029" title=" " alt="" coords="2243,743,2238,881,2223,1082,2210,1186,2192,1282,2168,1361,2154,1392,2138,1415,2121,1431,2099,1446,2041,1471,1969,1493,1888,1512,1721,1539,1582,1554,1581,1549,1721,1533,1887,1506,1968,1488,2039,1466,2097,1441,2118,1427,2134,1412,2149,1389,2163,1359,2187,1280,2205,1185,2218,1082,2233,881,2238,743"/>
+<area shape="rect" id="Node000030" href="$dc/dcc/array_8c.html#aba9c6f08a45baa4051d0ea05a5a97d7d" title="Computes the memory address of an array element in the stack frame." alt="" coords="1189,1318,1332,1344"/>
+<area shape="poly" id="edge62_Node000001_Node000030" title=" " alt="" coords="2240,743,2228,832,2207,951,2177,1066,2159,1110,2138,1141,2094,1180,2046,1214,1995,1244,1941,1269,1885,1289,1828,1306,1713,1330,1601,1343,1496,1347,1405,1346,1332,1341,1332,1336,1405,1341,1496,1342,1600,1338,1712,1325,1827,1301,1884,1284,1939,1264,1992,1239,2043,1210,2091,1176,2134,1137,2154,1108,2172,1064,2202,950,2223,831,2235,742"/>
+<area shape="rect" id="Node000038" href="$d2/da4/boolean_8c.html#a4672b6b7d70ece84636b4b7d2f750cde" title="Resolves a boolean expression and returns the resulting boolean value." alt="" coords="1157,1646,1364,1672"/>
+<area shape="poly" id="edge83_Node000001_Node000038" title=" " alt="" coords="2242,743,2233,936,2214,1223,2200,1368,2183,1496,2162,1592,2151,1624,2138,1644,2112,1662,2079,1676,2040,1687,1995,1696,1893,1705,1778,1707,1660,1703,1545,1695,1354,1674,1354,1669,1546,1690,1661,1698,1779,1702,1892,1700,1995,1690,2039,1682,2078,1671,2110,1657,2134,1640,2146,1622,2157,1590,2178,1495,2195,1368,2209,1223,2228,935,2237,743"/>
+<area shape="rect" id="Node000041" href="$d8/d9a/expression__format_8c.html#aa25e96463d92f71df60d78640b1bfb77" title="Formats an expression into a string representation." alt="" coords="1959,1724,2103,1749"/>
+<area shape="poly" id="edge61_Node000001_Node000041" title=" " alt="" coords="2242,743,2232,945,2212,1251,2197,1406,2181,1543,2161,1648,2150,1684,2138,1706,2123,1720,2104,1729,2102,1724,2120,1715,2134,1703,2145,1682,2156,1647,2175,1542,2192,1406,2206,1251,2227,945,2237,743"/>
+<area shape="rect" id="Node000042" href="$d3/dac/arithmetic_8c.html#af5b4461b8b9c2c669b76c466a9576b02" title="Resolves an arithmetic operation between two operands and returns the resulting value." alt="" coords="1959,1590,2103,1630"/>
+<area shape="poly" id="edge63_Node000001_Node000042" title=" " alt="" coords="2243,743,2239,904,2225,1144,2212,1270,2194,1387,2170,1484,2155,1523,2138,1554,2117,1576,2092,1592,2089,1587,2114,1572,2134,1551,2150,1521,2165,1483,2189,1386,2207,1269,2220,1144,2234,904,2238,743"/>
+<area shape="rect" id="Node000043" href="$de/dfd/array__resolution_8c.html#ac073eb00ceefd91641635ffc9d407e84" title="Resolves the type of an array access expression." alt="" coords="1931,168,2130,193"/>
+<area shape="poly" id="edge65_Node000001_Node000043" title=" " alt="" coords="2236,690,2226,586,2206,443,2193,371,2176,305,2156,251,2134,214,2107,195,2110,191,2138,211,2161,249,2181,303,2198,370,2212,442,2231,585,2241,690"/>
+<area shape="rect" id="Node000044" href="$d2/d18/expression__resolution_8c.html#ad2fa6a52f7590a4fe58adc41e6fab427" title="Resolves the type of an expression." alt="" coords="1169,269,1353,294"/>
+<area shape="poly" id="edge86_Node000001_Node000044" title=" " alt="" coords="2235,690,2224,604,2203,490,2190,433,2173,382,2155,342,2134,316,2119,308,2093,301,2018,290,1917,283,1801,279,1556,278,1353,282,1353,276,1556,273,1801,274,1918,278,2018,285,2094,296,2121,303,2138,312,2159,339,2178,380,2195,432,2209,489,2229,603,2240,690"/>
+<area shape="rect" id="Node000045" href="$d6/dbc/condition__resolution_8c.html#a7af42b525181329829b7ed96a0cca487" title="Resolves the type of a condition expression." alt="" coords="907,573,1080,598"/>
+<area shape="poly" id="edge84_Node000001_Node000045" title=" " alt="" coords="2221,694,2185,654,2161,635,2135,620,2083,599,2037,587,1996,581,1956,579,1872,584,1765,588,1506,588,1080,588,1080,583,1506,583,1765,583,1872,579,1956,574,1996,575,2038,582,2084,594,2137,615,2164,631,2188,651,2225,691"/>
+<area shape="rect" id="Node000046" href="$d3/d86/structure__resolution_8c.html#a68c5c5d2d8ef89cb7fdc420753415ae5" title="Resolves the access to a field within a struct." alt="" coords="1686,218,1842,244"/>
+<area shape="poly" id="edge87_Node000001_Node000046" title=" " alt="" coords="2236,690,2226,594,2206,465,2193,400,2176,342,2157,295,2134,265,2099,241,2059,224,2016,213,1973,208,1888,210,1818,221,1817,216,1888,205,1973,203,2017,208,2061,219,2101,236,2138,261,2161,293,2181,340,2198,399,2212,464,2231,593,2241,689"/>
+<area shape="rect" id="Node000048" href="$d8/df9/argument__validation_8c.html#a5e26809437ee721a34383410eee9e05a" title="Validates the number of arguments provided in a function call." alt="" coords="1937,1773,2125,1798"/>
+<area shape="poly" id="edge88_Node000001_Node000048" title=" " alt="" coords="2242,743,2234,957,2215,1281,2201,1446,2183,1591,2163,1702,2151,1740,2138,1763,2124,1775,2121,1771,2134,1760,2146,1738,2158,1701,2178,1591,2195,1445,2209,1281,2229,956,2237,743"/>
+<area shape="rect" id="Node000004" href="$dc/d66/func__proc__manager_8c.html#a33b374d8276ae3ff4ba9b9f1a4f6bd15" title="Updates the return type of the current function." alt="" coords="1691,674,1837,714"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="1949,695,1838,696,1838,690,1949,689"/>
+<area shape="rect" id="Node000008" href="$dc/d66/func__proc__manager_8c.html#ad308181286b701d8a073ea5416924e1d" title="Starts the declaration of a function." alt="" coords="1681,738,1847,764"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="1929,778,1847,766,1848,761,1929,772"/>
+<area shape="rect" id="Node000009" href="$dc/d66/func__proc__manager_8c.html#a1423e71098aec906db6b648a65845296" title="Starts the declaration of a procedure." alt="" coords="1681,788,1847,813"/>
+<area shape="poly" id="edge8_Node000007_Node000009" title=" " alt="" coords="1912,797,1847,800,1847,794,1911,792"/>
+<area shape="rect" id="Node000014" href="$dc/d66/func__proc__manager_8c.html#a0f1715a0fb584002923b90035a0405cd" title="Adds a parameter to the current function or procedure context." alt="" coords="1412,889,1603,914"/>
+<area shape="poly" id="edge13_Node000013_Node000014" title=" " alt="" coords="1924,858,1793,866,1651,879,1572,892,1571,886,1650,874,1793,860,1924,852"/>
+<area shape="rect" id="Node000015" href="$d1/da1/structure__manager_8c.html#a91ddb0e97f567e2ee1c85cdf6cb4833c" title="Adds a field to the current structure declaration." alt="" coords="1691,889,1837,914"/>
+<area shape="poly" id="edge14_Node000013_Node000015" title=" " alt="" coords="1950,869,1832,892,1831,886,1949,864"/>
+<area shape="poly" id="edge21_Node000017_Node000015" title=" " alt="" coords="1948,939,1833,917,1834,912,1949,933"/>
+<area shape="rect" id="Node000018" href="$d3/d13/array__manager_8c.html#aed3142335b3245bff94bbd4dde0d47f9" title=" " alt="" coords="1681,988,1847,1013"/>
+<area shape="poly" id="edge17_Node000017_Node000018" title=" " alt="" coords="1949,969,1834,990,1833,985,1948,964"/>
+<area shape="rect" id="Node000019" href="$de/d23/variable__manager_8c.html#a0156a227fd1b11089557e8562aabb8dc" title="Starts the declaration of a parameter." alt="" coords="1673,938,1855,964"/>
+<area shape="poly" id="edge18_Node000017_Node000019" title=" " alt="" coords="1935,954,1855,954,1855,948,1935,948"/>
+<area shape="rect" id="Node000020" href="$de/d23/variable__manager_8c.html#af85e197b346ed860553f44112be19c28" title="Starts the declaration of a variable." alt="" coords="1687,1038,1841,1078"/>
+<area shape="poly" id="edge20_Node000017_Node000020" title=" " alt="" coords="1995,973,1941,1000,1878,1027,1840,1040,1838,1035,1876,1022,1938,995,1992,968"/>
+<area shape="poly" id="edge19_Node000019_Node000014" title=" " alt="" coords="1684,938,1574,917,1575,912,1685,933"/>
+<area shape="rect" id="Node000022" href="$d3/d13/array__manager_8c.html#a2bb30a00cd527c3decfe286173f052e1" title="Starts the declaration of an array." alt="" coords="1677,1102,1851,1128"/>
+<area shape="poly" id="edge23_Node000021_Node000022" title=" " alt="" coords="1928,1118,1851,1118,1851,1112,1928,1112"/>
+<area shape="rect" id="Node000023" href="$d1/da1/structure__manager_8c.html#aa577dea532d7d7c93aca4df9fa53235c" title="Starts the declaration of a structure." alt="" coords="1684,1152,1844,1192"/>
+<area shape="poly" id="edge24_Node000021_Node000023" title=" " alt="" coords="1958,1133,1845,1158,1844,1153,1957,1128"/>
+<area shape="poly" id="edge27_Node000025_Node000011" title=" " alt="" coords="1399,427,1157,404,1102,398,1103,393,1158,399,1400,422"/>
+<area shape="poly" id="edge29_Node000026_Node000020" title=" " alt="" coords="1917,1044,1842,1052,1841,1047,1916,1039"/>
+<area shape="rect" id="Node000028" href="$d0/dda/execution_8c.html#adb4a7eee238e55c16dfc8299b854c6b0" title="Retrieves the cell associated with an array element from the stack frame." alt="" coords="1707,1420,1821,1445"/>
+<area shape="poly" id="edge31_Node000027_Node000028" title=" " alt="" coords="1939,1402,1822,1424,1821,1419,1938,1397"/>
+<area shape="rect" id="Node000032" href="$d0/dda/execution_8c.html#a672f6a960e586a42b5d13fce0834042f" title="Retrieves the cell associated with a structure field from the stack frame." alt="" coords="667,1344,784,1369"/>
+<area shape="poly" id="edge53_Node000027_Node000032" title=" " alt="" coords="1942,1361,1748,1319,1622,1298,1483,1280,1334,1270,1180,1269,1027,1281,952,1293,878,1308,854,1320,830,1334,785,1347,784,1342,828,1329,852,1315,876,1303,951,1287,1026,1276,1180,1264,1334,1265,1483,1275,1623,1292,1750,1313,1943,1356"/>
+<area shape="rect" id="Node000033" href="$d0/dda/execution_8c.html#a79287a8dfe7d040df2cab424cab86ab7" title="Updates the memory cell of a structure field with a new value." alt="" coords="621,1294,829,1320"/>
+<area shape="poly" id="edge58_Node000027_Node000033" title=" " alt="" coords="1985,1357,1934,1329,1876,1306,1771,1275,1680,1254,1599,1242,1523,1237,1362,1241,1157,1251,1017,1256,956,1261,878,1272,770,1297,769,1292,877,1267,955,1256,1017,1251,1157,1246,1362,1235,1523,1232,1600,1237,1681,1249,1772,1270,1878,1301,1937,1325,1988,1352"/>
+<area shape="rect" id="Node000037" href="$d0/dda/execution_8c.html#af12df05eec384ec6a4e91a31e218386c" title="Updates the memory cell of an array element with a new value." alt="" coords="901,1369,1085,1394"/>
+<area shape="poly" id="edge57_Node000027_Node000037" title=" " alt="" coords="1938,1384,1085,1384,1085,1379,1938,1379"/>
+<area shape="rect" id="Node000039" href="$d0/dda/execution_8c.html#a2ed11feca9d05ad094d1cfdf2b6fd0e0" title="Retrieves the cell associated with a variable from the stack frame." alt="" coords="1697,1572,1831,1597"/>
+<area shape="poly" id="edge54_Node000027_Node000039" title=" " alt="" coords="1995,1413,1879,1504,1785,1574,1781,1570,1876,1500,1992,1408"/>
+<area shape="rect" id="Node000040" href="$d0/dda/execution_8c.html#a1f3a6d76112092d23285413be1167c0b" title="Updates the memory cell of a variable with a new value." alt="" coords="1159,1470,1362,1496"/>
+<area shape="poly" id="edge59_Node000027_Node000040" title=" " alt="" coords="1988,1411,1937,1438,1878,1459,1810,1474,1740,1485,1600,1496,1470,1498,1362,1494,1363,1489,1470,1492,1600,1491,1739,1479,1809,1469,1877,1454,1935,1433,1985,1406"/>
+<area shape="poly" id="edge32_Node000028_Node000029" title=" " alt="" coords="1726,1454,1536,1547,1533,1543,1723,1449"/>
+<area shape="poly" id="edge51_Node000029_Node000029" title=" " alt="" coords="1551,1536,1548,1531,1541,1527,1507,1524,1481,1526,1467,1531,1464,1536,1471,1543,1468,1547,1459,1537,1463,1527,1480,1521,1507,1518,1542,1522,1552,1527,1556,1533"/>
+<area shape="poly" id="edge33_Node000029_Node000030" title=" " alt="" coords="1483,1537,1429,1481,1362,1416,1277,1346,1281,1342,1366,1412,1433,1477,1487,1533"/>
+<area shape="rect" id="Node000034" href="$d5/d55/assignement_8c.html#a0aaf8493f8cbefac6d8a6271305f403c" title="Resolves an assignment expression and updates the corresponding variable, array, or structure." alt="" coords="412,1470,573,1496"/>
+<area shape="poly" id="edge47_Node000029_Node000034" title=" " alt="" coords="1420,1554,573,1492,574,1486,1420,1549"/>
+<area shape="rect" id="Node000035" href="$dc/d30/interpreter_8c.html#ab9a3da5caa208696b22cab3136303d71" title="Resolves and executes a list of statements." alt="" coords="193,1572,364,1597"/>
+<area shape="poly" id="edge52_Node000029_Node000035" title=" " alt="" coords="1420,1568,1225,1580,995,1587,724,1587,364,1587,364,1582,724,1582,995,1582,1225,1575,1419,1562"/>
+<area shape="poly" id="edge48_Node000029_Node000038" title=" " alt="" coords="1464,1578,1294,1649,1292,1644,1462,1573"/>
+<area shape="poly" id="edge34_Node000030_Node000028" title=" " alt="" coords="1339,1344,1707,1418,1706,1424,1338,1349"/>
+<area shape="rect" id="Node000031" href="$df/d20/structure_8c.html#aabb788710f42b02a4dc7053de6a99664" title="Computes the memory address of a specific field within a struct or nested struct." alt="" coords="903,1318,1083,1344"/>
+<area shape="poly" id="edge35_Node000030_Node000031" title=" " alt="" coords="1176,1342,1084,1342,1084,1337,1176,1337"/>
+<area shape="poly" id="edge45_Node000030_Node000037" title=" " alt="" coords="1180,1349,1062,1372,1061,1366,1179,1344"/>
+<area shape="poly" id="edge36_Node000031_Node000030" title=" " alt="" coords="1097,1320,1189,1320,1189,1326,1097,1325"/>
+<area shape="poly" id="edge37_Node000031_Node000032" title=" " alt="" coords="890,1344,784,1354,784,1348,889,1338"/>
+<area shape="poly" id="edge39_Node000031_Node000033" title=" " alt="" coords="890,1324,829,1319,830,1314,890,1319"/>
+<area shape="poly" id="edge38_Node000032_Node000029" title=" " alt="" coords="773,1371,823,1388,878,1403,951,1415,1015,1420,1124,1417,1177,1417,1232,1421,1294,1433,1365,1455,1405,1474,1441,1498,1495,1543,1491,1547,1438,1503,1402,1479,1363,1460,1293,1438,1232,1426,1177,1422,1124,1423,1014,1425,951,1421,877,1408,821,1394,771,1376"/>
+<area shape="poly" id="edge40_Node000033_Node000034" title=" " alt="" coords="634,1327,623,1333,582,1366,547,1405,503,1472,499,1469,543,1401,578,1362,620,1329,632,1322"/>
+<area shape="poly" id="edge41_Node000034_Node000035" title=" " alt="" coords="453,1504,308,1574,305,1569,451,1499"/>
+<area shape="poly" id="edge44_Node000035_Node000035" title=" " alt="" coords="315,1562,305,1554,279,1550,257,1552,246,1557,243,1563,250,1570,245,1573,238,1563,242,1554,256,1547,279,1545,307,1549,318,1558"/>
+<area shape="rect" id="Node000036" href="$dd/d57/condition_8c.html#a6af8daa1db7d1dfc4c2f26d340b53e56" title="Executes a conditional statement (if&#45;else)." alt="" coords="5,1572,145,1597"/>
+<area shape="poly" id="edge42_Node000035_Node000036" title=" " alt="" coords="179,1596,146,1596,146,1590,179,1591"/>
+<area shape="poly" id="edge43_Node000036_Node000035" title=" " alt="" coords="159,1573,193,1573,193,1578,159,1578"/>
+<area shape="poly" id="edge46_Node000037_Node000034" title=" " alt="" coords="917,1400,557,1473,556,1468,915,1395"/>
+<area shape="poly" id="edge49_Node000038_Node000036" title=" " alt="" coords="1144,1658,949,1652,727,1650,491,1650,389,1645,288,1632,127,1600,128,1594,289,1626,390,1639,491,1644,727,1644,949,1647,1144,1652"/>
+<area shape="poly" id="edge50_Node000038_Node000038" title=" " alt="" coords="1304,1637,1302,1632,1294,1629,1261,1625,1234,1627,1220,1632,1218,1637,1225,1644,1221,1648,1212,1638,1217,1628,1233,1622,1261,1620,1295,1624,1305,1628,1309,1634"/>
+<area shape="poly" id="edge56_Node000039_Node000029" title=" " alt="" coords="1683,1579,1581,1568,1582,1563,1684,1573"/>
+<area shape="poly" id="edge55_Node000039_Node000038" title=" " alt="" coords="1684,1599,1348,1649,1347,1644,1683,1594"/>
+<area shape="poly" id="edge60_Node000040_Node000034" title=" " alt="" coords="1146,1486,574,1486,574,1480,1146,1480"/>
+<area shape="poly" id="edge64_Node000042_Node000029" title=" " alt="" coords="1945,1620,1806,1624,1728,1621,1650,1611,1587,1594,1535,1573,1537,1568,1589,1589,1651,1606,1728,1615,1806,1619,1945,1615"/>
+<area shape="poly" id="edge66_Node000043_Node000002" title=" " alt="" coords="1917,171,1602,144,1320,130,1085,121,1085,116,1320,124,1603,139,1918,166"/>
+<area shape="poly" id="edge67_Node000043_Node000044" title=" " alt="" coords="1918,187,1790,195,1651,208,1466,239,1316,272,1315,266,1465,234,1650,203,1789,189,1918,182"/>
+<area shape="poly" id="edge78_Node000043_Node000046" title=" " alt="" coords="1983,199,1843,227,1842,222,1982,194"/>
+<area shape="poly" id="edge68_Node000044_Node000002" title=" " alt="" coords="1226,264,1014,131,1016,127,1229,260"/>
+<area shape="poly" id="edge69_Node000044_Node000010" title=" " alt="" coords="1243,258,1190,178,1151,133,1108,93,1073,72,1037,57,1039,52,1075,67,1111,89,1155,130,1194,175,1248,255"/>
+<area shape="poly" id="edge70_Node000044_Node000011" title=" " alt="" coords="1214,302,1029,373,1027,368,1212,297"/>
+<area shape="poly" id="edge71_Node000044_Node000012" title=" " alt="" coords="1240,306,1185,358,1149,386,1111,409,1057,430,1055,425,1108,405,1146,381,1181,354,1236,303"/>
+<area shape="poly" id="edge72_Node000044_Node000016" title=" " alt="" coords="1155,284,1087,284,1087,279,1155,279"/>
+<area shape="poly" id="edge73_Node000044_Node000024" title=" " alt="" coords="1247,308,1194,386,1155,429,1111,467,1082,483,1052,494,1050,489,1080,478,1108,462,1152,425,1190,382,1243,305"/>
+<area shape="poly" id="edge77_Node000044_Node000044" title=" " alt="" coords="1304,260,1302,255,1294,251,1261,248,1234,250,1220,255,1218,260,1225,267,1221,271,1212,261,1217,251,1233,245,1261,242,1295,246,1305,251,1309,257"/>
+<area shape="poly" id="edge74_Node000044_Node000045" title=" " alt="" coords="1252,308,1232,354,1201,413,1161,475,1111,530,1073,557,1034,575,1031,571,1070,553,1108,526,1156,471,1196,410,1227,352,1247,306"/>
+<area shape="poly" id="edge75_Node000045_Node000005" title=" " alt="" coords="893,598,789,608,789,602,893,593"/>
+<area shape="poly" id="edge76_Node000045_Node000045" title=" " alt="" coords="1041,564,1038,559,1030,556,993,552,965,554,949,559,946,564,954,571,950,575,941,565,946,555,964,549,993,546,1032,551,1042,555,1046,561"/>
+<area shape="poly" id="edge79_Node000046_Node000043" title=" " alt="" coords="1812,212,1930,188,1932,193,1813,218"/>
+<area shape="rect" id="Node000047" href="$d3/d86/structure__resolution_8c.html#a05d8b96afc7d3dc4d826eb06596342ea" title="Resolves the type of a struct field access expression." alt="" coords="1433,154,1582,194"/>
+<area shape="poly" id="edge80_Node000046_Node000047" title=" " alt="" coords="1692,218,1582,193,1583,188,1694,213"/>
+<area shape="poly" id="edge81_Node000047_Node000016" title=" " alt="" coords="1419,188,1295,207,1158,235,1033,272,1031,266,1157,230,1294,202,1419,183"/>
+<area shape="poly" id="edge82_Node000047_Node000044" title=" " alt="" coords="1444,202,1413,215,1290,271,1288,266,1411,210,1442,197"/>
+<area shape="rect" id="Node000049" href="$d0/d8b/func__proc__validation_8c.html#afafcd50f3eee0ad1e7debef6b3df9f2e" title="Validates the argument list of a function." alt="" coords="1651,1773,1877,1798"/>
+<area shape="poly" id="edge89_Node000048_Node000049" title=" " alt="" coords="1923,1788,1878,1788,1878,1783,1923,1783"/>
 </map>

@@ -4,14 +4,16 @@
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="76,114,110,114,110,119,76,119"/>
 <area shape="rect" id="Node000003" href="$db/da0/stack__frame_8c.html#a8d775ad4a4f47a5cecb25813efe7597d" title="Prints a detailed representation of a stack frame." alt="" coords="304,55,455,80"/>
 <area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="239,101,316,81,317,86,240,107"/>
-<area shape="rect" id="Node000007" href="$d3/dbb/stack_8c.html#a77cf298d71db154b16def49afd37cf6c" title="Gets the value at a specific index in the stack." alt="" coords="315,104,443,129"/>
-<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="256,114,302,114,302,119,256,119"/>
-<area shape="rect" id="Node000008" href="$d3/dbb/stack_8c.html#a05857cdc7b90e2fbf5d2fb5f050911d3" title="Returns the size of the stack." alt="" coords="355,153,403,179"/>
-<area shape="poly" id="edge7_Node000002_Node000008" title=" " alt="" coords="240,127,342,154,341,159,239,132"/>
+<area shape="rect" id="Node000008" href="$d3/dbb/stack_8c.html#a77cf298d71db154b16def49afd37cf6c" title="Gets the value at a specific index in the stack." alt="" coords="315,104,443,129"/>
+<area shape="poly" id="edge7_Node000002_Node000008" title=" " alt="" coords="256,114,302,114,302,119,256,119"/>
+<area shape="rect" id="Node000009" href="$d3/dbb/stack_8c.html#a05857cdc7b90e2fbf5d2fb5f050911d3" title="Returns the size of the stack." alt="" coords="355,153,403,179"/>
+<area shape="poly" id="edge8_Node000002_Node000009" title=" " alt="" coords="240,127,342,154,341,159,239,132"/>
 <area shape="rect" id="Node000004" href="$d8/d33/vm__cell_8c.html#a205104b6b6a8faa8b5e9ea06751d638d" title="Formats a vm_cell as a human&#45;readable string." alt="" coords="515,5,611,31"/>
 <area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="426,52,501,32,502,37,428,57"/>
-<area shape="rect" id="Node000005" href="$d8/d33/vm__cell_8c.html#a726f4253a6ea3f150895be80639308e1" title="Prints a vm_cell to a file stream in a tabular format." alt="" coords="503,55,623,80"/>
-<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="455,65,489,65,489,70,455,70"/>
-<area shape="rect" id="Node000006" href="$d3/dbb/stack_8c.html#a66667ae625f58a0140fbdf591d8c3646" title="Prints the contents of the stack." alt="" coords="515,104,610,129"/>
-<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="428,77,503,98,501,103,426,83"/>
+<area shape="rect" id="Node000006" href="$d8/d33/vm__cell_8c.html#a726f4253a6ea3f150895be80639308e1" title="Prints a vm_cell to a file stream in a tabular format." alt="" coords="503,55,623,80"/>
+<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="455,65,489,65,489,70,455,70"/>
+<area shape="rect" id="Node000007" href="$d3/dbb/stack_8c.html#a66667ae625f58a0140fbdf591d8c3646" title="Prints the contents of the stack." alt="" coords="515,104,610,129"/>
+<area shape="poly" id="edge6_Node000003_Node000007" title=" " alt="" coords="428,77,503,98,501,103,426,83"/>
+<area shape="rect" id="Node000005" href="$d8/d33/vm__cell_8c.html#a0f5c381b14b5810e576cd8f48fa51eea" title="Get the cell type string object." alt="" coords="671,5,824,31"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="611,15,657,15,657,21,611,21"/>
 </map>

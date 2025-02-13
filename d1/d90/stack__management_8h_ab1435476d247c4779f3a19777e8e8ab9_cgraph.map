@@ -1,9 +1,15 @@
 <map id="find_stack_frame_by_region_index" name="find_stack_frame_by_region_index">
-<area shape="rect" id="Node000001" title="Finds a stack frame by its region index." alt="" coords="5,27,163,67"/>
+<area shape="rect" id="Node000001" title="Finds a stack frame by its region index." alt="" coords="5,113,163,153"/>
 <area shape="rect" id="Node000002" href="$d5/dae/stack__management_8c.html#aa2ef970592fa16ffd9c0a13d6b00d0ed" title="Retrieves a stack frame by its ID." alt="" coords="211,5,384,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="163,34,197,29,197,34,164,39"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="107,110,153,75,209,41,229,33,231,38,212,46,156,80,110,114"/>
 <area shape="rect" id="Node000004" href="$d5/dae/stack__management_8c.html#ac5588cf2fdc4974ec292bb9e6c126435" title="Peeks at the top stack frame in a mutable way." alt="" coords="214,55,381,95"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="164,55,201,60,200,65,163,60"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="158,110,208,96,210,102,160,115"/>
+<area shape="rect" id="Node000007" href="$d0/d15/errors_8c.html#a4eba1d90a88e13e4b1beada48a1c2b9d" title="Sets the error message of the provided Error struct." alt="" coords="224,120,371,145"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="163,130,210,130,210,135,163,135"/>
+<area shape="rect" id="Node000008" href="$d0/d15/errors_8c.html#aff32bbfac01af1967382165ffc1d5607" title="Sets the error type of the provided Error struct." alt="" coords="239,169,355,195"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="164,148,229,164,228,169,163,153"/>
+<area shape="rect" id="Node000009" href="$d0/d15/errors_8c.html#a362b4d026b806baabf4d0654eea096a8" title="Prints a formatted error message based on the provided Error struct and exits the program." alt="" coords="267,219,328,244"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="115,150,160,178,212,205,254,219,252,224,210,210,157,183,113,155"/>
 <area shape="rect" id="Node000003" href="$d3/dbb/stack_8c.html#a77cf298d71db154b16def49afd37cf6c" title="Gets the value at a specific index in the stack." alt="" coords="432,5,560,31"/>
 <area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="384,15,418,15,418,21,384,21"/>
 <area shape="rect" id="Node000005" href="$d3/dbb/stack_8c.html#accd7164d8805b31ef2bba785ce12a209" title="Peeks at the top value of the stack without popping it." alt="" coords="469,63,523,88"/>

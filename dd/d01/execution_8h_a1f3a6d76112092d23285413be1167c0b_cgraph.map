@@ -1,33 +1,39 @@
 <map id="handle_variable_affectation" name="handle_variable_affectation">
-<area shape="rect" id="Node000001" title="Updates the memory cell of a variable with a new value." alt="" coords="5,145,208,170"/>
-<area shape="rect" id="Node000002" href="$d5/dae/stack__management_8c.html#ab1435476d247c4779f3a19777e8e8ab9" title="Finds a stack frame by its region index." alt="" coords="258,55,415,95"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="142,142,266,97,268,102,144,147"/>
-<area shape="rect" id="Node000008" href="$dd/d3e/declaration__table_8c.html#a3a2a92436534333020848016833c3abc" title="Gets the region of a declaration." alt="" coords="477,119,647,145"/>
-<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="208,149,463,135,463,140,209,154"/>
-<area shape="rect" id="Node000009" href="$d0/d2a/variable_8c.html#a72560142cb7fc3731a5a6f6ef2caf77b" title="Computes the address of a variable in the stack frame based on its declaration index." alt="" coords="256,170,417,195"/>
-<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="209,166,243,170,242,175,208,171"/>
-<area shape="rect" id="Node000012" href="$db/da0/stack__frame_8c.html#a9152462681f4579e071206125524d4e6" title="Updates the value of a cell at a given address in the stack frame." alt="" coords="257,311,416,351"/>
-<area shape="poly" id="edge12_Node000001_Node000012" title=" " alt="" coords="126,168,300,300,297,305,123,172"/>
-<area shape="rect" id="Node000003" href="$d5/dae/stack__management_8c.html#aa2ef970592fa16ffd9c0a13d6b00d0ed" title="Retrieves a stack frame by its ID." alt="" coords="475,70,649,95"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="416,75,462,76,462,82,416,80"/>
-<area shape="rect" id="Node000005" href="$d5/dae/stack__management_8c.html#ac5588cf2fdc4974ec292bb9e6c126435" title="Peeks at the top stack frame in a mutable way." alt="" coords="479,5,645,45"/>
-<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="415,55,465,44,466,49,416,60"/>
-<area shape="rect" id="Node000004" href="$d3/dbb/stack_8c.html#a77cf298d71db154b16def49afd37cf6c" title="Gets the value at a specific index in the stack." alt="" coords="707,194,835,219"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="633,93,660,104,687,122,712,142,752,182,748,185,709,146,684,126,657,109,631,98"/>
-<area shape="rect" id="Node000006" href="$d3/dbb/stack_8c.html#accd7164d8805b31ef2bba785ce12a209" title="Peeks at the top value of the stack without popping it." alt="" coords="743,13,798,38"/>
-<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="645,23,729,23,729,28,645,28"/>
-<area shape="rect" id="Node000007" href="$d3/dbb/stack_8c.html#aeda5460a4306b1c90f61ac5bf8ba49bc" title="Checks if the stack is empty." alt="" coords="883,13,965,38"/>
-<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="798,23,869,23,869,28,798,28"/>
-<area shape="poly" id="edge10_Node000009_Node000008" title=" " alt="" coords="394,167,491,145,492,150,395,172"/>
-<area shape="rect" id="Node000010" href="$dd/d3e/declaration__table_8c.html#aaac3e6193717aaccc629ddcb3c678f81" title="Gets the execution information of a declaration." alt="" coords="465,218,659,243"/>
-<area shape="poly" id="edge9_Node000009_Node000010" title=" " alt="" coords="398,193,489,212,488,218,397,198"/>
-<area shape="rect" id="Node000011" href="$d8/d8a/region__table_8h.html#ad945ddb6e123a9899a9a8b4af68f810e" title="Gets the NIS of the current region." alt="" coords="503,169,621,194"/>
-<area shape="poly" id="edge11_Node000009_Node000011" title=" " alt="" coords="418,180,489,179,489,184,418,185"/>
-<area shape="poly" id="edge13_Node000012_Node000004" title=" " alt="" coords="416,335,472,336,533,333,597,322,658,303,685,288,710,268,749,228,753,232,714,272,688,292,660,308,598,327,534,338,472,342,416,341"/>
-<area shape="rect" id="Node000013" href="$d8/d33/vm__cell_8c.html#a659a657bb09a59b1d5ee6e2c66909ac7" title="Retrieves the value from a vm_cell as a pointer." alt="" coords="490,369,634,394"/>
-<area shape="poly" id="edge14_Node000012_Node000013" title=" " alt="" coords="417,346,492,363,491,368,416,351"/>
-<area shape="rect" id="Node000014" href="$d3/dbb/stack_8c.html#a1b24f73b72398f7fa109bfe8f066b083" title="Updates the value at a specific index in the stack." alt="" coords="507,418,617,443"/>
-<area shape="poly" id="edge15_Node000012_Node000014" title=" " alt="" coords="367,348,413,377,466,404,495,414,494,419,464,409,410,382,365,353"/>
-<area shape="rect" id="Node000015" href="$d8/d33/vm__cell_8c.html#ad1c4593563f0d439201b43ddebe400c3" title="Updates an existing vm_cell with a new value." alt="" coords="499,267,625,293"/>
-<area shape="poly" id="edge16_Node000012_Node000015" title=" " alt="" coords="416,310,491,293,492,298,417,315"/>
+<area shape="rect" id="Node000001" title="Updates the memory cell of a variable with a new value." alt="" coords="5,293,208,319"/>
+<area shape="rect" id="Node000002" href="$d5/dae/stack__management_8c.html#ab1435476d247c4779f3a19777e8e8ab9" title="Finds a stack frame by its region index." alt="" coords="258,134,415,174"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="126,291,293,179,295,184,128,296"/>
+<area shape="rect" id="Node000011" href="$dd/d3e/declaration__table_8c.html#a3a2a92436534333020848016833c3abc" title="Gets the region of a declaration." alt="" coords="477,268,647,293"/>
+<area shape="poly" id="edge10_Node000001_Node000011" title=" " alt="" coords="208,298,463,283,463,289,209,303"/>
+<area shape="rect" id="Node000012" href="$d0/d2a/variable_8c.html#a72560142cb7fc3731a5a6f6ef2caf77b" title="Computes the address of a variable in the stack frame based on its declaration index." alt="" coords="256,319,417,344"/>
+<area shape="poly" id="edge11_Node000001_Node000012" title=" " alt="" coords="209,315,243,318,242,324,208,320"/>
+<area shape="rect" id="Node000015" href="$db/da0/stack__frame_8c.html#a9152462681f4579e071206125524d4e6" title="Updates the value of a cell at a given address in the stack frame." alt="" coords="257,461,416,501"/>
+<area shape="poly" id="edge15_Node000001_Node000015" title=" " alt="" coords="126,317,300,450,297,454,123,321"/>
+<area shape="rect" id="Node000003" href="$d5/dae/stack__management_8c.html#aa2ef970592fa16ffd9c0a13d6b00d0ed" title="Retrieves a stack frame by its ID." alt="" coords="475,169,649,195"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="416,161,462,167,461,172,416,166"/>
+<area shape="rect" id="Node000005" href="$d5/dae/stack__management_8c.html#ac5588cf2fdc4974ec292bb9e6c126435" title="Peeks at the top stack frame in a mutable way." alt="" coords="479,105,645,145"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="416,141,464,135,465,140,416,146"/>
+<area shape="rect" id="Node000008" href="$d0/d15/errors_8c.html#a4eba1d90a88e13e4b1beada48a1c2b9d" title="Sets the error message of the provided Error struct." alt="" coords="489,219,635,244"/>
+<area shape="poly" id="edge7_Node000002_Node000008" title=" " alt="" coords="384,172,466,203,496,212,494,218,464,209,382,177"/>
+<area shape="rect" id="Node000009" href="$d0/d15/errors_8c.html#aff32bbfac01af1967382165ffc1d5607" title="Sets the error type of the provided Error struct." alt="" coords="504,5,620,31"/>
+<area shape="poly" id="edge8_Node000002_Node000009" title=" " alt="" coords="353,132,400,85,431,61,464,40,490,29,492,34,467,44,434,65,404,89,357,136"/>
+<area shape="rect" id="Node000010" href="$d0/d15/errors_8c.html#a362b4d026b806baabf4d0654eea096a8" title="Prints a formatted error message based on the provided Error struct and exits the program." alt="" coords="531,55,593,80"/>
+<area shape="poly" id="edge9_Node000002_Node000010" title=" " alt="" coords="374,131,464,90,517,74,519,79,466,95,376,136"/>
+<area shape="rect" id="Node000004" href="$d3/dbb/stack_8c.html#a77cf298d71db154b16def49afd37cf6c" title="Gets the value at a specific index in the stack." alt="" coords="707,293,835,319"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="633,192,660,204,687,221,712,241,752,281,748,285,709,245,684,225,657,208,631,197"/>
+<area shape="rect" id="Node000006" href="$d3/dbb/stack_8c.html#accd7164d8805b31ef2bba785ce12a209" title="Peeks at the top value of the stack without popping it." alt="" coords="743,112,798,137"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="645,122,729,122,729,127,645,127"/>
+<area shape="rect" id="Node000007" href="$d3/dbb/stack_8c.html#aeda5460a4306b1c90f61ac5bf8ba49bc" title="Checks if the stack is empty." alt="" coords="883,112,965,137"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="798,122,869,122,869,127,798,127"/>
+<area shape="poly" id="edge13_Node000012_Node000011" title=" " alt="" coords="394,316,491,294,492,299,395,321"/>
+<area shape="rect" id="Node000013" href="$dd/d3e/declaration__table_8c.html#aaac3e6193717aaccc629ddcb3c678f81" title="Gets the execution information of a declaration." alt="" coords="465,317,659,343"/>
+<area shape="poly" id="edge12_Node000012_Node000013" title=" " alt="" coords="418,328,452,328,452,333,418,334"/>
+<area shape="rect" id="Node000014" href="$d8/d8a/region__table_8h.html#ad945ddb6e123a9899a9a8b4af68f810e" title="Gets the NIS of the current region." alt="" coords="503,367,621,392"/>
+<area shape="poly" id="edge14_Node000012_Node000014" title=" " alt="" coords="398,341,490,361,489,367,397,347"/>
+<area shape="poly" id="edge16_Node000015_Node000004" title=" " alt="" coords="416,462,562,429,658,402,684,386,709,366,748,327,752,331,712,370,687,390,660,407,563,434,417,467"/>
+<area shape="rect" id="Node000016" href="$d8/d33/vm__cell_8c.html#a659a657bb09a59b1d5ee6e2c66909ac7" title="Retrieves the value from a vm_cell as a pointer." alt="" coords="490,468,634,493"/>
+<area shape="poly" id="edge17_Node000015_Node000016" title=" " alt="" coords="417,478,477,478,477,483,417,483"/>
+<area shape="rect" id="Node000017" href="$d3/dbb/stack_8c.html#a1b24f73b72398f7fa109bfe8f066b083" title="Updates the value at a specific index in the stack." alt="" coords="507,517,617,543"/>
+<area shape="poly" id="edge18_Node000015_Node000017" title=" " alt="" coords="417,495,495,513,494,518,416,501"/>
+<area shape="rect" id="Node000018" href="$d8/d33/vm__cell_8c.html#ad1c4593563f0d439201b43ddebe400c3" title="Updates an existing vm_cell with a new value." alt="" coords="499,567,625,592"/>
+<area shape="poly" id="edge19_Node000015_Node000018" title=" " alt="" coords="369,499,414,527,466,553,487,560,485,565,464,558,411,531,366,503"/>
 </map>
