@@ -7,7 +7,6 @@
 typedef struct {
     Stack cells;
 
-    int static_link;
     int dynamic_link;
     int region_index;
 

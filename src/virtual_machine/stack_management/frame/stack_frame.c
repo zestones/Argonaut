@@ -5,7 +5,6 @@
 stack_frame construct_stack_frame(int dynamic_link, int region_index) {
     stack_frame frame;
  
-    // frame.static_link = static_link;
     frame.dynamic_link = dynamic_link;
     frame.region_index = region_index;
 

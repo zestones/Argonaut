@@ -12,18 +12,12 @@ The **Stack Management** module is a critical component of the Argonaut Virtual 
   - [Purpose of Stack Management](#purpose-of-stack-management)
   - [Stack Frame Structure](#stack-frame-structure)
     - [What is a Cell ?](#what-is-a-cell-)
-    - [Dynamic Link: The Caller's Bookmark](#dynamic-link-the-callers-bookmark)
-    - [Static Link: The Lexical Chain of Being](#static-link-the-lexical-chain-of-being)
     - [Local Storage: The Function's Private Workspace](#local-storage-the-functions-private-workspace)
-    - [Return Value Cell: The Function's Final Answer](#return-value-cell-the-functions-final-answer)
     - [Visualization of a Stack Frame](#visualization-of-a-stack-frame)
   - [Stack Management Functions](#stack-management-functions)
     - [Frame Creation and Initialization](#frame-creation-and-initialization)
     - [Pushing and Popping Frames](#pushing-and-popping-frames)
     - [Updating and Accessing Cells](#updating-and-accessing-cells)
-  - [Memory Allocation in Stack Frames](#memory-allocation-in-stack-frames)
-    - [Variable Declaration and Allocation](#variable-declaration-and-allocation)
-    - [Handling Nested Structures and Arrays](#handling-nested-structures-and-arrays)
   - [Continue Reading](#continue-reading)
 
 ---
@@ -114,50 +108,16 @@ graph TD
     class Cell,Value,Type,Init cell
 ```
 
-### Dynamic Link: The Caller's Bookmark
-
-The dynamic link functions as a biological memory for the call stack. When function A calls function B:
-
-1. B's frame stores A's frame address as its dynamic link
-2. During B's execution, this link remains dormant
-3. When B completes, the VM follows the dynamic link to:  
-   - Restore A's stack frame as current  
-   - Resume execution at the instruction following B's call  
-   - Pass B's return value back to A's context
-
-This mechanism enables seamless nesting of function calls to arbitrary depth while maintaining perfect recall of the call chain.
-
-### Static Link: The Lexical Chain of Being
-
-The static link implements lexical scoping through a persistent connection to the function's birth environment. Consider:
-
-```argonaut
-proc outer() {
-    var x := 10;
-    proc inner() {
-        print("%d\n", x); // Accesses outer's x via static link
-    }
-}
-```
-
-When `inner` is called:
-
-1. `inner`'s static link points to `outer`'s frame
-2. Variable lookup for `x` traverses the static link chain
-3. The lookup stops at the first frame containing `x`
-
-This chain remains fixed regardless of where `inner` is called from, preserving lexical scoping rules.
-
 ### Local Storage: The Function's Private Workspace
 
-The local storage area contains:
+The local storage which correspond to our ``Stack cells`` field in the ``StackFrame`` structure is an area that contains:
 
 1. **Parameters**: Input values passed by the caller  
-   - Allocated at frame creation  
+   - Allocated at frame creation
    - Initialized before function execution begins  
 
 2. **Local Variables**: Function-specific state  
-   - Allocated based on declaration order  
+   - Allocated based on declaration order
    - Initialized to type-appropriate defaults if not explicitly set  
 
 Memory layout follows a precise formula:
@@ -167,21 +127,6 @@ Frame Size = Parameter Cells + Local Variable Cells + Metadata Cells
 ```
 
 This deterministic layout enables O(1) access to any variable through static offsets computed during compilation.
-
-### Return Value Cell: The Function's Final Answer
-
-The return value cell serves as a temporary holding area for function results:
-
-1. **For Functions**:  
-   - Mandatory cell allocated at frame creation  
-   - Type-checked against function signature  
-   - Value must be set before function exit  
-
-2. **For Procedures**:  
-   - No return cell allocated  
-   - Attempting to return a value triggers runtime error  
-
-The caller retrieves this value immediately after callee frame destruction, ensuring no dangling references.
 
 ### Visualization of a Stack Frame
 
@@ -240,7 +185,7 @@ graph TD
 
 ## Stack Management Functions
 
-The stack management system is responsible for handling function calls and managing memory allocation efficiently. It ensures that local variables, return values, and control links are correctly placed in stack frames.
+The stack management system is responsible for handling function calls and managing memory allocation efficiently. It ensures that local variables, return values, and control links are correctly placed in stack frames. Here is a brief overview of the stack management functions:
 
 ### Frame Creation and Initialization
 
@@ -270,35 +215,8 @@ The stack management system is responsible for handling function calls and manag
 
 ---
 
-## Memory Allocation in Stack Frames
-
-When a variable is declared within a function, the system retrieves its size from the declaration table and allocates memory within the current stack frame.
-
-### Variable Declaration and Allocation
-
-When a variable is declared within a function:
-
-1. **Identify Type**: Determine if the variable is a base type, array, or structure.
-2. **Allocate Memory**:
-   - **Base Types**: Allocate a fixed number of cells based on the type.
-   - **Arrays**: Allocate cells for each array element based on the size of each element.
-   - **Structures**: Allocate cells for each field within the structure.
-3. **Store in Stack Frame**: Place the allocated cells within the current stack frame, initializing them as needed.
-
-**Function**: `declare_variable(stack_frame *frame, int index_type_declaration)`
-
-### Handling Nested Structures and Arrays
-
-- **Nested Arrays**: Allocate memory for multi-dimensional arrays by recursively allocating cells for each dimension.
-- **Nested Structures**: Allocate memory for structures containing other structures or arrays by traversing the nested declarations and allocating appropriate cells.
-
-**Function**: `handle_variable_declaration(int index_declaration)`
-
----
-
 ## Continue Reading
 
 - [Static and Dynamic Links](Static_and_Dynamic_Links.md)
 - [Function Call Mechanism](Function_Call_Mechanism.md)
-- [Recursive Function Handling](Recursive_Function_Handling.md)
 - [Address Computation and Memory Allocation](Address_Computation_and_Memory_Allocation.md)
