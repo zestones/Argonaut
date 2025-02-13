@@ -123,10 +123,15 @@ For detailed documentation, including language syntax, compiler architecture, an
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ---
-
 <div align="center">
   <p>Made with ❤️ by the Argonaut Contributors</p>
-  <a href="https://github.com/zestones/Argonaut/graphs/contributors">
-    <img src="https://contrib.rocks/image?repo=zestones/Argonaut" />
-  </a>
+  <p>
+    <a href="https://github.com/zestones/Argonaut">🔗 Project Repository</a> |
+    <a href="https://github.com/zestones/Argonaut/wiki">📖 Documentation</a> |
+    <a href="https://github.com/zestones/Argonaut/issues">🐛 Report a Bug</a>
+  </p>
+  <p>
+    <img src="https://img.shields.io/github/stars/zestones/Argonaut?style=social" />
+    <img src="https://img.shields.io/github/forks/zestones/Argonaut?style=social" />
+  </p>
 </div>
