@@ -8,13 +8,14 @@
   [![Regression Tests](https://github.com/zestones/Argonaut/actions/workflows/regression.yml/badge.svg?branch=main)](https://github.com/zestones/Argonaut/actions/workflows/regression.yml)
   [![pages-build-deployment](https://github.com/zestones/Argonaut/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/zestones/Argonaut/actions/workflows/pages/pages-build-deployment)
   [![Dependencies](https://img.shields.io/badge/dependencies-GCC%2C%20Flex%2C%20Bison-orange)](https://gcc.gnu.org/)
+  [![Argonaut Wiki](https://img.shields.io/badge/Wiki-Argonaut-blue?style=flat)](https://github.com/zestones/Argonaut/wiki)
 
   <p>Argonaut is a procedural programming language designed for educational purposes, featuring a compiler and virtual machine implemented in C. This project aims to provide a comprehensive understanding of how compilers and interpreters function.
   </p>
 </div>
 
 > [!IMPORTANT]
-> Checkout **[wiki](#link)** documentation to understand how the Argonaut compiler and vm works.
+> Checkout **[wiki documentation](https://github.com/zestones/Argonaut/wiki)** to understand how the Argonaut compiler and vm works.
 
 ## 🛠️ Getting Started
 
@@ -63,7 +64,7 @@ To delete the VSCode extension, run ``make extension-uninstall``.
 
 ## 📜 Language Overview
 
-Checkout the **[Argonaut Language Guide](#link)** documentation to write your own programs in Argonaut.
+Checkout the **[Argonaut Language Guide](https://github.com/zestones/Argonaut/wiki/argonaut-language-guide)** documentation to write your own programs in Argonaut.
 
 ### Sample Program
 
@@ -115,7 +116,7 @@ We welcome contributions from the community! To contribute:
 
 ## 📚 Documentation
 
-For detailed documentation, including language syntax, compiler architecture, and virtual machine specifications, please visit the [Wiki](link-to-your-wiki).
+For detailed documentation, including language syntax, compiler architecture, and virtual machine specifications, please visit the [Wiki](https://github.com/zestones/Argonaut/wiki).
 
 ## 📜 License
 
