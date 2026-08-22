@@ -6,7 +6,7 @@
   "scanf": 4,
   "sprintf": 40,
   "strcat": 29,
-  "strcpy": 5,
+  "strcpy": 4,
   "strncpy": 1,
   "strtok": 0,
   "vsprintf": 0
