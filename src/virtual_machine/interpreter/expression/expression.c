@@ -17,13 +17,10 @@ vm_cell resolve_expression(Node *expression) {
             vm_cell cell = get_variable_cell(expression->index_declaration);
             if (!cell.is_initialized) {
                 set_error_type(&error, RUN_TIME_ERROR);
-                set_error_message(
-                    &error,
-                    "Uninitialized variable '%s' at %s.\n"
-                    "  Ensure the variable is initialized before use.\n",
-                    get_lexeme(expression->index_lexicographic),
-                    get_formatted_location()
-                );
+                set_error_message(&error,
+                                  "Uninitialized variable '%s' at %s.\n"
+                                  "  Ensure the variable is initialized before use.\n",
+                                  get_lexeme(expression->index_lexicographic), get_formatted_location());
                 yerror(error);
                 exit(EXIT_FAILURE);
             }
@@ -92,8 +89,7 @@ vm_cell resolve_expression(Node *expression) {
             return construct_vm_cell(BOOLEAN, &result);
         }
 
-        case A_CONDITION:
-            return resolve_boolean_expression(expression->child);
+        case A_CONDITION: return resolve_boolean_expression(expression->child);
 
         case A_ADD_OP:
         case A_SUB_OP:
@@ -108,17 +104,15 @@ vm_cell resolve_expression(Node *expression) {
 
         case A_ARRAY_ACCESS:
         case A_STRUCT_FIELD_ACCESS: {
-            vm_cell cell = (expression->type == A_ARRAY_ACCESS) ? get_array_cell(expression) : get_struct_cell(expression);
+            vm_cell cell =
+                (expression->type == A_ARRAY_ACCESS) ? get_array_cell(expression) : get_struct_cell(expression);
             if (!cell.is_initialized) {
                 set_error_type(&error, RUN_TIME_ERROR);
-                set_error_message(
-                    &error,
-                    "Uninitialized %s of '%s' at %s.\n"
-                    "  Ensure the value is initialized before use.\n",
-                    (expression->type == A_ARRAY_ACCESS) ? "array element" : "field",
-                    get_lexeme(expression->index_lexicographic),
-                    get_formatted_location()
-                );
+                set_error_message(&error,
+                                  "Uninitialized %s of '%s' at %s.\n"
+                                  "  Ensure the value is initialized before use.\n",
+                                  (expression->type == A_ARRAY_ACCESS) ? "array element" : "field",
+                                  get_lexeme(expression->index_lexicographic), get_formatted_location());
                 yerror(error);
                 exit(EXIT_FAILURE);
             }
@@ -132,24 +126,18 @@ vm_cell resolve_expression(Node *expression) {
             if (!cell.is_initialized) {
                 // The compiler rejects such functions; this only triggers on a hand-made IR.
                 set_error_type(&error, RUN_TIME_ERROR);
-                set_error_message(
-                    &error,
-                    "Function '%s' returned no value at %s.\n",
-                    get_lexeme(expression->index_lexicographic),
-                    get_formatted_location()
-                );
+                set_error_message(&error, "Function '%s' returned no value at %s.\n",
+                                  get_lexeme(expression->index_lexicographic), get_formatted_location());
                 yerror(error);
                 exit(EXIT_FAILURE);
             }
             // Clear the region value after execution to continue to resolve statement list
-            peek_execution_stack_as_mutable()->region_value = construct_vm_cell(NULL_VALUE, NULL); 
+            peek_execution_stack_as_mutable()->region_value = construct_vm_cell(NULL_VALUE, NULL);
             return cell;
         }
 
-        default:
-            fprintf(stderr, "<Expression.c> - Expression type not yet implemented.\n");
-            break;
-    } 
+        default: fprintf(stderr, "<Expression.c> - Expression type not yet implemented.\n"); break;
+    }
 
     return construct_vm_cell(NULL_VALUE, NULL);
 }

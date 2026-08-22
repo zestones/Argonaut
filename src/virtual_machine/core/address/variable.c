@@ -13,11 +13,8 @@
 int get_variable_address(int index_declaration) {
     if (!is_declaration_loaded(index_declaration)) {
         set_error_type(&error, RUN_TIME_ERROR);
-        set_error_message(
-            &error,
-            "Corrupted IR: a variable refers to declaration %d, which does not exist.",
-            index_declaration
-        );
+        set_error_message(&error, "Corrupted IR: a variable refers to declaration %d, which does not exist.",
+                          index_declaration);
         yerror(error);
         exit(EXIT_FAILURE);
     }
@@ -32,8 +29,8 @@ int get_variable_address(int index_declaration) {
 
 int get_lvalue_address(Node *access) {
     switch (access->type) {
-        case A_IDENTIFIER:          return get_variable_address(access->index_declaration);
-        case A_ARRAY_ACCESS:        return get_array_address(access, NULL_VALUE);
+        case A_IDENTIFIER: return get_variable_address(access->index_declaration);
+        case A_ARRAY_ACCESS: return get_array_address(access, NULL_VALUE);
         case A_STRUCT_FIELD_ACCESS: return get_struct_field_address(access, NULL_VALUE, NULL_VALUE);
         default:
             fprintf(stderr, "<variable.c> - node %s is not an lvalue\n", NodeTypeStrings[access->type]);
@@ -44,12 +41,12 @@ int get_lvalue_address(Node *access) {
 int get_lvalue_type(Node *access) {
     int type;
     switch (access->type) {
-        case A_IDENTIFIER:
-            return get_declaration_description(access->index_declaration);
+        case A_IDENTIFIER: return get_declaration_description(access->index_declaration);
         case A_ARRAY_ACCESS: {
             int declaration = access->index_declaration;
             int nature = get_declaration_nature(declaration);
-            int array_type = (nature == TYPE_VAR || nature == TYPE_PARAM) ? get_declaration_description(declaration) : declaration;
+            int array_type =
+                (nature == TYPE_VAR || nature == TYPE_PARAM) ? get_declaration_description(declaration) : declaration;
             array_element_offset(access, array_type, &type);
             return type;
         }

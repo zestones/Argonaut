@@ -32,12 +32,12 @@ typedef struct {
         int integer;    // Integer value (stores `int`)
         float real;     // Real value (stores `float`)
         int boolean;    // Boolean value (stores `int`, 0 or 1)
-        char character; // Character value (stores `char`) 
+        char character; // Character value (stores `char`)
         char *string;   // String value (stores `char *`)
     } value;            // Union holding the value of the cell
 
-    vm_type type;        // The type of value stored in the cell
-    int is_initialized;  // Flag indicating whether the cell is initialized (1 = initialized, 0 = not)
+    vm_type type;       // The type of value stored in the cell
+    int is_initialized; // Flag indicating whether the cell is initialized (1 = initialized, 0 = not)
 } vm_cell;
 
 /**

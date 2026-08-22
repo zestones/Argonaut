@@ -28,7 +28,7 @@ static void resolve_declaration_list(Node *declaration_list) {
         if (declaration->type == A_VARIABLE_DECLARATION) {
             handle_variable_declaration(declaration->index_declaration);
         }
-        
+
         declaration = declaration->sibling;
     }
 }
@@ -38,32 +38,26 @@ ControlFlow resolve_statement_list(AST statement_list) {
     ControlFlow ctrl_flow = CONTROL_NONE;
 
     switch (statement_list->type) {
-        case A_ASSIGNMENT_STATEMENT:
-            resolve_assignement(statement_list);
-            break;
+        case A_ASSIGNMENT_STATEMENT: resolve_assignement(statement_list); break;
 
         case A_IF:
         case A_IF_ELSE:
-        case A_IF_ELSE_IF: 
+        case A_IF_ELSE_IF:
             ctrl_flow = execute_condition(statement_list);
             if (ctrl_flow != CONTROL_NONE) return ctrl_flow;
             break;
 
-        case A_INPUT_STATEMENT:
-            execute_input(statement_list);
-            break;
+        case A_INPUT_STATEMENT: execute_input(statement_list); break;
 
-        case A_PRINT_STATEMENT:
-            execute_print(statement_list);
-            break;
-            
+        case A_PRINT_STATEMENT: execute_print(statement_list); break;
+
         case A_FOR_LOOP:
         case A_WHILE:
             // break and continue are consumed by the loop; only a return comes out of it
             ctrl_flow = execute_loop(statement_list);
             if (ctrl_flow != CONTROL_NONE) return ctrl_flow;
             break;
-        
+
         case A_BREAK: return CONTROL_BREAK;
         case A_CONTINUE: return CONTROL_CONTINUE;
 
@@ -124,13 +118,9 @@ static void interpret_ast(AST ast) {
     if (ast == NULL) return;
 
     switch (ast->type) {
-        case A_DECLARATION_LIST:
-            resolve_declaration_list(ast);
-            break;
+        case A_DECLARATION_LIST: resolve_declaration_list(ast); break;
 
-        case A_STATEMENT_LIST:
-            resolve_statement_list(ast);
-            break;
+        case A_STATEMENT_LIST: resolve_statement_list(ast); break;
 
         case A_PROCEDURE_DECLARATION:
         case A_FUNCTION_DECLARATION:
@@ -154,10 +144,10 @@ void execute(int region_index) {
     push_region(region_index);
 
     interpret_ast(get_region_ast(region_index));
-    
+
     pop_region();
     pop_frame_from_execution_stack();
-    // stack_frame frame = 
+    // stack_frame frame =
     // fprintf_stack_frame(stdout, frame);
 }
 
@@ -179,7 +169,7 @@ static void execute_global_program() {
 }
 
 void interpret() {
-    init_execution_stack(); 
+    init_execution_stack();
     init_stack_region();
 
     execute_global_program();

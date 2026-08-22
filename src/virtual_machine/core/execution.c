@@ -11,7 +11,8 @@
 
 void declare_variable(stack_frame *frame, int index_type_declaration) {
     if (is_declaration_base_type(index_type_declaration)) {
-        allocate_cells_to_stack_frame(frame, get_declaration_description(index_type_declaration), get_declaration_execution(index_type_declaration));
+        allocate_cells_to_stack_frame(frame, get_declaration_description(index_type_declaration),
+                                      get_declaration_execution(index_type_declaration));
         return;
     }
 
@@ -19,9 +20,9 @@ void declare_variable(stack_frame *frame, int index_type_declaration) {
         int element_type = get_array_element_type(index_type_declaration);
         int size = get_array_size(index_type_declaration);
 
-        for (int i = 0; i < size; i++) declare_variable(frame, element_type);
-    } 
-    else if (get_declaration_nature(index_type_declaration) == TYPE_STRUCT) {
+        for (int i = 0; i < size; i++)
+            declare_variable(frame, element_type);
+    } else if (get_declaration_nature(index_type_declaration) == TYPE_STRUCT) {
         int field_count = get_struct_field_count(index_type_declaration);
 
         for (int i = 0; i < field_count; i++) {
@@ -76,7 +77,7 @@ void handle_array_affectation(Node *array_index_list, vm_cell cell) {
     update_cell_in_stack_frame(frame, address, cell);
 }
 
-void handle_structure_affectation(Node* struct_field_access, vm_cell cell) {
+void handle_structure_affectation(Node *struct_field_access, vm_cell cell) {
     int address = get_struct_field_address(struct_field_access, NULL_VALUE, NULL_VALUE);
     int region = get_declaration_region(struct_field_access->index_declaration);
 

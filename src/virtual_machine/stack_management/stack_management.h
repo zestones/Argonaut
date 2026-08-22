@@ -108,5 +108,4 @@ int get_execution_stack_current_frame_id();
  */
 void fprintf_vm_stack(FILE *out);
 
-#endif 
-
+#endif

@@ -124,7 +124,7 @@ void handle_array_affectation(Node *array_index_list, vm_cell cell);
  * @param struct_field_access A node representing the structure field access.
  * @param cell The `vm_cell` containing the new value to assign.
  */
-void handle_structure_affectation(Node* struct_field_access, vm_cell cell);
+void handle_structure_affectation(Node *struct_field_access, vm_cell cell);
 
 /**
  * @brief Stores the return value of a function in the caller's stack frame.

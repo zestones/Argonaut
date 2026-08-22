@@ -4,7 +4,7 @@
 
 stack_frame construct_stack_frame(int dynamic_link, int region_index) {
     stack_frame frame;
- 
+
     frame.dynamic_link = dynamic_link;
     frame.region_index = region_index;
 
@@ -64,14 +64,10 @@ void fprintf_stack_frame(FILE *out, stack_frame frame) {
     sprintf(str_region_index, "%d", frame.region_index);
     sprintf(str_dynamic_link, "%d", frame.dynamic_link);
 
-    print_table_row(out,
-                    num_col, 
-                    width, str_dynamic_link,
-                    width, str_region_index
-                );
+    print_table_row(out, num_col, width, str_dynamic_link, width, str_region_index);
 
     print_table_separator(out, num_col, width, width, width, width);
-    
+
     print_stack(frame.cells, format_cell);
 
     print_table_title(out, "Return Value");

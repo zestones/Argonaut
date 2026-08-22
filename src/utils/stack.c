@@ -109,7 +109,7 @@ void destroy_stack(Stack *stack) {
     *stack = construct_stack();
 }
 
-void print_stack(const Stack stack, const char* (*format_func)(void *)) {
+void print_stack(const Stack stack, const char *(*format_func)(void *) ) {
     const int col_width_index = 10;
     const int col_width_value = 15;
 

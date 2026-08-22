@@ -21,12 +21,10 @@ stack_frame peek_execution_stack() {
 void push_frame_to_execution_stack(stack_frame frame) {
     if (size(execution_stack) >= MAX_CALL_DEPTH) {
         set_error_type(&error, RUN_TIME_ERROR);
-        set_error_message(
-            &error,
-            "Stack overflow: the call depth exceeds %d frames.\n"
-            "  Check for unbounded recursion.",
-            MAX_CALL_DEPTH
-        );
+        set_error_message(&error,
+                          "Stack overflow: the call depth exceeds %d frames.\n"
+                          "  Check for unbounded recursion.",
+                          MAX_CALL_DEPTH);
         yerror(error);
         exit(EXIT_FAILURE);
     }
@@ -56,12 +54,9 @@ stack_frame *find_stack_frame_by_region_index(int region_index) {
     }
 
     set_error_type(&error, RUN_TIME_ERROR);
-    set_error_message(
-        &error,
-        "No stack frame found.\n"
-        "  If this message is seen during runtime, it indicates a critical issue.\n"
-        "  Please report this error with details about the context in which it occurred."
-    );
+    set_error_message(&error, "No stack frame found.\n"
+                              "  If this message is seen during runtime, it indicates a critical issue.\n"
+                              "  Please report this error with details about the context in which it occurred.");
 
     yerror(error);
     exit(EXIT_FAILURE);
@@ -82,4 +77,3 @@ void fprintf_vm_stack(FILE *out) {
         fprintf_stack_frame(out, frame);
     }
 }
-

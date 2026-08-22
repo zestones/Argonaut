@@ -63,7 +63,7 @@ int get_representation_value(int index);
  *
  * @param filename The name of the file to write the representation table to.
  */
-void export_representation_table(const char* filename);
+void export_representation_table(const char *filename);
 
 /**
  * @brief Prints the contents of the representation table.
@@ -73,6 +73,6 @@ void export_representation_table(const char* filename);
  * 
  * @param out The file stream to write the representation table to.
  */
-void fprintf_representation_table(FILE* out);
+void fprintf_representation_table(FILE *out);
 
 #endif // REPRESENTATION_TABLE_H

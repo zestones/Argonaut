@@ -31,9 +31,9 @@
  * the Abstract Syntax Tree (AST) for the region.
  */
 typedef struct Region {
-    int size;           // Size of the region.
-    int nis;            // Static nesting level in the region.
-    AST ast;            // Abstract Syntax Tree
+    int size; // Size of the region.
+    int nis;  // Static nesting level in the region.
+    AST ast;  // Abstract Syntax Tree
 } Region;
 
 
@@ -143,15 +143,14 @@ void update_region_ast(int index, AST ast);
  *
  * @param filename The name of the file to write the region table to.
  */
-void export_region_table(const char* filename);
+void export_region_table(const char *filename);
 
 /**
  * @brief Prints the region table.
  *
  * This function prints the current state of the region table.
  */
-void fprintf_region_table(FILE* out);
+void fprintf_region_table(FILE *out);
 
 
 #endif // __REGION_TABLE_H__
-

@@ -1,5 +1,5 @@
 
-#include "../../symbol_table/declaration/declaration_table.h" 
+#include "../../symbol_table/declaration/declaration_table.h"
 #include "../../symbol_table/lexeme/lexeme_table.h"
 #include "../../data/region_table.h"
 #include "formatting.h"
@@ -28,7 +28,7 @@ static char *format_arithmetic_op(Node *expression) {
     if (right == NULL) right = "?";
 
     size_t room = strlen(left) + strlen(right) + 8; // "(left op right)"
-    char *lexeme = (char *)malloc(room);
+    char *lexeme = (char *) malloc(room);
     if (lexeme == NULL) {
         fprintf(stderr, "Error: Memory allocation failed\n");
         exit(EXIT_FAILURE);
@@ -43,7 +43,7 @@ static char *format_negation(Node *expression) {
     if (operand == NULL) operand = "?";
 
     size_t room = strlen(operand) + 4; // "(-x)"
-    char *lexeme = (char *)malloc(room);
+    char *lexeme = (char *) malloc(room);
     if (lexeme == NULL) {
         fprintf(stderr, "Error: Memory allocation failed\n");
         exit(EXIT_FAILURE);
@@ -55,15 +55,13 @@ static char *format_negation(Node *expression) {
 
 char *format_expression(Node *expression) {
     switch (expression->type) {
-        case A_IDENTIFIER:
-            return get_lexeme(expression->index_lexicographic);
+        case A_IDENTIFIER: return get_lexeme(expression->index_lexicographic);
 
         case A_INTEGER_LITERAL:
         case A_FLOAT_LITERAL:
         case A_BOOLEAN_LITERAL:
         case A_CHARACTER_LITERAL:
-        case A_STRING_LITERAL:
-            return get_lexeme(expression->index_lexicographic);
+        case A_STRING_LITERAL: return get_lexeme(expression->index_lexicographic);
 
         case A_ADD_OP:
         case A_SUB_OP:
@@ -73,23 +71,17 @@ char *format_expression(Node *expression) {
             return format_arithmetic_op(expression);
         }
 
-        case A_NEG_OP:
-            return format_negation(expression);
+        case A_NEG_OP: return format_negation(expression);
 
         case A_ARRAY_ACCESS:
-        case A_STRUCT_FIELD_ACCESS:
-            return format_access(expression);
+        case A_STRUCT_FIELD_ACCESS: return format_access(expression);
 
-        case A_FUNC_PROC_CALL_STATEMENT: 
-            return format_func_proc_call(expression); 
+        case A_FUNC_PROC_CALL_STATEMENT: return format_func_proc_call(expression);
 
         default: {
             set_error_type(&error, SEMANTIC_ERROR);
-            set_error_message(
-                &error,
-                "Unexpected or unhandled expression type encountered: '%s'.",
-                NodeTypeStrings[expression->type]
-            );
+            set_error_message(&error, "Unexpected or unhandled expression type encountered: '%s'.",
+                              NodeTypeStrings[expression->type]);
             yerror(error);
             return NULL;
         }

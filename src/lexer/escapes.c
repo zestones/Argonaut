@@ -25,12 +25,12 @@ char *decode_escapes(const char *text, size_t length, const char **bad) {
 
         char next = (i + 1 < length) ? text[i + 1] : '\0';
         switch (next) {
-            case 'n':  decoded[j++] = '\n'; break;
-            case 't':  decoded[j++] = '\t'; break;
-            case 'r':  decoded[j++] = '\r'; break;
+            case 'n': decoded[j++] = '\n'; break;
+            case 't': decoded[j++] = '\t'; break;
+            case 'r': decoded[j++] = '\r'; break;
             case '\\': decoded[j++] = '\\'; break;
             case '\'': decoded[j++] = '\''; break;
-            case '"':  decoded[j++] = '"';  break;
+            case '"': decoded[j++] = '"'; break;
             default:
                 if (bad != NULL) *bad = text + i;
                 free(decoded);
@@ -49,11 +49,23 @@ char *escape_text(const char *text) {
 
     for (const char *p = text; *p != '\0'; p++) {
         switch (*p) {
-            case '\\': escaped[j++] = '\\'; escaped[j++] = '\\'; break;
-            case '\n': escaped[j++] = '\\'; escaped[j++] = 'n';  break;
-            case '\r': escaped[j++] = '\\'; escaped[j++] = 'r';  break;
-            case '\t': escaped[j++] = '\\'; escaped[j++] = 't';  break;
-            default:   escaped[j++] = *p; break;
+            case '\\':
+                escaped[j++] = '\\';
+                escaped[j++] = '\\';
+                break;
+            case '\n':
+                escaped[j++] = '\\';
+                escaped[j++] = 'n';
+                break;
+            case '\r':
+                escaped[j++] = '\\';
+                escaped[j++] = 'r';
+                break;
+            case '\t':
+                escaped[j++] = '\\';
+                escaped[j++] = 't';
+                break;
+            default: escaped[j++] = *p; break;
         }
     }
 

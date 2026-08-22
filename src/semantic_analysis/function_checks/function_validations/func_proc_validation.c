@@ -1,42 +1,38 @@
-#include "../../../symbol_table/representation/representation_table.h" 
-#include "../../../symbol_table/declaration/declaration_table.h" 
+#include "../../../symbol_table/representation/representation_table.h"
+#include "../../../symbol_table/declaration/declaration_table.h"
 #include "../../../type_system/type_inference/type_inference.h"
 #include "../../../symbol_table/lexeme/lexeme_table.h"
 #include "../../../data/region_table.h"
 
 int get_func_proc_declaration_index(int index_lexeme_lexicographic) {
     int func_index = find_declaration_index_by_nature(index_lexeme_lexicographic, TYPE_FUNC);
-    return (func_index != NULL_VALUE) ? func_index 
+    return (func_index != NULL_VALUE) ? func_index
                                       : find_declaration_index_by_nature(index_lexeme_lexicographic, TYPE_PROC);
 }
 
 void check_func_proc_definition(int index_lexeme_lexicographic) {
     if (get_func_proc_declaration_index(index_lexeme_lexicographic) == NULL_VALUE) {
         set_error_type(&error, SEMANTIC_ERROR);
-        set_error_message(&error, 
-            "Undeclared function or procedure at %s.\n"
-            "  The function or procedure '%s' is not defined in the current scope.\n"
-            "  Ensure that the function or procedure is declared before usage.\n",
-            get_formatted_location(),
-            get_lexeme(index_lexeme_lexicographic)
-        );
+        set_error_message(&error,
+                          "Undeclared function or procedure at %s.\n"
+                          "  The function or procedure '%s' is not defined in the current scope.\n"
+                          "  Ensure that the function or procedure is declared before usage.\n",
+                          get_formatted_location(), get_lexeme(index_lexeme_lexicographic));
         yerror(error);
     }
 }
 
 void check_func_proc_redefinition(int index_lexeme_lexicographic, char *type) {
     int index_func_proc_declaration = get_func_proc_declaration_index(index_lexeme_lexicographic);
-    if (index_func_proc_declaration != NULL_VALUE && peek_region() == get_declaration_region(index_func_proc_declaration)) {
+    if (index_func_proc_declaration != NULL_VALUE &&
+        peek_region() == get_declaration_region(index_func_proc_declaration)) {
         set_error_type(&error, SEMANTIC_ERROR);
-        set_error_message(&error, 
-            "Redefinition of %s '%s' at %s.\n"
-            "  This identifier '%s' has already been defined.\n"
-            "  Consider renaming or modifying the existing definition.\n",
-            type,
-            get_lexeme(index_lexeme_lexicographic),
-            get_formatted_location(),
-            get_lexeme(index_lexeme_lexicographic)
-        );
+        set_error_message(&error,
+                          "Redefinition of %s '%s' at %s.\n"
+                          "  This identifier '%s' has already been defined.\n"
+                          "  Consider renaming or modifying the existing definition.\n",
+                          type, get_lexeme(index_lexeme_lexicographic), get_formatted_location(),
+                          get_lexeme(index_lexeme_lexicographic));
         yerror(error);
     }
 }
@@ -48,14 +44,11 @@ void check_func_prototype(int index_lexeme_lexicographic, Node *return_statement
 
     if (base_type != expression_type) {
         set_error_type(&error, TYPE_ERROR);
-        set_error_message(&error, 
-            "Type mismatch for function return value at %s.\n"
-            "  Function returned value has type '%s', but it should be of type '%s'.\n"
-            "  Ensure the function return type matches the expected type.\n",
-            get_formatted_location(),
-            type_name(expression_type),
-            get_lexeme(base_type)
-        );
+        set_error_message(&error,
+                          "Type mismatch for function return value at %s.\n"
+                          "  Function returned value has type '%s', but it should be of type '%s'.\n"
+                          "  Ensure the function return type matches the expected type.\n",
+                          get_formatted_location(), type_name(expression_type), get_lexeme(base_type));
         yerror(error);
         return;
     }
@@ -71,28 +64,24 @@ static int statements_always_return(Node *first);
  */
 static int statement_always_returns(Node *statement) {
     switch (statement->type) {
-        case A_RETURN_STATEMENT:
-            return 1;
+        case A_RETURN_STATEMENT: return 1;
 
-        case A_STATEMENT_LIST:
-            return statements_always_return(statement->child);
+        case A_STATEMENT_LIST: return statements_always_return(statement->child);
 
         case A_IF_ELSE: {
             Node *then_block = statement->child->sibling;
             Node *else_block = then_block->sibling;
-            return statements_always_return(then_block->child) &&
-                   else_block != NULL && statements_always_return(else_block->child);
+            return statements_always_return(then_block->child) && else_block != NULL &&
+                   statements_always_return(else_block->child);
         }
 
         case A_IF_ELSE_IF: {
             Node *then_block = statement->child->sibling;
             Node *next_if = then_block->sibling;
-            return statements_always_return(then_block->child) &&
-                   next_if != NULL && statement_always_returns(next_if);
+            return statements_always_return(then_block->child) && next_if != NULL && statement_always_returns(next_if);
         }
 
-        default:
-            return 0;
+        default: return 0;
     }
 }
 
@@ -108,11 +97,9 @@ void check_function_returns(int index_lexeme_lexicographic, Node *statement_list
 
     set_error_type(&error, SEMANTIC_ERROR);
     set_error_message(&error,
-        "Function '%s' does not return a value on every path at %s.\n"
-        "  Every path through the function must end with a return statement.\n",
-        get_lexeme(index_lexeme_lexicographic),
-        get_formatted_location()
-    );
+                      "Function '%s' does not return a value on every path at %s.\n"
+                      "  Every path through the function must end with a return statement.\n",
+                      get_lexeme(index_lexeme_lexicographic), get_formatted_location());
     yerror(error);
 }
 

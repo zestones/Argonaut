@@ -16,7 +16,7 @@
 #include <string.h>
 
 
-#define MAX_LEXEME_COUNT 8192    // Maximum number of distinct lexemes in the table.
+#define MAX_LEXEME_COUNT 8192 // Maximum number of distinct lexemes in the table.
 
 
 /**
@@ -28,9 +28,9 @@
  * next lexeme or position in a list or table.
  */
 typedef struct {
-    char *lexeme;                    // The lexeme's text (malloc'ed, any length).
-    int length;                      // The length of the lexeme.
-    int next;                        // The index of the next lexeme that has the same hash code.
+    char *lexeme; // The lexeme's text (malloc'ed, any length).
+    int length;   // The length of the lexeme.
+    int next;     // The index of the next lexeme that has the same hash code.
 } Lexeme;
 
 /**
@@ -41,7 +41,7 @@ typedef struct {
  * @param next The index of the next lexeme in the table.
  * @return A new Lexeme object.
  */
-Lexeme construct_lexeme(const char* lexeme, int length, int next);
+Lexeme construct_lexeme(const char *lexeme, int length, int next);
 
 /**
  * @brief Initializes the lexeme table.
@@ -59,7 +59,7 @@ void init_lexeme_table();
  * @param lexeme The lexeme to be inserted.
  * @return The index of the inserted lexeme, or -1 if the insertion fails.
  */
-int insert_lexeme(const char* lexeme);
+int insert_lexeme(const char *lexeme);
 
 /**
  * @brief Inserts a lexeme row into the lexeme table.
@@ -71,7 +71,7 @@ int insert_lexeme(const char* lexeme);
  * @param length The length of the lexeme.
  * @param next The index of the next lexeme in the table.
  */
-void insert_lexeme_row(int index, const char* lexeme, int length, int next);
+void insert_lexeme_row(int index, const char *lexeme, int length, int next);
 
 /**
  * @brief Retrieves the lexeme at the given index.
@@ -98,7 +98,7 @@ int is_lexeme_loaded(int index);
  *
  * @param filename The name of the file to write the lexeme table to.
  */
-void export_lexeme_table(const char* filename);
+void export_lexeme_table(const char *filename);
 
 /**
  * @brief Prints the contents of the lexeme table.
@@ -106,6 +106,6 @@ void export_lexeme_table(const char* filename);
  * This function outputs the current state of the lexeme table, displaying
  * all stored lexemes and their associated information.
  */
-void fprintf_lexeme_table(FILE* out);
+void fprintf_lexeme_table(FILE *out);
 
 #endif // LEXEME_TABLE_H

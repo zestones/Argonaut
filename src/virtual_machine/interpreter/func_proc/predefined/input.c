@@ -26,7 +26,9 @@ static int read_word(char *word, size_t size) {
     int c;
     size_t length = 0;
 
-    do { c = getchar(); } while (c == ' ' || c == '\t' || c == '\n' || c == '\r');
+    do {
+        c = getchar();
+    } while (c == ' ' || c == '\t' || c == '\n' || c == '\r');
     if (c == EOF) return 0;
 
     while (c != EOF && c != ' ' && c != '\t' && c != '\n' && c != '\r') {
@@ -39,12 +41,10 @@ static int read_word(char *word, size_t size) {
 
 static void input_failure(char specifier) {
     set_error_type(&error, RUN_TIME_ERROR);
-    set_error_message(
-        &error,
-        "Input error: could not read a value for '%%%c'.\n"
-        "  The input ended or does not match the expected format.\n",
-        specifier
-    );
+    set_error_message(&error,
+                      "Input error: could not read a value for '%%%c'.\n"
+                      "  The input ended or does not match the expected format.\n",
+                      specifier);
     yerror(error);
     exit(EXIT_FAILURE);
 }
@@ -68,22 +68,13 @@ static void input_failure(char specifier) {
  * @param cell A `vm_cell` containing the value to be assigned to the argument.
  */
 static void resolve_argument_assignement(AST arg_list, vm_cell cell) {
-    switch (arg_list->type)
-    {
-        case A_IDENTIFIER:
-            handle_variable_affectation(arg_list->index_declaration, cell);
-            break;
-        case A_ARRAY_ACCESS:
-            handle_array_affectation(arg_list, cell);
-            break; 
-        case A_STRUCT_FIELD_ACCESS:
-            handle_structure_affectation(arg_list, cell);
-            break;
-        
-        default:
-            fprintf(stderr, "<input.c> - Invalid argument list.\n");
-            break;
-        }
+    switch (arg_list->type) {
+        case A_IDENTIFIER: handle_variable_affectation(arg_list->index_declaration, cell); break;
+        case A_ARRAY_ACCESS: handle_array_affectation(arg_list, cell); break;
+        case A_STRUCT_FIELD_ACCESS: handle_structure_affectation(arg_list, cell); break;
+
+        default: fprintf(stderr, "<input.c> - Invalid argument list.\n"); break;
+    }
 }
 
 void execute_input(AST ast) {
@@ -106,7 +97,9 @@ void execute_input(AST ast) {
     while (format[0] != '\0') {
         if (format[0] == '%' && format[1] == '%') {
             int c;
-            do { c = getchar(); } while (c == ' ' || c == '\t' || c == '\n');
+            do {
+                c = getchar();
+            } while (c == ' ' || c == '\t' || c == '\n');
             if (c != '%') input_failure('%');
             format += 2;
             continue;
@@ -120,13 +113,13 @@ void execute_input(AST ast) {
                 case 'd': {
                     int value;
                     if (scanf("%d", &value) != 1) input_failure(specifier);
-                    cell = construct_vm_cell(INTEGER, &value); 
+                    cell = construct_vm_cell(INTEGER, &value);
                     break;
                 }
                 case 'f': {
                     double value;
                     if (scanf("%lf", &value) != 1) input_failure(specifier);
-                    cell = construct_vm_cell(REAL, &value); 
+                    cell = construct_vm_cell(REAL, &value);
                     break;
                 }
                 case 's': {
@@ -150,10 +143,10 @@ void execute_input(AST ast) {
                     cell = construct_vm_cell(BOOLEAN, &value);
                     break;
                 }
-                // No default case as the format is already checked for 'd', 'f', 's', or 'c'
+                    // No default case as the format is already checked for 'd', 'f', 's', or 'c'
             }
 
-            resolve_argument_assignement(arg_list->child, cell); 
+            resolve_argument_assignement(arg_list->child, cell);
             arg_list = arg_list->sibling;
             format += 2;
         } else {
@@ -163,4 +156,3 @@ void execute_input(AST ast) {
 
     free(stripped_format);
 }
-

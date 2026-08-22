@@ -14,8 +14,7 @@ static int find_declaration_index_in_region_by_nature(int tlex_index, int region
     // the last one in the chain wins.
     while (index != NULL_VALUE) {
         if (declaration_table[index].region == region &&
-            (nature_filter == (Nature) NULL_VALUE || declaration_table[index].nature == nature_filter)
-        ) {
+            (nature_filter == (Nature) NULL_VALUE || declaration_table[index].nature == nature_filter)) {
             last_match = index;
         }
 
@@ -53,8 +52,7 @@ int find_function_index_by_region(int region_index) {
 
     // TODO: optimize this search
     while (index != MAX_DECLARATION_COUNT) {
-        if (declaration_table[index].nature == TYPE_FUNC && 
-            declaration_table[index].execution == region_index) {
+        if (declaration_table[index].nature == TYPE_FUNC && declaration_table[index].execution == region_index) {
             return index; // Found the function with the matching region
         }
 

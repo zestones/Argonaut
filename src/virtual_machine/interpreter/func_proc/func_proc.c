@@ -29,9 +29,9 @@
 static stack_frame construct_frame_with_parameters(AST parameter_list, AST argument_list, int region_index) {
     int dynamic_link = get_execution_stack_current_frame_id();
     stack_frame current_frame = construct_stack_frame(dynamic_link, region_index);
-    
-    if (parameter_list == NULL || argument_list == NULL ||
-        parameter_list->type != A_PARAMETER_LIST || argument_list->type != A_ARGUMENT_LIST) {
+
+    if (parameter_list == NULL || argument_list == NULL || parameter_list->type != A_PARAMETER_LIST ||
+        argument_list->type != A_ARGUMENT_LIST) {
         return current_frame;
     }
 
@@ -46,15 +46,15 @@ static stack_frame construct_frame_with_parameters(AST parameter_list, AST argum
                 vm_cell cell = resolve_expression(arg_node->child);
                 int address = get_variable_address(param_node->index_declaration);
                 update_cell_in_stack_frame(&current_frame, address, cell);
-            }
-            else if (get_declaration_nature(index_type_declaration) == TYPE_STRUCT || get_declaration_nature(index_type_declaration) == TYPE_ARRAY) {
+            } else if (get_declaration_nature(index_type_declaration) == TYPE_STRUCT ||
+                       get_declaration_nature(index_type_declaration) == TYPE_ARRAY) {
                 // Structures and arrays are passed by value: copy the cells of the argument,
                 // which may be a global, a field (show(r.tl)) or an array element (show(g[i])).
-                Node *argument           = arg_node->child;
-                int source_address       = get_lvalue_address(argument);
-                stack_frame *source      = get_lvalue_frame(argument);
-                int size                 = get_declaration_execution(index_type_declaration);
-                int address              = get_variable_address(param_node->index_declaration);
+                Node *argument = arg_node->child;
+                int source_address = get_lvalue_address(argument);
+                stack_frame *source = get_lvalue_frame(argument);
+                int size = get_declaration_execution(index_type_declaration);
+                int address = get_variable_address(param_node->index_declaration);
 
                 copy_cells(&current_frame, address, source, source_address, size);
             }

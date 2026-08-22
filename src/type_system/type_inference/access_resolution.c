@@ -25,9 +25,9 @@ static void access_error(Node *root, const char *format, const char *detail) {
 static int apply_indices(Node *access_node, int type, Node *root) {
     if (get_declaration_nature(type) != TYPE_ARRAY) {
         access_error(root,
-            "Array access error at %s.\n"
-            "  '%s' is indexed, but it is of type '%s', which is not an array.\n",
-            type_name(type));
+                     "Array access error at %s.\n"
+                     "  '%s' is indexed, but it is of type '%s', which is not an array.\n",
+                     type_name(type));
         return NULL_VALUE;
     }
 
@@ -35,9 +35,9 @@ static int apply_indices(Node *access_node, int type, Node *root) {
     while (index != NULL) {
         if (get_declaration_nature(type) != TYPE_ARRAY) {
             access_error(root,
-                "Array access error at %s.\n"
-                "  Too many indices in '%s': the element of type '%s' is not an array.\n",
-                type_name(type));
+                         "Array access error at %s.\n"
+                         "  Too many indices in '%s': the element of type '%s' is not an array.\n",
+                         type_name(type));
             return NULL_VALUE;
         }
 
@@ -47,9 +47,9 @@ static int apply_indices(Node *access_node, int type, Node *root) {
                 char expected[16];
                 snprintf(expected, sizeof(expected), "%d", dimensions);
                 access_error(root,
-                    "Array access error at %s.\n"
-                    "  Insufficient indices in '%s': the array has %s dimension(s).\n",
-                    expected);
+                             "Array access error at %s.\n"
+                             "  Insufficient indices in '%s': the array has %s dimension(s).\n",
+                             expected);
                 return NULL_VALUE;
             }
 
@@ -57,9 +57,9 @@ static int apply_indices(Node *access_node, int type, Node *root) {
             if (index_type == NULL_VALUE) return NULL_VALUE;
             if (index_type != A_INTEGER_LITERAL) {
                 access_error(root,
-                    "Array access error at %s.\n"
-                    "  An index of '%s' has type '%s', but indices must be integers.\n",
-                    type_name(index_type));
+                             "Array access error at %s.\n"
+                             "  An index of '%s' has type '%s', but indices must be integers.\n",
+                             type_name(index_type));
                 return NULL_VALUE;
             }
 
@@ -81,8 +81,9 @@ int resolve_access_type(Node *access) {
         check_variable_definition(access->index_lexicographic);
         if (find_declaration_index(access->index_lexicographic) != NULL_VALUE) {
             access_error(access,
-                "Access error at %s.\n"
-                "  '%s' is not a variable%s.\n", "");
+                         "Access error at %s.\n"
+                         "  '%s' is not a variable%s.\n",
+                         "");
         }
         return NULL_VALUE;
     }
@@ -109,9 +110,9 @@ int resolve_access_type(Node *access) {
         // A field of a structure
         if (get_declaration_nature(type) != TYPE_STRUCT) {
             access_error(access,
-                "Field access error at %s.\n"
-                "  '%s' accesses a field of a value of type '%s', which is not a struct.\n",
-                type_name(type));
+                         "Field access error at %s.\n"
+                         "  '%s' accesses a field of a value of type '%s', which is not a struct.\n",
+                         type_name(type));
             return NULL_VALUE;
         }
 
@@ -121,9 +122,9 @@ int resolve_access_type(Node *access) {
             snprintf(detail, sizeof(detail), "the field '%s' does not exist in the struct '%s'",
                      get_lexeme(node->index_lexicographic), get_lexeme(get_declaration_lexicographic_index(type)));
             access_error(access,
-                "Field access error at %s.\n"
-                "  In '%s', %s.\n",
-                detail);
+                         "Field access error at %s.\n"
+                         "  In '%s', %s.\n",
+                         detail);
             return NULL_VALUE;
         }
 

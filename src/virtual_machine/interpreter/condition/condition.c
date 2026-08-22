@@ -33,4 +33,3 @@ ControlFlow execute_condition(AST ast) {
 
     return CONTROL_NONE;
 }
-

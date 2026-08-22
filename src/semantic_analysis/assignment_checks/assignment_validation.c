@@ -1,4 +1,4 @@
-#include "../../symbol_table/declaration/declaration_table.h" 
+#include "../../symbol_table/declaration/declaration_table.h"
 #include "../../type_system/type_inference/type_inference.h"
 #include "../../type_system/format/formatting.h"
 #include "../../symbol_table/lexeme/lexeme_table.h"
@@ -18,15 +18,13 @@ void check_variable_assignment(int index_lexeme_lexicographic, Node *expression)
     // Step 3: Check type compatibility
     if (variable_type != expression_type) {
         set_error_type(&error, TYPE_ERROR);
-        set_error_message(&error, 
-            "Type mismatch during assignement at %s.\n"
-            "  Cannot assign expression of type '%s' to variable '%s' of type '%s'.\n"
-            "  Ensure that the expression type matches the expected type for the variable.\n",
-            get_formatted_location(),
-            type_name(expression_type),
-            (variable_type == NULL_VALUE) ? "UNKNOWN" : get_lexeme(index_lexeme_lexicographic),
-            (variable_type == NULL_VALUE) ? "UNKNOWN" : get_lexeme(variable_type_lexeme_index)
-        );
+        set_error_message(&error,
+                          "Type mismatch during assignement at %s.\n"
+                          "  Cannot assign expression of type '%s' to variable '%s' of type '%s'.\n"
+                          "  Ensure that the expression type matches the expected type for the variable.\n",
+                          get_formatted_location(), type_name(expression_type),
+                          (variable_type == NULL_VALUE) ? "UNKNOWN" : get_lexeme(index_lexeme_lexicographic),
+                          (variable_type == NULL_VALUE) ? "UNKNOWN" : get_lexeme(variable_type_lexeme_index));
         yerror(error);
         return;
     }
@@ -45,15 +43,11 @@ void check_access_assignment(Node *access, Node *expression) {
     if (target_type != expression_type) {
         char *target = format_access(access);
         set_error_type(&error, TYPE_ERROR);
-        set_error_message(&error, 
-            "Type mismatch during assignement at %s.\n"
-            "  Cannot assign expression of type '%s' to '%s' of type '%s'.\n"
-            "  Ensure the expression type matches the expected type of the target.\n",
-            get_formatted_location(),
-            type_name(expression_type),
-            target,
-            type_name(target_type)
-        );
+        set_error_message(&error,
+                          "Type mismatch during assignement at %s.\n"
+                          "  Cannot assign expression of type '%s' to '%s' of type '%s'.\n"
+                          "  Ensure the expression type matches the expected type of the target.\n",
+                          get_formatted_location(), type_name(expression_type), target, type_name(target_type));
         yerror(error);
         free(target);
     }

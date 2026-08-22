@@ -24,7 +24,8 @@ static void reject(int region, const char *format, ...) {
     va_start(args, format);
     vfprintf(stderr, format, args);
     va_end(args);
-    fprintf(stderr, ".\n  The file was not produced by argoc, or was modified: it cannot be executed." COLOR_RESET "\n");
+    fprintf(stderr,
+            ".\n  The file was not produced by argoc, or was modified: it cannot be executed." COLOR_RESET "\n");
 
     exit(EXIT_FAILURE);
 }
@@ -51,10 +52,8 @@ static int is_statement(int type) {
         case A_FUNC_PROC_CALL_STATEMENT:
         case A_RETURN_STATEMENT:
         case A_PRINT_STATEMENT:
-        case A_INPUT_STATEMENT:
-            return 1;
-        default:
-            return 0;
+        case A_INPUT_STATEMENT: return 1;
+        default: return 0;
     }
 }
 
@@ -80,10 +79,8 @@ static int is_expression(int type) {
         case A_CONDITION:
         case A_AND_CONDITION:
         case A_OR_CONDITION:
-        case A_NOT_CONDITION:
-            return 1;
-        default:
-            return is_comparison(type);
+        case A_NOT_CONDITION: return 1;
+        default: return is_comparison(type);
     }
 }
 
@@ -94,10 +91,8 @@ static int is_comparison(int type) {
         case A_LESS_THAN_OP:
         case A_GREATER_THAN_OP:
         case A_LESS_EQUAL_OP:
-        case A_GREATER_EQUAL_OP:
-            return 1;
-        default:
-            return 0;
+        case A_GREATER_EQUAL_OP: return 1;
+        default: return 0;
     }
 }
 
@@ -135,7 +130,8 @@ static void check_argument_list(int region, const Node *list, int lvalues_only) 
         expect(region, list, argument, argument->type == A_ARGUMENT, "an argument");
         const Node *value = argument->child;
         if (lvalues_only) {
-            expect(region, argument, value, value != NULL && is_lvalue((int) value->type), "a variable, array element or field");
+            expect(region, argument, value, value != NULL && is_lvalue((int) value->type),
+                   "a variable, array element or field");
         } else {
             expect(region, argument, value, value != NULL && is_expression((int) value->type), "an expression");
         }
@@ -153,27 +149,22 @@ static void check_shape(int region, const Node *node) {
         for (const Node *statement = c1; statement != NULL; statement = statement->sibling) {
             expect(region, node, statement, is_statement((int) statement->type), "a statement");
         }
-    }
-    else if (is_if(type)) {
+    } else if (is_if(type)) {
         expect(region, node, c1, c1 != NULL && is_condition((int) c1->type), "a condition");
         expect(region, node, c2, c2 != NULL && c2->type == A_STATEMENT_LIST, "a block");
         if (type == A_IF_ELSE) expect(region, node, c3, c3 != NULL && c3->type == A_STATEMENT_LIST, "an else block");
         if (type == A_IF_ELSE_IF) expect(region, node, c3, c3 != NULL && is_if((int) c3->type), "an else-if");
-    }
-    else if (type == A_WHILE) {
+    } else if (type == A_WHILE) {
         expect(region, node, c1, c1 != NULL && is_condition((int) c1->type), "a condition");
         expect(region, node, c2, c2 != NULL && c2->type == A_STATEMENT_LIST, "a block");
-    }
-    else if (type == A_FOR_LOOP) {
+    } else if (type == A_FOR_LOOP) {
         expect(region, node, c1, c1 != NULL && c1->type == A_VARIABLE_ASSIGNMENT, "an initialisation");
         expect(region, node, c2, c2 != NULL && is_condition((int) c2->type), "a condition");
         expect(region, node, c3, c3 != NULL && c3->type == A_VARIABLE_ASSIGNMENT, "an update");
         expect(region, node, c4, c4 != NULL && c4->type == A_STATEMENT_LIST, "a block");
-    }
-    else if (type == A_ASSIGNMENT_STATEMENT) {
+    } else if (type == A_ASSIGNMENT_STATEMENT) {
         expect(region, node, c1, c1 != NULL && is_assignment((int) c1->type), "an assignment");
-    }
-    else if (type == A_VARIABLE_ASSIGNMENT) {
+    } else if (type == A_VARIABLE_ASSIGNMENT) {
         // With a declaration: the assignment itself, whose child is the value. Without one: the
         // wrapper the 'for' rule puts around its initialisation and update assignments.
         if (node->index_declaration != NULL_VALUE) {
@@ -181,67 +172,64 @@ static void check_shape(int region, const Node *node) {
         } else {
             expect(region, node, c1, c1 != NULL && is_assignment((int) c1->type), "an assignment");
         }
-    }
-    else if (type == A_ARRAY_ASSIGNMENT) {
+    } else if (type == A_ARRAY_ASSIGNMENT) {
         expect(region, node, c1, c1 != NULL && c1->type == A_ARRAY_ACCESS, "an array access");
         expect(region, node, c2, c2 != NULL && is_expression((int) c2->type), "an expression");
-    }
-    else if (type == A_STRUCT_ASSIGNMENT) {
+    } else if (type == A_STRUCT_ASSIGNMENT) {
         expect(region, node, c1, c1 != NULL && c1->type == A_STRUCT_FIELD_ACCESS, "a field access");
         expect(region, node, c2, c2 != NULL && is_expression((int) c2->type), "an expression");
-    }
-    else if (is_arithmetic(type) || is_comparison(type)) {
+    } else if (is_arithmetic(type) || is_comparison(type)) {
         expect(region, node, c1, c1 != NULL && is_expression((int) c1->type), "a left operand");
         expect(region, node, c2, c2 != NULL && is_expression((int) c2->type), "a right operand");
-    }
-    else if (type == A_AND_CONDITION || type == A_OR_CONDITION) {
+    } else if (type == A_AND_CONDITION || type == A_OR_CONDITION) {
         expect(region, node, c1, c1 != NULL && is_expression((int) c1->type), "a left condition");
         expect(region, node, c2, c2 != NULL && is_expression((int) c2->type), "a right condition");
-    }
-    else if (type == A_NOT_CONDITION || type == A_CONDITION) {
+    } else if (type == A_NOT_CONDITION || type == A_CONDITION) {
         expect(region, node, c1, c1 != NULL && is_condition((int) c1->type), "a condition");
-    }
-    else if (type == A_NEG_OP) {
+    } else if (type == A_NEG_OP) {
         expect(region, node, c1, c1 != NULL && is_expression((int) c1->type), "an operand");
-    }
-    else if (type == A_RETURN_STATEMENT) {
+    } else if (type == A_RETURN_STATEMENT) {
         if (c1 != NULL) expect(region, node, c1, is_expression((int) c1->type), "an expression");
-    }
-    else if (type == A_ARRAY_ACCESS) {
+    } else if (type == A_ARRAY_ACCESS) {
         expect(region, node, c1, c1 != NULL && c1->type == A_ARRAY_INDEX_LIST && c1->child != NULL, "an index list");
         for (const Node *index = c1->child; index != NULL; index = index->sibling) {
             expect(region, c1, index, index->type == A_ARRAY_INDEX, "an index");
-            expect(region, index, index->child, index->child != NULL && is_expression((int) index->child->type), "an expression");
+            expect(region, index, index->child, index->child != NULL && is_expression((int) index->child->type),
+                   "an expression");
         }
-        if (c2 != NULL) expect(region, node, c2, c2->type == A_STRUCT_FIELD_ACCESS || c2->type == A_ARRAY_ACCESS, "a field or index access");
-    }
-    else if (type == A_STRUCT_FIELD_ACCESS) {
-        if (c1 != NULL) expect(region, node, c1, c1->type == A_STRUCT_FIELD_ACCESS || c1->type == A_ARRAY_ACCESS, "a field or array access");
-    }
-    else if (type == A_FUNC_PROC_CALL_STATEMENT) {
+        if (c2 != NULL)
+            expect(region, node, c2, c2->type == A_STRUCT_FIELD_ACCESS || c2->type == A_ARRAY_ACCESS,
+                   "a field or index access");
+    } else if (type == A_STRUCT_FIELD_ACCESS) {
+        if (c1 != NULL)
+            expect(region, node, c1, c1->type == A_STRUCT_FIELD_ACCESS || c1->type == A_ARRAY_ACCESS,
+                   "a field or array access");
+    } else if (type == A_FUNC_PROC_CALL_STATEMENT) {
         if (c1 != NULL) {
             expect(region, node, c1, c1->type == A_ARGUMENT_LIST, "an argument list");
             check_argument_list(region, c1, 0);
         }
-    }
-    else if (type == A_PRINT_STATEMENT || type == A_INPUT_STATEMENT) {
+    } else if (type == A_PRINT_STATEMENT || type == A_INPUT_STATEMENT) {
         // [format] or [argument list, format]
         const Node *format = (c2 != NULL) ? c2 : c1;
-        expect(region, node, format, format != NULL && format->type == A_FORMAT_STRING && format->index_lexicographic != NULL_VALUE, "a format string");
+        expect(region, node, format,
+               format != NULL && format->type == A_FORMAT_STRING && format->index_lexicographic != NULL_VALUE,
+               "a format string");
         if (c2 != NULL) {
             expect(region, node, c1, c1->type == A_ARGUMENT_LIST, "an argument list");
             check_argument_list(region, c1, type == A_INPUT_STATEMENT);
         }
-    }
-    else if (type == A_PROGRAM) {
+    } else if (type == A_PROGRAM) {
         expect(region, node, c1, c1 != NULL && c1->type == A_DECLARATION_LIST, "a declaration list");
         if (c2 != NULL) expect(region, node, c2, c2->type == A_STATEMENT_LIST, "a statement list");
-    }
-    else if (type == A_FUNCTION_DECLARATION || type == A_PROCEDURE_DECLARATION) {
+    } else if (type == A_FUNCTION_DECLARATION || type == A_PROCEDURE_DECLARATION) {
         // Any subset of [parameter list, declaration list, statement list], in that order.
         int stage = 0;
         for (const Node *part = c1; part != NULL; part = part->sibling) {
-            int part_stage = part->type == A_PARAMETER_LIST ? 1 : part->type == A_DECLARATION_LIST ? 2 : part->type == A_STATEMENT_LIST ? 3 : 0;
+            int part_stage = part->type == A_PARAMETER_LIST     ? 1
+                             : part->type == A_DECLARATION_LIST ? 2
+                             : part->type == A_STATEMENT_LIST   ? 3
+                                                                : 0;
             expect(region, node, part, part_stage > stage, "parameters, declarations then statements");
             stage = part_stage;
         }
@@ -258,10 +246,8 @@ static int node_requires_declaration(int type) {
         case A_FUNC_PROC_CALL_STATEMENT:
         case A_PARAMETER:
         case A_FUNCTION_DECLARATION:
-        case A_PROCEDURE_DECLARATION:
-            return 1;
-        default:
-            return 0;
+        case A_PROCEDURE_DECLARATION: return 1;
+        default: return 0;
     }
 }
 

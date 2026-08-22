@@ -15,7 +15,8 @@ static void append(text *t, const char *s) {
     size_t n = strlen(s);
     if (t->length + n + 1 > t->capacity) {
         size_t capacity = t->capacity ? t->capacity : 64;
-        while (t->length + n + 1 > capacity) capacity *= 2;
+        while (t->length + n + 1 > capacity)
+            capacity *= 2;
         char *data = realloc(t->data, capacity);
         if (data == NULL) {
             fprintf(stderr, "Error: Memory allocation failed\n");

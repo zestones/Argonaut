@@ -10,9 +10,9 @@
 void declaration_variable_start(int index_lexeme_lexicographic, int index_type_lexicographic) {
     check_type_definition(index_type_lexicographic);
     check_variable_redefinition(index_lexeme_lexicographic);
-    
+
     int index_type_declaration = get_arr_struct_declaration_index(index_type_lexicographic);
-    int execution = get_declaration_execution(index_type_declaration); 
+    int execution = get_declaration_execution(index_type_declaration);
 
     // The variable belongs to the region being parsed (top of the region stack), which is not
     // necessarily the last region created: a function declared just before creates a newer one.
@@ -25,7 +25,7 @@ void declaration_param_start(int index_lexeme_lexicographic, int index_type_lexi
     check_type_definition(index_type_lexicographic);
 
     int index_type_declaration = find_declaration_index(index_type_lexicographic);
-    int execution = get_declaration_execution(index_type_declaration); 
+    int execution = get_declaration_execution(index_type_declaration);
 
     int region = peek_region();
     insert_declaration_param(index_lexeme_lexicographic, region, index_type_declaration, get_region_size(region));

@@ -44,12 +44,10 @@ static int consume_indices(Node **index_node, int array_type, int *type_out) {
     for (int dim = 0; dim < num_dimensions; dim++) {
         if (*index_node == NULL) {
             set_error_type(&error, RUN_TIME_ERROR);
-            set_error_message(
-                &error,
-                "Insufficient indices provided for array access.\n"
-                "  Ensure that '%d' indices are specified.",
-                num_dimensions
-            );
+            set_error_message(&error,
+                              "Insufficient indices provided for array access.\n"
+                              "  Ensure that '%d' indices are specified.",
+                              num_dimensions);
             yerror(error);
             exit(EXIT_FAILURE);
         }
@@ -57,12 +55,10 @@ static int consume_indices(Node **index_node, int array_type, int *type_out) {
         vm_cell index_cell = resolve_expression((*index_node)->child);
         if (index_cell.type != INTEGER) {
             set_error_type(&error, RUN_TIME_ERROR);
-            set_error_message(
-                &error,
-                "Invalid index type, index type should be integer.\n"
-                "  Instead got type '%s'.",
-                get_cell_type_string(index_cell)
-            );
+            set_error_message(&error,
+                              "Invalid index type, index type should be integer.\n"
+                              "  Instead got type '%s'.",
+                              get_cell_type_string(index_cell));
             yerror(error);
             exit(EXIT_FAILURE);
         }
@@ -73,12 +69,10 @@ static int consume_indices(Node **index_node, int array_type, int *type_out) {
 
         if (index < lower_bound || index > upper_bound) {
             set_error_type(&error, RUN_TIME_ERROR);
-            set_error_message(
-                &error,
-                "Index %d out of bounds for dimension %d.\n"
-                "  Allowed range: [%d, %d].",
-                index, dim, lower_bound, upper_bound
-            );
+            set_error_message(&error,
+                              "Index %d out of bounds for dimension %d.\n"
+                              "  Allowed range: [%d, %d].",
+                              index, dim, lower_bound, upper_bound);
             yerror(error);
             exit(EXIT_FAILURE);
         }

@@ -23,7 +23,8 @@ static void append_text(text_buffer *buffer, const char *text) {
     size_t text_length = strlen(text);
     if (buffer->length + text_length + 1 > buffer->capacity) {
         size_t capacity = buffer->capacity ? buffer->capacity : 256;
-        while (buffer->length + text_length + 1 > capacity) capacity *= 2;
+        while (buffer->length + text_length + 1 > capacity)
+            capacity *= 2;
 
         char *data = realloc(buffer->data, capacity);
         if (!data) {
@@ -71,18 +72,16 @@ static void process_format_string(const char *format, AST arg_list, text_buffer 
         }
 
         if (format[format_idx] == '%' && is_format_specifier(format[format_idx + 1])) {
-
             char specifier = format[format_idx + 1];
             vm_cell cell = resolve_expression(current_arg->child);
 
             switch (specifier) {
                 case 'd':
-                    snprintf(scratch, sizeof(scratch), "%d", cell.type == BOOLEAN ? cell.value.boolean : cell.value.integer);
+                    snprintf(scratch, sizeof(scratch), "%d",
+                             cell.type == BOOLEAN ? cell.value.boolean : cell.value.integer);
                     append_text(buffer, scratch);
                     break;
-                case 'b':
-                    append_text(buffer, cell.value.boolean ? "true" : "false");
-                    break;
+                case 'b': append_text(buffer, cell.value.boolean ? "true" : "false"); break;
                 case 'f':
                     snprintf(scratch, sizeof(scratch), "%f", cell.value.real);
                     append_text(buffer, scratch);
@@ -98,7 +97,7 @@ static void process_format_string(const char *format, AST arg_list, text_buffer 
                     scratch[1] = '\0';
                     append_text(buffer, scratch);
                     break;
-                // No default case as the format is already checked for 'd', 'f', 's', or 'c'
+                    // No default case as the format is already checked for 'd', 'f', 's', or 'c'
             }
 
             current_arg = current_arg->sibling;
@@ -131,7 +130,7 @@ void execute_print(AST ast) {
 
     const char *raw_format = get_lexeme(format_node->index_lexicographic);
     char *format = strip_quotes(raw_format);
-    
+
     // Note: No validation checks are performed on the 'raw_format' string or the processed 'format' string
     // at this stage. It is assumed that these strings have already been validated by the compiler. If the
     // compiler detected any errors in the format string, the program should not reach this execution point.

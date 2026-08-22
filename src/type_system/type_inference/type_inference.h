@@ -2,7 +2,7 @@
 #define __TYPE_SYSTEM_H__
 
 #include "../../ast/ast.h"
-#include "../../symbol_table/declaration/declaration_table.h" 
+#include "../../symbol_table/declaration/declaration_table.h"
 
 
 /**
@@ -82,10 +82,6 @@ int resolve_func_proc_return_type(Node *function_call);
  * @return The type of the specified parameter, or `NULL_VALUE` if the parameter type cannot be found.
  */
 int resolve_func_proc_parameter_type_at(int num_param, int index_declaration, Nature nature);
-
-
-
-
 
 
 /**

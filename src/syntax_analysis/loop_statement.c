@@ -4,8 +4,14 @@
 // end of an inner loop, and a 'break' placed after it in the outer loop would be rejected.
 static int loop_depth = 0;
 
-int loop_context_active() { return loop_depth > 0; }
+int loop_context_active() {
+    return loop_depth > 0;
+}
 
-void activate_loop_context() { loop_depth++; }
+void activate_loop_context() {
+    loop_depth++;
+}
 
-void deactivate_loop_context() { loop_depth--; }
+void deactivate_loop_context() {
+    loop_depth--;
+}

@@ -27,7 +27,8 @@ static int is_aggregate(int type_declaration) {
 }
 
 static int is_lvalue(Node *node) {
-    return node != NULL && (node->type == A_IDENTIFIER || node->type == A_ARRAY_ACCESS || node->type == A_STRUCT_FIELD_ACCESS);
+    return node != NULL &&
+           (node->type == A_IDENTIFIER || node->type == A_ARRAY_ACCESS || node->type == A_STRUCT_FIELD_ACCESS);
 }
 
 void resolve_assignement(Node *assignement_start) {
@@ -37,8 +38,10 @@ void resolve_assignement(Node *assignement_start) {
     if (assignement->type == A_VARIABLE_ASSIGNMENT) {
         int target_type = get_declaration_description(assignement->index_declaration);
         if (is_aggregate(target_type) && is_lvalue(assignement->child)) {
-            stack_frame *frame = find_stack_frame_by_region_index(get_declaration_region(assignement->index_declaration));
-            assign_aggregate(target_type, frame, get_variable_address(assignement->index_declaration), assignement->child);
+            stack_frame *frame =
+                find_stack_frame_by_region_index(get_declaration_region(assignement->index_declaration));
+            assign_aggregate(target_type, frame, get_variable_address(assignement->index_declaration),
+                             assignement->child);
             return;
         }
 

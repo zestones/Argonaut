@@ -25,5 +25,4 @@ void check_variable_assignment(int index_lexeme_lexicographic, Node *expression)
 void check_access_assignment(Node *access, Node *expression);
 
 
-
 #endif // __ASSIGNMENT_VALIDATION_H__

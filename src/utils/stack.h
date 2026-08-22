@@ -21,9 +21,9 @@
  * `destroy_stack()` frees everything that is still on the stack.
  */
 typedef struct {
-    void **data;    // malloc'ed copies of the pushed values
-    int capacity;   // number of slots allocated in `data`
-    int top;        // number of elements (index of the next free slot)
+    void **data;  // malloc'ed copies of the pushed values
+    int capacity; // number of slots allocated in `data`
+    int top;      // number of elements (index of the next free slot)
 } Stack;
 
 /**
@@ -123,6 +123,6 @@ void destroy_stack(Stack *stack);
  * @param stack The stack to print.
  * @param format_func A function to format the elements of the stack.
  */
-void print_stack(const Stack stack, const char* (*format_func)(void *));
+void print_stack(const Stack stack, const char *(*format_func)(void *) );
 
 #endif // __STACK_H__

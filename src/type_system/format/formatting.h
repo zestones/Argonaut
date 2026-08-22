@@ -6,9 +6,7 @@
 #include <string.h>
 
 #include "../../ast/ast.h"
-#include "../../symbol_table/declaration/declaration_table.h" 
-
-
+#include "../../symbol_table/declaration/declaration_table.h"
 
 
 /**

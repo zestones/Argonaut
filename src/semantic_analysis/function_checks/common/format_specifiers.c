@@ -6,7 +6,7 @@ char *strip_quotes(const char *raw_format) {
     int format_len = strlen(raw_format);
 
     if (format_len >= 2 && raw_format[0] == '"' && raw_format[format_len - 1] == '"') {
-        char *format = (char *)malloc(format_len - 1);
+        char *format = (char *) malloc(format_len - 1);
 
         strncpy(format, raw_format + 1, format_len - 2);
         format[format_len - 2] = '\0';
@@ -54,7 +54,7 @@ int is_compatible_with_format_specifier(int argument_type, char specifier) {
         case 'f': return argument_type == A_FLOAT_LITERAL;
         case 's': return argument_type == STRING_LITERAL_TYPE;
         case 'c': return argument_type == A_CHARACTER_LITERAL;
-        default:  return 0;
+        default: return 0;
     }
 }
 

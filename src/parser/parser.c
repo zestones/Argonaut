@@ -12,10 +12,10 @@
  * 
  * @param out A pointer to the `FILE` stream where the tables will be written.
  */
-static void write_tables_to(FILE* out) {
+static void write_tables_to(FILE *out) {
     fprintf_lexeme_table(out);
     fprintf_hash_table(out);
-    
+
     fprintf_declaration_table(out);
     fprintf_representation_table(out);
 
@@ -59,7 +59,7 @@ static void initialize_base_types() {
 static void initialize_tables(Mode m) {
     init_hash_table();
     init_lexeme_table();
-    
+
     init_declaration_table();
     init_representation_table();
 
@@ -86,12 +86,12 @@ void ydebug(int debug) {
     if (!debug) return;
     fprintf(stdout, COLOR_GREEN "Verbose mode enabled. Printing tables and ast...\n" COLOR_RESET);
     write_tables_to(stdout);
-    fprintf_vm_stack(stdout); 
+    fprintf_vm_stack(stdout);
 }
 
 int yyrun(Mode m) {
     initialize_tables(m);
-    int parse_result = yyparse(); 
+    int parse_result = yyparse();
 
     if (m == INTERPRETATION) {
         validate_loaded_ir();

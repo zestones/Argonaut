@@ -1,5 +1,5 @@
 #include "../../lib/table_printer.h"
-#include "../../lib/colors.h" 
+#include "../../lib/colors.h"
 
 #include "../symbol_table/utility.h"
 #include "../utils/utils.h"
@@ -40,11 +40,14 @@ void start_region() {
     region_table_size++;
 }
 
-void end_region() { pop_region(); }
+void end_region() {
+    pop_region();
+}
 
 void insert_region_row(int index, int size, int nis, AST ast) {
     if (index < 0 || index >= MAX_REGION_COUNT) {
-        fprintf(stderr, COLOR_RED "<Error> Region table row %d out of bounds (0 to %d).\n" COLOR_RESET, index, MAX_REGION_COUNT - 1);
+        fprintf(stderr, COLOR_RED "<Error> Region table row %d out of bounds (0 to %d).\n" COLOR_RESET, index,
+                MAX_REGION_COUNT - 1);
         exit(EXIT_FAILURE);
     }
 
@@ -77,13 +80,15 @@ int get_region_nis(int index) {
     return region_table[index].nis;
 }
 
-int get_current_region_nis() { 
+int get_current_region_nis() {
     // To get the current region NIS, we need to peek the region stack to retrieve the current region index
     // Then we can use the region index to get the NIS from the region table
     return get_region_nis(peek_region());
 }
 
-int get_current_region_id() { return region_table_size - 1; }
+int get_current_region_id() {
+    return region_table_size - 1;
+}
 
 AST get_region_ast(int index) {
     if (index < 0 || index >= MAX_REGION_COUNT) {
@@ -95,7 +100,7 @@ AST get_region_ast(int index) {
 }
 
 void update_region_size(int index, int size) {
-   if (index < 0 || index >= MAX_REGION_COUNT) {
+    if (index < 0 || index >= MAX_REGION_COUNT) {
         fprintf(stderr, COLOR_RED "<Error> Update Region Size index out of bounds\n" COLOR_RESET);
         exit(EXIT_FAILURE);
     }
@@ -112,13 +117,13 @@ void update_region_ast(int index, AST ast) {
     region_table[index].ast = ast;
 }
 
-static char* format_region_row(void* element) {
-    Region* region = (Region*)element;
-    char* formatted_row = (char*)malloc(512 * sizeof(char));
+static char *format_region_row(void *element) {
+    Region *region = (Region *) element;
+    char *formatted_row = (char *) malloc(512 * sizeof(char));
 
     sprintf(formatted_row, "%d|%d|", region->size, region->nis);
 
-    char* ast_data = format_ast(region->ast);
+    char *ast_data = format_ast(region->ast);
     if (ast_data) {
         formatted_row = realloc(formatted_row, strlen(formatted_row) + strlen(ast_data) + 10);
         strcat(formatted_row, ast_data);
@@ -128,17 +133,12 @@ static char* format_region_row(void* element) {
     return formatted_row;
 }
 
-void export_region_table(const char* filename) {
-    export_table(filename, 
-                 region_table, 
-                 region_table_size, 
-                 sizeof(Region), 
-                 format_region_row, 
-                 "BEGIN_REGION_TABLE", 
+void export_region_table(const char *filename) {
+    export_table(filename, region_table, region_table_size, sizeof(Region), format_region_row, "BEGIN_REGION_TABLE",
                  "END_REGION_TABLE");
 }
 
-void fprintf_region_table(FILE* out) {
+void fprintf_region_table(FILE *out) {
     const int col_width_index = 10;
     const int col_width_size = 10;
     const int col_width_nis = 10;
@@ -146,7 +146,8 @@ void fprintf_region_table(FILE* out) {
 
     print_table_title(out, "Region Table");
     print_table_separator(out, 4, col_width_index, col_width_size, col_width_nis, col_width_ast);
-    print_table_header(out, 4, col_width_index, "Index", col_width_size, "Size", col_width_nis, "NIS", col_width_ast, "AST");
+    print_table_header(out, 4, col_width_index, "Index", col_width_size, "Size", col_width_nis, "NIS", col_width_ast,
+                       "AST");
     print_table_separator(out, 4, col_width_index, col_width_size, col_width_nis, col_width_ast);
 
     for (int i = 0; i < MAX_REGION_COUNT; i++) {
@@ -159,13 +160,8 @@ void fprintf_region_table(FILE* out) {
         sprintf(size_str, "%d", region_table[i].size);
         sprintf(nis_str, "%d", region_table[i].nis);
 
-        print_table_row(out,
-                        4, 
-                        col_width_index, index_str,
-                        col_width_size, size_str,
-                        col_width_nis, nis_str,
-                        col_width_ast, "-1"
-                    );
+        print_table_row(out, 4, col_width_index, index_str, col_width_size, size_str, col_width_nis, nis_str,
+                        col_width_ast, "-1");
     }
 
     print_table_separator(out, 4, col_width_index, col_width_size, col_width_nis, col_width_ast);
@@ -177,11 +173,11 @@ void fprintf_region_table(FILE* out) {
         char title[50];
         sprintf(title, "Region %d AST", i);
         print_table_title(out, title);
-        
+
         print_table_separator(out, 1, 70);
         fprintf_ast(out, region_table[i].ast);
         print_table_separator(out, 1, 70);
-        
+
         fprintf(out, "\n");
     }
 }
