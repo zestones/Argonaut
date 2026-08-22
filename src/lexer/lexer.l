@@ -5,6 +5,9 @@
     #include "../utils/errors.h"
     #include "y.tab.h"
 
+    #include <errno.h>
+    #include <limits.h>
+
     extern Error error;
     extern char *yytext;
     extern int yyerror(const char *s);
@@ -102,17 +105,21 @@ letter [a-zA-Z]
     return BOOLEAN_VALUE; 
 }
 
-"'"[^\"]"'" { 
+"'"[^']"'" {
     char lexeme[4] = { '\'', yytext[1], '\'', '\0' };
     yylval.lexicographic_index = insert_lexeme(lexeme);
     error.column += yyleng;
     return CHARACTER_VALUE; 
 }
 
-\"[^\"]*\" { 
+\"[^\"]*\" {
     yylval.lexicographic_index = insert_lexeme(yytext);
-    error.column += yyleng;
-    return STRING_VALUE; 
+    // A string literal may span several lines: keep the line numbers right for later errors.
+    for (char *p = yytext; *p != '\0'; p++) {
+        if (*p == '\n') { error.line++; error.column = 1; }
+        else error.column++;
+    }
+    return STRING_VALUE;
 }
 
 [-]?{number}+"."{number}* { 
@@ -121,10 +128,24 @@ letter [a-zA-Z]
     return FLOAT_VALUE; 
 }
 
-0|[-]?[1-9][0-9]* { 
+0|[-]?[1-9][0-9]* {
+    errno = 0;
+    long value = strtol(yytext, NULL, 10);
+    if (errno == ERANGE || value > INT_MAX || value < INT_MIN) {
+        set_error_type(&error, LEXICAL_ERROR);
+        set_error_message(
+            &error,
+            "Integer literal out of range at %s.\n"
+            "  The literal '%s' does not fit in a 32-bit integer (%d to %d).\n",
+            get_formatted_location(),
+            yytext,
+            INT_MIN, INT_MAX
+        );
+        yerror(error);
+    }
     yylval.lexicographic_index = insert_lexeme(yytext);
     error.column += yyleng;
-    return INTEGER_VALUE; 
+    return INTEGER_VALUE;
 }
 
 {letter}+({letter}|{number}|"_")* {
@@ -149,6 +170,6 @@ letter [a-zA-Z]
 
 %%
 
-int yywrap() {
+int yywrap(void) {
     return 1;
 }
