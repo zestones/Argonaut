@@ -5,8 +5,8 @@
   "gets": 0,
   "scanf": 4,
   "sprintf": 32,
-  "strcat": 29,
-  "strcpy": 4,
+  "strcat": 23,
+  "strcpy": 3,
   "strncpy": 1,
   "strtok": 0,
   "vsprintf": 0

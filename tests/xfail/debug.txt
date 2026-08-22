@@ -17,9 +17,6 @@ tests/lang/bugs/b22_string_error_message.arn  # expected message missing ("type 
 tests/lang/bugs/b23_string_var.arn  # unexpected compile error: [Type Error] Undefined type at tests/lang/bugs/b23_string_var.ar
 tests/lang/bugs/b24_wiki_string_param.arn  # unexpected compile error: [Type Error] Undefined type at tests/lang/bugs/b24_wiki_string_p
 tests/lang/bugs/b25_wiki_input_string.arn  # unexpected compile error: [Type Error] Undefined type at tests/lang/bugs/b25_wiki_input_st
-tests/lang/bugs/b32_long_string.arn  # argoc: crash (signal -6) *** stack smashing detected ***: terminated
-tests/lang/bugs/b33_many_int_literals.arn  # argoc: crash (signal -11) 
-tests/lang/bugs/b34_many_identifiers.arn  # argoc: crash (signal -11) 
 tests/lang/bugs/b36_arr_in_struct_base_nonzero.arn  # argov: exit 1 — [Run Time Error] Insufficient indices provided for array assignment.
 tests/lang/bugs/b37_2d_array_of_structs.arn  # argov: exit 1 — Error: Get Stack Value - Index out of bounds
 tests/lang/bugs/b43_uninit_array_read.arn  # argov exited with 0 (runtime error expected) — output: -1
@@ -31,7 +28,6 @@ tests/lang/limitations/l05_percent_percent.arn  # output differs — expected: [
 tests/lang/limitations/l06_short_circuit.arn  # argov: exit 1 — [Run Time Error] Division by zero error.
 tests/lang/limitations/l07_array_of_struct_with_array.arn  # unexpected compile error: [Syntax Error] Unexpected token found: '[' at tests/lang/limitat
 tests/lang/limitations/l08_incdec_array_elem.arn  # unexpected compile error: [Syntax Error] Unexpected token found: '++' at tests/lang/limita
-tests/lang/limitations/l09_many_functions.arn  # unexpected compile error: <Error> Region table is full
 tests/lang/limitations/l10_proc_early_return.arn  # unexpected compile error: [Syntax Error] Unexpected token found: ';' at tests/lang/limitat
 tests/lang/limitations/l11_mutual_recursion.arn  # unexpected compile error: [Syntax Error] Unexpected token found: ';' at tests/lang/limitat
 tests/lang/limitations/l12_array_of_arrays.arn  # unexpected compile error: [Type Error] Type mismatch during assignement at tests/lang/limi
