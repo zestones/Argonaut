@@ -56,6 +56,6 @@ void ydebug(int debug);
  * 
  * @return The result of the parsing operation (usually zero for success, non-zero for errors).
  */
-int yyrun();
+int yyrun(Mode m);
 
 #endif // __PARSER_H__

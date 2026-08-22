@@ -90,7 +90,7 @@ int get_region_size(int index);
  *
  * @return The NIS of the current region.
  */
-int get_region_nis();
+int get_region_nis(int index);
 
 /**
  * @brief Gets the NIS of the current region.
@@ -142,7 +142,7 @@ void export_region_table(const char* filename);
  *
  * This function prints the current state of the region table.
  */
-void fprintf_region_table();
+void fprintf_region_table(FILE* out);
 
 
 #endif // __REGION_TABLE_H__

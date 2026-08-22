@@ -65,6 +65,6 @@ void array_add_dimension(int min, int max);
  * 
  * This function should be called at the end of an array declaration.
  */
-void declaration_array_end();
+void declaration_array_end(int index_type_lexicographic);
 
 #endif // __ARRAY_MANAGER_H__
