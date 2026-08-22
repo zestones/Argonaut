@@ -7,8 +7,8 @@
 
 
 vm_cell resolve_arithmetic_operation(int operation, vm_cell left, vm_cell right) {
-    if (((operation == A_DIV_OP || operation == A_MODULO_OP) && (right.type == INTEGER && right.value.integer == 0)) ||
-        (right.type == REAL && right.value.real == 0.0)) {
+    if ((operation == A_DIV_OP || operation == A_MODULO_OP) &&
+        ((right.type == INTEGER && right.value.integer == 0) || (right.type == REAL && right.value.real == 0.0))) {
         set_error_type(&error, RUN_TIME_ERROR);
         set_error_message(
             &error,
