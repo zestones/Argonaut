@@ -34,11 +34,7 @@ static void resolve_declaration_list(Node *declaration_list) {
 }
 
 ControlFlow resolve_statement_list(AST statement_list) {
-    // If the return value cell has already been initialized, we halt the execution of the current statement list.
-    // This check is only performed if we are not operating within the global scope (i.e., peek_region() > 0).
-    // The purpose of this condition is to allow the execution to proceed if there are subsequent statements
-    // that need to be processed, ensuring that the entire statement list is evaluated unless explicitly stopped.
-    if (statement_list == NULL || (get_return_cell().is_initialized && peek_region() > 0)) return CONTROL_NONE;
+    if (statement_list == NULL) return CONTROL_NONE;
     ControlFlow ctrl_flow = CONTROL_NONE;
 
     switch (statement_list->type) {
@@ -63,7 +59,9 @@ ControlFlow resolve_statement_list(AST statement_list) {
             
         case A_FOR_LOOP:
         case A_WHILE:
-            execute_loop(statement_list);
+            // break and continue are consumed by the loop; only a return comes out of it
+            ctrl_flow = execute_loop(statement_list);
+            if (ctrl_flow != CONTROL_NONE) return ctrl_flow;
             break;
         
         case A_BREAK: return CONTROL_BREAK;
@@ -89,8 +87,11 @@ ControlFlow resolve_statement_list(AST statement_list) {
         }
 
         case A_RETURN_STATEMENT: {
-            handle_function_return_value(resolve_expression(statement_list->child));
-            break;
+            // 'return expression;' in a function stores the value; 'return;' in a procedure just leaves.
+            if (statement_list->child != NULL) {
+                handle_function_return_value(resolve_expression(statement_list->child));
+            }
+            return CONTROL_RETURN;
         }
 
         default:

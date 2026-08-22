@@ -475,6 +475,19 @@ return_statement: RETURN_VALUE expression SEMICOLON {
                     add_child($$, $2);
                     check_func_prototype(get_func_return_type(index_declaration), $$);
                 }
+                | RETURN_VALUE SEMICOLON {
+                    // 'return;' leaves a procedure early; a function must return a value.
+                    if (!peek_region()) {
+                        set_error_type(&error, SYNTAX_ERROR);
+                        yyerror("Return statement is not allowed outside of a function or procedure.");
+                    }
+                    if (find_function_index_by_region(peek_region()) != NULL_VALUE) {
+                        set_error_type(&error, SYNTAX_ERROR);
+                        yyerror("A function must return a value: write 'return expression;'.");
+                    }
+
+                    $$ = construct_node_default(A_RETURN_STATEMENT);
+                }
 ;
 
 // The condition is checked as soon as it is parsed (mid-rule action), so that the error

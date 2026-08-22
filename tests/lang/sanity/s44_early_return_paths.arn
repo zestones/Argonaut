@@ -1,0 +1,24 @@
+// CATEGORY: sanity
+// DESC: return; leaves a procedure from inside nested loops and ifs; return in a function inside a while
+// OUT: stop 3
+// OUT: no stop
+// OUT: 10 -1
+proc p(n : int) {
+    var i : int;
+    for (i := 0; i < 10; i++) {
+        if (i == n) { print("stop %d\n", i); return; }
+    }
+    print("no stop\n");
+}
+func f(n : int) -> int {
+    var i : int;
+    i := 0;
+    while (i < 100) {
+        if (i == n) { return i * 2; }
+        i++;
+    }
+    return -1;
+}
+p(3);
+p(20);
+print("%d %d\n", f(5), f(200));

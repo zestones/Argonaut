@@ -2,9 +2,10 @@
 #define __INTERPRETER_H__
 
 typedef enum {
-    CONTROL_NONE,    // Continue execution
-    CONTROL_BREAK,   // Stop loop execution
-    CONTROL_CONTINUE // Next loop execution
+    CONTROL_NONE,     // Continue execution
+    CONTROL_BREAK,    // Stop loop execution
+    CONTROL_CONTINUE, // Next loop execution
+    CONTROL_RETURN    // Leave the current function or procedure
 } ControlFlow;
 
 

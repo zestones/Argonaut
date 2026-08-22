@@ -205,7 +205,7 @@ static void check_shape(int region, const Node *node) {
         expect(region, node, c1, c1 != NULL && is_expression((int) c1->type), "an operand");
     }
     else if (type == A_RETURN_STATEMENT) {
-        expect(region, node, c1, c1 != NULL && is_expression((int) c1->type), "an expression");
+        if (c1 != NULL) expect(region, node, c1, is_expression((int) c1->type), "an expression");
     }
     else if (type == A_ARRAY_ACCESS) {
         expect(region, node, c1, c1 != NULL && c1->type == A_ARRAY_INDEX_LIST && c1->child != NULL, "an index list");

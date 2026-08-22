@@ -6,6 +6,5 @@ tests/lang/bugs/b24_wiki_string_param.arn  # unexpected compile error: [Type Err
 tests/lang/bugs/b25_wiki_input_string.arn  # unexpected compile error: [Type Error] Undefined type at tests/lang/bugs/b25_wiki_input_st
 tests/lang/limitations/l07_array_of_struct_with_array.arn  # unexpected compile error: [Syntax Error] Unexpected token found: '[' at tests/lang/limitat
 tests/lang/limitations/l08_incdec_array_elem.arn  # unexpected compile error: [Syntax Error] Unexpected token found: '++' at tests/lang/limita
-tests/lang/limitations/l10_proc_early_return.arn  # unexpected compile error: [Syntax Error] Unexpected token found: ';' at tests/lang/limitat
 tests/lang/limitations/l11_mutual_recursion.arn  # unexpected compile error: [Syntax Error] Unexpected token found: ';' at tests/lang/limitat
 tests/lang/limitations/l12_array_of_arrays.arn  # unexpected compile error: [Type Error] Type mismatch during assignement at tests/lang/limi
