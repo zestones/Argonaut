@@ -53,12 +53,12 @@ Verbose mode enabled. Printing tables and ast...
 +------------+-----------------+------------+-----------------+-----------------+-----------------+
 | 4          | TYPE_STRUCT     | -1         | 0               | 0               | 3               |
 | 8          | TYPE_FUNC       | -1         | 0               | 10              | 1               |
-| 9          | TYPE_VAR        | 500        | 1               | 4               | 2               |
+| 9          | TYPE_VAR        | 8192       | 1               | 4               | 2               |
 | 10         | TYPE_PROC       | -1         | 0               | 12              | 2               |
 | 11         | TYPE_PARAM      | -1         | 2               | 4               | 2               |
 +------------+-----------------+------------+-----------------+-----------------+-----------------+
 +------------+-----------------+------------+-----------------+-----------------+-----------------+
-| 500        | TYPE_VAR        | -1         | 2               | 4               | 5               |
+| 8192       | TYPE_VAR        | -1         | 2               | 4               | 5               |
 +------------+-----------------+------------+-----------------+-----------------+-----------------+
 
 +------------------------+
@@ -130,10 +130,10 @@ Root of the AST:
 │   ├── A_PARAMETER_LIST, Lexico Idx: -1, Decl Idx: -1
 │   │   ├── A_PARAMETER, Lexico Idx: 11, Decl Idx: 11 -- Lexeme: 'today'
 │   └── A_DECLARATION_LIST, Lexico Idx: -1, Decl Idx: -1
-│   │   ├── A_VARIABLE_DECLARATION, Lexico Idx: 9, Decl Idx: 500 -- Lexeme: 'x'
+│   │   ├── A_VARIABLE_DECLARATION, Lexico Idx: 9, Decl Idx: 8192 -- Lexeme: 'x'
 │   └── A_STATEMENT_LIST, Lexico Idx: -1, Decl Idx: -1
 │   │   ├── A_ASSIGNMENT_STATEMENT, Lexico Idx: -1, Decl Idx: -1
-│   │   │   ├── A_VARIABLE_ASSIGNMENT, Lexico Idx: 9, Decl Idx: 500 -- Lexeme: 'x'
+│   │   │   ├── A_VARIABLE_ASSIGNMENT, Lexico Idx: 9, Decl Idx: 8192 -- Lexeme: 'x'
 │   │   │   │   ├── A_IDENTIFIER, Lexico Idx: 11, Decl Idx: 11 -- Lexeme: 'today'
 +------------------------------------------------------------------------+
 

@@ -12,8 +12,6 @@ tests/lang/bugs/b17_global_struct_from_proc.arn  # argov: exit 1 — Error: Get 
 tests/lang/bugs/b18_struct_field_arg.arn  # output differs — expected: [(1, 2) | (3, 4)] got: [(1, 2) | (1, 2)]
 tests/lang/bugs/b19_struct_copy.arn  # output differs — expected: [1 2] got: [1 -1]
 tests/lang/bugs/b20_nested_struct_assign.arn  # output differs — expected: [5 6] got: [5 -1]
-tests/lang/bugs/b21_string_type_hole.arn  # argoc accepted the program (no error reported)
-tests/lang/bugs/b22_string_error_message.arn  # expected message missing ("type 'string'") — got: [Type Error] Type mismatch during assign
 tests/lang/bugs/b23_string_var.arn  # unexpected compile error: [Type Error] Undefined type at tests/lang/bugs/b23_string_var.ar
 tests/lang/bugs/b24_wiki_string_param.arn  # unexpected compile error: [Type Error] Undefined type at tests/lang/bugs/b24_wiki_string_p
 tests/lang/bugs/b25_wiki_input_string.arn  # unexpected compile error: [Type Error] Undefined type at tests/lang/bugs/b25_wiki_input_st
