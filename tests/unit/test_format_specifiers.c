@@ -1,6 +1,7 @@
 #include "test.h"
 
 #include "ast/node_type.h"
+#include "utils/utils.h"
 #include "semantic_analysis/function_checks/common/format_specifiers.h"
 
 TEST(count_format_specifiers_counts_supported_ones_only) {
@@ -53,7 +54,8 @@ TEST(process_special_chars_translates_escapes) {
 TEST(format_specifier_compatibility_matrix) {
     ASSERT_TRUE(is_compatible_with_format_specifier(A_INTEGER_LITERAL, 'd'));
     ASSERT_TRUE(is_compatible_with_format_specifier(A_FLOAT_LITERAL, 'f'));
-    ASSERT_TRUE(is_compatible_with_format_specifier(A_STRING_LITERAL, 's'));
+    ASSERT_TRUE(is_compatible_with_format_specifier(STRING_LITERAL_TYPE, 's'));
+    ASSERT_FALSE(is_compatible_with_format_specifier(4, 's')); /* 4 = the first user type, not a string */
     ASSERT_TRUE(is_compatible_with_format_specifier(A_CHARACTER_LITERAL, 'c'));
     ASSERT_FALSE(is_compatible_with_format_specifier(A_INTEGER_LITERAL, 'f'));
     ASSERT_FALSE(is_compatible_with_format_specifier(A_BOOLEAN_LITERAL, 'd'));

@@ -42,6 +42,9 @@ static int resolve_argument_type(Node *argument_node) {
     else if (argument_type == A_FLOAT_LITERAL || argument_type == A_INTEGER_LITERAL || argument_type == A_CHARACTER_LITERAL || argument_type == A_BOOLEAN_LITERAL) {
         type = argument_type;
     }
+    else if (argument_type == A_STRING_LITERAL) {
+        type = STRING_LITERAL_TYPE;
+    }
 
     return type;
 }
@@ -75,7 +78,7 @@ static void validate_argument_type(Node *current_argument, int expected_type, in
             get_lexeme(expected_type),
             get_formatted_location(),
             format_expression(current_argument->child),
-            (argument_type == NULL_VALUE) ? "UNKNOWN" : get_lexeme(argument_type)
+            type_name(argument_type)
         );
         yerror(error);
     }

@@ -1,3 +1,4 @@
+#include "../../../utils/utils.h"
 #include "format_specifiers.h"
 
 
@@ -83,7 +84,7 @@ int is_compatible_with_format_specifier(int argument_type, char specifier) {
     switch (specifier) {
         case 'd': return argument_type == A_INTEGER_LITERAL;
         case 'f': return argument_type == A_FLOAT_LITERAL;
-        case 's': return argument_type == A_STRING_LITERAL;
+        case 's': return argument_type == STRING_LITERAL_TYPE;
         case 'c': return argument_type == A_CHARACTER_LITERAL;
         default:  return 0;
     }

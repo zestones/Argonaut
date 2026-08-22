@@ -3,6 +3,12 @@
 #include "../../data/region_table.h"
 #include "type_inference.h"
 
+const char *type_name(int type) {
+    if (type == STRING_LITERAL_TYPE) return "string";
+    if (type == NULL_VALUE) return "UNKNOWN";
+    return get_lexeme(type);
+}
+
 int resolve_expression_type(Node *expression) {
     switch (expression->type) {
         case A_IDENTIFIER:
@@ -21,7 +27,7 @@ int resolve_expression_type(Node *expression) {
             return A_CHARACTER_LITERAL;
 
         case A_STRING_LITERAL:
-            return A_STRING_LITERAL;
+            return STRING_LITERAL_TYPE;
 
         case A_ADD_OP:
         case A_SUB_OP:
@@ -41,8 +47,8 @@ int resolve_expression_type(Node *expression) {
                     "  Ensure both operands are of compatible types for the operation.\n",
                     node_type_to_operator_char(expression->type),
                     get_formatted_location(),
-                    (left_type == NULL_VALUE) ? "UNKNOWN" : get_lexeme(left_type),
-                    (right_type == NULL_VALUE) ? "UNKNOWN" : get_lexeme(right_type)
+                    type_name(left_type),
+                    type_name(right_type)
                 );
                 yerror(error);
                 return NULL_VALUE;
@@ -56,7 +62,7 @@ int resolve_expression_type(Node *expression) {
                     &error,
                     "Invalid type for arithmetic operation '%s': operand type '%s'.",
                     NodeTypeStrings[expression->type],
-                    get_lexeme(left_type)
+                    type_name(left_type)
                 );
                 yerror(error);
                 return NULL_VALUE;
@@ -82,7 +88,7 @@ int resolve_expression_type(Node *expression) {
                 "Unexpected expression type '%s' at %s.\n"
                 "  The encountered expression type is not handled or supported.\n"
                 "  Please verify the expression type or ensure proper handling.\n",
-                get_lexeme(expression->type),
+                NodeTypeStrings[expression->type],
                 get_formatted_location()
             );
             yerror(error);

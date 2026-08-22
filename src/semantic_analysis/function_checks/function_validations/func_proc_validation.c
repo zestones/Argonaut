@@ -53,7 +53,7 @@ void check_func_prototype(int index_lexeme_lexicographic, Node *return_statement
             "  Function returned value has type '%s', but it should be of type '%s'.\n"
             "  Ensure the function return type matches the expected type.\n",
             get_formatted_location(),
-            (expression_type == NULL_VALUE) ? "UNKNOWN" : get_lexeme(expression_type), 
+            type_name(expression_type),
             get_lexeme(base_type)
         );
         yerror(error);

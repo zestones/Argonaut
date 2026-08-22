@@ -19,8 +19,8 @@ int resolve_condition_type(Node *condition) {
                     "  Left operand type: '%s', right operand type: '%s'.\n"
                     "  Ensure both operands are of compatible types for the condition.\n",
                     get_formatted_location(),
-                    get_lexeme(left_type),
-                    get_lexeme(right_type)
+                    type_name(left_type),
+                    type_name(right_type)
                 );
                 yerror(error);
                 return NULL_VALUE;
@@ -34,7 +34,7 @@ int resolve_condition_type(Node *condition) {
                 set_error_message(
                     &error,
                     "Invalid operand type in condition: '%s'.",
-                    get_lexeme(left_type)
+                    type_name(left_type)
                 );
                 yerror(error);
                 return NULL_VALUE;
@@ -71,8 +71,8 @@ int resolve_condition_type(Node *condition) {
                 set_error_message(
                     &error,
                     "Logical operators ('AND', 'OR') require boolean operands, but received '%s' and '%s'.",
-                    (left_type == NULL_VALUE) ? "UNKNOWN" : get_lexeme(left_type),
-                    (right_type == NULL_VALUE) ? "UNKNOWN" : get_lexeme(right_type)
+                    type_name(left_type),
+                    type_name(right_type)
                 );
                 yerror(error);
                 return NULL_VALUE;
@@ -90,7 +90,7 @@ int resolve_condition_type(Node *condition) {
                 set_error_message(
                     &error,
                     "NOT operator requires a boolean operand, but received '%s'.",
-                    (operand_type == NULL_VALUE) ? "UNKNOWN" : get_lexeme(operand_type)
+                    type_name(operand_type)
                 );
                 yerror(error);
                 return NULL_VALUE;
@@ -107,7 +107,7 @@ int resolve_condition_type(Node *condition) {
                 "Unexpected condition type '%s' at %s.\n"
                 "  The encountered condition type is not handled or supported.\n"
                 "  Please check for valid condition types or ensure proper handling.\n",
-                get_lexeme(condition->type),
+                NodeTypeStrings[condition->type],
                 get_formatted_location()
             );
             yerror(error);

@@ -41,8 +41,8 @@ void check_print_proc_argument_list(Node *format_string, Node *argument_list) {
                 "  Ensure the argument type matches the expected type for the specifier.\n",
                 i + 1,
                 get_formatted_location(),
-                i + 1, 
-                get_lexeme(argument_type), 
+                i + 1,
+                type_name(argument_type),
                 specifier
             );
             yerror(error);

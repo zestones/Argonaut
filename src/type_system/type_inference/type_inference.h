@@ -21,6 +21,14 @@
 int resolve_expression_type(Node *expression);
 
 /**
+ * @brief Human-readable name of an expression type, for diagnostics.
+ *
+ * @param type A declaration index, STRING_LITERAL_TYPE or NULL_VALUE.
+ * @return The type name ("int", "string", a user type...), or "UNKNOWN".
+ */
+const char *type_name(int type);
+
+/**
  * @brief Resolves the type of a condition expression.
  * 
  * This function resolves the type of a condition expression used in control structures (e.g., if statements, loops).
