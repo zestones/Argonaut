@@ -1,4 +1,13 @@
-from colorama import Fore, Style, init, Back
+try:
+    from colorama import Fore, Style, init, Back
+except ImportError:  # colorama is optional: fall back to plain text
+    class _NoColor:
+        def __getattr__(self, _name):
+            return ""
+    Fore = Style = Back = _NoColor()
+
+    def init(*_args, **_kwargs):
+        pass
 import textwrap
 import re
 
