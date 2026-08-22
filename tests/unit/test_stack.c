@@ -3,7 +3,7 @@
 #include "utils/stack.h"
 
 /* The generic stack stores malloc'ed copies; pop() hands the copy back to the caller,
- * who owns it. These tests free what they pop. */
+ * who owns it, and destroy_stack() frees whatever is left. */
 
 TEST(stack_starts_empty) {
     Stack s = construct_stack();
@@ -44,7 +44,18 @@ TEST(stack_get_and_update_by_index) {
     ASSERT_EQ_INT(42, *(int *)get_stack_value(s, 1));
     ASSERT_EQ_INT(3, size(s));
 
-    while (!is_empty(s)) free(pop(&s));
+    destroy_stack(&s);
+    ASSERT_TRUE(is_empty(s));
+}
+
+TEST(stack_grows_beyond_its_initial_capacity) {
+    Stack s = construct_stack();
+    for (int i = 0; i < 1000; i++) push(&s, &i, sizeof(int));
+    ASSERT_EQ_INT(1000, size(s));
+    ASSERT_EQ_INT(999, *(int *)peek(s));
+    ASSERT_EQ_INT(0, *(int *)get_stack_value(s, 0));
+    ASSERT_EQ_INT(500, *(int *)get_stack_value(s, 500));
+    destroy_stack(&s);
 }
 
 TEST(stack_copy_is_deep) {
@@ -64,6 +75,6 @@ TEST(stack_copy_is_deep) {
     ASSERT_EQ_INT(8, *(int *)get_stack_value(src, 1));
     ASSERT_EQ_INT(99, *(int *)get_stack_value(dst, 1));
 
-    while (!is_empty(src)) free(pop(&src));
-    while (!is_empty(dst)) free(pop(&dst));
+    destroy_stack(&src);
+    destroy_stack(&dst);
 }

@@ -27,8 +27,8 @@ vm_cell construct_vm_cell(int type, void *value) {
                 cell.value.character = *((char *)value);
                 break;
 
-            case STRING: 
-                cell.value.string = strdup((char *)value);
+            case STRING:
+                cell.value.string = (char *) value;
                 break;
 
             default:
@@ -70,7 +70,7 @@ void update_vm_cell(vm_cell *cell, void *value) {
             cell->value.character = *((char *)value);
             break;
         case STRING:
-            cell->value.string = strdup((char *)value);
+            cell->value.string = (char *) value;
             break;
         
         default:

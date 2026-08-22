@@ -11,7 +11,12 @@ void init_stack_region() { region_stack = construct_stack(); }
 
 void push_region(int region_index) { push(&region_stack, &region_index, sizeof(int)); }
 
-int pop_region() { return *(int *) pop(&region_stack); }
+int pop_region() {
+    int *top = (int *) pop(&region_stack);
+    int region_index = *top;
+    free(top);
+    return region_index;
+}
 
 int peek_region() { return *(int *) peek(region_stack); }
 

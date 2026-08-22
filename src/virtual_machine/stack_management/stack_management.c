@@ -19,11 +19,25 @@ stack_frame peek_execution_stack() {
 }
 
 void push_frame_to_execution_stack(stack_frame frame) {
+    if (size(execution_stack) >= MAX_CALL_DEPTH) {
+        set_error_type(&error, RUN_TIME_ERROR);
+        set_error_message(
+            &error,
+            "Stack overflow: the call depth exceeds %d frames.\n"
+            "  Check for unbounded recursion.",
+            MAX_CALL_DEPTH
+        );
+        yerror(error);
+        exit(EXIT_FAILURE);
+    }
+
     push(&execution_stack, &frame, sizeof(stack_frame));
 }
 
-stack_frame pop_frame_from_execution_stack() {
-    return *(stack_frame *) pop(&execution_stack);
+void pop_frame_from_execution_stack(void) {
+    stack_frame *frame = (stack_frame *) pop(&execution_stack);
+    destroy_stack_frame(frame);
+    free(frame);
 }
 
 stack_frame *get_stack_frame_by_id(int id) {

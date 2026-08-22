@@ -73,7 +73,8 @@ void execute_input(AST ast) {
     AST format_node = arg_list->sibling;
 
     const char *raw_format = get_lexeme(format_node->index_lexicographic);
-    char *format = strip_quotes(raw_format);
+    char *stripped_format = strip_quotes(raw_format);
+    const char *format = stripped_format;
 
     // Note: No validation checks are performed on the 'raw_format' string or the processed 'format' string
     // at this stage. It is assumed that these strings have already been validated by the compiler. If the
@@ -102,7 +103,7 @@ void execute_input(AST ast) {
                 }
                 case 's': {
                     if (scanf("%1023s", buffer) != 1) input_failure(specifier);
-                    cell = construct_vm_cell(STRING, &buffer);
+                    cell = construct_vm_cell(STRING, strdup(buffer)); // cells do not own their text
                     break;
                 }
                 case 'c': {
@@ -121,5 +122,7 @@ void execute_input(AST ast) {
             format++;
         }
     }
+
+    free(stripped_format);
 }
 

@@ -6,39 +6,33 @@
 #include "../../utils/stack.h"
 
 static int find_declaration_index_in_region_by_nature(int tlex_index, int region, Nature nature_filter) {
-    Declaration *declaration_table = get_declaration_table();    
+    Declaration *declaration_table = get_declaration_table();
     int index = tlex_index;
-    
-    Stack overload_stack = construct_stack();
-    int null_value = NULL_VALUE;
-    push(&overload_stack, &null_value, sizeof(int));
+    int last_match = NULL_VALUE;
 
+    // Several declarations of the same name and nature may exist in the region (overloads):
+    // the last one in the chain wins.
     while (index != NULL_VALUE) {
-        if (declaration_table[index].region == region && 
+        if (declaration_table[index].region == region &&
             (nature_filter == (Nature) NULL_VALUE || declaration_table[index].nature == nature_filter)
         ) {
-            push(&overload_stack, &index, sizeof(int));
+            last_match = index;
         }
-        
+
         index = declaration_table[index].next;
     }
 
-    // return the last declaration in the stack
-    // if there are multiple declarations with the same nature
-    // in the same region
-    return *(int *) pop(&overload_stack);
+    return last_match;
 }
 
 static int find_declaration_in_stack(int tlex_index, int nature_filter) {
-    int index = tlex_index;
-    if (is_declaration_base_type(tlex_index)) return index;
+    if (is_declaration_base_type(tlex_index)) return tlex_index;
 
-    Stack tmp_stack = construct_stack();
-    stack_cpy(&tmp_stack, get_region_stack(), sizeof(int));
-
-    while (!is_empty(tmp_stack)) {
-        int current_region = *(int *) pop(&tmp_stack);
-        index = find_declaration_index_in_region_by_nature(tlex_index, current_region, nature_filter);
+    // Innermost region first: walk the region stack from its top.
+    Stack region_stack = get_region_stack();
+    for (int i = size(region_stack) - 1; i >= 0; i--) {
+        int current_region = *(int *) get_stack_value(region_stack, i);
+        int index = find_declaration_index_in_region_by_nature(tlex_index, current_region, nature_filter);
         if (index != NULL_VALUE) return index;
     }
 

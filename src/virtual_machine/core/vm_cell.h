@@ -49,7 +49,8 @@ typedef struct {
  * @param type The type of the cell (e.g., INTEGER, REAL, etc.).
  * @param value A pointer to the value to initialize the cell. Can be `NULL`.
  * @return A constructed `vm_cell` instance.
- * @note For `STRING` type, the value is duplicated internally.
+ * @note For `STRING` type, the cell keeps the pointer: the text must outlive the cell (string
+ *       literals point into the lexeme table).
  */
 vm_cell construct_vm_cell(int type, void *value);
 
@@ -73,7 +74,7 @@ void *get_vm_cell_value(vm_cell *cell);
  *
  * @param cell A pointer to the `vm_cell` to update.
  * @param value A pointer to the new value to assign.
- * @note For `STRING` type, the value is duplicated internally.
+ * @note For `STRING` type, `value` is the text itself and the cell keeps the pointer.
  */
 void update_vm_cell(vm_cell *cell, void *value);
 

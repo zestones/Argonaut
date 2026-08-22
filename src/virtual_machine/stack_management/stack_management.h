@@ -2,6 +2,14 @@
 #define __STACK_MANAGEMENT_H__
 
 #include "frame/stack_frame.h"
+
+/**
+ * @brief Maximum number of frames on the execution stack.
+ *
+ * Every Argonaut call also recurses in the C interpreter, so the limit keeps the VM from
+ * overflowing its own C stack and reports a clean run-time error instead.
+ */
+#define MAX_CALL_DEPTH 3000
 #include "../core/vm_cell.h"
 
 /**
@@ -49,9 +57,9 @@ void push_frame_to_execution_stack(stack_frame frame);
  * This function pops the top stack frame from the execution stack and returns it. The 
  * frame is removed from the stack and can be used for further processing or reporting.
  * 
- * @return The stack frame that was at the top of the execution stack before the pop.
+ * The frame is removed from the execution stack and its cells are freed.
  */
-stack_frame pop_frame_from_execution_stack();
+void pop_frame_from_execution_stack(void);
 
 /**
  * @brief Retrieves a stack frame by its ID.
