@@ -136,4 +136,25 @@ void handle_structure_affectation(Node* struct_field_access, vm_cell cell);
  */
 void handle_function_return_value(vm_cell cell);
 
+/**
+ * @brief Copies `size` consecutive cells from one frame to another (structures and arrays).
+ *
+ * The cells are copied as they are, including their initialisation flag.
+ *
+ * @param destination The frame written to.
+ * @param destination_address The address of the first cell written.
+ * @param source The frame read from.
+ * @param source_address The address of the first cell read.
+ * @param size The number of cells to copy.
+ */
+void copy_cells(stack_frame *destination, int destination_address, stack_frame *source, int source_address, int size);
+
+/**
+ * @brief The stack frame holding the root variable of an lvalue node.
+ *
+ * @param access An A_IDENTIFIER, A_ARRAY_ACCESS or A_STRUCT_FIELD_ACCESS node.
+ * @return The frame of the region the variable was declared in.
+ */
+stack_frame *get_lvalue_frame(Node *access);
+
 #endif // __VIRTUAL_MACHINE_H__

@@ -48,15 +48,15 @@ static stack_frame construct_frame_with_parameters(AST parameter_list, AST argum
                 update_cell_in_stack_frame(&current_frame, address, cell);
             }
             else if (get_declaration_nature(index_type_declaration) == TYPE_STRUCT || get_declaration_nature(index_type_declaration) == TYPE_ARRAY) {
-                int base_address         = get_variable_address(arg_node->child->index_declaration);
+                // Structures and arrays are passed by value: copy the cells of the argument,
+                // which may be a global, a field (show(r.tl)) or an array element (show(g[i])).
+                Node *argument           = arg_node->child;
+                int source_address       = get_lvalue_address(argument);
+                stack_frame *source      = get_lvalue_frame(argument);
                 int size                 = get_declaration_execution(index_type_declaration);
                 int address              = get_variable_address(param_node->index_declaration);
 
-                for (int i = 0; i < size; i++) {
-                    vm_cell cell = get_cell_from_stack_frame(peek_execution_stack(), base_address + i);
-                    update_cell_in_stack_frame(&current_frame, address + i, cell);
-                    // TODO: handle nested array in struct
-                }
+                copy_cells(&current_frame, address, source, source_address, size);
             }
         }
 

@@ -84,6 +84,17 @@ void handle_structure_affectation(Node* struct_field_access, vm_cell cell) {
     update_cell_in_stack_frame(frame, address, cell);
 }
 
+void copy_cells(stack_frame *destination, int destination_address, stack_frame *source, int source_address, int size) {
+    for (int i = 0; i < size; i++) {
+        vm_cell cell = get_cell_from_stack_frame(*source, source_address + i);
+        *(vm_cell *) get_stack_value(destination->cells, destination_address + i) = cell;
+    }
+}
+
+stack_frame *get_lvalue_frame(Node *access) {
+    return find_stack_frame_by_region_index(get_declaration_region(access->index_declaration));
+}
+
 void handle_function_return_value(vm_cell cell) {
     stack_frame current_frame = peek_execution_stack();
     stack_frame *dynamic_link_frame = get_stack_frame_by_id(current_frame.dynamic_link);
