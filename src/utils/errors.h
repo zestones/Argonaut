@@ -65,6 +65,13 @@ void yywarn(const Error error);
 void yerror(const Error error);
 
 /**
+ * @brief Number of errors reported through yerror() so far.
+ *
+ * @return The error count (0 when the compilation is clean).
+ */
+int get_error_count(void);
+
+/**
  * @brief Returns a formatted string containing the current file, line, and column.
  * 
  * @return The formatted string containing the current file, line, and column.

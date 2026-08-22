@@ -183,3 +183,4 @@ Root of the AST:
 │   │   └── A_PARAMETER, Lexico Idx: 10, Decl Idx: 10 -- Lexeme: 'b'
 +------------------------------------------------------------------------+
 
+Compilation failed: 5 error(s).

@@ -148,5 +148,7 @@ Root of the AST:
 │   │   │   │   ├── A_EQUAL_OP, Lexico Idx: -1, Decl Idx: -1
 │   │   │   │   │   ├── A_IDENTIFIER, Lexico Idx: 19, Decl Idx: 19 -- Lexeme: 'a'
 │   │   │   │   │   └── A_IDENTIFIER, Lexico Idx: 18, Decl Idx: 18 -- Lexeme: 'z'
+│   │   │   └── A_STATEMENT_LIST, Lexico Idx: -1, Decl Idx: -1
 +------------------------------------------------------------------------+
 
+Compilation failed: 2 error(s).

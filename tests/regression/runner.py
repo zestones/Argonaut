@@ -28,7 +28,7 @@ class TestRunner:
         with open(actual_output_file, "w") as output_file:
             result = subprocess.run([COMPILER_CMD, COMPILER_OPTIONS, input_file], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
 
-            output = remove_ansi_codes(result.stdout.decode())
+            output = remove_ansi_codes(result.stdout.decode(errors="replace"))
             output_file.write(output)        
             
         # Compare actual output to expected output

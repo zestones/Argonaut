@@ -95,3 +95,4 @@ Root of the AST:
 │   │   │   │   ├── A_STRUCT_FIELD, Lexico Idx: 7, Decl Idx: 1 -- Lexeme: 'annee'
 +------------------------------------------------------------------------+
 
+Compilation failed: 1 error(s).

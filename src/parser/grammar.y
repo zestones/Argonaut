@@ -786,6 +786,13 @@ int main(int argc, char **argv) {
     ydebug(options.verbose);
     ylog(options.log);
 
+    // A program with errors must not be exported: the VM would execute an inconsistent IR.
+    if (get_error_count() > 0) {
+        fflush(stdout); // keep the summary after the verbose output when both go to the same pipe
+        fprintf(stderr, COLOR_RED "Compilation failed: %d error(s).\n" COLOR_RESET, get_error_count());
+        return 1;
+    }
+
     // Handle output file export if specified
     if (options.output_file != NULL) {
         remove(options.output_file);  // Remove existing file before creating

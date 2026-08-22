@@ -1,5 +1,9 @@
 #include "errors.h"
 
+static int error_count = 0;
+
+int get_error_count(void) { return error_count; }
+
 Error construct_error(ErrorType type, int line, int column, const char *format, ...) {
     Error error;
 
@@ -30,6 +34,7 @@ void yywarn(const Error error) {
 }
 
 void yerror(const Error error) {
+    error_count++;
     fprintf(stderr, COLOR_RED "[");
     switch (error.type) {
         case SYNTAX_ERROR:              fprintf(stderr, "Syntax Error");         break;
@@ -42,7 +47,6 @@ void yerror(const Error error) {
 
     fprintf(stderr, "]");
     fprintf(stderr, " %s" COLOR_RESET "\n", error.message);
-    // exit(EXIT_FAILURE);  // Uncomment this line to exit the program on error
 }
 
 char* get_formatted_location() {

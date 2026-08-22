@@ -70,3 +70,4 @@ Root of the AST:
 │   │   └── A_VARIABLE_DECLARATION, Lexico Idx: 5, Decl Idx: 5 -- Lexeme: 'z'
 +------------------------------------------------------------------------+
 
+Compilation failed: 1 error(s).

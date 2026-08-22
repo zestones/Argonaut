@@ -293,3 +293,4 @@ Root of the AST:
 │   │   │   ├── A_IDENTIFIER, Lexico Idx: 26, Decl Idx: 26 -- Lexeme: 'g'
 +------------------------------------------------------------------------+
 
+Compilation failed: 9 error(s).

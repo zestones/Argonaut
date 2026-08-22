@@ -116,3 +116,4 @@ Root of the AST:
 ├── A_PROCEDURE_DECLARATION, Lexico Idx: 4, Decl Idx: 501 -- Lexeme: 'main'
 +------------------------------------------------------------------------+
 
+Compilation failed: 2 error(s).

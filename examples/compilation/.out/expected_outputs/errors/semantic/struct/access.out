@@ -156,3 +156,4 @@ Root of the AST:
 │   │   │   │   └── A_FLOAT_LITERAL, Lexico Idx: 17, Decl Idx: -1 -- Lexeme: '1997.0'
 +------------------------------------------------------------------------+
 
+Compilation failed: 4 error(s).

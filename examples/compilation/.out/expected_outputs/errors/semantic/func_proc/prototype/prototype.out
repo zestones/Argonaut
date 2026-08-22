@@ -144,3 +144,4 @@ Root of the AST:
 │   │   │   │   └── A_FUNC_PROC_CALL_STATEMENT, Lexico Idx: 4, Decl Idx: 4 -- Lexeme: 'zero'
 +------------------------------------------------------------------------+
 
+Compilation failed: 1 error(s).

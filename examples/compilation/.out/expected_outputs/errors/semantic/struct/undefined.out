@@ -151,3 +151,4 @@ Root of the AST:
 │   │   │   │   └── A_INTEGER_LITERAL, Lexico Idx: 15, Decl Idx: -1 -- Lexeme: '21'
 +------------------------------------------------------------------------+
 
+Compilation failed: 3 error(s).

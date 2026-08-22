@@ -120,3 +120,4 @@ Root of the AST:
 │   │   │   ├── A_FORMAT_STRING, Lexico Idx: 6, Decl Idx: -1 -- Lexeme: '"Hello %d, here is %s"'
 +------------------------------------------------------------------------+
 
+Compilation failed: 4 error(s).

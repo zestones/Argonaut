@@ -137,3 +137,4 @@ Root of the AST:
 │   │   │   │   ├── A_IDENTIFIER, Lexico Idx: 11, Decl Idx: 11 -- Lexeme: 'today'
 +------------------------------------------------------------------------+
 
+Compilation failed: 1 error(s).
