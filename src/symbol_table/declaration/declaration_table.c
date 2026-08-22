@@ -179,10 +179,11 @@ void update_declaration_execution(int index, int execution) {
 
 static char* format_declaration_row(void* data) {
     Declaration* declaration = (Declaration*)data;
-    char* formatted_row = (char*)malloc(256 * sizeof(char));
 
     // save some memory by not formatting empty rows
     if (declaration->nature == (Nature)NULL_VALUE) return NULL;
+
+    char* formatted_row = (char*)malloc(256 * sizeof(char));
     sprintf(formatted_row, "%d|%d|%d|%d|%d", 
             declaration->nature, 
             declaration->next, 

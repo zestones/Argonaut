@@ -75,7 +75,7 @@ lexeme_table_body: lexeme_table_row
                  | lexeme_table_body lexeme_table_row
 ;
 
-lexeme_table_row: PIPE TOKEN_INTEGER PIPE TOKEN_LEXEME PIPE TOKEN_INTEGER PIPE TOKEN_INTEGER PIPE { insert_lexeme_row($2, $4, $6, $8); }
+lexeme_table_row: PIPE TOKEN_INTEGER PIPE TOKEN_LEXEME PIPE TOKEN_INTEGER PIPE TOKEN_INTEGER PIPE { insert_lexeme_row($2, $4, $6, $8); free($4); }
                 | PIPE TOKEN_INTEGER PIPE TOKEN_INTEGER PIPE TOKEN_INTEGER PIPE TOKEN_INTEGER PIPE {
                     int len = snprintf(NULL, 0, "%d", $4);  
                     char* lexeme = malloc(len + 1);
@@ -89,6 +89,7 @@ lexeme_table_row: PIPE TOKEN_INTEGER PIPE TOKEN_LEXEME PIPE TOKEN_INTEGER PIPE T
                     char* lexeme = malloc(len + 1);
                     sprintf(lexeme, "%f", $4);
                     insert_lexeme_row($2, lexeme, $6, $8);
+                    free(lexeme);
                 }
 ;
 
