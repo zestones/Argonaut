@@ -71,6 +71,24 @@ int resolve_expression_type(Node *expression) {
             return left_type; 
         }
 
+        case A_NEG_OP: {
+            int operand_type = resolve_expression_type(expression->child);
+            if (operand_type == NULL_VALUE) return NULL_VALUE;
+            if (operand_type != A_INTEGER_LITERAL && operand_type != A_FLOAT_LITERAL) {
+                set_error_type(&error, TYPE_ERROR);
+                set_error_message(
+                    &error,
+                    "Invalid operand for unary minus at %s.\n"
+                    "  The operand has type '%s', but only int and float can be negated.\n",
+                    get_formatted_location(),
+                    type_name(operand_type)
+                );
+                yerror(error);
+                return NULL_VALUE;
+            }
+            return operand_type;
+        }
+
         case A_ARRAY_ACCESS:
             return resolve_array_access_type(expression);
 

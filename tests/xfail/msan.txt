@@ -1,8 +1,5 @@
 # Expected failures of the 'msan' configuration (MemorySanitizer, clang only).
 # Seeded from sanitize.txt: refresh it on the first weekly run (make CONFIG=msan CC=clang check, then --write-xfail).
-tests/lang/bugs/b01_minus_literal.arn  # unexpected compile error: [Syntax Error] Unexpected token found: '-3' at tests/lang/bugs/b
-tests/lang/bugs/b02_n_minus_1.arn  # unexpected compile error: [Syntax Error] Unexpected token found: '-1' at tests/lang/bugs/b
-tests/lang/bugs/b03_unary_minus.arn  # unexpected compile error: [Syntax Error] Unexpected token found: '-' at tests/lang/bugs/b0
 tests/lang/bugs/b05_char_escape_newline.arn  # unexpected compile error: [Lexical Error] Unknown character at tests/lang/bugs/b05_char_es
 tests/lang/bugs/b07_and_or_precedence.arn  # output differs — expected: [true] got: [false]
 tests/lang/bugs/b08_not_precedence.arn  # output differs — expected: [false] got: [true]

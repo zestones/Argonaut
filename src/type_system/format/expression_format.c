@@ -38,6 +38,21 @@ static char *format_arithmetic_op(Node *expression) {
     return lexeme;
 }
 
+static char *format_negation(Node *expression) {
+    const char *operand = format_expression(expression->child);
+    if (operand == NULL) operand = "?";
+
+    size_t room = strlen(operand) + 4; // "(-x)"
+    char *lexeme = (char *)malloc(room);
+    if (lexeme == NULL) {
+        fprintf(stderr, "Error: Memory allocation failed\n");
+        exit(EXIT_FAILURE);
+    }
+
+    snprintf(lexeme, room, "(-%s)", operand);
+    return lexeme;
+}
+
 char *format_expression(Node *expression) {
     switch (expression->type) {
         case A_IDENTIFIER:
@@ -57,6 +72,9 @@ char *format_expression(Node *expression) {
         case A_DIV_OP: {
             return format_arithmetic_op(expression);
         }
+
+        case A_NEG_OP:
+            return format_negation(expression);
 
         case A_ARRAY_ACCESS:
             return format_array_access(expression);

@@ -6,6 +6,27 @@
 #include "expression.h"
 
 
+vm_cell resolve_negation(vm_cell operand) {
+    if (!operand.is_initialized) {
+        set_error_type(&error, RUN_TIME_ERROR);
+        set_error_message(&error, "Uninitialized value error.\n  Ensure the operand is initialized before negating it.");
+        yerror(error);
+        exit(EXIT_FAILURE);
+    }
+
+    if (operand.type == INTEGER) {
+        int result = -operand.value.integer;
+        return construct_vm_cell(INTEGER, &result);
+    }
+    if (operand.type == REAL) {
+        double result = -operand.value.real;
+        return construct_vm_cell(REAL, &result);
+    }
+
+    fprintf(stderr, "<arithmetic.c> - unary minus on a non-numeric value\n");
+    exit(EXIT_FAILURE);
+}
+
 vm_cell resolve_arithmetic_operation(int operation, vm_cell left, vm_cell right) {
     if ((operation == A_DIV_OP || operation == A_MODULO_OP) &&
         ((right.type == INTEGER && right.value.integer == 0) || (right.type == REAL && right.value.real == 0.0))) {

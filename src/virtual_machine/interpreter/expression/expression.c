@@ -57,6 +57,11 @@ vm_cell resolve_expression(Node *expression) {
             return construct_vm_cell(STRING, lexeme);
         }
 
+        case A_NEG_OP: {
+            vm_cell operand = resolve_expression(expression->child);
+            return resolve_negation(operand);
+        }
+
         case A_ADD_OP:
         case A_SUB_OP:
         case A_MUL_OP:

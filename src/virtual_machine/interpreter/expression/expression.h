@@ -57,6 +57,14 @@ vm_cell resolve_expression(Node *expression);
 vm_cell resolve_arithmetic_operation(int operation, vm_cell left, vm_cell right);
 
 /**
+ * @brief Negates a numeric value (unary minus).
+ *
+ * @param operand The value to negate (INTEGER or REAL).
+ * @return A new cell holding the negated value.
+ */
+vm_cell resolve_negation(vm_cell operand);
+
+/**
  * @brief Resolves a boolean expression and returns the resulting boolean value.
  *
  * This function resolves a boolean expression, which can involve logical operations (AND, OR, NOT), 

@@ -95,8 +95,9 @@
 
 %left PLUS MINUS
 %left MULTIPLY DIVIDE MODULO
+%right UMINUS
 
-%type <lexicographic_index> type 
+%type <lexicographic_index> type bound
 
 %type <ast> assignment_statement if_statement standalone_func_proc_call_statement func_proc_call_expression
 %type <ast> array_access_statement array_indices struct_access_statement print_statement input_statement
@@ -252,7 +253,11 @@ list_dimensions: one_dimension
                | list_dimensions COMMA one_dimension 
 ;
 
-one_dimension: INTEGER_VALUE TWO_POINTS INTEGER_VALUE { array_add_dimension(atoi(get_lexeme($1)), atoi(get_lexeme($3))); }
+one_dimension: bound TWO_POINTS bound { array_add_dimension($1, $3); }
+;
+
+bound: INTEGER_VALUE { $$ = (int) strtol(get_lexeme($1), NULL, 10); }
+     | MINUS INTEGER_VALUE { $$ = -(int) strtol(get_lexeme($2), NULL, 10); }
 ;
 
 // Arithmetic expressions
@@ -280,6 +285,10 @@ expression: expression PLUS expression {
                 $$ = construct_node_default(A_MODULO_OP);
                 add_child($$, $1);
                 add_sibling($1, $3);
+          }
+          | MINUS expression %prec UMINUS {
+                $$ = construct_node_default(A_NEG_OP);
+                add_child($$, $2);
           }
           | expression_atom { $$ = $1; }
           | OPEN_PARENTHESIS expression CLOSE_PARENTHESIS { $$ = $2; }

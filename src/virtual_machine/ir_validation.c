@@ -71,6 +71,7 @@ static int is_expression(int type) {
         case A_MUL_OP:
         case A_DIV_OP:
         case A_MODULO_OP:
+        case A_NEG_OP:
         case A_ARRAY_ACCESS:
         case A_STRUCT_FIELD_ACCESS:
         case A_FUNC_PROC_CALL_STATEMENT:
@@ -202,6 +203,9 @@ static void check_shape(int region, const Node *node) {
     }
     else if (type == A_NOT_CONDITION || type == A_CONDITION) {
         expect(region, node, c1, c1 != NULL && is_condition((int) c1->type), "a condition");
+    }
+    else if (type == A_NEG_OP) {
+        expect(region, node, c1, c1 != NULL && is_expression((int) c1->type), "an operand");
     }
     else if (type == A_RETURN_STATEMENT) {
         expect(region, node, c1, c1 != NULL && is_expression((int) c1->type), "an expression");

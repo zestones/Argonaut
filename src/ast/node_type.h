@@ -60,7 +60,8 @@
     NODE(A_ARGUMENT_LIST)                   \
     NODE(A_ARGUMENT)                        \
     NODE(A_PARAMETER_LIST)                  \
-    NODE(A_PARAMETER)
+    NODE(A_PARAMETER)                       \
+    NODE(A_NEG_OP)
 
 // Generate the enum values
 #define GENERATE_ENUM(ENUM) ENUM,

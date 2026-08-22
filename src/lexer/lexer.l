@@ -122,13 +122,13 @@ letter [a-zA-Z]
     return STRING_VALUE;
 }
 
-[-]?{number}+"."{number}* { 
+{number}+"."{number}* { 
     yylval.lexicographic_index = insert_lexeme(yytext);
     error.column += yyleng;
     return FLOAT_VALUE; 
 }
 
-0|[-]?[1-9][0-9]* {
+0|[1-9][0-9]* {
     errno = 0;
     long value = strtol(yytext, NULL, 10);
     if (errno == ERANGE || value > INT_MAX || value < INT_MIN) {
