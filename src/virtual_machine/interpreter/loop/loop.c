@@ -9,7 +9,7 @@
 #include "loop.h"
 
 static void execute_while_loop(AST ast) {
-    vm_cell condition = resolve_boolean_expression(ast->child->child);
+    vm_cell condition = resolve_boolean_expression(ast->child);
 
     while (condition.value.boolean) {
         if (get_return_cell().is_initialized) return;
@@ -17,11 +17,11 @@ static void execute_while_loop(AST ast) {
 
         if (flow == CONTROL_BREAK) break;
         else if (flow == CONTROL_CONTINUE) {
-            condition = resolve_boolean_expression(ast->child->child);
+            condition = resolve_boolean_expression(ast->child);
             continue;
         }
 
-        condition = resolve_boolean_expression(ast->child->child);
+        condition = resolve_boolean_expression(ast->child);
     }
 }
 
