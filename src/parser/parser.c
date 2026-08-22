@@ -1,4 +1,5 @@
 #include "../virtual_machine/stack_management/stack_management.h"
+#include "../virtual_machine/ir_validation.h"
 #include "parser.h"
 #include "y.tab.h"
 
@@ -92,6 +93,9 @@ int yyrun(Mode m) {
     initialize_tables(m);
     int parse_result = yyparse(); 
 
-    if (m == INTERPRETATION) interpret();
+    if (m == INTERPRETATION) {
+        validate_loaded_ir();
+        interpret();
+    }
     return parse_result;
 }

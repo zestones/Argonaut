@@ -31,10 +31,14 @@ stack_frame *get_stack_frame_by_id(int id) {
 }
 
 stack_frame *find_stack_frame_by_region_index(int region_index) {
-    stack_frame *current_frame = peek_execution_stack_as_mutable();
-    while(current_frame != NULL) {
+    int frame_id = get_execution_stack_current_frame_id();
+    while (frame_id >= 0) {
+        stack_frame *current_frame = get_stack_frame_by_id(frame_id);
         if (current_frame->region_index == region_index) return current_frame;
-        current_frame = get_stack_frame_by_id(current_frame->dynamic_link);
+
+        // The first frame is its own dynamic link: the walk must stop there instead of looping.
+        if (current_frame->dynamic_link == frame_id) break;
+        frame_id = current_frame->dynamic_link;
     }
 
     set_error_type(&error, RUN_TIME_ERROR);

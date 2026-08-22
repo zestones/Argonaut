@@ -11,6 +11,17 @@
 
 
 int get_variable_address(int index_declaration) {
+    if (!is_declaration_loaded(index_declaration)) {
+        set_error_type(&error, RUN_TIME_ERROR);
+        set_error_message(
+            &error,
+            "Corrupted IR: a variable refers to declaration %d, which does not exist.",
+            index_declaration
+        );
+        yerror(error);
+        exit(EXIT_FAILURE);
+    }
+
     int region_declaration = get_declaration_region(index_declaration);
     int execution_offset = get_declaration_execution(index_declaration);
     int nis_declaration = get_region_nis(region_declaration);

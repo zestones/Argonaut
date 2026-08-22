@@ -86,6 +86,14 @@ void insert_region_row(int index, int size, int nis, AST ast);
 int get_region_size(int index);
 
 /**
+ * @brief Tells whether a region exists at the given index (started, or loaded from an IR file).
+ *
+ * @param index The index to check; any value is accepted.
+ * @return 1 if the index holds a region, 0 otherwise.
+ */
+int is_region_loaded(int index);
+
+/**
  * @brief Gets the NIS of the current region.
  *
  * @return The NIS of the current region.

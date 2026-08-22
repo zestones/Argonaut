@@ -303,4 +303,12 @@ static inline char *nature_to_string_short(Nature nature)
  */
 int is_declaration_base_type(int index);
 
+/**
+ * @brief Tells whether a declaration exists at the given index (inserted, or loaded from an IR file).
+ *
+ * @param index The index to check; any value is accepted.
+ * @return 1 if the index holds a declaration, 0 otherwise.
+ */
+int is_declaration_loaded(int index);
+
 #endif // DECLARATION_TABLE_H

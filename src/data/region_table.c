@@ -43,6 +43,11 @@ void start_region() {
 void end_region() { pop_region(); }
 
 void insert_region_row(int index, int size, int nis, AST ast) {
+    if (index < 0 || index >= MAX_REGION_COUNT) {
+        fprintf(stderr, COLOR_RED "<Error> Region table row %d out of bounds (0 to %d).\n" COLOR_RESET, index, MAX_REGION_COUNT - 1);
+        exit(EXIT_FAILURE);
+    }
+
     region_table[index].size = size;
     region_table[index].nis = nis;
     region_table[index].ast = ast;
@@ -50,8 +55,12 @@ void insert_region_row(int index, int size, int nis, AST ast) {
     region_table_size++;
 }
 
+int is_region_loaded(int index) {
+    return index >= 0 && index < MAX_REGION_COUNT && region_table[index].nis >= 0;
+}
+
 int get_region_size(int index) {
-    if (index >= MAX_REGION_COUNT) {
+    if (index < 0 || index >= MAX_REGION_COUNT) {
         fprintf(stderr, COLOR_RED "<Error> Get Region Size index out of bounds\n" COLOR_RESET);
         exit(EXIT_FAILURE);
     }
@@ -60,7 +69,7 @@ int get_region_size(int index) {
 }
 
 int get_region_nis(int index) {
-    if (index >= MAX_REGION_COUNT) {
+    if (index < 0 || index >= MAX_REGION_COUNT) {
         fprintf(stderr, COLOR_RED "<Error> Get NIS index out of bounds\n" COLOR_RESET);
         exit(EXIT_FAILURE);
     }
@@ -77,7 +86,7 @@ int get_current_region_nis() {
 int get_current_region_id() { return region_table_size - 1; }
 
 AST get_region_ast(int index) {
-    if (index >= MAX_REGION_COUNT) {
+    if (index < 0 || index >= MAX_REGION_COUNT) {
         fprintf(stderr, COLOR_RED "<Error> Get Region AST index out of bounds\n" COLOR_RESET);
         exit(EXIT_FAILURE);
     }
@@ -86,7 +95,7 @@ AST get_region_ast(int index) {
 }
 
 void update_region_size(int index, int size) {
-   if (index >= MAX_REGION_COUNT) {
+   if (index < 0 || index >= MAX_REGION_COUNT) {
         fprintf(stderr, COLOR_RED "<Error> Update Region Size index out of bounds\n" COLOR_RESET);
         exit(EXIT_FAILURE);
     }
@@ -95,7 +104,7 @@ void update_region_size(int index, int size) {
 }
 
 void update_region_ast(int index, AST ast) {
-    if (index >= MAX_REGION_COUNT) {
+    if (index < 0 || index >= MAX_REGION_COUNT) {
         fprintf(stderr, COLOR_RED "<Error> Update Region AST index out of bounds\n" COLOR_RESET);
         exit(EXIT_FAILURE);
     }

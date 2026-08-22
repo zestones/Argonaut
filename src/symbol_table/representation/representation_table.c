@@ -28,6 +28,11 @@ int insert_representation(int value) {
 }
 
 void insert_representation_row(int index, int value) {
+    if (index < 0 || index >= MAX_REPRESENTATION_COUNT) {
+        fprintf(stderr, COLOR_RED "<Error>: Representation table row %d out of bounds (0 to %d).\n" COLOR_RESET, index, MAX_REPRESENTATION_COUNT - 1);
+        exit(EXIT_FAILURE);
+    }
+
     representation_table[index] = value;
     representation_table_size++;
 }

@@ -14,7 +14,12 @@ static int lexeme_table_size = 0;
 Lexeme construct_lexeme(const char* lexeme, int length, int next) {
     Lexeme new_lexeme;
 
-    strcpy(new_lexeme.lexeme, lexeme);
+    if (strlen(lexeme) >= MAX_LEXEME_LENGTH) {
+        fprintf(stderr, COLOR_RED "<Error> Lexeme too long: %zu characters, the maximum is %d.\n" COLOR_RESET,
+                strlen(lexeme), MAX_LEXEME_LENGTH - 1);
+        exit(EXIT_FAILURE);
+    }
+    memcpy(new_lexeme.lexeme, lexeme, strlen(lexeme) + 1);
     new_lexeme.length = length;
     new_lexeme.next = next;
 
@@ -55,13 +60,24 @@ int insert_lexeme(const char* lexeme) {
 }
 
 void insert_lexeme_row(int index, const char* lexeme, int length, int next) {
+    if (index < 0 || index >= MAX_LEXEME_COUNT) {
+        fprintf(stderr, COLOR_RED "<Error> Lexeme table row %d out of bounds (0 to %d).\n" COLOR_RESET, index, MAX_LEXEME_COUNT - 1);
+        exit(EXIT_FAILURE);
+    }
+
     Lexeme new_lexeme = construct_lexeme(lexeme, length, next);
     lexeme_table[index] = new_lexeme;
 
     lexeme_table_size++;
 }
 
+int is_lexeme_loaded(int index) {
+    return index >= 0 && index < MAX_LEXEME_COUNT && lexeme_table[index].length >= 0;
+}
+
 char *get_lexeme(int index) {
+    static char unknown[] = "<unknown>";
+    if (!is_lexeme_loaded(index)) return unknown;
     return lexeme_table[index].lexeme;
 }
 

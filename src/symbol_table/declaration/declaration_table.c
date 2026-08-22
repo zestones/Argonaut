@@ -87,6 +87,11 @@ void insert_declaration_param(int index, int region, int description, int execut
 }
 
 void insert_declaration_row(int index, Nature nature, int next, int region, int description, int execution) {
+    if (index < 0 || index >= MAX_DECLARATION_COUNT) {
+        fprintf(stderr, COLOR_RED "<Error> Declaration table row %d out of bounds (0 to %d).\n" COLOR_RESET, index, MAX_DECLARATION_COUNT - 1);
+        exit(EXIT_FAILURE);
+    }
+
     if (index >= MAX_LEXEME_COUNT) {
         Declaration new_declaration = construct_declaration(nature, next, region, description, execution);
         declaration_table[index] = new_declaration;
@@ -98,16 +103,21 @@ void insert_declaration_row(int index, Nature nature, int next, int region, int 
     }
 }
 
-int is_declaration_base_type(int index) {
-    return (declaration_table[index].nature == TYPE_BASE);
-}
-
 static int is_valid_declaration_index(int index) {
     if (index >= MAX_DECLARATION_COUNT) {
         fprintf(stderr, COLOR_RED "<Error> Declaration index out of bounds\n" COLOR_RESET);
         exit(EXIT_FAILURE);
     }
-    return index != NULL_VALUE;
+    return index >= 0;
+}
+
+int is_declaration_loaded(int index) {
+    return index >= 0 && index < MAX_DECLARATION_COUNT && declaration_table[index].nature != (Nature) NULL_VALUE;
+}
+
+int is_declaration_base_type(int index) {
+    if (!is_valid_declaration_index(index)) return 0;
+    return (declaration_table[index].nature == TYPE_BASE);
 }
 
 int get_declaration_nature(int index) {

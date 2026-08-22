@@ -85,6 +85,14 @@ void insert_lexeme_row(int index, const char* lexeme, int length, int next);
 char *get_lexeme(int index);
 
 /**
+ * @brief Tells whether a lexeme exists at the given index (inserted, or loaded from an IR file).
+ *
+ * @param index The index to check; any value is accepted.
+ * @return 1 if the index holds a lexeme, 0 otherwise.
+ */
+int is_lexeme_loaded(int index);
+
+/**
  * @brief Exports the lexeme table to a file.
  *
  * This function writes the contents of the lexeme table to a file.
