@@ -1,6 +1,6 @@
 #include "../virtual_machine/stack_management/stack_management.h"
 #include "parser.h"
-#include "../bin/y.tab.h"
+#include "y.tab.h"
 
 /**
  * @brief Writes all key data tables to the specified output stream.
