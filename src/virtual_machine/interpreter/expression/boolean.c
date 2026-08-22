@@ -95,6 +95,8 @@ vm_cell resolve_boolean_expression(Node *expression) {
                 return construct_vm_cell(BOOLEAN, &(int){left.value.integer < right.value.integer});
             } else if (left.type == REAL) {
                 return construct_vm_cell(BOOLEAN, &(int){left.value.real < right.value.real});
+            } else if (left.type == CHARACTER) {
+                return construct_vm_cell(BOOLEAN, &(int){left.value.character < right.value.character});
             }
             break;
         }
@@ -107,6 +109,8 @@ vm_cell resolve_boolean_expression(Node *expression) {
                 return construct_vm_cell(BOOLEAN, &(int){left.value.integer > right.value.integer});
             } else if (left.type == REAL) {
                 return construct_vm_cell(BOOLEAN, &(int){left.value.real > right.value.real});
+            } else if (left.type == CHARACTER) {
+                return construct_vm_cell(BOOLEAN, &(int){left.value.character > right.value.character});
             }
             break;
         }
@@ -120,6 +124,8 @@ vm_cell resolve_boolean_expression(Node *expression) {
                 return construct_vm_cell(BOOLEAN, &(int){left.value.integer <= right.value.integer});
             } else if (left.type == REAL) {
                 return construct_vm_cell(BOOLEAN, &(int){left.value.real <= right.value.real});
+            } else if (left.type == CHARACTER) {
+                return construct_vm_cell(BOOLEAN, &(int){left.value.character <= right.value.character});
             }
             break;
         }
@@ -133,6 +139,8 @@ vm_cell resolve_boolean_expression(Node *expression) {
                 return construct_vm_cell(BOOLEAN, &(int){left.value.integer >= right.value.integer});
             } else if (left.type == REAL) {
                 return construct_vm_cell(BOOLEAN, &(int){left.value.real >= right.value.real});
+            } else if (left.type == CHARACTER) {
+                return construct_vm_cell(BOOLEAN, &(int){left.value.character >= right.value.character});
             }
             break;
         }
@@ -145,5 +153,8 @@ vm_cell resolve_boolean_expression(Node *expression) {
             exit(EXIT_FAILURE);
     }
 
-    return construct_vm_cell(NULL_VALUE, NULL);
+    // A comparison the compiler accepted but the VM cannot evaluate: fail loudly rather than
+    // return an uninitialised boolean.
+    fprintf(stderr, "<boolean.c> - comparison not supported for this operand type (node %d)\n", expression->type);
+    exit(EXIT_FAILURE);
 }
