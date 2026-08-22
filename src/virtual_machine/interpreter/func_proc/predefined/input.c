@@ -17,6 +17,26 @@
  *
  * @param specifier The conversion specifier that could not be satisfied ('d', 'f', 's' or 'c').
  */
+/**
+ * @brief Reads one whitespace-delimited word from stdin (at most size - 1 characters).
+ *
+ * @return 1 when a word was read, 0 at end of input.
+ */
+static int read_word(char *word, size_t size) {
+    int c;
+    size_t length = 0;
+
+    do { c = getchar(); } while (c == ' ' || c == '\t' || c == '\n' || c == '\r');
+    if (c == EOF) return 0;
+
+    while (c != EOF && c != ' ' && c != '\t' && c != '\n' && c != '\r') {
+        if (length + 1 < size) word[length++] = (char) c;
+        c = getchar();
+    }
+    word[length] = '\0';
+    return 1;
+}
+
 static void input_failure(char specifier) {
     set_error_type(&error, RUN_TIME_ERROR);
     set_error_message(
@@ -123,7 +143,7 @@ void execute_input(AST ast) {
                 case 'b': {
                     char word[8];
                     int value;
-                    if (scanf("%7s", word) != 1) input_failure(specifier);
+                    if (!read_word(word, sizeof(word))) input_failure(specifier);
                     if (strcmp(word, "true") == 0 || strcmp(word, "1") == 0) value = 1;
                     else if (strcmp(word, "false") == 0 || strcmp(word, "0") == 0) value = 0;
                     else input_failure(specifier);
