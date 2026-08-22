@@ -1,0 +1,74 @@
+// A tour of the language: unary minus, C-like precedence and short-circuit, booleans as values
+// and %b, checked returns, escapes and %%, early return in procedures, chained accesses and
+// arrays of arrays.
+
+type Point : struct { x : int; y : int; } fstruct;
+type Scores : array[0:2] of int;
+type Player : struct { name : char; pos : Point; scores : Scores; } fstruct;
+type Team : array[0:1] of Player;
+type Row : array[0:2] of int;
+type Grid : array[0:2] of Row;
+
+var team : Team;
+var grid : Grid;
+var i : int;
+var j : int;
+var total : int;
+var ready : bool;
+
+// A comparison is a value: a function can return one directly.
+func is_inside(p : Point, size : int) -> bool {
+    return p.x >= 0 && p.x < size && p.y >= 0 && p.y < size;
+}
+
+// argoc checks that every path returns a value.
+func best_score(s : Scores) -> int {
+    var best : int;
+    var k : int;
+    best := -1;
+    for (k := 0; k <= 2; k++) {
+        if (s[k] > best) { best := s[k]; }
+    }
+    return best;
+}
+
+// return; leaves a procedure early; a struct argument is copied with its nested array.
+proc show_player(p : Player) {
+    if (p.scores[0] == 0 && p.scores[1] == 0 && p.scores[2] == 0) {
+        print("  %c: no score yet\n", p.name);
+        return;
+    }
+    print("  %c at (%d, %d), best score %d, inside: %b\n",
+          p.name, p.pos.x, p.pos.y, best_score(p.scores), is_inside(p.pos, 3));
+}
+
+// Usual precedence: 1 + 2 * 3 == 7 is true, ! binds tighter than &&, && tighter than ||.
+ready := 1 + 2 * 3 == 7 && !(2 > 3) || false;
+print("ready: %b (%d)\n", ready, ready);
+
+// Short-circuit: 10 / i is never evaluated here.
+i := 0;
+if (i == 0 || 10 / i > 1) { print("short-circuit ok\n"); }
+
+// Chained accesses: t[i].f.g, t[i].f[j], a[i]++, and a negative literal.
+team[0].name := 'A'; team[0].pos.x := 1; team[0].pos.y := 2;
+team[0].scores[0] := 5; team[0].scores[1] := 9; team[0].scores[2] := 7;
+team[0].scores[1]++;
+team[1].name := 'B'; team[1].pos.x := -4; team[1].pos.y := 0;
+for (j := 0; j <= 2; j++) { team[1].scores[j] := 0; }
+show_player(team[0]);
+show_player(team[1]);
+
+// Arrays of arrays: g[i][j] and g[i, j] are the same element.
+total := 0;
+for (i := 0; i <= 2; i++) {
+    for (j := 0; j <= 2; j++) { grid[i][j] := i * 3 + j; }
+}
+for (i := 0; i <= 2; i++) {
+    print("  %d %d %d\n", grid[i][0], grid[i, 1], grid[i][2]);
+    total := total + grid[i][i];
+}
+print("diagonal: %d, progress: 100%%\n", total);
+
+// Escapes in string and char literals.
+print("tab:\t| quote: \" | backslash: \\ | chars: %c%c\n", '\'', '"');
