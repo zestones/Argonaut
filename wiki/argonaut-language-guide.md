@@ -393,6 +393,9 @@ proc print_message(message : string) {
 }
 ```
 
+> [!WARNING]
+> `string` parameters and variables are **not implemented yet**: this example does not compile today (see `SPEC.md`, decision D5, and `tests/lang/bugs/b24_wiki_string_param.arn`). Only string *literals* passed to `print` work.
+
 ### Parameters and Arguments
 
 - **Parameters** are declared within parentheses and include the parameter name and type.
@@ -592,6 +595,9 @@ var name : string;
 print("Enter your name: ");
 input("%s", name);
 ```
+
+> [!WARNING]
+> Reading a `string` is **not implemented yet** (`SPEC.md`, decision D5; `tests/lang/bugs/b25_wiki_input_string.arn`). `input` currently works with `%d`, `%f` and `%c` targets.
 
 ---
 
