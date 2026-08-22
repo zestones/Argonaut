@@ -13,6 +13,23 @@
 #define BUFFER_SIZE 1024
 
 /**
+ * @brief Reports a failed read (end of input or text that does not match the specifier) and exits.
+ *
+ * @param specifier The conversion specifier that could not be satisfied ('d', 'f', 's' or 'c').
+ */
+static void input_failure(char specifier) {
+    set_error_type(&error, RUN_TIME_ERROR);
+    set_error_message(
+        &error,
+        "Input error: could not read a value for '%%%c'.\n"
+        "  The input ended or does not match the expected format.\n",
+        specifier
+    );
+    yerror(error);
+    exit(EXIT_FAILURE);
+}
+
+/**
  * @brief Resolves the assignment of a value to an argument in a function or procedure call.
  *
  * This function handles the assignment of a resolved value (`vm_cell`) to the appropriate 
@@ -73,24 +90,24 @@ void execute_input(AST ast) {
             switch (specifier) {
                 case 'd': {
                     int value;
-                    scanf("%d", &value);
+                    if (scanf("%d", &value) != 1) input_failure(specifier);
                     cell = construct_vm_cell(INTEGER, &value); 
                     break;
                 }
                 case 'f': {
                     double value;
-                    scanf("%lf", &value);
+                    if (scanf("%lf", &value) != 1) input_failure(specifier);
                     cell = construct_vm_cell(REAL, &value); 
                     break;
                 }
                 case 's': {
-                    scanf("%s", buffer);
+                    if (scanf("%1023s", buffer) != 1) input_failure(specifier);
                     cell = construct_vm_cell(STRING, &buffer);
                     break;
                 }
                 case 'c': {
                     char value;
-                    scanf(" %c", &value);
+                    if (scanf(" %c", &value) != 1) input_failure(specifier);
                     cell = construct_vm_cell(CHARACTER, &value);
                     break;
                 }
