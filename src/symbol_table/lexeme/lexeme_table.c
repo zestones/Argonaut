@@ -84,7 +84,18 @@ char *get_lexeme(int index) {
 static char* format_lexeme_row(void* data) {
     Lexeme* row = (Lexeme*)data;
     char* formatted_row = (char*)malloc(512 * sizeof(char));
-    sprintf(formatted_row, "%s|%d|%d", row->lexeme, row->length, row->next);
+
+    // A row must stay on one line: a newline inside a string literal is written as "\n",
+    // which print() turns back into a newline.
+    char escaped[2 * MAX_LEXEME_LENGTH + 1];
+    size_t j = 0;
+    for (const char *p = row->lexeme; *p != '\0'; p++) {
+        if (*p == '\n') { escaped[j++] = '\\'; escaped[j++] = 'n'; }
+        else escaped[j++] = *p;
+    }
+    escaped[j] = '\0';
+
+    snprintf(formatted_row, 512, "%s|%d|%d", escaped, (int) strlen(escaped), row->next);
     return formatted_row;
 }
 

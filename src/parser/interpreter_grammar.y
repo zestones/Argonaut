@@ -35,6 +35,33 @@
 
         exit(EXIT_FAILURE);
     }
+
+    /**
+     * @brief Loads one row of the lexeme table, "|index|lexeme|length|next|".
+     *
+     * The lexeme is stored verbatim (it may contain '|'), so the two integer fields are read
+     * from the end of the row. The lexer guarantees the row has this shape.
+     */
+    static void insert_lexeme_row_from_text(char *row) {
+        char *end = row + strlen(row) - 1;            // the closing '|'
+        char *next_field = end;
+        while (next_field > row && next_field[-1] != '|') next_field--;
+        char *length_field = next_field - 1;          // the '|' before 'next'
+        while (length_field > row && length_field[-1] != '|') length_field--;
+        char *lexeme_end = length_field - 1;          // the '|' after the lexeme
+        char *lexeme = strchr(row + 1, '|');          // the '|' after the index
+
+        if (lexeme == NULL || lexeme >= lexeme_end || next_field <= row || length_field <= row) {
+            yyerror("Malformed lexeme table row");
+        }
+
+        int index = (int) strtol(row + 1, NULL, 10);
+        int length = (int) strtol(length_field, NULL, 10);
+        int next = (int) strtol(next_field, NULL, 10);
+        *lexeme_end = '\0';
+
+        insert_lexeme_row(index, lexeme + 1, length, next);
+    }
 %}
 
 %union {
@@ -42,7 +69,6 @@
 
     int integer;
     char* string;
-    float real;
 }
 
 
@@ -55,8 +81,7 @@
 %token PIPE
 
 %token <integer> TOKEN_INTEGER
-%token <string> TOKEN_LEXEME
-%token <real> TOKEN_FLOAT
+%token <string> TOKEN_LEXEME_ROW
 %start program
 
 %type <ast> ast_node child_node sibling_node node
@@ -75,22 +100,7 @@ lexeme_table_body: lexeme_table_row
                  | lexeme_table_body lexeme_table_row
 ;
 
-lexeme_table_row: PIPE TOKEN_INTEGER PIPE TOKEN_LEXEME PIPE TOKEN_INTEGER PIPE TOKEN_INTEGER PIPE { insert_lexeme_row($2, $4, $6, $8); free($4); }
-                | PIPE TOKEN_INTEGER PIPE TOKEN_INTEGER PIPE TOKEN_INTEGER PIPE TOKEN_INTEGER PIPE {
-                    int len = snprintf(NULL, 0, "%d", $4);  
-                    char* lexeme = malloc(len + 1);
-                    sprintf(lexeme, "%d", $4);
-
-                    insert_lexeme_row($2, lexeme, $6, $8);
-                    free(lexeme);
-                }
-                | PIPE TOKEN_INTEGER PIPE TOKEN_FLOAT PIPE TOKEN_INTEGER PIPE TOKEN_INTEGER PIPE {
-                   int len = snprintf(NULL, 0, "%f", $4);  
-                    char* lexeme = malloc(len + 1);
-                    sprintf(lexeme, "%f", $4);
-                    insert_lexeme_row($2, lexeme, $6, $8);
-                    free(lexeme);
-                }
+lexeme_table_row: TOKEN_LEXEME_ROW { insert_lexeme_row_from_text($1); free($1); }
 ;
 
 
