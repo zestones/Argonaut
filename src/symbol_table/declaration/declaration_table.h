@@ -16,7 +16,7 @@
 #include <string.h>
 
 
-#define MAX_DECLARATION_COUNT 1000 // Maximum number of declarations allowed in the table
+#define MAX_DECLARATION_COUNT 16384 // Maximum number of declarations allowed in the table (lexeme-indexed zone + overflow zone)
 
 /**
  * @enum Nature

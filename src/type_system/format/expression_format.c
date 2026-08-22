@@ -22,19 +22,19 @@
  *          may lead to undefined behavior.
  */
 static char *format_arithmetic_op(Node *expression) {
-    char *lexeme = (char *)malloc(MAX_LEXEME_LENGTH * sizeof(char));
-    strcpy(lexeme, "(");
-    strcat(lexeme, format_expression(expression->child));
-    strcat(lexeme, " ");
+    const char *left = format_expression(expression->child);
+    const char *right = format_expression(expression->child->sibling);
+    if (left == NULL) left = "?";
+    if (right == NULL) right = "?";
 
-    // Convert the operator char to a string
-    char op[2] = {node_type_to_operator_char(expression->type), '\0'};
-    strcat(lexeme, op);
+    size_t room = strlen(left) + strlen(right) + 8; // "(left op right)"
+    char *lexeme = (char *)malloc(room);
+    if (lexeme == NULL) {
+        fprintf(stderr, "Error: Memory allocation failed\n");
+        exit(EXIT_FAILURE);
+    }
 
-    strcat(lexeme, " ");
-    strcat(lexeme, format_expression(expression->child->sibling));
-    strcat(lexeme, ")");
-
+    snprintf(lexeme, room, "(%s %c %s)", left, node_type_to_operator_char(expression->type), right);
     return lexeme;
 }
 
@@ -72,7 +72,7 @@ char *format_expression(Node *expression) {
             set_error_message(
                 &error,
                 "Unexpected or unhandled expression type encountered: '%s'.",
-                get_lexeme(expression->type)
+                NodeTypeStrings[expression->type]
             );
             yerror(error);
             return NULL;

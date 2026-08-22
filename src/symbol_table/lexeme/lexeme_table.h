@@ -16,8 +16,7 @@
 #include <string.h>
 
 
-#define MAX_LEXEME_LENGTH 100    // Maximum length of a lexeme.
-#define MAX_LEXEME_COUNT 500     // Maximum number of lexemes in the table.
+#define MAX_LEXEME_COUNT 8192    // Maximum number of distinct lexemes in the table.
 
 
 /**
@@ -29,7 +28,7 @@
  * next lexeme or position in a list or table.
  */
 typedef struct {
-    char lexeme[MAX_LEXEME_LENGTH];  // The character array holding the lexeme's text.
+    char *lexeme;                    // The lexeme's text (malloc'ed, any length).
     int length;                      // The length of the lexeme.
     int next;                        // The index of the next lexeme that has the same hash code.
 } Lexeme;

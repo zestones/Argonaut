@@ -19,7 +19,7 @@
 #include "../ast/ast.h"
 
 
-#define MAX_REGION_COUNT 50 // Maximum number of regions that can be managed.
+#define MAX_REGION_COUNT 1024 // Maximum number of regions (program + functions + procedures).
 
 
 /**

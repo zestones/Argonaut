@@ -14,12 +14,11 @@ static int lexeme_table_size = 0;
 Lexeme construct_lexeme(const char* lexeme, int length, int next) {
     Lexeme new_lexeme;
 
-    if (strlen(lexeme) >= MAX_LEXEME_LENGTH) {
-        fprintf(stderr, COLOR_RED "<Error> Lexeme too long: %zu characters, the maximum is %d.\n" COLOR_RESET,
-                strlen(lexeme), MAX_LEXEME_LENGTH - 1);
+    new_lexeme.lexeme = strdup(lexeme);
+    if (new_lexeme.lexeme == NULL) {
+        fprintf(stderr, COLOR_RED "<Error> Memory allocation failed\n" COLOR_RESET);
         exit(EXIT_FAILURE);
     }
-    memcpy(new_lexeme.lexeme, lexeme, strlen(lexeme) + 1);
     new_lexeme.length = length;
     new_lexeme.next = next;
 
@@ -47,6 +46,11 @@ int insert_lexeme(const char* lexeme) {
     // We first check if the lexeme is already in the table
     int index_duplicate_lexeme = get_lexeme_index(lexeme);
     if (index_duplicate_lexeme != NULL_VALUE) return index_duplicate_lexeme;
+
+    if (lexeme_table_size >= MAX_LEXEME_COUNT) {
+        fprintf(stderr, COLOR_RED "<Error> Too many distinct lexemes: the table holds at most %d.\n" COLOR_RESET, MAX_LEXEME_COUNT);
+        exit(EXIT_FAILURE);
+    }
 
     // If the lexeme is not in the table, we insert it
     Lexeme new_lexeme = construct_lexeme(lexeme, length, NULL_VALUE);
@@ -83,11 +87,16 @@ char *get_lexeme(int index) {
 
 static char* format_lexeme_row(void* data) {
     Lexeme* row = (Lexeme*)data;
-    char* formatted_row = (char*)malloc(512 * sizeof(char));
+    size_t room = 2 * strlen(row->lexeme) + 32;
+    char* formatted_row = (char*)malloc(room);
+    char* escaped = (char*)malloc(room);
+    if (!formatted_row || !escaped) {
+        fprintf(stderr, COLOR_RED "<Error> Memory allocation failed\n" COLOR_RESET);
+        exit(EXIT_FAILURE);
+    }
 
     // A row must stay on one line: a newline inside a string literal is written as "\n",
     // which print() turns back into a newline.
-    char escaped[2 * MAX_LEXEME_LENGTH + 1];
     size_t j = 0;
     for (const char *p = row->lexeme; *p != '\0'; p++) {
         if (*p == '\n') { escaped[j++] = '\\'; escaped[j++] = 'n'; }
@@ -95,7 +104,8 @@ static char* format_lexeme_row(void* data) {
     }
     escaped[j] = '\0';
 
-    snprintf(formatted_row, 512, "%s|%d|%d", escaped, (int) strlen(escaped), row->next);
+    snprintf(formatted_row, room, "%s|%d|%d", escaped, (int) strlen(escaped), row->next);
+    free(escaped);
     return formatted_row;
 }
 

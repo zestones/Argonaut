@@ -15,7 +15,7 @@
 #include <string.h>
 
 
-#define MAX_REPRESENTATION_COUNT 1000
+#define MAX_REPRESENTATION_COUNT 16384
 
 
 /**
