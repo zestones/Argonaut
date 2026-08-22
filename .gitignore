@@ -275,3 +275,13 @@ example/compilation/.out/actual_outputs/
 !example/compilation/.out/expected_outputs/*.out
 
 log.txt
+# ---- Argonaut (added by the 2026-08 professionalisation pass) ----
+build/
+bin/argoc
+bin/argov
+*.ir
+!tests/ir/*.ir
+log.txt
+examples/compilation/.out/actual_outputs/
+docs/html/
+__pycache__/
