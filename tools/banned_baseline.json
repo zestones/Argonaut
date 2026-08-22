@@ -1,12 +1,12 @@
 {
   "atof": 1,
-  "atoi": 3,
+  "atoi": 1,
   "atol": 0,
   "gets": 0,
   "scanf": 4,
   "sprintf": 32,
-  "strcat": 23,
-  "strcpy": 3,
+  "strcat": 12,
+  "strcpy": 1,
   "strncpy": 1,
   "strtok": 0,
   "vsprintf": 0
