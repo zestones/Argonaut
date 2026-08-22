@@ -165,11 +165,15 @@ Argonaut supports standard arithmetic operators for numerical computations.
 - Multiplication: `*`
 - Division: `/`
 - Modulo: `%`
+- Unary minus: `-x`
+
+Precedence, from highest to lowest: unary `-`, then `* / %`, then `+ -`. Both operands of an operation must have the same type (`int` with `int`, `float` with `float`). An integer overflow is a run-time error.
 
 **Example:**
 
 ```argonaut
 result := a + b - c * d / e % f;
+negated := -(a + b);
 ```
 
 ### Boolean Expressions
@@ -189,10 +193,17 @@ Boolean expressions are used in conditional statements and loops.
   - Logical OR: `||`
   - Logical NOT: `!`
 
+A comparison or a logical operation is an expression of type `bool`: it can be stored in a `bool` variable, returned by a function, printed with `%b`, and any `bool` expression can be used directly as a condition. Precedence, from highest to lowest: the comparisons, then `!`, then `&&`, then `||`. `&&` and `||` short-circuit: the right operand is not evaluated when the left one decides the result.
+
 **Example:**
 
 ```argonaut
-if ((x > 0) && (y < 5)) {
+var ready : bool;
+ready := x > 0 && y < 5;
+if (ready) {
+    // Code block
+}
+if (!ready || x == 0) {
     // Code block
 }
 ```
@@ -394,7 +405,7 @@ proc print_message(message : string) {
 ```
 
 > [!WARNING]
-> `string` parameters and variables are **not implemented yet**: this example does not compile today (see `SPEC.md`, decision D5, and `tests/lang/bugs/b24_wiki_string_param.arn`). Only string *literals* passed to `print` work.
+> `string` parameters and variables are **not implemented yet**: this example does not compile today (`tests/lang/bugs/b24_wiki_string_param.arn` tracks it). Only string *literals* passed to `print` work.
 
 ### Parameters and Arguments
 
@@ -417,7 +428,7 @@ result := add(5, 3);
 
 ### Return Statement
 
-Functions must end with a `return` statement that specifies the value to return.
+A function must return a value on every path: the compiler rejects a function whose body can reach its end without a `return` (an `if`/`else` whose two branches return is fine, a loop does not count).
 
 ```argonaut
 return expression;
@@ -431,7 +442,14 @@ func square(n : int) -> int {
 }
 ```
 
-**Note:** The `return` statement is only valid within functions, not procedures.
+In a procedure, `return;` (without a value) leaves the procedure early.
+
+```argonaut
+proc show(n : int) {
+    if (n < 0) { return; }
+    print("%d\n", n);
+}
+```
 
 ### Nested Functions
 
@@ -484,11 +502,22 @@ var numbers : intArray;
 
 ### Array Access
 
-Access elements using square brackets `[]` with the index.
+Access elements using square brackets `[]` with the index. The number and the type of the indices are checked at compile time, the range at run time.
 
 ```argonaut
 numbers[0] := 10;
 value := numbers[0];
+numbers[1]++;
+```
+
+Accesses chain freely: an element that is a structure can be followed by `.field`, a field that is an array by `[index]`, and an array of arrays is indexed level by level.
+
+```argonaut
+type Row : array[0:2] of int;
+type Grid : array[0:2] of Row;
+var g : Grid;
+g[1][2] := 5;       // the same as g[1, 2]
+people[i].name[0] := 'A';
 ```
 
 ### Multidimensional Arrays
@@ -534,12 +563,13 @@ type Point : struct {
 
 ### Structure Access
 
-Access structure fields using the dot `.` operator.
+Access structure fields using the dot `.` operator; nested fields and array fields chain the same way (`r.topLeft.x`, `s.values[i]`).
 
 ```argonaut
 var p : Point;
 p.x := 10;
 p.y := 20;
+p.x++;
 ```
 
 ### Nested Structures
@@ -569,15 +599,19 @@ print(formatString, argument_list);
 
 **Format Specifiers:**
 
-- `%d` : Integer
+- `%d` : Integer (a `bool` is printed as 0 or 1)
 - `%f` : Floating-point number
 - `%c` : Character
-- `%s` : String
+- `%b` : Boolean, printed as `true` or `false`
+- `%s` : String literal
+- `%%` : A literal percent sign
+
+String and character literals accept the escape sequences `\n`, `\t`, `\r`, `\\`, `\'` and `\"`.
 
 **Example:**
 
 ```argonaut
-print("The value is %d\n", value);
+print("The value is %d (%b), 100%% done\n", value, value > 0);
 ```
 
 ### Reading Input
@@ -597,7 +631,7 @@ input("%s", name);
 ```
 
 > [!WARNING]
-> Reading a `string` is **not implemented yet** (`SPEC.md`, decision D5; `tests/lang/bugs/b25_wiki_input_string.arn`). `input` currently works with `%d`, `%f` and `%c` targets.
+> Reading a `string` is **not implemented yet** (`tests/lang/bugs/b25_wiki_input_string.arn` tracks it). `input` works with `%d`, `%f`, `%c` and `%b` targets.
 
 ---
 
