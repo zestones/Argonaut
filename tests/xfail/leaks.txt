@@ -1,18 +1,12 @@
 # Expected failures with LeakSanitizer enabled (sanitize configuration, make check-leaks): the same known bugs as sanitize.txt; nothing leaks any more.
 # Remove an entry when the bug is fixed; the runner flags it as XPASS until you do.
 tests/lang/bugs/b05_char_escape_newline.arn  # unexpected compile error: [Lexical Error] Unknown character at tests/lang/bugs/b05_char_es
-tests/lang/bugs/b07_and_or_precedence.arn  # output differs — expected: [true] got: [false]
-tests/lang/bugs/b08_not_precedence.arn  # output differs — expected: [false] got: [true]
 tests/lang/bugs/b12_missing_return.arn  # argoc accepted the program (no error reported)
 tests/lang/bugs/b23_string_var.arn  # unexpected compile error: [Type Error] Undefined type at tests/lang/bugs/b23_string_var.ar
 tests/lang/bugs/b24_wiki_string_param.arn  # unexpected compile error: [Type Error] Undefined type at tests/lang/bugs/b24_wiki_string_p
 tests/lang/bugs/b25_wiki_input_string.arn  # unexpected compile error: [Type Error] Undefined type at tests/lang/bugs/b25_wiki_input_st
-tests/lang/limitations/l01_bool_condition.arn  # unexpected compile error: [Syntax Error] Unexpected token found: ')' at tests/lang/limitat
-tests/lang/limitations/l02_bool_from_comparison.arn  # unexpected compile error: [Type Error] Type mismatch during assignement at tests/lang/limi
-tests/lang/limitations/l03_print_bool.arn  # unexpected compile error: [Type Error] Type mismatch for argument 1 at tests/lang/limitati
 tests/lang/limitations/l04_string_escape_quote.arn  # unexpected compile error: [Syntax Error] Unexpected token found: 'hi' at tests/lang/limita
 tests/lang/limitations/l05_percent_percent.arn  # output differs — expected: [100%] got: [100%%]
-tests/lang/limitations/l06_short_circuit.arn  # argov: exit 1 — [Run Time Error] Division by zero error.
 tests/lang/limitations/l07_array_of_struct_with_array.arn  # unexpected compile error: [Syntax Error] Unexpected token found: '[' at tests/lang/limitat
 tests/lang/limitations/l08_incdec_array_elem.arn  # unexpected compile error: [Syntax Error] Unexpected token found: '++' at tests/lang/limita
 tests/lang/limitations/l10_proc_early_return.arn  # unexpected compile error: [Syntax Error] Unexpected token found: ';' at tests/lang/limitat

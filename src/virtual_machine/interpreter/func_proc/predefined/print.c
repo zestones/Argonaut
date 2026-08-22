@@ -64,15 +64,18 @@ static void process_format_string(const char *format, AST arg_list, text_buffer 
     AST current_arg = arg_list->child;
 
     while (format[format_idx] != '\0') {
-        if (format[format_idx] == '%' && (format[format_idx + 1] == 'd' || format[format_idx + 1] == 'f' || format[format_idx + 1] == 's' || format[format_idx + 1] == 'c')) {
+        if (format[format_idx] == '%' && is_format_specifier(format[format_idx + 1])) {
 
             char specifier = format[format_idx + 1];
             vm_cell cell = resolve_expression(current_arg->child);
 
             switch (specifier) {
                 case 'd':
-                    snprintf(scratch, sizeof(scratch), "%d", cell.value.integer);
+                    snprintf(scratch, sizeof(scratch), "%d", cell.type == BOOLEAN ? cell.value.boolean : cell.value.integer);
                     append_text(buffer, scratch);
+                    break;
+                case 'b':
+                    append_text(buffer, cell.value.boolean ? "true" : "false");
                     break;
                 case 'f':
                     snprintf(scratch, sizeof(scratch), "%f", cell.value.real);

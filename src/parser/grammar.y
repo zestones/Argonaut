@@ -26,6 +26,14 @@
     int yylex();
     int is_in_loop = 0;
 
+    /* A binary node: the operands are the two children (left first). */
+    static Node *build_binary(NodeType type, Node *left, Node *right) {
+        Node *node = construct_node_default(type);
+        add_child(node, left);
+        add_sibling(left, right);
+        return node;
+    }
+
     extern FILE *yyin;
     extern FILE *yyout;
     extern char *yytext;
@@ -87,19 +95,21 @@
 %token <lexicographic_index> BOOLEAN_VALUE STRING_VALUE INTEGER_VALUE CHARACTER_VALUE FLOAT_VALUE
 %token <lexicographic_index> INCREMENT DECREMENT
 
-%right NOT
-%left AND OR 
-
 %right RETURN_TYPE RETURN_VALUE
 %left SEMICOLON COMMA
 
+/* Lowest to highest: || , && , ! , comparisons, + - , * / % , unary minus. */
+%left OR
+%left AND
+%right NOT
+%nonassoc EQUAL NOT_EQUAL LESS_THAN GREATER_THAN LESS_EQUAL GREATER_EQUAL
 %left PLUS MINUS
 %left MULTIPLY DIVIDE MODULO
 %right UMINUS
 
 %type <lexicographic_index> type bound
 
-%type <ast> assignment_statement if_statement standalone_func_proc_call_statement func_proc_call_expression
+%type <ast> assignment_statement if_head if_statement standalone_func_proc_call_statement func_proc_call_expression
 %type <ast> array_access_statement array_indices struct_access_statement print_statement input_statement
 %type <ast> loop_statement while_statement for_statement
 
@@ -107,7 +117,7 @@
 %type <ast> function_declaration return_statement procedure_declaration parameter_list parameter argument_list
 
 %type <ast> program declaration_list statement_list statement_block declaration statement inc_dec_statement
-%type <ast> expression expression_atom condition comparison_operator
+%type <ast> expression expression_atom
 
 %type <ast> input_argument_list format_string 
 
@@ -290,6 +300,18 @@ expression: expression PLUS expression {
                 $$ = construct_node_default(A_NEG_OP);
                 add_child($$, $2);
           }
+          | expression EQUAL expression         { $$ = build_binary(A_EQUAL_OP, $1, $3); }
+          | expression NOT_EQUAL expression     { $$ = build_binary(A_NOT_EQUAL_OP, $1, $3); }
+          | expression LESS_THAN expression     { $$ = build_binary(A_LESS_THAN_OP, $1, $3); }
+          | expression GREATER_THAN expression  { $$ = build_binary(A_GREATER_THAN_OP, $1, $3); }
+          | expression LESS_EQUAL expression    { $$ = build_binary(A_LESS_EQUAL_OP, $1, $3); }
+          | expression GREATER_EQUAL expression { $$ = build_binary(A_GREATER_EQUAL_OP, $1, $3); }
+          | expression AND expression           { $$ = build_binary(A_AND_CONDITION, $1, $3); }
+          | expression OR expression            { $$ = build_binary(A_OR_CONDITION, $1, $3); }
+          | NOT expression {
+                $$ = construct_node_default(A_NOT_CONDITION);
+                add_child($$, $2);
+          }
           | expression_atom { $$ = $1; }
           | OPEN_PARENTHESIS expression CLOSE_PARENTHESIS { $$ = $2; }
 ;
@@ -340,41 +362,6 @@ func_proc_call_expression: IDENTIFIER { check_func_proc_definition($1); } OPEN_P
                             add_child($$, $4);
                             check_func_proc_argument_list($1, $4);
                         }
-;
-
-// Conditions and boolean expressions
-condition: expression comparison_operator expression {
-            $$ = construct_node_default(A_CONDITION);
-            add_child($$, $2);
-            add_child($2, $1);
-            add_sibling($1, $3);
-            check_condition($$);
-         }
-         | OPEN_PARENTHESIS condition CLOSE_PARENTHESIS {
-            $$ = $2;
-         }
-         | condition AND condition {
-            $$ = construct_node_default(A_AND_CONDITION);
-            add_child($$, $1);
-            add_sibling($1, $3);
-         }
-         | condition OR condition {
-            $$ = construct_node_default(A_OR_CONDITION);
-            add_child($$, $1);
-            add_sibling($1, $3);
-         }
-         | NOT condition {
-            $$ = construct_node_default(A_NOT_CONDITION);
-            add_child($$, $2);
-         }
-;
-
-comparison_operator: EQUAL { $$ = construct_node_default(A_EQUAL_OP); }
-                   | NOT_EQUAL { $$ = construct_node_default(A_NOT_EQUAL_OP); }
-                   | LESS_THAN { $$ = construct_node_default(A_LESS_THAN_OP); }
-                   | GREATER_THAN { $$ = construct_node_default(A_GREATER_THAN_OP); }
-                   | LESS_EQUAL { $$ = construct_node_default(A_LESS_EQUAL_OP); }
-                   | GREATER_EQUAL { $$ = construct_node_default(A_GREATER_EQUAL_OP); }
 ;
 
 // Statements
@@ -490,23 +477,29 @@ return_statement: RETURN_VALUE expression SEMICOLON {
                 }
 ;
 
-if_statement: IF OPEN_PARENTHESIS condition CLOSE_PARENTHESIS statement_block {
+// The condition is checked as soon as it is parsed (mid-rule action), so that the error
+// location points at the condition rather than at the end of the block. The head is shared
+// by the three forms so that the parser has a single action to reduce before ')'.
+if_head: IF OPEN_PARENTHESIS expression { check_condition($3); } CLOSE_PARENTHESIS { $$ = $3; }
+;
+
+if_statement: if_head statement_block {
                 $$ = construct_node_default(A_IF);
-                add_child($$, $3);
-                add_sibling($3, $5);
+                add_child($$, $1);
+                add_sibling($1, $2);
             }
-            | IF OPEN_PARENTHESIS condition CLOSE_PARENTHESIS statement_block ELSE statement_block {
+            | if_head statement_block ELSE statement_block {
                 $$ = construct_node_default(A_IF_ELSE); 
-                add_child($$, $3); 
-                add_sibling($3, $5);
-                add_sibling($5, $7);
+                add_child($$, $1); 
+                add_sibling($1, $2);
+                add_sibling($2, $4);
             }
-            | IF OPEN_PARENTHESIS condition CLOSE_PARENTHESIS statement_block ELSE if_statement 
+            | if_head statement_block ELSE if_statement 
             {
                 $$ = construct_node_default(A_IF_ELSE_IF);
-                add_child($$, $3); 
-                add_sibling($3, $5);
-                add_sibling($5, $7);
+                add_child($$, $1); 
+                add_sibling($1, $2);
+                add_sibling($2, $4);
             }
 ;
 
@@ -526,16 +519,16 @@ loop_statement: while_statement { $$ = $1; }
               }
 ;
 
-while_statement: WHILE OPEN_PARENTHESIS condition CLOSE_PARENTHESIS { activate_loop_context(); } statement_block {
+while_statement: WHILE OPEN_PARENTHESIS expression { check_condition($3); } CLOSE_PARENTHESIS { activate_loop_context(); } statement_block {
                 $$ = construct_node_default(A_WHILE);
                 add_child($$, $3);
-                add_sibling($3, $6);
+                add_sibling($3, $7);
 
                 deactivate_loop_context();
             }
 ;
 
-for_statement: FOR OPEN_PARENTHESIS assignment_statement SEMICOLON condition SEMICOLON assignment_statement CLOSE_PARENTHESIS { activate_loop_context(); } statement_block {
+for_statement: FOR OPEN_PARENTHESIS assignment_statement SEMICOLON expression { check_condition($5); } SEMICOLON assignment_statement CLOSE_PARENTHESIS { activate_loop_context(); } statement_block {
         $$ = construct_node_default(A_FOR_LOOP);
         Node *initialization = construct_node_default(A_VARIABLE_ASSIGNMENT);
         add_child($$, initialization);
@@ -545,9 +538,9 @@ for_statement: FOR OPEN_PARENTHESIS assignment_statement SEMICOLON condition SEM
 
         Node *update = construct_node_default(A_VARIABLE_ASSIGNMENT);
         add_sibling($5, update);
-        add_child(update, $7);
+        add_child(update, $8);
 
-        add_sibling(update, $10);
+        add_sibling(update, $11);
 }
 ;
 

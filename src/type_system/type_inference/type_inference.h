@@ -39,7 +39,6 @@ const char *type_name(int type);
  * 
  * @note This function checks that conditions are properly typed as booleans for use in conditional statements.
  */
-int resolve_condition_type(Node *condition);
 
 
 /**

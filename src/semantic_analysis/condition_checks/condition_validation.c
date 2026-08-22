@@ -5,8 +5,9 @@
 #include "../semantic_checks.h"
 
 void check_condition(Node *condition) {
-    // Step 1: Resolve the type of the condition
-    int condition_type = resolve_condition_type(condition);
+    // Step 1: Resolve the type of the condition (an error inside it was already reported)
+    int condition_type = resolve_expression_type(condition);
+    if (condition_type == NULL_VALUE) return;
 
     // Step 2: Check if the condition is a valid boolean expression
     if (condition_type != A_BOOLEAN_LITERAL) {
@@ -16,7 +17,7 @@ void check_condition(Node *condition) {
             "  Expected a boolean expression, but received '%s'.\n"
             "  Ensure the expression evaluates to a boolean value.\n",
             get_formatted_location(),
-            (condition_type == NULL_VALUE) ? "UNKNOWN" : get_lexeme(condition_type)
+            type_name(condition_type)
         );
         yerror(error);
         return;

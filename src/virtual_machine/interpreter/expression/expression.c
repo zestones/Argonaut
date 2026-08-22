@@ -62,6 +62,39 @@ vm_cell resolve_expression(Node *expression) {
             return resolve_negation(operand);
         }
 
+        case A_EQUAL_OP:
+        case A_NOT_EQUAL_OP:
+        case A_LESS_THAN_OP:
+        case A_GREATER_THAN_OP:
+        case A_LESS_EQUAL_OP:
+        case A_GREATER_EQUAL_OP: {
+            vm_cell left = resolve_expression(expression->child);
+            vm_cell right = resolve_expression(expression->child->sibling);
+            return resolve_comparison(expression->type, left, right);
+        }
+
+        case A_AND_CONDITION: {
+            // Short-circuit: the right operand is evaluated only when the left one is true.
+            vm_cell left = resolve_boolean_expression(expression->child);
+            if (!left.value.boolean) return left;
+            return resolve_boolean_expression(expression->child->sibling);
+        }
+
+        case A_OR_CONDITION: {
+            vm_cell left = resolve_boolean_expression(expression->child);
+            if (left.value.boolean) return left;
+            return resolve_boolean_expression(expression->child->sibling);
+        }
+
+        case A_NOT_CONDITION: {
+            vm_cell operand = resolve_boolean_expression(expression->child);
+            int result = !operand.value.boolean;
+            return construct_vm_cell(BOOLEAN, &result);
+        }
+
+        case A_CONDITION:
+            return resolve_boolean_expression(expression->child);
+
         case A_ADD_OP:
         case A_SUB_OP:
         case A_MUL_OP:

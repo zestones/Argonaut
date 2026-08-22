@@ -58,6 +58,8 @@ static int is_statement(int type) {
     }
 }
 
+static int is_comparison(int type);
+
 static int is_expression(int type) {
     switch (type) {
         case A_INTEGER_LITERAL:
@@ -75,9 +77,13 @@ static int is_expression(int type) {
         case A_ARRAY_ACCESS:
         case A_STRUCT_FIELD_ACCESS:
         case A_FUNC_PROC_CALL_STATEMENT:
+        case A_CONDITION:
+        case A_AND_CONDITION:
+        case A_OR_CONDITION:
+        case A_NOT_CONDITION:
             return 1;
         default:
-            return 0;
+            return is_comparison(type);
     }
 }
 
@@ -95,18 +101,9 @@ static int is_comparison(int type) {
     }
 }
 
+/* A condition is any expression: the compiler checks that its type is bool. */
 static int is_condition(int type) {
-    switch (type) {
-        case A_CONDITION:
-        case A_AND_CONDITION:
-        case A_OR_CONDITION:
-        case A_NOT_CONDITION:
-        case A_BOOLEAN_LITERAL:
-        case A_IDENTIFIER:
-            return 1;
-        default:
-            return is_comparison(type);
-    }
+    return is_expression(type);
 }
 
 static int is_assignment(int type) {
@@ -198,8 +195,8 @@ static void check_shape(int region, const Node *node) {
         expect(region, node, c2, c2 != NULL && is_expression((int) c2->type), "a right operand");
     }
     else if (type == A_AND_CONDITION || type == A_OR_CONDITION) {
-        expect(region, node, c1, c1 != NULL && is_condition((int) c1->type), "a left condition");
-        expect(region, node, c2, c2 != NULL && is_condition((int) c2->type), "a right condition");
+        expect(region, node, c1, c1 != NULL && is_expression((int) c1->type), "a left condition");
+        expect(region, node, c2, c2 != NULL && is_expression((int) c2->type), "a right condition");
     }
     else if (type == A_NOT_CONDITION || type == A_CONDITION) {
         expect(region, node, c1, c1 != NULL && is_condition((int) c1->type), "a condition");

@@ -65,6 +65,16 @@ vm_cell resolve_arithmetic_operation(int operation, vm_cell left, vm_cell right)
 vm_cell resolve_negation(vm_cell operand);
 
 /**
+ * @brief Evaluates a comparison between two values of the same type.
+ *
+ * @param operation The comparison node type (A_EQUAL_OP ... A_GREATER_EQUAL_OP).
+ * @param left The left operand.
+ * @param right The right operand.
+ * @return A BOOLEAN cell.
+ */
+vm_cell resolve_comparison(int operation, vm_cell left, vm_cell right);
+
+/**
  * @brief Resolves a boolean expression and returns the resulting boolean value.
  *
  * This function resolves a boolean expression, which can involve logical operations (AND, OR, NOT), 

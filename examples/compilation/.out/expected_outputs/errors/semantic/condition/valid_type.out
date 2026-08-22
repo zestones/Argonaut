@@ -2,10 +2,6 @@
   Left operand type: 'date', right operand type: 'bool'.
   Ensure both operands are of compatible types for the condition.
 
-[Type Error] Invalid condition at examples/compilation/errors/semantic/condition/valid_type.arn:24:12.
-  Expected a boolean expression, but received 'UNKNOWN'.
-  Ensure the expression evaluates to a boolean value.
-
 Verbose mode enabled. Printing tables and ast...
 
 +----------------------------+
@@ -144,11 +140,10 @@ Root of the AST:
 │   │   └── A_VARIABLE_DECLARATION, Lexico Idx: 19, Decl Idx: 19 -- Lexeme: 'a'
 │   └── A_STATEMENT_LIST, Lexico Idx: -1, Decl Idx: -1
 │   │   ├── A_IF, Lexico Idx: -1, Decl Idx: -1
-│   │   │   ├── A_CONDITION, Lexico Idx: -1, Decl Idx: -1
-│   │   │   │   ├── A_EQUAL_OP, Lexico Idx: -1, Decl Idx: -1
-│   │   │   │   │   ├── A_IDENTIFIER, Lexico Idx: 19, Decl Idx: 19 -- Lexeme: 'a'
-│   │   │   │   │   └── A_IDENTIFIER, Lexico Idx: 18, Decl Idx: 18 -- Lexeme: 'z'
+│   │   │   ├── A_EQUAL_OP, Lexico Idx: -1, Decl Idx: -1
+│   │   │   │   ├── A_IDENTIFIER, Lexico Idx: 19, Decl Idx: 19 -- Lexeme: 'a'
+│   │   │   │   └── A_IDENTIFIER, Lexico Idx: 18, Decl Idx: 18 -- Lexeme: 'z'
 │   │   │   └── A_STATEMENT_LIST, Lexico Idx: -1, Decl Idx: -1
 +------------------------------------------------------------------------+
 
-Compilation failed: 2 error(s).
+Compilation failed: 1 error(s).

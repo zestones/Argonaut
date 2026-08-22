@@ -84,7 +84,7 @@ void execute_input(AST ast) {
     char buffer[BUFFER_SIZE] = {0};
     arg_list = arg_list->child;
     while (format[0] != '\0') {
-        if (format[0] == '%' && (format[1] == 'd' || format[1] == 'f' || format[1] == 's' || format[1] == 'c')) {
+        if (format[0] == '%' && is_format_specifier(format[1])) {
             char specifier = format[1];
             vm_cell cell;
 
@@ -110,6 +110,16 @@ void execute_input(AST ast) {
                     char value;
                     if (scanf(" %c", &value) != 1) input_failure(specifier);
                     cell = construct_vm_cell(CHARACTER, &value);
+                    break;
+                }
+                case 'b': {
+                    char word[8];
+                    int value;
+                    if (scanf("%7s", word) != 1) input_failure(specifier);
+                    if (strcmp(word, "true") == 0 || strcmp(word, "1") == 0) value = 1;
+                    else if (strcmp(word, "false") == 0 || strcmp(word, "0") == 0) value = 0;
+                    else input_failure(specifier);
+                    cell = construct_vm_cell(BOOLEAN, &value);
                     break;
                 }
                 // No default case as the format is already checked for 'd', 'f', 's', or 'c'
