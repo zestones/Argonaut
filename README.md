@@ -180,7 +180,7 @@ make check                    # unit + language + IR + doc examples + diagnostic
 make CONFIG=sanitize check    # the same suites under the sanitizers
 make CONFIG=sanitize check-leaks   # LeakSanitizer ratchet
 make lint                     # format-check, banned-check, warnings-check, cppcheck, tidy, analyze
-make coverage | bench | fuzz  # line coverage (gcov), micro-benchmarks, AFL++ fuzzing
+make coverage | bench | fuzz  # line coverage (gcov), benchmarks vs Python and C, AFL++ fuzzing
 make help                     # the full list
 ```
 
@@ -194,6 +194,8 @@ Tools: `gcc`/`clang`, `flex`, `bison`, `python3` (standard library only). Option
 | Compiler warnings | `tools/warnings_baseline.json` | `make warnings-check` | `make warnings-baseline` |
 | Banned C functions (`strcpy`, `sprintf`, `atoi`, `scanf`, …) | `tools/banned_baseline.json` | `make banned-check` | `python3 tools/check_banned.py --update` |
 | Performance | `tests/bench/baseline.json` | `make bench` (+30 % = regression) | `python3 tests/bench/run_bench.py --update` |
+
+**Benchmarks.** `make bench` runs the programs of `tests/bench/` with the release build and, on the same machine, their literal transcriptions in Python and C (`tests/bench/ref/`, same variables, loops and calls). The seconds are host-specific; the ratios `arg/py` and `arg/c` are not, and they are the numbers to watch when working on the VM. The baseline only guards `argov` against regressions.
 
 Two CI jobs describe the *target state* and stay red until the debt is paid: `warnings-as-errors` (`make WERROR=1`) and `static-analysis` (cppcheck, clang-tidy, `gcc -fanalyzer`). The `weekly` workflow runs the slow checks (valgrind, MemorySanitizer, fuzzing, benchmarks).
 
