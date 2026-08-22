@@ -1,27 +1,27 @@
 {
  "host": "zestones",
  "machine": "x86_64",
- "runs": 3,
+ "runs": 5,
  "programs": {
   "array_fill_sum.arn": {
-   "seconds": 1.15,
-   "max_rss_kb": 16744
+   "seconds": 0.9126,
+   "max_rss_kb": 16920
   },
   "calls_20k.arn": {
-   "seconds": 1.2974,
-   "max_rss_kb": 786008
+   "seconds": 1.1478,
+   "max_rss_kb": 785760
   },
   "fib_20.arn": {
-   "seconds": 1.159,
-   "max_rss_kb": 863080
+   "seconds": 1.0703,
+   "max_rss_kb": 862048
   },
   "loop_50k.arn": {
-   "seconds": 1.3527,
-   "max_rss_kb": 16744
+   "seconds": 1.0603,
+   "max_rss_kb": 16920
   },
   "struct_fields.arn": {
-   "seconds": 0.6782,
-   "max_rss_kb": 16744
+   "seconds": 0.5173,
+   "max_rss_kb": 16920
   }
  }
 }
