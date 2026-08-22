@@ -84,45 +84,19 @@ int resolve_func_proc_return_type(Node *function_call);
 int resolve_func_proc_parameter_type_at(int num_param, int index_declaration, Nature nature);
 
 
-/**
- * @brief Resolves the type of an array access expression.
- * 
- * This function resolves the type of an array access expression, ensuring that field access within arrays 
- * is handled correctly and that the correct declaration is used for array elements.
- * 
- * @param array_access A pointer to the node representing the array access expression.
- * @return The resolved type of the array access expression, or `NULL_VALUE` if an error occurs.
- * 
- * @note This function handles array access types and field access within arrays.
- */
-int resolve_array_access_type(Node *array_access);
+
+
 
 
 /**
- * @brief Resolves the access to a field within a struct.
- * 
- * This function resolves the access to a specific field within a struct. It checks if the field exists within the
- * struct, verifies the field's type, and handles any array accesses or nested struct accesses.
- * 
- * @param current_node A pointer to the node representing the field access.
- * @param current_type_declaration The declaration index of the struct being accessed.
- * @return The resolved type of the field, or `NULL_VALUE` if an error occurs.
- * 
- * @note This function handles both direct field access and nested struct/array field accesses.
+ * @brief Type of the value designated by an access chain (t[i], s.f, t[i].f[j], g[i][j]...).
+ *
+ * Reports the errors it finds (unknown variable, not an array, wrong number of indices,
+ * non-integer index, unknown field, field of a non-struct).
+ *
+ * @param access The root node of the chain (A_ARRAY_ACCESS or A_STRUCT_FIELD_ACCESS).
+ * @return The declaration index of the type, or NULL_VALUE after an error.
  */
-int resolve_field_access(Node *current_node, int current_type_declaration);
-
-/**
- * @brief Resolves the type of a struct field access expression.
- * 
- * This function resolves the type of a struct field access expression, ensuring that the field is valid and checking
- * for array access or nested field accesses.
- * 
- * @param struct_field_access A pointer to the node representing the struct field access expression.
- * @return The resolved type of the struct field access, or `NULL_VALUE` if an error occurs.
- * 
- * @note This function handles multiple levels of field accesses and array access within structs.
- */
-int resolve_struct_field_access_type(Node *struct_field_access);
+int resolve_access_type(Node *access);
 
 #endif // __TYPE_SYSTEM_H__

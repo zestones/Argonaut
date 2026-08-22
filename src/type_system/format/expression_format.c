@@ -77,10 +77,8 @@ char *format_expression(Node *expression) {
             return format_negation(expression);
 
         case A_ARRAY_ACCESS:
-            return format_array_access(expression);
-
-        case A_STRUCT_FIELD_ACCESS: 
-            return format_struct_access(expression);
+        case A_STRUCT_FIELD_ACCESS:
+            return format_access(expression);
 
         case A_FUNC_PROC_CALL_STATEMENT: 
             return format_func_proc_call(expression); 

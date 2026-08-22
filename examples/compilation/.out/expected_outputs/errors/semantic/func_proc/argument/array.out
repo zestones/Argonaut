@@ -3,8 +3,7 @@
   Ensure the argument type matches the expected type for the function or procedure.
 
 [Semantic Error] Field access error at examples/compilation/errors/semantic/func_proc/argument/array.arn:27:26.
-  The field 'e' does not exist in the struct 'personne'.
-  Ensure the field name is correct and defined within the struct type.
+  In 'p[0, 1].e.mois', the field 'e' does not exist in the struct 'personne'.
 
 [Type Error] Function 'main' expects argument 1 to be of type 'int' at examples/compilation/errors/semantic/func_proc/argument/array.arn:27:26.
   But the provided argument 'p[0, 1].e.mois' is of type 'UNKNOWN'.

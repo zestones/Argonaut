@@ -83,3 +83,12 @@ void add_chain(Node *parent, Node *nodes[], int count) {
 int is_node_null(Node* node) {
     return node == NULL;
 }
+
+Node* copy_ast(const Node* node) {
+    if (node == NULL) return NULL;
+
+    Node* copy = construct_node(node->type, node->index_lexicographic, node->index_declaration);
+    copy->child = copy_ast(node->child);
+    copy->sibling = copy_ast(node->sibling);
+    return copy;
+}

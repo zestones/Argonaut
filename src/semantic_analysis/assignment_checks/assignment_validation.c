@@ -32,50 +32,29 @@ void check_variable_assignment(int index_lexeme_lexicographic, Node *expression)
     }
 }
 
-void check_array_assignment(Node *array, Node *expression) {
-    // Step 1: Resolve the type of the array
-    int array_type = resolve_array_access_type(array);
+void check_access_assignment(Node *access, Node *expression) {
+    // Step 1: Resolve the type of the target (errors inside the chain are already reported)
+    int target_type = resolve_access_type(access);
+    if (target_type == NULL_VALUE) return;
 
     // Step 2: Resolve the type of the expression
     int expression_type = resolve_expression_type(expression);
+    if (expression_type == NULL_VALUE) return;
 
     // Step 3: Check type compatibility
-    if (array_type != expression_type) {
+    if (target_type != expression_type) {
+        char *target = format_access(access);
         set_error_type(&error, TYPE_ERROR);
         set_error_message(&error, 
             "Type mismatch during assignement at %s.\n"
-            "  Cannot assign expression of type '%s' to array '%s' of type '%s'.\n"
-            "  Please ensure the expression type is compatible with the array type.\n",
+            "  Cannot assign expression of type '%s' to '%s' of type '%s'.\n"
+            "  Ensure the expression type matches the expected type of the target.\n",
             get_formatted_location(),
             type_name(expression_type),
-            (array_type == NULL_VALUE) ? "UNKNOWN" : format_array_access(array),
-            (array_type == NULL_VALUE) ? "UNKNOWN" : get_lexeme(array_type)
+            target,
+            type_name(target_type)
         );
         yerror(error);
-        return;
-    }
-}
-
-void check_struct_assignment(Node *structure, Node *expression) {
-    // Step 1: Resolve the type of the structure field access
-    int struct_field_type = resolve_struct_field_access_type(structure);
-
-    // Step 2: Resolve the type of the expression
-    int expression_type = resolve_expression_type(expression);
-
-    // Step 3: Check type compatibility
-    if (struct_field_type != expression_type) {
-        set_error_type(&error, TYPE_ERROR);
-        set_error_message(&error, 
-            "Type mismatch during assignement at %s.\n"
-            "  Cannot assign expression of type '%s' to struct field '%s' of type '%s'.\n"
-            "  Ensure the expression type matches the expected type for the struct field.\n",
-            get_formatted_location(),
-            type_name(expression_type),
-            (struct_field_type == NULL_VALUE) ? "UNKNOWN" : format_struct_access(structure),
-            (struct_field_type == NULL_VALUE) ? "UNKNOWN" : get_lexeme(struct_field_type)
-        );
-        yerror(error);
-        return;
+        free(target);
     }
 }

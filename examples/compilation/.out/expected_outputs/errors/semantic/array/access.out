@@ -3,20 +3,10 @@
   Ensure the type is properly declared before use.
 
 [Semantic Error] Array access error at examples/compilation/errors/semantic/array/access.arn:26:11.
-  The expression 'z[0]' attempts to access an array, but 'z' is not an array.
-  'z' is of type 'UNKNOWN', which is incompatible with array access.
+  'z[0]' is indexed, but it is of type 'UNKNOWN', which is not an array.
 
-[Type Error] Type mismatch during assignement at examples/compilation/errors/semantic/array/access.arn:26:11.
-  Cannot assign expression of type 'int' to array 'UNKNOWN' of type 'UNKNOWN'.
-  Please ensure the expression type is compatible with the array type.
-
-[Semantic Error] Invalid field access at examples/compilation/errors/semantic/array/access.arn:27:16.
-  'y' is of type 'int', which is incompatible with field access.
-  Ensure the entity is a struct before attempting to access its fields.
-
-[Type Error] Type mismatch during assignement at examples/compilation/errors/semantic/array/access.arn:27:16.
-  Cannot assign expression of type 'int' to array 'UNKNOWN' of type 'UNKNOWN'.
-  Please ensure the expression type is compatible with the array type.
+[Semantic Error] Field access error at examples/compilation/errors/semantic/array/access.arn:27:16.
+  'y[0].jour' accesses a field of a value of type 'int', which is not a struct.
 
 Verbose mode enabled. Printing tables and ast...
 
@@ -181,4 +171,4 @@ Root of the AST:
 │   │   │   │   └── A_INTEGER_LITERAL, Lexico Idx: 21, Decl Idx: -1 -- Lexeme: '1'
 +------------------------------------------------------------------------+
 
-Compilation failed: 5 error(s).
+Compilation failed: 3 error(s).

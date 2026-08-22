@@ -9,39 +9,7 @@
 #include "../../symbol_table/declaration/declaration_table.h" 
 
 
-/**
- * @brief Formats a struct access expression into a string representation.
- * 
- * This function formats an expression that accesses a struct's field or array element. 
- * The struct name is followed by the field or array access, each formatted recursively 
- * with the appropriate dot notation for struct field access and array index notation.
- * 
- * @param struct_access A pointer to the node representing the struct access expression.
- * @return A dynamically allocated string representing the formatted struct access expression.
- * 
- * @note The caller is responsible for freeing the returned string.
- * 
- * @warning The function assumes that the struct access is valid and that field and array 
- *          accesses are correctly formed. Memory allocation failures may result in undefined behavior.
- */
-char *format_struct_access(Node *struct_access);
 
-/**
- * @brief Formats an array access expression into a string representation.
- * 
- * This function formats an array access expression into a string. The formatted string 
- * includes the array name and the formatted array indices or field accesses. If the 
- * array has any field accesses, they are represented with a dot (`.`) before the field name. 
- * The string is dynamically allocated and must be freed by the caller.
- * 
- * @param array_access A pointer to the node representing the array access.
- * @return A dynamically allocated string representing the formatted array access.
- * 
- * @note The caller is responsible for freeing the returned string.
- * 
- * @warning If memory allocation fails during concatenation, the function may result in undefined behavior.
- */
-char *format_array_access(Node *array_access);
 
 /**
  * @brief Formats an expression into a string representation.
@@ -60,6 +28,14 @@ char *format_array_access(Node *array_access);
  *          and `NULL` will be returned. Memory allocation failures may result in undefined behavior.
  */
 char *format_expression(Node *expression);
+
+/**
+ * @brief Formats an access chain (t[i].f[j]) as source text.
+ *
+ * @param access The root node of the chain.
+ * @return A malloc'ed string; the caller frees it.
+ */
+char *format_access(Node *access);
 
 /**
  * @brief Formats a function or procedure call into a string representation.

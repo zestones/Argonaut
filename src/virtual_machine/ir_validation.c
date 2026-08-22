@@ -213,7 +213,7 @@ static void check_shape(int region, const Node *node) {
             expect(region, c1, index, index->type == A_ARRAY_INDEX, "an index");
             expect(region, index, index->child, index->child != NULL && is_expression((int) index->child->type), "an expression");
         }
-        if (c2 != NULL) expect(region, node, c2, c2->type == A_STRUCT_FIELD_ACCESS, "a field access");
+        if (c2 != NULL) expect(region, node, c2, c2->type == A_STRUCT_FIELD_ACCESS || c2->type == A_ARRAY_ACCESS, "a field or index access");
     }
     else if (type == A_STRUCT_FIELD_ACCESS) {
         if (c1 != NULL) expect(region, node, c1, c1->type == A_STRUCT_FIELD_ACCESS || c1->type == A_ARRAY_ACCESS, "a field or array access");
@@ -256,7 +256,6 @@ static int node_requires_declaration(int type) {
         case A_IDENTIFIER:
         case A_VARIABLE_DECLARATION:
         case A_FUNC_PROC_CALL_STATEMENT:
-        case A_ARRAY_ACCESS:
         case A_PARAMETER:
         case A_FUNCTION_DECLARATION:
         case A_PROCEDURE_DECLARATION:

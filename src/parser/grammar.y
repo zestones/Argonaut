@@ -13,6 +13,7 @@
     #include "../syntax_analysis/loop_statement.h"
 
     #include "parser.h"
+    #include "../ast/access_chain.h"
 
     #include "../utils/errors.h"
 
@@ -25,6 +26,22 @@
 
     int yylex();
     int is_in_loop = 0;
+
+    /* a[i]++ / s.f-- : the target is the access chain, the value is a copy of it plus or minus 1. */
+    static Node *build_access_inc_dec(Node *access, NodeType operation, int one_lexeme) {
+        Node *assignment = construct_node_default(access->type == A_ARRAY_ACCESS ? A_ARRAY_ASSIGNMENT : A_STRUCT_ASSIGNMENT);
+        Node *op_node = construct_node_default(operation);
+        Node *copy = copy_ast(access);
+        Node *one = construct_node(A_INTEGER_LITERAL, one_lexeme, NULL_VALUE);
+
+        add_child(op_node, copy);
+        add_sibling(copy, one);
+        add_child(assignment, access);
+        add_sibling(access, op_node);
+
+        check_access_assignment(access, op_node);
+        return assignment;
+    }
 
     /* A binary node: the operands are the two children (left first). */
     static Node *build_binary(NodeType type, Node *left, Node *right) {
@@ -110,7 +127,7 @@
 %type <lexicographic_index> type bound
 
 %type <ast> assignment_statement if_head if_statement standalone_func_proc_call_statement func_proc_call_expression
-%type <ast> array_access_statement array_indices struct_access_statement print_statement input_statement
+%type <ast> access array_indices print_statement input_statement
 %type <ast> loop_statement while_statement for_statement
 
 %type <ast> variable_declaration type_declaration complex_type_fields type_field
@@ -324,8 +341,7 @@ expression_atom: IDENTIFIER  { check_variable_definition($1); $$ = construct_nod
                | CHARACTER_VALUE { $$ = construct_node(A_CHARACTER_LITERAL, $1, NULL_VALUE); }
                | STRING_VALUE { $$ = construct_node(A_STRING_LITERAL, $1, NULL_VALUE); }
                | func_proc_call_expression { $$ = $1; }  
-               | array_access_statement { $$ = $1; }
-               | struct_access_statement { $$ = $1; }
+               | access { $$ = $1; }
 ;
 
 // TODO : is there a better way to assign the lexicographic_index to the base type ?
@@ -409,17 +425,11 @@ assignment_statement: IDENTIFIER { check_variable_definition($1); } OPAFF expres
                         add_child($$, $4);
                         check_variable_assignment($1, $4);
                     }
-                    | array_access_statement OPAFF expression {
-                        $$ = construct_node_default(A_ARRAY_ASSIGNMENT);
+                    | access OPAFF expression {
+                        $$ = construct_node_default($1->type == A_ARRAY_ACCESS ? A_ARRAY_ASSIGNMENT : A_STRUCT_ASSIGNMENT);
                         add_child($$, $1);  
                         add_sibling($1, $3);
-                        check_array_assignment($1, $3);
-                    }
-                    | struct_access_statement OPAFF expression {
-                        $$ = construct_node_default(A_STRUCT_ASSIGNMENT);
-                        add_child($$, $1);  
-                        add_sibling($1, $3);
-                        check_struct_assignment($1, $3);
+                        check_access_assignment($1, $3);
                     }
                     | inc_dec_statement { $$ = $1; }
 ;
@@ -458,6 +468,8 @@ inc_dec_statement: IDENTIFIER DECREMENT {
 
                         check_variable_assignment($1, op_node);
                     }
+                    | access INCREMENT { $$ = build_access_inc_dec($1, A_ADD_OP, $2); }
+                    | access DECREMENT { $$ = build_access_inc_dec($1, A_SUB_OP, $2); }
 ;
 
 return_statement: RETURN_VALUE expression SEMICOLON {
@@ -561,21 +573,17 @@ for_statement: FOR OPEN_PARENTHESIS assignment_statement SEMICOLON expression { 
 standalone_func_proc_call_statement: func_proc_call_expression SEMICOLON { $$ = $1; }
 ;
 
-array_access_statement: IDENTIFIER OPEN_BRACKET array_indices CLOSE_BRACKET {
-                            $$ = construct_node(A_ARRAY_ACCESS, $1, find_declaration_index($1));
-                            add_child($$, $3);
-                    }
-                    | IDENTIFIER OPEN_BRACKET array_indices CLOSE_BRACKET DOT IDENTIFIER {
-                            $$ = construct_node(A_ARRAY_ACCESS, $1, find_declaration_index($1));
-                            Node *field = construct_node(A_STRUCT_FIELD_ACCESS, $6, find_declaration_index($6));
-                            add_child($$, $3);
-                            add_sibling($3, field);
-                    }
-                    | IDENTIFIER OPEN_BRACKET array_indices CLOSE_BRACKET DOT struct_access_statement {
-                            $$ = construct_node(A_ARRAY_ACCESS, $1, find_declaration_index($1));
-                            add_child($$, $3);
-                            add_sibling($3, $6);
-                    }
+// Access chains: t[i], s.f, t[i].f, s.t[i], g[i][j], t[i].f[j]... (see ast/access_chain.h)
+access: IDENTIFIER OPEN_BRACKET array_indices CLOSE_BRACKET {
+            $$ = construct_node(A_ARRAY_ACCESS, $1, find_declaration_index($1));
+            add_child($$, $3);
+      }
+      | IDENTIFIER DOT IDENTIFIER {
+            $$ = construct_node(A_STRUCT_FIELD_ACCESS, $1, find_declaration_index($1));
+            add_child($$, construct_node(A_STRUCT_FIELD_ACCESS, $3, NULL_VALUE));
+      }
+      | access OPEN_BRACKET array_indices CLOSE_BRACKET { access_chain_index($1, $3); $$ = $1; }
+      | access DOT IDENTIFIER { access_chain_field($1, $3); $$ = $1; }
 ;
 
 array_indices: expression {
@@ -593,21 +601,6 @@ array_indices: expression {
                 
                 $$ = $1; // Preserve the existing list structure
             }
-;
-
-struct_access_statement: IDENTIFIER DOT IDENTIFIER {
-                            $$ = construct_node(A_STRUCT_FIELD_ACCESS, $1, find_declaration_index($1));
-                            Node *field = construct_node(A_STRUCT_FIELD_ACCESS, $3, find_declaration_index($3));
-                            add_child($$, field);
-                       }
-                       | IDENTIFIER DOT struct_access_statement {
-                            $$ = construct_node(A_STRUCT_FIELD_ACCESS, $1, find_declaration_index($1));
-                            add_child($$, $3);
-                       }
-                       | IDENTIFIER DOT array_access_statement {
-                            $$ = construct_node(A_STRUCT_FIELD_ACCESS, $1, find_declaration_index($1));
-                            add_child($$, $3);
-                       }
 ;
 
 print_statement: PRINT OPEN_PARENTHESIS format_string COMMA argument_list CLOSE_PARENTHESIS SEMICOLON {
@@ -652,14 +645,7 @@ input_argument_list: IDENTIFIER {
                         add_child(single_argument, construct_node(A_IDENTIFIER, $1, find_declaration_index($1)));
                         add_child($$, single_argument);
                     }
-                   | array_access_statement {
-                        $$ = construct_node_default(A_ARGUMENT_LIST);
-                        Node *single_argument = construct_node_default(A_ARGUMENT);
-
-                        add_child(single_argument, $1);
-                        add_child($$, single_argument);
-                    }
-                   | struct_access_statement {
+                   | access {
                         $$ = construct_node_default(A_ARGUMENT_LIST);
                         Node *single_argument = construct_node_default(A_ARGUMENT);
 
@@ -672,13 +658,7 @@ input_argument_list: IDENTIFIER {
                         add_sibling($1->child, single_argument);
                         $$ = $1;
                    }
-                   | input_argument_list COMMA array_access_statement {
-                        Node *single_argument = construct_node_default(A_ARGUMENT);
-                        add_child(single_argument, $3);
-                        add_sibling($1->child, single_argument);
-                        $$ = $1;
-                   }
-                   | input_argument_list COMMA struct_access_statement {
+                   | input_argument_list COMMA access {
                         Node *single_argument = construct_node_default(A_ARGUMENT);
                         add_child(single_argument, $3);
                         add_sibling($1->child, single_argument);

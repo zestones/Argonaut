@@ -30,10 +30,11 @@ void check_input_proc_argument_list(Node *format_string, Node *argument_list) {
     for (int i = 0; i < expected_count; ++i) {
         char specifier = get_nth_format_specifier(format, i);
 
-        check_variable_definition(current_arg->child->index_lexicographic);
+        // A plain identifier is not checked by the grammar here; access chains check themselves.
+        if (current_arg->child->type == A_IDENTIFIER) check_variable_definition(current_arg->child->index_lexicographic);
         int entity_type = resolve_expression_type(current_arg->child);
 
-        if (!is_compatible_with_format_specifier(entity_type, specifier)) {
+        if (entity_type != NULL_VALUE && !is_compatible_with_format_specifier(entity_type, specifier)) {
             set_error_type(&error, TYPE_ERROR);
             set_error_message(&error, 
                 "Type mismatch for argument %d at %s.\n"
@@ -41,8 +42,8 @@ void check_input_proc_argument_list(Node *format_string, Node *argument_list) {
                 "  Ensure the input type matches the expected type for the specifier.\n",
                 i + 1,
                 get_formatted_location(),
-                i + 1, 
-                get_lexeme(entity_type), 
+                i + 1,
+                type_name(entity_type),
                 specifier
             );
             yerror(error);

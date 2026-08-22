@@ -30,11 +30,8 @@ static int resolve_argument_type(Node *argument_node) {
     else if (argument_type == A_FUNC_PROC_CALL_STATEMENT) {
         type = resolve_func_proc_return_type(argument_node->child);
     }
-    else if (argument_type == A_STRUCT_FIELD_ACCESS) {
-        type = resolve_struct_field_access_type(argument_node->child);
-    }
-    else if (argument_type == A_ARRAY_ACCESS) {
-        type = resolve_array_access_type(argument_node->child);
+    else if (argument_type == A_STRUCT_FIELD_ACCESS || argument_type == A_ARRAY_ACCESS) {
+        type = resolve_access_type(argument_node->child);
     }
     else if (argument_type == A_ADD_OP || argument_type == A_SUB_OP || argument_type == A_MUL_OP || argument_type == A_DIV_OP || argument_type == A_MODULO_OP || argument_type == A_NEG_OP) {
         type = resolve_expression_type(argument_node->child);

@@ -83,4 +83,12 @@ void add_chain(Node *parent, Node *nodes[], int count);
  */
 int is_node_null(Node* node);
 
+/**
+ * @brief Deep-copies a node with its children and siblings.
+ *
+ * @param node The node to copy (NULL gives NULL).
+ * @return A new tree, independent of the original.
+ */
+Node* copy_ast(const Node* node);
+
 #endif // __LCRS_H__

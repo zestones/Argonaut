@@ -29,7 +29,11 @@ static void runtime_error(const char *message) {
     exit(EXIT_FAILURE);
 }
 
-int array_element_offset(Node *access, int array_type, int *type_out) {
+/**
+ * @brief Consumes the indices of one array level (all its dimensions) and, when indices remain
+ *        and the elements are arrays themselves (g[i, j] on an array of arrays), of the next levels.
+ */
+static int consume_indices(Node **index_node, int array_type, int *type_out) {
     int num_dimensions = get_array_dimension(array_type);
     int element_type = get_array_element_type(array_type);
     int element_size = get_declaration_execution(element_type);
@@ -37,9 +41,8 @@ int array_element_offset(Node *access, int array_type, int *type_out) {
     int offset = 0;
     int stride = element_size; // the first index varies fastest
 
-    Node *index_node = (access->child != NULL) ? access->child->child : NULL;
     for (int dim = 0; dim < num_dimensions; dim++) {
-        if (index_node == NULL) {
+        if (*index_node == NULL) {
             set_error_type(&error, RUN_TIME_ERROR);
             set_error_message(
                 &error,
@@ -51,7 +54,7 @@ int array_element_offset(Node *access, int array_type, int *type_out) {
             exit(EXIT_FAILURE);
         }
 
-        vm_cell index_cell = resolve_expression(index_node->child);
+        vm_cell index_cell = resolve_expression((*index_node)->child);
         if (index_cell.type != INTEGER) {
             set_error_type(&error, RUN_TIME_ERROR);
             set_error_message(
@@ -82,22 +85,44 @@ int array_element_offset(Node *access, int array_type, int *type_out) {
 
         offset += (index - lower_bound) * stride;
         stride *= (upper_bound - lower_bound + 1);
-        index_node = index_node->sibling;
+        *index_node = (*index_node)->sibling;
     }
 
-    if (index_node != NULL) runtime_error("Too many indices provided for array access.");
-
-    // Optional trailing field access on a structure element: t[i].x
-    Node *field = (access->child != NULL) ? access->child->sibling : NULL;
-    if (field != NULL) {
-        if (get_declaration_nature(element_type) != TYPE_STRUCT) {
-            runtime_error("Field access on an array whose elements are not structures.");
+    if (*index_node != NULL) {
+        if (get_declaration_nature(element_type) != TYPE_ARRAY) {
+            runtime_error("Too many indices provided for array access.");
         }
-        return offset + struct_field_offset(field, element_type, type_out);
+        return offset + consume_indices(index_node, element_type, type_out);
     }
 
     if (type_out != NULL) *type_out = element_type;
     return offset;
+}
+
+int array_element_offset(Node *access, int array_type, int *type_out) {
+    int element_type = NULL_VALUE;
+    Node *index_node = (access->child != NULL) ? access->child->child : NULL;
+    int offset = consume_indices(&index_node, array_type, &element_type);
+
+    Node *trailing = (access->child != NULL) ? access->child->sibling : NULL;
+    if (trailing == NULL) {
+        if (type_out != NULL) *type_out = element_type;
+        return offset;
+    }
+
+    if (trailing->type == A_ARRAY_ACCESS && trailing->index_lexicographic == NULL_VALUE) {
+        // g[i][j]: the element is an array indexed again
+        if (get_declaration_nature(element_type) != TYPE_ARRAY) {
+            runtime_error("Index applied to an element that is not an array.");
+        }
+        return offset + array_element_offset(trailing, element_type, type_out);
+    }
+
+    // t[i].f...: a field of a structure element
+    if (get_declaration_nature(element_type) != TYPE_STRUCT) {
+        runtime_error("Field access on an array whose elements are not structures.");
+    }
+    return offset + struct_field_offset(trailing, element_type, type_out);
 }
 
 int get_array_address(Node *start_array_access, int base_address) {

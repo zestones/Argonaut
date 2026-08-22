@@ -1,3 +1,6 @@
+[Semantic Error] Access error at examples/compilation/errors/semantic/func_proc/predefined/input_proc.arn:18:30.
+  'tab[0]' is not a variable.
+
 [Type Error] Type mismatch for argument 1 at examples/compilation/errors/semantic/func_proc/predefined/input_proc.arn:22:39.
   Input entity 1 has type 'float', but specifier 'd' requires a different type.
   Ensure the input type matches the expected type for the specifier.
@@ -176,4 +179,4 @@ Root of the AST:
 │   │   │   ├── A_FORMAT_STRING, Lexico Idx: 17, Decl Idx: -1 -- Lexeme: '"%c %d"'
 +------------------------------------------------------------------------+
 
-Compilation failed: 4 error(s).
+Compilation failed: 5 error(s).

@@ -1,0 +1,18 @@
+// CATEGORY: sanity
+// DESC: chained accesses: array of structs with array fields, arrays of arrays, ++ on elements
+// OUT: 5 7
+// OUT: 1 2 3 4
+// OUT: 9 10
+type Arr : array[0:1] of int;
+type S : struct { v : int; arr : Arr; } fstruct;
+type SA : array[0:1] of S;
+type Row : array[0:1] of int;
+type Grid : array[0:1] of Row;
+type Cell : struct { g : Grid; } fstruct;
+var sa : SA; var grid : Grid; var c : Cell;
+sa[0].arr[1] := 5; sa[1].v := 6; sa[1].v++;
+print("%d %d\n", sa[0].arr[1], sa[1].v);
+grid[0][0] := 1; grid[0][1] := 2; grid[1, 0] := 3; grid[1][1] := 4;
+print("%d %d %d %d\n", grid[0][0], grid[0, 1], grid[1][0], grid[1][1]);
+c.g[1][1] := 9; c.g[1][0] := 9; c.g[1][0]++;
+print("%d %d\n", c.g[1][1], c.g[1][0]);

@@ -196,10 +196,8 @@ int resolve_expression_type(Node *expression) {
         }
 
         case A_ARRAY_ACCESS:
-            return resolve_array_access_type(expression);
-
-        case A_STRUCT_FIELD_ACCESS: 
-            return resolve_struct_field_access_type(expression);
+        case A_STRUCT_FIELD_ACCESS:
+            return resolve_access_type(expression);
 
         case A_FUNC_PROC_CALL_STATEMENT: 
             return resolve_func_proc_return_type(expression);
