@@ -55,7 +55,7 @@ void check_type_redefinition(int index_lexeme_lexicographic, Nature nature) {
         );
 
         int declaration_region = get_declaration_region(index_lexeme_declaration);
-        int current_region = get_current_region_id();
+        int current_region = peek_region();
 
         declaration_region == current_region ? yerror(error) : yywarn(error);
     }
