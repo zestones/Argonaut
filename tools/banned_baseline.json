@@ -4,7 +4,7 @@
   "atol": 0,
   "gets": 0,
   "scanf": 4,
-  "sprintf": 40,
+  "sprintf": 35,
   "strcat": 29,
   "strcpy": 4,
   "strncpy": 1,

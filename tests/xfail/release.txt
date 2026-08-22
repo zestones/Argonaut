@@ -22,7 +22,6 @@ tests/lang/bugs/b25_wiki_input_string.arn  # unexpected compile error: [Type Err
 tests/lang/bugs/b32_long_string.arn  # argoc: crash (signal -6) *** buffer overflow detected ***: terminated
 tests/lang/bugs/b33_many_int_literals.arn  # argoc: crash (signal -6) *** buffer overflow detected ***: terminated
 tests/lang/bugs/b34_many_identifiers.arn  # unexpected compile error: <Error> Declaration table is full
-tests/lang/bugs/b35_recursion_depth_100.arn  # argov: crash (code -11) 
 tests/lang/bugs/b36_arr_in_struct_base_nonzero.arn  # argov: exit 1 — [Run Time Error] Insufficient indices provided for array assignment.
 tests/lang/bugs/b37_2d_array_of_structs.arn  # argov: exit 1 — Error: Get Stack Value - Index out of bounds
 tests/lang/bugs/b43_uninit_array_read.arn  # argov exited with 0 (runtime error expected) — output: 0
