@@ -1,10 +1,10 @@
 {
-  "atof": 2,
-  "atoi": 4,
+  "atof": 1,
+  "atoi": 3,
   "atol": 0,
   "gets": 0,
   "scanf": 4,
-  "sprintf": 35,
+  "sprintf": 32,
   "strcat": 29,
   "strcpy": 4,
   "strncpy": 1,
