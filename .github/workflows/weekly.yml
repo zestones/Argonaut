@@ -1,0 +1,99 @@
+# Slow or probabilistic checks that do not belong in the pull-request gate:
+# valgrind, MemorySanitizer, fuzzing and benchmarks. Runs once a week (Monday 03:30 UTC) and on demand.
+name: Weekly
+
+on:
+  schedule:
+    - cron: '30 3 * * 1'
+  workflow_dispatch:
+    inputs:
+      fuzz_minutes:
+        description: Fuzzing duration per target (minutes)
+        default: '10'
+        required: false
+
+permissions:
+  contents: read
+
+env:
+  MAKEFLAGS: -j4
+
+jobs:
+  valgrind:
+    name: valgrind memcheck
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - run: sudo apt-get update && sudo apt-get install -y flex bison valgrind
+      - run: make CONFIG=debug
+      - name: Language suite under valgrind
+        run: make check-valgrind
+
+  msan:
+    name: MemorySanitizer (clang)
+    runs-on: ubuntu-24.04
+    env:
+      MSAN_OPTIONS: print_stats=1
+    steps:
+      - uses: actions/checkout@v4
+      - run: sudo apt-get update && sudo apt-get install -y flex bison clang
+      - run: make CONFIG=msan CC=clang check
+
+  fuzz:
+    name: AFL++ (${{ matrix.target }})
+    runs-on: ubuntu-24.04
+    strategy:
+      fail-fast: false
+      matrix:
+        target: [fuzz, fuzz-vm]
+    steps:
+      - uses: actions/checkout@v4
+      - run: sudo apt-get update && sudo apt-get install -y flex bison afl++ clang
+      - run: make CONFIG=debug
+      - name: Fuzz
+        env:
+          AFL_NO_UI: '1'
+          AFL_SKIP_CPUFREQ: '1'
+          AFL_I_DONT_CARE_ABOUT_MISSING_CRASHES: '1'
+        run: |
+          minutes='${{ github.event.inputs.fuzz_minutes || 10 }}'
+          make ${{ matrix.target }} FUZZ_CC=afl-cc FUZZ_TIME=$((minutes * 60))
+      - name: Report findings
+        if: always()
+        run: |
+          for d in build/fuzz/out build/fuzz/out-vm; do
+            [ -d "$d" ] || continue
+            crashes=$(find "$d" -path '*/crashes/*' -type f ! -name README.txt | wc -l)
+            hangs=$(find "$d" -path '*/hangs/*' -type f | wc -l)
+            echo "$d: $crashes crash(es), $hangs hang(s)" | tee -a "$GITHUB_STEP_SUMMARY"
+            [ "$crashes" -eq 0 ] && [ "$hangs" -eq 0 ] || status=1
+          done
+          exit "${status:-0}"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: fuzz-findings-${{ matrix.target }}
+          path: |
+            build/fuzz/out/default/crashes
+            build/fuzz/out/default/hangs
+            build/fuzz/out-vm/default/crashes
+            build/fuzz/out-vm/default/hangs
+          if-no-files-found: ignore
+          retention-days: 30
+
+  bench:
+    name: benchmarks (informational)
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - run: sudo apt-get update && sudo apt-get install -y flex bison
+      - run: make CONFIG=release
+      - name: Measure
+        run: |
+          python3 tests/bench/run_bench.py --argoc build/release/argoc --argov build/release/argov \
+            --runs 5 --json build/bench.json | tee -a "$GITHUB_STEP_SUMMARY"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: bench-results
+          path: build/bench.json
+          retention-days: 90

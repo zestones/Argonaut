@@ -1,0 +1,169 @@
+# Pull-request / push gate. Everything here must stay green for a change to be mergeable,
+# except the jobs explicitly documented as "target state" in the README (Development section).
+name: CI
+
+on:
+  push:
+    branches: [main, dev]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  MAKEFLAGS: -j4
+
+jobs:
+  build-test:
+    name: ${{ matrix.os }} · ${{ matrix.cc }} · ${{ matrix.config }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-24.04]
+        cc: [gcc, clang]
+        config: [debug, release]
+        include:
+          - os: macos-14
+            cc: clang
+            config: debug
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install toolchain (Linux)
+        if: runner.os == 'Linux'
+        run: sudo apt-get update && sudo apt-get install -y flex bison
+
+      - name: Install toolchain (macOS)
+        if: runner.os == 'macOS'
+        run: |
+          brew install flex bison
+          echo "$(brew --prefix bison)/bin" >> "$GITHUB_PATH"
+          echo "$(brew --prefix flex)/bin" >> "$GITHUB_PATH"
+
+      - name: Versions
+        run: |
+          ${{ matrix.cc }} --version | head -1
+          bison --version | head -1
+          flex --version
+
+      - name: Build
+        run: make CC=${{ matrix.cc }} CONFIG=${{ matrix.config }}
+
+      - name: Unit, language, IR, documentation and regression tests
+        run: make CC=${{ matrix.cc }} CONFIG=${{ matrix.config }} check
+
+      - name: Upload test report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: junit-${{ matrix.os }}-${{ matrix.cc }}-${{ matrix.config }}
+          path: build/${{ matrix.config }}/junit-lang.xml
+          if-no-files-found: ignore
+          retention-days: 14
+
+  c23:
+    name: C23 build (gcc -std=gnu2x)
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - run: sudo apt-get update && sudo apt-get install -y flex bison
+      - name: Build and test with the C23 dialect
+        run: make CSTD=-std=gnu2x check
+
+  sanitize:
+    name: ASan + UBSan
+    runs-on: ubuntu-24.04
+    env:
+      ASAN_OPTIONS: detect_stack_use_after_return=1:detect_leaks=0:strict_string_checks=1
+      UBSAN_OPTIONS: print_stacktrace=1
+    steps:
+      - uses: actions/checkout@v4
+      - run: sudo apt-get update && sudo apt-get install -y flex bison
+      - name: Build and test the instrumented binaries
+        run: make CONFIG=sanitize check
+      - name: Upload test report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: junit-sanitize
+          path: build/sanitize/junit-lang.xml
+          if-no-files-found: ignore
+          retention-days: 14
+
+  warnings-as-errors:
+    # Target state: the strict warning set compiles cleanly. Red until the warning backlog
+    # recorded in tools/warnings_baseline.json is paid off (the `lint` job prevents it from growing).
+    name: warnings as errors (target state)
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - run: sudo apt-get update && sudo apt-get install -y flex bison
+      - run: make WERROR=1
+
+  lint:
+    name: format · banned functions · warnings ratchet
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - run: sudo apt-get update && sudo apt-get install -y flex bison clang-format
+      - name: clang-format (files changed by this branch)
+        env:
+          BASE_REF: origin/${{ github.base_ref || 'main' }}
+        run: make format-check
+      - name: Banned C functions must not increase
+        run: make banned-check
+      - name: Compiler warnings must not increase
+        run: make warnings-check
+
+  static-analysis:
+    # Target state: no finding from cppcheck, clang-tidy and gcc -fanalyzer.
+    name: static analysis (target state)
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - run: sudo apt-get update && sudo apt-get install -y flex bison cppcheck clang-tidy
+      - name: Generate the parsers (clang-tidy needs y.tab.h)
+        run: make build/gen/compiler/y.tab.h build/gen/vm/y.tab.h
+      - name: cppcheck
+        run: make cppcheck
+      - name: clang-tidy
+        if: always()
+        run: make tidy
+      - name: gcc -fanalyzer
+        if: always()
+        run: make analyze
+
+  coverage:
+    name: coverage
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - run: sudo apt-get update && sudo apt-get install -y flex bison gcovr
+      - name: Run the suite with coverage instrumentation
+        run: |
+          mkdir -p build/coverage
+          make coverage | tee build/coverage/summary.txt
+      - name: Summary
+        if: always()
+        run: |
+          echo '## Line coverage' >> "$GITHUB_STEP_SUMMARY"
+          echo '```' >> "$GITHUB_STEP_SUMMARY"
+          tail -n 5 build/coverage/summary.txt >> "$GITHUB_STEP_SUMMARY"
+          echo '```' >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: coverage-report
+          path: |
+            build/coverage/coverage.json
+            build/coverage/html
+          if-no-files-found: ignore
+          retention-days: 14

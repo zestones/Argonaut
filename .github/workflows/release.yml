@@ -1,0 +1,36 @@
+# Tagged releases: build the hardened configuration, run the full check, publish a tarball.
+#   git tag -a v0.2.0 -m "v0.2.0" && git push origin v0.2.0
+name: Release
+
+on:
+  push:
+    tags: ['v*.*.*']
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - run: sudo apt-get update && sudo apt-get install -y flex bison
+      - name: Build (release) and check
+        run: |
+          make -j4 CONFIG=release
+          make CONFIG=release check
+      - name: Package
+        run: |
+          version="${GITHUB_REF_NAME#v}"
+          dir="argonaut-${version}-linux-x86_64"
+          mkdir -p "dist/$dir"
+          cp build/release/argoc build/release/argov README.md LICENSE "dist/$dir/"
+          cp -r examples "dist/$dir/examples"
+          tar -C dist -czf "dist/$dir.tar.gz" "$dir"
+          (cd dist && sha256sum "$dir.tar.gz" > "$dir.tar.gz.sha256")
+      - uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            dist/*.tar.gz
+            dist/*.sha256
+          generate_release_notes: true

@@ -1,0 +1,30 @@
+# GitHub CodeQL static analysis for C (advanced setup with a manual build for precise results).
+name: CodeQL
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  schedule:
+    - cron: '0 4 * * 1'
+
+permissions:
+  contents: read
+  security-events: write
+
+jobs:
+  analyze:
+    name: analyze (c-cpp)
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - run: sudo apt-get update && sudo apt-get install -y flex bison
+      - uses: github/codeql-action/init@v3
+        with:
+          languages: c-cpp
+          build-mode: manual
+      - run: make -j4
+      - uses: github/codeql-action/analyze@v3
+        with:
+          category: '/language:c-cpp'
