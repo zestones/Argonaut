@@ -69,10 +69,23 @@ vm_cell resolve_expression(Node *expression) {
         }
 
         case A_ARRAY_ACCESS:
-            return get_array_cell(expression);
-
-        case A_STRUCT_FIELD_ACCESS:
-            return get_struct_cell(expression);
+        case A_STRUCT_FIELD_ACCESS: {
+            vm_cell cell = (expression->type == A_ARRAY_ACCESS) ? get_array_cell(expression) : get_struct_cell(expression);
+            if (!cell.is_initialized) {
+                set_error_type(&error, RUN_TIME_ERROR);
+                set_error_message(
+                    &error,
+                    "Uninitialized %s of '%s' at %s.\n"
+                    "  Ensure the value is initialized before use.\n",
+                    (expression->type == A_ARRAY_ACCESS) ? "array element" : "field",
+                    get_lexeme(expression->index_lexicographic),
+                    get_formatted_location()
+                );
+                yerror(error);
+                exit(EXIT_FAILURE);
+            }
+            return cell;
+        }
 
         case A_FUNC_PROC_CALL_STATEMENT: {
             execute_func_proc_call(expression);
