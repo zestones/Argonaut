@@ -7,17 +7,9 @@ tests/lang/bugs/b05_char_escape_newline.arn  # unexpected compile error: [Lexica
 tests/lang/bugs/b07_and_or_precedence.arn  # output differs — expected: [true] got: [false]
 tests/lang/bugs/b08_not_precedence.arn  # output differs — expected: [false] got: [true]
 tests/lang/bugs/b12_missing_return.arn  # argoc accepted the program (no error reported)
-tests/lang/bugs/b16_global_array_from_nested_call.arn  # argov: exit 1 — =================================================================
-tests/lang/bugs/b17_global_struct_from_proc.arn  # argov: exit 1 — =================================================================
-tests/lang/bugs/b18_struct_field_arg.arn  # argov: exit 1 — =================================================================
-tests/lang/bugs/b19_struct_copy.arn  # argov: exit 1 — =================================================================
-tests/lang/bugs/b20_nested_struct_assign.arn  # argov: exit 1 — =================================================================
 tests/lang/bugs/b23_string_var.arn  # unexpected compile error: [Type Error] Undefined type at tests/lang/bugs/b23_string_var.ar
 tests/lang/bugs/b24_wiki_string_param.arn  # unexpected compile error: [Type Error] Undefined type at tests/lang/bugs/b24_wiki_string_p
 tests/lang/bugs/b25_wiki_input_string.arn  # unexpected compile error: [Type Error] Undefined type at tests/lang/bugs/b25_wiki_input_st
-tests/lang/bugs/b36_arr_in_struct_base_nonzero.arn  # argov: exit 1 — =================================================================
-tests/lang/bugs/b37_2d_array_of_structs.arn  # argov: exit 1 — =================================================================
-tests/lang/bugs/b43_uninit_array_read.arn  # argov exited with 0 (runtime error expected) — output: 1762590880
 tests/lang/limitations/l01_bool_condition.arn  # unexpected compile error: [Syntax Error] Unexpected token found: ')' at tests/lang/limitat
 tests/lang/limitations/l02_bool_from_comparison.arn  # unexpected compile error: [Type Error] Type mismatch during assignement at tests/lang/limi
 tests/lang/limitations/l03_print_bool.arn  # unexpected compile error: [Type Error] Type mismatch for argument 1 at tests/lang/limitati
