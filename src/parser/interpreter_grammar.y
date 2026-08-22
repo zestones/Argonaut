@@ -6,6 +6,7 @@
 
     #include "parser.h"
     #include "../utils/errors.h"
+    #include "../utils/ir_version.h"
     #include "../lexer/escapes.h"
 
     #include <stdio.h>
@@ -75,6 +76,7 @@
 }
 
 
+%token IR_HEADER
 %token BEGIN_LEXEME_TABLE END_LEXEME_TABLE
 %token BEGIN_DECLARATION_TABLE END_DECLARATION_TABLE
 %token BEGIN_REPRESENTATION_TABLE END_REPRESENTATION_TABLE
@@ -91,7 +93,17 @@
 
 %%
 
-program: lexeme_table declaration_table representation_table region_table
+program: header lexeme_table declaration_table representation_table region_table
+;
+
+header: IR_HEADER TOKEN_INTEGER {
+            if ($2 != ARGONAUT_IR_VERSION) {
+                fprintf(stderr, COLOR_RED "Unsupported IR version %d: this argov reads version %d.\n"
+                                "  Recompile the program with the matching argoc." COLOR_RESET "\n",
+                        $2, ARGONAUT_IR_VERSION);
+                exit(EXIT_FAILURE);
+            }
+        }
 ;
 
 

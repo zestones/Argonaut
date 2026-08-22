@@ -16,6 +16,7 @@
     #include "../ast/access_chain.h"
 
     #include "../utils/errors.h"
+    #include "../utils/ir_version.h"
 
     #include <stdio.h>
     #include <stdlib.h>
@@ -797,9 +798,14 @@ int main(int argc, char **argv) {
 
     // Handle output file export if specified
     if (options.output_file != NULL) {
-        remove(options.output_file);  // Remove existing file before creating
+        // The version header comes first; the tables are appended after it.
+        FILE *output = fopen(options.output_file, "w");
+        if (output == NULL) {
+            handle_file_error(options.output_file);
+        }
+        fprintf(output, "ARGONAUT_IR %d\n", ARGONAUT_IR_VERSION);
+        fclose(output);
 
-        // Export data to output file (implement your export functions)
         export_lexeme_table(options.output_file);
         export_declaration_table(options.output_file);
         export_representation_table(options.output_file);

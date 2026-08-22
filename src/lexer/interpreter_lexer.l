@@ -23,6 +23,8 @@ number [0-9]
 \n                              { error.line++; error.column = 1; }
 [ \t]+                          { error.column += yyleng; }
 
+"ARGONAUT_IR"                 { error.column += yyleng; return IR_HEADER; }
+
 "BEGIN_LEXEME_TABLE"          { error.column += yyleng; BEGIN(LEXTAB); return BEGIN_LEXEME_TABLE; }
 <LEXTAB>^"END_LEXEME_TABLE"   { error.column += yyleng; BEGIN(INITIAL); return END_LEXEME_TABLE; }
 <LEXTAB>^"|"{number}+"|".*"|"-?{number}+"|"-?{number}+"|"$ {
