@@ -39,7 +39,8 @@ void declaration_array_end(int index_type_lexicographic) {
     int index_type_of_array_declaration = find_declaration_index(index_type_lexicographic);
 
     update_representation(context.index_number_of_dimensions_representation, context.number_of_dimensions);
-    update_representation(context.index_array_type_representation, index_type_lexicographic);
+    // The element type is a declaration index, like every type the checker compares.
+    update_representation(context.index_array_type_representation, index_type_of_array_declaration);
 
     int execution = get_declaration_execution(index_type_of_array_declaration);
     update_declaration_execution(index_array_name_declaration, context.array_size * execution);
