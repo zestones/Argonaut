@@ -10,7 +10,7 @@
 #    make check                  unit tests + language tests + IR tests + regression suite
 #    make lint                   formatting, banned functions, warnings ratchet, static analysis
 #    make coverage               run the suite with coverage instrumentation and report
-#    make bench                  run the benchmarks and compare them with the baseline
+#    make bench                  release build vs the Python/C references, and vs the baseline
 #    make fuzz                   fuzz argoc with AFL++ (needs afl-fuzz)
 #    make WERROR=1               warnings are errors (the CI "warnings-as-errors" job)
 #    make V=1                    verbose command echo
@@ -268,8 +268,10 @@ coverage:
 	$(Q)$(MAKE) --no-print-directory CONFIG=coverage check || true
 	$(Q)$(PYTHON) tools/coverage_report.py --build $(BUILD)/coverage --src $(SRC_DIR)
 
-bench: $(ARGOC) $(ARGOV)
-	$(Q)$(PYTHON) $(TEST_DIR)/bench/run_bench.py --argoc $(ARGOC) --argov $(ARGOV) --check
+# always the release build: comparing a -O0 argov with C -O2 would be meaningless
+bench:
+	$(Q)$(MAKE) --no-print-directory CONFIG=release $(BUILD)/release/argoc $(BUILD)/release/argov
+	$(Q)$(PYTHON) $(TEST_DIR)/bench/run_bench.py --argoc $(BUILD)/release/argoc --argov $(BUILD)/release/argov --cc $(CC) --check
 
 FUZZ_TIME ?= 600
 FUZZ_CC   ?= afl-clang-fast
