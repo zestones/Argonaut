@@ -1,0 +1,7 @@
+// CATEGORY: bug
+// DESC: exemple du wiki: parametre de type string
+// OUT: Hello, World!
+proc print_message(message : string) {
+    print("%s\n", message);
+}
+print_message("Hello, World!");

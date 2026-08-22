@@ -1,0 +1,5 @@
+// CATEGORY: sanity
+// DESC: erreur runtime: variable non initialisee
+// RUN: fail
+var x : int;
+print("%d\n", x);

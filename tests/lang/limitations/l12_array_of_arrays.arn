@@ -1,0 +1,8 @@
+// CATEGORY: limitation
+// DESC: tableau de tableaux inutilisable: pas de syntaxe g[i][j], et g[i, j] est rejete (type Row != int)
+// OUT: 4 3
+type Row : array[0:1] of int;
+type Grid : array[0:1] of Row;
+var g : Grid;
+g[1, 1] := 3; g[1, 0] := 4;
+print("%d %d\n", g[1, 0], g[1, 1]);

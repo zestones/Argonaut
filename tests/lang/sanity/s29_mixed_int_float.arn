@@ -1,0 +1,5 @@
+// CATEGORY: sanity
+// DESC: erreur: int + float
+// COMPILE: fail
+// ERR: Type mismatch
+print("%f\n", 1 + 2.5);

@@ -1,0 +1,6 @@
+// CATEGORY: bug
+// DESC: bloc if vide: le else est perdu + segfault VM
+// OUT: else branch
+// OUT: after
+if (1 == 2) {} else { print("else branch\n"); }
+print("after\n");

@@ -1,0 +1,10 @@
+// CATEGORY: bug
+// DESC: input sur EOF: boucle infinie (retour de scanf ignore)
+// RUN: fail
+var x : int;
+x := 0;
+while (x != 42) {
+    print("enter 42: ");
+    input("%d", x);
+}
+print("done\n");

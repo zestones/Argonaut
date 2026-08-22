@@ -1,0 +1,8 @@
+// CATEGORY: sanity
+// DESC: appel de fonction dans un while global
+// OUT: 0 1 4
+var i : int;
+func sq(n : int) -> int { return n * n; }
+i := 0;
+while (i < 3) { print("%d ", sq(i)); i++; }
+print("\n");

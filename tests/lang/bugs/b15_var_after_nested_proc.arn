@@ -1,0 +1,13 @@
+// CATEGORY: bug
+// DESC: meme bug dans une procedure contenant une proc imbriquee
+// OUT: inner
+// OUT: 1 7 2
+proc outer() {
+    var a : int; var x : int;
+    proc inner() { print("inner\n"); }
+    var b : int;
+    a := 1; x := 7; b := 2;
+    inner();
+    print("%d %d %d\n", a, x, b);
+}
+outer();

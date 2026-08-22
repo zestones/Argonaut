@@ -1,0 +1,1202 @@
+// CATEGORY: bug
+// DESC: > 500 lexemes: corruption memoire de argoc
+// OUT: 1000
+// OUT: 1001
+// OUT: 1002
+// OUT: 1003
+// OUT: 1004
+// OUT: 1005
+// OUT: 1006
+// OUT: 1007
+// OUT: 1008
+// OUT: 1009
+// OUT: 1010
+// OUT: 1011
+// OUT: 1012
+// OUT: 1013
+// OUT: 1014
+// OUT: 1015
+// OUT: 1016
+// OUT: 1017
+// OUT: 1018
+// OUT: 1019
+// OUT: 1020
+// OUT: 1021
+// OUT: 1022
+// OUT: 1023
+// OUT: 1024
+// OUT: 1025
+// OUT: 1026
+// OUT: 1027
+// OUT: 1028
+// OUT: 1029
+// OUT: 1030
+// OUT: 1031
+// OUT: 1032
+// OUT: 1033
+// OUT: 1034
+// OUT: 1035
+// OUT: 1036
+// OUT: 1037
+// OUT: 1038
+// OUT: 1039
+// OUT: 1040
+// OUT: 1041
+// OUT: 1042
+// OUT: 1043
+// OUT: 1044
+// OUT: 1045
+// OUT: 1046
+// OUT: 1047
+// OUT: 1048
+// OUT: 1049
+// OUT: 1050
+// OUT: 1051
+// OUT: 1052
+// OUT: 1053
+// OUT: 1054
+// OUT: 1055
+// OUT: 1056
+// OUT: 1057
+// OUT: 1058
+// OUT: 1059
+// OUT: 1060
+// OUT: 1061
+// OUT: 1062
+// OUT: 1063
+// OUT: 1064
+// OUT: 1065
+// OUT: 1066
+// OUT: 1067
+// OUT: 1068
+// OUT: 1069
+// OUT: 1070
+// OUT: 1071
+// OUT: 1072
+// OUT: 1073
+// OUT: 1074
+// OUT: 1075
+// OUT: 1076
+// OUT: 1077
+// OUT: 1078
+// OUT: 1079
+// OUT: 1080
+// OUT: 1081
+// OUT: 1082
+// OUT: 1083
+// OUT: 1084
+// OUT: 1085
+// OUT: 1086
+// OUT: 1087
+// OUT: 1088
+// OUT: 1089
+// OUT: 1090
+// OUT: 1091
+// OUT: 1092
+// OUT: 1093
+// OUT: 1094
+// OUT: 1095
+// OUT: 1096
+// OUT: 1097
+// OUT: 1098
+// OUT: 1099
+// OUT: 1100
+// OUT: 1101
+// OUT: 1102
+// OUT: 1103
+// OUT: 1104
+// OUT: 1105
+// OUT: 1106
+// OUT: 1107
+// OUT: 1108
+// OUT: 1109
+// OUT: 1110
+// OUT: 1111
+// OUT: 1112
+// OUT: 1113
+// OUT: 1114
+// OUT: 1115
+// OUT: 1116
+// OUT: 1117
+// OUT: 1118
+// OUT: 1119
+// OUT: 1120
+// OUT: 1121
+// OUT: 1122
+// OUT: 1123
+// OUT: 1124
+// OUT: 1125
+// OUT: 1126
+// OUT: 1127
+// OUT: 1128
+// OUT: 1129
+// OUT: 1130
+// OUT: 1131
+// OUT: 1132
+// OUT: 1133
+// OUT: 1134
+// OUT: 1135
+// OUT: 1136
+// OUT: 1137
+// OUT: 1138
+// OUT: 1139
+// OUT: 1140
+// OUT: 1141
+// OUT: 1142
+// OUT: 1143
+// OUT: 1144
+// OUT: 1145
+// OUT: 1146
+// OUT: 1147
+// OUT: 1148
+// OUT: 1149
+// OUT: 1150
+// OUT: 1151
+// OUT: 1152
+// OUT: 1153
+// OUT: 1154
+// OUT: 1155
+// OUT: 1156
+// OUT: 1157
+// OUT: 1158
+// OUT: 1159
+// OUT: 1160
+// OUT: 1161
+// OUT: 1162
+// OUT: 1163
+// OUT: 1164
+// OUT: 1165
+// OUT: 1166
+// OUT: 1167
+// OUT: 1168
+// OUT: 1169
+// OUT: 1170
+// OUT: 1171
+// OUT: 1172
+// OUT: 1173
+// OUT: 1174
+// OUT: 1175
+// OUT: 1176
+// OUT: 1177
+// OUT: 1178
+// OUT: 1179
+// OUT: 1180
+// OUT: 1181
+// OUT: 1182
+// OUT: 1183
+// OUT: 1184
+// OUT: 1185
+// OUT: 1186
+// OUT: 1187
+// OUT: 1188
+// OUT: 1189
+// OUT: 1190
+// OUT: 1191
+// OUT: 1192
+// OUT: 1193
+// OUT: 1194
+// OUT: 1195
+// OUT: 1196
+// OUT: 1197
+// OUT: 1198
+// OUT: 1199
+// OUT: 1200
+// OUT: 1201
+// OUT: 1202
+// OUT: 1203
+// OUT: 1204
+// OUT: 1205
+// OUT: 1206
+// OUT: 1207
+// OUT: 1208
+// OUT: 1209
+// OUT: 1210
+// OUT: 1211
+// OUT: 1212
+// OUT: 1213
+// OUT: 1214
+// OUT: 1215
+// OUT: 1216
+// OUT: 1217
+// OUT: 1218
+// OUT: 1219
+// OUT: 1220
+// OUT: 1221
+// OUT: 1222
+// OUT: 1223
+// OUT: 1224
+// OUT: 1225
+// OUT: 1226
+// OUT: 1227
+// OUT: 1228
+// OUT: 1229
+// OUT: 1230
+// OUT: 1231
+// OUT: 1232
+// OUT: 1233
+// OUT: 1234
+// OUT: 1235
+// OUT: 1236
+// OUT: 1237
+// OUT: 1238
+// OUT: 1239
+// OUT: 1240
+// OUT: 1241
+// OUT: 1242
+// OUT: 1243
+// OUT: 1244
+// OUT: 1245
+// OUT: 1246
+// OUT: 1247
+// OUT: 1248
+// OUT: 1249
+// OUT: 1250
+// OUT: 1251
+// OUT: 1252
+// OUT: 1253
+// OUT: 1254
+// OUT: 1255
+// OUT: 1256
+// OUT: 1257
+// OUT: 1258
+// OUT: 1259
+// OUT: 1260
+// OUT: 1261
+// OUT: 1262
+// OUT: 1263
+// OUT: 1264
+// OUT: 1265
+// OUT: 1266
+// OUT: 1267
+// OUT: 1268
+// OUT: 1269
+// OUT: 1270
+// OUT: 1271
+// OUT: 1272
+// OUT: 1273
+// OUT: 1274
+// OUT: 1275
+// OUT: 1276
+// OUT: 1277
+// OUT: 1278
+// OUT: 1279
+// OUT: 1280
+// OUT: 1281
+// OUT: 1282
+// OUT: 1283
+// OUT: 1284
+// OUT: 1285
+// OUT: 1286
+// OUT: 1287
+// OUT: 1288
+// OUT: 1289
+// OUT: 1290
+// OUT: 1291
+// OUT: 1292
+// OUT: 1293
+// OUT: 1294
+// OUT: 1295
+// OUT: 1296
+// OUT: 1297
+// OUT: 1298
+// OUT: 1299
+// OUT: 1300
+// OUT: 1301
+// OUT: 1302
+// OUT: 1303
+// OUT: 1304
+// OUT: 1305
+// OUT: 1306
+// OUT: 1307
+// OUT: 1308
+// OUT: 1309
+// OUT: 1310
+// OUT: 1311
+// OUT: 1312
+// OUT: 1313
+// OUT: 1314
+// OUT: 1315
+// OUT: 1316
+// OUT: 1317
+// OUT: 1318
+// OUT: 1319
+// OUT: 1320
+// OUT: 1321
+// OUT: 1322
+// OUT: 1323
+// OUT: 1324
+// OUT: 1325
+// OUT: 1326
+// OUT: 1327
+// OUT: 1328
+// OUT: 1329
+// OUT: 1330
+// OUT: 1331
+// OUT: 1332
+// OUT: 1333
+// OUT: 1334
+// OUT: 1335
+// OUT: 1336
+// OUT: 1337
+// OUT: 1338
+// OUT: 1339
+// OUT: 1340
+// OUT: 1341
+// OUT: 1342
+// OUT: 1343
+// OUT: 1344
+// OUT: 1345
+// OUT: 1346
+// OUT: 1347
+// OUT: 1348
+// OUT: 1349
+// OUT: 1350
+// OUT: 1351
+// OUT: 1352
+// OUT: 1353
+// OUT: 1354
+// OUT: 1355
+// OUT: 1356
+// OUT: 1357
+// OUT: 1358
+// OUT: 1359
+// OUT: 1360
+// OUT: 1361
+// OUT: 1362
+// OUT: 1363
+// OUT: 1364
+// OUT: 1365
+// OUT: 1366
+// OUT: 1367
+// OUT: 1368
+// OUT: 1369
+// OUT: 1370
+// OUT: 1371
+// OUT: 1372
+// OUT: 1373
+// OUT: 1374
+// OUT: 1375
+// OUT: 1376
+// OUT: 1377
+// OUT: 1378
+// OUT: 1379
+// OUT: 1380
+// OUT: 1381
+// OUT: 1382
+// OUT: 1383
+// OUT: 1384
+// OUT: 1385
+// OUT: 1386
+// OUT: 1387
+// OUT: 1388
+// OUT: 1389
+// OUT: 1390
+// OUT: 1391
+// OUT: 1392
+// OUT: 1393
+// OUT: 1394
+// OUT: 1395
+// OUT: 1396
+// OUT: 1397
+// OUT: 1398
+// OUT: 1399
+// OUT: 1400
+// OUT: 1401
+// OUT: 1402
+// OUT: 1403
+// OUT: 1404
+// OUT: 1405
+// OUT: 1406
+// OUT: 1407
+// OUT: 1408
+// OUT: 1409
+// OUT: 1410
+// OUT: 1411
+// OUT: 1412
+// OUT: 1413
+// OUT: 1414
+// OUT: 1415
+// OUT: 1416
+// OUT: 1417
+// OUT: 1418
+// OUT: 1419
+// OUT: 1420
+// OUT: 1421
+// OUT: 1422
+// OUT: 1423
+// OUT: 1424
+// OUT: 1425
+// OUT: 1426
+// OUT: 1427
+// OUT: 1428
+// OUT: 1429
+// OUT: 1430
+// OUT: 1431
+// OUT: 1432
+// OUT: 1433
+// OUT: 1434
+// OUT: 1435
+// OUT: 1436
+// OUT: 1437
+// OUT: 1438
+// OUT: 1439
+// OUT: 1440
+// OUT: 1441
+// OUT: 1442
+// OUT: 1443
+// OUT: 1444
+// OUT: 1445
+// OUT: 1446
+// OUT: 1447
+// OUT: 1448
+// OUT: 1449
+// OUT: 1450
+// OUT: 1451
+// OUT: 1452
+// OUT: 1453
+// OUT: 1454
+// OUT: 1455
+// OUT: 1456
+// OUT: 1457
+// OUT: 1458
+// OUT: 1459
+// OUT: 1460
+// OUT: 1461
+// OUT: 1462
+// OUT: 1463
+// OUT: 1464
+// OUT: 1465
+// OUT: 1466
+// OUT: 1467
+// OUT: 1468
+// OUT: 1469
+// OUT: 1470
+// OUT: 1471
+// OUT: 1472
+// OUT: 1473
+// OUT: 1474
+// OUT: 1475
+// OUT: 1476
+// OUT: 1477
+// OUT: 1478
+// OUT: 1479
+// OUT: 1480
+// OUT: 1481
+// OUT: 1482
+// OUT: 1483
+// OUT: 1484
+// OUT: 1485
+// OUT: 1486
+// OUT: 1487
+// OUT: 1488
+// OUT: 1489
+// OUT: 1490
+// OUT: 1491
+// OUT: 1492
+// OUT: 1493
+// OUT: 1494
+// OUT: 1495
+// OUT: 1496
+// OUT: 1497
+// OUT: 1498
+// OUT: 1499
+// OUT: 1500
+// OUT: 1501
+// OUT: 1502
+// OUT: 1503
+// OUT: 1504
+// OUT: 1505
+// OUT: 1506
+// OUT: 1507
+// OUT: 1508
+// OUT: 1509
+// OUT: 1510
+// OUT: 1511
+// OUT: 1512
+// OUT: 1513
+// OUT: 1514
+// OUT: 1515
+// OUT: 1516
+// OUT: 1517
+// OUT: 1518
+// OUT: 1519
+// OUT: 1520
+// OUT: 1521
+// OUT: 1522
+// OUT: 1523
+// OUT: 1524
+// OUT: 1525
+// OUT: 1526
+// OUT: 1527
+// OUT: 1528
+// OUT: 1529
+// OUT: 1530
+// OUT: 1531
+// OUT: 1532
+// OUT: 1533
+// OUT: 1534
+// OUT: 1535
+// OUT: 1536
+// OUT: 1537
+// OUT: 1538
+// OUT: 1539
+// OUT: 1540
+// OUT: 1541
+// OUT: 1542
+// OUT: 1543
+// OUT: 1544
+// OUT: 1545
+// OUT: 1546
+// OUT: 1547
+// OUT: 1548
+// OUT: 1549
+// OUT: 1550
+// OUT: 1551
+// OUT: 1552
+// OUT: 1553
+// OUT: 1554
+// OUT: 1555
+// OUT: 1556
+// OUT: 1557
+// OUT: 1558
+// OUT: 1559
+// OUT: 1560
+// OUT: 1561
+// OUT: 1562
+// OUT: 1563
+// OUT: 1564
+// OUT: 1565
+// OUT: 1566
+// OUT: 1567
+// OUT: 1568
+// OUT: 1569
+// OUT: 1570
+// OUT: 1571
+// OUT: 1572
+// OUT: 1573
+// OUT: 1574
+// OUT: 1575
+// OUT: 1576
+// OUT: 1577
+// OUT: 1578
+// OUT: 1579
+// OUT: 1580
+// OUT: 1581
+// OUT: 1582
+// OUT: 1583
+// OUT: 1584
+// OUT: 1585
+// OUT: 1586
+// OUT: 1587
+// OUT: 1588
+// OUT: 1589
+// OUT: 1590
+// OUT: 1591
+// OUT: 1592
+// OUT: 1593
+// OUT: 1594
+// OUT: 1595
+// OUT: 1596
+// OUT: 1597
+// OUT: 1598
+// OUT: 1599
+print("%d\n", 1000);
+print("%d\n", 1001);
+print("%d\n", 1002);
+print("%d\n", 1003);
+print("%d\n", 1004);
+print("%d\n", 1005);
+print("%d\n", 1006);
+print("%d\n", 1007);
+print("%d\n", 1008);
+print("%d\n", 1009);
+print("%d\n", 1010);
+print("%d\n", 1011);
+print("%d\n", 1012);
+print("%d\n", 1013);
+print("%d\n", 1014);
+print("%d\n", 1015);
+print("%d\n", 1016);
+print("%d\n", 1017);
+print("%d\n", 1018);
+print("%d\n", 1019);
+print("%d\n", 1020);
+print("%d\n", 1021);
+print("%d\n", 1022);
+print("%d\n", 1023);
+print("%d\n", 1024);
+print("%d\n", 1025);
+print("%d\n", 1026);
+print("%d\n", 1027);
+print("%d\n", 1028);
+print("%d\n", 1029);
+print("%d\n", 1030);
+print("%d\n", 1031);
+print("%d\n", 1032);
+print("%d\n", 1033);
+print("%d\n", 1034);
+print("%d\n", 1035);
+print("%d\n", 1036);
+print("%d\n", 1037);
+print("%d\n", 1038);
+print("%d\n", 1039);
+print("%d\n", 1040);
+print("%d\n", 1041);
+print("%d\n", 1042);
+print("%d\n", 1043);
+print("%d\n", 1044);
+print("%d\n", 1045);
+print("%d\n", 1046);
+print("%d\n", 1047);
+print("%d\n", 1048);
+print("%d\n", 1049);
+print("%d\n", 1050);
+print("%d\n", 1051);
+print("%d\n", 1052);
+print("%d\n", 1053);
+print("%d\n", 1054);
+print("%d\n", 1055);
+print("%d\n", 1056);
+print("%d\n", 1057);
+print("%d\n", 1058);
+print("%d\n", 1059);
+print("%d\n", 1060);
+print("%d\n", 1061);
+print("%d\n", 1062);
+print("%d\n", 1063);
+print("%d\n", 1064);
+print("%d\n", 1065);
+print("%d\n", 1066);
+print("%d\n", 1067);
+print("%d\n", 1068);
+print("%d\n", 1069);
+print("%d\n", 1070);
+print("%d\n", 1071);
+print("%d\n", 1072);
+print("%d\n", 1073);
+print("%d\n", 1074);
+print("%d\n", 1075);
+print("%d\n", 1076);
+print("%d\n", 1077);
+print("%d\n", 1078);
+print("%d\n", 1079);
+print("%d\n", 1080);
+print("%d\n", 1081);
+print("%d\n", 1082);
+print("%d\n", 1083);
+print("%d\n", 1084);
+print("%d\n", 1085);
+print("%d\n", 1086);
+print("%d\n", 1087);
+print("%d\n", 1088);
+print("%d\n", 1089);
+print("%d\n", 1090);
+print("%d\n", 1091);
+print("%d\n", 1092);
+print("%d\n", 1093);
+print("%d\n", 1094);
+print("%d\n", 1095);
+print("%d\n", 1096);
+print("%d\n", 1097);
+print("%d\n", 1098);
+print("%d\n", 1099);
+print("%d\n", 1100);
+print("%d\n", 1101);
+print("%d\n", 1102);
+print("%d\n", 1103);
+print("%d\n", 1104);
+print("%d\n", 1105);
+print("%d\n", 1106);
+print("%d\n", 1107);
+print("%d\n", 1108);
+print("%d\n", 1109);
+print("%d\n", 1110);
+print("%d\n", 1111);
+print("%d\n", 1112);
+print("%d\n", 1113);
+print("%d\n", 1114);
+print("%d\n", 1115);
+print("%d\n", 1116);
+print("%d\n", 1117);
+print("%d\n", 1118);
+print("%d\n", 1119);
+print("%d\n", 1120);
+print("%d\n", 1121);
+print("%d\n", 1122);
+print("%d\n", 1123);
+print("%d\n", 1124);
+print("%d\n", 1125);
+print("%d\n", 1126);
+print("%d\n", 1127);
+print("%d\n", 1128);
+print("%d\n", 1129);
+print("%d\n", 1130);
+print("%d\n", 1131);
+print("%d\n", 1132);
+print("%d\n", 1133);
+print("%d\n", 1134);
+print("%d\n", 1135);
+print("%d\n", 1136);
+print("%d\n", 1137);
+print("%d\n", 1138);
+print("%d\n", 1139);
+print("%d\n", 1140);
+print("%d\n", 1141);
+print("%d\n", 1142);
+print("%d\n", 1143);
+print("%d\n", 1144);
+print("%d\n", 1145);
+print("%d\n", 1146);
+print("%d\n", 1147);
+print("%d\n", 1148);
+print("%d\n", 1149);
+print("%d\n", 1150);
+print("%d\n", 1151);
+print("%d\n", 1152);
+print("%d\n", 1153);
+print("%d\n", 1154);
+print("%d\n", 1155);
+print("%d\n", 1156);
+print("%d\n", 1157);
+print("%d\n", 1158);
+print("%d\n", 1159);
+print("%d\n", 1160);
+print("%d\n", 1161);
+print("%d\n", 1162);
+print("%d\n", 1163);
+print("%d\n", 1164);
+print("%d\n", 1165);
+print("%d\n", 1166);
+print("%d\n", 1167);
+print("%d\n", 1168);
+print("%d\n", 1169);
+print("%d\n", 1170);
+print("%d\n", 1171);
+print("%d\n", 1172);
+print("%d\n", 1173);
+print("%d\n", 1174);
+print("%d\n", 1175);
+print("%d\n", 1176);
+print("%d\n", 1177);
+print("%d\n", 1178);
+print("%d\n", 1179);
+print("%d\n", 1180);
+print("%d\n", 1181);
+print("%d\n", 1182);
+print("%d\n", 1183);
+print("%d\n", 1184);
+print("%d\n", 1185);
+print("%d\n", 1186);
+print("%d\n", 1187);
+print("%d\n", 1188);
+print("%d\n", 1189);
+print("%d\n", 1190);
+print("%d\n", 1191);
+print("%d\n", 1192);
+print("%d\n", 1193);
+print("%d\n", 1194);
+print("%d\n", 1195);
+print("%d\n", 1196);
+print("%d\n", 1197);
+print("%d\n", 1198);
+print("%d\n", 1199);
+print("%d\n", 1200);
+print("%d\n", 1201);
+print("%d\n", 1202);
+print("%d\n", 1203);
+print("%d\n", 1204);
+print("%d\n", 1205);
+print("%d\n", 1206);
+print("%d\n", 1207);
+print("%d\n", 1208);
+print("%d\n", 1209);
+print("%d\n", 1210);
+print("%d\n", 1211);
+print("%d\n", 1212);
+print("%d\n", 1213);
+print("%d\n", 1214);
+print("%d\n", 1215);
+print("%d\n", 1216);
+print("%d\n", 1217);
+print("%d\n", 1218);
+print("%d\n", 1219);
+print("%d\n", 1220);
+print("%d\n", 1221);
+print("%d\n", 1222);
+print("%d\n", 1223);
+print("%d\n", 1224);
+print("%d\n", 1225);
+print("%d\n", 1226);
+print("%d\n", 1227);
+print("%d\n", 1228);
+print("%d\n", 1229);
+print("%d\n", 1230);
+print("%d\n", 1231);
+print("%d\n", 1232);
+print("%d\n", 1233);
+print("%d\n", 1234);
+print("%d\n", 1235);
+print("%d\n", 1236);
+print("%d\n", 1237);
+print("%d\n", 1238);
+print("%d\n", 1239);
+print("%d\n", 1240);
+print("%d\n", 1241);
+print("%d\n", 1242);
+print("%d\n", 1243);
+print("%d\n", 1244);
+print("%d\n", 1245);
+print("%d\n", 1246);
+print("%d\n", 1247);
+print("%d\n", 1248);
+print("%d\n", 1249);
+print("%d\n", 1250);
+print("%d\n", 1251);
+print("%d\n", 1252);
+print("%d\n", 1253);
+print("%d\n", 1254);
+print("%d\n", 1255);
+print("%d\n", 1256);
+print("%d\n", 1257);
+print("%d\n", 1258);
+print("%d\n", 1259);
+print("%d\n", 1260);
+print("%d\n", 1261);
+print("%d\n", 1262);
+print("%d\n", 1263);
+print("%d\n", 1264);
+print("%d\n", 1265);
+print("%d\n", 1266);
+print("%d\n", 1267);
+print("%d\n", 1268);
+print("%d\n", 1269);
+print("%d\n", 1270);
+print("%d\n", 1271);
+print("%d\n", 1272);
+print("%d\n", 1273);
+print("%d\n", 1274);
+print("%d\n", 1275);
+print("%d\n", 1276);
+print("%d\n", 1277);
+print("%d\n", 1278);
+print("%d\n", 1279);
+print("%d\n", 1280);
+print("%d\n", 1281);
+print("%d\n", 1282);
+print("%d\n", 1283);
+print("%d\n", 1284);
+print("%d\n", 1285);
+print("%d\n", 1286);
+print("%d\n", 1287);
+print("%d\n", 1288);
+print("%d\n", 1289);
+print("%d\n", 1290);
+print("%d\n", 1291);
+print("%d\n", 1292);
+print("%d\n", 1293);
+print("%d\n", 1294);
+print("%d\n", 1295);
+print("%d\n", 1296);
+print("%d\n", 1297);
+print("%d\n", 1298);
+print("%d\n", 1299);
+print("%d\n", 1300);
+print("%d\n", 1301);
+print("%d\n", 1302);
+print("%d\n", 1303);
+print("%d\n", 1304);
+print("%d\n", 1305);
+print("%d\n", 1306);
+print("%d\n", 1307);
+print("%d\n", 1308);
+print("%d\n", 1309);
+print("%d\n", 1310);
+print("%d\n", 1311);
+print("%d\n", 1312);
+print("%d\n", 1313);
+print("%d\n", 1314);
+print("%d\n", 1315);
+print("%d\n", 1316);
+print("%d\n", 1317);
+print("%d\n", 1318);
+print("%d\n", 1319);
+print("%d\n", 1320);
+print("%d\n", 1321);
+print("%d\n", 1322);
+print("%d\n", 1323);
+print("%d\n", 1324);
+print("%d\n", 1325);
+print("%d\n", 1326);
+print("%d\n", 1327);
+print("%d\n", 1328);
+print("%d\n", 1329);
+print("%d\n", 1330);
+print("%d\n", 1331);
+print("%d\n", 1332);
+print("%d\n", 1333);
+print("%d\n", 1334);
+print("%d\n", 1335);
+print("%d\n", 1336);
+print("%d\n", 1337);
+print("%d\n", 1338);
+print("%d\n", 1339);
+print("%d\n", 1340);
+print("%d\n", 1341);
+print("%d\n", 1342);
+print("%d\n", 1343);
+print("%d\n", 1344);
+print("%d\n", 1345);
+print("%d\n", 1346);
+print("%d\n", 1347);
+print("%d\n", 1348);
+print("%d\n", 1349);
+print("%d\n", 1350);
+print("%d\n", 1351);
+print("%d\n", 1352);
+print("%d\n", 1353);
+print("%d\n", 1354);
+print("%d\n", 1355);
+print("%d\n", 1356);
+print("%d\n", 1357);
+print("%d\n", 1358);
+print("%d\n", 1359);
+print("%d\n", 1360);
+print("%d\n", 1361);
+print("%d\n", 1362);
+print("%d\n", 1363);
+print("%d\n", 1364);
+print("%d\n", 1365);
+print("%d\n", 1366);
+print("%d\n", 1367);
+print("%d\n", 1368);
+print("%d\n", 1369);
+print("%d\n", 1370);
+print("%d\n", 1371);
+print("%d\n", 1372);
+print("%d\n", 1373);
+print("%d\n", 1374);
+print("%d\n", 1375);
+print("%d\n", 1376);
+print("%d\n", 1377);
+print("%d\n", 1378);
+print("%d\n", 1379);
+print("%d\n", 1380);
+print("%d\n", 1381);
+print("%d\n", 1382);
+print("%d\n", 1383);
+print("%d\n", 1384);
+print("%d\n", 1385);
+print("%d\n", 1386);
+print("%d\n", 1387);
+print("%d\n", 1388);
+print("%d\n", 1389);
+print("%d\n", 1390);
+print("%d\n", 1391);
+print("%d\n", 1392);
+print("%d\n", 1393);
+print("%d\n", 1394);
+print("%d\n", 1395);
+print("%d\n", 1396);
+print("%d\n", 1397);
+print("%d\n", 1398);
+print("%d\n", 1399);
+print("%d\n", 1400);
+print("%d\n", 1401);
+print("%d\n", 1402);
+print("%d\n", 1403);
+print("%d\n", 1404);
+print("%d\n", 1405);
+print("%d\n", 1406);
+print("%d\n", 1407);
+print("%d\n", 1408);
+print("%d\n", 1409);
+print("%d\n", 1410);
+print("%d\n", 1411);
+print("%d\n", 1412);
+print("%d\n", 1413);
+print("%d\n", 1414);
+print("%d\n", 1415);
+print("%d\n", 1416);
+print("%d\n", 1417);
+print("%d\n", 1418);
+print("%d\n", 1419);
+print("%d\n", 1420);
+print("%d\n", 1421);
+print("%d\n", 1422);
+print("%d\n", 1423);
+print("%d\n", 1424);
+print("%d\n", 1425);
+print("%d\n", 1426);
+print("%d\n", 1427);
+print("%d\n", 1428);
+print("%d\n", 1429);
+print("%d\n", 1430);
+print("%d\n", 1431);
+print("%d\n", 1432);
+print("%d\n", 1433);
+print("%d\n", 1434);
+print("%d\n", 1435);
+print("%d\n", 1436);
+print("%d\n", 1437);
+print("%d\n", 1438);
+print("%d\n", 1439);
+print("%d\n", 1440);
+print("%d\n", 1441);
+print("%d\n", 1442);
+print("%d\n", 1443);
+print("%d\n", 1444);
+print("%d\n", 1445);
+print("%d\n", 1446);
+print("%d\n", 1447);
+print("%d\n", 1448);
+print("%d\n", 1449);
+print("%d\n", 1450);
+print("%d\n", 1451);
+print("%d\n", 1452);
+print("%d\n", 1453);
+print("%d\n", 1454);
+print("%d\n", 1455);
+print("%d\n", 1456);
+print("%d\n", 1457);
+print("%d\n", 1458);
+print("%d\n", 1459);
+print("%d\n", 1460);
+print("%d\n", 1461);
+print("%d\n", 1462);
+print("%d\n", 1463);
+print("%d\n", 1464);
+print("%d\n", 1465);
+print("%d\n", 1466);
+print("%d\n", 1467);
+print("%d\n", 1468);
+print("%d\n", 1469);
+print("%d\n", 1470);
+print("%d\n", 1471);
+print("%d\n", 1472);
+print("%d\n", 1473);
+print("%d\n", 1474);
+print("%d\n", 1475);
+print("%d\n", 1476);
+print("%d\n", 1477);
+print("%d\n", 1478);
+print("%d\n", 1479);
+print("%d\n", 1480);
+print("%d\n", 1481);
+print("%d\n", 1482);
+print("%d\n", 1483);
+print("%d\n", 1484);
+print("%d\n", 1485);
+print("%d\n", 1486);
+print("%d\n", 1487);
+print("%d\n", 1488);
+print("%d\n", 1489);
+print("%d\n", 1490);
+print("%d\n", 1491);
+print("%d\n", 1492);
+print("%d\n", 1493);
+print("%d\n", 1494);
+print("%d\n", 1495);
+print("%d\n", 1496);
+print("%d\n", 1497);
+print("%d\n", 1498);
+print("%d\n", 1499);
+print("%d\n", 1500);
+print("%d\n", 1501);
+print("%d\n", 1502);
+print("%d\n", 1503);
+print("%d\n", 1504);
+print("%d\n", 1505);
+print("%d\n", 1506);
+print("%d\n", 1507);
+print("%d\n", 1508);
+print("%d\n", 1509);
+print("%d\n", 1510);
+print("%d\n", 1511);
+print("%d\n", 1512);
+print("%d\n", 1513);
+print("%d\n", 1514);
+print("%d\n", 1515);
+print("%d\n", 1516);
+print("%d\n", 1517);
+print("%d\n", 1518);
+print("%d\n", 1519);
+print("%d\n", 1520);
+print("%d\n", 1521);
+print("%d\n", 1522);
+print("%d\n", 1523);
+print("%d\n", 1524);
+print("%d\n", 1525);
+print("%d\n", 1526);
+print("%d\n", 1527);
+print("%d\n", 1528);
+print("%d\n", 1529);
+print("%d\n", 1530);
+print("%d\n", 1531);
+print("%d\n", 1532);
+print("%d\n", 1533);
+print("%d\n", 1534);
+print("%d\n", 1535);
+print("%d\n", 1536);
+print("%d\n", 1537);
+print("%d\n", 1538);
+print("%d\n", 1539);
+print("%d\n", 1540);
+print("%d\n", 1541);
+print("%d\n", 1542);
+print("%d\n", 1543);
+print("%d\n", 1544);
+print("%d\n", 1545);
+print("%d\n", 1546);
+print("%d\n", 1547);
+print("%d\n", 1548);
+print("%d\n", 1549);
+print("%d\n", 1550);
+print("%d\n", 1551);
+print("%d\n", 1552);
+print("%d\n", 1553);
+print("%d\n", 1554);
+print("%d\n", 1555);
+print("%d\n", 1556);
+print("%d\n", 1557);
+print("%d\n", 1558);
+print("%d\n", 1559);
+print("%d\n", 1560);
+print("%d\n", 1561);
+print("%d\n", 1562);
+print("%d\n", 1563);
+print("%d\n", 1564);
+print("%d\n", 1565);
+print("%d\n", 1566);
+print("%d\n", 1567);
+print("%d\n", 1568);
+print("%d\n", 1569);
+print("%d\n", 1570);
+print("%d\n", 1571);
+print("%d\n", 1572);
+print("%d\n", 1573);
+print("%d\n", 1574);
+print("%d\n", 1575);
+print("%d\n", 1576);
+print("%d\n", 1577);
+print("%d\n", 1578);
+print("%d\n", 1579);
+print("%d\n", 1580);
+print("%d\n", 1581);
+print("%d\n", 1582);
+print("%d\n", 1583);
+print("%d\n", 1584);
+print("%d\n", 1585);
+print("%d\n", 1586);
+print("%d\n", 1587);
+print("%d\n", 1588);
+print("%d\n", 1589);
+print("%d\n", 1590);
+print("%d\n", 1591);
+print("%d\n", 1592);
+print("%d\n", 1593);
+print("%d\n", 1594);
+print("%d\n", 1595);
+print("%d\n", 1596);
+print("%d\n", 1597);
+print("%d\n", 1598);
+print("%d\n", 1599);

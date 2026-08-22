@@ -1,0 +1,19 @@
+// CATEGORY: sanity
+// DESC: exemple du README
+// IN: 10
+// OUT: Enter a number: fibonacci(10) = 55
+func fibonacci(num : int) -> int {
+    if (num <= 1) { return num; }
+
+    return fibonacci(num - 1) + fibonacci(num - 2);
+}
+
+proc main()  {
+    var num : int;
+    print("Enter a number: ");
+    input("%d", num);
+
+    print("fibonacci(%d) = %d\n", num, fibonacci(num));
+}
+
+main();

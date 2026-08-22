@@ -1,0 +1,8 @@
+// CATEGORY: sanity
+// DESC: comparaison de booleens
+// OUT: diff
+// OUT: notsame
+var a : bool; var b : bool;
+a := true; b := false;
+if (a != b) { print("diff\n"); }
+if (a == b) { print("same\n"); } else { print("notsame\n"); }

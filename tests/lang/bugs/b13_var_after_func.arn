@@ -1,0 +1,7 @@
+// CATEGORY: bug
+// DESC: variable globale declaree apres une fonction: offset faux (FIXME variable_manager.c)
+// OUT: 5
+func f() -> int { return 1; }
+var x : int;
+x := 5;
+print("%d\n", x);

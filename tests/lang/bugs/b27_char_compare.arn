@@ -1,0 +1,6 @@
+// CATEGORY: bug
+// DESC: comparaisons < > sur char: cellule non initialisee (toujours vrai)
+// OUT: right
+// OUT: right
+if ('b' < 'a') { print("WRONG b<a\n"); } else { print("right\n"); }
+if ('a' > 'b') { print("WRONG a>b\n"); } else { print("right\n"); }

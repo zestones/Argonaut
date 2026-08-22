@@ -1,0 +1,4 @@
+// CATEGORY: bug
+// DESC: && et || ont la meme priorite (assoc. gauche)
+// OUT: true
+if ((1 == 1) || (1 == 2) && (1 == 2)) { print("true\n"); } else { print("false\n"); }

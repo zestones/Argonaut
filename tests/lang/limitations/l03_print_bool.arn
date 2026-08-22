@@ -1,0 +1,6 @@
+// CATEGORY: limitation
+// DESC: aucun moyen d'afficher un bool
+// OUT: 1
+var b : bool;
+b := true;
+print("%d\n", b);

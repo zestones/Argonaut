@@ -1,0 +1,10 @@
+// CATEGORY: sanity
+// DESC: struct passee par valeur
+// OUT: in: 2
+// OUT: out: 1
+type P : struct { x : int; } fstruct;
+var p : P;
+proc bump(q : P) { q.x := q.x + 1; print("in: %d\n", q.x); }
+p.x := 1;
+bump(p);
+print("out: %d\n", p.x);

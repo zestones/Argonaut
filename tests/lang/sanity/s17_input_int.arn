@@ -1,0 +1,7 @@
+// CATEGORY: sanity
+// DESC: input %d
+// IN: 42
+// OUT: got 42
+var x : int;
+input("%d", x);
+print("got %d\n", x);

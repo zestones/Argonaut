@@ -1,0 +1,9 @@
+// CATEGORY: bug
+// DESC: tableau global passe en argument depuis une proc: lu dans la mauvaise frame
+// OUT: 1 2 3
+type Arr : array[0:2] of int;
+var g : Arr;
+proc show(a : Arr) { print("%d %d %d\n", a[0], a[1], a[2]); }
+proc caller() { var local : int; local := 99; show(g); }
+g[0] := 1; g[1] := 2; g[2] := 3;
+caller();

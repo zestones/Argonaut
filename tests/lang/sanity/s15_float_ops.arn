@@ -1,0 +1,8 @@
+// CATEGORY: sanity
+// DESC: arithmetique et comparaison float
+// OUT: ok 4.000000
+// OUT: ge
+var f : float;
+f := 2.5 * 2.0 - 1.0;
+if (f == 4.0) { print("ok %f\n", f); } else { print("no %f\n", f); }
+if (f >= 3.9) { print("ge\n"); }

@@ -1,0 +1,5 @@
+// CATEGORY: bug
+// DESC: bloc if vide: segfault VM
+// OUT: after
+if (1 == 1) {}
+print("after\n");

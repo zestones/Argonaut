@@ -1,0 +1,6 @@
+// CATEGORY: bug
+// DESC: le message d'erreur nomme le type 'x' au lieu de 'string'
+// COMPILE: fail
+// ERR: type 'string'
+var x : int;
+x := "abc";

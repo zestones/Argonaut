@@ -1,0 +1,3 @@
+This directory holds intentionally corrupted IR files. argov must reject each of them with a
+clean non-zero exit code (no crash, no hang). tests/run_tests.py treats every *.ir here that way.
+The reference used to derive them is the IR of examples/interpretation/functional/01_basics/hello_world.arn.

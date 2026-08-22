@@ -1,0 +1,12 @@
+// CATEGORY: bug
+// DESC: break dans la boucle externe apres une boucle interne: refuse (flag au lieu de compteur)
+// OUT: i=1
+var i : int; var j : int;
+i := 0;
+while (i < 3) {
+    j := 0;
+    while (j < 3) { j++; }
+    if (i == 1) { break; }
+    i++;
+}
+print("i=%d\n", i);

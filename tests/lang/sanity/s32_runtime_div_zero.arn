@@ -1,0 +1,6 @@
+// CATEGORY: sanity
+// DESC: erreur runtime: division par zero
+// RUN: fail
+var z : int;
+z := 0;
+print("%d\n", 1 / z);

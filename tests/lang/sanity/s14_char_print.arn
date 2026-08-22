@@ -1,0 +1,6 @@
+// CATEGORY: sanity
+// DESC: affichage de char
+// OUT: Z q
+var c : char;
+c := 'Z';
+print("%c %c\n", c, 'q');

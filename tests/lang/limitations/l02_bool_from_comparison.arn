@@ -1,0 +1,6 @@
+// CATEGORY: limitation
+// DESC: b := 1 < 2 impossible (une condition n'est pas une expression)
+// OUT: yes
+var b : bool;
+b := 1 < 2;
+if (b == true) { print("yes\n"); }

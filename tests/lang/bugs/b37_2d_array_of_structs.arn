@@ -1,0 +1,8 @@
+// CATEGORY: bug
+// DESC: tableau 2D de structs: strides faux
+// OUT: 1 2 3 4
+type P : struct { x : int; y : int; } fstruct;
+type G : array[0:1, 0:1] of P;
+var g : G;
+g[0, 0].x := 1; g[0, 1].x := 2; g[1, 0].x := 3; g[1, 1].x := 4;
+print("%d %d %d %d\n", g[0,0].x, g[0,1].x, g[1,0].x, g[1,1].x);

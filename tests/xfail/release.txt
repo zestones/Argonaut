@@ -1,0 +1,63 @@
+# Expected failures of the 'release' configuration (known bugs: each case header states the expected behaviour; see tests/README.md).
+# Remove an entry when the bug is fixed; the runner flags it as XPASS until you do.
+tests/ir/bogus_node_type.ir  # argov accepted a corrupted IR file (exit 0)
+tests/ir/call_with_unknown_declaration.ir  # argov accepted a corrupted IR file (exit 0)
+tests/ir/identifier_with_negative_declaration.ir  # argov accepted a corrupted IR file (exit 0)
+tests/ir/lexeme_index_out_of_range.ir  # argov: crash (signal -11) on corrupted IR — 
+tests/ir/region_without_index_zero.ir  # argov: crash (signal -11) on corrupted IR — 
+tests/lang/bugs/b01_minus_literal.arn  # unexpected compile error: [Syntax Error] Unexpected token found: '-3' at tests/lang/bugs/b
+tests/lang/bugs/b02_n_minus_1.arn  # unexpected compile error: [Syntax Error] Unexpected token found: '-1' at tests/lang/bugs/b
+tests/lang/bugs/b03_unary_minus.arn  # unexpected compile error: [Syntax Error] Unexpected token found: '-' at tests/lang/bugs/b0
+tests/lang/bugs/b04_float_trailing_dot.arn  # argov: exit 1 — [Syntax Error] Unexpected token found: '.' at /tmp/argonaut-tests-1jsnzzuq
+tests/lang/bugs/b05_char_escape_newline.arn  # unexpected compile error: [Lexical Error] Unknown character at tests/lang/bugs/b05_char_es
+tests/lang/bugs/b06_char_dquote.arn  # unexpected compile error: [Lexical Error] Unknown character at tests/lang/bugs/b06_char_dq
+tests/lang/bugs/b07_and_or_precedence.arn  # output differs — expected: [true] got: [false]
+tests/lang/bugs/b08_not_precedence.arn  # output differs — expected: [false] got: [true]
+tests/lang/bugs/b09_empty_if_else.arn  # argov: crash (code -11) 
+tests/lang/bugs/b10_empty_if.arn  # argov: crash (code -11) 
+tests/lang/bugs/b11_empty_proc.arn  # argov: crash (code -11) 
+tests/lang/bugs/b12_missing_return.arn  # argoc accepted the program (no error reported)
+tests/lang/bugs/b13_var_after_func.arn  # argov: exit 1 — Error: Get Stack Value - Index out of bounds
+tests/lang/bugs/b14_var_after_proc_alias.arn  # output differs — expected: [a=1 b=2 c=3 x=99] got: [a=1 b=2 c=99 x=99]
+tests/lang/bugs/b15_var_after_nested_proc.arn  # output differs — expected: [inner | 1 7 2] got: [inner | 1 2 2]
+tests/lang/bugs/b16_global_array_from_nested_call.arn  # argov: exit 1 — Error: Get Stack Value - Index out of bounds
+tests/lang/bugs/b17_global_struct_from_proc.arn  # argov: exit 1 — Error: Get Stack Value - Index out of bounds
+tests/lang/bugs/b18_struct_field_arg.arn  # output differs — expected: [(1, 2) | (3, 4)] got: [(1, 2) | (1, 2)]
+tests/lang/bugs/b19_struct_copy.arn  # output differs — expected: [1 2] got: [1 0]
+tests/lang/bugs/b20_nested_struct_assign.arn  # output differs — expected: [5 6] got: [5 0]
+tests/lang/bugs/b21_string_type_hole.arn  # argoc accepted the program (no error reported)
+tests/lang/bugs/b22_string_error_message.arn  # expected message missing ("type 'string'") — got: [Type Error] Type mismatch during assign
+tests/lang/bugs/b23_string_var.arn  # unexpected compile error: [Type Error] Undefined type at tests/lang/bugs/b23_string_var.ar
+tests/lang/bugs/b24_wiki_string_param.arn  # unexpected compile error: [Type Error] Undefined type at tests/lang/bugs/b24_wiki_string_p
+tests/lang/bugs/b25_wiki_input_string.arn  # unexpected compile error: [Type Error] Undefined type at tests/lang/bugs/b25_wiki_input_st
+tests/lang/bugs/b26_float_add_zero.arn  # argov: exit 1 — [Run Time Error] Division by zero error.
+tests/lang/bugs/b28_nested_loop_break.arn  # unexpected compile error: [Syntax Error] Unexpected token found: ';' at tests/lang/bugs/b2
+tests/lang/bugs/b29_while_and.arn  # output differs — expected: [3] got: [10]
+tests/lang/bugs/b30_while_not.arn  # output differs — expected: [3] got: [0]
+tests/lang/bugs/b31_while_or.arn  # output differs — expected: [3] got: [1]
+tests/lang/bugs/b32_long_string.arn  # argoc: crash (signal -6) *** buffer overflow detected ***: terminated
+tests/lang/bugs/b33_many_int_literals.arn  # argoc: crash (signal -6) *** buffer overflow detected ***: terminated
+tests/lang/bugs/b34_many_identifiers.arn  # unexpected compile error: <Error> Declaration table is full
+tests/lang/bugs/b35_recursion_depth_100.arn  # argov: crash (code -11) 
+tests/lang/bugs/b36_arr_in_struct_base_nonzero.arn  # argov: exit 1 — [Run Time Error] Insufficient indices provided for array assignment.
+tests/lang/bugs/b37_2d_array_of_structs.arn  # argov: exit 1 — Error: Get Stack Value - Index out of bounds
+tests/lang/bugs/b39_semantic_error_rc.arn  # error reported but argoc exited with 0
+tests/lang/bugs/b40_undefined_var_rc.arn  # error reported but argoc exited with 0
+tests/lang/bugs/b41_lexical_error_rc.arn  # error reported but argoc exited with 0
+tests/lang/bugs/b42_input_eof.arn  # argov: TIMEOUT (hang / infinite loop)
+tests/lang/bugs/b43_uninit_array_read.arn  # argov exited with 0 (runtime error expected) — output: 0
+tests/lang/bugs/b44_multiline_string_lineno.arn  # expected message missing ('.arn:3:') — got: [Type Error] Type mismatch for argument 1 at t
+tests/lang/bugs/b45_ident_ir_keyword.arn  # argov: exit 1 — [Syntax Error] Unexpected token found: 'END_LEXEME_TABLE' at /tmp/argonaut
+tests/lang/bugs/b46_int_literal_overflow.arn  # argoc accepted the program (no error reported)
+tests/lang/limitations/l01_bool_condition.arn  # unexpected compile error: [Syntax Error] Unexpected token found: ')' at tests/lang/limitat
+tests/lang/limitations/l02_bool_from_comparison.arn  # unexpected compile error: [Type Error] Type mismatch during assignement at tests/lang/limi
+tests/lang/limitations/l03_print_bool.arn  # unexpected compile error: [Type Error] Type mismatch for argument 1 at tests/lang/limitati
+tests/lang/limitations/l04_string_escape_quote.arn  # unexpected compile error: [Syntax Error] Unexpected token found: 'hi' at tests/lang/limita
+tests/lang/limitations/l05_percent_percent.arn  # output differs — expected: [100%] got: [100%%]
+tests/lang/limitations/l06_short_circuit.arn  # argov: exit 1 — [Run Time Error] Division by zero error.
+tests/lang/limitations/l07_array_of_struct_with_array.arn  # unexpected compile error: [Syntax Error] Unexpected token found: '[' at tests/lang/limitat
+tests/lang/limitations/l08_incdec_array_elem.arn  # unexpected compile error: [Syntax Error] Unexpected token found: '++' at tests/lang/limita
+tests/lang/limitations/l09_many_functions.arn  # unexpected compile error: <Error> Region table is full
+tests/lang/limitations/l10_proc_early_return.arn  # unexpected compile error: [Syntax Error] Unexpected token found: ';' at tests/lang/limitat
+tests/lang/limitations/l11_mutual_recursion.arn  # unexpected compile error: [Syntax Error] Unexpected token found: ';' at tests/lang/limitat
+tests/lang/limitations/l12_array_of_arrays.arn  # unexpected compile error: [Type Error] Type mismatch during assignement at tests/lang/limi

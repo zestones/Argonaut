@@ -1,0 +1,8 @@
+// CATEGORY: sanity
+// DESC: priorite arithmetique
+// OUT: 1
+// OUT: 12
+var x : int;
+x := ((((1 + 2) * 3) - 4) / 5) % 3;
+print("%d\n", x);
+print("%d\n", 2 + 3 * 4 - 10 / 2 % 3);

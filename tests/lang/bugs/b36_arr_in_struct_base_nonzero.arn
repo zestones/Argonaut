@@ -1,0 +1,16 @@
+// CATEGORY: bug
+// DESC: tableau dans une struct (non premiere variable, type declare apres une struct)
+// OUT: 10 20 30 pad=7
+// OUT: 0 100 200 300
+type Dummy : struct { q : int; } fstruct;
+type Arr : array[0:3] of int;
+type S : struct { a : int; b : int; arr : Arr; c : int; } fstruct;
+var pad : int;
+var s : S;
+var i : int;
+pad := 7;
+s.a := 10; s.b := 20; s.c := 30;
+for (i := 0; i <= 3; i++) { s.arr[i] := i * 100; }
+print("%d %d %d pad=%d\n", s.a, s.b, s.c, pad);
+for (i := 0; i <= 3; i++) { print("%d ", s.arr[i]); }
+print("\n");

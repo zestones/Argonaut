@@ -1,0 +1,6 @@
+// CATEGORY: limitation
+// DESC: if (flag) avec un bool: erreur de syntaxe (il faut flag == true)
+// OUT: yes
+var flag : bool;
+flag := true;
+if (flag) { print("yes\n"); }

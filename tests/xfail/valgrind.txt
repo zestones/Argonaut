@@ -1,0 +1,2 @@
+# Expected failures under valgrind (weekly job).
+# Bootstrap on the first run: python3 tests/run_tests.py --wrapper "valgrind --error-exitcode=99 --leak-check=full --errors-for-leak-kinds=definite -q" --timeout 120 --write-xfail tests/xfail/valgrind.txt tests/lang tests/ir build/doctests

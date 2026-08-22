@@ -1,0 +1,6 @@
+// CATEGORY: bug
+// DESC: procedure sans parametre ni corps: segfault VM
+// OUT: after
+proc nothing() {}
+nothing();
+print("after\n");

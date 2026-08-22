@@ -1,0 +1,7 @@
+// CATEGORY: bug
+// DESC: var s : string declenche 'Undefined type s' et corrompt les offsets
+// OUT: 5
+var s : string;
+var x : int;
+x := 5;
+print("%d\n", x);

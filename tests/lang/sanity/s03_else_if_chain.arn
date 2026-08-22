@@ -1,0 +1,10 @@
+// CATEGORY: sanity
+// DESC: if / else if / else
+// OUT: medium
+// OUT: five
+// OUT: after
+var n : int;
+n := 5;
+if (n < 3) { print("small\n"); } else if (n < 10) { print("medium\n"); } else { print("large\n"); }
+if (n == 1) { print("one\n"); } else if (n == 5) { print("five\n"); }
+print("after\n");

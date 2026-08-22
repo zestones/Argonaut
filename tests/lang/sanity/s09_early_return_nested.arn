@@ -1,0 +1,15 @@
+// CATEGORY: sanity
+// DESC: return imbrique dans if/while
+// OUT: 100 10
+func g(n : int) -> int {
+    var i : int;
+    i := 0;
+    while (i < 10) {
+        if (i == n) {
+            if (n > 2) { return 100; }
+        }
+        i++;
+    }
+    return i;
+}
+print("%d %d\n", g(5), g(1));

@@ -1,0 +1,10 @@
+// CATEGORY: sanity
+// DESC: type declare dans une procedure
+// OUT: 8
+proc p() {
+    type T : array[0:1] of int;
+    var t : T;
+    t[1] := 8;
+    print("%d\n", t[1]);
+}
+p();

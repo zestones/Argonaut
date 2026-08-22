@@ -1,0 +1,15 @@
+// CATEGORY: sanity
+// DESC: appel de fonction en instruction (valeur ignoree)
+// OUT: after f
+// OUT: 7
+// OUT: end p
+// OUT: end
+func f() -> int { return 7; }
+proc p() {
+    f();
+    print("after f\n");
+    print("%d\n", f());
+    print("end p\n");
+}
+p();
+print("end\n");

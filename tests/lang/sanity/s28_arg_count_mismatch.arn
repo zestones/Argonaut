@@ -1,0 +1,6 @@
+// CATEGORY: sanity
+// DESC: erreur: mauvais nombre d'arguments
+// COMPILE: fail
+// ERR: expects 2 arguments
+func add(a : int, b : int) -> int { return a + b; }
+print("%d\n", add(1));

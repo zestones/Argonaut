@@ -1,0 +1,6 @@
+// CATEGORY: bug
+// DESC: lecture d'une case de tableau non initialisee: pas de diagnostic
+// RUN: fail
+type T : array[0:2] of int;
+var t : T;
+print("%d\n", t[1]);
