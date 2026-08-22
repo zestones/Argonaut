@@ -11,7 +11,7 @@ Everything runs through `make check` (current configuration); the project rules 
 | `ir/` | corrupted IR files that `argov` must reject cleanly | `python3 tests/run_tests.py tests/ir` |
 | `xfail/` | expected failures per configuration (`debug`, `release`, `sanitize`, `msan`, `leaks`, `valgrind`) | |
 | `regression/` | exact text of the compiler diagnostics (historical suite) | `make check-regression` |
-| `bench/` | micro-benchmarks and their baseline | `make bench` |
+| `bench/` | micro-benchmarks, their literal Python and C transcriptions (`ref/`) and the argov baseline | `make bench` |
 | `fuzz/` | AFL++ dictionary and IR corpus generation | `make fuzz`, `make fuzz-vm` |
 | `build/doctests/` (generated) | wiki/README examples executed as tests | `make doctests` |
 
