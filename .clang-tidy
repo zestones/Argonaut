@@ -1,0 +1,19 @@
+# clang-tidy configuration (run with `make tidy`; part of `make lint`).
+# Strict on purpose: every finding is an error. Fix it or justify a NOLINT(check-name) comment.
+Checks: >
+  bugprone-*,
+  clang-analyzer-*,
+  performance-*,
+  portability-*,
+  misc-*,
+  cert-err34-c,
+  cert-str34-c,
+  readability-inconsistent-declaration-parameter-name,
+  readability-redundant-*,
+  readability-misleading-indentation,
+  -bugprone-easily-swappable-parameters,
+  -misc-no-recursion,
+  -misc-include-cleaner
+WarningsAsErrors: '*'
+HeaderFilterRegex: '^(src|lib)/.*'
+FormatStyle: file

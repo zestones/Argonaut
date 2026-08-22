@@ -1,0 +1,8 @@
+{
+  "-Wdiscarded-qualifiers": 22,
+  "-Wmissing-prototypes": 7,
+  "-Wold-style-definition": 41,
+  "-Wshadow": 6,
+  "-Wstrict-prototypes": 78,
+  "-Wvla": 5
+}
