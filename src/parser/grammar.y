@@ -176,6 +176,7 @@ function_declaration: FUNCTION IDENTIFIER {
                         Node *nodes[] = { $5, $11, $12 };
                         add_chain($$, nodes, 3);
 
+                        check_function_returns($2, $12);
                         update_region_ast(peek_region(), $$);
                         declaration_func_proc_end();
 

@@ -1,6 +1,5 @@
 # Expected failures of the 'sanitize' configuration (ASan + UBSan; mostly the stack-use-after-return of get_vm_cell_value, vm_cell.c).
 # Remove an entry when the bug is fixed; the runner flags it as XPASS until you do.
-tests/lang/bugs/b12_missing_return.arn  # argoc accepted the program (no error reported)
 tests/lang/bugs/b23_string_var.arn  # unexpected compile error: [Type Error] Undefined type at tests/lang/bugs/b23_string_var.ar
 tests/lang/bugs/b24_wiki_string_param.arn  # unexpected compile error: [Type Error] Undefined type at tests/lang/bugs/b24_wiki_string_p
 tests/lang/bugs/b25_wiki_input_string.arn  # unexpected compile error: [Type Error] Undefined type at tests/lang/bugs/b25_wiki_input_st

@@ -61,6 +61,61 @@ void check_func_prototype(int index_lexeme_lexicographic, Node *return_statement
     }
 }
 
+static int statements_always_return(Node *first);
+
+/**
+ * @brief Tells whether a statement returns on every path through it.
+ *
+ * A return statement does; an if/else does when both branches do; a block does when one of its
+ * statements does. Loops never count: their body may not run.
+ */
+static int statement_always_returns(Node *statement) {
+    switch (statement->type) {
+        case A_RETURN_STATEMENT:
+            return 1;
+
+        case A_STATEMENT_LIST:
+            return statements_always_return(statement->child);
+
+        case A_IF_ELSE: {
+            Node *then_block = statement->child->sibling;
+            Node *else_block = then_block->sibling;
+            return statements_always_return(then_block->child) &&
+                   else_block != NULL && statements_always_return(else_block->child);
+        }
+
+        case A_IF_ELSE_IF: {
+            Node *then_block = statement->child->sibling;
+            Node *next_if = then_block->sibling;
+            return statements_always_return(then_block->child) &&
+                   next_if != NULL && statement_always_returns(next_if);
+        }
+
+        default:
+            return 0;
+    }
+}
+
+static int statements_always_return(Node *first) {
+    for (Node *statement = first; statement != NULL; statement = statement->sibling) {
+        if (statement_always_returns(statement)) return 1;
+    }
+    return 0;
+}
+
+void check_function_returns(int index_lexeme_lexicographic, Node *statement_list) {
+    if (statement_list != NULL && statements_always_return(statement_list->child)) return;
+
+    set_error_type(&error, SEMANTIC_ERROR);
+    set_error_message(&error,
+        "Function '%s' does not return a value on every path at %s.\n"
+        "  Every path through the function must end with a return statement.\n",
+        get_lexeme(index_lexeme_lexicographic),
+        get_formatted_location()
+    );
+    yerror(error);
+}
+
 void check_func_proc_argument_list(int index_lexeme_lexicographic, Node *argument_list) {
     int index_declaration = get_func_proc_declaration_index(index_lexeme_lexicographic);
     if (index_declaration == NULL_VALUE) return; // do not check undeclared functions

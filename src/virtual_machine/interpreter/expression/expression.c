@@ -129,6 +129,18 @@ vm_cell resolve_expression(Node *expression) {
             execute_func_proc_call(expression);
             stack_frame current_frame = peek_execution_stack();
             vm_cell cell = current_frame.region_value;
+            if (!cell.is_initialized) {
+                // The compiler rejects such functions; this only triggers on a hand-made IR.
+                set_error_type(&error, RUN_TIME_ERROR);
+                set_error_message(
+                    &error,
+                    "Function '%s' returned no value at %s.\n",
+                    get_lexeme(expression->index_lexicographic),
+                    get_formatted_location()
+                );
+                yerror(error);
+                exit(EXIT_FAILURE);
+            }
             // Clear the region value after execution to continue to resolve statement list
             peek_execution_stack_as_mutable()->region_value = construct_vm_cell(NULL_VALUE, NULL); 
             return cell;
