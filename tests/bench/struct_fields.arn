@@ -1,0 +1,10 @@
+// 20 000 struct field reads/writes through a nested structure (measures struct addressing).
+type Point : struct { x : int; y : int; } fstruct;
+type Rect : struct { tl : Point; br : Point; } fstruct;
+var r : Rect; var i : int;
+r.tl.x := 0; r.tl.y := 0; r.br.x := 0; r.br.y := 0;
+for (i := 0; i < 20000; i++) {
+    r.br.x := r.br.x + 1;
+    r.tl.y := r.br.x - r.tl.x;
+}
+print("%d %d\n", r.br.x, r.tl.y);

@@ -1,0 +1,6 @@
+// 20 000 calls of a small function from a loop (measures call overhead without deep recursion).
+var i : int; var acc : int;
+func inc(x : int) -> int { return x + 1; }
+acc := 0;
+for (i := 0; i < 20000; i++) { acc := inc(acc); }
+print("%d\n", acc);
