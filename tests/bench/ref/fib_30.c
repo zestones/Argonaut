@@ -9,7 +9,7 @@ int main(int argc, char **argv) {
     int reps = bench_reps(argc, argv), rep;
     double t0 = bench_now();
     int r = 0;
-    for (rep = 0; rep < reps; rep++) { r = fib(20); KEEP(r); }
+    for (rep = 0; rep < reps; rep++) { r = fib(30); KEEP(r); }
     bench_report(t0, reps);
     printf("%d\n", r);
     return 0;

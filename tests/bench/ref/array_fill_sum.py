@@ -7,7 +7,7 @@ for _ in range(reps):
     a = [0] * 2000
     s = 0
     k = 0
-    while k < 10:
+    while k < 1000:
         i = 0
         while i < 2000:
             a[i] = i

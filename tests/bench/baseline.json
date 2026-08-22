@@ -4,24 +4,24 @@
  "runs": 5,
  "programs": {
   "array_fill_sum.arn": {
-   "seconds": 0.0067,
-   "max_rss_kb": 17116
+   "seconds": 0.719,
+   "max_rss_kb": 17104
   },
-  "calls_20k.arn": {
-   "seconds": 0.0054,
-   "max_rss_kb": 17116
+  "calls_2m.arn": {
+   "seconds": 0.5095,
+   "max_rss_kb": 17104
   },
-  "fib_20.arn": {
-   "seconds": 0.0042,
-   "max_rss_kb": 17116
+  "fib_30.arn": {
+   "seconds": 0.4528,
+   "max_rss_kb": 17104
   },
-  "loop_50k.arn": {
-   "seconds": 0.0074,
-   "max_rss_kb": 17116
+  "loop_5m.arn": {
+   "seconds": 0.7145,
+   "max_rss_kb": 17104
   },
   "struct_fields.arn": {
-   "seconds": 0.0074,
-   "max_rss_kb": 17116
+   "seconds": 0.8537,
+   "max_rss_kb": 17104
   }
  }
 }
