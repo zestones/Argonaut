@@ -707,10 +707,7 @@ static void print_usage(const char *program_name) {
     // Constraints section
     fprintf(stderr, COLOR_BOLD_YELLOW "Constraints:\n" COLOR_RESET);
     fprintf(stderr, COLOR_RED "  - The input file must be specified with the '-a <input_file>' option.\n");
-    fprintf(stderr, COLOR_RED "  - If '-o <output_file>' is used, the output file will be overwritten if it exists.\n\n");
-
-    // Exit function
-    exit(EXIT_FAILURE);
+    fprintf(stderr, COLOR_RED "  - If '-o <output_file>' is used, the output file will be overwritten if it exists.\n\n" COLOR_RESET);
 }
 
 static void handle_file_error(const char *filename) {
@@ -763,7 +760,7 @@ int main(int argc, char **argv) {
                 break;
             case 'h':
                 print_usage(argv[0]);
-                break;
+                return 0;
             default:
                 fprintf(stderr, COLOR_RED "Error: Unknown option '-%c'.\n" COLOR_RESET, optopt);
                 print_usage(argv[0]);
@@ -775,6 +772,7 @@ int main(int argc, char **argv) {
     if (options.input_file == NULL) {
         fprintf(stderr, COLOR_RED "Error: Missing required '-a <file>' argument.\n" COLOR_RESET);
         print_usage(argv[0]);
+        return 1;
     }
 
     // Open the input file

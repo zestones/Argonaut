@@ -160,7 +160,7 @@ sibling_node: LBRACKET SIBLING ast_node RBRACKET { $$ = $3; }
 static void print_usage(const char *program_name) {
     // Header
     fprintf(stdout, COLOR_BOLD_YELLOW "\nUsage:\n" COLOR_RESET);
-    fprintf(stdout, COLOR_GREEN "  %s -i <input_file> [options]\n\n", program_name);
+    fprintf(stdout, COLOR_GREEN "  %s -a <input_file> [options]\n\n", program_name);
 
     // Description section
     fprintf(stdout, COLOR_BOLD_YELLOW "Description:\n" COLOR_RESET);
@@ -205,7 +205,7 @@ int main(int argc, char **argv) {
 
     // Long options array
     static struct option long_options[] = {
-        {"verbose", no_argument, NULL, 1},           // Enable verbose mode
+        {"verbose", no_argument, NULL, 'v'},         // Enable verbose mode
         {"help",    no_argument, NULL, 'h'},         // Display help message
         {0, 0, 0, 0}  // End of options
     };
