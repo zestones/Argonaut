@@ -133,8 +133,8 @@ static void interpret_ast(AST ast) {
 
         case A_PROCEDURE_DECLARATION:
         case A_FUNCTION_DECLARATION:
-            // Skip function and procedure declarations
-            // Go directly to the next statement 
+            // Skip the parameter list and execute the body (an empty body has no child at all)
+            if (ast->child == NULL) break;
             if (ast->child->type == A_PARAMETER_LIST) interpret_ast(ast->child->sibling);
             else interpret_ast(ast->child);
             break;

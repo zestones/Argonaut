@@ -10,23 +10,25 @@
 
 
 ControlFlow execute_condition(AST ast) {
-    Node *current_node = ast;
+    // Shape of an if node: child = condition, condition->sibling = then block (A_STATEMENT_LIST),
+    // then_block->sibling = NULL (A_IF), an else block (A_IF_ELSE) or the next if node (A_IF_ELSE_IF).
+    Node *node = ast;
 
-    while (current_node != NULL) {
-        vm_cell condition = resolve_boolean_expression(current_node->child);
+    while (node != NULL && (node->type == A_IF || node->type == A_IF_ELSE || node->type == A_IF_ELSE_IF)) {
+        Node *condition = node->child;
+        Node *then_block = condition->sibling;
+        Node *else_part = then_block->sibling;
 
-        if (current_node->type == A_IF_ELSE_IF || current_node->type == A_IF_ELSE || A_IF) {
-            if (condition.value.boolean) {
-                return resolve_statement_list(current_node->child->sibling->child);
-            }
+        vm_cell result = resolve_boolean_expression(condition);
+        if (result.value.boolean) {
+            return resolve_statement_list(then_block->child);
+        }
 
-            // Move to the next branch (else if or else)
-            Node *next_branch = current_node->child->sibling->sibling;
-            if ((current_node->type == A_IF_ELSE) && next_branch && next_branch->child) {
-                return resolve_statement_list(next_branch->child);
-            }
-            current_node = next_branch;
-        }         
+        if (node->type == A_IF_ELSE) {
+            return resolve_statement_list(else_part ? else_part->child : NULL);
+        }
+
+        node = else_part; // A_IF_ELSE_IF: evaluate the next if; A_IF: NULL, nothing to do
     }
 
     return CONTROL_NONE;

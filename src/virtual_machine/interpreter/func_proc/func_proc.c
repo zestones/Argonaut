@@ -30,7 +30,8 @@ static stack_frame construct_frame_with_parameters(AST parameter_list, AST argum
     int dynamic_link = get_execution_stack_current_frame_id();
     stack_frame current_frame = construct_stack_frame(dynamic_link, region_index);
     
-    if (parameter_list->type != A_PARAMETER_LIST || argument_list->type != A_ARGUMENT_LIST) {
+    if (parameter_list == NULL || argument_list == NULL ||
+        parameter_list->type != A_PARAMETER_LIST || argument_list->type != A_ARGUMENT_LIST) {
         return current_frame;
     }
 

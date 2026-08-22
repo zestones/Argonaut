@@ -369,7 +369,11 @@ comparison_operator: EQUAL { $$ = construct_node_default(A_EQUAL_OP); }
 ;
 
 // Statements
-statement_block: START statement_list END { $$ = $2; }
+statement_block: START statement_list END {
+                    // An empty block must still be a node: the if/else and loop rules chain
+                    // their blocks with add_sibling, which ignores NULL (the else was lost).
+                    $$ = is_node_null($2) ? construct_node_default(A_STATEMENT_LIST) : $2;
+                }
 ;
 
 statement_list: statement statement_list {
