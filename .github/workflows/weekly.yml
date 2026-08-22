@@ -90,8 +90,10 @@ jobs:
       - run: make CONFIG=release
       - name: Measure
         run: |
+          set -o pipefail
           python3 tests/bench/run_bench.py --argoc build/release/argoc --argov build/release/argov \
-            --runs 5 --json build/bench.json | tee -a "$GITHUB_STEP_SUMMARY"
+            --runs 5 --json build/bench.json | tee build/bench.txt
+          { echo '```'; cat build/bench.txt; echo '```'; } >> "$GITHUB_STEP_SUMMARY"
       - uses: actions/upload-artifact@v4
         with:
           name: bench-results
