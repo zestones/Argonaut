@@ -37,7 +37,7 @@ void allocate_cells_to_stack_frame(stack_frame *frame, int type, int size) {
 void update_cell_in_stack_frame(stack_frame *frame, int address, vm_cell to) {
     vm_cell cell = *(vm_cell *) get_stack_value(frame->cells, address);
 
-    update_vm_cell(&cell, get_vm_cell_value(to));
+    update_vm_cell(&cell, get_vm_cell_value(&to));
     update_stack(&frame->cells, address, &cell, sizeof(vm_cell));
 }
 

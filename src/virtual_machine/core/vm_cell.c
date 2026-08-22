@@ -5,6 +5,7 @@
 
 vm_cell construct_vm_cell(int type, void *value) {
     vm_cell cell;
+    memset(&cell, 0, sizeof(cell));
     cell.type = type;
     cell.is_initialized = (value != NULL);
 
@@ -39,29 +40,13 @@ vm_cell construct_vm_cell(int type, void *value) {
     return cell;
 }
 
-void *get_vm_cell_value(vm_cell cell) {
-    void *cell_value;
-    switch (cell.type) {
-        case INTEGER: {
-            cell_value = &cell.value.integer;
-            return cell_value;
-        }
-        case REAL: {
-            cell_value = &cell.value.real;
-            return cell_value;
-        }
-        case BOOLEAN: {
-            cell_value = &cell.value.boolean;
-            return cell_value;
-        }
-        case CHARACTER: {
-            cell_value = &cell.value.character;
-            return cell_value;
-        }
-        case STRING: {
-            cell_value = &cell.value.string;
-            return cell_value;
-        }
+void *get_vm_cell_value(vm_cell *cell) {
+    switch (cell->type) {
+        case INTEGER:   return &cell->value.integer;
+        case REAL:      return &cell->value.real;
+        case BOOLEAN:   return &cell->value.boolean;
+        case CHARACTER: return &cell->value.character;
+        case STRING:    return cell->value.string;
         default:
             fprintf(stderr, "get_vm_cell_value Invalid type\n");
             exit(EXIT_FAILURE);
@@ -79,7 +64,7 @@ void update_vm_cell(vm_cell *cell, void *value) {
             cell->value.real = *((float *)value);
             break;
         case BOOLEAN:
-            cell->value.boolean = *((char *)value);
+            cell->value.boolean = *((int *)value);
             break;
         case CHARACTER:
             cell->value.character = *((char *)value);

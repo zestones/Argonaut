@@ -59,11 +59,11 @@ vm_cell construct_vm_cell(int type, void *value);
  * This function provides a generic pointer to the value stored in the given
  * `vm_cell`. The caller is responsible for interpreting the type.
  *
- * @param cell The `vm_cell` to extract the value from.
- * @return A pointer to the value inside the `vm_cell`.
+ * @param cell A pointer to the `vm_cell` to extract the value from.
+ * @return A pointer to the value inside the `vm_cell`, valid as long as the cell is.
  * @note The returned pointer must not be freed.
  */
-void *get_vm_cell_value(vm_cell cell);
+void *get_vm_cell_value(vm_cell *cell);
 
 /**
  * @brief Updates an existing `vm_cell` with a new value.
