@@ -7,6 +7,7 @@
 #include "../utility.h"
 
 #include "lexeme_table.h"
+#include "../../lexer/escapes.h"
 
 static Lexeme lexeme_table[MAX_LEXEME_COUNT];
 static int lexeme_table_size = 0;
@@ -87,24 +88,16 @@ char *get_lexeme(int index) {
 
 static char* format_lexeme_row(void* data) {
     Lexeme* row = (Lexeme*)data;
-    size_t room = 2 * strlen(row->lexeme) + 32;
+    // A row must stay on one line: the decoded text is escaped (\n, \\ ...) and argov decodes it back.
+    char* escaped = escape_text(row->lexeme);
+    size_t room = strlen(escaped) + 32;
     char* formatted_row = (char*)malloc(room);
-    char* escaped = (char*)malloc(room);
-    if (!formatted_row || !escaped) {
+    if (!formatted_row) {
         fprintf(stderr, COLOR_RED "<Error> Memory allocation failed\n" COLOR_RESET);
         exit(EXIT_FAILURE);
     }
 
-    // A row must stay on one line: a newline inside a string literal is written as "\n",
-    // which print() turns back into a newline.
-    size_t j = 0;
-    for (const char *p = row->lexeme; *p != '\0'; p++) {
-        if (*p == '\n') { escaped[j++] = '\\'; escaped[j++] = 'n'; }
-        else escaped[j++] = *p;
-    }
-    escaped[j] = '\0';
-
-    snprintf(formatted_row, room, "%s|%d|%d", escaped, (int) strlen(escaped), row->next);
+    snprintf(formatted_row, room, "%s|%d|%d", escaped, row->length, row->next);
     free(escaped);
     return formatted_row;
 }
@@ -134,14 +127,16 @@ void fprintf_lexeme_table(FILE* out) {
         sprintf(length_str, "%d", lexeme_table[i].length);
         sprintf(next_str, "%d", lexeme_table[i].next);
         sprintf(index_str, "%d", i);
+        char *escaped = escape_text(lexeme_table[i].lexeme);
 
         print_table_row(out,
                         4, 
                         cols_width[0], index_str,
-                        cols_width[1], lexeme_table[i].lexeme,
+                        cols_width[1], escaped,
                         cols_width[2], length_str,
                         cols_width[3], next_str
                     );
+        free(escaped);
 
         // Print separator after the base types
         if (i == 3) {

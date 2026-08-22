@@ -8,6 +8,21 @@
     #include <errno.h>
     #include <limits.h>
 
+    #include "../lexer/escapes.h"
+
+    /* Reports an unknown escape sequence such as \q. */
+    static void bad_escape(const char *position) {
+        set_error_type(&error, LEXICAL_ERROR);
+        set_error_message(
+            &error,
+            "Unknown escape sequence '%.2s' at %s.\n"
+            "  Supported escapes: \\n \\t \\r \\\\ \\' \\\".\n",
+            position,
+            get_formatted_location()
+        );
+        yerror(error);
+    }
+
     extern Error error;
     extern char *yytext;
     extern int yyerror(const char *s);
@@ -105,15 +120,35 @@ letter [a-zA-Z]
     return BOOLEAN_VALUE; 
 }
 
-"'"[^']"'" {
-    char lexeme[4] = { '\'', yytext[1], '\'', '\0' };
+"'"([^'\\\n]|\\[^\n])"'" {
+    const char *bad = NULL;
+    char *decoded = decode_escapes(yytext + 1, yyleng - 2, &bad);
+    if (decoded == NULL) bad_escape(bad);
+
+    char lexeme[4] = { '\'', decoded ? decoded[0] : '?', '\'', '\0' };
+    free(decoded);
     yylval.lexicographic_index = insert_lexeme(lexeme);
     error.column += yyleng;
-    return CHARACTER_VALUE; 
+    return CHARACTER_VALUE;
 }
 
-\"[^\"]*\" {
-    yylval.lexicographic_index = insert_lexeme(yytext);
+\"([^\"\\]|\\[^\n])*\" {
+    const char *bad = NULL;
+    char *decoded = decode_escapes(yytext + 1, yyleng - 2, &bad);
+    if (decoded == NULL) bad_escape(bad);
+
+    // The lexeme keeps its quotes around the decoded text.
+    size_t length = decoded ? strlen(decoded) : 0;
+    char *lexeme = malloc(length + 3);
+    if (lexeme == NULL) { fprintf(stderr, "Error: Memory allocation failed\n"); exit(EXIT_FAILURE); }
+    lexeme[0] = '"';
+    if (decoded) memcpy(lexeme + 1, decoded, length);
+    lexeme[length + 1] = '"';
+    lexeme[length + 2] = '\0';
+    yylval.lexicographic_index = insert_lexeme(lexeme);
+    free(lexeme);
+    free(decoded);
+
     // A string literal may span several lines: keep the line numbers right for later errors.
     for (char *p = yytext; *p != '\0'; p++) {
         if (*p == '\n') { error.line++; error.column = 1; }

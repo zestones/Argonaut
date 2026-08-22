@@ -36,19 +36,11 @@ TEST(strip_quotes_removes_surrounding_double_quotes) {
     ASSERT_NULL(strip_quotes("hello"));
 }
 
-TEST(process_special_chars_translates_escapes) {
-    char *s = process_special_chars("a\\tb\\nc\\\\d\\\"e");
-    ASSERT_NOT_NULL(s);
-    ASSERT_EQ_STR("a\tb\nc\\d\"e", s);
-    free(s);
-
-    /* Unknown escapes are kept verbatim. */
-    char *u = process_special_chars("x\\qy");
-    ASSERT_NOT_NULL(u);
-    ASSERT_EQ_STR("x\\qy", u);
-    free(u);
-
-    ASSERT_NULL(process_special_chars(NULL));
+TEST(percent_percent_is_not_a_specifier) {
+    ASSERT_EQ_INT(0, count_format_specifiers("100%%"));
+    ASSERT_EQ_INT(1, count_format_specifiers("%%%d%%"));
+    ASSERT_EQ_INT('d', get_nth_format_specifier("%%%d%%", 0));
+    ASSERT_EQ_INT('\0', get_nth_format_specifier("%%", 0));
 }
 
 TEST(format_specifier_compatibility_matrix) {

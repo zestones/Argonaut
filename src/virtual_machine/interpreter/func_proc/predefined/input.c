@@ -84,6 +84,14 @@ void execute_input(AST ast) {
     char buffer[BUFFER_SIZE] = {0};
     arg_list = arg_list->child;
     while (format[0] != '\0') {
+        if (format[0] == '%' && format[1] == '%') {
+            int c;
+            do { c = getchar(); } while (c == ' ' || c == '\t' || c == '\n');
+            if (c != '%') input_failure('%');
+            format += 2;
+            continue;
+        }
+
         if (format[0] == '%' && is_format_specifier(format[1])) {
             char specifier = format[1];
             vm_cell cell;

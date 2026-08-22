@@ -2,47 +2,6 @@
 #include "format_specifiers.h"
 
 
-char *process_special_chars(const char *input) {
-    if (input == NULL) {
-        return NULL;
-    }
-
-    int input_len = strlen(input);
-    char *output = (char *)malloc(input_len + 1);
-    char *output_ptr = output; 
-    for (int i = 0; i < input_len; i++) {
-        if (input[i] == '\\' && i + 1 < input_len) {
-            // Handle escape sequences
-            switch (input[i + 1]) {
-                case 'n':
-                    *output_ptr++ = '\n';
-                    i++; // Skip the 'n'
-                    break;
-                case 't':
-                    *output_ptr++ = '\t';
-                    i++; // Skip the 't'
-                    break;
-                case '\\':
-                    *output_ptr++ = '\\';
-                    i++; // Skip the second '\'
-                    break;
-                case '"':
-                    *output_ptr++ = '"';
-                    i++; // Skip the '"'
-                    break;
-                default:
-                    *output_ptr++ = input[i];
-                    break;
-            }
-        } else {
-            *output_ptr++ = input[i];
-        }
-    }
-
-    *output_ptr = '\0';
-    return output;
-}
-
 char *strip_quotes(const char *raw_format) {
     int format_len = strlen(raw_format);
 
@@ -60,7 +19,9 @@ char *strip_quotes(const char *raw_format) {
 char get_nth_format_specifier(const char *format, int n) {
     int count = 0;
     for (int i = 0; format[i] != '\0'; i++) {
-        if (format[i] == '%' && is_format_specifier(format[i + 1])) {
+        if (format[i] == '%' && format[i + 1] == '%') {
+            i++; // "%%" is a literal percent sign
+        } else if (format[i] == '%' && is_format_specifier(format[i + 1])) {
             if (count == n) return format[i + 1];
             count++;
             i++;
@@ -72,7 +33,9 @@ char get_nth_format_specifier(const char *format, int n) {
 int count_format_specifiers(const char *format) {
     int count = 0;
     for (int i = 0; format[i] != '\0'; i++) {
-        if (format[i] == '%' && is_format_specifier(format[i + 1])) {
+        if (format[i] == '%' && format[i + 1] == '%') {
+            i++; // "%%" is a literal percent sign
+        } else if (format[i] == '%' && is_format_specifier(format[i + 1])) {
             count++;
             i++;
         }

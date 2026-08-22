@@ -64,6 +64,12 @@ static void process_format_string(const char *format, AST arg_list, text_buffer 
     AST current_arg = arg_list->child;
 
     while (format[format_idx] != '\0') {
+        if (format[format_idx] == '%' && format[format_idx + 1] == '%') {
+            append_text(buffer, "%");
+            format_idx += 2;
+            continue;
+        }
+
         if (format[format_idx] == '%' && is_format_specifier(format[format_idx + 1])) {
 
             char specifier = format[format_idx + 1];
@@ -112,9 +118,13 @@ void execute_print(AST ast) {
     AST format_node = arg_list->sibling;
     if (format_node == NULL) {
         char *text = strip_quotes(get_lexeme(arg_list->index_lexicographic));
-        char *output = process_special_chars(text);
-        fprintf(stdout, "%s", output);
-        free(output);
+        text_buffer buffer = {NULL, 0, 0};
+        append_text(&buffer, "");
+        Node *no_arguments = construct_node_default(A_ARGUMENT_LIST);
+        process_format_string(text, no_arguments, &buffer);
+        fprintf(stdout, "%s", buffer.data);
+        free_ast(no_arguments);
+        free(buffer.data);
         free(text);
         return;
     }
@@ -131,10 +141,8 @@ void execute_print(AST ast) {
     append_text(&buffer, "");
     process_format_string(format, arg_list, &buffer);
 
-    char *output = process_special_chars(buffer.data);
-    fprintf(stdout, "%s", output);
+    fprintf(stdout, "%s", buffer.data);
 
-    free(output);
     free(buffer.data);
     free(format);
 }

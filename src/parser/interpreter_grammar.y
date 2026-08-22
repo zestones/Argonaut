@@ -6,6 +6,7 @@
 
     #include "parser.h"
     #include "../utils/errors.h"
+    #include "../lexer/escapes.h"
 
     #include <stdio.h>
     #include <stdlib.h>
@@ -60,7 +61,9 @@
         int next = (int) strtol(next_field, NULL, 10);
         *lexeme_end = '\0';
 
-        insert_lexeme_row(index, lexeme + 1, length, next);
+        char *decoded = unescape_text(lexeme + 1);
+        insert_lexeme_row(index, decoded, length, next);
+        free(decoded);
     }
 %}
 
