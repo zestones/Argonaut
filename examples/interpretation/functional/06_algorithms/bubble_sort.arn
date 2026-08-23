@@ -1,3 +1,28 @@
+// CATEGORY: example
+// OUT: Unsorted array:
+// OUT: arr[0] = 64
+// OUT: arr[1] = 34
+// OUT: arr[2] = 25
+// OUT: arr[3] = 12
+// OUT: arr[4] = 22
+// OUT: arr[5] = 11
+// OUT: arr[6] = 90
+// OUT: arr[7] = 43
+// OUT: arr[8] = 19
+// OUT: arr[9] = 72
+// OUT:
+// OUT: Sorted array:
+// OUT: arr[0] = 11
+// OUT: arr[1] = 12
+// OUT: arr[2] = 19
+// OUT: arr[3] = 22
+// OUT: arr[4] = 25
+// OUT: arr[5] = 34
+// OUT: arr[6] = 43
+// OUT: arr[7] = 64
+// OUT: arr[8] = 72
+// OUT: arr[9] = 90
+
 // Bubble Sort algorithm in Argonaut
 
 type list : array[0:10] of int;

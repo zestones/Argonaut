@@ -66,6 +66,7 @@ endif
 # ---- layout ------------------------------------------------------------------
 SRC_DIR   := src
 TEST_DIR  := tests
+EXAMPLE_TEST_DIR := examples/interpretation
 BUILD     := build
 GEN_DIR   := $(BUILD)/gen
 OUT_DIR   := $(BUILD)/$(CONFIG)
@@ -195,10 +196,10 @@ doctests: tools/extract_doctests.py
 	$(Q)$(PYTHON) tools/extract_doctests.py --out $(BUILD)/doctests README.md wiki
 
 check-lang: $(ARGOC) $(ARGOV) doctests
-	@echo "==> language, IR and documentation tests ($(CONFIG))"
+	@echo "==> language, IR, examples and documentation tests ($(CONFIG))"
 	$(Q)$(PYTHON) $(TEST_DIR)/run_tests.py --argoc $(ARGOC) --argov $(ARGOV) $(XFAIL_ARGS) \
 	    --jobs $(TEST_JOBS) --junit $(OUT_DIR)/junit-lang.xml \
-	    $(TEST_DIR)/lang $(TEST_DIR)/ir $(BUILD)/doctests
+	    $(TEST_DIR)/lang $(TEST_DIR)/ir $(EXAMPLE_TEST_DIR) $(BUILD)/doctests
 
 # The diagnostics suite compares exact text: sanitizer reports would pollute it, so it runs on
 # the plain configurations only (the language suite covers the instrumented builds).
@@ -215,7 +216,7 @@ check-leaks: $(ARGOC) $(ARGOV) doctests
 	$(Q)ASAN_OPTIONS="detect_stack_use_after_return=1:detect_leaks=1:strict_string_checks=1" \
 	    $(PYTHON) $(TEST_DIR)/run_tests.py --argoc $(ARGOC) --argov $(ARGOV) \
 	    --xfail $(TEST_DIR)/xfail/leaks.txt --jobs $(TEST_JOBS) --junit $(OUT_DIR)/junit-leaks.xml \
-	    $(TEST_DIR)/lang $(TEST_DIR)/ir $(BUILD)/doctests
+	    $(TEST_DIR)/lang $(TEST_DIR)/ir $(EXAMPLE_TEST_DIR) $(BUILD)/doctests
 
 # Valgrind memcheck over the language suite (manual Extended checks workflow in CI).
 VALGRIND := valgrind --error-exitcode=99 --leak-check=full --errors-for-leak-kinds=definite -q
@@ -223,7 +224,7 @@ check-valgrind: $(ARGOC) $(ARGOV) doctests
 	@echo "==> language tests under valgrind ($(CONFIG))"
 	$(Q)$(PYTHON) $(TEST_DIR)/run_tests.py --argoc $(ARGOC) --argov $(ARGOV) \
 	    --xfail $(TEST_DIR)/xfail/valgrind.txt --wrapper "$(VALGRIND)" --timeout 120 --jobs $(TEST_JOBS) \
-	    $(TEST_DIR)/lang $(TEST_DIR)/ir $(BUILD)/doctests
+	    $(TEST_DIR)/lang $(TEST_DIR)/ir $(EXAMPLE_TEST_DIR) $(BUILD)/doctests
 
 # ---- quality gates -------------------------------------------------------------
 lint: format-check banned-check warnings-check

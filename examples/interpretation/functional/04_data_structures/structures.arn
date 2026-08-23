@@ -1,3 +1,6 @@
+// CATEGORY: example
+// OUT: Point coordinates: (10, 20)
+
 // Example of structures in Argonaut
 
 // Define a custom type 'Point' as a struct

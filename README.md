@@ -176,7 +176,7 @@ make                          # debug build → bin/argoc, bin/argov (build/debu
 make CONFIG=release           # -O2, _FORTIFY_SOURCE=2, -fstack-protector-strong
 make CONFIG=sanitize          # ASan + UBSan (-fno-sanitize-recover=all)
 make CONFIG=msan CC=clang     # MemorySanitizer (clang only)
-make check                    # unit + language + IR + doc examples + diagnostics regression
+make check                    # unit + language + IR + interpretation/doc examples + diagnostics regression
 make TEST_JOBS=4 check        # override the conservative two-worker default
 make CONFIG=sanitize check    # the same suites under the sanitizers
 make CONFIG=sanitize check-leaks   # LeakSanitizer ratchet

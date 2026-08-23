@@ -1,3 +1,23 @@
+// CATEGORY: example
+// OUT: Test Case 1: Testing with n = 5 and m = 10
+// OUT: Both n > 0 and m > 5
+// OUT: n is exactly 5
+// OUT:
+// OUT: Test Case 2: Testing with n = -2 and m = 3
+// OUT: n is less than or equal to 0, and m is less than or equal to 5
+// OUT: m is exactly 3
+// OUT:
+// OUT: Test Case 3: Testing with n = 0 and m = 5
+// OUT: n is 0
+// OUT: m is exactly 5
+// OUT:
+// OUT: Test Case 4: Testing with n = 10 and m = -5
+// OUT: n is greater than 0 and m is negative
+// OUT: n is greater than 5
+// OUT:
+// OUT: Test Case 5: Testing with n = 0 and m = 0
+// OUT: Both n and m are 0
+
 proc test_nested_conditions_within_if() {
     var n : int;
     var m : int;

@@ -1,2 +1,5 @@
+// CATEGORY: example
+// OUT: Hello, World!
+
 
 print("Hello, World!\n");

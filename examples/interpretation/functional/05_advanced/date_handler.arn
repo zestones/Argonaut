@@ -1,3 +1,7 @@
+// CATEGORY: example
+// OUT: Date: 29/2/2024
+// OUT: Date: 1/3/2024
+
 type date : struct {
     day : int;
     month : int;

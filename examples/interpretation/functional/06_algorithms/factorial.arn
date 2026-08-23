@@ -1,3 +1,7 @@
+// CATEGORY: example
+// IN: 5
+// OUT: Enter a number to compute its factorial: Factorial of 5 is 120
+
 
 
 var n : int;        // Nombre pour lequel on calcule la factorielle

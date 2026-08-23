@@ -1,3 +1,6 @@
+// CATEGORY: example
+// OUT: Result after deep nesting: 20
+
 // Example of deeply nested functions in Argonaut
 
 // Define a function that performs a series of nested operations

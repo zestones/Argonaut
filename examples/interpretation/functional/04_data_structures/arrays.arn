@@ -1,3 +1,10 @@
+// CATEGORY: example
+// OUT: numbers[0] = 1
+// OUT: numbers[1] = 2
+// OUT: numbers[2] = 3
+// OUT: numbers[3] = 4
+// OUT: numbers[4] = 5
+
 // Example of arrays in Argonaut
 type list : array[0: 5] of int;
 var i : int;

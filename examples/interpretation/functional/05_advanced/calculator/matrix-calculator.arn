@@ -1,3 +1,108 @@
+// CATEGORY: example
+// IN: 1
+// IN: 1
+// IN: 2
+// IN: 3
+// IN: 1
+// IN: 8
+// OUT:
+// OUT:     -----------------------------------------
+// OUT:    /                                         \
+// OUT:   |          WELCOME TO THE MATRIX            |
+// OUT:   |            OPERATIONS PROGRAM             |
+// OUT:   |                                           |
+// OUT:   |        Simplify Your Math Effortlessly    |
+// OUT:   |                                           |
+// OUT:    \_________________________________________/
+// OUT:     -----------------------------------------
+// OUT:
+// OUT:
+// OUT:     .===============================================.
+// OUT:     |              MATRIX DIMENSIONS               |
+// OUT:     |===============================================|
+// OUT:     |                                               |
+// OUT:     |   Enter the number of rows and columns for    |
+// OUT:     |   the matrices. Maximum size is 9 x 9.      |
+// OUT:     |                                               |
+// OUT:     '===============================================
+// OUT:
+// OUT:     Enter the number of rows (max 9):     Enter the number of columns (max 9):
+// OUT:     .===============================================.
+// OUT:     |      Matrix dimensions set to: 1 x 1         |
+// OUT:     '===============================================
+// OUT:
+// OUT:
+// OUT:     .===============================================.
+// OUT:     |               ENTER MATRIX 1                  |
+// OUT:     |===============================================|
+// OUT:     |  Dimensions: (1 x 1)                          |
+// OUT:     '==============================================='
+// OUT:      Enter value for Matrix 1 [1][1]:
+// OUT:     .----------
+// OUT:     | Matrix 1 successfully entered!
+// OUT:     .===============================================.
+// OUT:
+// OUT:
+// OUT:     .===============================================.
+// OUT:     |               ENTER MATRIX 2                  |
+// OUT:     |===============================================|
+// OUT:     |  Dimensions: (1 x 1)                          |
+// OUT:     '==============================================='
+// OUT:      Enter value for Matrix 2 [1][1]:
+// OUT:     .----------
+// OUT:     | Matrix 2 successfully entered!
+// OUT:     .===============================================.
+// OUT:
+// OUT:
+// OUT:     .===============================================.
+// OUT:     |                MATRIX OPERATIONS              |
+// OUT:     |===============================================|
+// OUT:     |                                               |
+// OUT:     |  [1] Add Matrices                             |
+// OUT:     |  [2] Subtract Matrices                        |
+// OUT:     |  [3] Multiply Matrices                        |
+// OUT:     |  [4] Transpose Matrix 1                       |
+// OUT:     |  [5] Scale Matrix 1                           |
+// OUT:     |  [6] Show Matrices                            |
+// OUT:     |  [7] Enter New Matrices                       |
+// OUT:     |  [8] Exit                                     |
+// OUT:     |                                               |
+// OUT:     '==============================================='
+// OUT:
+// OUT:      Enter your selection [1-8] >>
+// OUT:     --------------------------------
+// OUT:            Result of Addition
+// OUT:     --------------------------------
+// OUT: ┌    ┐   ┌    ┐   ┌    ┐
+// OUT: │  2 │ + │  3 │ = │  5 │
+// OUT: └    ┘   └    ┘   └    ┘
+// OUT:
+// OUT:     .===============================================.
+// OUT:     |                MATRIX OPERATIONS              |
+// OUT:     |===============================================|
+// OUT:     |                                               |
+// OUT:     |  [1] Add Matrices                             |
+// OUT:     |  [2] Subtract Matrices                        |
+// OUT:     |  [3] Multiply Matrices                        |
+// OUT:     |  [4] Transpose Matrix 1                       |
+// OUT:     |  [5] Scale Matrix 1                           |
+// OUT:     |  [6] Show Matrices                            |
+// OUT:     |  [7] Enter New Matrices                       |
+// OUT:     |  [8] Exit                                     |
+// OUT:     |                                               |
+// OUT:     '==============================================='
+// OUT:
+// OUT:      Enter your selection [1-8] >>
+// OUT:     .===============================================.
+// OUT:     |               PROGRAM TERMINATED              |
+// OUT:     |===============================================|
+// OUT:     |                                               |
+// OUT:     |        Thank you for using our Calculator     |
+// OUT:     |                                               |
+// OUT:     |              Have a great day!                |
+// OUT:     |                                               |
+// OUT:     '==============================================='
+
 
 
 type matrix: array[0:9, 0:9] of int;

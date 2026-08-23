@@ -1,3 +1,58 @@
+// CATEGORY: example
+// IN: 1
+// IN: 8
+// IN: 2
+// IN: 5
+// OUT:
+// OUT:     === Welcome to Simple Calculator v1.0 ===
+// OUT:
+// OUT:     .===============================================.
+// OUT:     |                SIMPLE CALCULATOR              |
+// OUT:     |===============================================|
+// OUT:     |                                               |
+// OUT:     |  [1] Addition         |  Result: a + b        |
+// OUT:     |  [2] Subtraction      |  Result: a - b        |
+// OUT:     |  [3] Multiplication   |  Result: a * b        |
+// OUT:     |  [4] Division         |  Result: a / b        |
+// OUT:     |  [5] Exit             |  Terminate Program    |
+// OUT:     |                                               |
+// OUT:     '==============================================='
+// OUT:
+// OUT:      Enter your selection [1-5] >>
+// OUT:      Enter first number  >>      Enter second number >>
+// OUT:     .===============================================.
+// OUT:     |                 CALCULATION                   |
+// OUT:     |===============================================|
+// OUT:     |                                               |
+// OUT:     |  Operation: 8 + 2
+// OUT:     |  Result  : 10
+// OUT:     |                                               |
+// OUT:     '==============================================='
+// OUT:
+// OUT:
+// OUT:     .===============================================.
+// OUT:     |                SIMPLE CALCULATOR              |
+// OUT:     |===============================================|
+// OUT:     |                                               |
+// OUT:     |  [1] Addition         |  Result: a + b        |
+// OUT:     |  [2] Subtraction      |  Result: a - b        |
+// OUT:     |  [3] Multiplication   |  Result: a * b        |
+// OUT:     |  [4] Division         |  Result: a / b        |
+// OUT:     |  [5] Exit             |  Terminate Program    |
+// OUT:     |                                               |
+// OUT:     '==============================================='
+// OUT:
+// OUT:      Enter your selection [1-5] >>
+// OUT:     .===============================================.
+// OUT:     |               PROGRAM TERMINATED              |
+// OUT:     |===============================================|
+// OUT:     |                                               |
+// OUT:     |        Thank you for using our Calculator     |
+// OUT:     |                                               |
+// OUT:     |              Have a great day!                |
+// OUT:     |                                               |
+// OUT:     '==============================================='
+
 
 
 // Calculator Program with Enhanced ASCII Display

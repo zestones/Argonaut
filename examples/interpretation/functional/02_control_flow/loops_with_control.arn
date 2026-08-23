@@ -1,3 +1,13 @@
+// CATEGORY: example
+// OUT: Example of 'break' inside for loop:
+// OUT: 0 1 2 3 4
+// OUT: Example of 'break' inside while loop:
+// OUT: 0 1 2 3 4
+// OUT: Example of 'continue' inside for loop:
+// OUT: 1 3 5 7 9
+// OUT: Example of 'continue' inside while loop:
+// OUT: 1 3 5 7 9
+
 // Example of loops with break and continue statements in Argonaut
 
 // Example of using 'break' to exit a loop

@@ -1,3 +1,24 @@
+// CATEGORY: example
+// OUT: 2D Array elements:
+// OUT: matrix[0, 0] = 1
+// OUT: matrix[0, 1] = 2
+// OUT: matrix[0, 2] = 3
+// OUT:
+// OUT: matrix[1, 0] = 4
+// OUT: matrix[1, 1] = 5
+// OUT: matrix[1, 2] = 6
+// OUT:
+// OUT: matrix[2, 0] = 7
+// OUT: matrix[2, 1] = 8
+// OUT: matrix[2, 2] = 9
+// OUT:
+// OUT: Array Point elements:
+// OUT: Point(0): <1, 2>
+// OUT: Point(1): <3, 4>
+// OUT: Point(2): <5, 6>
+// OUT: Point(3): <7, 8>
+// OUT: Point(4): <9, 10>
+
 // Example of multidimensional arrays and arrays of custom types in Argonaut
 
 // Define a custom type 'Point' as a struct

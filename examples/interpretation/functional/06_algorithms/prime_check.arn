@@ -1,3 +1,7 @@
+// CATEGORY: example
+// IN: 29
+// OUT: Enter a number: 29 is a prime number.
+
 func is_prime(n : int) -> bool {
     var i : int;
 

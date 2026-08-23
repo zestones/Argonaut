@@ -9,6 +9,7 @@ Everything runs through `make check` (current configuration); the project rules 
 | `lang/bugs/` | bug reproductions; the header describes the *correct* behaviour | `python3 tests/run_tests.py --only b29` |
 | `lang/limitations/` | missing features, to be decided in `SPEC.md` | |
 | `ir/` | corrupted IR files that `argov` must reject cleanly | `python3 tests/run_tests.py tests/ir` |
+| `../examples/interpretation/` | real programs with golden stdin/stdout or runtime diagnostics | `python3 tests/run_tests.py examples/interpretation` |
 | `xfail/` | expected failures per configuration (`debug`, `release`, `sanitize`, `msan`, `leaks`, `valgrind`) | |
 | `regression/` | exact text of the compiler diagnostics (historical suite) | `make check-regression` |
 | `bench/` | micro-benchmarks, their literal Python and C transcriptions (`ref/`) and the argov baseline | `make bench` |
@@ -25,7 +26,7 @@ Header directives of a `.arn` case:
 // COMPILE: fail                                  argoc must report an error
 // RC: nonzero                                    … and exit with a non-zero code
 // RUN: fail                                      argov must exit with a non-zero code
-// ERR: text                                      the argoc output must contain this text
+// ERR: text                                      failing argoc/argov output must contain this text
 ```
 
 Statuses: `PASS`, `FAIL`, `XFAIL` (expected failure, listed in `xfail/<config>.txt`), `XPASS` (a listed test that passes: remove the line — it is an error until you do).

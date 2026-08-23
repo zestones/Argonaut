@@ -1,3 +1,9 @@
+// CATEGORY: example
+// IN: 8
+// IN: +
+// IN: 2
+// OUT: Enter first number: Enter operation (+, -, *, /): Enter second number: 8 + 2 = 10
+
 proc main() {
     var a : int;
     var b : int;

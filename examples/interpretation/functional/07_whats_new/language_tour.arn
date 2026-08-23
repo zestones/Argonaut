@@ -1,3 +1,14 @@
+// CATEGORY: example
+// OUT: ready: true (1)
+// OUT: short-circuit ok
+// OUT:   A at (1, 2), best score 10, inside: true
+// OUT:   B: no score yet
+// OUT:   0 1 2
+// OUT:   3 4 5
+// OUT:   6 7 8
+// OUT: diagonal: 12, progress: 100%
+// OUT: tab:	| quote: " | backslash: \ | chars: '"
+
 // A tour of the language: unary minus, C-like precedence and short-circuit, booleans as values
 // and %b, checked returns, escapes and %%, early return in procedures, chained accesses and
 // arrays of arrays.

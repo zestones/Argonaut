@@ -12,7 +12,7 @@ Test kinds
             // COMPILE: fail                           argoc must report an error
             // RC: nonzero                             argoc must also exit with a non-zero code
             // RUN: fail                               argov must exit non-zero (no crash, no hang)
-            // ERR: text                               argoc output must contain this text
+            // ERR: text                               failing argoc/argov output must contain this text
   *.ir    robustness tests: argov must reject the file with a clean non-zero exit
           (no signal, no timeout).
 
@@ -44,8 +44,8 @@ ERROR_TAG = re.compile(r"\[(Lexical|Syntax|Semantic|Type|Run Time) Error\]")
 
 # ----------------------------------------------------------------------------- parsing
 def parse_header(path):
-    spec = {"category": "sanity", "desc": "", "stdin": [], "out": [], "compile_fail": False,
-            "rc_nonzero": False, "run_fail": False, "err": None}
+    spec = {"category": "sanity", "desc": "", "stdin": [], "out": [], "out_declared": False,
+            "compile_fail": False, "rc_nonzero": False, "run_fail": False, "err": None}
     with open(path, encoding="utf-8") as f:
         for line in f:
             if not line.startswith("//"):
@@ -63,6 +63,7 @@ def parse_header(path):
             elif key == "IN":
                 spec["stdin"].append(val)
             elif key == "OUT":
+                spec["out_declared"] = True
                 raw = line[2:].partition(":")[2]
                 spec["out"].append(raw[1:].rstrip("\n") if raw.startswith(" ") else val)
             elif key == "COMPILE":
@@ -169,27 +170,42 @@ def run_lang_case(path, argoc, argov, wrapper, tmpdir, timeout, anomalies):
     rc, out, err, to = run(wrapper + [argov, "-a", ir], stdin_text, timeout)
     if to:
         return "argov: TIMEOUT (hang / infinite loop)"
+
+    def output_difference():
+        if not spec["out_declared"]:
+            return ""
+        got = [line.rstrip() for line in out.splitlines()]
+        expected = [line.rstrip() for line in spec["out"]]
+        while got and got[-1] == "":
+            got.pop()
+        while expected and expected[-1] == "":
+            expected.pop()
+        if got == expected:
+            return ""
+
+        def show(lines):
+            text = " | ".join(lines[:3])
+            return text if len(text) <= 70 else text[:70] + "…"
+
+        return "output differs — expected: [%s] got: [%s]" % (show(expected), show(got))
+
     if spec["run_fail"]:
         if rc == 0:
             return "argov exited with 0 (runtime error expected) — output: " + first_line(out)
         if is_crash(rc):
             return "argov: crash (signal %s) instead of a clean runtime error" % rc
+        if spec["err"] and spec["err"] not in out + err:
+            return "expected runtime message missing (%r) — got: %s" % (
+                spec["err"], first_line(out + err))
+        difference = output_difference()
+        if difference:
+            return difference
         return ""
     if is_crash(rc):
         return "argov: crash (code %s) %s" % (rc, first_line(err))
     if rc != 0:
         return "argov: exit %s — %s" % (rc, first_line(err + out))
-    if spec["out"]:
-        got = [l.rstrip() for l in out.splitlines()]
-        while got and got[-1] == "":
-            got.pop()
-        exp = [l.rstrip() for l in spec["out"]]
-        if got != exp:
-            def show(lines):
-                s = " | ".join(lines[:3])
-                return s if len(s) <= 70 else s[:70] + "…"
-            return "output differs — expected: [%s] got: [%s]" % (show(exp), show(got))
-    return ""
+    return output_difference()
 
 
 def run_one(path, args, wrapper, tmpdir):

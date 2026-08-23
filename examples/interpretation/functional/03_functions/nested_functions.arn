@@ -1,3 +1,6 @@
+// CATEGORY: example
+// OUT: Final result after processing sequence: 23
+
 // Example of nested functions in Argonaut
 
 // Define a function that performs a sequence of operations using nested functions
