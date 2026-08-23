@@ -1,6 +1,6 @@
 # Argonaut language specification (draft 0.1)
 
-This document describes the language **as implemented today** (revision `ae3f852` plus the build fixes) and lists the design decisions that are still open. It takes precedence over the wiki when they disagree; any change of semantics goes through an update of this file and tests in `tests/lang/`.
+This document describes the language **as implemented today** and lists the design decisions that are still open. It takes precedence over the wiki when they disagree; any change of semantics goes through an update of this file and tests in `tests/lang/`.
 
 Notation: EBNF in the style of the Go specification — `{ X }` repetition (zero or more), `[ X ]` option, `|` alternative, `"…"` terminal.
 
