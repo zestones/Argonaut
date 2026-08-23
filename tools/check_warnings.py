@@ -11,10 +11,11 @@ The strict warning set stays enabled in the Makefile on purpose: the baseline on
   --analyzer   only consider -Wanalyzer-* diagnostics (gcc -fanalyzer) and fail if any is present
 """
 import argparse
-import json
 import os
 import re
 import sys
+
+from ratchet import load_baseline, write_baseline
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 BASELINE = os.path.join(ROOT, "tools", "warnings_baseline.json")
@@ -62,16 +63,11 @@ def main():
         return 1 if total else 0
 
     if args.update:
-        with open(BASELINE, "w", encoding="utf-8") as f:
-            json.dump(counts, f, indent=2, sort_keys=True)
-            f.write("\n")
+        write_baseline(BASELINE, counts)
         print("warnings baseline written (%d unique warnings)" % sum(counts.values()))
         return 0
 
-    baseline = {}
-    if os.path.exists(BASELINE):
-        with open(BASELINE, encoding="utf-8") as f:
-            baseline = json.load(f)
+    baseline = load_baseline(BASELINE)
 
     failed = False
     print("%-32s %6s %9s" % ("flag", "now", "baseline"))

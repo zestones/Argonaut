@@ -10,10 +10,11 @@ uses are paid off over time. Once a counter reaches 0 it can never come back.
   python3 tools/check_banned.py --update   # rewrite the baseline with the current counts
 """
 import argparse
-import json
 import os
 import re
 import sys
+
+from ratchet import load_baseline, write_baseline
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 BASELINE = os.path.join(ROOT, "tools", "banned_baseline.json")
@@ -65,16 +66,11 @@ def main():
 
     counts, sites = count()
     if args.update:
-        with open(BASELINE, "w", encoding="utf-8") as f:
-            json.dump(counts, f, indent=2, sort_keys=True)
-            f.write("\n")
+        write_baseline(BASELINE, counts)
         print("banned-functions baseline written:", {k: v for k, v in counts.items() if v})
         return 0
 
-    baseline = {}
-    if os.path.exists(BASELINE):
-        with open(BASELINE, encoding="utf-8") as f:
-            baseline = json.load(f)
+    baseline = load_baseline(BASELINE)
 
     failed = False
     print("%-10s %8s %8s   %s" % ("function", "now", "baseline", "use instead"))
