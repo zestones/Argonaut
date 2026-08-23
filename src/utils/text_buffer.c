@@ -1,4 +1,5 @@
 #include "text_buffer.h"
+#include "memory.h"
 
 #include <stdint.h>
 #include <stdio.h>
@@ -24,13 +25,7 @@ static void reserve_text_buffer(TextBuffer *buffer, size_t required_capacity) {
         capacity *= 2;
     }
 
-    char *data = realloc(buffer->data, capacity);
-    if (data == NULL) {
-        fprintf(stderr, "Error: Memory allocation failed\n");
-        exit(EXIT_FAILURE);
-    }
-
-    buffer->data = data;
+    buffer->data = xrealloc(buffer->data, capacity);
     buffer->capacity = capacity;
 }
 
