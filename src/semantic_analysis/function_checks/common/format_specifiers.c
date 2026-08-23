@@ -3,13 +3,18 @@
 
 
 char *strip_quotes(const char *raw_format) {
-    int format_len = strlen(raw_format);
+    size_t format_len = strlen(raw_format);
 
     if (format_len >= 2 && raw_format[0] == '"' && raw_format[format_len - 1] == '"') {
-        char *format = (char *) malloc(format_len - 1);
+        size_t content_len = format_len - 2;
+        char *format = (char *) malloc(content_len + 1);
+        if (format == NULL) {
+            fprintf(stderr, "Error: Memory allocation failed\n");
+            exit(EXIT_FAILURE);
+        }
 
-        strncpy(format, raw_format + 1, format_len - 2);
-        format[format_len - 2] = '\0';
+        memcpy(format, raw_format + 1, content_len);
+        format[content_len] = '\0';
         return format;
     }
 

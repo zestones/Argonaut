@@ -14,7 +14,7 @@
  * @note This function is called at the start of a new scope, ensuring that identifiers 
  *       from previous scopes are not erroneously included.
  */
-void initialize_scope_identifier_tracker();
+void initialize_scope_identifier_tracker(void);
 
 /**
  * @brief Adds an identifier to the scope tracker.
@@ -45,6 +45,6 @@ int is_identifier_already_tracked(int index_lexeme_lexicographic);
  * and clearing the list of tracked identifiers. It is typically called after a scope has been 
  * processed, ensuring that the tracker is reset for the next scope.
  */
-void clear_scope_identifier_tracker();
+void clear_scope_identifier_tracker(void);
 
 #endif // __SCOPE_TRACKER_H__

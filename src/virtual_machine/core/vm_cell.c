@@ -54,14 +54,11 @@ void update_vm_cell(vm_cell *cell, void *value) {
 }
 
 const char *get_cell_type_string(vm_cell cell) {
-    static char buffer[64];
-    sprintf(buffer, "%s",
-            cell.type == INTEGER     ? "int"
-            : cell.type == REAL      ? "float"
-            : cell.type == BOOLEAN   ? "bool"
-            : cell.type == CHARACTER ? "char"
-                                     : "unknown");
-    return buffer;
+    return cell.type == INTEGER     ? "int"
+           : cell.type == REAL      ? "float"
+           : cell.type == BOOLEAN   ? "bool"
+           : cell.type == CHARACTER ? "char"
+                                    : "unknown";
 }
 
 const char *format_cell(void *data) {
@@ -73,13 +70,13 @@ const char *format_cell(void *data) {
     }
 
     switch (cell->type) {
-        case INTEGER: sprintf(buffer, "%d (int)", cell->value.integer); break;
-        case REAL: sprintf(buffer, "%.2f (float)", cell->value.real); break;
-        case BOOLEAN: sprintf(buffer, "%s (bool)", cell->value.boolean ? "true" : "false"); break;
-        case CHARACTER: sprintf(buffer, "'%c' (char)", cell->value.character); break;
-        case STRING: sprintf(buffer, "%s (string)", cell->value.string); break;
+        case INTEGER: snprintf(buffer, sizeof(buffer), "%d (int)", cell->value.integer); break;
+        case REAL: snprintf(buffer, sizeof(buffer), "%.2f (float)", cell->value.real); break;
+        case BOOLEAN: snprintf(buffer, sizeof(buffer), "%s (bool)", cell->value.boolean ? "true" : "false"); break;
+        case CHARACTER: snprintf(buffer, sizeof(buffer), "'%c' (char)", cell->value.character); break;
+        case STRING: snprintf(buffer, sizeof(buffer), "%s (string)", cell->value.string); break;
 
-        default: sprintf(buffer, "Unknown Type"); break;
+        default: snprintf(buffer, sizeof(buffer), "Unknown Type"); break;
     }
 
     return buffer;

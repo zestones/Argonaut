@@ -52,7 +52,7 @@ typedef struct {
 /**
  * @brief Initializes the declaration table.
  */
-void init_declaration_table();
+void init_declaration_table(void);
 
 /**
  * @brief Inserts a declaration into the table.
@@ -233,7 +233,7 @@ int get_declaration_lexicographic_index(int index);
  * 
  * @return Pointer to the declaration table.
  */
-Declaration *get_declaration_table();
+Declaration *get_declaration_table(void);
 
 /**
  * @brief Updates the execution information of a declaration.
@@ -263,7 +263,7 @@ void fprintf_declaration_table(FILE *out);
  * @param nature Nature to convert.
  * @return String representation of the nature.
  */
-static inline char *nature_to_string(Nature nature) {
+static inline const char *nature_to_string(Nature nature) {
     switch (nature) {
         case TYPE_BASE: return "TYPE_BASE";
         case TYPE_VAR: return "TYPE_VAR";
@@ -277,7 +277,7 @@ static inline char *nature_to_string(Nature nature) {
     }
 }
 
-static inline char *nature_to_string_short(Nature nature) {
+static inline const char *nature_to_string_short(Nature nature) {
     switch (nature) {
         case TYPE_BASE: return "base";
         case TYPE_VAR: return "variable";

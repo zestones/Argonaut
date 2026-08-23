@@ -14,7 +14,8 @@
     #include <unistd.h>
     #include <getopt.h>
 
-    int yylex();
+    int yylex(void);
+    void yyerror(const char *s);
     extern FILE *yyin;
     extern FILE *yyout;
     extern char *yytext;

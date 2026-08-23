@@ -51,21 +51,21 @@ Region construct_region(int size, int nis);
  *
  * This function sets up the region table for managing regions.
  */
-void init_region_table();
+void init_region_table(void);
 
 /**
  * @brief Starts a new region.
  *
  * This function begins a new region in the region table.
  */
-void start_region();
+void start_region(void);
 
 /**
  * @brief Ends the current region.
  *
  * This function ends the current region in the region table.
  */
-void end_region();
+void end_region(void);
 
 /**
  * @brief Inserts a new region row into the region table.
@@ -105,14 +105,14 @@ int get_region_nis(int index);
  *
  * @return The NIS of the current region.
  */
-int get_current_region_nis();
+int get_current_region_nis(void);
 
 /**
  * @brief Gets the ID of the current region.
  *
  * @return The ID of the current region.
  */
-int get_current_region_id();
+int get_current_region_id(void);
 
 /**
  * @brief Gets the AST of the region at the specified index.

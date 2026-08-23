@@ -6,15 +6,15 @@
 
 static Stack execution_stack;
 
-void init_execution_stack() {
+void init_execution_stack(void) {
     execution_stack = construct_stack();
 }
 
-stack_frame *peek_execution_stack_as_mutable() {
+stack_frame *peek_execution_stack_as_mutable(void) {
     return (stack_frame *) peek(execution_stack);
 }
 
-stack_frame peek_execution_stack() {
+stack_frame peek_execution_stack(void) {
     return *peek_execution_stack_as_mutable();
 }
 
@@ -62,7 +62,7 @@ stack_frame *find_stack_frame_by_region_index(int region_index) {
     exit(EXIT_FAILURE);
 }
 
-int get_execution_stack_current_frame_id() {
+int get_execution_stack_current_frame_id(void) {
     return size(execution_stack) - 1;
 }
 

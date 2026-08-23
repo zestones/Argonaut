@@ -7,7 +7,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define HASH_TABLE_SIZE 32    
+#define HASH_TABLE_SIZE 32
 
 
 /**
@@ -16,12 +16,12 @@
  * @param lexeme : The lexeme to add.
  * @param next : The next index.
  */
-void insert_hash(const char* lexeme, int next);
+void insert_hash(const char *lexeme, int next);
 
 /**
  * @brief Initialize the hash table.
  */
-void init_hash_table();
+void init_hash_table(void);
 
 /**
  * @brief Hash function to generate a hash code for a given lexeme.
@@ -30,7 +30,7 @@ void init_hash_table();
  * @param length : The length of the lexeme.
  * @return int : The hash code.
  */
-int hash_function(const char* lexeme, int length);
+int hash_function(const char *lexeme, int length);
 
 /**
  * @brief Find the value at the given index in the hash table.
@@ -45,6 +45,6 @@ int get_hash_value(int index);
  * 
  * @param out : The output stream to write to.
  */
-void fprintf_hash_table(FILE* out);
+void fprintf_hash_table(FILE *out);
 
 #endif // __HASH_H__

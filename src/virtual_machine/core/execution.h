@@ -91,7 +91,7 @@ vm_cell get_array_cell(Node *arra_access);
  *
  * @return The `vm_cell` containing the return value location for the current function.
  */
-vm_cell get_return_cell();
+vm_cell get_return_cell(void);
 
 /**
  * @brief Updates the memory cell of a variable with a new value.

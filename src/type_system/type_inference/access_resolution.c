@@ -7,10 +7,59 @@
 #include "../../utils/utils.h"
 #include "type_inference.h"
 
-static void access_error(Node *root, const char *format, const char *detail) {
+typedef enum {
+    INDEXED_NON_ARRAY,
+    TOO_MANY_INDICES,
+    INSUFFICIENT_INDICES,
+    NON_INTEGER_INDEX,
+    NOT_A_VARIABLE,
+    FIELD_ON_NON_STRUCT,
+    UNKNOWN_FIELD,
+} access_error_kind;
+
+static void access_error(Node *root, access_error_kind kind, const char *detail) {
     char *text = format_access(root);
     set_error_type(&error, SEMANTIC_ERROR);
-    set_error_message(&error, format, get_formatted_location(), text, detail);
+    switch (kind) {
+        case INDEXED_NON_ARRAY:
+            set_error_message(&error,
+                              "Array access error at %s.\n"
+                              "  '%s' is indexed, but it is of type '%s', which is not an array.\n",
+                              get_formatted_location(), text, detail);
+            break;
+        case TOO_MANY_INDICES:
+            set_error_message(&error,
+                              "Array access error at %s.\n"
+                              "  Too many indices in '%s': the element of type '%s' is not an array.\n",
+                              get_formatted_location(), text, detail);
+            break;
+        case INSUFFICIENT_INDICES:
+            set_error_message(&error,
+                              "Array access error at %s.\n"
+                              "  Insufficient indices in '%s': the array has %s dimension(s).\n",
+                              get_formatted_location(), text, detail);
+            break;
+        case NON_INTEGER_INDEX:
+            set_error_message(&error,
+                              "Array access error at %s.\n"
+                              "  An index of '%s' has type '%s', but indices must be integers.\n",
+                              get_formatted_location(), text, detail);
+            break;
+        case NOT_A_VARIABLE:
+            set_error_message(&error, "Access error at %s.\n  '%s' is not a variable.\n", get_formatted_location(),
+                              text);
+            break;
+        case FIELD_ON_NON_STRUCT:
+            set_error_message(&error,
+                              "Field access error at %s.\n"
+                              "  '%s' accesses a field of a value of type '%s', which is not a struct.\n",
+                              get_formatted_location(), text, detail);
+            break;
+        case UNKNOWN_FIELD:
+            set_error_message(&error, "Field access error at %s.\n  In '%s', %s.\n", get_formatted_location(), text,
+                              detail);
+            break;
+    }
     yerror(error);
     free(text);
 }
@@ -24,20 +73,14 @@ static void access_error(Node *root, const char *format, const char *detail) {
  */
 static int apply_indices(Node *access_node, int type, Node *root) {
     if (get_declaration_nature(type) != TYPE_ARRAY) {
-        access_error(root,
-                     "Array access error at %s.\n"
-                     "  '%s' is indexed, but it is of type '%s', which is not an array.\n",
-                     type_name(type));
+        access_error(root, INDEXED_NON_ARRAY, type_name(type));
         return NULL_VALUE;
     }
 
     Node *index = access_node->child->child;
     while (index != NULL) {
         if (get_declaration_nature(type) != TYPE_ARRAY) {
-            access_error(root,
-                         "Array access error at %s.\n"
-                         "  Too many indices in '%s': the element of type '%s' is not an array.\n",
-                         type_name(type));
+            access_error(root, TOO_MANY_INDICES, type_name(type));
             return NULL_VALUE;
         }
 
@@ -46,20 +89,14 @@ static int apply_indices(Node *access_node, int type, Node *root) {
             if (index == NULL) {
                 char expected[16];
                 snprintf(expected, sizeof(expected), "%d", dimensions);
-                access_error(root,
-                             "Array access error at %s.\n"
-                             "  Insufficient indices in '%s': the array has %s dimension(s).\n",
-                             expected);
+                access_error(root, INSUFFICIENT_INDICES, expected);
                 return NULL_VALUE;
             }
 
             int index_type = resolve_expression_type(index->child);
             if (index_type == NULL_VALUE) return NULL_VALUE;
             if (index_type != A_INTEGER_LITERAL) {
-                access_error(root,
-                             "Array access error at %s.\n"
-                             "  An index of '%s' has type '%s', but indices must be integers.\n",
-                             type_name(index_type));
+                access_error(root, NON_INTEGER_INDEX, type_name(index_type));
                 return NULL_VALUE;
             }
 
@@ -80,10 +117,7 @@ int resolve_access_type(Node *access) {
         // Undeclared, or declared as something else (a type, a function)
         check_variable_definition(access->index_lexicographic);
         if (find_declaration_index(access->index_lexicographic) != NULL_VALUE) {
-            access_error(access,
-                         "Access error at %s.\n"
-                         "  '%s' is not a variable%s.\n",
-                         "");
+            access_error(access, NOT_A_VARIABLE, "");
         }
         return NULL_VALUE;
     }
@@ -109,10 +143,7 @@ int resolve_access_type(Node *access) {
 
         // A field of a structure
         if (get_declaration_nature(type) != TYPE_STRUCT) {
-            access_error(access,
-                         "Field access error at %s.\n"
-                         "  '%s' accesses a field of a value of type '%s', which is not a struct.\n",
-                         type_name(type));
+            access_error(access, FIELD_ON_NON_STRUCT, type_name(type));
             return NULL_VALUE;
         }
 
@@ -121,10 +152,7 @@ int resolve_access_type(Node *access) {
             char detail[256];
             snprintf(detail, sizeof(detail), "the field '%s' does not exist in the struct '%s'",
                      get_lexeme(node->index_lexicographic), get_lexeme(get_declaration_lexicographic_index(type)));
-            access_error(access,
-                         "Field access error at %s.\n"
-                         "  In '%s', %s.\n",
-                         detail);
+            access_error(access, UNKNOWN_FIELD, detail);
             return NULL_VALUE;
         }
 

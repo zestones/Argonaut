@@ -158,7 +158,7 @@ void execute(int region_index) {
  * to the execution stack and interpreting the corresponding AST. After the execution, 
  * it pops the region and the frame from the stack.
  */
-static void execute_global_program() {
+static void execute_global_program(void) {
     int program_region = 0;
 
     push_region(program_region);
@@ -168,7 +168,7 @@ static void execute_global_program() {
     interpret_ast(get_region_ast(program_region));
 }
 
-void interpret() {
+void interpret(void) {
     init_execution_stack();
     init_stack_region();
 

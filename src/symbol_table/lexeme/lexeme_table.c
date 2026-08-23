@@ -12,21 +12,17 @@
 static Lexeme lexeme_table[MAX_LEXEME_COUNT];
 static int lexeme_table_size = 0;
 
-Lexeme construct_lexeme(const char *lexeme, int length, int next) {
-    Lexeme new_lexeme;
-
-    new_lexeme.lexeme = strdup(lexeme);
-    if (new_lexeme.lexeme == NULL) {
+static void initialize_lexeme(Lexeme *target, const char *lexeme, int length, int next) {
+    target->lexeme = strdup(lexeme);
+    if (target->lexeme == NULL) {
         fprintf(stderr, COLOR_RED "<Error> Memory allocation failed\n" COLOR_RESET);
         exit(EXIT_FAILURE);
     }
-    new_lexeme.length = length;
-    new_lexeme.next = next;
-
-    return new_lexeme;
+    target->length = length;
+    target->next = next;
 }
 
-void init_lexeme_table() {
+void init_lexeme_table(void) {
     memset(lexeme_table, NULL_VALUE, sizeof(lexeme_table));
 }
 
@@ -55,13 +51,11 @@ int insert_lexeme(const char *lexeme) {
     }
 
     // If the lexeme is not in the table, we insert it
-    Lexeme new_lexeme = construct_lexeme(lexeme, length, NULL_VALUE);
+    initialize_lexeme(&lexeme_table[lexeme_table_size], lexeme, length, NULL_VALUE);
     insert_hash(lexeme, lexeme_table_size);
 
     // If there is a collision, we link the new lexeme to the previous one
     if (index != NULL_VALUE) lexeme_table[index].next = lexeme_table_size;
-    lexeme_table[lexeme_table_size] = new_lexeme;
-
     return lexeme_table_size++;
 }
 
@@ -72,8 +66,7 @@ void insert_lexeme_row(int index, const char *lexeme, int length, int next) {
         exit(EXIT_FAILURE);
     }
 
-    Lexeme new_lexeme = construct_lexeme(lexeme, length, next);
-    lexeme_table[index] = new_lexeme;
+    initialize_lexeme(&lexeme_table[index], lexeme, length, next);
 
     lexeme_table_size++;
 }
@@ -112,7 +105,7 @@ void export_lexeme_table(const char *filename) {
 void fprintf_lexeme_table(FILE *out) {
     const int cols_width[] = {10, 20, 10, 10};
     char title[50];
-    sprintf(title, "Lexeme Table: %d entries", lexeme_table_size);
+    snprintf(title, sizeof(title), "Lexeme Table: %d entries", lexeme_table_size);
 
     print_table_title(out, title);
     print_table_separator(out, 4, cols_width[0], cols_width[1], cols_width[2], cols_width[3]);
@@ -121,10 +114,10 @@ void fprintf_lexeme_table(FILE *out) {
     print_table_separator(out, 4, cols_width[0], cols_width[1], cols_width[2], cols_width[3]);
 
     for (int i = 0; i < lexeme_table_size; i++) {
-        char length_str[10], next_str[10], index_str[10];
-        sprintf(length_str, "%d", lexeme_table[i].length);
-        sprintf(next_str, "%d", lexeme_table[i].next);
-        sprintf(index_str, "%d", i);
+        char length_str[32], next_str[32], index_str[32];
+        snprintf(length_str, sizeof(length_str), "%d", lexeme_table[i].length);
+        snprintf(next_str, sizeof(next_str), "%d", lexeme_table[i].next);
+        snprintf(index_str, sizeof(index_str), "%d", i);
         char *escaped = escape_text(lexeme_table[i].lexeme);
 
         print_table_row(out, 4, cols_width[0], index_str, cols_width[1], escaped, cols_width[2], length_str,

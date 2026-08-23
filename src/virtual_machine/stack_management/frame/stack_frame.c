@@ -49,7 +49,7 @@ void destroy_stack_frame(stack_frame *frame) {
 
 void fprintf_stack_frame(FILE *out, stack_frame frame) {
     const int num_col = 2;
-    const int width = 15;
+    enum { width = 15 };
     char str_region_index[width];
     char str_dynamic_link[width];
 
@@ -61,8 +61,8 @@ void fprintf_stack_frame(FILE *out, stack_frame frame) {
     print_table_header(out, num_col, width, "DYNAMIC LINK", width, "REGION INDEX");
     print_table_separator(out, num_col, width, width, width, width);
 
-    sprintf(str_region_index, "%d", frame.region_index);
-    sprintf(str_dynamic_link, "%d", frame.dynamic_link);
+    snprintf(str_region_index, sizeof(str_region_index), "%d", frame.region_index);
+    snprintf(str_dynamic_link, sizeof(str_dynamic_link), "%d", frame.dynamic_link);
 
     print_table_row(out, num_col, width, str_dynamic_link, width, str_region_index);
 

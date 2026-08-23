@@ -22,7 +22,7 @@ void check_func_proc_definition(int index_lexeme_lexicographic) {
     }
 }
 
-void check_func_proc_redefinition(int index_lexeme_lexicographic, char *type) {
+void check_func_proc_redefinition(int index_lexeme_lexicographic, const char *type) {
     int index_func_proc_declaration = get_func_proc_declaration_index(index_lexeme_lexicographic);
     if (index_func_proc_declaration != NULL_VALUE &&
         peek_region() == get_declaration_region(index_func_proc_declaration)) {

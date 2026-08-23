@@ -18,7 +18,7 @@
  * This function initializes the execution stack, which is responsible for managing the 
  * stack frames during the execution of the program. The stack is constructed as an empty stack.
  */
-void init_execution_stack();
+void init_execution_stack(void);
 
 /**
  * @brief Peeks at the top stack frame in a mutable way.
@@ -28,7 +28,7 @@ void init_execution_stack();
  * 
  * @return A pointer to the stack frame at the top of the execution stack.
  */
-stack_frame *peek_execution_stack_as_mutable();
+stack_frame *peek_execution_stack_as_mutable(void);
 
 /**
  * @brief Peeks at the top stack frame in a read-only way.
@@ -38,7 +38,7 @@ stack_frame *peek_execution_stack_as_mutable();
  * 
  * @return A copy of the stack frame at the top of the execution stack.
  */
-stack_frame peek_execution_stack();
+stack_frame peek_execution_stack(void);
 
 /**
  * @brief Pushes a new stack frame onto the execution stack.
@@ -95,7 +95,7 @@ stack_frame *find_stack_frame_by_region_index(int region_index);
  * 
  * @return The index of the current stack frame in the execution stack.
  */
-int get_execution_stack_current_frame_id();
+int get_execution_stack_current_frame_id(void);
 
 /**
  * @brief Prints the contents of the execution stack.

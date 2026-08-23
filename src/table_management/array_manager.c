@@ -15,7 +15,7 @@ void construct_array_manager_context(int index_array_name_lexicographic) {
     context.number_of_dimensions = 0;
 }
 
-void declaration_array_start() {
+void declaration_array_start(void) {
     check_type_redefinition(context.index_array_name_lexicographic, TYPE_ARRAY);
     context.index_array_type_representation = insert_representation(NULL_VALUE);
     insert_declaration_array(context.index_array_name_lexicographic, peek_region(),

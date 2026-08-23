@@ -7,23 +7,23 @@ int get_error_count(void) {
 }
 
 Error construct_error(ErrorType type, int line, int column, const char *format, ...) {
-    Error error;
+    Error result;
 
-    error.type = type;
-    error.line = line;
-    error.column = column;
+    result.type = type;
+    result.line = line;
+    result.column = column;
 
     va_list args;
     va_start(args, format);
-    vsnprintf(error.message, sizeof(error.message), format, args);
+    vsnprintf(result.message, sizeof(result.message), format, args);
     va_end(args);
 
-    return error;
+    return result;
 }
 
-void yywarn(const Error error) {
+void yywarn(const Error diagnostic) {
     fprintf(stderr, COLOR_YELLOW "[");
-    switch (error.type) {
+    switch (diagnostic.type) {
         case SYNTAX_ERROR: fprintf(stderr, "Syntax Warning"); break;
         case SEMANTIC_ERROR: fprintf(stderr, "Semantic Warning"); break;
         case TYPE_ERROR: fprintf(stderr, "Type Warning"); break;
@@ -32,13 +32,13 @@ void yywarn(const Error error) {
         default: fprintf(stderr, "Unknown Warning"); break;
     }
     fprintf(stderr, "]");
-    fprintf(stderr, " %s" COLOR_RESET "\n", error.message);
+    fprintf(stderr, " %s" COLOR_RESET "\n", diagnostic.message);
 }
 
-void yerror(const Error error) {
+void yerror(const Error diagnostic) {
     error_count++;
     fprintf(stderr, COLOR_RED "[");
-    switch (error.type) {
+    switch (diagnostic.type) {
         case SYNTAX_ERROR: fprintf(stderr, "Syntax Error"); break;
         case SEMANTIC_ERROR: fprintf(stderr, "Semantic Error"); break;
         case TYPE_ERROR: fprintf(stderr, "Type Error"); break;
@@ -48,22 +48,22 @@ void yerror(const Error error) {
     }
 
     fprintf(stderr, "]");
-    fprintf(stderr, " %s" COLOR_RESET "\n", error.message);
+    fprintf(stderr, " %s" COLOR_RESET "\n", diagnostic.message);
 }
 
-char *get_formatted_location() {
+char *get_formatted_location(void) {
     static char location[256];
     snprintf(location, sizeof(location), "%s:%d:%d", error.filename, error.line, error.column);
     return location;
 }
 
-void set_error_message(Error *error, const char *format, ...) {
+void set_error_message(Error *target, const char *format, ...) {
     va_list args;
     va_start(args, format);
-    vsnprintf(error->message, sizeof(error->message), format, args);
+    vsnprintf(target->message, sizeof(target->message), format, args);
     va_end(args);
 }
 
-void set_error_type(Error *error, ErrorType type) {
-    error->type = type;
+void set_error_type(Error *target, ErrorType type) {
+    target->type = type;
 }

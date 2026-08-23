@@ -25,15 +25,14 @@
  * 
  * These information is used to fill the tables with the correct information.
  */
-typedef struct func_proc_manager_context
-{
-    int index_return_type_representation;           // Index representing the return type.
-    int index_number_of_parameters_representation;  // Index representing the number of parameters.
+typedef struct func_proc_manager_context {
+    int index_return_type_representation;          // Index representing the return type.
+    int index_number_of_parameters_representation; // Index representing the number of parameters.
 
-    int number_of_parameters;                       // Number of parameters.   
+    int number_of_parameters; // Number of parameters.
 
-    int index_func_proc_name_lexicographic;         // Index representing the lexicographic order of the function or procedure name.
-    int index_return_type_lexicographic;            // Index representing the lexicographic order of the return type.
+    int index_func_proc_name_lexicographic; // Index representing the lexicographic order of the function or procedure name.
+    int index_return_type_lexicographic; // Index representing the lexicographic order of the return type.
 } func_proc_manager_context;
 
 /**
@@ -54,7 +53,7 @@ void func_proc_add_parameter(int index_lexeme_lexicographic, int index_type_lexi
 /**
  * @brief Starts the declaration of a function.
  */
-void declaration_func_start();
+void declaration_func_start(void);
 
 /**
  * @brief Updates the return type of the current function.
@@ -66,11 +65,11 @@ void update_declaration_func_return_type(int index_return_type_lexicographic);
 /**
  * @brief Starts the declaration of a procedure.
  */
-void declaration_proc_start();
+void declaration_proc_start(void);
 
 /**
  * @brief Ends the declaration of a function or procedure.
  */
-void declaration_func_proc_end();
+void declaration_func_proc_end(void);
 
 #endif // __FUNC_PROC_MANAGER_H__

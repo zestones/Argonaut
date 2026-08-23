@@ -13,7 +13,7 @@ static Declaration declaration_table[MAX_DECLARATION_COUNT];
 static int declaration_table_size = 0;
 static int overflow_zone_size = MAX_LEXEME_COUNT;
 
-Declaration construct_declaration(Nature nature, int next, int region, int description, int execution) {
+static Declaration construct_declaration(Nature nature, int next, int region, int description, int execution) {
     Declaration new_declaration;
 
     new_declaration.nature = nature;
@@ -25,7 +25,7 @@ Declaration construct_declaration(Nature nature, int next, int region, int descr
     return new_declaration;
 }
 
-void init_declaration_table() {
+void init_declaration_table(void) {
     memset(declaration_table, NULL_VALUE, sizeof(declaration_table));
 }
 
@@ -164,7 +164,7 @@ int get_declaration_lexicographic_index(int index) {
     return current;
 }
 
-Declaration *get_declaration_table() {
+Declaration *get_declaration_table(void) {
     return declaration_table;
 }
 
@@ -183,9 +183,14 @@ static char *format_declaration_row(void *data) {
     // save some memory by not formatting empty rows
     if (declaration->nature == (Nature) NULL_VALUE) return NULL;
 
-    char *formatted_row = (char *) malloc(256 * sizeof(char));
-    sprintf(formatted_row, "%d|%d|%d|%d|%d", declaration->nature, declaration->next, declaration->region,
-            declaration->description, declaration->execution);
+    const size_t room = 128;
+    char *formatted_row = (char *) malloc(room);
+    if (formatted_row == NULL) {
+        fprintf(stderr, COLOR_RED "<Error> Memory allocation failed\n" COLOR_RESET);
+        exit(EXIT_FAILURE);
+    }
+    snprintf(formatted_row, room, "%d|%d|%d|%d|%d", declaration->nature, declaration->next, declaration->region,
+             declaration->description, declaration->execution);
 
     return formatted_row;
 }
@@ -221,16 +226,15 @@ void fprintf_declaration_table(FILE *out) {
                                   col_width_description, col_width_execution);
         }
 
-        int char_length = 20;
-        char region_str[char_length], next_str[char_length], index_str[char_length];
-        char description_str[char_length], execution_str[char_length], nature_str[char_length];
+        char region_str[32], next_str[32], index_str[32];
+        char description_str[32], execution_str[32], nature_str[20];
 
-        sprintf(region_str, "%d", declaration_table[i].region);
-        sprintf(next_str, "%d", declaration_table[i].next);
-        sprintf(description_str, "%d", declaration_table[i].description);
-        sprintf(execution_str, "%d", declaration_table[i].execution);
-        sprintf(index_str, "%d", i);
-        sprintf(nature_str, "%s", nature_to_string(declaration_table[i].nature));
+        snprintf(region_str, sizeof(region_str), "%d", declaration_table[i].region);
+        snprintf(next_str, sizeof(next_str), "%d", declaration_table[i].next);
+        snprintf(description_str, sizeof(description_str), "%d", declaration_table[i].description);
+        snprintf(execution_str, sizeof(execution_str), "%d", declaration_table[i].execution);
+        snprintf(index_str, sizeof(index_str), "%d", i);
+        snprintf(nature_str, sizeof(nature_str), "%s", nature_to_string(declaration_table[i].nature));
 
         print_table_row(out, 6, col_width_index, index_str, col_width_nature, nature_str, col_width_next, next_str,
                         col_width_region, region_str, col_width_description, description_str, col_width_execution,

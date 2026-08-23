@@ -41,6 +41,6 @@ void execute(int region_index);
  * global program, and continues processing through the program's AST. It serves as 
  * the main entry point for interpreting and executing the program.
  */
-void interpret();
+void interpret(void);
 
 #endif

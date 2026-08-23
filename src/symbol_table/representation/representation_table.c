@@ -10,7 +10,7 @@ static int representation_table[MAX_REPRESENTATION_COUNT];
 static int representation_table_size = 0;
 
 
-void init_representation_table() {
+void init_representation_table(void) {
     memset(representation_table, NULL_VALUE, sizeof(representation_table));
 }
 
@@ -62,9 +62,14 @@ int get_representation_value(int index) {
 
 static char *format_representation_row(void *element) {
     int *representation = (int *) element;
-    char *formatted_row = (char *) malloc(10 * sizeof(char));
+    const size_t room = 32;
+    char *formatted_row = (char *) malloc(room);
+    if (formatted_row == NULL) {
+        fprintf(stderr, COLOR_RED "<Error> Memory allocation failed\n" COLOR_RESET);
+        exit(EXIT_FAILURE);
+    }
 
-    sprintf(formatted_row, "%d", *representation);
+    snprintf(formatted_row, room, "%d", *representation);
     return formatted_row;
 }
 
@@ -83,9 +88,9 @@ void fprintf_representation_table(FILE *out) {
     print_table_separator(out, 2, col_width_index, col_width_value);
 
     for (int i = 0; i < representation_table_size; i++) {
-        char index_str[10], value_str[10];
-        sprintf(index_str, "%d", i);
-        sprintf(value_str, "%d", representation_table[i]);
+        char index_str[32], value_str[32];
+        snprintf(index_str, sizeof(index_str), "%d", i);
+        snprintf(value_str, sizeof(value_str), "%d", representation_table[i]);
 
         print_table_row(out, 2, col_width_index, index_str, col_width_value, value_str);
     }

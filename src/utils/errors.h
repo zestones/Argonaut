@@ -7,6 +7,12 @@
 
 #include "../../lib/colors.h"
 
+#if defined(__GNUC__) || defined(__clang__)
+#define ARGO_PRINTF_LIKE(format_index, first_argument) __attribute__((format(printf, format_index, first_argument)))
+#else
+#define ARGO_PRINTF_LIKE(format_index, first_argument)
+#endif
+
 /**
  * @enum ErrorType
  * @brief Enumeration of error types.
@@ -25,11 +31,11 @@ typedef enum {
  * @brief Structure to hold detailed error information.
  */
 typedef struct {
-    ErrorType type;    // The type of the error.
-    int line;          // The line number where the error occurred.
-    int column;        // The column number where the error occurred.
-    char message[500]; // The error message.
-    char *filename;    // The name of the file where the error occurred.
+    ErrorType type;       // The type of the error.
+    int line;             // The line number where the error occurred.
+    int column;           // The column number where the error occurred.
+    char message[500];    // The error message.
+    const char *filename; // The name of the file where the error occurred.
 } Error;
 
 /**
@@ -47,21 +53,21 @@ extern Error error;
  * @param ... The arguments to be formatted into the error message.
  * @return The constructed Error struct.
  */
-Error construct_error(ErrorType type, int line, int column, const char *format, ...);
+Error construct_error(ErrorType type, int line, int column, const char *format, ...) ARGO_PRINTF_LIKE(4, 5);
 
 /**
  * @brief Prints a formatted warning message based on the provided Error struct.
  * 
  * @param error The Error struct containing warning details.
  */
-void yywarn(const Error error);
+void yywarn(const Error diagnostic);
 
 /**
  * @brief Prints a formatted error message based on the provided Error struct and exits the program.
  * 
  * @param error The Error struct containing error details.
  */
-void yerror(const Error error);
+void yerror(const Error diagnostic);
 
 /**
  * @brief Number of errors reported through yerror() so far.
@@ -75,7 +81,7 @@ int get_error_count(void);
  * 
  * @return The formatted string containing the current file, line, and column.
  */
-char *get_formatted_location();
+char *get_formatted_location(void);
 
 /**
  * @brief Sets the error message of the provided Error struct.
@@ -84,7 +90,7 @@ char *get_formatted_location();
  * @param format The format string for the error message.
  * @param ... The arguments to be formatted into the error message.
  */
-void set_error_message(Error *error, const char *format, ...);
+void set_error_message(Error *target, const char *format, ...) ARGO_PRINTF_LIKE(2, 3);
 
 /**
  * @brief Sets the error type of the provided Error struct.
@@ -92,6 +98,6 @@ void set_error_message(Error *error, const char *format, ...);
  * @param error The Error struct to set the type for.
  * @param type The type of the error.
  */
-void set_error_type(Error *error, ErrorType type);
+void set_error_type(Error *target, ErrorType type);
 
 #endif // __ERRORS_H__

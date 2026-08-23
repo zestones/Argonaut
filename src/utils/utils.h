@@ -35,7 +35,7 @@ static inline const char *format_int(void *data) {
     static char buffer[32];
     int value = *(int *) data;
 
-    sprintf(buffer, "%d", value);
+    snprintf(buffer, sizeof(buffer), "%d", value);
     return buffer;
 }
 

@@ -62,7 +62,7 @@ static void validate_argument_type(Node *current_argument, int expected_type, in
 
     if (argument_type != expected_type) {
         set_error_type(&error, TYPE_ERROR);
-        char *func_proc = (nature == TYPE_FUNC) ? "Function" : "Procedure";
+        const char *func_proc = (nature == TYPE_FUNC) ? "Function" : "Procedure";
         set_error_message(&error,
                           "%s '%s' expects argument %d to be of type '%s' at %s.\n"
                           "  But the provided argument '%s' is of type '%s'.\n"

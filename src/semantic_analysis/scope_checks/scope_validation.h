@@ -12,6 +12,6 @@
  * @param index_lexeme_lexicographic The lexicographic index of the scope entity's name.
  * @param entity_type The type of the scope entity. (function/procedure parameter, structure field)
  */
-void check_scope_redefinition(int index_lexeme_lexicographic, char *entity_type);
+void check_scope_redefinition(int index_lexeme_lexicographic, const char *entity_type);
 
 #endif // __SCOPE_VALIDATION_H__

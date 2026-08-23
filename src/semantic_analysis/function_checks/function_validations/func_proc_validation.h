@@ -36,7 +36,7 @@ void check_func_proc_definition(int index_lexeme_lexicographic);
  * @param index_lexeme_lexicographic The lexicographic index of the function or procedure's name.
  * @param type The type of the function or procedure.
  */
-void check_func_proc_redefinition(int index_lexeme_lexicographic, char *type);
+void check_func_proc_redefinition(int index_lexeme_lexicographic, const char *type);
 
 /**
  * @brief Validates the return statement of a function.

@@ -29,7 +29,7 @@ static void write_tables_to(FILE *out) {
  * declaration tables. These types are crucial for enabling type-checking and other operations 
  * within the language. Additionally, it starts the first region for declarations.
  */
-static void initialize_base_types() {
+static void initialize_base_types(void) {
     int lexicographic_index = 0;
 
     lexicographic_index = insert_lexeme("int");

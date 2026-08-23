@@ -57,7 +57,7 @@ vm_cell get_variable_cell(int index_declaration) {
     return get_cell_from_stack_frame(frame, address);
 }
 
-vm_cell get_return_cell() {
+vm_cell get_return_cell(void) {
     return get_stack_frame_by_id(peek_execution_stack().dynamic_link)->region_value;
 }
 

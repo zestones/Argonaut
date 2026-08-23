@@ -34,22 +34,12 @@ typedef struct {
 } Lexeme;
 
 /**
- * @brief Constructs a new lexeme with the given character sequence, length, and next index.
- *
- * @param lexeme The character sequence of the lexeme.
- * @param length The length of the lexeme.
- * @param next The index of the next lexeme in the table.
- * @return A new Lexeme object.
- */
-Lexeme construct_lexeme(const char *lexeme, int length, int next);
-
-/**
  * @brief Initializes the lexeme table.
  *
  * This function sets up the lexeme table, preparing it for the insertion
  * of lexemes.
  */
-void init_lexeme_table();
+void init_lexeme_table(void);
 
 /**
  * @brief Inserts a lexeme into the lexeme table.

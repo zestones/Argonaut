@@ -6,6 +6,8 @@
 
 #include "region_table.h"
 
+#include <stdint.h>
+
 static Region region_table[MAX_REGION_COUNT];
 static int region_table_size = 0;
 
@@ -20,12 +22,12 @@ Region construct_region(int size, int nis) {
     return new_region;
 }
 
-void init_region_table() {
+void init_region_table(void) {
     memset(region_table, NULL_VALUE, sizeof(region_table));
     init_stack_region();
 }
 
-void start_region() {
+void start_region(void) {
     if (region_table_size >= MAX_REGION_COUNT) {
         fprintf(stderr, COLOR_RED "<Error> Region table is full\n" COLOR_RESET);
         exit(EXIT_FAILURE);
@@ -40,7 +42,7 @@ void start_region() {
     region_table_size++;
 }
 
-void end_region() {
+void end_region(void) {
     pop_region();
 }
 
@@ -80,13 +82,13 @@ int get_region_nis(int index) {
     return region_table[index].nis;
 }
 
-int get_current_region_nis() {
+int get_current_region_nis(void) {
     // To get the current region NIS, we need to peek the region stack to retrieve the current region index
     // Then we can use the region index to get the NIS from the region table
     return get_region_nis(peek_region());
 }
 
-int get_current_region_id() {
+int get_current_region_id(void) {
     return region_table_size - 1;
 }
 
@@ -119,16 +121,32 @@ void update_region_ast(int index, AST ast) {
 
 static char *format_region_row(void *element) {
     Region *region = (Region *) element;
-    char *formatted_row = (char *) malloc(512 * sizeof(char));
-
-    sprintf(formatted_row, "%d|%d|", region->size, region->nis);
+    char prefix[64];
+    int prefix_length = snprintf(prefix, sizeof(prefix), "%d|%d|", region->size, region->nis);
+    if (prefix_length < 0 || (size_t) prefix_length >= sizeof(prefix)) {
+        fprintf(stderr, COLOR_RED "<Error> Failed to format region row\n" COLOR_RESET);
+        exit(EXIT_FAILURE);
+    }
 
     char *ast_data = format_ast(region->ast);
-    if (ast_data) {
-        formatted_row = realloc(formatted_row, strlen(formatted_row) + strlen(ast_data) + 10);
-        strcat(formatted_row, ast_data);
+    size_t ast_length = ast_data == NULL ? 0 : strlen(ast_data);
+    if (ast_length > SIZE_MAX - (size_t) prefix_length - 1) {
         free(ast_data);
+        fprintf(stderr, COLOR_RED "<Error> Formatted region row is too large\n" COLOR_RESET);
+        exit(EXIT_FAILURE);
     }
+    size_t row_length = (size_t) prefix_length + ast_length;
+    char *formatted_row = (char *) malloc(row_length + 1);
+    if (formatted_row == NULL) {
+        free(ast_data);
+        fprintf(stderr, COLOR_RED "<Error> Memory allocation failed\n" COLOR_RESET);
+        exit(EXIT_FAILURE);
+    }
+
+    memcpy(formatted_row, prefix, (size_t) prefix_length);
+    if (ast_data != NULL) memcpy(formatted_row + prefix_length, ast_data, ast_length);
+    formatted_row[row_length] = '\0';
+    free(ast_data);
 
     return formatted_row;
 }
@@ -153,12 +171,11 @@ void fprintf_region_table(FILE *out) {
     for (int i = 0; i < MAX_REGION_COUNT; i++) {
         if (region_table[i].nis == NULL_VALUE) continue;
 
-        int char_length = 20;
-        char index_str[char_length], size_str[char_length], nis_str[char_length];
+        char index_str[20], size_str[20], nis_str[20];
 
-        sprintf(index_str, "%d", i);
-        sprintf(size_str, "%d", region_table[i].size);
-        sprintf(nis_str, "%d", region_table[i].nis);
+        snprintf(index_str, sizeof(index_str), "%d", i);
+        snprintf(size_str, sizeof(size_str), "%d", region_table[i].size);
+        snprintf(nis_str, sizeof(nis_str), "%d", region_table[i].nis);
 
         print_table_row(out, 4, col_width_index, index_str, col_width_size, size_str, col_width_nis, nis_str,
                         col_width_ast, "-1");
@@ -171,7 +188,7 @@ void fprintf_region_table(FILE *out) {
         if (region_table[i].nis == NULL_VALUE) continue;
 
         char title[50];
-        sprintf(title, "Region %d AST", i);
+        snprintf(title, sizeof(title), "Region %d AST", i);
         print_table_title(out, title);
 
         print_table_separator(out, 1, 70);

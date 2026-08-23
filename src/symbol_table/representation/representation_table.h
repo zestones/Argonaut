@@ -24,7 +24,7 @@
  * This function initializes the representation table, setting up any necessary
  * data structures and preparing the table for use.
  */
-void init_representation_table();
+void init_representation_table(void);
 
 /**
  * @brief Inserts a representation into the table.

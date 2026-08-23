@@ -25,7 +25,8 @@
     #include <string.h>
 
 
-    int yylex();
+    int yylex(void);
+    void yyerror(const char *s);
     int is_in_loop = 0;
 
     /* a[i]++ / s.f-- : the target is the access chain, the value is a copy of it plus or minus 1. */
