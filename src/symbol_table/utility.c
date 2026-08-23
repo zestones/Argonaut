@@ -3,15 +3,9 @@
 #include "../utils/utils.h"
 #include "utility.h"
 
-void export_table(const char* filename, 
-                  void* table, 
-                  size_t table_size, 
-                  size_t element_size, 
-                  char* (*format_row)(void*), 
-                  const char* begin_marker, 
-                  const char* end_marker) {
-                    
-    FILE* file = fopen(filename, "a");
+void export_table(const char *filename, void *table, size_t table_size, size_t element_size,
+                  char *(*format_row)(void *), const char *begin_marker, const char *end_marker) {
+    FILE *file = fopen(filename, "a");
     if (!file) {
         perror("Failed to open file for writing");
         exit(EXIT_FAILURE);
@@ -20,9 +14,9 @@ void export_table(const char* filename,
     fprintf(file, "%s\n", begin_marker);
 
     for (size_t i = 0; i < table_size; i++) {
-        void* element = (char*)table + (i * element_size);
-        char* row_data = format_row(element);
-        
+        void *element = (char *) table + (i * element_size);
+        char *row_data = format_row(element);
+
         if (row_data) {
             fprintf(file, "|%zu|%s|\n", i, row_data);
             free(row_data);
@@ -81,7 +75,8 @@ int find_struct_field_index_lexicographic(int declaration_type, int index_lexico
     int field_count = get_struct_field_count(declaration_type);
 
     for (int i = 0; i < field_count; i++) {
-        int current_lexicographic_index = get_struct_field_index_lexicographic(get_declaration_description(declaration_type), i);
+        int current_lexicographic_index =
+            get_struct_field_index_lexicographic(get_declaration_description(declaration_type), i);
         if (current_lexicographic_index == index_lexicographic) {
             return i;
         }
@@ -97,7 +92,7 @@ int get_struct_nth_field_execution(int declaration_type, int nth_field) {
 
 int get_struct_nth_field_declaration(int struct_declaration, int nth_field) {
     int struct_representation = get_declaration_description(struct_declaration);
-    return get_struct_field_index_declaration(struct_representation, nth_field);  
+    return get_struct_field_index_declaration(struct_representation, nth_field);
 }
 
 int get_struct_nth_field_lexicographic(int struct_declaration, int nth_field) {
@@ -114,4 +109,10 @@ int get_struct_field_count(int struct_declaration) {
 int get_func_return_type(int func_declaration) {
     int func_representation = get_declaration_description(func_declaration);
     return get_representation_value(func_representation);
+}
+
+int get_func_proc_parameter_count(int func_proc_declaration) {
+    int representation = get_declaration_description(func_proc_declaration);
+    int count_offset = get_declaration_nature(func_proc_declaration) == TYPE_FUNC ? 1 : 0;
+    return get_representation_value(representation + count_offset);
 }

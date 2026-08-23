@@ -9,8 +9,10 @@
 
 #if defined(__GNUC__) || defined(__clang__)
 #define ARGO_PRINTF_LIKE(format_index, first_argument) __attribute__((format(printf, format_index, first_argument)))
+#define ARGO_NORETURN __attribute__((noreturn))
 #else
 #define ARGO_PRINTF_LIKE(format_index, first_argument)
+#define ARGO_NORETURN
 #endif
 
 /**
@@ -99,5 +101,21 @@ void set_error_message(Error *target, const char *format, ...) ARGO_PRINTF_LIKE(
  * @param type The type of the error.
  */
 void set_error_type(Error *target, ErrorType type);
+
+/**
+ * @brief Reports a run-time error and terminates execution.
+ *
+ * @param format The printf-like diagnostic format.
+ * @param ... Values referenced by the format.
+ */
+void fatal_runtime_error(const char *format, ...) ARGO_PRINTF_LIKE(1, 2) ARGO_NORETURN;
+
+/**
+ * @brief Reports the fatal syntax diagnostic shared by argoc and argov.
+ *
+ * @param token The unexpected token text.
+ * @param detail Optional parser detail; NULL omits the detail line.
+ */
+void fatal_syntax_error(const char *token, const char *detail) ARGO_NORETURN;
 
 #endif // __ERRORS_H__

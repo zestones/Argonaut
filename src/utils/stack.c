@@ -2,17 +2,13 @@
 
 #include "../../lib/table_printer.h"
 #include "../../lib/colors.h"
+#include "memory.h"
 #include "stack.h"
 
 #define INITIAL_CAPACITY 16
 
 static void *allocate_copy(const void *value, size_t value_size) {
-    void *copy = malloc(value_size);
-    if (!copy) {
-        fprintf(stderr, "Error: Memory allocation failed\n");
-        exit(EXIT_FAILURE);
-    }
-
+    void *copy = xmalloc(value_size);
     memcpy(copy, value, value_size);
     return copy;
 }
@@ -41,13 +37,7 @@ int size(const Stack stack) {
 void push(Stack *stack, void *value, size_t value_size) {
     if (stack->top == stack->capacity) {
         int capacity = stack->capacity ? stack->capacity * 2 : INITIAL_CAPACITY;
-        void **data = realloc(stack->data, (size_t) capacity * sizeof(*data));
-        if (!data) {
-            fprintf(stderr, "Error: Memory allocation failed\n");
-            exit(EXIT_FAILURE);
-        }
-
-        stack->data = data;
+        stack->data = xrealloc(stack->data, (size_t) capacity * sizeof(*stack->data));
         stack->capacity = capacity;
     }
 

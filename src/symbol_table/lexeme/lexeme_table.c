@@ -2,6 +2,8 @@
 #include "../../../lib/colors.h"
 
 #include "../../utils/utils.h"
+#include "../../utils/index_validation.h"
+#include "../../utils/memory.h"
 
 #include "../hash/hash_table.h"
 #include "../utility.h"
@@ -13,11 +15,7 @@ static Lexeme lexeme_table[MAX_LEXEME_COUNT];
 static int lexeme_table_size = 0;
 
 static void initialize_lexeme(Lexeme *target, const char *lexeme, int length, int next) {
-    target->lexeme = strdup(lexeme);
-    if (target->lexeme == NULL) {
-        fprintf(stderr, COLOR_RED "<Error> Memory allocation failed\n" COLOR_RESET);
-        exit(EXIT_FAILURE);
-    }
+    target->lexeme = xstrdup(lexeme);
     target->length = length;
     target->next = next;
 }
@@ -60,12 +58,7 @@ int insert_lexeme(const char *lexeme) {
 }
 
 void insert_lexeme_row(int index, const char *lexeme, int length, int next) {
-    if (index < 0 || index >= MAX_LEXEME_COUNT) {
-        fprintf(stderr, COLOR_RED "<Error> Lexeme table row %d out of bounds (0 to %d).\n" COLOR_RESET, index,
-                MAX_LEXEME_COUNT - 1);
-        exit(EXIT_FAILURE);
-    }
-
+    validate_table_index("Lexeme table row", index, MAX_LEXEME_COUNT);
     initialize_lexeme(&lexeme_table[index], lexeme, length, next);
 
     lexeme_table_size++;
@@ -86,11 +79,7 @@ static char *format_lexeme_row(void *data) {
     // A row must stay on one line: the decoded text is escaped (\n, \\ ...) and argov decodes it back.
     char *escaped = escape_text(row->lexeme);
     size_t room = strlen(escaped) + 32;
-    char *formatted_row = (char *) malloc(room);
-    if (!formatted_row) {
-        fprintf(stderr, COLOR_RED "<Error> Memory allocation failed\n" COLOR_RESET);
-        exit(EXIT_FAILURE);
-    }
+    char *formatted_row = xmalloc(room);
 
     snprintf(formatted_row, room, "%s|%d|%d", escaped, row->length, row->next);
     free(escaped);

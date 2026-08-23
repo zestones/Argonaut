@@ -1,27 +1,16 @@
 #include "../../lib/colors.h"
 
 #include "../symbol_table/lexeme/lexeme_table.h"
+#include "../utils/text_buffer.h"
 #include "../utils/utils.h"
 
 #include "ast.h"
-
-#include <stdint.h>
 
 AST construct_ast(void) {
     return NULL;
 }
 
-static size_t checked_add(size_t left, size_t right) {
-    if (right > SIZE_MAX - left) {
-        fprintf(stderr, COLOR_RED "<Error> Formatted AST is too large\n" COLOR_RESET);
-        exit(EXIT_FAILURE);
-    }
-    return left + right;
-}
-
-char *format_ast(Node *node) {
-    if (!node) return NULL;
-
+static void append_formatted_ast(TextBuffer *buffer, Node *node) {
     char node_data[96];
     int node_length = snprintf(node_data, sizeof(node_data), "Node(%d, %d, %d)", node->type, node->index_lexicographic,
                                node->index_declaration);
@@ -29,38 +18,26 @@ char *format_ast(Node *node) {
         fprintf(stderr, COLOR_RED "<Error> Failed to format AST node\n" COLOR_RESET);
         exit(EXIT_FAILURE);
     }
+    text_buffer_append_bytes(buffer, node_data, (size_t) node_length);
 
-    char *child_data = format_ast(node->child);
-    char *sibling_data = format_ast(node->sibling);
-    size_t room = (size_t) node_length;
-    if (child_data != NULL) {
-        room = checked_add(room, sizeof(" [Child: ") - 1);
-        room = checked_add(room, strlen(child_data));
-        room = checked_add(room, 1);
+    if (node->child != NULL) {
+        text_buffer_append(buffer, " [Child: ");
+        append_formatted_ast(buffer, node->child);
+        text_buffer_append_character(buffer, ']');
     }
-    if (sibling_data != NULL) {
-        room = checked_add(room, sizeof(" [Sibling: ") - 1);
-        room = checked_add(room, strlen(sibling_data));
-        room = checked_add(room, 1);
+    if (node->sibling != NULL) {
+        text_buffer_append(buffer, " [Sibling: ");
+        append_formatted_ast(buffer, node->sibling);
+        text_buffer_append_character(buffer, ']');
     }
-    room = checked_add(room, 1);
+}
 
-    char *formatted_row = malloc(room);
-    if (formatted_row == NULL) {
-        free(child_data);
-        free(sibling_data);
-        fprintf(stderr, COLOR_RED "<Error> Memory allocation failed\n" COLOR_RESET);
-        exit(EXIT_FAILURE);
-    }
+char *format_ast(Node *node) {
+    if (node == NULL) return NULL;
 
-    snprintf(formatted_row, room, "%s%s%s%s%s%s%s", node_data,
-             child_data == NULL ? "" : " [Child: ", child_data == NULL ? "" : child_data, child_data == NULL ? "" : "]",
-             sibling_data == NULL ? "" : " [Sibling: ", sibling_data == NULL ? "" : sibling_data,
-             sibling_data == NULL ? "" : "]");
-    free(child_data);
-    free(sibling_data);
-
-    return formatted_row;
+    TextBuffer buffer = construct_text_buffer();
+    append_formatted_ast(&buffer, node);
+    return release_text_buffer(&buffer);
 }
 
 static void print_ast_helper(FILE *out, Node *node, int depth, int is_sibling) {

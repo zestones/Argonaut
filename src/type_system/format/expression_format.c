@@ -2,6 +2,7 @@
 #include "../../symbol_table/declaration/declaration_table.h"
 #include "../../symbol_table/lexeme/lexeme_table.h"
 #include "../../data/region_table.h"
+#include "../../utils/memory.h"
 #include "formatting.h"
 
 /**
@@ -28,11 +29,7 @@ static char *format_arithmetic_op(Node *expression) {
     if (right == NULL) right = "?";
 
     size_t room = strlen(left) + strlen(right) + 8; // "(left op right)"
-    char *lexeme = (char *) malloc(room);
-    if (lexeme == NULL) {
-        fprintf(stderr, "Error: Memory allocation failed\n");
-        exit(EXIT_FAILURE);
-    }
+    char *lexeme = xmalloc(room);
 
     snprintf(lexeme, room, "(%s %c %s)", left, node_type_to_operator_char(expression->type), right);
     return lexeme;
@@ -43,11 +40,7 @@ static char *format_negation(Node *expression) {
     if (operand == NULL) operand = "?";
 
     size_t room = strlen(operand) + 4; // "(-x)"
-    char *lexeme = (char *) malloc(room);
-    if (lexeme == NULL) {
-        fprintf(stderr, "Error: Memory allocation failed\n");
-        exit(EXIT_FAILURE);
-    }
+    char *lexeme = xmalloc(room);
 
     snprintf(lexeme, room, "(-%s)", operand);
     return lexeme;

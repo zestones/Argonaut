@@ -28,13 +28,8 @@
  * 
  * @warning The `format_row` function must return dynamically allocated strings, as they will be freed internally.
  */
-void export_table(const char* filename, 
-                  void* table, 
-                  size_t table_size, 
-                  size_t element_size, 
-                  char* (*format_row)(void*), 
-                  const char* begin_marker, 
-                  const char* end_marker);
+void export_table(const char *filename, void *table, size_t table_size, size_t element_size,
+                  char *(*format_row)(void *), const char *begin_marker, const char *end_marker);
 
 
 /**
@@ -111,5 +106,13 @@ int get_struct_nth_field_lexicographic(int struct_declaration, int nth_field);
 
 
 int get_func_return_type(int func_declaration);
+
+/**
+ * @brief Retrieves the number of parameters declared by a function or procedure.
+ *
+ * @param func_proc_declaration The declaration index of the function or procedure.
+ * @return The number of parameters.
+ */
+int get_func_proc_parameter_count(int func_proc_declaration);
 
 #endif // __UTILITY_H__

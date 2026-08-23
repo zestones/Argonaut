@@ -16,12 +16,9 @@ int struct_field_offset(Node *field, int struct_type, int *type_out) {
     while (field != NULL) {
         int nth_field = find_struct_field_index_lexicographic(struct_type, field->index_lexicographic);
         if (nth_field == NULL_VALUE) {
-            set_error_type(&error, RUN_TIME_ERROR);
-            set_error_message(&error, "Corrupted IR: '%s' is not a field of structure '%s'.",
-                              get_lexeme(field->index_lexicographic),
-                              get_lexeme(get_declaration_lexicographic_index(struct_type)));
-            yerror(error);
-            exit(EXIT_FAILURE);
+            fatal_runtime_error("Corrupted IR: '%s' is not a field of structure '%s'.",
+                                get_lexeme(field->index_lexicographic),
+                                get_lexeme(get_declaration_lexicographic_index(struct_type)));
         }
 
         type = get_struct_nth_field_declaration(struct_type, nth_field);

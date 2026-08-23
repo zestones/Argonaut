@@ -11,8 +11,7 @@
 
     #include <stdio.h>
     #include <stdlib.h>
-    #include <unistd.h>
-    #include <getopt.h>
+    #include <string.h>
 
     int yylex(void);
     void yyerror(const char *s);
@@ -23,20 +22,7 @@
     Error error;
 
     void yyerror(const char *s) {
-        set_error_message(&error,
-            "Unexpected token found: '%s' at %s.\n"
-            "\t> %s\n"
-            "\t> This error is critical and will cause the program to terminate.\n"
-            "\t> Exiting due to a syntax error.",
-            yytext,
-            get_formatted_location(),
-            s
-        );
-
-        set_error_type(&error, SYNTAX_ERROR);
-        yerror(error);
-
-        exit(EXIT_FAILURE);
+        fatal_syntax_error(yytext, s);
     }
 
     /**
@@ -203,71 +189,25 @@ static void print_usage(const char *program_name) {
     fprintf(stdout, COLOR_RED "  - The input file must be specified with the '-a <file>' option.\n");
     fprintf(stdout, COLOR_RED "  - If no file is specified, the program will terminate with an error.\n\n");
 
-    exit(EXIT_SUCCESS);
 }
 
 
-typedef struct {
-    char *input_file;
-    char *output_file;
-    int log;
-} argonaut_options;
-
-
 int main(int argc, char **argv) {
-    int verbose_mode = 0;  // Flag to enable verbose mode
-    char *input_file = NULL;  // File to interpret
-    int opt;
-
-    // Long options array
-    static struct option long_options[] = {
-        {"verbose", no_argument, NULL, 'v'},         // Enable verbose mode
-        {"help",    no_argument, NULL, 'h'},         // Display help message
-        {0, 0, 0, 0}  // End of options
-    };
-
-    // Parse command-line options
-    while ((opt = getopt_long(argc, argv, "a:vh", long_options, NULL)) != -1) {
-        switch (opt) {
-            case 'a':
-                input_file = optarg;  // Capture the file argument
-                break;
-            case 'v':
-                verbose_mode = 1;  // Enable verbose mode
-                break;
-            case 'h':
-                print_usage(argv[0]);  // Display help message
-                return 0;
-            default:
-                fprintf(stderr, COLOR_RED "Error: Unknown option '-%c'\n" COLOR_RESET, optopt);
-                print_usage(argv[0]);
-                return 1;
-        }
-    }
-
-    // Check if the file argument was provided
-    if (!input_file) {
-        fprintf(stderr, COLOR_RED "Error: No input file specified.\n" COLOR_RESET);
-        print_usage(argv[0]);
-        return 1;
-    }
+    ArgonautOptions options;
+    CommandLineStatus status = parse_command_line(argc, argv, INTERPRETATION, print_usage, &options);
+    if (status != COMMAND_LINE_READY) return status == COMMAND_LINE_HELP ? EXIT_SUCCESS : EXIT_FAILURE;
 
     // Open the file
-    FILE *file = fopen(input_file, "r");
-    if (!file) {
-        fprintf(stderr, COLOR_RED "Error: Could not open file '%s'.\n" COLOR_RESET, input_file);
-        perror("\t> Reason");
-        return EXIT_FAILURE;
-    }
+    FILE *file = open_argonaut_file(options.input_file, "r");
 
     // Initialize and run the interpreter
-    error.filename = input_file;
+    initialize_diagnostic_state(options.input_file);
     yyin = file;
     
     yyrun(INTERPRETATION);
     fclose(file);
 
-    ydebug(verbose_mode);
+    ydebug(options.verbose);
 
     return EXIT_SUCCESS;
 }

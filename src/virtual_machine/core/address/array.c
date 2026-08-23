@@ -22,13 +22,6 @@ static int array_type_of(const Node *access) {
     return declaration;
 }
 
-static void runtime_error(const char *message) {
-    set_error_type(&error, RUN_TIME_ERROR);
-    set_error_message(&error, "%s", message);
-    yerror(error);
-    exit(EXIT_FAILURE);
-}
-
 /**
  * @brief Consumes the indices of one array level (all its dimensions) and, when indices remain
  *        and the elements are arrays themselves (g[i, j] on an array of arrays), of the next levels.
@@ -43,24 +36,16 @@ static int consume_indices(Node **index_node, int array_type, int *type_out) {
 
     for (int dim = 0; dim < num_dimensions; dim++) {
         if (*index_node == NULL) {
-            set_error_type(&error, RUN_TIME_ERROR);
-            set_error_message(&error,
-                              "Insufficient indices provided for array access.\n"
-                              "  Ensure that '%d' indices are specified.",
-                              num_dimensions);
-            yerror(error);
-            exit(EXIT_FAILURE);
+            fatal_runtime_error("Insufficient indices provided for array access.\n"
+                                "  Ensure that '%d' indices are specified.",
+                                num_dimensions);
         }
 
         vm_cell index_cell = resolve_expression((*index_node)->child);
         if (index_cell.type != INTEGER) {
-            set_error_type(&error, RUN_TIME_ERROR);
-            set_error_message(&error,
-                              "Invalid index type, index type should be integer.\n"
-                              "  Instead got type '%s'.",
-                              get_cell_type_string(index_cell));
-            yerror(error);
-            exit(EXIT_FAILURE);
+            fatal_runtime_error("Invalid index type, index type should be integer.\n"
+                                "  Instead got type '%s'.",
+                                get_cell_type_string(index_cell));
         }
 
         int index = index_cell.value.integer;
@@ -68,13 +53,9 @@ static int consume_indices(Node **index_node, int array_type, int *type_out) {
         int upper_bound = get_array_nth_dimension(array_type, 2 * dim + 1);
 
         if (index < lower_bound || index > upper_bound) {
-            set_error_type(&error, RUN_TIME_ERROR);
-            set_error_message(&error,
-                              "Index %d out of bounds for dimension %d.\n"
-                              "  Allowed range: [%d, %d].",
-                              index, dim, lower_bound, upper_bound);
-            yerror(error);
-            exit(EXIT_FAILURE);
+            fatal_runtime_error("Index %d out of bounds for dimension %d.\n"
+                                "  Allowed range: [%d, %d].",
+                                index, dim, lower_bound, upper_bound);
         }
 
         offset += (index - lower_bound) * stride;
@@ -84,7 +65,7 @@ static int consume_indices(Node **index_node, int array_type, int *type_out) {
 
     if (*index_node != NULL) {
         if (get_declaration_nature(element_type) != TYPE_ARRAY) {
-            runtime_error("Too many indices provided for array access.");
+            fatal_runtime_error("Too many indices provided for array access.");
         }
         return offset + consume_indices(index_node, element_type, type_out);
     }
@@ -107,14 +88,14 @@ int array_element_offset(Node *access, int array_type, int *type_out) {
     if (trailing->type == A_ARRAY_ACCESS && trailing->index_lexicographic == NULL_VALUE) {
         // g[i][j]: the element is an array indexed again
         if (get_declaration_nature(element_type) != TYPE_ARRAY) {
-            runtime_error("Index applied to an element that is not an array.");
+            fatal_runtime_error("Index applied to an element that is not an array.");
         }
         return offset + array_element_offset(trailing, element_type, type_out);
     }
 
     // t[i].f...: a field of a structure element
     if (get_declaration_nature(element_type) != TYPE_STRUCT) {
-        runtime_error("Field access on an array whose elements are not structures.");
+        fatal_runtime_error("Field access on an array whose elements are not structures.");
     }
     return offset + struct_field_offset(trailing, element_type, type_out);
 }

@@ -6,6 +6,8 @@
 #include "declaration_table.h"
 
 #include "../../utils/utils.h"
+#include "../../utils/index_validation.h"
+#include "../../utils/memory.h"
 #include "../../utils/stack.h"
 #include "../utility.h"
 
@@ -86,11 +88,7 @@ void insert_declaration_param(int index, int region, int description, int execut
 }
 
 void insert_declaration_row(int index, Nature nature, int next, int region, int description, int execution) {
-    if (index < 0 || index >= MAX_DECLARATION_COUNT) {
-        fprintf(stderr, COLOR_RED "<Error> Declaration table row %d out of bounds (0 to %d).\n" COLOR_RESET, index,
-                MAX_DECLARATION_COUNT - 1);
-        exit(EXIT_FAILURE);
-    }
+    validate_table_index("Declaration table row", index, MAX_DECLARATION_COUNT);
 
     if (index >= MAX_LEXEME_COUNT) {
         Declaration new_declaration = construct_declaration(nature, next, region, description, execution);
@@ -169,11 +167,7 @@ Declaration *get_declaration_table(void) {
 }
 
 void update_declaration_execution(int index, int execution) {
-    if (index >= MAX_DECLARATION_COUNT) {
-        fprintf(stderr, COLOR_RED "<Error> Update Declaration Execution index out of bounds\n" COLOR_RESET);
-        exit(EXIT_FAILURE);
-    }
-
+    validate_table_index("Declaration table", index, MAX_DECLARATION_COUNT);
     declaration_table[index].execution = execution;
 }
 
@@ -184,11 +178,7 @@ static char *format_declaration_row(void *data) {
     if (declaration->nature == (Nature) NULL_VALUE) return NULL;
 
     const size_t room = 128;
-    char *formatted_row = (char *) malloc(room);
-    if (formatted_row == NULL) {
-        fprintf(stderr, COLOR_RED "<Error> Memory allocation failed\n" COLOR_RESET);
-        exit(EXIT_FAILURE);
-    }
+    char *formatted_row = xmalloc(room);
     snprintf(formatted_row, room, "%d|%d|%d|%d|%d", declaration->nature, declaration->next, declaration->region,
              declaration->description, declaration->execution);
 

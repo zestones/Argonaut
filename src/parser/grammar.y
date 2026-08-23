@@ -20,8 +20,6 @@
 
     #include <stdio.h>
     #include <stdlib.h>
-    #include <unistd.h>
-    #include <getopt.h>
     #include <string.h>
 
 
@@ -60,36 +58,7 @@
     Error error;
 
     void yyerror(const char *s) {
-        // TODO: Uncomment this line to prevent the program from exiting on syntax errors
-        // TODO: Uncomment only if syntax errors are all handled properly in grammar rules
-        // if (error.type == NO_ERROR) return;
-
-        if (!strcmp(s, "syntax error")) {
-            set_error_message(&error,
-                "Unexpected token found: '%s' at %s.\n"
-                "\t> This error is critical and will cause the program to terminate.\n"
-                "\t> Exiting due to a syntax error.",
-                yytext,
-                get_formatted_location()
-            );
-        } 
-        else {
-            set_error_message(&error,
-                "Unexpected token found: '%s' at %s.\n"
-                "\t> %s\n"
-                "\t> This error is critical and will cause the program to terminate.\n"
-                "\t> Exiting due to a syntax error.",
-                yytext,
-                get_formatted_location(),
-                s
-            );
-        }
-
-        
-        set_error_type(&error, SYNTAX_ERROR);
-        yerror(error);
-        
-        exit(EXIT_FAILURE);
+        fatal_syntax_error(yytext, strcmp(s, "syntax error") == 0 ? NULL : s);
     }
 %}
 
@@ -708,79 +677,16 @@ static void print_usage(const char *program_name) {
     fprintf(stderr, COLOR_RED "  - If '-o <output_file>' is used, the output file will be overwritten if it exists.\n\n" COLOR_RESET);
 }
 
-static void handle_file_error(const char *filename) {
-    fprintf(stderr, COLOR_RED "Error: Could not open file '%s'.\n", filename);
-    perror("\t> Reason");
-    fprintf(stderr, COLOR_RESET);
-
-    exit(EXIT_FAILURE);
-}
-
-// Struct for storing arguments and options
-typedef struct {
-    char *input_file;
-    char *output_file;
-    int verbose;
-    int log;
-} argonaut_options;
-
 int main(int argc, char **argv) {
-    int opt;
-    argonaut_options options = {NULL, NULL, 0, 0};
-
-    // Long options array (for --help, --verbose, etc.)
-    static struct option long_options[] = {
-        {"help",    no_argument,       NULL, 'h'},
-        {"verbose", no_argument,       NULL, 'v'},
-        {"log",     no_argument,       NULL, 'l'},
-        {"output",  required_argument, NULL, 'o'},
-        {0, 0, 0, 0}  // End of options
-    };
-
-    error.line = 1;
-    error.column = 1;
-    error.type = NO_ERROR;
-
-    // Process command-line options
-    while ((opt = getopt_long(argc, argv, "a:vlo:h", long_options, NULL)) != -1) {
-        switch (opt) {
-            case 'a':
-                options.input_file = optarg;
-                break;
-            case 'v':
-                options.verbose = 1;
-                break;
-            case 'l':
-                options.log = 1;
-                break;
-            case 'o':
-                options.output_file = optarg;
-                break;
-            case 'h':
-                print_usage(argv[0]);
-                return 0;
-            default:
-                fprintf(stderr, COLOR_RED "Error: Unknown option '-%c'.\n" COLOR_RESET, optopt);
-                print_usage(argv[0]);
-                return 1;
-        }
-    }
-
-    // Ensure the input file is provided
-    if (options.input_file == NULL) {
-        fprintf(stderr, COLOR_RED "Error: Missing required '-a <file>' argument.\n" COLOR_RESET);
-        print_usage(argv[0]);
-        return 1;
-    }
+    ArgonautOptions options;
+    CommandLineStatus status = parse_command_line(argc, argv, COMPILATION, print_usage, &options);
+    if (status != COMMAND_LINE_READY) return status == COMMAND_LINE_HELP ? EXIT_SUCCESS : EXIT_FAILURE;
 
     // Open the input file
-    FILE *file = fopen(options.input_file, "r");
-    if (!file) {
-        handle_file_error(options.input_file);
-    }
+    FILE *file = open_argonaut_file(options.input_file, "r");
 
     // Set up the file for processing
-    error.filename = options.input_file;
+    initialize_diagnostic_state(options.input_file);
     yyin = file;
 
     // Run compilation
@@ -800,10 +706,7 @@ int main(int argc, char **argv) {
     // Handle output file export if specified
     if (options.output_file != NULL) {
         // The version header comes first; the tables are appended after it.
-        FILE *output = fopen(options.output_file, "w");
-        if (output == NULL) {
-            handle_file_error(options.output_file);
-        }
+        FILE *output = open_argonaut_file(options.output_file, "w");
         fprintf(output, "ARGONAUT_IR %d\n", ARGONAUT_IR_VERSION);
         fclose(output);
 

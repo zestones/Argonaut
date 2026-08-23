@@ -2,6 +2,8 @@
 #include "../../../lib/colors.h"
 
 #include "../../utils/utils.h"
+#include "../../utils/index_validation.h"
+#include "../../utils/memory.h"
 #include "../utility.h"
 
 #include "representation_table.h"
@@ -28,46 +30,25 @@ int insert_representation(int value) {
 }
 
 void insert_representation_row(int index, int value) {
-    if (index < 0 || index >= MAX_REPRESENTATION_COUNT) {
-        fprintf(stderr, COLOR_RED "<Error>: Representation table row %d out of bounds (0 to %d).\n" COLOR_RESET, index,
-                MAX_REPRESENTATION_COUNT - 1);
-        exit(EXIT_FAILURE);
-    }
-
+    validate_table_index("Representation table", index, MAX_REPRESENTATION_COUNT);
     representation_table[index] = value;
     representation_table_size++;
 }
 
 void update_representation(int index, int value) {
-    if (index < 0 || index >= MAX_REPRESENTATION_COUNT) {
-        fprintf(stderr,
-                COLOR_RED "<Error>: Representation Table Index %d out of bounds. Valid range is 0 to %d.\n" COLOR_RESET,
-                index, MAX_REPRESENTATION_COUNT);
-        exit(EXIT_FAILURE);
-    }
-
+    validate_table_index("Representation table", index, MAX_REPRESENTATION_COUNT);
     representation_table[index] = value;
 }
 
 int get_representation_value(int index) {
-    if (index < 0 || index >= MAX_REPRESENTATION_COUNT) {
-        fprintf(stderr,
-                COLOR_RED "<Error>: Representation Table Index %d out of bounds. Valid range is 0 to %d.\n" COLOR_RESET,
-                index, MAX_REPRESENTATION_COUNT);
-        exit(EXIT_FAILURE);
-    }
-
+    validate_table_index("Representation table", index, MAX_REPRESENTATION_COUNT);
     return representation_table[index];
 }
 
 static char *format_representation_row(void *element) {
     int *representation = (int *) element;
     const size_t room = 32;
-    char *formatted_row = (char *) malloc(room);
-    if (formatted_row == NULL) {
-        fprintf(stderr, COLOR_RED "<Error> Memory allocation failed\n" COLOR_RESET);
-        exit(EXIT_FAILURE);
-    }
+    char *formatted_row = xmalloc(room);
 
     snprintf(formatted_row, room, "%d", *representation);
     return formatted_row;

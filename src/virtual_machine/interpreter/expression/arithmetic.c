@@ -12,23 +12,15 @@
  *        not as undefined behaviour or a silent wrap-around.
  */
 static void overflow_error(char operation) {
-    set_error_type(&error, RUN_TIME_ERROR);
-    set_error_message(&error,
-                      "Integer overflow in '%c'.\n"
-                      "  The result does not fit in a 32-bit integer (%d to %d).",
-                      operation, INT_MIN, INT_MAX);
-    yerror(error);
-    exit(EXIT_FAILURE);
+    fatal_runtime_error("Integer overflow in '%c'.\n"
+                        "  The result does not fit in a 32-bit integer (%d to %d).",
+                        operation, INT_MIN, INT_MAX);
 }
 
 
 vm_cell resolve_negation(vm_cell operand) {
     if (!operand.is_initialized) {
-        set_error_type(&error, RUN_TIME_ERROR);
-        set_error_message(&error,
-                          "Uninitialized value error.\n  Ensure the operand is initialized before negating it.");
-        yerror(error);
-        exit(EXIT_FAILURE);
+        fatal_runtime_error("Uninitialized value error.\n  Ensure the operand is initialized before negating it.");
     }
 
     if (operand.type == INTEGER) {
@@ -48,23 +40,14 @@ vm_cell resolve_negation(vm_cell operand) {
 vm_cell resolve_arithmetic_operation(int operation, vm_cell left, vm_cell right) {
     if ((operation == A_DIV_OP || operation == A_MODULO_OP) &&
         ((right.type == INTEGER && right.value.integer == 0) || (right.type == REAL && right.value.real == 0.0))) {
-        set_error_type(&error, RUN_TIME_ERROR);
-        set_error_message(&error, "Division by zero error.\n"
-                                  "  Ensure the right operand is not zero for division operations.");
-
-        yerror(error);
-        exit(EXIT_FAILURE);
+        fatal_runtime_error("Division by zero error.\n"
+                            "  Ensure the right operand is not zero for division operations.");
     }
 
     // Check if the values are initialized
     if (!left.is_initialized || !right.is_initialized) {
-        set_error_type(&error, RUN_TIME_ERROR);
-        set_error_message(&error,
-                          "Uninitialized value error.\n"
-                          "  Ensure that both operands are initialized before performing arithmetic operations.");
-
-        yerror(error);
-        exit(EXIT_FAILURE);
+        fatal_runtime_error("Uninitialized value error.\n"
+                            "  Ensure that both operands are initialized before performing arithmetic operations.");
     }
 
     // Then perform the operation
@@ -119,11 +102,8 @@ vm_cell resolve_arithmetic_operation(int operation, vm_cell left, vm_cell right)
                 int result = (right.value.integer == -1) ? 0 : left.value.integer % right.value.integer;
                 return construct_vm_cell(INTEGER, &result);
             } else if (left.type == REAL && right.type == REAL) {
-                set_error_type(&error, RUN_TIME_ERROR);
-                set_error_message(&error, "Modulo operation error.\n"
-                                          "  Modulo can only be performed on integers.");
-                yerror(error);
-                exit(EXIT_FAILURE);
+                fatal_runtime_error("Modulo operation error.\n"
+                                    "  Modulo can only be performed on integers.");
             }
             break;
     }

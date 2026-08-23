@@ -8,6 +8,14 @@
 
 char *strip_quotes(const char *raw_format);
 
+/**
+ * @brief Finds the next supported conversion specifier, skipping escaped percent signs.
+ *
+ * @param format The text to scan.
+ * @return A pointer to the specifier character, or NULL when none remains.
+ */
+const char *find_next_format_specifier(const char *format);
+
 char get_nth_format_specifier(const char *format, int n);
 
 int count_format_specifiers(const char *format);

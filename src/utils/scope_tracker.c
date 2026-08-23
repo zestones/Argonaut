@@ -22,6 +22,5 @@ int is_identifier_already_tracked(int index_lexeme_lexicographic) {
 }
 
 void clear_scope_identifier_tracker(void) {
-    scope_identifier_count = 0;
-    memset(scope_identifier_list, NULL_VALUE, sizeof(scope_identifier_list));
+    initialize_scope_identifier_tracker();
 }

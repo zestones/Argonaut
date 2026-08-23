@@ -2,11 +2,11 @@
 #include "../../lib/colors.h"
 
 #include "../symbol_table/utility.h"
+#include "../utils/index_validation.h"
+#include "../utils/text_buffer.h"
 #include "../utils/utils.h"
 
 #include "region_table.h"
-
-#include <stdint.h>
 
 static Region region_table[MAX_REGION_COUNT];
 static int region_table_size = 0;
@@ -47,11 +47,7 @@ void end_region(void) {
 }
 
 void insert_region_row(int index, int size, int nis, AST ast) {
-    if (index < 0 || index >= MAX_REGION_COUNT) {
-        fprintf(stderr, COLOR_RED "<Error> Region table row %d out of bounds (0 to %d).\n" COLOR_RESET, index,
-                MAX_REGION_COUNT - 1);
-        exit(EXIT_FAILURE);
-    }
+    validate_table_index("Region table row", index, MAX_REGION_COUNT);
 
     region_table[index].size = size;
     region_table[index].nis = nis;
@@ -65,20 +61,12 @@ int is_region_loaded(int index) {
 }
 
 int get_region_size(int index) {
-    if (index < 0 || index >= MAX_REGION_COUNT) {
-        fprintf(stderr, COLOR_RED "<Error> Get Region Size index out of bounds\n" COLOR_RESET);
-        exit(EXIT_FAILURE);
-    }
-
+    validate_table_index("Region table", index, MAX_REGION_COUNT);
     return region_table[index].size;
 }
 
 int get_region_nis(int index) {
-    if (index < 0 || index >= MAX_REGION_COUNT) {
-        fprintf(stderr, COLOR_RED "<Error> Get NIS index out of bounds\n" COLOR_RESET);
-        exit(EXIT_FAILURE);
-    }
-
+    validate_table_index("Region table", index, MAX_REGION_COUNT);
     return region_table[index].nis;
 }
 
@@ -93,62 +81,36 @@ int get_current_region_id(void) {
 }
 
 AST get_region_ast(int index) {
-    if (index < 0 || index >= MAX_REGION_COUNT) {
-        fprintf(stderr, COLOR_RED "<Error> Get Region AST index out of bounds\n" COLOR_RESET);
-        exit(EXIT_FAILURE);
-    }
-
+    validate_table_index("Region table", index, MAX_REGION_COUNT);
     return region_table[index].ast;
 }
 
 void update_region_size(int index, int size) {
-    if (index < 0 || index >= MAX_REGION_COUNT) {
-        fprintf(stderr, COLOR_RED "<Error> Update Region Size index out of bounds\n" COLOR_RESET);
-        exit(EXIT_FAILURE);
-    }
-
+    validate_table_index("Region table", index, MAX_REGION_COUNT);
     region_table[index].size = size;
 }
 
 void update_region_ast(int index, AST ast) {
-    if (index < 0 || index >= MAX_REGION_COUNT) {
-        fprintf(stderr, COLOR_RED "<Error> Update Region AST index out of bounds\n" COLOR_RESET);
-        exit(EXIT_FAILURE);
-    }
-
+    validate_table_index("Region table", index, MAX_REGION_COUNT);
     region_table[index].ast = ast;
 }
 
 static char *format_region_row(void *element) {
     Region *region = (Region *) element;
+    TextBuffer buffer = construct_text_buffer();
     char prefix[64];
     int prefix_length = snprintf(prefix, sizeof(prefix), "%d|%d|", region->size, region->nis);
     if (prefix_length < 0 || (size_t) prefix_length >= sizeof(prefix)) {
         fprintf(stderr, COLOR_RED "<Error> Failed to format region row\n" COLOR_RESET);
         exit(EXIT_FAILURE);
     }
+    text_buffer_append_bytes(&buffer, prefix, (size_t) prefix_length);
 
     char *ast_data = format_ast(region->ast);
-    size_t ast_length = ast_data == NULL ? 0 : strlen(ast_data);
-    if (ast_length > SIZE_MAX - (size_t) prefix_length - 1) {
-        free(ast_data);
-        fprintf(stderr, COLOR_RED "<Error> Formatted region row is too large\n" COLOR_RESET);
-        exit(EXIT_FAILURE);
-    }
-    size_t row_length = (size_t) prefix_length + ast_length;
-    char *formatted_row = (char *) malloc(row_length + 1);
-    if (formatted_row == NULL) {
-        free(ast_data);
-        fprintf(stderr, COLOR_RED "<Error> Memory allocation failed\n" COLOR_RESET);
-        exit(EXIT_FAILURE);
-    }
-
-    memcpy(formatted_row, prefix, (size_t) prefix_length);
-    if (ast_data != NULL) memcpy(formatted_row + prefix_length, ast_data, ast_length);
-    formatted_row[row_length] = '\0';
+    if (ast_data != NULL) text_buffer_append(&buffer, ast_data);
     free(ast_data);
 
-    return formatted_row;
+    return release_text_buffer(&buffer);
 }
 
 void export_region_table(const char *filename) {

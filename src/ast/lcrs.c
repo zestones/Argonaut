@@ -1,13 +1,10 @@
 #include "../utils/utils.h"
+#include "../utils/memory.h"
 
 #include "lcrs.h"
 
 Node *construct_node(NodeType type, int index_lexicographic, int index_declaration) {
-    Node *new_node = (Node *) malloc(sizeof(Node));
-    if (!new_node) {
-        perror("Failed to allocate memory for AST node");
-        exit(EXIT_FAILURE);
-    }
+    Node *new_node = xmalloc(sizeof(Node));
 
     new_node->type = type;
 
