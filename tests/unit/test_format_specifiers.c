@@ -21,6 +21,18 @@ TEST(get_nth_format_specifier_walks_in_order) {
     ASSERT_EQ_INT('\0', get_nth_format_specifier(fmt, 4));
 }
 
+TEST(find_next_format_specifier_returns_positions_in_the_original_text) {
+    const char *format = "escaped=%% integer=%d real=%f";
+    const char *integer = find_next_format_specifier(format);
+    ASSERT_NOT_NULL(integer);
+    ASSERT_EQ_INT('d', *integer);
+
+    const char *real = find_next_format_specifier(integer + 1);
+    ASSERT_NOT_NULL(real);
+    ASSERT_EQ_INT('f', *real);
+    ASSERT_NULL(find_next_format_specifier(real + 1));
+}
+
 TEST(strip_quotes_removes_surrounding_double_quotes) {
     char *s = strip_quotes("\"hello\"");
     ASSERT_NOT_NULL(s);

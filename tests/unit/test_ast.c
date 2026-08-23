@@ -80,3 +80,21 @@ TEST(format_ast_serialises_the_lcrs_shape) {
     free(s);
     free_ast(root);
 }
+
+TEST(format_ast_builds_long_sibling_chains_in_one_buffer) {
+    Node *root = construct_node_default(A_PROGRAM);
+    Node *tail = root;
+    for (int i = 0; i < 1000; i++) {
+        tail->sibling = construct_node_default(A_STATEMENT_LIST);
+        tail = tail->sibling;
+    }
+
+    char *text = format_ast(root);
+    ASSERT_NOT_NULL(text);
+    int node_count = 0;
+    for (char *cursor = text; (cursor = strstr(cursor, "Node(")) != NULL; cursor += 5)
+        node_count++;
+    ASSERT_EQ_INT(1001, node_count);
+    free(text);
+    free_ast(root);
+}
