@@ -3,6 +3,7 @@
     #include "../parser/parser.h"
 
     #include "../utils/errors.h"
+    #include "../utils/memory.h"
     #include "../utils/numeric_parser.h"
     #include "y.tab.h"
 
@@ -139,8 +140,7 @@ letter [a-zA-Z]
 
     // The lexeme keeps its quotes around the decoded text.
     size_t length = decoded ? strlen(decoded) : 0;
-    char *lexeme = malloc(length + 3);
-    if (lexeme == NULL) { fprintf(stderr, "Error: Memory allocation failed\n"); exit(EXIT_FAILURE); }
+    char *lexeme = xmalloc(length + 3);
     lexeme[0] = '"';
     if (decoded) memcpy(lexeme + 1, decoded, length);
     lexeme[length + 1] = '"';

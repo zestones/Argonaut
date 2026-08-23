@@ -1,5 +1,6 @@
 #include "../../../../semantic_analysis/function_checks/common/format_specifiers.h"
 #include "../../../../symbol_table/lexeme/lexeme_table.h"
+#include "../../../../utils/memory.h"
 #include "../../../../utils/numeric_parser.h"
 
 #include "../../../core/vm_cell.h"
@@ -14,37 +15,39 @@
 
 #define BUFFER_SIZE 1024
 
+static int read_non_whitespace(void) {
+    int character;
+    do {
+        character = getchar();
+    } while (character != EOF && isspace((unsigned char) character));
+    return character;
+}
+
 /**
  * @brief Reads one whitespace-delimited word from stdin (at most size - 1 characters).
  *
  * @return 1 when a word was read, 0 at end of input or when the word is too long.
  */
 static int read_word(char *word, size_t size) {
-    int c;
+    int character = read_non_whitespace();
     size_t length = 0;
     int overflow = 0;
 
-    do {
-        c = getchar();
-    } while (c != EOF && isspace((unsigned char) c));
-    if (c == EOF) return 0;
+    if (character == EOF) return 0;
 
-    while (c != EOF && !isspace((unsigned char) c)) {
-        if (length + 1 < size) word[length++] = (char) c;
+    while (character != EOF && !isspace((unsigned char) character)) {
+        if (length + 1 < size) word[length++] = (char) character;
         else overflow = 1;
-        c = getchar();
+        character = getchar();
     }
     word[length] = '\0';
     return !overflow;
 }
 
 static int read_character(char *value) {
-    int c;
-    do {
-        c = getchar();
-    } while (c != EOF && isspace((unsigned char) c));
-    if (c == EOF) return 0;
-    *value = (char) c;
+    int character = read_non_whitespace();
+    if (character == EOF) return 0;
+    *value = (char) character;
     return 1;
 }
 
@@ -54,13 +57,9 @@ static int read_character(char *value) {
  * @param specifier The conversion specifier that could not be satisfied ('d', 'f', 's' or 'c').
  */
 static void input_failure(char specifier) {
-    set_error_type(&error, RUN_TIME_ERROR);
-    set_error_message(&error,
-                      "Input error: could not read a value for '%%%c'.\n"
-                      "  The input ended or does not match the expected format.\n",
-                      specifier);
-    yerror(error);
-    exit(EXIT_FAILURE);
+    fatal_runtime_error("Input error: could not read a value for '%%%c'.\n"
+                        "  The input ended or does not match the expected format.\n",
+                        specifier);
 }
 
 /**
@@ -137,11 +136,7 @@ void execute_input(AST ast) {
                 }
                 case 's': {
                     if (!read_word(buffer, sizeof(buffer))) input_failure(specifier);
-                    char *value = strdup(buffer);
-                    if (value == NULL) {
-                        fprintf(stderr, "Error: Memory allocation failed\n");
-                        exit(EXIT_FAILURE);
-                    }
+                    char *value = xstrdup(buffer);
                     cell = construct_vm_cell(STRING, value); // cells do not own their text
                     break;
                 }

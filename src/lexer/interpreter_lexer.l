@@ -3,6 +3,7 @@
     #include <string.h>
 
     #include "../utils/errors.h"
+    #include "../utils/memory.h"
     #include "../utils/numeric_parser.h"
     #include "y.tab.h"
 
@@ -29,7 +30,7 @@ number [0-9]
 "BEGIN_LEXEME_TABLE"          { error.column += yyleng; BEGIN(LEXTAB); return BEGIN_LEXEME_TABLE; }
 <LEXTAB>^"END_LEXEME_TABLE"   { error.column += yyleng; BEGIN(INITIAL); return END_LEXEME_TABLE; }
 <LEXTAB>^"|"{number}+"|".*"|"-?{number}+"|"-?{number}+"|"$ {
-    yylval.string = strdup(yytext);
+    yylval.string = xstrdup(yytext);
     error.column += yyleng;
     return TOKEN_LEXEME_ROW;
 }

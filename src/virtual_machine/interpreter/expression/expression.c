@@ -11,10 +11,7 @@
 #include "expression.h"
 
 static void invalid_literal(const char *kind, const char *text) {
-    set_error_type(&error, RUN_TIME_ERROR);
-    set_error_message(&error, "Invalid %s literal '%s' in loaded IR at %s.", kind, text, get_formatted_location());
-    yerror(error);
-    exit(EXIT_FAILURE);
+    fatal_runtime_error("Invalid %s literal '%s' in loaded IR at %s.", kind, text, get_formatted_location());
 }
 
 vm_cell resolve_expression(Node *expression) {
@@ -24,13 +21,9 @@ vm_cell resolve_expression(Node *expression) {
         case A_IDENTIFIER: {
             vm_cell cell = get_variable_cell(expression->index_declaration);
             if (!cell.is_initialized) {
-                set_error_type(&error, RUN_TIME_ERROR);
-                set_error_message(&error,
-                                  "Uninitialized variable '%s' at %s.\n"
-                                  "  Ensure the variable is initialized before use.\n",
-                                  get_lexeme(expression->index_lexicographic), get_formatted_location());
-                yerror(error);
-                exit(EXIT_FAILURE);
+                fatal_runtime_error("Uninitialized variable '%s' at %s.\n"
+                                    "  Ensure the variable is initialized before use.\n",
+                                    get_lexeme(expression->index_lexicographic), get_formatted_location());
             }
 
             return cell;
@@ -119,14 +112,10 @@ vm_cell resolve_expression(Node *expression) {
             vm_cell cell =
                 (expression->type == A_ARRAY_ACCESS) ? get_array_cell(expression) : get_struct_cell(expression);
             if (!cell.is_initialized) {
-                set_error_type(&error, RUN_TIME_ERROR);
-                set_error_message(&error,
-                                  "Uninitialized %s of '%s' at %s.\n"
-                                  "  Ensure the value is initialized before use.\n",
-                                  (expression->type == A_ARRAY_ACCESS) ? "array element" : "field",
-                                  get_lexeme(expression->index_lexicographic), get_formatted_location());
-                yerror(error);
-                exit(EXIT_FAILURE);
+                fatal_runtime_error("Uninitialized %s of '%s' at %s.\n"
+                                    "  Ensure the value is initialized before use.\n",
+                                    (expression->type == A_ARRAY_ACCESS) ? "array element" : "field",
+                                    get_lexeme(expression->index_lexicographic), get_formatted_location());
             }
             return cell;
         }
@@ -137,11 +126,8 @@ vm_cell resolve_expression(Node *expression) {
             vm_cell cell = current_frame.region_value;
             if (!cell.is_initialized) {
                 // The compiler rejects such functions; this only triggers on a hand-made IR.
-                set_error_type(&error, RUN_TIME_ERROR);
-                set_error_message(&error, "Function '%s' returned no value at %s.\n",
-                                  get_lexeme(expression->index_lexicographic), get_formatted_location());
-                yerror(error);
-                exit(EXIT_FAILURE);
+                fatal_runtime_error("Function '%s' returned no value at %s.\n",
+                                    get_lexeme(expression->index_lexicographic), get_formatted_location());
             }
             // Clear the region value after execution to continue to resolve statement list
             peek_execution_stack_as_mutable()->region_value = construct_vm_cell(NULL_VALUE, NULL);
