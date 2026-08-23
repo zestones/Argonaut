@@ -16,7 +16,8 @@ static int current_failed = 0;
 void argo_register_test(argo_test *test) {
     /* Keep registration order (constructor order within a file is source order). */
     argo_test **tail = &registry;
-    while (*tail != NULL) tail = &(*tail)->next;
+    while (*tail != NULL)
+        tail = &(*tail)->next;
     test->next = NULL;
     *tail = test;
 }
@@ -58,7 +59,7 @@ int main(int argc, char **argv) {
         }
     }
 
-    printf("\n%d tests: %d passed, %d failed, %d expected failures, %d unexpected passes\n",
-           run, passed, failed, xfailed, xpassed);
+    printf("\n%d tests: %d passed, %d failed, %d expected failures, %d unexpected passes\n", run, passed, failed,
+           xfailed, xpassed);
     return (failed > 0 || xpassed > 0) ? EXIT_FAILURE : EXIT_SUCCESS;
 }
