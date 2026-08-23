@@ -1,2 +1,6 @@
-# Expected failures under valgrind (weekly job).
-# Bootstrap on the first run: python3 tests/run_tests.py --wrapper "valgrind --error-exitcode=99 --leak-check=full --errors-for-leak-kinds=definite -q" --timeout 120 --write-xfail tests/xfail/valgrind.txt tests/lang tests/ir build/doctests
+# Tests that currently fail because of known bugs (see tests/README.md, 'ratchet').
+# Remove an entry when the bug is fixed; the runner flags it as XPASS until you do.
+tests/lang/bugs/b23_string_var.arn  # unexpected compile error: [Type Error] Undefined type at tests/lang/bugs/b23_string_var.ar
+tests/lang/bugs/b24_wiki_string_param.arn  # unexpected compile error: [Type Error] Undefined type at tests/lang/bugs/b24_wiki_string_p
+tests/lang/bugs/b25_wiki_input_string.arn  # unexpected compile error: [Type Error] Undefined type at tests/lang/bugs/b25_wiki_input_st
+tests/lang/limitations/l11_mutual_recursion.arn  # unexpected compile error: [Syntax Error] Unexpected token found: ';' at tests/lang/limitat
