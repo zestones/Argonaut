@@ -8,7 +8,8 @@
 #    make CONFIG=msan CC=clang   MemorySanitizer build (clang only)
 #    make CONFIG=coverage        instrumented build used by `make coverage`
 #    make check                  unit tests + language tests + IR tests + regression suite
-#    make lint                   formatting, banned functions, warnings ratchet, static analysis
+#    make lint                   formatting, banned functions and warnings ratchets
+#    make lint-full              lint plus cppcheck, clang-tidy and gcc -fanalyzer (target state)
 #    make coverage               run the suite with coverage instrumentation and report
 #    make bench                  release build vs the Python/C references, and vs the baseline
 #    make fuzz                   fuzz argoc with AFL++ (needs afl-fuzz)
@@ -30,6 +31,7 @@ PYTHON   ?= python3
 CONFIG   ?= debug
 WERROR   ?= 0
 V        ?= 0
+TEST_JOBS ?= 2
 
 # ---- strict warning set (kept strict on purpose: see README.md, Development) ----
 CSTD     ?= -std=gnu17
@@ -111,7 +113,7 @@ export MSAN_OPTIONS  ?= print_stats=0
 
 .DELETE_ON_ERROR:
 .PHONY: all compiler vm test check check-unit check-lang check-regression check-leaks check-valgrind doctests \
-        lint format format-check banned-check warnings-check warnings-baseline analyze cppcheck tidy \
+        lint lint-full format format-check banned-check warnings-check warnings-baseline analyze cppcheck tidy \
         coverage bench fuzz fuzz-vm docs clean distclean deps-apt extension-install extension-uninstall help
 
 all: $(BIN_DIR)/argoc $(BIN_DIR)/argov
@@ -195,7 +197,8 @@ doctests: tools/extract_doctests.py
 check-lang: $(ARGOC) $(ARGOV) doctests
 	@echo "==> language, IR and documentation tests ($(CONFIG))"
 	$(Q)$(PYTHON) $(TEST_DIR)/run_tests.py --argoc $(ARGOC) --argov $(ARGOV) $(XFAIL_ARGS) \
-	    --junit $(OUT_DIR)/junit-lang.xml $(TEST_DIR)/lang $(TEST_DIR)/ir $(BUILD)/doctests
+	    --jobs $(TEST_JOBS) --junit $(OUT_DIR)/junit-lang.xml \
+	    $(TEST_DIR)/lang $(TEST_DIR)/ir $(BUILD)/doctests
 
 # The diagnostics suite compares exact text: sanitizer reports would pollute it, so it runs on
 # the plain configurations only (the language suite covers the instrumented builds).
@@ -211,19 +214,26 @@ check-leaks: $(ARGOC) $(ARGOV) doctests
 	$(Q)test "$(CONFIG)" = "sanitize" || { echo "check-leaks needs CONFIG=sanitize"; exit 1; }
 	$(Q)ASAN_OPTIONS="detect_stack_use_after_return=1:detect_leaks=1:strict_string_checks=1" \
 	    $(PYTHON) $(TEST_DIR)/run_tests.py --argoc $(ARGOC) --argov $(ARGOV) \
-	    --xfail $(TEST_DIR)/xfail/leaks.txt --junit $(OUT_DIR)/junit-leaks.xml \
+	    --xfail $(TEST_DIR)/xfail/leaks.txt --jobs $(TEST_JOBS) --junit $(OUT_DIR)/junit-leaks.xml \
 	    $(TEST_DIR)/lang $(TEST_DIR)/ir $(BUILD)/doctests
 
-# Valgrind memcheck over the language suite (weekly workflow in CI).
+# Valgrind memcheck over the language suite (manual Extended checks workflow in CI).
 VALGRIND := valgrind --error-exitcode=99 --leak-check=full --errors-for-leak-kinds=definite -q
 check-valgrind: $(ARGOC) $(ARGOV) doctests
 	@echo "==> language tests under valgrind ($(CONFIG))"
 	$(Q)$(PYTHON) $(TEST_DIR)/run_tests.py --argoc $(ARGOC) --argov $(ARGOV) \
-	    --xfail $(TEST_DIR)/xfail/valgrind.txt --wrapper "$(VALGRIND)" --timeout 120 \
+	    --xfail $(TEST_DIR)/xfail/valgrind.txt --wrapper "$(VALGRIND)" --timeout 120 --jobs $(TEST_JOBS) \
 	    $(TEST_DIR)/lang $(TEST_DIR)/ir $(BUILD)/doctests
 
 # ---- quality gates -------------------------------------------------------------
-lint: format-check banned-check warnings-check cppcheck tidy analyze
+lint: format-check banned-check warnings-check
+
+# Target state: deliberately red until the static-analysis debt is paid. Run the analyzers
+# sequentially because some of them rebuild the same generated files and objects.
+lint-full: lint
+	$(Q)$(MAKE) --no-print-directory cppcheck
+	$(Q)$(MAKE) --no-print-directory tidy
+	$(Q)$(MAKE) --no-print-directory analyze
 
 format:
 	$(Q)tools/format.sh --apply

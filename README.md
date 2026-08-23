@@ -5,8 +5,8 @@
   <br />
   
   [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-  [![CI](https://github.com/zestones/Argonaut/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/zestones/Argonaut/actions/workflows/ci.yml)
-  [![Weekly](https://github.com/zestones/Argonaut/actions/workflows/weekly.yml/badge.svg)](https://github.com/zestones/Argonaut/actions/workflows/weekly.yml)
+  [![CI](https://github.com/zestones/Argonaut/actions/workflows/ci.yml/badge.svg)](https://github.com/zestones/Argonaut/actions/workflows/ci.yml)
+  [![Extended checks](https://github.com/zestones/Argonaut/actions/workflows/weekly.yml/badge.svg)](https://github.com/zestones/Argonaut/actions/workflows/weekly.yml)
   [![CodeQL](https://github.com/zestones/Argonaut/actions/workflows/codeql.yml/badge.svg)](https://github.com/zestones/Argonaut/actions/workflows/codeql.yml)
   [![pages-build-deployment](https://github.com/zestones/Argonaut/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/zestones/Argonaut/actions/workflows/pages/pages-build-deployment)
   [![Dependencies](https://img.shields.io/badge/dependencies-GCC%2C%20Flex%2C%20Bison-orange)](https://gcc.gnu.org/)
@@ -177,14 +177,16 @@ make CONFIG=release           # -O2, _FORTIFY_SOURCE=2, -fstack-protector-strong
 make CONFIG=sanitize          # ASan + UBSan (-fno-sanitize-recover=all)
 make CONFIG=msan CC=clang     # MemorySanitizer (clang only)
 make check                    # unit + language + IR + doc examples + diagnostics regression
+make TEST_JOBS=4 check        # override the conservative two-worker default
 make CONFIG=sanitize check    # the same suites under the sanitizers
 make CONFIG=sanitize check-leaks   # LeakSanitizer ratchet
-make lint                     # format-check, banned-check, warnings-check, cppcheck, tidy, analyze
+make lint                     # format-check, banned-check and warnings-check
+make lint-full                # lint plus cppcheck, clang-tidy and gcc -fanalyzer (target state)
 make coverage | bench | fuzz  # line coverage (gcov), benchmarks vs Python and C, AFL++ fuzzing
 make help                     # the full list
 ```
 
-Tools: `gcc`/`clang`, `flex`, `bison`, `python3` (standard library only). Optional: `clang-format`, `clang-tidy`, `cppcheck`, `valgrind`, `gcovr`, `afl++`, `doxygen` (`make deps-apt` on Debian/Ubuntu). Missing tools are reported and skipped locally; the CI installs all of them.
+Tools: `gcc`/`clang`, `flex`, `bison`, `python3` (standard library only). Optional: `clang-format`, `clang-tidy`, `cppcheck`, `valgrind`, `gcovr`, `afl++`, `doxygen` (`make deps-apt` on Debian/Ubuntu). Missing tools are reported and skipped locally; the automatic CI installs only the tools required by its minimal gate.
 
 **Strict flags and ratchets.** The strict warning set (`-Wall -Wextra -Wpedantic -Wstrict-prototypes -Wmissing-prototypes -Wold-style-definition -Wshadow -Wvla -Wformat=2 -Wundef -Wwrite-strings -Wpointer-arith -Wcast-qual`) is always on. The legacy code does not satisfy every rule yet, so each rule has a *baseline* that can only go down — a new violation fails the build, an old one is a known debt:
 
@@ -197,7 +199,7 @@ Tools: `gcc`/`clang`, `flex`, `bison`, `python3` (standard library only). Option
 
 **Benchmarks.** `make bench` runs the programs of `tests/bench/` with the release build and, on the same machine, their literal transcriptions in Python and C (`tests/bench/ref/`, same variables, loops and calls). The seconds are host-specific; the ratios `arg/py` and `arg/c` are not, and they are the numbers to watch when working on the VM. The baseline only guards `argov` against regressions.
 
-Two CI jobs describe the *target state* and stay red until the debt is paid: `warnings-as-errors` (`make WERROR=1`) and `static-analysis` (cppcheck, clang-tidy, `gcc -fanalyzer`). The `weekly` workflow runs the slow checks (valgrind, MemorySanitizer, fuzzing, benchmarks).
+The automatic CI uses one Ubuntu job for the debug test suite and the ratchets. `make WERROR=1` and `make lint-full` describe the target state but run locally until their debt is paid. The manual `Extended checks` workflow offers Valgrind, MemorySanitizer, fuzzing and benchmarks without consuming scheduled Actions minutes; CodeQL and documentation deployment are manual as well.
 
 **Fixing a bug, step by step.** `python3 tests/run_tests.py --only b29` → `FAIL` → fix → `make check` reports `XPASS` → remove the line from `tests/xfail/debug.txt`, `release.txt`, `sanitize.txt` (and `msan.txt`/`leaks.txt` if present) → `make CONFIG=sanitize check && make lint` → pull request. Test conventions are described in [tests/README.md](tests/README.md); the known bugs are the `b*` cases of `tests/lang/bugs/` (each header states the expected behaviour) and the expected-failure lists in `tests/xfail/`.
 
