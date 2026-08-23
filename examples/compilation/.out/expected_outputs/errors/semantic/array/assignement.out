@@ -1,26 +1,25 @@
 [Type Error] Type mismatch during assignement at examples/compilation/errors/semantic/array/assignement.arn:25:26.
-  Cannot assign expression of type 'float' to array 'my_struct[2].jour' of type 'int'.
-  Please ensure the expression type is compatible with the array type.
+  Cannot assign expression of type 'float' to 'my_struct[2].jour' of type 'int'.
+  Ensure the expression type matches the expected type of the target.
 
 [Type Error] Type mismatch during assignement at examples/compilation/errors/semantic/array/assignement.arn:26:25.
-  Cannot assign expression of type 'int' to array 'my_struct[2].annee' of type 'float'.
-  Please ensure the expression type is compatible with the array type.
+  Cannot assign expression of type 'int' to 'my_struct[2].annee' of type 'float'.
+  Ensure the expression type matches the expected type of the target.
 
 [Semantic Error] Undeclared variable at examples/compilation/errors/semantic/array/assignement.arn:27:31.
   The variable 'j' is used before being defined or declared.
   Ensure the variable is declared in the correct scope before use.
 
-[Type Error] Type mismatch during assignement at examples/compilation/errors/semantic/array/assignement.arn:27:64.
-  Cannot assign expression of type 'int' to array 'my_struct[2, ((main(4) * (2 + j)) + my_struct[2].jour)].annee' of type 'float'.
-  Please ensure the expression type is compatible with the array type.
+[Semantic Error] Array access error at examples/compilation/errors/semantic/array/assignement.arn:27:64.
+  Too many indices in 'my_struct[2, ((main(4) * (2 + j)) + my_struct[2].jour)].annee': the element of type 'date' is not an array.
 
 [Type Error] Type mismatch during assignement at examples/compilation/errors/semantic/array/assignement.arn:28:16.
   Cannot assign expression of type 'int' to variable 'my_struct' of type 'elem'.
   Ensure that the expression type matches the expected type for the variable.
 
 [Type Error] Type mismatch during assignement at examples/compilation/errors/semantic/array/assignement.arn:29:29.
-  Cannot assign expression of type 'float' to array 'my_struct[2].jour' of type 'int'.
-  Please ensure the expression type is compatible with the array type.
+  Cannot assign expression of type 'float' to 'my_struct[2].jour' of type 'int'.
+  Ensure the expression type matches the expected type of the target.
 
 Verbose mode enabled. Printing tables and ast...
 
@@ -242,3 +241,4 @@ Root of the AST:
 │   │   │   ├── A_INTEGER_LITERAL, Lexico Idx: 16, Decl Idx: -1 -- Lexeme: '0'
 +------------------------------------------------------------------------+
 
+Compilation failed: 6 error(s).

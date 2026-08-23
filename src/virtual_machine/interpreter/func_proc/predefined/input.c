@@ -13,6 +13,43 @@
 #define BUFFER_SIZE 1024
 
 /**
+ * @brief Reports a failed read (end of input or text that does not match the specifier) and exits.
+ *
+ * @param specifier The conversion specifier that could not be satisfied ('d', 'f', 's' or 'c').
+ */
+/**
+ * @brief Reads one whitespace-delimited word from stdin (at most size - 1 characters).
+ *
+ * @return 1 when a word was read, 0 at end of input.
+ */
+static int read_word(char *word, size_t size) {
+    int c;
+    size_t length = 0;
+
+    do {
+        c = getchar();
+    } while (c == ' ' || c == '\t' || c == '\n' || c == '\r');
+    if (c == EOF) return 0;
+
+    while (c != EOF && c != ' ' && c != '\t' && c != '\n' && c != '\r') {
+        if (length + 1 < size) word[length++] = (char) c;
+        c = getchar();
+    }
+    word[length] = '\0';
+    return 1;
+}
+
+static void input_failure(char specifier) {
+    set_error_type(&error, RUN_TIME_ERROR);
+    set_error_message(&error,
+                      "Input error: could not read a value for '%%%c'.\n"
+                      "  The input ended or does not match the expected format.\n",
+                      specifier);
+    yerror(error);
+    exit(EXIT_FAILURE);
+}
+
+/**
  * @brief Resolves the assignment of a value to an argument in a function or procedure call.
  *
  * This function handles the assignment of a resolved value (`vm_cell`) to the appropriate 
@@ -31,22 +68,13 @@
  * @param cell A `vm_cell` containing the value to be assigned to the argument.
  */
 static void resolve_argument_assignement(AST arg_list, vm_cell cell) {
-    switch (arg_list->type)
-    {
-        case A_IDENTIFIER:
-            handle_variable_affectation(arg_list->index_declaration, cell);
-            break;
-        case A_ARRAY_ACCESS:
-            handle_array_affectation(arg_list, cell);
-            break; 
-        case A_STRUCT_FIELD_ACCESS:
-            handle_structure_affectation(arg_list, cell);
-            break;
-        
-        default:
-            fprintf(stderr, "<input.c> - Invalid argument list.\n");
-            break;
-        }
+    switch (arg_list->type) {
+        case A_IDENTIFIER: handle_variable_affectation(arg_list->index_declaration, cell); break;
+        case A_ARRAY_ACCESS: handle_array_affectation(arg_list, cell); break;
+        case A_STRUCT_FIELD_ACCESS: handle_structure_affectation(arg_list, cell); break;
+
+        default: fprintf(stderr, "<input.c> - Invalid argument list.\n"); break;
+    }
 }
 
 void execute_input(AST ast) {
@@ -56,7 +84,8 @@ void execute_input(AST ast) {
     AST format_node = arg_list->sibling;
 
     const char *raw_format = get_lexeme(format_node->index_lexicographic);
-    char *format = strip_quotes(raw_format);
+    char *stripped_format = strip_quotes(raw_format);
+    const char *format = stripped_format;
 
     // Note: No validation checks are performed on the 'raw_format' string or the processed 'format' string
     // at this stage. It is assumed that these strings have already been validated by the compiler. If the
@@ -66,43 +95,64 @@ void execute_input(AST ast) {
     char buffer[BUFFER_SIZE] = {0};
     arg_list = arg_list->child;
     while (format[0] != '\0') {
-        if (format[0] == '%' && (format[1] == 'd' || format[1] == 'f' || format[1] == 's' || format[1] == 'c')) {
+        if (format[0] == '%' && format[1] == '%') {
+            int c;
+            do {
+                c = getchar();
+            } while (c == ' ' || c == '\t' || c == '\n');
+            if (c != '%') input_failure('%');
+            format += 2;
+            continue;
+        }
+
+        if (format[0] == '%' && is_format_specifier(format[1])) {
             char specifier = format[1];
             vm_cell cell;
 
             switch (specifier) {
                 case 'd': {
                     int value;
-                    scanf("%d", &value);
-                    cell = construct_vm_cell(INTEGER, &value); 
+                    if (scanf("%d", &value) != 1) input_failure(specifier);
+                    cell = construct_vm_cell(INTEGER, &value);
                     break;
                 }
                 case 'f': {
                     double value;
-                    scanf("%lf", &value);
-                    cell = construct_vm_cell(REAL, &value); 
+                    if (scanf("%lf", &value) != 1) input_failure(specifier);
+                    cell = construct_vm_cell(REAL, &value);
                     break;
                 }
                 case 's': {
-                    scanf("%s", buffer);
-                    cell = construct_vm_cell(STRING, &buffer);
+                    if (scanf("%1023s", buffer) != 1) input_failure(specifier);
+                    cell = construct_vm_cell(STRING, strdup(buffer)); // cells do not own their text
                     break;
                 }
                 case 'c': {
                     char value;
-                    scanf(" %c", &value);
+                    if (scanf(" %c", &value) != 1) input_failure(specifier);
                     cell = construct_vm_cell(CHARACTER, &value);
                     break;
                 }
-                // No default case as the format is already checked for 'd', 'f', 's', or 'c'
+                case 'b': {
+                    char word[8];
+                    int value;
+                    if (!read_word(word, sizeof(word))) input_failure(specifier);
+                    if (strcmp(word, "true") == 0 || strcmp(word, "1") == 0) value = 1;
+                    else if (strcmp(word, "false") == 0 || strcmp(word, "0") == 0) value = 0;
+                    else input_failure(specifier);
+                    cell = construct_vm_cell(BOOLEAN, &value);
+                    break;
+                }
+                    // No default case as the format is already checked for 'd', 'f', 's', or 'c'
             }
 
-            resolve_argument_assignement(arg_list->child, cell); 
+            resolve_argument_assignement(arg_list->child, cell);
             arg_list = arg_list->sibling;
             format += 2;
         } else {
             format++;
         }
     }
-}
 
+    free(stripped_format);
+}

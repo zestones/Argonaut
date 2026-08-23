@@ -2,17 +2,8 @@
   Left operand type: 'float', right operand type: 'int'.
   Ensure both operands are of compatible types for the operation.
 
-[Type Error] Type mismatch during assignement at examples/compilation/errors/semantic/struct/assignement.arn:29:59.
-  Cannot assign expression of type 'UNKNOWN' to struct field 'p.naissance.annee' of type 'float'.
-  Ensure the expression type matches the expected type for the struct field.
-
 [Semantic Error] Field access error at examples/compilation/errors/semantic/struct/assignement.arn:30:21.
-  The field 'e' does not exist in the struct 'personne'.
-  Ensure the field name is correct and defined within the struct type.
-
-[Type Error] Type mismatch during assignement at examples/compilation/errors/semantic/struct/assignement.arn:30:21.
-  Cannot assign expression of type 'float' to struct field 'UNKNOWN' of type 'UNKNOWN'.
-  Ensure the expression type matches the expected type for the struct field.
+  In 'p.e.annee', the field 'e' does not exist in the struct 'personne'.
 
 Verbose mode enabled. Printing tables and ast...
 
@@ -225,3 +216,4 @@ Root of the AST:
 │   │   │   ├── A_INTEGER_LITERAL, Lexico Idx: 17, Decl Idx: -1 -- Lexeme: '0'
 +------------------------------------------------------------------------+
 
+Compilation failed: 2 error(s).

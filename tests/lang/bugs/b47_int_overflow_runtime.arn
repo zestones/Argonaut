@@ -1,0 +1,7 @@
+// CATEGORY: bug
+// DESC: integer overflow at run time is an error, not undefined behaviour
+// RUN: fail
+var x : int;
+x := 2147483647;
+x := x + 1;
+print("%d\n", x);

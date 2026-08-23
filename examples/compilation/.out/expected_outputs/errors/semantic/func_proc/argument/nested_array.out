@@ -150,7 +150,7 @@ Root of the AST:
 │   │   │   ├── A_ARGUMENT_LIST, Lexico Idx: -1, Decl Idx: -1
 │   │   │   │   ├── A_ARGUMENT, Lexico Idx: -1, Decl Idx: -1
 │   │   │   │   │   ├── A_STRUCT_FIELD_ACCESS, Lexico Idx: 14, Decl Idx: 14 -- Lexeme: 'my_struct'
-│   │   │   │   │   │   ├── A_ARRAY_ACCESS, Lexico Idx: 12, Decl Idx: 8 -- Lexeme: 'field1'
+│   │   │   │   │   │   ├── A_ARRAY_ACCESS, Lexico Idx: 12, Decl Idx: -1 -- Lexeme: 'field1'
 │   │   │   │   │   │   │   ├── A_ARRAY_INDEX_LIST, Lexico Idx: -1, Decl Idx: -1
 │   │   │   │   │   │   │   │   ├── A_ARRAY_INDEX, Lexico Idx: -1, Decl Idx: -1
 │   │   │   │   │   │   │   │   │   ├── A_INTEGER_LITERAL, Lexico Idx: 19, Decl Idx: -1 -- Lexeme: '2'
@@ -161,7 +161,7 @@ Root of the AST:
 │   │   │   ├── A_ARGUMENT_LIST, Lexico Idx: -1, Decl Idx: -1
 │   │   │   │   ├── A_ARGUMENT, Lexico Idx: -1, Decl Idx: -1
 │   │   │   │   │   ├── A_STRUCT_FIELD_ACCESS, Lexico Idx: 14, Decl Idx: 14 -- Lexeme: 'my_struct'
-│   │   │   │   │   │   ├── A_ARRAY_ACCESS, Lexico Idx: 12, Decl Idx: 8 -- Lexeme: 'field1'
+│   │   │   │   │   │   ├── A_ARRAY_ACCESS, Lexico Idx: 12, Decl Idx: -1 -- Lexeme: 'field1'
 │   │   │   │   │   │   │   ├── A_ARRAY_INDEX_LIST, Lexico Idx: -1, Decl Idx: -1
 │   │   │   │   │   │   │   │   ├── A_ARRAY_INDEX, Lexico Idx: -1, Decl Idx: -1
 │   │   │   │   │   │   │   │   │   ├── A_INTEGER_LITERAL, Lexico Idx: 19, Decl Idx: -1 -- Lexeme: '2'
@@ -171,7 +171,7 @@ Root of the AST:
 │   │   │   ├── A_ARGUMENT_LIST, Lexico Idx: -1, Decl Idx: -1
 │   │   │   │   ├── A_ARGUMENT, Lexico Idx: -1, Decl Idx: -1
 │   │   │   │   │   ├── A_STRUCT_FIELD_ACCESS, Lexico Idx: 14, Decl Idx: 14 -- Lexeme: 'my_struct'
-│   │   │   │   │   │   ├── A_ARRAY_ACCESS, Lexico Idx: 12, Decl Idx: 8 -- Lexeme: 'field1'
+│   │   │   │   │   │   ├── A_ARRAY_ACCESS, Lexico Idx: 12, Decl Idx: -1 -- Lexeme: 'field1'
 │   │   │   │   │   │   │   ├── A_ARRAY_INDEX_LIST, Lexico Idx: -1, Decl Idx: -1
 │   │   │   │   │   │   │   │   ├── A_ARRAY_INDEX, Lexico Idx: -1, Decl Idx: -1
 │   │   │   │   │   │   │   │   │   ├── A_INTEGER_LITERAL, Lexico Idx: 19, Decl Idx: -1 -- Lexeme: '2'
@@ -201,3 +201,4 @@ Root of the AST:
 │   │   │   ├── A_INTEGER_LITERAL, Lexico Idx: 18, Decl Idx: -1 -- Lexeme: '0'
 +------------------------------------------------------------------------+
 
+Compilation failed: 3 error(s).

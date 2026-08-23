@@ -11,8 +11,7 @@
  * @enum ErrorType
  * @brief Enumeration of error types.
  */
-typedef enum
-{
+typedef enum {
     NO_ERROR,
     SYNTAX_ERROR,
     SEMANTIC_ERROR,
@@ -26,11 +25,11 @@ typedef enum
  * @brief Structure to hold detailed error information.
  */
 typedef struct {
-    ErrorType type;      // The type of the error.
-    int line;            // The line number where the error occurred.
-    int column;          // The column number where the error occurred.
-    char message[500];   // The error message.
-    char *filename;      // The name of the file where the error occurred.
+    ErrorType type;    // The type of the error.
+    int line;          // The line number where the error occurred.
+    int column;        // The column number where the error occurred.
+    char message[500]; // The error message.
+    char *filename;    // The name of the file where the error occurred.
 } Error;
 
 /**
@@ -65,11 +64,18 @@ void yywarn(const Error error);
 void yerror(const Error error);
 
 /**
+ * @brief Number of errors reported through yerror() so far.
+ *
+ * @return The error count (0 when the compilation is clean).
+ */
+int get_error_count(void);
+
+/**
  * @brief Returns a formatted string containing the current file, line, and column.
  * 
  * @return The formatted string containing the current file, line, and column.
  */
-char* get_formatted_location();
+char *get_formatted_location();
 
 /**
  * @brief Sets the error message of the provided Error struct.

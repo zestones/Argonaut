@@ -76,3 +76,4 @@ Root of the AST:
 │   │   │   │   ├── A_FUNC_PROC_CALL_STATEMENT, Lexico Idx: 5, Decl Idx: -1 -- Lexeme: 'my_func'
 +------------------------------------------------------------------------+
 
+Compilation failed: 2 error(s).

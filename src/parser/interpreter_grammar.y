@@ -6,6 +6,8 @@
 
     #include "parser.h"
     #include "../utils/errors.h"
+    #include "../utils/ir_version.h"
+    #include "../lexer/escapes.h"
 
     #include <stdio.h>
     #include <stdlib.h>
@@ -35,6 +37,35 @@
 
         exit(EXIT_FAILURE);
     }
+
+    /**
+     * @brief Loads one row of the lexeme table, "|index|lexeme|length|next|".
+     *
+     * The lexeme is stored verbatim (it may contain '|'), so the two integer fields are read
+     * from the end of the row. The lexer guarantees the row has this shape.
+     */
+    static void insert_lexeme_row_from_text(char *row) {
+        char *end = row + strlen(row) - 1;            // the closing '|'
+        char *next_field = end;
+        while (next_field > row && next_field[-1] != '|') next_field--;
+        char *length_field = next_field - 1;          // the '|' before 'next'
+        while (length_field > row && length_field[-1] != '|') length_field--;
+        char *lexeme_end = length_field - 1;          // the '|' after the lexeme
+        char *lexeme = strchr(row + 1, '|');          // the '|' after the index
+
+        if (lexeme == NULL || lexeme >= lexeme_end || next_field <= row || length_field <= row) {
+            yyerror("Malformed lexeme table row");
+        }
+
+        int index = (int) strtol(row + 1, NULL, 10);
+        int length = (int) strtol(length_field, NULL, 10);
+        int next = (int) strtol(next_field, NULL, 10);
+        *lexeme_end = '\0';
+
+        char *decoded = unescape_text(lexeme + 1);
+        insert_lexeme_row(index, decoded, length, next);
+        free(decoded);
+    }
 %}
 
 %union {
@@ -42,10 +73,10 @@
 
     int integer;
     char* string;
-    float real;
 }
 
 
+%token IR_HEADER
 %token BEGIN_LEXEME_TABLE END_LEXEME_TABLE
 %token BEGIN_DECLARATION_TABLE END_DECLARATION_TABLE
 %token BEGIN_REPRESENTATION_TABLE END_REPRESENTATION_TABLE
@@ -55,15 +86,24 @@
 %token PIPE
 
 %token <integer> TOKEN_INTEGER
-%token <string> TOKEN_LEXEME
-%token <real> TOKEN_FLOAT
+%token <string> TOKEN_LEXEME_ROW
 %start program
 
 %type <ast> ast_node child_node sibling_node node
 
 %%
 
-program: lexeme_table declaration_table representation_table region_table
+program: header lexeme_table declaration_table representation_table region_table
+;
+
+header: IR_HEADER TOKEN_INTEGER {
+            if ($2 != ARGONAUT_IR_VERSION) {
+                fprintf(stderr, COLOR_RED "Unsupported IR version %d: this argov reads version %d.\n"
+                                "  Recompile the program with the matching argoc." COLOR_RESET "\n",
+                        $2, ARGONAUT_IR_VERSION);
+                exit(EXIT_FAILURE);
+            }
+        }
 ;
 
 
@@ -75,21 +115,7 @@ lexeme_table_body: lexeme_table_row
                  | lexeme_table_body lexeme_table_row
 ;
 
-lexeme_table_row: PIPE TOKEN_INTEGER PIPE TOKEN_LEXEME PIPE TOKEN_INTEGER PIPE TOKEN_INTEGER PIPE { insert_lexeme_row($2, $4, $6, $8); }
-                | PIPE TOKEN_INTEGER PIPE TOKEN_INTEGER PIPE TOKEN_INTEGER PIPE TOKEN_INTEGER PIPE {
-                    int len = snprintf(NULL, 0, "%d", $4);  
-                    char* lexeme = malloc(len + 1);
-                    sprintf(lexeme, "%d", $4);
-
-                    insert_lexeme_row($2, lexeme, $6, $8);
-                    free(lexeme);
-                }
-                | PIPE TOKEN_INTEGER PIPE TOKEN_FLOAT PIPE TOKEN_INTEGER PIPE TOKEN_INTEGER PIPE {
-                   int len = snprintf(NULL, 0, "%f", $4);  
-                    char* lexeme = malloc(len + 1);
-                    sprintf(lexeme, "%f", $4);
-                    insert_lexeme_row($2, lexeme, $6, $8);
-                }
+lexeme_table_row: TOKEN_LEXEME_ROW { insert_lexeme_row_from_text($1); free($1); }
 ;
 
 
@@ -149,7 +175,7 @@ sibling_node: LBRACKET SIBLING ast_node RBRACKET { $$ = $3; }
 static void print_usage(const char *program_name) {
     // Header
     fprintf(stdout, COLOR_BOLD_YELLOW "\nUsage:\n" COLOR_RESET);
-    fprintf(stdout, COLOR_GREEN "  %s -i <input_file> [options]\n\n", program_name);
+    fprintf(stdout, COLOR_GREEN "  %s -a <input_file> [options]\n\n", program_name);
 
     // Description section
     fprintf(stdout, COLOR_BOLD_YELLOW "Description:\n" COLOR_RESET);
@@ -194,7 +220,7 @@ int main(int argc, char **argv) {
 
     // Long options array
     static struct option long_options[] = {
-        {"verbose", no_argument, NULL, 1},           // Enable verbose mode
+        {"verbose", no_argument, NULL, 'v'},         // Enable verbose mode
         {"help",    no_argument, NULL, 'h'},         // Display help message
         {0, 0, 0, 0}  // End of options
     };

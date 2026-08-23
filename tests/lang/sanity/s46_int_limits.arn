@@ -1,0 +1,7 @@
+// CATEGORY: sanity
+// DESC: arithmetic at the limits of int without overflow
+// OUT: 2147483647 -2147483648 -1 0
+var max : int; var min : int;
+max := 2147483647;
+min := -2147483647 - 1;
+print("%d %d %d %d\n", max, min, max + min, min % -1);

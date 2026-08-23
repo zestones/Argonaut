@@ -1,0 +1,6 @@
+// Integer overflow is a run-time error, not a silent wrap-around.
+var x : int;
+x := 2147483647;
+print("%d\n", x);
+x := x + 1;
+print("never printed: %d\n", x);

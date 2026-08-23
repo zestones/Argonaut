@@ -27,7 +27,7 @@ for _ in range(reps):
     r.br.x = 0
     r.br.y = 0
     i = 0
-    while i < 20000:
+    while i < 2000000:
         r.br.x = r.br.x + 1
         r.tl.y = r.br.x - r.tl.x
         i += 1

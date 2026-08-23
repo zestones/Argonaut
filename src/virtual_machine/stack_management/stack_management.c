@@ -19,11 +19,23 @@ stack_frame peek_execution_stack() {
 }
 
 void push_frame_to_execution_stack(stack_frame frame) {
+    if (size(execution_stack) >= MAX_CALL_DEPTH) {
+        set_error_type(&error, RUN_TIME_ERROR);
+        set_error_message(&error,
+                          "Stack overflow: the call depth exceeds %d frames.\n"
+                          "  Check for unbounded recursion.",
+                          MAX_CALL_DEPTH);
+        yerror(error);
+        exit(EXIT_FAILURE);
+    }
+
     push(&execution_stack, &frame, sizeof(stack_frame));
 }
 
-stack_frame pop_frame_from_execution_stack() {
-    return *(stack_frame *) pop(&execution_stack);
+void pop_frame_from_execution_stack(void) {
+    stack_frame *frame = (stack_frame *) pop(&execution_stack);
+    destroy_stack_frame(frame);
+    free(frame);
 }
 
 stack_frame *get_stack_frame_by_id(int id) {
@@ -31,19 +43,20 @@ stack_frame *get_stack_frame_by_id(int id) {
 }
 
 stack_frame *find_stack_frame_by_region_index(int region_index) {
-    stack_frame *current_frame = peek_execution_stack_as_mutable();
-    while(current_frame != NULL) {
+    int frame_id = get_execution_stack_current_frame_id();
+    while (frame_id >= 0) {
+        stack_frame *current_frame = get_stack_frame_by_id(frame_id);
         if (current_frame->region_index == region_index) return current_frame;
-        current_frame = get_stack_frame_by_id(current_frame->dynamic_link);
+
+        // The first frame is its own dynamic link: the walk must stop there instead of looping.
+        if (current_frame->dynamic_link == frame_id) break;
+        frame_id = current_frame->dynamic_link;
     }
 
     set_error_type(&error, RUN_TIME_ERROR);
-    set_error_message(
-        &error,
-        "No stack frame found.\n"
-        "  If this message is seen during runtime, it indicates a critical issue.\n"
-        "  Please report this error with details about the context in which it occurred."
-    );
+    set_error_message(&error, "No stack frame found.\n"
+                              "  If this message is seen during runtime, it indicates a critical issue.\n"
+                              "  Please report this error with details about the context in which it occurred.");
 
     yerror(error);
     exit(EXIT_FAILURE);
@@ -64,4 +77,3 @@ void fprintf_vm_stack(FILE *out) {
         fprintf_stack_frame(out, frame);
     }
 }
-

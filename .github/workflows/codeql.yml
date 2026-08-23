@@ -1,13 +1,8 @@
-# GitHub CodeQL static analysis for C (advanced setup with a manual build for precise results).
+# CodeQL is intentionally manual so this secondary project consumes no scheduled Actions minutes.
 name: CodeQL
 
 on:
-  push:
-    branches: [main]
-  pull_request:
-    branches: [main]
-  schedule:
-    - cron: '0 4 * * 1'
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -17,6 +12,7 @@ jobs:
   analyze:
     name: analyze (c-cpp)
     runs-on: ubuntu-24.04
+    timeout-minutes: 5
     steps:
       - uses: actions/checkout@v4
       - run: sudo apt-get update && sudo apt-get install -y flex bison

@@ -1,5 +1,11 @@
 #include "errors.h"
 
+static int error_count = 0;
+
+int get_error_count(void) {
+    return error_count;
+}
+
 Error construct_error(ErrorType type, int line, int column, const char *format, ...) {
     Error error;
 
@@ -18,34 +24,34 @@ Error construct_error(ErrorType type, int line, int column, const char *format, 
 void yywarn(const Error error) {
     fprintf(stderr, COLOR_YELLOW "[");
     switch (error.type) {
-        case SYNTAX_ERROR:        fprintf(stderr, "Syntax Warning");           break;
-        case SEMANTIC_ERROR:      fprintf(stderr, "Semantic Warning");         break;
-        case TYPE_ERROR:          fprintf(stderr, "Type Warning");             break;
-        case LEXICAL_ERROR:       fprintf(stderr, "Lexical Warning");          break;
-        case RUN_TIME_ERROR:      fprintf(stderr, "Run Time Warning");         break;
-        default:                  fprintf(stderr, "Unknown Warning");          break;
+        case SYNTAX_ERROR: fprintf(stderr, "Syntax Warning"); break;
+        case SEMANTIC_ERROR: fprintf(stderr, "Semantic Warning"); break;
+        case TYPE_ERROR: fprintf(stderr, "Type Warning"); break;
+        case LEXICAL_ERROR: fprintf(stderr, "Lexical Warning"); break;
+        case RUN_TIME_ERROR: fprintf(stderr, "Run Time Warning"); break;
+        default: fprintf(stderr, "Unknown Warning"); break;
     }
     fprintf(stderr, "]");
     fprintf(stderr, " %s" COLOR_RESET "\n", error.message);
 }
 
 void yerror(const Error error) {
+    error_count++;
     fprintf(stderr, COLOR_RED "[");
     switch (error.type) {
-        case SYNTAX_ERROR:              fprintf(stderr, "Syntax Error");         break;
-        case SEMANTIC_ERROR:            fprintf(stderr, "Semantic Error");       break;
-        case TYPE_ERROR:                fprintf(stderr, "Type Error");           break;
-        case LEXICAL_ERROR:             fprintf(stderr, "Lexical Error");        break;
-        case RUN_TIME_ERROR:            fprintf(stderr, "Run Time Error");       break;
-        default:                        fprintf(stderr, "Unknown Error");        break;
+        case SYNTAX_ERROR: fprintf(stderr, "Syntax Error"); break;
+        case SEMANTIC_ERROR: fprintf(stderr, "Semantic Error"); break;
+        case TYPE_ERROR: fprintf(stderr, "Type Error"); break;
+        case LEXICAL_ERROR: fprintf(stderr, "Lexical Error"); break;
+        case RUN_TIME_ERROR: fprintf(stderr, "Run Time Error"); break;
+        default: fprintf(stderr, "Unknown Error"); break;
     }
 
     fprintf(stderr, "]");
     fprintf(stderr, " %s" COLOR_RESET "\n", error.message);
-    // exit(EXIT_FAILURE);  // Uncomment this line to exit the program on error
 }
 
-char* get_formatted_location() {
+char *get_formatted_location() {
     static char location[256];
     snprintf(location, sizeof(location), "%s:%d:%d", error.filename, error.line, error.column);
     return location;

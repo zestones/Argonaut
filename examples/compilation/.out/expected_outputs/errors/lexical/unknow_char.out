@@ -93,3 +93,4 @@ Root of the AST:
 │   │   │   │   ├── A_FLOAT_LITERAL, Lexico Idx: 9, Decl Idx: -1 -- Lexeme: '1.5'
 +------------------------------------------------------------------------+
 
+Compilation failed: 2 error(s).

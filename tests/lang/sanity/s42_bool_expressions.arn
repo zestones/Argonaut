@@ -1,0 +1,19 @@
+// CATEGORY: sanity
+// DESC: booleans as conditions, comparisons as expressions, %b, short-circuit, precedence of ! && ||
+// OUT: yes
+// OUT: true false 1 0
+// OUT: ok
+// OUT: not-lower
+// OUT: 3
+var flag : bool; var b : bool; var i : int; var z : int;
+func done(k : int) -> bool { return k > 2; }
+flag := true;
+if (flag) { print("yes\n"); }
+b := 1 < 2 && 3 > 2 || false;
+print("%b %b %d %d\n", b, !b, b, !flag);
+z := 0;
+if (!(z == 1) && (z == 0 || 10 / z == 1)) { print("ok\n"); }
+if (!z == 1) { print("not-lower\n"); }
+i := 0;
+while (!done(i)) { i++; }
+print("%d\n", i);

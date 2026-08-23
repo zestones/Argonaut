@@ -10,21 +10,24 @@
 void declaration_variable_start(int index_lexeme_lexicographic, int index_type_lexicographic) {
     check_type_definition(index_type_lexicographic);
     check_variable_redefinition(index_lexeme_lexicographic);
-    
-    int index_type_declaration = get_arr_struct_declaration_index(index_type_lexicographic);
-    int execution = get_declaration_execution(index_type_declaration); 
 
-    // FIXME: variable declared after func or proc have wrong execution value
-    insert_declaration_var(index_lexeme_lexicographic, peek_region(), index_type_declaration, get_region_size(get_current_region_id()));
-    update_region_size(get_current_region_id(), get_region_size(get_current_region_id()) + execution);
+    int index_type_declaration = get_arr_struct_declaration_index(index_type_lexicographic);
+    int execution = get_declaration_execution(index_type_declaration);
+
+    // The variable belongs to the region being parsed (top of the region stack), which is not
+    // necessarily the last region created: a function declared just before creates a newer one.
+    int region = peek_region();
+    insert_declaration_var(index_lexeme_lexicographic, region, index_type_declaration, get_region_size(region));
+    update_region_size(region, get_region_size(region) + execution);
 }
 
 void declaration_param_start(int index_lexeme_lexicographic, int index_type_lexicographic) {
     check_type_definition(index_type_lexicographic);
 
     int index_type_declaration = find_declaration_index(index_type_lexicographic);
-    int execution = get_declaration_execution(index_type_declaration); 
+    int execution = get_declaration_execution(index_type_declaration);
 
-    insert_declaration_param(index_lexeme_lexicographic, get_current_region_id(), index_type_declaration, get_region_size(get_current_region_id()));
-    update_region_size(get_current_region_id(), get_region_size(get_current_region_id()) + execution);
+    int region = peek_region();
+    insert_declaration_param(index_lexeme_lexicographic, region, index_type_declaration, get_region_size(region));
+    update_region_size(region, get_region_size(region) + execution);
 }

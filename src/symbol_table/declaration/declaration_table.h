@@ -16,7 +16,8 @@
 #include <string.h>
 
 
-#define MAX_DECLARATION_COUNT 1000 // Maximum number of declarations allowed in the table
+#define MAX_DECLARATION_COUNT                                                                                          \
+    16384 // Maximum number of declarations allowed in the table (lexeme-indexed zone + overflow zone)
 
 /**
  * @enum Nature
@@ -24,8 +25,7 @@
  * determines the type of the declaration, such as a variable, structure, array,
  * procedure, function, or parameter.
  */
-typedef enum
-{
+typedef enum {
     TYPE_BASE,   // Base type
     TYPE_VAR,    // Variable type
     TYPE_STRUCT, // Structure type
@@ -42,11 +42,11 @@ typedef enum
  * the description of the declaration, and the execution information of the declaration.
  */
 typedef struct {
-    Nature nature;      // Nature of the declaration
-    int next;           // Index of the next declaration
-    int region;         // Region of the declaration
-    int description;    // Description of the declaration
-    int execution;      // Execution information of the declaration
+    Nature nature;   // Nature of the declaration
+    int next;        // Index of the next declaration
+    int region;      // Region of the declaration
+    int description; // Description of the declaration
+    int execution;   // Execution information of the declaration
 } Declaration;
 
 /**
@@ -248,14 +248,14 @@ void update_declaration_execution(int index, int execution);
  * 
  * @param filename Name of the file to write the declaration table to.
  */
-void export_declaration_table(const char* filename);
+void export_declaration_table(const char *filename);
 
 /**
  * @brief Prints the declaration table.
  * 
  * @param out File stream to write the declaration table to.
  */
-void fprintf_declaration_table(FILE* out);
+void fprintf_declaration_table(FILE *out);
 
 /**
  * @brief Converts a nature to a string representation.
@@ -263,12 +263,10 @@ void fprintf_declaration_table(FILE* out);
  * @param nature Nature to convert.
  * @return String representation of the nature.
  */
-static inline char *nature_to_string(Nature nature)
-{
-    switch (nature)
-    {
+static inline char *nature_to_string(Nature nature) {
+    switch (nature) {
         case TYPE_BASE: return "TYPE_BASE";
-        case TYPE_VAR:  return "TYPE_VAR";
+        case TYPE_VAR: return "TYPE_VAR";
         case TYPE_STRUCT: return "TYPE_STRUCT";
         case TYPE_ARRAY: return "TYPE_ARRAY";
         case TYPE_PROC: return "TYPE_PROC";
@@ -279,12 +277,10 @@ static inline char *nature_to_string(Nature nature)
     }
 }
 
-static inline char *nature_to_string_short(Nature nature)
-{
-    switch (nature)
-    {
+static inline char *nature_to_string_short(Nature nature) {
+    switch (nature) {
         case TYPE_BASE: return "base";
-        case TYPE_VAR:  return "variable";
+        case TYPE_VAR: return "variable";
         case TYPE_STRUCT: return "structure";
         case TYPE_ARRAY: return "array";
         case TYPE_PROC: return "procedure";
@@ -302,5 +298,13 @@ static inline char *nature_to_string_short(Nature nature)
  * @return 1 if the declaration is a base type, otherwise 0.
  */
 int is_declaration_base_type(int index);
+
+/**
+ * @brief Tells whether a declaration exists at the given index (inserted, or loaded from an IR file).
+ *
+ * @param index The index to check; any value is accepted.
+ * @return 1 if the index holds a declaration, 0 otherwise.
+ */
+int is_declaration_loaded(int index);
 
 #endif // DECLARATION_TABLE_H

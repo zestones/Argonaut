@@ -32,12 +32,12 @@ typedef struct {
         int integer;    // Integer value (stores `int`)
         float real;     // Real value (stores `float`)
         int boolean;    // Boolean value (stores `int`, 0 or 1)
-        char character; // Character value (stores `char`) 
+        char character; // Character value (stores `char`)
         char *string;   // String value (stores `char *`)
     } value;            // Union holding the value of the cell
 
-    vm_type type;        // The type of value stored in the cell
-    int is_initialized;  // Flag indicating whether the cell is initialized (1 = initialized, 0 = not)
+    vm_type type;       // The type of value stored in the cell
+    int is_initialized; // Flag indicating whether the cell is initialized (1 = initialized, 0 = not)
 } vm_cell;
 
 /**
@@ -49,7 +49,8 @@ typedef struct {
  * @param type The type of the cell (e.g., INTEGER, REAL, etc.).
  * @param value A pointer to the value to initialize the cell. Can be `NULL`.
  * @return A constructed `vm_cell` instance.
- * @note For `STRING` type, the value is duplicated internally.
+ * @note For `STRING` type, the cell keeps the pointer: the text must outlive the cell (string
+ *       literals point into the lexeme table).
  */
 vm_cell construct_vm_cell(int type, void *value);
 
@@ -59,11 +60,11 @@ vm_cell construct_vm_cell(int type, void *value);
  * This function provides a generic pointer to the value stored in the given
  * `vm_cell`. The caller is responsible for interpreting the type.
  *
- * @param cell The `vm_cell` to extract the value from.
- * @return A pointer to the value inside the `vm_cell`.
+ * @param cell A pointer to the `vm_cell` to extract the value from.
+ * @return A pointer to the value inside the `vm_cell`, valid as long as the cell is.
  * @note The returned pointer must not be freed.
  */
-void *get_vm_cell_value(vm_cell cell);
+void *get_vm_cell_value(vm_cell *cell);
 
 /**
  * @brief Updates an existing `vm_cell` with a new value.
@@ -73,7 +74,7 @@ void *get_vm_cell_value(vm_cell cell);
  *
  * @param cell A pointer to the `vm_cell` to update.
  * @param value A pointer to the new value to assign.
- * @note For `STRING` type, the value is duplicated internally.
+ * @note For `STRING` type, `value` is the text itself and the cell keeps the pointer.
  */
 void update_vm_cell(vm_cell *cell, void *value);
 

@@ -10,7 +10,7 @@ int main(int argc, char **argv) {
     int i;
     for (rep = 0; rep < reps; rep++) {
         r.tl.x = 0; r.tl.y = 0; r.br.x = 0; r.br.y = 0;
-        for (i = 0; i < 20000; i++) {
+        for (i = 0; i < 2000000; i++) {
             r.br.x = r.br.x + 1;
             r.tl.y = r.br.x - r.tl.x;
             KEEP(r.br.x);

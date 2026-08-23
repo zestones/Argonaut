@@ -2,6 +2,7 @@
 #define __LOOP_H__
 
 #include "../../../data/region_table.h"
+#include "../interpreter.h"
 
 /**
  * @brief Executes a loop statement (while loop).
@@ -13,6 +14,6 @@
  * @param ast The root node of the loop statement in the AST.
  *            It should represent a 'while' loop with a condition and a statement list for the loop body.
  */
-void execute_loop(AST ast);
+ControlFlow execute_loop(AST ast);
 
 #endif // __LOOP_H__

@@ -19,7 +19,7 @@
 #include "../ast/ast.h"
 
 
-#define MAX_REGION_COUNT 50 // Maximum number of regions that can be managed.
+#define MAX_REGION_COUNT 1024 // Maximum number of regions (program + functions + procedures).
 
 
 /**
@@ -31,9 +31,9 @@
  * the Abstract Syntax Tree (AST) for the region.
  */
 typedef struct Region {
-    int size;           // Size of the region.
-    int nis;            // Static nesting level in the region.
-    AST ast;            // Abstract Syntax Tree
+    int size; // Size of the region.
+    int nis;  // Static nesting level in the region.
+    AST ast;  // Abstract Syntax Tree
 } Region;
 
 
@@ -86,6 +86,14 @@ void insert_region_row(int index, int size, int nis, AST ast);
 int get_region_size(int index);
 
 /**
+ * @brief Tells whether a region exists at the given index (started, or loaded from an IR file).
+ *
+ * @param index The index to check; any value is accepted.
+ * @return 1 if the index holds a region, 0 otherwise.
+ */
+int is_region_loaded(int index);
+
+/**
  * @brief Gets the NIS of the current region.
  *
  * @return The NIS of the current region.
@@ -135,15 +143,14 @@ void update_region_ast(int index, AST ast);
  *
  * @param filename The name of the file to write the region table to.
  */
-void export_region_table(const char* filename);
+void export_region_table(const char *filename);
 
 /**
  * @brief Prints the region table.
  *
  * This function prints the current state of the region table.
  */
-void fprintf_region_table(FILE* out);
+void fprintf_region_table(FILE *out);
 
 
 #endif // __REGION_TABLE_H__
-

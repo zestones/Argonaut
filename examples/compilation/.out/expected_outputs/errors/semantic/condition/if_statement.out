@@ -1,10 +1,6 @@
-[Type Error] Invalid comparison at examples/compilation/errors/semantic/condition/if_statement.arn:9:33.
+[Type Error] Invalid comparison at examples/compilation/errors/semantic/condition/if_statement.arn:9:34.
   Boolean cannot be compared with '>=' operator.
   Ensure the operator is used with compatible types.
-
-[Type Error] Invalid condition at examples/compilation/errors/semantic/condition/if_statement.arn:9:33.
-  Expected a boolean expression, but received 'UNKNOWN'.
-  Ensure the expression evaluates to a boolean value.
 
 Verbose mode enabled. Printing tables and ast...
 
@@ -84,17 +80,16 @@ Root of the AST:
 │   │   │   │   ├── A_INTEGER_LITERAL, Lexico Idx: 6, Decl Idx: -1 -- Lexeme: '1'
 │   │   └── A_IF, Lexico Idx: -1, Decl Idx: -1
 │   │   │   ├── A_OR_CONDITION, Lexico Idx: -1, Decl Idx: -1
-│   │   │   │   ├── A_CONDITION, Lexico Idx: -1, Decl Idx: -1
-│   │   │   │   │   ├── A_GREATER_THAN_OP, Lexico Idx: -1, Decl Idx: -1
-│   │   │   │   │   │   ├── A_IDENTIFIER, Lexico Idx: 4, Decl Idx: 4 -- Lexeme: 'x'
-│   │   │   │   │   │   └── A_INTEGER_LITERAL, Lexico Idx: 7, Decl Idx: -1 -- Lexeme: '5'
-│   │   │   │   └── A_CONDITION, Lexico Idx: -1, Decl Idx: -1
-│   │   │   │   │   ├── A_GREATER_EQUAL_OP, Lexico Idx: -1, Decl Idx: -1
-│   │   │   │   │   │   ├── A_IDENTIFIER, Lexico Idx: 5, Decl Idx: 5 -- Lexeme: 'is_red'
-│   │   │   │   │   │   └── A_BOOLEAN_LITERAL, Lexico Idx: 8, Decl Idx: -1 -- Lexeme: 'false'
+│   │   │   │   ├── A_GREATER_THAN_OP, Lexico Idx: -1, Decl Idx: -1
+│   │   │   │   │   ├── A_IDENTIFIER, Lexico Idx: 4, Decl Idx: 4 -- Lexeme: 'x'
+│   │   │   │   │   └── A_INTEGER_LITERAL, Lexico Idx: 7, Decl Idx: -1 -- Lexeme: '5'
+│   │   │   │   └── A_GREATER_EQUAL_OP, Lexico Idx: -1, Decl Idx: -1
+│   │   │   │   │   ├── A_IDENTIFIER, Lexico Idx: 5, Decl Idx: 5 -- Lexeme: 'is_red'
+│   │   │   │   │   └── A_BOOLEAN_LITERAL, Lexico Idx: 8, Decl Idx: -1 -- Lexeme: 'false'
 │   │   │   └── A_STATEMENT_LIST, Lexico Idx: -1, Decl Idx: -1
 │   │   │   │   ├── A_ASSIGNMENT_STATEMENT, Lexico Idx: -1, Decl Idx: -1
 │   │   │   │   │   ├── A_VARIABLE_ASSIGNMENT, Lexico Idx: 4, Decl Idx: 4 -- Lexeme: 'x'
 │   │   │   │   │   │   ├── A_INTEGER_LITERAL, Lexico Idx: 9, Decl Idx: -1 -- Lexeme: '0'
 +------------------------------------------------------------------------+
 
+Compilation failed: 1 error(s).

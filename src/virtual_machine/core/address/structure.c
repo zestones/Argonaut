@@ -9,41 +9,51 @@
 
 #include "address_calculation.h"
 
-
-int get_struct_field_address(Node *struct_field_access, int base_address, int index_declaration) {
-    // Start from the root structure
-    int struct_declaration = index_declaration;
-    Node *current_field = struct_field_access;
-    if (base_address == NULL_VALUE) {
-        struct_declaration = get_declaration_description(struct_field_access->index_declaration);
-        base_address = get_variable_address(struct_field_access->index_declaration);
-        current_field = struct_field_access->child;
-    }
-
-    // Traverse the nested field access hierarchy
+int struct_field_offset(Node *field, int struct_type, int *type_out) {
     int offset = 0;
-    while (current_field != NULL) {
-        // Find the index and execution offset for the current field
-        int nth_field          = find_struct_field_index_lexicographic(struct_declaration, current_field->index_lexicographic);
-        int field_execution    = get_struct_nth_field_execution(struct_declaration, nth_field);
-        int index_declaration  = get_struct_nth_field_declaration(struct_declaration, nth_field);
+    int type = struct_type;
 
-        if (get_declaration_nature(index_declaration) == TYPE_ARRAY) {
-            // Calculate the address for the array
-            int array_offset = get_array_address(current_field, base_address);
-            offset += array_offset + field_execution;
+    while (field != NULL) {
+        int nth_field = find_struct_field_index_lexicographic(struct_type, field->index_lexicographic);
+        if (nth_field == NULL_VALUE) {
+            set_error_type(&error, RUN_TIME_ERROR);
+            set_error_message(&error, "Corrupted IR: '%s' is not a field of structure '%s'.",
+                              get_lexeme(field->index_lexicographic),
+                              get_lexeme(get_declaration_lexicographic_index(struct_type)));
+            yerror(error);
+            exit(EXIT_FAILURE);
+        }
+
+        type = get_struct_nth_field_declaration(struct_type, nth_field);
+        offset += get_struct_nth_field_execution(struct_type, nth_field);
+
+        if (get_declaration_nature(type) == TYPE_ARRAY) {
+            // An array field: either indexed (s.t[i], the node is an A_ARRAY_ACCESS) or used as
+            // a whole (s.t passed as an argument).
+            if (field->type == A_ARRAY_ACCESS) {
+                return offset + array_element_offset(field, type, type_out);
+            }
             break;
         }
 
-        if (get_declaration_nature(index_declaration) == TYPE_STRUCT) {
-            struct_declaration = index_declaration;
-        }
-
-        offset += field_execution; // Accumulate the offset
-        current_field = current_field->child;
+        if (get_declaration_nature(type) == TYPE_STRUCT) struct_type = type;
+        field = field->child;
     }
 
-    // Calculate the final address
-    int final_address = base_address + offset;
-    return final_address;
+    if (type_out != NULL) *type_out = type;
+    return offset;
+}
+
+int get_struct_field_address(Node *struct_field_access, int base_address, int index_declaration) {
+    Node *field = struct_field_access;
+    int struct_type = index_declaration;
+
+    if (base_address == NULL_VALUE) {
+        // The node is the structure variable itself: its fields start at its child.
+        struct_type = get_declaration_description(struct_field_access->index_declaration);
+        base_address = get_variable_address(struct_field_access->index_declaration);
+        field = struct_field_access->child;
+    }
+
+    return base_address + struct_field_offset(field, struct_type, NULL);
 }
