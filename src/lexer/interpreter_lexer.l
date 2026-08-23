@@ -3,6 +3,7 @@
     #include <string.h>
 
     #include "../utils/errors.h"
+    #include "../utils/numeric_parser.h"
     #include "y.tab.h"
 
     extern Error error;
@@ -54,7 +55,7 @@ number [0-9]
 "Sibling:"               { error.column += yyleng; return SIBLING; }
 
 [-]?{number}+ {
-    yylval.integer = (int) strtol(yytext, NULL, 10);
+    if (!parse_integer_text(yytext, &yylval.integer)) yyerror("Integer value is out of range");
     error.column += yyleng;
     return TOKEN_INTEGER;
 }

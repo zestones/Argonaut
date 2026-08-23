@@ -1,0 +1,7 @@
+// CATEGORY: bug
+// DESC: input rejects trailing garbage in an integer
+// IN: 12oops
+// RUN: fail
+// ERR: Input error: could not read a value for '%d'.
+var value : int;
+input("%d", value);

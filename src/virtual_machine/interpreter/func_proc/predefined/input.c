@@ -1,5 +1,6 @@
 #include "../../../../semantic_analysis/function_checks/common/format_specifiers.h"
 #include "../../../../symbol_table/lexeme/lexeme_table.h"
+#include "../../../../utils/numeric_parser.h"
 
 #include "../../../core/vm_cell.h"
 #include "../../../core/execution.h"
@@ -7,38 +8,51 @@
 #include "../../expression/expression.h"
 #include "../func_proc.h"
 
+#include <ctype.h>
 #include <stdio.h>
 #include <string.h>
 
 #define BUFFER_SIZE 1024
 
 /**
- * @brief Reports a failed read (end of input or text that does not match the specifier) and exits.
- *
- * @param specifier The conversion specifier that could not be satisfied ('d', 'f', 's' or 'c').
- */
-/**
  * @brief Reads one whitespace-delimited word from stdin (at most size - 1 characters).
  *
- * @return 1 when a word was read, 0 at end of input.
+ * @return 1 when a word was read, 0 at end of input or when the word is too long.
  */
 static int read_word(char *word, size_t size) {
     int c;
     size_t length = 0;
+    int overflow = 0;
 
     do {
         c = getchar();
-    } while (c == ' ' || c == '\t' || c == '\n' || c == '\r');
+    } while (c != EOF && isspace((unsigned char) c));
     if (c == EOF) return 0;
 
-    while (c != EOF && c != ' ' && c != '\t' && c != '\n' && c != '\r') {
+    while (c != EOF && !isspace((unsigned char) c)) {
         if (length + 1 < size) word[length++] = (char) c;
+        else overflow = 1;
         c = getchar();
     }
     word[length] = '\0';
+    return !overflow;
+}
+
+static int read_character(char *value) {
+    int c;
+    do {
+        c = getchar();
+    } while (c != EOF && isspace((unsigned char) c));
+    if (c == EOF) return 0;
+    *value = (char) c;
     return 1;
 }
 
+/**
+ * @brief Reports a failed read (end of input or text that does not match the specifier) and exits.
+ *
+ * @param specifier The conversion specifier that could not be satisfied ('d', 'f', 's' or 'c').
+ */
 static void input_failure(char specifier) {
     set_error_type(&error, RUN_TIME_ERROR);
     set_error_message(&error,
@@ -96,11 +110,8 @@ void execute_input(AST ast) {
     arg_list = arg_list->child;
     while (format[0] != '\0') {
         if (format[0] == '%' && format[1] == '%') {
-            int c;
-            do {
-                c = getchar();
-            } while (c == ' ' || c == '\t' || c == '\n');
-            if (c != '%') input_failure('%');
+            char value;
+            if (!read_character(&value) || value != '%') input_failure('%');
             format += 2;
             continue;
         }
@@ -111,25 +122,32 @@ void execute_input(AST ast) {
 
             switch (specifier) {
                 case 'd': {
+                    char word[64];
                     int value;
-                    if (scanf("%d", &value) != 1) input_failure(specifier);
+                    if (!read_word(word, sizeof(word)) || !parse_integer_text(word, &value)) input_failure(specifier);
                     cell = construct_vm_cell(INTEGER, &value);
                     break;
                 }
                 case 'f': {
+                    char word[128];
                     double value;
-                    if (scanf("%lf", &value) != 1) input_failure(specifier);
+                    if (!read_word(word, sizeof(word)) || !parse_real_text(word, &value)) input_failure(specifier);
                     cell = construct_vm_cell(REAL, &value);
                     break;
                 }
                 case 's': {
-                    if (scanf("%1023s", buffer) != 1) input_failure(specifier);
-                    cell = construct_vm_cell(STRING, strdup(buffer)); // cells do not own their text
+                    if (!read_word(buffer, sizeof(buffer))) input_failure(specifier);
+                    char *value = strdup(buffer);
+                    if (value == NULL) {
+                        fprintf(stderr, "Error: Memory allocation failed\n");
+                        exit(EXIT_FAILURE);
+                    }
+                    cell = construct_vm_cell(STRING, value); // cells do not own their text
                     break;
                 }
                 case 'c': {
                     char value;
-                    if (scanf(" %c", &value) != 1) input_failure(specifier);
+                    if (!read_character(&value)) input_failure(specifier);
                     cell = construct_vm_cell(CHARACTER, &value);
                     break;
                 }

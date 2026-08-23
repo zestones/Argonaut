@@ -1,4 +1,5 @@
 #include "../../../symbol_table/lexeme/lexeme_table.h"
+#include "../../../utils/numeric_parser.h"
 #include "../../../utils/utils.h"
 
 #include "../../stack_management/stack_management.h"
@@ -8,6 +9,13 @@
 #include "../func_proc/func_proc.h"
 #include "../interpreter.h"
 #include "expression.h"
+
+static void invalid_literal(const char *kind, const char *text) {
+    set_error_type(&error, RUN_TIME_ERROR);
+    set_error_message(&error, "Invalid %s literal '%s' in loaded IR at %s.", kind, text, get_formatted_location());
+    yerror(error);
+    exit(EXIT_FAILURE);
+}
 
 vm_cell resolve_expression(Node *expression) {
     if (expression == NULL) return construct_vm_cell(NULL_VALUE, NULL);
@@ -29,12 +37,16 @@ vm_cell resolve_expression(Node *expression) {
         }
 
         case A_INTEGER_LITERAL: {
-            int value = atoi(get_lexeme(expression->index_lexicographic));
+            const char *text = get_lexeme(expression->index_lexicographic);
+            int value;
+            if (!parse_integer_text(text, &value)) invalid_literal("integer", text);
             return construct_vm_cell(INTEGER, &value);
         }
 
         case A_FLOAT_LITERAL: {
-            double value = atof(get_lexeme(expression->index_lexicographic));
+            const char *text = get_lexeme(expression->index_lexicographic);
+            double value;
+            if (!parse_real_text(text, &value)) invalid_literal("float", text);
             return construct_vm_cell(REAL, &value);
         }
 

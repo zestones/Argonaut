@@ -3,9 +3,9 @@
     #include "../parser/parser.h"
 
     #include "../utils/errors.h"
+    #include "../utils/numeric_parser.h"
     #include "y.tab.h"
 
-    #include <errno.h>
     #include <limits.h>
 
     #include "../lexer/escapes.h"
@@ -164,9 +164,7 @@ letter [a-zA-Z]
 }
 
 0|[1-9][0-9]* {
-    errno = 0;
-    long value = strtol(yytext, NULL, 10);
-    if (errno == ERANGE || value > INT_MAX || value < INT_MIN) {
+    if (!parse_integer_text(yytext, NULL)) {
         set_error_type(&error, LEXICAL_ERROR);
         set_error_message(
             &error,
