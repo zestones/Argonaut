@@ -113,9 +113,9 @@ static char *format_region_row(void *element) {
     return release_text_buffer(&buffer);
 }
 
-void export_region_table(const char *filename) {
-    export_table(filename, region_table, region_table_size, sizeof(Region), format_region_row, "BEGIN_REGION_TABLE",
-                 "END_REGION_TABLE");
+void write_region_table(FILE *out) {
+    write_table(out, region_table, region_table_size, sizeof(Region), format_region_row, "BEGIN_REGION_TABLE",
+                "END_REGION_TABLE");
 }
 
 void fprintf_region_table(FILE *out) {

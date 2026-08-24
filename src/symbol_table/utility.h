@@ -5,31 +5,29 @@
 #include <stdlib.h>
 
 /**
- * @brief Exports a table to a file in a formatted manner.
+ * @brief Writes a serialized table to a stream.
  * 
- * This function writes a table to a file, appending rows formatted by a user-provided function. 
+ * This function writes rows formatted by a user-provided function to a caller-owned stream.
  * Each row includes an index and the formatted content of the table element.
  * 
- * @param filename The name of the file to write to.
+ * @param out The stream to write to.
  * @param table A pointer to the table data in memory.
  * @param table_size The number of elements in the table.
  * @param element_size The size (in bytes) of a single table element.
  * @param format_row A function pointer that formats a single table element into a string. 
  *                   The returned string must be dynamically allocated and will be freed after use.
- * @param begin_marker A marker string written at the beginning of the table in the file.
- * @param end_marker A marker string written at the end of the table in the file.
+ * @param begin_marker A marker string written at the beginning of the table.
+ * @param end_marker A marker string written at the end of the table.
  * 
  * @details
- * - Opens the file in append mode and writes the `begin_marker` at the start.
+ * - Writes the `begin_marker` at the start.
  * - Iterates through the table elements, formats each row using the `format_row` function, and writes it to the file.
- * - Writes the `end_marker` at the end and closes the file.
- * 
- * @note If the file cannot be opened, the program terminates with an error.
+ * - Writes the `end_marker` at the end.
  * 
  * @warning The `format_row` function must return dynamically allocated strings, as they will be freed internally.
  */
-void export_table(const char *filename, void *table, size_t table_size, size_t element_size,
-                  char *(*format_row)(void *), const char *begin_marker, const char *end_marker);
+void write_table(FILE *out, void *table, size_t table_size, size_t element_size, char *(*format_row)(void *),
+                 const char *begin_marker, const char *end_marker);
 
 
 /**

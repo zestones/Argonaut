@@ -185,9 +185,9 @@ static char *format_declaration_row(void *data) {
     return formatted_row;
 }
 
-void export_declaration_table(const char *filename) {
-    export_table(filename, declaration_table, MAX_DECLARATION_COUNT, sizeof(Declaration), format_declaration_row,
-                 "BEGIN_DECLARATION_TABLE", "END_DECLARATION_TABLE");
+void write_declaration_table(FILE *out) {
+    write_table(out, declaration_table, MAX_DECLARATION_COUNT, sizeof(Declaration), format_declaration_row,
+                "BEGIN_DECLARATION_TABLE", "END_DECLARATION_TABLE");
 }
 
 void fprintf_declaration_table(FILE *out) {

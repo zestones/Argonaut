@@ -86,9 +86,9 @@ static char *format_lexeme_row(void *data) {
     return formatted_row;
 }
 
-void export_lexeme_table(const char *filename) {
-    export_table(filename, lexeme_table, lexeme_table_size, sizeof(Lexeme), format_lexeme_row, "BEGIN_LEXEME_TABLE",
-                 "END_LEXEME_TABLE");
+void write_lexeme_table(FILE *out) {
+    write_table(out, lexeme_table, lexeme_table_size, sizeof(Lexeme), format_lexeme_row, "BEGIN_LEXEME_TABLE",
+                "END_LEXEME_TABLE");
 }
 
 void fprintf_lexeme_table(FILE *out) {

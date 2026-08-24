@@ -244,11 +244,11 @@ Declaration *get_declaration_table(void);
 void update_declaration_execution(int index, int execution);
 
 /**
- * @brief Exports the declaration table to a file.
+ * @brief Writes the serialized declaration table to a stream.
  * 
- * @param filename Name of the file to write the declaration table to.
+ * @param out Stream to write the declaration table to.
  */
-void export_declaration_table(const char *filename);
+void write_declaration_table(FILE *out);
 
 /**
  * @brief Prints the declaration table.

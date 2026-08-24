@@ -139,11 +139,11 @@ void update_region_size(int index, int size);
 void update_region_ast(int index, AST ast);
 
 /**
- * @brief Exports the region table to a file.
+ * @brief Writes the serialized region table to a stream.
  *
- * @param filename The name of the file to write the region table to.
+ * @param out The stream to write the region table to.
  */
-void export_region_table(const char *filename);
+void write_region_table(FILE *out);
 
 /**
  * @brief Prints the region table.

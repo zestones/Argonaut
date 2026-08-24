@@ -54,9 +54,9 @@ static char *format_representation_row(void *element) {
     return formatted_row;
 }
 
-void export_representation_table(const char *filename) {
-    export_table(filename, representation_table, representation_table_size, sizeof(int), format_representation_row,
-                 "BEGIN_REPRESENTATION_TABLE", "END_REPRESENTATION_TABLE");
+void write_representation_table(FILE *out) {
+    write_table(out, representation_table, representation_table_size, sizeof(int), format_representation_row,
+                "BEGIN_REPRESENTATION_TABLE", "END_REPRESENTATION_TABLE");
 }
 
 void fprintf_representation_table(FILE *out) {

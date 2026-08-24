@@ -1,6 +1,5 @@
 %{
     #include "../symbol_table/lexeme/lexeme_table.h"
-    #include "../parser/parser.h"
 
     #include "../utils/errors.h"
     #include "../utils/memory.h"
@@ -26,7 +25,7 @@
 
     extern Error error;
     extern char *yytext;
-    extern int yyerror(const char *s);
+    extern void yyerror(const char *s);
 %}
 
 %option noinput nounput

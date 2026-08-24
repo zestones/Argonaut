@@ -1,5 +1,7 @@
 #include "errors.h"
 
+Error error;
+
 static int error_count = 0;
 
 static const char *diagnostic_type_name(ErrorType type) {
@@ -33,6 +35,14 @@ static void exit_with_current_error(void) {
 
 int get_error_count(void) {
     return error_count;
+}
+
+void initialize_diagnostic_state(const char *filename) {
+    error_count = 0;
+    error.line = 1;
+    error.column = 1;
+    error.type = NO_ERROR;
+    error.filename = filename;
 }
 
 Error construct_error(ErrorType type, int line, int column, const char *format, ...) {

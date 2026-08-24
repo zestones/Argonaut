@@ -41,9 +41,16 @@ typedef struct {
 } Error;
 
 /**
- * @brief The global Error struct to hold the current error details.
+ * @brief Transitional process-wide diagnostic state shared by the current lexer and parser.
  */
 extern Error error;
+
+/**
+ * @brief Resets the diagnostic state for a new compiler or VM input.
+ *
+ * @param filename The input filename retained by the diagnostic state.
+ */
+void initialize_diagnostic_state(const char *filename);
 
 /**
  * @brief Constructs an Error struct with the provided details.

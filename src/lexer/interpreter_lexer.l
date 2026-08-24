@@ -1,5 +1,4 @@
 %{
-    #include "../parser/parser.h"
     #include <string.h>
 
     #include "../utils/errors.h"
@@ -9,7 +8,7 @@
 
     extern Error error;
     extern char *yytext;
-    extern int yyerror(const char *s);
+    extern void yyerror(const char *s);
 %}
 
 %option noinput nounput

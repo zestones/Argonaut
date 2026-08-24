@@ -12,7 +12,6 @@
 
     #include "../syntax_analysis/loop_statement.h"
 
-    #include "parser.h"
     #include "../ast/access_chain.h"
 
     #include "../utils/errors.h"
@@ -55,12 +54,14 @@
     extern FILE *yyout;
     extern char *yytext;
 
-    Error error;
-
     void yyerror(const char *s) {
         fatal_syntax_error(yytext, strcmp(s, "syntax error") == 0 ? NULL : s);
     }
 %}
+
+%code requires {
+    #include "../ast/ast.h"
+}
 
 %union {
     AST ast;
@@ -639,82 +640,3 @@ input_argument_list: IDENTIFIER {
 
 
 %%
-
-static void print_usage(const char *program_name) {
-    // Header
-    fprintf(stderr, COLOR_BOLD_YELLOW "\nUsage:\n" COLOR_RESET);
-    fprintf(stderr, "  %s -a <input_file> [options]\n\n", program_name);
-
-    // Description
-    fprintf(stderr, COLOR_BOLD_YELLOW "Description:\n" COLOR_RESET);
-    fprintf(stderr, COLOR_CYAN "  This program compiles the specified file and offers options for generating logs, verbose output,\n");
-    fprintf(stderr, "  and exporting tables to an output file.\n");
-    fprintf(stderr, "  Use this program to compile Argonaut code and analyze the intermediate steps of the process.\n\n" COLOR_RESET);
-
-    // Arguments section (merged short and long options)
-    fprintf(stderr, COLOR_BOLD_YELLOW "Arguments:\n" COLOR_RESET);
-    fprintf(stderr, COLOR_GREEN "  -a <input_file>   " COLOR_RESET ": The source file to compile (required).\n");
-    fprintf(stderr, COLOR_GREEN "  -v, --verbose     " COLOR_RESET ": Display verbose output (e.g., symbol table and AST).\n");
-    fprintf(stderr, COLOR_GREEN "  -l, --log         " COLOR_RESET ": Enable logging during compilation.\n");
-    fprintf(stderr, COLOR_GREEN "  -o <output_file>, --output <output_file> " COLOR_RESET ": Specify the output file to save results.\n");
-    fprintf(stderr, COLOR_GREEN "  -h, --help        " COLOR_RESET ": Display this help information.\n");
-
-    fprintf(stderr, "\n");
-
-    // Examples section
-    fprintf(stderr, COLOR_BOLD_YELLOW "Examples:\n" COLOR_RESET);
-    fprintf(stderr, COLOR_CYAN "  %s -a my_program.arg -vl -o output.txt\n" COLOR_RESET, program_name);
-    fprintf(stderr, "    - Compile the file 'my_program.arg' with verbose output and logging.\n");
-    fprintf(stderr, "    - Results saved to 'output.txt'.\n\n");
-
-    fprintf(stderr, COLOR_CYAN "  %s -a my_program.arg --verbose --log --output output.txt\n" COLOR_RESET, program_name);
-    fprintf(stderr, "    - Compile the file 'my_program.arg' with long options.\n");
-    fprintf(stderr, "    - Results saved to 'output.txt'.\n\n");
-
-    // Constraints section
-    fprintf(stderr, COLOR_BOLD_YELLOW "Constraints:\n" COLOR_RESET);
-    fprintf(stderr, COLOR_RED "  - The input file must be specified with the '-a <input_file>' option.\n");
-    fprintf(stderr, COLOR_RED "  - If '-o <output_file>' is used, the output file will be overwritten if it exists.\n\n" COLOR_RESET);
-}
-
-int main(int argc, char **argv) {
-    ArgonautOptions options;
-    CommandLineStatus status = parse_command_line(argc, argv, COMPILATION, print_usage, &options);
-    if (status != COMMAND_LINE_READY) return status == COMMAND_LINE_HELP ? EXIT_SUCCESS : EXIT_FAILURE;
-
-    // Open the input file
-    FILE *file = open_argonaut_file(options.input_file, "r");
-
-    // Set up the file for processing
-    initialize_diagnostic_state(options.input_file);
-    yyin = file;
-
-    // Run compilation
-    yyrun(COMPILATION);
-    fclose(file);
-
-    ydebug(options.verbose);
-    ylog(options.log);
-
-    // A program with errors must not be exported: the VM would execute an inconsistent IR.
-    if (get_error_count() > 0) {
-        fflush(stdout); // keep the summary after the verbose output when both go to the same pipe
-        fprintf(stderr, COLOR_RED "Compilation failed: %d error(s).\n" COLOR_RESET, get_error_count());
-        return 1;
-    }
-
-    // Handle output file export if specified
-    if (options.output_file != NULL) {
-        // The version header comes first; the tables are appended after it.
-        FILE *output = open_argonaut_file(options.output_file, "w");
-        fprintf(output, "ARGONAUT_IR %d\n", ARGONAUT_IR_VERSION);
-        fclose(output);
-
-        export_lexeme_table(options.output_file);
-        export_declaration_table(options.output_file);
-        export_representation_table(options.output_file);
-        export_region_table(options.output_file);
-    }
-
-    return 0;
-}

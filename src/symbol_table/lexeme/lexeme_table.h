@@ -82,13 +82,13 @@ char *get_lexeme(int index);
 int is_lexeme_loaded(int index);
 
 /**
- * @brief Exports the lexeme table to a file.
+ * @brief Writes the serialized lexeme table to a stream.
  *
- * This function writes the contents of the lexeme table to a file.
+ * This function writes the contents of the lexeme table to a caller-owned stream.
  *
- * @param filename The name of the file to write the lexeme table to.
+ * @param out The stream to write the lexeme table to.
  */
-void export_lexeme_table(const char *filename);
+void write_lexeme_table(FILE *out);
 
 /**
  * @brief Prints the contents of the lexeme table.

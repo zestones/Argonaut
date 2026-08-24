@@ -5,6 +5,7 @@ Everything runs through `make check` (current configuration); the project rules 
 | Directory | Content | Run alone |
 |---|---|---|
 | `unit/` | C unit tests (`test.h` harness, self-registration, `TEST_XFAIL`) | `make check-unit` or `build/debug/unit_tests [filter]` |
+| `cli/` | command-line contracts and exact text IR serialization | `make check-cli` |
 | `lang/sanity/` | programs that work and must keep working | `python3 tests/run_tests.py tests/lang/sanity` |
 | `lang/bugs/` | bug reproductions; the header describes the *correct* behaviour | `python3 tests/run_tests.py --only b29` |
 | `lang/limitations/` | missing features, to be decided in `SPEC.md` | |

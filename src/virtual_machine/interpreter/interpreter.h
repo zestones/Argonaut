@@ -1,6 +1,8 @@
 #ifndef __INTERPRETER_H__
 #define __INTERPRETER_H__
 
+#include "../../ast/ast.h"
+
 typedef enum {
     CONTROL_NONE,     // Continue execution
     CONTROL_BREAK,    // Stop loop execution

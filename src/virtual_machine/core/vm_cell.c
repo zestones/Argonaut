@@ -1,5 +1,5 @@
-#include "../../lib/table_printer.h"
-#include "../../lib/colors.h"
+#include "../../../lib/table_printer.h"
+#include "../../../lib/colors.h"
 
 #include "vm_cell.h"
 

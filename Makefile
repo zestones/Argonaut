@@ -7,7 +7,7 @@
 #    make CONFIG=sanitize        AddressSanitizer + UndefinedBehaviorSanitizer build
 #    make CONFIG=msan CC=clang   MemorySanitizer build (clang only)
 #    make CONFIG=coverage        instrumented build used by `make coverage`
-#    make check                  unit tests + language tests + IR tests + regression suite
+#    make check                  unit + CLI + language + IR + regression tests
 #    make lint                   formatting, banned functions and warnings ratchets
 #    make lint-full              lint plus cppcheck, clang-tidy and gcc -fanalyzer (target state)
 #    make coverage               run the suite with coverage instrumentation and report
@@ -26,7 +26,7 @@
 
 CC       ?= gcc
 LEX      ?= flex
-YACC     ?= bison
+YACC     = bison
 PYTHON   ?= python3
 CONFIG   ?= debug
 WERROR   ?= 0
@@ -73,8 +73,18 @@ OUT_DIR   := $(BUILD)/$(CONFIG)
 OBJ_DIR   := $(OUT_DIR)/obj
 BIN_DIR   := bin
 
-SRC_C     := $(shell find $(SRC_DIR) -name '*.c' ! -path '$(SRC_DIR)/bin/*' | sort)
-OBJ       := $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRC_C))
+SRC_C             := $(shell find $(SRC_DIR) -name '*.c' | sort)
+CLI_COMMON_SRC    := $(SRC_DIR)/cli/cli.c
+ARGOC_DRIVER_SRC  := $(SRC_DIR)/cli/argoc.c $(SRC_DIR)/compiler/compiler.c
+ARGOV_DRIVER_SRC  := $(SRC_DIR)/cli/argov.c $(SRC_DIR)/virtual_machine/vm.c
+DRIVER_SRC        := $(CLI_COMMON_SRC) $(ARGOC_DRIVER_SRC) $(ARGOV_DRIVER_SRC)
+CORE_SRC          := $(filter-out $(DRIVER_SRC),$(SRC_C))
+
+CORE_OBJ          := $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(CORE_SRC))
+CLI_COMMON_OBJ    := $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(CLI_COMMON_SRC))
+ARGOC_DRIVER_OBJ  := $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(ARGOC_DRIVER_SRC))
+ARGOV_DRIVER_OBJ  := $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(ARGOV_DRIVER_SRC))
+ALL_OBJ           := $(CORE_OBJ) $(CLI_COMMON_OBJ) $(ARGOC_DRIVER_OBJ) $(ARGOV_DRIVER_OBJ)
 
 COMPILER_GEN_DIR := $(GEN_DIR)/compiler
 VM_GEN_DIR       := $(GEN_DIR)/vm
@@ -83,14 +93,12 @@ VM_OBJ           := $(OBJ_DIR)/gen/vm/lex.yy.o $(OBJ_DIR)/gen/vm/y.tab.o
 
 UNIT_SRC  := $(sort $(wildcard $(TEST_DIR)/unit/*.c))
 UNIT_OBJ  := $(patsubst $(TEST_DIR)/unit/%.c,$(OBJ_DIR)/tests/unit/%.o,$(UNIT_SRC))
-# parser.o needs yyparse (a generated front-end); unit tests link everything else.
-UNIT_LINK := $(filter-out $(OBJ_DIR)/parser/parser.o,$(OBJ))
 
 ARGOC := $(OUT_DIR)/argoc
 ARGOV := $(OUT_DIR)/argov
 UNIT  := $(OUT_DIR)/unit_tests
 
-CPPFLAGS := -I$(SRC_DIR)/parser -I$(COMPILER_GEN_DIR) -MMD -MP
+CPPFLAGS := -I$(SRC_DIR) -MMD -MP
 CFLAGS   := $(CSTD) $(WARNINGS) $(CFLAGS_CONFIG) $(CFLAGS_EXTRA)
 LDFLAGS  := $(LDFLAGS_CONFIG)
 
@@ -113,7 +121,7 @@ export UBSAN_OPTIONS ?= print_stacktrace=1
 export MSAN_OPTIONS  ?= print_stats=0
 
 .DELETE_ON_ERROR:
-.PHONY: all compiler vm test check check-unit check-lang check-regression check-leaks check-valgrind doctests \
+.PHONY: all compiler vm test check check-unit check-cli check-lang check-regression check-leaks check-valgrind doctests \
         lint lint-full format format-check banned-check warnings-check warnings-baseline analyze cppcheck tidy \
         coverage bench fuzz fuzz-vm docs clean distclean deps-apt extension-install extension-uninstall help
 
@@ -152,8 +160,6 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@echo "  CC      $<"
 	$(Q)$(CC) $(CPPFLAGS) $(CFLAGS) -c $< -o $@
 
-$(OBJ_DIR)/parser/parser.o: $(COMPILER_GEN_DIR)/y.tab.h
-
 $(OBJ_DIR)/gen/compiler/%.o: $(COMPILER_GEN_DIR)/%.c
 	@mkdir -p $(dir $@)
 	@echo "  CC      $<"
@@ -170,27 +176,31 @@ $(OBJ_DIR)/tests/unit/%.o: $(TEST_DIR)/unit/%.c
 	$(Q)$(CC) $(CPPFLAGS) -I$(SRC_DIR) $(CFLAGS) -c $< -o $@
 
 # ---- binaries ----------------------------------------------------------------
-$(ARGOC): $(OBJ) $(COMPILER_OBJ)
+$(ARGOC): $(CORE_OBJ) $(CLI_COMMON_OBJ) $(ARGOC_DRIVER_OBJ) $(COMPILER_OBJ)
 	@echo "  LINK    $@"
 	$(Q)$(CC) $(CFLAGS) $(LDFLAGS) $^ -o $@
 
-$(ARGOV): $(OBJ) $(VM_OBJ)
+$(ARGOV): $(CORE_OBJ) $(CLI_COMMON_OBJ) $(ARGOV_DRIVER_OBJ) $(VM_OBJ)
 	@echo "  LINK    $@"
 	$(Q)$(CC) $(CFLAGS) $(LDFLAGS) $^ -o $@
 
-$(UNIT): $(UNIT_OBJ) $(UNIT_LINK)
+$(UNIT): $(UNIT_OBJ) $(CORE_OBJ)
 	@echo "  LINK    $@"
 	$(Q)$(CC) $(CFLAGS) $(LDFLAGS) $^ -o $@
 
--include $(OBJ:.o=.d) $(COMPILER_OBJ:.o=.d) $(VM_OBJ:.o=.d) $(UNIT_OBJ:.o=.d)
+-include $(ALL_OBJ:.o=.d) $(COMPILER_OBJ:.o=.d) $(VM_OBJ:.o=.d) $(UNIT_OBJ:.o=.d)
 
 # ---- tests -------------------------------------------------------------------
 test: check
-check: all check-unit check-lang check-regression
+check: all check-unit check-cli check-lang check-regression
 
 check-unit: $(UNIT)
 	@echo "==> unit tests ($(CONFIG))"
 	$(Q)$(UNIT)
+
+check-cli: $(ARGOC) $(ARGOV)
+	@echo "==> command-line and serialized IR tests ($(CONFIG))"
+	$(Q)$(PYTHON) $(TEST_DIR)/cli/run_cli_tests.py --argoc $(ARGOC) --argov $(ARGOV)
 
 doctests: tools/extract_doctests.py
 	$(Q)$(PYTHON) tools/extract_doctests.py --out $(BUILD)/doctests README.md wiki

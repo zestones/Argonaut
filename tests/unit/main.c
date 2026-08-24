@@ -7,9 +7,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-/* The global diagnostic state normally lives in the generated parser. */
-Error error;
-
 static argo_test *registry = NULL;
 static int current_failed = 0;
 
