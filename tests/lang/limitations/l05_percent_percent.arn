@@ -1,0 +1,4 @@
+// CATEGORY: limitation
+// DESC: %% non supporte dans print
+// OUT: 100%
+print("100%%\n");

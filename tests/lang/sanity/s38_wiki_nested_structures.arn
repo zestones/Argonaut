@@ -1,0 +1,39 @@
+// CATEGORY: sanity
+// DESC: exemple du wiki: structures imbriquees
+// OUT: Top-left corner: (1, 1)
+// OUT: Bottom-right corner: (4, 5)
+// OUT: Area: 12
+type Point : struct {
+    x : int;
+    y : int;
+} fstruct;
+
+type Rectangle : struct {
+    topLeft : Point;
+    bottomRight : Point;
+} fstruct;
+
+func calculate_area(rect : Rectangle) -> int {
+    var width : int;
+    var height : int;
+    width := rect.bottomRight.x - rect.topLeft.x;
+    height := rect.bottomRight.y - rect.topLeft.y;
+    return width * height;
+}
+
+proc print_rectangle(rect : Rectangle) {
+    print("Top-left corner: (%d, %d)\n", rect.topLeft.x, rect.topLeft.y);
+    print("Bottom-right corner: (%d, %d)\n", rect.bottomRight.x, rect.bottomRight.y);
+    print("Area: %d\n", calculate_area(rect));
+}
+
+proc main() {
+    var rect : Rectangle;
+    rect.topLeft.x := 1;
+    rect.topLeft.y := 1;
+    rect.bottomRight.x := 4;
+    rect.bottomRight.y := 5;
+    print_rectangle(rect);
+}
+
+main();

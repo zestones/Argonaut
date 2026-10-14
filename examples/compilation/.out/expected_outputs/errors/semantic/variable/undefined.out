@@ -107,3 +107,4 @@ Root of the AST:
 │   │   │   │   ├── A_IDENTIFIER, Lexico Idx: 4, Decl Idx: 4 -- Lexeme: 'n'
 +------------------------------------------------------------------------+
 
+Compilation failed: 4 error(s).

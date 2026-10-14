@@ -1,0 +1,7 @@
+// CATEGORY: bug
+// DESC: while n'evalue que l'operande gauche de &&
+// OUT: 3
+var i : int;
+i := 0;
+while (i < 10 && i < 3) { i++; }
+print("%d\n", i);

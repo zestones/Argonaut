@@ -1,0 +1,4 @@
+// CATEGORY: limitation
+// DESC: pas d'echappement \" dans les chaines
+// OUT: say "hi"
+print("say \"hi\"\n");

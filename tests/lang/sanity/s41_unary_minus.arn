@@ -1,0 +1,14 @@
+// CATEGORY: sanity
+// DESC: unary minus on literals, variables, expressions and floats; binary minus without spaces
+// OUT: -5 5 -7 3 5
+// OUT: -1.500000 2.500000
+// OUT: -2 2
+type T : array[-2:2] of int;
+var x : int; var y : int; var f : float; var t : T;
+x := 5;
+y := -x;
+print("%d %d %d %d %d\n", y, -y, -(x + 2), x-2, 3 - -2);
+f := -1.5;
+print("%f %f\n", f, -f + 1.0);
+t[-2] := -2; t[2] := 2;
+print("%d %d\n", t[-2], t[2]);

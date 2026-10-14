@@ -2,11 +2,11 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Debug Compiler",
+            "name": "Debug Compiler (argoc)",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/argoc",
-            "args": ["-la", "./example/compilation/to-remove.txt", "-o", "test.a"],
+            "program": "${workspaceFolder}/build/debug/argoc",
+            "args": ["-a", "${file}", "-o", "${workspaceFolder}/build/debug/last.ir", "-v"],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
             "environment": [],
@@ -19,11 +19,11 @@
             "preLaunchTask": "Build Project"
         },
         {
-            "name": "Debug Interpreter",
+            "name": "Debug Interpreter (argov)",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/argov",
-            "args": ["-i", "test.a"],
+            "program": "${workspaceFolder}/build/debug/argov",
+            "args": ["-a", "${workspaceFolder}/build/debug/last.ir"],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
             "environment": [],
@@ -36,12 +36,24 @@
             "preLaunchTask": "Build Project"
         },
         {
-			"name": "Extension",
-			"type": "extensionHost",
-			"request": "launch",
-			"args": [
-				"--extensionDevelopmentPath=${workspaceFolder}/syntax-highlighting"
-			]
-		}
+            "name": "Debug Unit Tests",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/debug/unit_tests",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "miDebuggerPath": "/usr/bin/gdb",
+            "preLaunchTask": "Build Project"
+        },
+        {
+            "name": "Extension",
+            "type": "extensionHost",
+            "request": "launch",
+            "args": ["--extensionDevelopmentPath=${workspaceFolder}/extensions/syntax-highlighting"]
+        }
     ]
 }

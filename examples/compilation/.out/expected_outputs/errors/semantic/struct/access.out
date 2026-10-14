@@ -1,18 +1,8 @@
 [Semantic Error] Field access error at examples/compilation/errors/semantic/struct/access.arn:22:28.
-  The entity 'numero' is not a struct, so field access is not possible.
-  Verify that the entity is a struct before attempting to access its fields.
-
-[Type Error] Type mismatch during assignement at examples/compilation/errors/semantic/struct/access.arn:22:28.
-  Cannot assign expression of type 'float' to struct field 'UNKNOWN' of type 'UNKNOWN'.
-  Ensure the expression type matches the expected type for the struct field.
+  'p.numero.annee.z' accesses a field of a value of type 'int', which is not a struct.
 
 [Semantic Error] Field access error at examples/compilation/errors/semantic/struct/access.arn:23:19.
-  The entity 'x' is not a struct but is of type 'int'.
-  Ensure that the entity is a struct before attempting to access its fields.
-
-[Type Error] Type mismatch during assignement at examples/compilation/errors/semantic/struct/access.arn:23:19.
-  Cannot assign expression of type 'float' to struct field 'UNKNOWN' of type 'UNKNOWN'.
-  Ensure the expression type matches the expected type for the struct field.
+  'x.annee' accesses a field of a value of type 'int', which is not a struct.
 
 Verbose mode enabled. Printing tables and ast...
 
@@ -156,3 +146,4 @@ Root of the AST:
 │   │   │   │   └── A_FLOAT_LITERAL, Lexico Idx: 17, Decl Idx: -1 -- Lexeme: '1997.0'
 +------------------------------------------------------------------------+
 
+Compilation failed: 2 error(s).

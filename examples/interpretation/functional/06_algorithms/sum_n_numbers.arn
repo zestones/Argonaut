@@ -1,3 +1,7 @@
+// CATEGORY: example
+// IN: 10
+// OUT: Enter a number: Sum of first 10 numbers is 55
+
 func sum_n(n : int) -> int {
     return (n * (n + 1)) / 2;
 }

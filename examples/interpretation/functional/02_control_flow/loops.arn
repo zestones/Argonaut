@@ -1,3 +1,18 @@
+// CATEGORY: example
+// OUT: For loop example:
+// OUT: i = 0
+// OUT: i = 1
+// OUT: i = 2
+// OUT: i = 3
+// OUT: i = 4
+// OUT:
+// OUT: While loop example:
+// OUT: j = 0
+// OUT: j = 1
+// OUT: j = 2
+// OUT: j = 3
+// OUT: j = 4
+
 var i  : int;
 var j  : int;
 

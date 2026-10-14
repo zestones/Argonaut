@@ -1,3 +1,8 @@
+// CATEGORY: example
+// IN: 42
+// OUT: Enter your age:
+// OUT: Hello ! You are 42 years old.
+
 // Example of using input and print in Argonaut
 
 proc main() {

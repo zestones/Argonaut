@@ -1,36 +1,33 @@
 #include "../utils/utils.h"
+#include "../utils/memory.h"
 
 #include "lcrs.h"
 
-Node* construct_node(NodeType type, int index_lexicographic, int index_declaration) {
-    Node* new_node = (Node*) malloc(sizeof(Node));
-    if (!new_node) {
-        perror("Failed to allocate memory for AST node");
-        exit(EXIT_FAILURE);
-    }
+Node *construct_node(NodeType type, int index_lexicographic, int index_declaration) {
+    Node *new_node = xmalloc(sizeof(Node));
 
     new_node->type = type;
 
     new_node->index_lexicographic = index_lexicographic;
     new_node->index_declaration = index_declaration;
-    
+
     new_node->child = NULL;
     new_node->sibling = NULL;
 
     return new_node;
 }
 
-Node* construct_node_default(NodeType type) {
+Node *construct_node_default(NodeType type) {
     return construct_node(type, NULL_VALUE, NULL_VALUE);
 }
 
-void add_child(Node* parent, Node* child) {
+void add_child(Node *parent, Node *child) {
     if (!parent || !child) return;
     child->sibling = parent->child;
     parent->child = child;
 }
 
-void add_sibling(Node* node, Node* sibling) {
+void add_sibling(Node *node, Node *sibling) {
     if (!node || !sibling) return;
     while (node->sibling) {
         node = node->sibling;
@@ -39,26 +36,25 @@ void add_sibling(Node* node, Node* sibling) {
     node->sibling = sibling;
 }
 
-void append_child(Node* parent, Node* child) {
-    if (!parent || !child) return; 
+void append_child(Node *parent, Node *child) {
+    if (!parent || !child) return;
 
     if (!parent->child) {
         parent->child = child;
-    } 
-    else {
-        Node* current = parent->child;
+    } else {
+        Node *current = parent->child;
         while (current->sibling != NULL) {
             current = current->sibling;
         }
-    
+
         current->sibling = child;
     }
 }
 
-void append_sibling(Node* node, Node* sibling) {
+void append_sibling(Node *node, Node *sibling) {
     if (!node || !sibling) return;
 
-    Node* current = node;
+    Node *current = node;
     while (current->sibling) {
         current = current->sibling;
     }
@@ -80,6 +76,15 @@ void add_chain(Node *parent, Node *nodes[], int count) {
     }
 }
 
-int is_node_null(Node* node) {
+int is_node_null(Node *node) {
     return node == NULL;
+}
+
+Node *copy_ast(const Node *node) {
+    if (node == NULL) return NULL;
+
+    Node *copy = construct_node(node->type, node->index_lexicographic, node->index_declaration);
+    copy->child = copy_ast(node->child);
+    copy->sibling = copy_ast(node->sibling);
+    return copy;
 }

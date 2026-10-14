@@ -1,0 +1,18 @@
+// CATEGORY: sanity
+// DESC: exemple du wiki: tableaux
+// OUT: numbers[0] = 10
+// OUT: numbers[1] = 20
+// OUT: numbers[2] = 30
+// OUT: numbers[3] = 40
+// OUT: numbers[4] = 50
+type arr : array[0:4] of int;
+var numbers : arr;
+var i : int;
+
+for (i := 0; i <= 4; i++) {
+    numbers[i] := (i + 1) * 10;
+}
+
+for (i := 0; i <= 4; i++) {
+    print("numbers[%d] = %d\n", i, numbers[i]);
+}

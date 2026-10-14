@@ -1,0 +1,11 @@
+// CATEGORY: sanity
+// DESC: C escapes in char and string literals, %% in print
+// OUT: tab>	<quote>"<bs>\<
+// OUT: [']
+// OUT: 100% done
+var c : char; var q : char;
+c := '\t';
+q := '\'';
+print("tab>%c<quote>\"<bs>\\<\n", c);
+print("[%c]\n", q);
+print("100%% done\n");

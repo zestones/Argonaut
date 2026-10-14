@@ -1,0 +1,7 @@
+// CATEGORY: bug
+// DESC: '\n' impossible (pas d'echappement char)
+// OUT: [
+// OUT: ]
+var c : char;
+c := '\n';
+print("[%c]\n", c);

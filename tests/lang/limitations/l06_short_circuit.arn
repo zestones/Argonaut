@@ -1,0 +1,6 @@
+// CATEGORY: limitation
+// DESC: pas de court-circuit: 10 / 0 est evalue
+// OUT: ok
+var z : int;
+z := 0;
+if ((1 == 1) || (10 / z == 1)) { print("ok\n"); }

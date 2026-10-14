@@ -1,0 +1,9 @@
+// CATEGORY: bug
+// DESC: r.b := p ne copie que la premiere cellule
+// OUT: 5 6
+type P : struct { x : int; y : int; } fstruct;
+type R : struct { a : P; b : P; } fstruct;
+var r : R; var p : P;
+p.x := 5; p.y := 6;
+r.b := p;
+print("%d %d\n", r.b.x, r.b.y);

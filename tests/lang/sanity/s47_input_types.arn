@@ -1,0 +1,11 @@
+// CATEGORY: sanity
+// DESC: input parses float, character and boolean values without scanf
+// IN: 2.5
+// IN: q
+// IN: true
+// OUT: 2.500000 q true
+var real_value : float;
+var character_value : char;
+var boolean_value : bool;
+input("%f %c %b", real_value, character_value, boolean_value);
+print("%f %c %b\n", real_value, character_value, boolean_value);

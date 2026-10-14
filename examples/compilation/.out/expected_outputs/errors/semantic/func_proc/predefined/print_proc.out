@@ -7,7 +7,7 @@
   Ensure the correct number of arguments are passed to match the format string.
 
 [Type Error] Type mismatch for argument 2 at examples/compilation/errors/semantic/func_proc/predefined/print_proc.arn:9:43.
-  Argument '2' has type '"Hello %d"', but specifier 'f' expects a different type.
+  Argument '2' has type 'string', but specifier 'f' expects a different type.
   Ensure the argument type matches the expected type for the specifier.
 
 [Semantic Error] Argument mismatch in format string at examples/compilation/errors/semantic/func_proc/predefined/print_proc.arn:10:31.
@@ -120,3 +120,4 @@ Root of the AST:
 │   │   │   ├── A_FORMAT_STRING, Lexico Idx: 6, Decl Idx: -1 -- Lexeme: '"Hello %d, here is %s"'
 +------------------------------------------------------------------------+
 
+Compilation failed: 4 error(s).

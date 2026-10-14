@@ -1,0 +1,13 @@
+// CATEGORY: sanity
+// DESC: recursion avec struct en parametre
+// OUT: 20
+type P : struct { x : int; y : int; } fstruct;
+var s : P;
+func sum(p : P, n : int) -> int {
+    var q : P;
+    if (n == 0) { return p.x + p.y; }
+    q.x := p.x + 1; q.y := p.y + 1;
+    return sum(q, n - 1);
+}
+s.x := 0; s.y := 0;
+print("%d\n", sum(s, 10));

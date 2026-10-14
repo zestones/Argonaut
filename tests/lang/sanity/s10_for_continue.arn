@@ -1,0 +1,6 @@
+// CATEGORY: sanity
+// DESC: continue dans for
+// OUT: 1 3 5
+var i : int;
+for (i := 0; i < 6; i++) { if (i % 2 == 0) { continue; } print("%d ", i); }
+print("\n");

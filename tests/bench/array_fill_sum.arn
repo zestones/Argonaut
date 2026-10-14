@@ -1,0 +1,9 @@
+// Fill and sum a 2 000-element array 1 000 times (measures array addressing).
+type Arr : array[0:1999] of int;
+var a : Arr; var i : int; var k : int; var s : int;
+s := 0;
+for (k := 0; k < 1000; k++) {
+    for (i := 0; i < 2000; i++) { a[i] := i; }
+    for (i := 0; i < 2000; i++) { s := s + a[i]; }
+}
+print("%d\n", s);

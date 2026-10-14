@@ -15,10 +15,11 @@ void construct_array_manager_context(int index_array_name_lexicographic) {
     context.number_of_dimensions = 0;
 }
 
-void declaration_array_start() {
+void declaration_array_start(void) {
     check_type_redefinition(context.index_array_name_lexicographic, TYPE_ARRAY);
     context.index_array_type_representation = insert_representation(NULL_VALUE);
-    insert_declaration_array(context.index_array_name_lexicographic, peek_region(), context.index_array_type_representation);
+    insert_declaration_array(context.index_array_name_lexicographic, peek_region(),
+                             context.index_array_type_representation);
     context.index_number_of_dimensions_representation = insert_representation(context.number_of_dimensions);
 }
 
@@ -30,7 +31,7 @@ void array_add_dimension(int min, int max) {
 
     if (context.array_size == 0) context.array_size = max - min + 1;
     else context.array_size *= (max - min + 1);
-}   
+}
 
 void declaration_array_end(int index_type_lexicographic) {
     check_type_definition(index_type_lexicographic);
@@ -39,7 +40,8 @@ void declaration_array_end(int index_type_lexicographic) {
     int index_type_of_array_declaration = find_declaration_index(index_type_lexicographic);
 
     update_representation(context.index_number_of_dimensions_representation, context.number_of_dimensions);
-    update_representation(context.index_array_type_representation, index_type_lexicographic);
+    // The element type is a declaration index, like every type the checker compares.
+    update_representation(context.index_array_type_representation, index_type_of_array_declaration);
 
     int execution = get_declaration_execution(index_type_of_array_declaration);
     update_declaration_execution(index_array_name_declaration, context.array_size * execution);

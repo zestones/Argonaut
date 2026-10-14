@@ -1,0 +1,26 @@
+# CodeQL is intentionally manual so this secondary project consumes no scheduled Actions minutes.
+name: CodeQL
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  security-events: write
+
+jobs:
+  analyze:
+    name: analyze (c-cpp)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - run: sudo apt-get update && sudo apt-get install -y flex bison
+      - uses: github/codeql-action/init@v3
+        with:
+          languages: c-cpp
+          build-mode: manual
+      - run: make -j4
+      - uses: github/codeql-action/analyze@v3
+        with:
+          category: '/language:c-cpp'

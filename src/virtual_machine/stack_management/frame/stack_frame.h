@@ -67,6 +67,13 @@ void update_cell_in_stack_frame(stack_frame *frame, int address, vm_cell cell);
 vm_cell get_cell_from_stack_frame(stack_frame frame, int address);
 
 /**
+ * @brief Frees the cells of a stack frame (the frame itself is owned by the execution stack).
+ *
+ * @param frame A pointer to the stack frame whose cells are released.
+ */
+void destroy_stack_frame(stack_frame *frame);
+
+/**
  * @brief Prints a detailed representation of a stack frame.
  * 
  * This function prints a human-readable representation of a stack frame, including its 

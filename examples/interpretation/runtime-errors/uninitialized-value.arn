@@ -1,3 +1,8 @@
+// CATEGORY: example
+// OUT:
+// RUN: fail
+// ERR: [Run Time Error] Uninitialized field of 'd1'
+
 type date : struct {
     day : int;
     month : int;

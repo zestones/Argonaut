@@ -5,16 +5,16 @@
  * Checks if the loop context is currently active.
  * @return 1 if inside a loop, 0 otherwise.
  */
-int loop_context_active();
+int loop_context_active(void);
 
 /**
  * Activates the loop context to indicate entry into a loop.
  */
-void activate_loop_context();
+void activate_loop_context(void);
 
 /**
  * Deactivates the loop context to indicate exit from a loop.
  */
-void deactivate_loop_context();
+void deactivate_loop_context(void);
 
 #endif // __LOOP_STATEMENT_H__

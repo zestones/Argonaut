@@ -3,7 +3,7 @@
 static int scope_identifier_list[MAX_DECLARATION_COUNT];
 static int scope_identifier_count;
 
-void initialize_scope_identifier_tracker() {
+void initialize_scope_identifier_tracker(void) {
     scope_identifier_count = 0;
     memset(scope_identifier_list, NULL_VALUE, sizeof(scope_identifier_list));
 }
@@ -21,7 +21,6 @@ int is_identifier_already_tracked(int index_lexeme_lexicographic) {
     return 0;
 }
 
-void clear_scope_identifier_tracker() {
-    scope_identifier_count = 0;
-    memset(scope_identifier_list, NULL_VALUE, sizeof(scope_identifier_list));
+void clear_scope_identifier_tracker(void) {
+    initialize_scope_identifier_tracker();
 }

@@ -1,3 +1,8 @@
+// CATEGORY: example
+// OUT: Integer: 10
+// OUT: Float: 3.140000
+// OUT: Char: a
+
 var integerVar : int;
 var floatVar : float;
 var charVar : char;

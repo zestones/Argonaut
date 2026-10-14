@@ -1,10 +1,13 @@
 #ifndef __INTERPRETER_H__
 #define __INTERPRETER_H__
 
+#include "../../ast/ast.h"
+
 typedef enum {
-    CONTROL_NONE,    // Continue execution
-    CONTROL_BREAK,   // Stop loop execution
-    CONTROL_CONTINUE // Next loop execution
+    CONTROL_NONE,     // Continue execution
+    CONTROL_BREAK,    // Stop loop execution
+    CONTROL_CONTINUE, // Next loop execution
+    CONTROL_RETURN    // Leave the current function or procedure
 } ControlFlow;
 
 
@@ -40,6 +43,6 @@ void execute(int region_index);
  * global program, and continues processing through the program's AST. It serves as 
  * the main entry point for interpreting and executing the program.
  */
-void interpret();
+void interpret(void);
 
-#endif 
+#endif

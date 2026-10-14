@@ -1,0 +1,9 @@
+// CATEGORY: limitation
+// DESC: arr[i].champ[j] absent de la grammaire
+// OUT: 5
+type Arr : array[0:1] of int;
+type S : struct { v : int; arr : Arr; } fstruct;
+type SA : array[0:1] of S;
+var sa : SA;
+sa[0].arr[1] := 5;
+print("%d\n", sa[0].arr[1]);

@@ -8,24 +8,23 @@
 #include "../interpreter.h"
 #include "loop.h"
 
-static void execute_while_loop(AST ast) {
-    vm_cell condition = resolve_boolean_expression(ast->child->child);
+static ControlFlow execute_while_loop(AST ast) {
+    vm_cell condition = resolve_boolean_expression(ast->child);
 
     while (condition.value.boolean) {
-        if (get_return_cell().is_initialized) return;
         ControlFlow flow = resolve_statement_list(ast->child->sibling);
 
         if (flow == CONTROL_BREAK) break;
-        else if (flow == CONTROL_CONTINUE) {
-            condition = resolve_boolean_expression(ast->child->child);
-            continue;
-        }
+        if (flow == CONTROL_RETURN) return CONTROL_RETURN;
+        // CONTROL_CONTINUE and CONTROL_NONE both move on to the next iteration
 
-        condition = resolve_boolean_expression(ast->child->child);
+        condition = resolve_boolean_expression(ast->child);
     }
+
+    return CONTROL_NONE;
 }
 
-static void execute_for_loop(AST ast) {
+static ControlFlow execute_for_loop(AST ast) {
     AST initialization = ast->child;
     AST condition = initialization->sibling;
     AST update = condition->sibling;
@@ -35,22 +34,20 @@ static void execute_for_loop(AST ast) {
 
     vm_cell cond_result = resolve_boolean_expression(condition);
     while (cond_result.value.boolean) {
-        if (get_return_cell().is_initialized) return;
         ControlFlow flow = resolve_statement_list(statement_block);
 
         if (flow == CONTROL_BREAK) break;
-        else if (flow == CONTROL_CONTINUE) {
-            resolve_assignement(update);
-            cond_result = resolve_boolean_expression(condition);
-            continue;
-        }
+        if (flow == CONTROL_RETURN) return CONTROL_RETURN;
 
         resolve_assignement(update);
         cond_result = resolve_boolean_expression(condition);
     }
+
+    return CONTROL_NONE;
 }
 
-void execute_loop(AST ast) {
-    if (ast->type == A_WHILE) execute_while_loop(ast);
-    else if (ast->type == A_FOR_LOOP) execute_for_loop(ast);
+ControlFlow execute_loop(AST ast) {
+    if (ast->type == A_WHILE) return execute_while_loop(ast);
+    if (ast->type == A_FOR_LOOP) return execute_for_loop(ast);
+    return CONTROL_NONE;
 }

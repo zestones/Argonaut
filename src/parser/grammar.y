@@ -12,59 +12,56 @@
 
     #include "../syntax_analysis/loop_statement.h"
 
-    #include "parser.h"
+    #include "../ast/access_chain.h"
 
     #include "../utils/errors.h"
+    #include "../utils/ir_version.h"
 
     #include <stdio.h>
     #include <stdlib.h>
-    #include <unistd.h>
-    #include <getopt.h>
     #include <string.h>
 
 
-    int yylex();
+    int yylex(void);
+    void yyerror(const char *s);
     int is_in_loop = 0;
+
+    /* a[i]++ / s.f-- : the target is the access chain, the value is a copy of it plus or minus 1. */
+    static Node *build_access_inc_dec(Node *access, NodeType operation, int one_lexeme) {
+        Node *assignment = construct_node_default(access->type == A_ARRAY_ACCESS ? A_ARRAY_ASSIGNMENT : A_STRUCT_ASSIGNMENT);
+        Node *op_node = construct_node_default(operation);
+        Node *copy = copy_ast(access);
+        Node *one = construct_node(A_INTEGER_LITERAL, one_lexeme, NULL_VALUE);
+
+        add_child(op_node, copy);
+        add_sibling(copy, one);
+        add_child(assignment, access);
+        add_sibling(access, op_node);
+
+        check_access_assignment(access, op_node);
+        return assignment;
+    }
+
+    /* A binary node: the operands are the two children (left first). */
+    static Node *build_binary(NodeType type, Node *left, Node *right) {
+        Node *node = construct_node_default(type);
+        add_child(node, left);
+        add_sibling(left, right);
+        return node;
+    }
 
     extern FILE *yyin;
     extern FILE *yyout;
     extern char *yytext;
 
-    Error error;
-
     void yyerror(const char *s) {
-        // TODO: Uncomment this line to prevent the program from exiting on syntax errors
-        // TODO: Uncomment only if syntax errors are all handled properly in grammar rules
-        // if (error.type == NO_ERROR) return;
-
-        if (!strcmp(s, "syntax error")) {
-            set_error_message(&error,
-                "Unexpected token found: '%s' at %s.\n"
-                "\t> This error is critical and will cause the program to terminate.\n"
-                "\t> Exiting due to a syntax error.",
-                yytext,
-                get_formatted_location()
-            );
-        } 
-        else {
-            set_error_message(&error,
-                "Unexpected token found: '%s' at %s.\n"
-                "\t> %s\n"
-                "\t> This error is critical and will cause the program to terminate.\n"
-                "\t> Exiting due to a syntax error.",
-                yytext,
-                get_formatted_location(),
-                s
-            );
-        }
-
-        
-        set_error_type(&error, SYNTAX_ERROR);
-        yerror(error);
-        
-        exit(EXIT_FAILURE);
+        fatal_syntax_error(yytext, strcmp(s, "syntax error") == 0 ? NULL : s);
     }
 %}
+
+%code requires {
+    #include "../ast/ast.h"
+}
 
 %union {
     AST ast;
@@ -87,26 +84,29 @@
 %token <lexicographic_index> BOOLEAN_VALUE STRING_VALUE INTEGER_VALUE CHARACTER_VALUE FLOAT_VALUE
 %token <lexicographic_index> INCREMENT DECREMENT
 
-%right NOT
-%left AND OR 
-
 %right RETURN_TYPE RETURN_VALUE
 %left SEMICOLON COMMA
 
+/* Lowest to highest: || , && , ! , comparisons, + - , * / % , unary minus. */
+%left OR
+%left AND
+%right NOT
+%nonassoc EQUAL NOT_EQUAL LESS_THAN GREATER_THAN LESS_EQUAL GREATER_EQUAL
 %left PLUS MINUS
 %left MULTIPLY DIVIDE MODULO
+%right UMINUS
 
-%type <lexicographic_index> type 
+%type <lexicographic_index> type bound
 
-%type <ast> assignment_statement if_statement standalone_func_proc_call_statement func_proc_call_expression
-%type <ast> array_access_statement array_indices struct_access_statement print_statement input_statement
+%type <ast> assignment_statement if_head if_statement standalone_func_proc_call_statement func_proc_call_expression
+%type <ast> access array_indices print_statement input_statement
 %type <ast> loop_statement while_statement for_statement
 
 %type <ast> variable_declaration type_declaration complex_type_fields type_field
 %type <ast> function_declaration return_statement procedure_declaration parameter_list parameter argument_list
 
 %type <ast> program declaration_list statement_list statement_block declaration statement inc_dec_statement
-%type <ast> expression expression_atom condition comparison_operator
+%type <ast> expression expression_atom
 
 %type <ast> input_argument_list format_string 
 
@@ -165,6 +165,7 @@ function_declaration: FUNCTION IDENTIFIER {
                         Node *nodes[] = { $5, $11, $12 };
                         add_chain($$, nodes, 3);
 
+                        check_function_returns($2, $12);
                         update_region_ast(peek_region(), $$);
                         declaration_func_proc_end();
 
@@ -252,7 +253,11 @@ list_dimensions: one_dimension
                | list_dimensions COMMA one_dimension 
 ;
 
-one_dimension: INTEGER_VALUE TWO_POINTS INTEGER_VALUE { array_add_dimension(atoi(get_lexeme($1)), atoi(get_lexeme($3))); }
+one_dimension: bound TWO_POINTS bound { array_add_dimension($1, $3); }
+;
+
+bound: INTEGER_VALUE { $$ = (int) strtol(get_lexeme($1), NULL, 10); }
+     | MINUS INTEGER_VALUE { $$ = -(int) strtol(get_lexeme($2), NULL, 10); }
 ;
 
 // Arithmetic expressions
@@ -281,6 +286,22 @@ expression: expression PLUS expression {
                 add_child($$, $1);
                 add_sibling($1, $3);
           }
+          | MINUS expression %prec UMINUS {
+                $$ = construct_node_default(A_NEG_OP);
+                add_child($$, $2);
+          }
+          | expression EQUAL expression         { $$ = build_binary(A_EQUAL_OP, $1, $3); }
+          | expression NOT_EQUAL expression     { $$ = build_binary(A_NOT_EQUAL_OP, $1, $3); }
+          | expression LESS_THAN expression     { $$ = build_binary(A_LESS_THAN_OP, $1, $3); }
+          | expression GREATER_THAN expression  { $$ = build_binary(A_GREATER_THAN_OP, $1, $3); }
+          | expression LESS_EQUAL expression    { $$ = build_binary(A_LESS_EQUAL_OP, $1, $3); }
+          | expression GREATER_EQUAL expression { $$ = build_binary(A_GREATER_EQUAL_OP, $1, $3); }
+          | expression AND expression           { $$ = build_binary(A_AND_CONDITION, $1, $3); }
+          | expression OR expression            { $$ = build_binary(A_OR_CONDITION, $1, $3); }
+          | NOT expression {
+                $$ = construct_node_default(A_NOT_CONDITION);
+                add_child($$, $2);
+          }
           | expression_atom { $$ = $1; }
           | OPEN_PARENTHESIS expression CLOSE_PARENTHESIS { $$ = $2; }
 ;
@@ -292,8 +313,7 @@ expression_atom: IDENTIFIER  { check_variable_definition($1); $$ = construct_nod
                | CHARACTER_VALUE { $$ = construct_node(A_CHARACTER_LITERAL, $1, NULL_VALUE); }
                | STRING_VALUE { $$ = construct_node(A_STRING_LITERAL, $1, NULL_VALUE); }
                | func_proc_call_expression { $$ = $1; }  
-               | array_access_statement { $$ = $1; }
-               | struct_access_statement { $$ = $1; }
+               | access { $$ = $1; }
 ;
 
 // TODO : is there a better way to assign the lexicographic_index to the base type ?
@@ -333,43 +353,12 @@ func_proc_call_expression: IDENTIFIER { check_func_proc_definition($1); } OPEN_P
                         }
 ;
 
-// Conditions and boolean expressions
-condition: expression comparison_operator expression {
-            $$ = construct_node_default(A_CONDITION);
-            add_child($$, $2);
-            add_child($2, $1);
-            add_sibling($1, $3);
-            check_condition($$);
-         }
-         | OPEN_PARENTHESIS condition CLOSE_PARENTHESIS {
-            $$ = $2;
-         }
-         | condition AND condition {
-            $$ = construct_node_default(A_AND_CONDITION);
-            add_child($$, $1);
-            add_sibling($1, $3);
-         }
-         | condition OR condition {
-            $$ = construct_node_default(A_OR_CONDITION);
-            add_child($$, $1);
-            add_sibling($1, $3);
-         }
-         | NOT condition {
-            $$ = construct_node_default(A_NOT_CONDITION);
-            add_child($$, $2);
-         }
-;
-
-comparison_operator: EQUAL { $$ = construct_node_default(A_EQUAL_OP); }
-                   | NOT_EQUAL { $$ = construct_node_default(A_NOT_EQUAL_OP); }
-                   | LESS_THAN { $$ = construct_node_default(A_LESS_THAN_OP); }
-                   | GREATER_THAN { $$ = construct_node_default(A_GREATER_THAN_OP); }
-                   | LESS_EQUAL { $$ = construct_node_default(A_LESS_EQUAL_OP); }
-                   | GREATER_EQUAL { $$ = construct_node_default(A_GREATER_EQUAL_OP); }
-;
-
 // Statements
-statement_block: START statement_list END { $$ = $2; }
+statement_block: START statement_list END {
+                    // An empty block must still be a node: the if/else and loop rules chain
+                    // their blocks with add_sibling, which ignores NULL (the else was lost).
+                    $$ = is_node_null($2) ? construct_node_default(A_STATEMENT_LIST) : $2;
+                }
 ;
 
 statement_list: statement statement_list {
@@ -408,17 +397,11 @@ assignment_statement: IDENTIFIER { check_variable_definition($1); } OPAFF expres
                         add_child($$, $4);
                         check_variable_assignment($1, $4);
                     }
-                    | array_access_statement OPAFF expression {
-                        $$ = construct_node_default(A_ARRAY_ASSIGNMENT);
+                    | access OPAFF expression {
+                        $$ = construct_node_default($1->type == A_ARRAY_ACCESS ? A_ARRAY_ASSIGNMENT : A_STRUCT_ASSIGNMENT);
                         add_child($$, $1);  
                         add_sibling($1, $3);
-                        check_array_assignment($1, $3);
-                    }
-                    | struct_access_statement OPAFF expression {
-                        $$ = construct_node_default(A_STRUCT_ASSIGNMENT);
-                        add_child($$, $1);  
-                        add_sibling($1, $3);
-                        check_struct_assignment($1, $3);
+                        check_access_assignment($1, $3);
                     }
                     | inc_dec_statement { $$ = $1; }
 ;
@@ -457,6 +440,8 @@ inc_dec_statement: IDENTIFIER DECREMENT {
 
                         check_variable_assignment($1, op_node);
                     }
+                    | access INCREMENT { $$ = build_access_inc_dec($1, A_ADD_OP, $2); }
+                    | access DECREMENT { $$ = build_access_inc_dec($1, A_SUB_OP, $2); }
 ;
 
 return_statement: RETURN_VALUE expression SEMICOLON {
@@ -475,25 +460,44 @@ return_statement: RETURN_VALUE expression SEMICOLON {
                     add_child($$, $2);
                     check_func_prototype(get_func_return_type(index_declaration), $$);
                 }
+                | RETURN_VALUE SEMICOLON {
+                    // 'return;' leaves a procedure early; a function must return a value.
+                    if (!peek_region()) {
+                        set_error_type(&error, SYNTAX_ERROR);
+                        yyerror("Return statement is not allowed outside of a function or procedure.");
+                    }
+                    if (find_function_index_by_region(peek_region()) != NULL_VALUE) {
+                        set_error_type(&error, SYNTAX_ERROR);
+                        yyerror("A function must return a value: write 'return expression;'.");
+                    }
+
+                    $$ = construct_node_default(A_RETURN_STATEMENT);
+                }
 ;
 
-if_statement: IF OPEN_PARENTHESIS condition CLOSE_PARENTHESIS statement_block {
+// The condition is checked as soon as it is parsed (mid-rule action), so that the error
+// location points at the condition rather than at the end of the block. The head is shared
+// by the three forms so that the parser has a single action to reduce before ')'.
+if_head: IF OPEN_PARENTHESIS expression { check_condition($3); } CLOSE_PARENTHESIS { $$ = $3; }
+;
+
+if_statement: if_head statement_block {
                 $$ = construct_node_default(A_IF);
-                add_child($$, $3);
-                add_sibling($3, $5);
+                add_child($$, $1);
+                add_sibling($1, $2);
             }
-            | IF OPEN_PARENTHESIS condition CLOSE_PARENTHESIS statement_block ELSE statement_block {
+            | if_head statement_block ELSE statement_block {
                 $$ = construct_node_default(A_IF_ELSE); 
-                add_child($$, $3); 
-                add_sibling($3, $5);
-                add_sibling($5, $7);
+                add_child($$, $1); 
+                add_sibling($1, $2);
+                add_sibling($2, $4);
             }
-            | IF OPEN_PARENTHESIS condition CLOSE_PARENTHESIS statement_block ELSE if_statement 
+            | if_head statement_block ELSE if_statement 
             {
                 $$ = construct_node_default(A_IF_ELSE_IF);
-                add_child($$, $3); 
-                add_sibling($3, $5);
-                add_sibling($5, $7);
+                add_child($$, $1); 
+                add_sibling($1, $2);
+                add_sibling($2, $4);
             }
 ;
 
@@ -513,16 +517,16 @@ loop_statement: while_statement { $$ = $1; }
               }
 ;
 
-while_statement: WHILE OPEN_PARENTHESIS condition CLOSE_PARENTHESIS { activate_loop_context(); } statement_block {
+while_statement: WHILE OPEN_PARENTHESIS expression { check_condition($3); } CLOSE_PARENTHESIS { activate_loop_context(); } statement_block {
                 $$ = construct_node_default(A_WHILE);
                 add_child($$, $3);
-                add_sibling($3, $6);
+                add_sibling($3, $7);
 
                 deactivate_loop_context();
             }
 ;
 
-for_statement: FOR OPEN_PARENTHESIS assignment_statement SEMICOLON condition SEMICOLON assignment_statement CLOSE_PARENTHESIS { activate_loop_context(); } statement_block {
+for_statement: FOR OPEN_PARENTHESIS assignment_statement SEMICOLON expression { check_condition($5); } SEMICOLON assignment_statement CLOSE_PARENTHESIS { activate_loop_context(); } statement_block {
         $$ = construct_node_default(A_FOR_LOOP);
         Node *initialization = construct_node_default(A_VARIABLE_ASSIGNMENT);
         add_child($$, initialization);
@@ -532,30 +536,26 @@ for_statement: FOR OPEN_PARENTHESIS assignment_statement SEMICOLON condition SEM
 
         Node *update = construct_node_default(A_VARIABLE_ASSIGNMENT);
         add_sibling($5, update);
-        add_child(update, $7);
+        add_child(update, $8);
 
-        add_sibling(update, $10);
+        add_sibling(update, $11);
 }
 ;
 
 standalone_func_proc_call_statement: func_proc_call_expression SEMICOLON { $$ = $1; }
 ;
 
-array_access_statement: IDENTIFIER OPEN_BRACKET array_indices CLOSE_BRACKET {
-                            $$ = construct_node(A_ARRAY_ACCESS, $1, find_declaration_index($1));
-                            add_child($$, $3);
-                    }
-                    | IDENTIFIER OPEN_BRACKET array_indices CLOSE_BRACKET DOT IDENTIFIER {
-                            $$ = construct_node(A_ARRAY_ACCESS, $1, find_declaration_index($1));
-                            Node *field = construct_node(A_STRUCT_FIELD_ACCESS, $6, find_declaration_index($6));
-                            add_child($$, $3);
-                            add_sibling($3, field);
-                    }
-                    | IDENTIFIER OPEN_BRACKET array_indices CLOSE_BRACKET DOT struct_access_statement {
-                            $$ = construct_node(A_ARRAY_ACCESS, $1, find_declaration_index($1));
-                            add_child($$, $3);
-                            add_sibling($3, $6);
-                    }
+// Access chains: t[i], s.f, t[i].f, s.t[i], g[i][j], t[i].f[j]... (see ast/access_chain.h)
+access: IDENTIFIER OPEN_BRACKET array_indices CLOSE_BRACKET {
+            $$ = construct_node(A_ARRAY_ACCESS, $1, find_declaration_index($1));
+            add_child($$, $3);
+      }
+      | IDENTIFIER DOT IDENTIFIER {
+            $$ = construct_node(A_STRUCT_FIELD_ACCESS, $1, find_declaration_index($1));
+            add_child($$, construct_node(A_STRUCT_FIELD_ACCESS, $3, NULL_VALUE));
+      }
+      | access OPEN_BRACKET array_indices CLOSE_BRACKET { access_chain_index($1, $3); $$ = $1; }
+      | access DOT IDENTIFIER { access_chain_field($1, $3); $$ = $1; }
 ;
 
 array_indices: expression {
@@ -575,21 +575,6 @@ array_indices: expression {
             }
 ;
 
-struct_access_statement: IDENTIFIER DOT IDENTIFIER {
-                            $$ = construct_node(A_STRUCT_FIELD_ACCESS, $1, find_declaration_index($1));
-                            Node *field = construct_node(A_STRUCT_FIELD_ACCESS, $3, find_declaration_index($3));
-                            add_child($$, field);
-                       }
-                       | IDENTIFIER DOT struct_access_statement {
-                            $$ = construct_node(A_STRUCT_FIELD_ACCESS, $1, find_declaration_index($1));
-                            add_child($$, $3);
-                       }
-                       | IDENTIFIER DOT array_access_statement {
-                            $$ = construct_node(A_STRUCT_FIELD_ACCESS, $1, find_declaration_index($1));
-                            add_child($$, $3);
-                       }
-;
-
 print_statement: PRINT OPEN_PARENTHESIS format_string COMMA argument_list CLOSE_PARENTHESIS SEMICOLON {
                     $$ = construct_node_default(A_PRINT_STATEMENT);
                     add_child($$, $3);
@@ -599,7 +584,9 @@ print_statement: PRINT OPEN_PARENTHESIS format_string COMMA argument_list CLOSE_
                 | PRINT OPEN_PARENTHESIS format_string CLOSE_PARENTHESIS SEMICOLON {
                       $$ = construct_node_default(A_PRINT_STATEMENT);
                       add_child($$, $3);
-                      check_print_proc_argument_list($3, construct_node_default(A_ARGUMENT_LIST));
+                      Node *no_arguments = construct_node_default(A_ARGUMENT_LIST);
+                      check_print_proc_argument_list($3, no_arguments);
+                      free_ast(no_arguments);
                 }
 ;
 
@@ -617,7 +604,9 @@ input_statement: INPUT OPEN_PARENTHESIS format_string COMMA input_argument_list 
                | INPUT OPEN_PARENTHESIS format_string CLOSE_PARENTHESIS SEMICOLON {
                     $$ = construct_node_default(A_INPUT_STATEMENT);
                     add_child($$, $3);
-                    check_print_proc_argument_list($3, construct_node_default(A_ARGUMENT_LIST));
+                    Node *no_arguments = construct_node_default(A_ARGUMENT_LIST);
+                    check_print_proc_argument_list($3, no_arguments);
+                    free_ast(no_arguments);
                }
 ;
 
@@ -628,14 +617,7 @@ input_argument_list: IDENTIFIER {
                         add_child(single_argument, construct_node(A_IDENTIFIER, $1, find_declaration_index($1)));
                         add_child($$, single_argument);
                     }
-                   | array_access_statement {
-                        $$ = construct_node_default(A_ARGUMENT_LIST);
-                        Node *single_argument = construct_node_default(A_ARGUMENT);
-
-                        add_child(single_argument, $1);
-                        add_child($$, single_argument);
-                    }
-                   | struct_access_statement {
+                   | access {
                         $$ = construct_node_default(A_ARGUMENT_LIST);
                         Node *single_argument = construct_node_default(A_ARGUMENT);
 
@@ -648,13 +630,7 @@ input_argument_list: IDENTIFIER {
                         add_sibling($1->child, single_argument);
                         $$ = $1;
                    }
-                   | input_argument_list COMMA array_access_statement {
-                        Node *single_argument = construct_node_default(A_ARGUMENT);
-                        add_child(single_argument, $3);
-                        add_sibling($1->child, single_argument);
-                        $$ = $1;
-                   }
-                   | input_argument_list COMMA struct_access_statement {
+                   | input_argument_list COMMA access {
                         Node *single_argument = construct_node_default(A_ARGUMENT);
                         add_child(single_argument, $3);
                         add_sibling($1->child, single_argument);
@@ -664,138 +640,3 @@ input_argument_list: IDENTIFIER {
 
 
 %%
-
-static void print_usage(const char *program_name) {
-    // Header
-    fprintf(stderr, COLOR_BOLD_YELLOW "\nUsage:\n" COLOR_RESET);
-    fprintf(stderr, "  %s -a <input_file> [options]\n\n", program_name);
-
-    // Description
-    fprintf(stderr, COLOR_BOLD_YELLOW "Description:\n" COLOR_RESET);
-    fprintf(stderr, COLOR_CYAN "  This program compiles the specified file and offers options for generating logs, verbose output,\n");
-    fprintf(stderr, "  and exporting tables to an output file.\n");
-    fprintf(stderr, "  Use this program to compile Argonaut code and analyze the intermediate steps of the process.\n\n" COLOR_RESET);
-
-    // Arguments section (merged short and long options)
-    fprintf(stderr, COLOR_BOLD_YELLOW "Arguments:\n" COLOR_RESET);
-    fprintf(stderr, COLOR_GREEN "  -a <input_file>   " COLOR_RESET ": The source file to compile (required).\n");
-    fprintf(stderr, COLOR_GREEN "  -v, --verbose     " COLOR_RESET ": Display verbose output (e.g., symbol table and AST).\n");
-    fprintf(stderr, COLOR_GREEN "  -l, --log         " COLOR_RESET ": Enable logging during compilation.\n");
-    fprintf(stderr, COLOR_GREEN "  -o <output_file>, --output <output_file> " COLOR_RESET ": Specify the output file to save results.\n");
-    fprintf(stderr, COLOR_GREEN "  -h, --help        " COLOR_RESET ": Display this help information.\n");
-
-    fprintf(stderr, "\n");
-
-    // Examples section
-    fprintf(stderr, COLOR_BOLD_YELLOW "Examples:\n" COLOR_RESET);
-    fprintf(stderr, COLOR_CYAN "  %s -a my_program.arg -vl -o output.txt\n" COLOR_RESET, program_name);
-    fprintf(stderr, "    - Compile the file 'my_program.arg' with verbose output and logging.\n");
-    fprintf(stderr, "    - Results saved to 'output.txt'.\n\n");
-
-    fprintf(stderr, COLOR_CYAN "  %s -a my_program.arg --verbose --log --output output.txt\n" COLOR_RESET, program_name);
-    fprintf(stderr, "    - Compile the file 'my_program.arg' with long options.\n");
-    fprintf(stderr, "    - Results saved to 'output.txt'.\n\n");
-
-    // Constraints section
-    fprintf(stderr, COLOR_BOLD_YELLOW "Constraints:\n" COLOR_RESET);
-    fprintf(stderr, COLOR_RED "  - The input file must be specified with the '-a <input_file>' option.\n");
-    fprintf(stderr, COLOR_RED "  - If '-o <output_file>' is used, the output file will be overwritten if it exists.\n\n");
-
-    // Exit function
-    exit(EXIT_FAILURE);
-}
-
-static void handle_file_error(const char *filename) {
-    fprintf(stderr, COLOR_RED "Error: Could not open file '%s'.\n", filename);
-    perror("\t> Reason");
-    fprintf(stderr, COLOR_RESET);
-
-    exit(EXIT_FAILURE);
-}
-
-// Struct for storing arguments and options
-typedef struct {
-    char *input_file;
-    char *output_file;
-    int verbose;
-    int log;
-} argonaut_options;
-
-int main(int argc, char **argv) {
-    int opt;
-    argonaut_options options = {NULL, NULL, 0, 0};
-
-    // Long options array (for --help, --verbose, etc.)
-    static struct option long_options[] = {
-        {"help",    no_argument,       NULL, 'h'},
-        {"verbose", no_argument,       NULL, 'v'},
-        {"log",     no_argument,       NULL, 'l'},
-        {"output",  required_argument, NULL, 'o'},
-        {0, 0, 0, 0}  // End of options
-    };
-
-    error.line = 1;
-    error.column = 1;
-    error.type = NO_ERROR;
-
-    // Process command-line options
-    while ((opt = getopt_long(argc, argv, "a:vlo:h", long_options, NULL)) != -1) {
-        switch (opt) {
-            case 'a':
-                options.input_file = optarg;
-                break;
-            case 'v':
-                options.verbose = 1;
-                break;
-            case 'l':
-                options.log = 1;
-                break;
-            case 'o':
-                options.output_file = optarg;
-                break;
-            case 'h':
-                print_usage(argv[0]);
-                break;
-            default:
-                fprintf(stderr, COLOR_RED "Error: Unknown option '-%c'.\n" COLOR_RESET, optopt);
-                print_usage(argv[0]);
-                return 1;
-        }
-    }
-
-    // Ensure the input file is provided
-    if (options.input_file == NULL) {
-        fprintf(stderr, COLOR_RED "Error: Missing required '-a <file>' argument.\n" COLOR_RESET);
-        print_usage(argv[0]);
-    }
-
-    // Open the input file
-    FILE *file = fopen(options.input_file, "r");
-    if (!file) {
-        handle_file_error(options.input_file);
-    }
-
-    // Set up the file for processing
-    error.filename = options.input_file;
-    yyin = file;
-
-    // Run compilation
-    yyrun(COMPILATION);
-    fclose(file);
-
-    ydebug(options.verbose);
-    ylog(options.log);
-
-    // Handle output file export if specified
-    if (options.output_file != NULL) {
-        remove(options.output_file);  // Remove existing file before creating
-
-        // Export data to output file (implement your export functions)
-        export_lexeme_table(options.output_file);
-        export_declaration_table(options.output_file);
-        export_representation_table(options.output_file);
-        export_region_table(options.output_file);
-    }
-
-    return 0;
-}

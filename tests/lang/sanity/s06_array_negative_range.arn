@@ -1,0 +1,8 @@
+// CATEGORY: sanity
+// DESC: tableau avec bornes negatives
+// OUT: 4 1 0 1 4
+type T : array[-2:2] of int;
+var t : T; var i : int;
+for (i := -2; i <= 2; i++) { t[i] := i * i; }
+for (i := -2; i <= 2; i++) { print("%d ", t[i]); }
+print("\n");

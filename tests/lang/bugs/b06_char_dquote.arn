@@ -1,0 +1,6 @@
+// CATEGORY: bug
+// DESC: le char '"' est une erreur lexicale ([^\"] au lieu de [^'])
+// OUT: ["]
+var c : char;
+c := '"';
+print("[%c]\n", c);

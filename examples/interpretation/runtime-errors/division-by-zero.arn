@@ -1,2 +1,7 @@
+// CATEGORY: example
+// OUT:
+// RUN: fail
+// ERR: [Run Time Error] Division by zero error.
+
 var x : int;
 x := 10 / 0;

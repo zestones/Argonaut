@@ -3,7 +3,8 @@ import os
 TEST_DIR = "examples/compilation/"
 OUTPUTS_DIR = "examples/compilation/.out/expected_outputs/"
 ACTUAL_OUTPUTS_DIR = "examples/compilation/.out/actual_outputs/"
-COMPILER_CMD = os.path.join(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', 'bin')), 'argoc')
+# Override with the ARGOC environment variable to test another build (e.g. build/sanitize/argoc).
+COMPILER_CMD = os.environ.get('ARGOC') or os.path.join(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', 'bin')), 'argoc')
 COMPILER_OPTIONS = "-va"
 
 def ensure_directory_exists(path: str):

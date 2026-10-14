@@ -1,0 +1,4 @@
+// CATEGORY: bug
+// DESC: ! a une priorite plus faible que && et ||
+// OUT: false
+if (!(1 == 2) && (1 == 2)) { print("true\n"); } else { print("false\n"); }

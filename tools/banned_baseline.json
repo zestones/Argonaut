@@ -1,0 +1,13 @@
+{
+  "atof": 0,
+  "atoi": 0,
+  "atol": 0,
+  "gets": 0,
+  "scanf": 0,
+  "sprintf": 0,
+  "strcat": 0,
+  "strcpy": 0,
+  "strncpy": 0,
+  "strtok": 0,
+  "vsprintf": 0
+}

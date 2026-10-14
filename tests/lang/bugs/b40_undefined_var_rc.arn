@@ -1,0 +1,5 @@
+// CATEGORY: bug
+// DESC: argoc retourne 0 malgre une variable inconnue (et argov boucle sur l'IR produit)
+// COMPILE: fail
+// RC: nonzero
+if (zzz == 1) { print("x\n"); }

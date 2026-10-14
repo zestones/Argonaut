@@ -7,16 +7,33 @@
 static Stack region_stack;
 
 
-void init_stack_region() { region_stack = construct_stack(); }
+void init_stack_region(void) {
+    region_stack = construct_stack();
+}
 
-void push_region(int region_index) { push(&region_stack, &region_index, sizeof(int)); }
+void push_region(int region_index) {
+    push(&region_stack, &region_index, sizeof(int));
+}
 
-int pop_region() { return *(int *) pop(&region_stack); }
+int pop_region(void) {
+    int *top = (int *) pop(&region_stack);
+    int region_index = *top;
+    free(top);
+    return region_index;
+}
 
-int peek_region() { return *(int *) peek(region_stack); }
+int peek_region(void) {
+    return *(int *) peek(region_stack);
+}
 
-int get_region_stack_size() { return size(region_stack); }
+int get_region_stack_size(void) {
+    return size(region_stack);
+}
 
-Stack get_region_stack() { return region_stack; }
+Stack get_region_stack(void) {
+    return region_stack;
+}
 
-void print_stack_region() { print_stack(region_stack, format_int); }
+void print_stack_region(void) {
+    print_stack(region_stack, format_int);
+}

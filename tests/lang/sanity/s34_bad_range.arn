@@ -1,0 +1,6 @@
+// CATEGORY: sanity
+// DESC: erreur: bornes inversees (detectee au runtime)
+// RUN: fail
+type T : array[5:1] of int;
+var t : T;
+print("declared\n");

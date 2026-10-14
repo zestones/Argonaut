@@ -22,13 +22,12 @@
  * structure declarations, including indices for field representation
  * and structure name, as well as execution offset and number of fields.
  */
-typedef struct structure_manager_context
-{
+typedef struct structure_manager_context {
     int index_number_of_fields_representation; // Index for the number of fields representation.
     int index_struct_name_lexicographic;       // Index for the structure name in lexicographic order.
 
-    int execution_offset;                      // Execution offset for the structure.
-    int number_of_fields;                      // Number of fields in the structure.
+    int execution_offset; // Execution offset for the structure.
+    int number_of_fields; // Number of fields in the structure.
 } structure_manager_context;
 
 /**
@@ -46,7 +45,7 @@ void construct_structure_manager_context(int index_struct_name_lexicographic);
  *
  * This function marks the beginning of a structure declaration.
  */
-void declaration_structure_start();
+void declaration_structure_start(void);
 
 /**
  * @brief Adds a field to the current structure declaration.
@@ -64,7 +63,7 @@ void structure_add_field(int index_lexeme_lexicographic, int index_type_lexicogr
  *
  * This function marks the end of a structure declaration.
  */
-void declaration_structure_end();
+void declaration_structure_end(void);
 
 
 #endif // __STRUCTURE_MANAGER_H__

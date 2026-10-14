@@ -1,0 +1,7 @@
+// CATEGORY: sanity
+// DESC: erreur: appel avant declaration
+// COMPILE: fail
+// ERR: Undeclared function
+proc a() { b(); }
+proc b() { print("b\n"); }
+a();

@@ -5,7 +5,9 @@
   <br />
   
   [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-  [![Regression Tests](https://github.com/zestones/Argonaut/actions/workflows/regression.yml/badge.svg?branch=main)](https://github.com/zestones/Argonaut/actions/workflows/regression.yml)
+  [![CI](https://github.com/zestones/Argonaut/actions/workflows/ci.yml/badge.svg)](https://github.com/zestones/Argonaut/actions/workflows/ci.yml)
+  [![Extended checks](https://github.com/zestones/Argonaut/actions/workflows/weekly.yml/badge.svg)](https://github.com/zestones/Argonaut/actions/workflows/weekly.yml)
+  [![CodeQL](https://github.com/zestones/Argonaut/actions/workflows/codeql.yml/badge.svg)](https://github.com/zestones/Argonaut/actions/workflows/codeql.yml)
   [![pages-build-deployment](https://github.com/zestones/Argonaut/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/zestones/Argonaut/actions/workflows/pages/pages-build-deployment)
   [![Dependencies](https://img.shields.io/badge/dependencies-GCC%2C%20Flex%2C%20Bison-orange)](https://gcc.gnu.org/)
   [![Argonaut Wiki](https://img.shields.io/badge/Wiki-Argonaut-blue?style=flat)](https://github.com/zestones/Argonaut/wiki)
@@ -35,11 +37,12 @@ Before you begin, ensure you have the following installed:
 git clone https://github.com/zestones/Argonaut.git
 cd Argonaut
 
-# Build compiler and VM
-make
+make            # build the compiler and the VM (debug configuration) into bin/
+make check      # unit tests, language tests, IR tests, doc examples, diagnostics suite
+make help       # every target: CONFIG=release|sanitize|msan|coverage, lint, coverage, bench, fuzz…
 ```
 
-The executable files will be generated in the `bin` directory. ``argoc`` stand for Argonaut compiler and ``argov`` stand for Argonaut virtual machine.
+The executable files are generated in the `bin` directory (`build/<config>/` keeps one copy per configuration). ``argoc`` stands for Argonaut compiler and ``argov`` for Argonaut virtual machine. The language itself is described in [SPEC.md](SPEC.md); the engineering rules are in the [Development](#-development) section below.
 
 You can also install the VSCode extension for Argonaut to higlight the Argonaut language.
 
@@ -55,12 +58,12 @@ To delete the VSCode extension, run ``make extension-uninstall``.
   ```bash
   ./bin/argoc -a <source-file> -o <output-file>
   ```
-  Use ./``./bin/argov --help`` for more options.
+  Use ``./bin/argoc --help`` for more options.
 - **Virtual Machine:** Run :
   ```bash
-  ./bin/argov –a <intermediate-file>
+  ./bin/argov -a <intermediate-file>
   ```
-  Use ``./bin/argov –h`` for more options.
+  Use ``./bin/argov -h`` for more options.
 
 ## 📜 Language Overview
 
@@ -150,26 +153,55 @@ I'll organize both the implemented and missing features by categories:
 
 ```bash
 .
-├── bin/                    # Compiled binaries
+├── bin/                    # Compiled binaries (generated, not versioned)
+├── build/                  # Generated parsers, objects, per-configuration binaries (generated)
 ├── docs/                   # Generated documentation
 ├── extensions/             # Custom extensions (for Argonaut syntax highlighting)
 ├── examples/               # Sample programs
-│   ├── compilation/        # Compiler examples
-│   └── interpretation/     # Interpreter examples        
+│   ├── compilation/        # Compiler examples (diagnostics)
+│   └── interpretation/     # Interpreter examples
 ├── lib/                    # Utility libraries (colors, and table formatting)
 ├── src/                    # Core implementation
-└── tests/                  # Regression tests
+├── tests/                  # Unit, language, IR, regression, bench and fuzz suites (see tests/README.md)
+├── tools/                  # Quality gates: warnings/banned-functions ratchets, coverage, doctests, format
+└── SPEC.md                 # Language specification and open design decisions
 ```
 
-## 🤝 Contributing
+## 🧪 Development
 
-We welcome contributions from the community! To contribute:
+The project is kept honest by a set of automated gates (inspired by how Go, LLVM, CPython and SQLite test their toolchains). One rule: **`main` is always green** — nothing is merged unless the `CI` workflow passes, and every fixed bug comes with a test that failed before the fix.
 
-1. Fork the repository.
-2. Create a new branch for your feature or bug fix.
-3. Make your changes and commit them with descriptive messages.
-4. Push your branch to your fork.
-5. Submit a pull request to the main repository.
+```bash
+make                          # debug build → bin/argoc, bin/argov (build/debug/)
+make CONFIG=release           # -O2, _FORTIFY_SOURCE=2, -fstack-protector-strong
+make CONFIG=sanitize          # ASan + UBSan (-fno-sanitize-recover=all)
+make CONFIG=msan CC=clang     # MemorySanitizer (clang only)
+make check                    # unit + language + IR + interpretation/doc examples + diagnostics regression
+make TEST_JOBS=4 check        # override the conservative two-worker default
+make CONFIG=sanitize check    # the same suites under the sanitizers
+make CONFIG=sanitize check-leaks   # LeakSanitizer ratchet
+make lint                     # format-check, banned-check and warnings-check
+make lint-full                # lint plus cppcheck, clang-tidy and gcc -fanalyzer (target state)
+make coverage | bench | fuzz  # line coverage (gcov), benchmarks vs Python and C, AFL++ fuzzing
+make help                     # the full list
+```
+
+Tools: `gcc`/`clang`, `flex`, `bison`, `python3` (standard library only). Optional: `clang-format`, `clang-tidy`, `cppcheck`, `valgrind`, `gcovr`, `afl++`, `doxygen` (`make deps-apt` on Debian/Ubuntu). Missing tools are reported and skipped locally; the automatic CI installs only the tools required by its minimal gate.
+
+**Strict flags and ratchets.** The strict warning set (`-Wall -Wextra -Wpedantic -Wstrict-prototypes -Wmissing-prototypes -Wold-style-definition -Wshadow -Wvla -Wformat=2 -Wundef -Wwrite-strings -Wpointer-arith -Wcast-qual`) is always on. The legacy code does not satisfy every rule yet, so each rule has a *baseline* that can only go down — a new violation fails the build, an old one is a known debt:
+
+| Ratchet | Baseline | Check | Update (downwards only) |
+|---|---|---|---|
+| Expected test failures | `tests/xfail/<config>.txt` | `make check` — a listed test that fails is `XFAIL`; one that passes is `XPASS` (**error**: remove the line) | edit the file |
+| Compiler warnings | `tools/warnings_baseline.json` | `make warnings-check` | `make warnings-baseline` |
+| Banned C functions (`strcpy`, `sprintf`, `atoi`, `scanf`, …) | `tools/banned_baseline.json` | `make banned-check` | `python3 tools/check_banned.py --update` |
+| Performance | `tests/bench/baseline.json` | `make bench` (+30 % = regression) | `python3 tests/bench/run_bench.py --update` |
+
+**Benchmarks.** `make bench` runs the programs of `tests/bench/` with the release build and, on the same machine, their literal transcriptions in Python and C (`tests/bench/ref/`, same variables, loops and calls). The seconds are host-specific; the ratios `arg/py` and `arg/c` are not, and they are the numbers to watch when working on the VM. The baseline only guards `argov` against regressions.
+
+The automatic CI uses one Ubuntu job for the debug test suite and the ratchets. `make WERROR=1` and `make lint-full` describe the target state but run locally until their debt is paid. The manual `Extended checks` workflow offers Valgrind, MemorySanitizer, fuzzing and benchmarks without consuming scheduled Actions minutes; CodeQL and documentation deployment are manual as well.
+
+**Fixing a bug, step by step.** `python3 tests/run_tests.py --only b29` → `FAIL` → fix → `make check` reports `XPASS` → remove the line from `tests/xfail/debug.txt`, `release.txt`, `sanitize.txt` (and `msan.txt`/`leaks.txt` if present) → `make CONFIG=sanitize check && make lint` → pull request. Test conventions are described in [tests/README.md](tests/README.md); the known bugs are the `b*` cases of `tests/lang/bugs/` (each header states the expected behaviour) and the expected-failure lists in `tests/xfail/`.
 
 ## 📚 Documentation
 

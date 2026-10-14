@@ -1,0 +1,4 @@
+// CATEGORY: bug
+// DESC: litteral hors plage accepte silencieusement (atoi)
+// COMPILE: fail
+print("%d\n", 2147483648);

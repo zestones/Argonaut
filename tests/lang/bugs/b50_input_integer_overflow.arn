@@ -1,0 +1,7 @@
+// CATEGORY: bug
+// DESC: input rejects integers outside the 32-bit range
+// IN: 2147483648
+// RUN: fail
+// ERR: Input error: could not read a value for '%d'.
+var value : int;
+input("%d", value);

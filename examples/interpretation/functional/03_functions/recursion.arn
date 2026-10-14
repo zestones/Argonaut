@@ -1,3 +1,6 @@
+// CATEGORY: example
+// OUT: Factorial of 5 = 120
+
 
 // Define a function to calculate the factorial of a number recursively.
 func factorial(n : int) -> int {

@@ -9,6 +9,15 @@ extern Error error;
 #define NULL_VALUE -1
 
 /**
+ * @brief Type of a string literal in the type checker.
+ *
+ * Expression types are declaration indices (the base types int, float, bool and char are the
+ * declarations 0 to 3, which the literal node types mirror). String literals have no
+ * declaration, so they get a value that can never be a declaration index.
+ */
+#define STRING_LITERAL_TYPE -2
+
+/**
  * @brief Formats an integer value as a string.
  * 
  * This function takes a pointer to an integer, converts it into a string representation,
@@ -24,9 +33,9 @@ extern Error error;
  */
 static inline const char *format_int(void *data) {
     static char buffer[32];
-    int value = *(int *) data; 
-    
-    sprintf(buffer, "%d", value);
+    int value = *(int *) data;
+
+    snprintf(buffer, sizeof(buffer), "%d", value);
     return buffer;
 }
 

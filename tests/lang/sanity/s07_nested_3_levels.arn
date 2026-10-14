@@ -1,0 +1,19 @@
+// CATEGORY: sanity
+// DESC: procedures imbriquees sur 3 niveaux
+// OUT: 1 2 3
+proc l1() {
+    var a : int;
+    proc l2() {
+        var b : int;
+        proc l3() {
+            var c : int;
+            c := 3;
+            print("%d %d %d\n", a, b, c);
+        }
+        b := 2;
+        l3();
+    }
+    a := 1;
+    l2();
+}
+l1();

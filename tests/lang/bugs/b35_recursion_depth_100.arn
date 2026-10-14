@@ -1,0 +1,8 @@
+// CATEGORY: bug
+// DESC: recursion profondeur 100: segfault (pile C, frames de 40 Ko copiees par valeur)
+// OUT: 100
+func depth(n : int) -> int {
+    if (n == 0) { return 0; }
+    return depth(n - 1) + 1;
+}
+print("%d\n", depth(100));

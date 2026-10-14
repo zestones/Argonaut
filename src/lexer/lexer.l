@@ -1,13 +1,31 @@
 %{
     #include "../symbol_table/lexeme/lexeme_table.h"
-    #include "../parser/parser.h"
 
     #include "../utils/errors.h"
+    #include "../utils/memory.h"
+    #include "../utils/numeric_parser.h"
     #include "y.tab.h"
+
+    #include <limits.h>
+
+    #include "../lexer/escapes.h"
+
+    /* Reports an unknown escape sequence such as \q. */
+    static void bad_escape(const char *position) {
+        set_error_type(&error, LEXICAL_ERROR);
+        set_error_message(
+            &error,
+            "Unknown escape sequence '%.2s' at %s.\n"
+            "  Supported escapes: \\n \\t \\r \\\\ \\' \\\".\n",
+            position,
+            get_formatted_location()
+        );
+        yerror(error);
+    }
 
     extern Error error;
     extern char *yytext;
-    extern int yyerror(const char *s);
+    extern void yyerror(const char *s);
 %}
 
 %option noinput nounput
@@ -102,29 +120,64 @@ letter [a-zA-Z]
     return BOOLEAN_VALUE; 
 }
 
-"'"[^\"]"'" { 
-    char lexeme[4] = { '\'', yytext[1], '\'', '\0' };
+"'"([^'\\\n]|\\[^\n])"'" {
+    const char *bad = NULL;
+    char *decoded = decode_escapes(yytext + 1, yyleng - 2, &bad);
+    if (decoded == NULL) bad_escape(bad);
+
+    char lexeme[4] = { '\'', decoded ? decoded[0] : '?', '\'', '\0' };
+    free(decoded);
     yylval.lexicographic_index = insert_lexeme(lexeme);
     error.column += yyleng;
-    return CHARACTER_VALUE; 
+    return CHARACTER_VALUE;
 }
 
-\"[^\"]*\" { 
-    yylval.lexicographic_index = insert_lexeme(yytext);
-    error.column += yyleng;
-    return STRING_VALUE; 
+\"([^\"\\]|\\[^\n])*\" {
+    const char *bad = NULL;
+    char *decoded = decode_escapes(yytext + 1, yyleng - 2, &bad);
+    if (decoded == NULL) bad_escape(bad);
+
+    // The lexeme keeps its quotes around the decoded text.
+    size_t length = decoded ? strlen(decoded) : 0;
+    char *lexeme = xmalloc(length + 3);
+    lexeme[0] = '"';
+    if (decoded) memcpy(lexeme + 1, decoded, length);
+    lexeme[length + 1] = '"';
+    lexeme[length + 2] = '\0';
+    yylval.lexicographic_index = insert_lexeme(lexeme);
+    free(lexeme);
+    free(decoded);
+
+    // A string literal may span several lines: keep the line numbers right for later errors.
+    for (char *p = yytext; *p != '\0'; p++) {
+        if (*p == '\n') { error.line++; error.column = 1; }
+        else error.column++;
+    }
+    return STRING_VALUE;
 }
 
-[-]?{number}+"."{number}* { 
+{number}+"."{number}* { 
     yylval.lexicographic_index = insert_lexeme(yytext);
     error.column += yyleng;
     return FLOAT_VALUE; 
 }
 
-0|[-]?[1-9][0-9]* { 
+0|[1-9][0-9]* {
+    if (!parse_integer_text(yytext, NULL)) {
+        set_error_type(&error, LEXICAL_ERROR);
+        set_error_message(
+            &error,
+            "Integer literal out of range at %s.\n"
+            "  The literal '%s' does not fit in a 32-bit integer (%d to %d).\n",
+            get_formatted_location(),
+            yytext,
+            INT_MIN, INT_MAX
+        );
+        yerror(error);
+    }
     yylval.lexicographic_index = insert_lexeme(yytext);
     error.column += yyleng;
-    return INTEGER_VALUE; 
+    return INTEGER_VALUE;
 }
 
 {letter}+({letter}|{number}|"_")* {
@@ -149,6 +202,6 @@ letter [a-zA-Z]
 
 %%
 
-int yywrap() {
+int yywrap(void) {
     return 1;
 }

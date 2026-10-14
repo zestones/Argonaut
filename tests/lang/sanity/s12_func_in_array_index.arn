@@ -1,0 +1,8 @@
+// CATEGORY: sanity
+// DESC: appel de fonction comme indice
+// OUT: 9
+type Arr : array[0:4] of int;
+var a : Arr;
+func idx() -> int { return 2; }
+a[idx()] := 9;
+print("%d\n", a[2]);

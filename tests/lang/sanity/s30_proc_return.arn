@@ -1,0 +1,5 @@
+// CATEGORY: sanity
+// DESC: erreur: return dans une procedure
+// COMPILE: fail
+proc p() { return 1; }
+p();

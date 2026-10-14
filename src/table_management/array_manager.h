@@ -23,14 +23,13 @@
  * the lexicographic index of its name, the number of dimensions, and
  * the index representation of the number of dimensions.
  */
-typedef struct array_manager_context
-{
-    int array_size;                                 // Size of the array.
-    int index_array_name_lexicographic;             // Lexicographic index of the array name.
+typedef struct array_manager_context {
+    int array_size;                     // Size of the array.
+    int index_array_name_lexicographic; // Lexicographic index of the array name.
 
-    int number_of_dimensions;                       // Number of dimensions of the array.
-    int index_number_of_dimensions_representation;  // Index representation of the number of dimensions.
-    int index_array_type_representation;            // Index representation of the type of the array.
+    int number_of_dimensions;                      // Number of dimensions of the array.
+    int index_number_of_dimensions_representation; // Index representation of the number of dimensions.
+    int index_array_type_representation;           // Index representation of the type of the array.
 } array_manager_context;
 
 /**
@@ -48,7 +47,7 @@ void construct_array_manager_context(int current_array_name_lexicographic_index)
  * 
  * This function should be called at the beginning of an array declaration.
  */
-void declaration_array_start();
+void declaration_array_start(void);
 
 /**
  * @brief Adds a dimension to the array.
@@ -65,6 +64,6 @@ void array_add_dimension(int min, int max);
  * 
  * This function should be called at the end of an array declaration.
  */
-void declaration_array_end();
+void declaration_array_end(int index_type_lexicographic);
 
 #endif // __ARRAY_MANAGER_H__

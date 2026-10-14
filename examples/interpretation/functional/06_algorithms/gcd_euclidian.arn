@@ -1,3 +1,8 @@
+// CATEGORY: example
+// IN: 48
+// IN: 18
+// OUT: Enter two numbers: GCD: 6
+
 func gcd(a : int, b : int) -> int {
     var temp : int;
 

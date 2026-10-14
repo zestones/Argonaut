@@ -1,3 +1,6 @@
+// CATEGORY: example
+// OUT: Updated year: 202400
+
 type arr : array[0:10] of int;
 
 type date : struct {

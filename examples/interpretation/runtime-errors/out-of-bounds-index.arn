@@ -1,3 +1,8 @@
+// CATEGORY: example
+// OUT:
+// RUN: fail
+// ERR: [Run Time Error] Index 11 out of bounds for dimension 0.
+
 type matrix : array[0:10, 0:10] of int;
 var list : matrix;
 

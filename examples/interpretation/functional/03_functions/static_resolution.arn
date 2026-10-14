@@ -1,3 +1,6 @@
+// CATEGORY: example
+// OUT: Result of static resolution: 15
+
 // Example of static resolution of variables in Argonaut
 
 // Define a function with nested functions

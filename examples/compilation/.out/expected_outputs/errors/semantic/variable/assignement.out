@@ -210,7 +210,7 @@ Root of the AST:
 │   │   │   │   │   │   ├── A_INTEGER_LITERAL, Lexico Idx: 15, Decl Idx: -1 -- Lexeme: '5'
 │   │   │   │   │   │   └── A_MUL_OP, Lexico Idx: -1, Decl Idx: -1
 │   │   │   │   │   │   │   ├── A_STRUCT_FIELD_ACCESS, Lexico Idx: 19, Decl Idx: 19 -- Lexeme: 'my_struct'
-│   │   │   │   │   │   │   │   ├── A_ARRAY_ACCESS, Lexico Idx: 17, Decl Idx: 13 -- Lexeme: 'field1'
+│   │   │   │   │   │   │   │   ├── A_ARRAY_ACCESS, Lexico Idx: 17, Decl Idx: -1 -- Lexeme: 'field1'
 │   │   │   │   │   │   │   │   │   ├── A_ARRAY_INDEX_LIST, Lexico Idx: -1, Decl Idx: -1
 │   │   │   │   │   │   │   │   │   │   ├── A_ARRAY_INDEX, Lexico Idx: -1, Decl Idx: -1
 │   │   │   │   │   │   │   │   │   │   │   ├── A_INTEGER_LITERAL, Lexico Idx: 26, Decl Idx: -1 -- Lexeme: '2'
@@ -281,3 +281,4 @@ Root of the AST:
 │   │   │   ├── A_INTEGER_LITERAL, Lexico Idx: 25, Decl Idx: -1 -- Lexeme: '0'
 +------------------------------------------------------------------------+
 
+Compilation failed: 8 error(s).

@@ -1,5 +1,6 @@
 #include "../../../../semantic_analysis/function_checks/common/format_specifiers.h"
 #include "../../../../symbol_table/lexeme/lexeme_table.h"
+#include "../../../../utils/text_buffer.h"
 
 #include "../../../core/vm_cell.h"
 #include "../../../core/execution.h"
@@ -8,9 +9,19 @@
 #include "../func_proc.h"
 
 #include <stdio.h>
-#include <string.h>
+#include <stdlib.h>
 
-#define BUFFER_SIZE 1024
+static void fail_invalid_format(void) {
+    fprintf(stderr, "Error: Invalid print format in loaded IR\n");
+    exit(EXIT_FAILURE);
+}
+
+static void append_formatted_real(TextBuffer *buffer, double value) {
+    char scratch[64] = {0};
+    int length = snprintf(scratch, sizeof(scratch), "%f", value);
+    if (length < 0 || (size_t) length >= sizeof(scratch)) fail_invalid_format();
+    text_buffer_append_bytes(buffer, scratch, (size_t) length);
+}
 
 
 /**
@@ -31,44 +42,53 @@
  * @param arg_list A pointer to the AST node representing the argument list.
  * @param buffer A pointer to the buffer where the formatted result will be stored.
  */
-static void process_format_string(const char *format, AST arg_list, char *buffer) {
-    char *buffer_ptr = buffer;
-    int format_idx = 0;
-    int arg_index = 0;
+static void process_format_string(const char *format, AST arg_list, TextBuffer *buffer) {
+    size_t format_idx = 0;
 
     AST current_arg = arg_list->child;
 
     while (format[format_idx] != '\0') {
-        if (format[format_idx] == '%' && (format[format_idx + 1] == 'd' || format[format_idx + 1] == 'f' || format[format_idx + 1] == 's' || format[format_idx + 1] == 'c')) {
+        if (format[format_idx] == '%' && format[format_idx + 1] == '%') {
+            text_buffer_append(buffer, "%");
+            format_idx += 2;
+            continue;
+        }
 
+        if (format[format_idx] == '%' && is_format_specifier(format[format_idx + 1])) {
             char specifier = format[format_idx + 1];
+            if (current_arg == NULL || current_arg->child == NULL) fail_invalid_format();
             vm_cell cell = resolve_expression(current_arg->child);
 
             switch (specifier) {
-                case 'd':
-                    buffer_ptr += sprintf(buffer_ptr, "%d", cell.value.integer);
+                case 'd': {
+                    char scratch[64] = {0};
+                    int value = cell.type == BOOLEAN ? cell.value.boolean : cell.value.integer;
+                    int length = snprintf(scratch, sizeof(scratch), "%d", value);
+                    if (length < 0 || (size_t) length >= sizeof(scratch)) fail_invalid_format();
+                    text_buffer_append_bytes(buffer, scratch, (size_t) length);
                     break;
-                case 'f':
-                    buffer_ptr += sprintf(buffer_ptr, "%f", cell.value.real);
+                }
+                case 'b': text_buffer_append(buffer, cell.value.boolean ? "true" : "false"); break;
+                case 'f': append_formatted_real(buffer, cell.value.real); break;
+                case 's': {
+                    if (cell.value.string == NULL) fail_invalid_format();
+                    char *text = strip_quotes(cell.value.string);
+                    text_buffer_append(buffer, text ? text : cell.value.string);
+                    free(text);
                     break;
-                case 's':
-                    buffer_ptr += sprintf(buffer_ptr, "%s", strip_quotes(cell.value.string));
-                    break;
+                }
                 case 'c':
-                    buffer_ptr += sprintf(buffer_ptr, "%c", cell.value.character);
+                    text_buffer_append_character(buffer, cell.value.character);
                     break;
-                // No default case as the format is already checked for 'd', 'f', 's', or 'c'
+                    // No default case as the format is already checked for 'd', 'f', 's', or 'c'
             }
 
             current_arg = current_arg->sibling;
-            arg_index++;
             format_idx += 2;
         } else {
-            *buffer_ptr++ = format[format_idx++];
+            text_buffer_append_character(buffer, format[format_idx++]);
         }
     }
-
-    *buffer_ptr = '\0';
 }
 
 void execute_print(AST ast) {
@@ -77,20 +97,34 @@ void execute_print(AST ast) {
     AST arg_list = ast->child;
     AST format_node = arg_list->sibling;
     if (format_node == NULL) {
-        fprintf(stdout, "%s", process_special_chars(strip_quotes(get_lexeme(arg_list->index_lexicographic))));
+        char *text = strip_quotes(get_lexeme(arg_list->index_lexicographic));
+        if (text == NULL) fail_invalid_format();
+        TextBuffer buffer = construct_text_buffer();
+        Node *no_arguments = construct_node_default(A_ARGUMENT_LIST);
+        process_format_string(text, no_arguments, &buffer);
+        char *output = release_text_buffer(&buffer);
+        fprintf(stdout, "%s", output);
+        free_ast(no_arguments);
+        free(output);
+        free(text);
         return;
     }
 
     const char *raw_format = get_lexeme(format_node->index_lexicographic);
     char *format = strip_quotes(raw_format);
-    
+    if (format == NULL) fail_invalid_format();
+
     // Note: No validation checks are performed on the 'raw_format' string or the processed 'format' string
     // at this stage. It is assumed that these strings have already been validated by the compiler. If the
     // compiler detected any errors in the format string, the program should not reach this execution point.
     // This function trusts that the input format is correct and directly processes it for output.
 
-    char buffer[BUFFER_SIZE] = {0};
-    process_format_string(format, arg_list, buffer);
+    TextBuffer buffer = construct_text_buffer();
+    process_format_string(format, arg_list, &buffer);
 
-    fprintf(stdout, "%s", process_special_chars(buffer));
+    char *output = release_text_buffer(&buffer);
+    fprintf(stdout, "%s", output);
+
+    free(output);
+    free(format);
 }

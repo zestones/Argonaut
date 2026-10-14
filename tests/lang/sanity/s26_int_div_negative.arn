@@ -1,0 +1,4 @@
+// CATEGORY: sanity
+// DESC: division/modulo negatifs (semantique C)
+// OUT: -3 -1
+print("%d %d\n", (0 - 7) / 2, (0 - 7) % 3);

@@ -1,0 +1,6 @@
+// Recursive fibonacci: fib(30) = 1 664 079 calls, depth 30 (measures call/return and frame cost).
+func fib(n : int) -> int {
+    if (n <= 1) { return n; }
+    return fib(n - 1) + fib(n - 2);
+}
+print("%d\n", fib(30));

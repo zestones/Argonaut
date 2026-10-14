@@ -1,3 +1,7 @@
+// CATEGORY: example
+// OUT: The number is positive.
+// OUT: The number is exactly 10.
+
 var number : int;
 number := 10;
 

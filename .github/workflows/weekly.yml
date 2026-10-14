@@ -1,0 +1,107 @@
+# Expensive or probabilistic checks. Nothing here runs on a schedule: select only the suites needed
+# for a manual run so this secondary project does not consume Actions minutes in the background.
+name: Extended checks
+
+on:
+  workflow_dispatch:
+    inputs:
+      memory:
+        description: Run Valgrind and MemorySanitizer
+        type: boolean
+        default: true
+      fuzz:
+        description: Run both AFL++ targets
+        type: boolean
+        default: false
+      benchmarks:
+        description: Run the benchmark suite
+        type: boolean
+        default: false
+      fuzz_minutes:
+        description: Fuzzing duration per target in minutes
+        type: number
+        default: 1
+
+permissions:
+  contents: read
+
+env:
+  MAKEFLAGS: -j4
+
+jobs:
+  memory:
+    if: ${{ inputs.memory }}
+    name: Valgrind and MemorySanitizer
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - run: sudo apt-get update && sudo apt-get install -y flex bison clang valgrind
+      - name: Valgrind memcheck
+        run: |
+          make CONFIG=debug
+          make check-valgrind
+      - name: MemorySanitizer
+        env:
+          MSAN_OPTIONS: print_stats=1
+        run: make CONFIG=msan CC=clang check
+
+  fuzz:
+    if: ${{ inputs.fuzz }}
+    name: AFL++ (${{ matrix.target }})
+    runs-on: ubuntu-24.04
+    timeout-minutes: 3
+    strategy:
+      fail-fast: false
+      matrix:
+        target: [fuzz, fuzz-vm]
+    steps:
+      - uses: actions/checkout@v4
+      - run: sudo apt-get update && sudo apt-get install -y flex bison afl++ clang
+      - run: make CONFIG=debug
+      - name: Fuzz
+        env:
+          AFL_NO_UI: '1'
+          AFL_SKIP_CPUFREQ: '1'
+          AFL_I_DONT_CARE_ABOUT_MISSING_CRASHES: '1'
+        run: |
+          minutes='${{ inputs.fuzz_minutes }}'
+          make ${{ matrix.target }} FUZZ_CC=afl-cc FUZZ_TIME=$((minutes * 60))
+      - name: Report findings
+        if: always()
+        run: |
+          for d in build/fuzz/out build/fuzz/out-vm; do
+            [ -d "$d" ] || continue
+            crashes=$(find "$d" -path '*/crashes/*' -type f ! -name README.txt | wc -l)
+            hangs=$(find "$d" -path '*/hangs/*' -type f | wc -l)
+            echo "$d: $crashes crash(es), $hangs hang(s)" | tee -a "$GITHUB_STEP_SUMMARY"
+            [ "$crashes" -eq 0 ] && [ "$hangs" -eq 0 ] || status=1
+          done
+          exit "${status:-0}"
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: fuzz-findings-${{ matrix.target }}
+          path: |
+            build/fuzz/out/default/crashes
+            build/fuzz/out/default/hangs
+            build/fuzz/out-vm/default/crashes
+            build/fuzz/out-vm/default/hangs
+          if-no-files-found: ignore
+          retention-days: 7
+
+  benchmarks:
+    if: ${{ inputs.benchmarks }}
+    name: Benchmarks
+    runs-on: ubuntu-24.04
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+      - run: sudo apt-get update && sudo apt-get install -y flex bison
+      - run: make CONFIG=release
+      - name: Measure
+        run: |
+          set -o pipefail
+          python3 tests/bench/run_bench.py --argoc build/release/argoc --argov build/release/argov \
+            --runs 5 --json build/bench.json | tee build/bench.txt
+          { echo '```'; cat build/bench.txt; echo '```'; } >> "$GITHUB_STEP_SUMMARY"

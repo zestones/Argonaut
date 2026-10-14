@@ -1,0 +1,6 @@
+// CATEGORY: sanity
+// DESC: erreur: identifiant commencant par _
+// COMPILE: fail
+// ERR: Lexical Error
+var _x : int;
+_x := 1;

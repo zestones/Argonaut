@@ -5,7 +5,7 @@ from regression.generator import OutputGenerator
 from regression.runner import TestRunner
 from regression.helpers import print_header, print_footer, print_info, print_success, print_error, print_summary
 
-from colorama import Fore, Style, init
+from regression.helpers import init
 
 init(autoreset=True)
 

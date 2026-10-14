@@ -1,0 +1,9 @@
+// CATEGORY: bug
+// DESC: x + 0.0 / x * 0.0 declenchent 'Division by zero'
+// OUT: 1.500000
+// OUT: 0.000000
+var f : float;
+f := 1.5 + 0.0;
+print("%f\n", f);
+f := 2.5 * 0.0;
+print("%f\n", f);

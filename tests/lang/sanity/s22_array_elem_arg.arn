@@ -1,0 +1,8 @@
+// CATEGORY: sanity
+// DESC: element de tableau en argument
+// OUT: 6
+type Arr : array[0:2] of int;
+var g : Arr;
+func twice(v : int) -> int { return v * 2; }
+g[0] := 1; g[1] := 2; g[2] := 3;
+print("%d\n", twice(g[2]));

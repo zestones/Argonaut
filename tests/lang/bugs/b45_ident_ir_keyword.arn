@@ -1,0 +1,6 @@
+// CATEGORY: bug
+// DESC: un identifiant nomme comme un marqueur de l'IR casse argov
+// OUT: 1
+var END_LEXEME_TABLE : int;
+END_LEXEME_TABLE := 1;
+print("%d\n", END_LEXEME_TABLE);

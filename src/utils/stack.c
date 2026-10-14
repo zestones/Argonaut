@@ -1,10 +1,22 @@
-#include "../../lib/table_printer.h"    
+#include <string.h>
+
+#include "../../lib/table_printer.h"
 #include "../../lib/colors.h"
+#include "memory.h"
 #include "stack.h"
 
-Stack construct_stack() {
+#define INITIAL_CAPACITY 16
+
+static void *allocate_copy(const void *value, size_t value_size) {
+    void *copy = xmalloc(value_size);
+    memcpy(copy, value, value_size);
+    return copy;
+}
+
+Stack construct_stack(void) {
     Stack new_stack;
-    memset(new_stack.data, NULL_VALUE, sizeof(new_stack.data)); 
+    new_stack.data = NULL;
+    new_stack.capacity = 0;
     new_stack.top = 0;
     return new_stack;
 }
@@ -14,7 +26,8 @@ int is_empty(const Stack stack) {
 }
 
 int is_full(const Stack stack) {
-    return stack.top == MAX_SIZE;
+    (void) stack;
+    return 0;
 }
 
 int size(const Stack stack) {
@@ -22,19 +35,13 @@ int size(const Stack stack) {
 }
 
 void push(Stack *stack, void *value, size_t value_size) {
-    if (is_full(*stack)) {
-        fprintf(stderr, "Error: Stack overflow\n");
-        exit(EXIT_FAILURE);
+    if (stack->top == stack->capacity) {
+        int capacity = stack->capacity ? stack->capacity * 2 : INITIAL_CAPACITY;
+        stack->data = xrealloc(stack->data, (size_t) capacity * sizeof(*stack->data));
+        stack->capacity = capacity;
     }
 
-
-    stack->data[stack->top] = malloc(value_size);
-    if (!stack->data[stack->top]) {
-        fprintf(stderr, "Error: Memory allocation failed\n");
-        exit(EXIT_FAILURE);
-    }
-
-    memcpy(stack->data[stack->top], value, value_size);
+    stack->data[stack->top] = allocate_copy(value, value_size);
     stack->top++;
 }
 
@@ -45,8 +52,7 @@ void *pop(Stack *stack) {
     }
 
     stack->top--;
-    void *value = stack->data[stack->top];
-    return value;
+    return stack->data[stack->top];
 }
 
 void *peek(const Stack stack) {
@@ -65,13 +71,7 @@ void update_stack(Stack *stack, int index, void *value, size_t value_size) {
     }
 
     free(stack->data[index]);
-    stack->data[index] = malloc(value_size);
-    if (!stack->data[index]) {
-        fprintf(stderr, "Error: Memory allocation failed\n");
-        exit(EXIT_FAILURE);
-    }
-
-    memcpy(stack->data[index], value, value_size);
+    stack->data[index] = allocate_copy(value, value_size);
 }
 
 void *get_stack_value(const Stack stack, int index) {
@@ -79,24 +79,27 @@ void *get_stack_value(const Stack stack, int index) {
         fprintf(stderr, "Error: Get Stack Value - Index out of bounds\n");
         exit(EXIT_FAILURE);
     }
-    void *value = stack.data[index];
-    return value;
+
+    return stack.data[index];
 }
 
 void stack_cpy(Stack *dest, const Stack src, size_t value_size) {
-    dest->top = src.top;
+    destroy_stack(dest);
     for (int i = 0; i < src.top; i++) {
-        dest->data[i] = malloc(value_size);
-        if (dest->data[i] == NULL) {
-            fprintf(stderr, "Error: Memory allocation failed during stack copy\n");
-            exit(EXIT_FAILURE);
-        }
-
-        memcpy(dest->data[i], src.data[i], value_size);
+        push(dest, src.data[i], value_size);
     }
 }
 
-void print_stack(const Stack stack, const char* (*format_func)(void *)) {
+void destroy_stack(Stack *stack) {
+    for (int i = 0; i < stack->top; i++) {
+        free(stack->data[i]);
+    }
+    free(stack->data);
+
+    *stack = construct_stack();
+}
+
+void print_stack(const Stack stack, const char *(*format_func)(void *) ) {
     const int col_width_index = 10;
     const int col_width_value = 15;
 
@@ -107,7 +110,7 @@ void print_stack(const Stack stack, const char* (*format_func)(void *)) {
 
     for (int i = 0; i < stack.top; i++) {
         char index_str[20];
-        sprintf(index_str, "%d", i);
+        snprintf(index_str, sizeof(index_str), "%d", i);
         print_table_row(stdout, 2, col_width_index, index_str, col_width_value, format_func(stack.data[i]));
     }
 

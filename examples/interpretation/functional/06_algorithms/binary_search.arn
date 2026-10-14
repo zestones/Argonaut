@@ -1,3 +1,7 @@
+// CATEGORY: example
+// OUT: We are searching for: 70
+// OUT: Element found at index: 6
+
 // Binary Search algorithm in Argonaut
 
 type list : array[0:10] of int;

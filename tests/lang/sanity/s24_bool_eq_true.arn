@@ -1,0 +1,6 @@
+// CATEGORY: sanity
+// DESC: if (flag == true)
+// OUT: yes
+var flag : bool;
+flag := true;
+if (flag == true) { print("yes\n"); }

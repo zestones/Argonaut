@@ -1,0 +1,8 @@
+// CATEGORY: limitation
+// DESC: a[0]++ non supporte (seulement IDENT++)
+// OUT: 2
+type Arr : array[0:1] of int;
+var a : Arr;
+a[0] := 1;
+a[0]++;
+print("%d\n", a[0]);

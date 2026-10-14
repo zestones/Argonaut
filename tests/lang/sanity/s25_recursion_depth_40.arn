@@ -1,0 +1,8 @@
+// CATEGORY: sanity
+// DESC: recursion profondeur 40
+// OUT: 40
+func depth(n : int) -> int {
+    if (n == 0) { return 0; }
+    return depth(n - 1) + 1;
+}
+print("%d\n", depth(40));

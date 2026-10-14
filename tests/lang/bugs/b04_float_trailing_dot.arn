@@ -1,0 +1,6 @@
+// CATEGORY: bug
+// DESC: 1. accepte par argoc, rejete par le lexer de argov
+// OUT: 1.000000
+var f : float;
+f := 1.;
+print("%f\n", f);

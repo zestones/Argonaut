@@ -1,0 +1,8 @@
+// CATEGORY: bug
+// DESC: exemple du wiki: input %s dans une variable string
+// IN: Bob
+// OUT: Enter your name: Hello Bob
+var name : string;
+print("Enter your name: ");
+input("%s", name);
+print("Hello %s\n", name);

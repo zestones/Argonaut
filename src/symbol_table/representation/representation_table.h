@@ -15,7 +15,7 @@
 #include <string.h>
 
 
-#define MAX_REPRESENTATION_COUNT 1000
+#define MAX_REPRESENTATION_COUNT 16384
 
 
 /**
@@ -24,7 +24,7 @@
  * This function initializes the representation table, setting up any necessary
  * data structures and preparing the table for use.
  */
-void init_representation_table();
+void init_representation_table(void);
 
 /**
  * @brief Inserts a representation into the table.
@@ -59,11 +59,11 @@ void update_representation(int index, int value);
 int get_representation_value(int index);
 
 /**
- * @brief Exports the representation table to a file.
+ * @brief Writes the serialized representation table to a stream.
  *
- * @param filename The name of the file to write the representation table to.
+ * @param out The stream to write the representation table to.
  */
-void export_representation_table(const char* filename);
+void write_representation_table(FILE *out);
 
 /**
  * @brief Prints the contents of the representation table.
@@ -73,6 +73,6 @@ void export_representation_table(const char* filename);
  * 
  * @param out The file stream to write the representation table to.
  */
-void fprintf_representation_table(FILE* out);
+void fprintf_representation_table(FILE *out);
 
 #endif // REPRESENTATION_TABLE_H

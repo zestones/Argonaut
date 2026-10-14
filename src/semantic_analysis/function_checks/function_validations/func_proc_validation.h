@@ -36,7 +36,7 @@ void check_func_proc_definition(int index_lexeme_lexicographic);
  * @param index_lexeme_lexicographic The lexicographic index of the function or procedure's name.
  * @param type The type of the function or procedure.
  */
-void check_func_proc_redefinition(int index_lexeme_lexicographic, char *type);
+void check_func_proc_redefinition(int index_lexeme_lexicographic, const char *type);
 
 /**
  * @brief Validates the return statement of a function.
@@ -59,5 +59,13 @@ void check_func_prototype(int index_lexeme_lexicographic, Node *return_statement
  * @param argument_list The argument list provided in the function call.
  */
 void check_func_proc_argument_list(int index_lexeme_lexicographic, Node *argument_list);
+
+/**
+ * @brief Checks that a function body returns a value on every path (reports an error otherwise).
+ *
+ * @param index_lexeme_lexicographic The lexeme index of the function name.
+ * @param statement_list The statement list of the body (NULL when the body has no statement).
+ */
+void check_function_returns(int index_lexeme_lexicographic, Node *statement_list);
 
 #endif // __FUNC_PROC_VALIDATION_H__

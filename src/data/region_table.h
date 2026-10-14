@@ -19,7 +19,7 @@
 #include "../ast/ast.h"
 
 
-#define MAX_REGION_COUNT 50 // Maximum number of regions that can be managed.
+#define MAX_REGION_COUNT 1024 // Maximum number of regions (program + functions + procedures).
 
 
 /**
@@ -31,9 +31,9 @@
  * the Abstract Syntax Tree (AST) for the region.
  */
 typedef struct Region {
-    int size;           // Size of the region.
-    int nis;            // Static nesting level in the region.
-    AST ast;            // Abstract Syntax Tree
+    int size; // Size of the region.
+    int nis;  // Static nesting level in the region.
+    AST ast;  // Abstract Syntax Tree
 } Region;
 
 
@@ -51,21 +51,21 @@ Region construct_region(int size, int nis);
  *
  * This function sets up the region table for managing regions.
  */
-void init_region_table();
+void init_region_table(void);
 
 /**
  * @brief Starts a new region.
  *
  * This function begins a new region in the region table.
  */
-void start_region();
+void start_region(void);
 
 /**
  * @brief Ends the current region.
  *
  * This function ends the current region in the region table.
  */
-void end_region();
+void end_region(void);
 
 /**
  * @brief Inserts a new region row into the region table.
@@ -86,25 +86,33 @@ void insert_region_row(int index, int size, int nis, AST ast);
 int get_region_size(int index);
 
 /**
- * @brief Gets the NIS of the current region.
+ * @brief Tells whether a region exists at the given index (started, or loaded from an IR file).
  *
- * @return The NIS of the current region.
+ * @param index The index to check; any value is accepted.
+ * @return 1 if the index holds a region, 0 otherwise.
  */
-int get_region_nis();
+int is_region_loaded(int index);
 
 /**
  * @brief Gets the NIS of the current region.
  *
  * @return The NIS of the current region.
  */
-int get_current_region_nis();
+int get_region_nis(int index);
+
+/**
+ * @brief Gets the NIS of the current region.
+ *
+ * @return The NIS of the current region.
+ */
+int get_current_region_nis(void);
 
 /**
  * @brief Gets the ID of the current region.
  *
  * @return The ID of the current region.
  */
-int get_current_region_id();
+int get_current_region_id(void);
 
 /**
  * @brief Gets the AST of the region at the specified index.
@@ -131,19 +139,18 @@ void update_region_size(int index, int size);
 void update_region_ast(int index, AST ast);
 
 /**
- * @brief Exports the region table to a file.
+ * @brief Writes the serialized region table to a stream.
  *
- * @param filename The name of the file to write the region table to.
+ * @param out The stream to write the region table to.
  */
-void export_region_table(const char* filename);
+void write_region_table(FILE *out);
 
 /**
  * @brief Prints the region table.
  *
  * This function prints the current state of the region table.
  */
-void fprintf_region_table();
+void fprintf_region_table(FILE *out);
 
 
 #endif // __REGION_TABLE_H__
-

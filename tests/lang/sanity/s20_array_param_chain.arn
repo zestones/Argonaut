@@ -1,0 +1,9 @@
+// CATEGORY: sanity
+// DESC: tableau passe de proc en proc
+// OUT: 1 2 3
+type Arr : array[0:2] of int;
+var g : Arr;
+proc show(a : Arr) { print("%d %d %d\n", a[0], a[1], a[2]); }
+proc mid(a : Arr) { show(a); }
+g[0] := 1; g[1] := 2; g[2] := 3;
+mid(g);

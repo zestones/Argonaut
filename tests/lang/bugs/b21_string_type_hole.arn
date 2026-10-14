@@ -1,0 +1,7 @@
+// CATEGORY: bug
+// DESC: A_STRING_LITERAL(4) == index du 1er type utilisateur: p := "hello" accepte
+// COMPILE: fail
+type Point : struct { x : int; y : int; } fstruct;
+var p : Point;
+p := "hello";
+print("%d\n", p.x);

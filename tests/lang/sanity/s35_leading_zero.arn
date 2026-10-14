@@ -1,0 +1,4 @@
+// CATEGORY: sanity
+// DESC: erreur: 007
+// COMPILE: fail
+print("%d\n", 007);

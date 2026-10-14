@@ -11,7 +11,8 @@
 
 void declare_variable(stack_frame *frame, int index_type_declaration) {
     if (is_declaration_base_type(index_type_declaration)) {
-        allocate_cells_to_stack_frame(frame, get_declaration_description(index_type_declaration), get_declaration_execution(index_type_declaration));
+        allocate_cells_to_stack_frame(frame, get_declaration_description(index_type_declaration),
+                                      get_declaration_execution(index_type_declaration));
         return;
     }
 
@@ -19,9 +20,9 @@ void declare_variable(stack_frame *frame, int index_type_declaration) {
         int element_type = get_array_element_type(index_type_declaration);
         int size = get_array_size(index_type_declaration);
 
-        for (int i = 0; i < size; i++) declare_variable(frame, element_type);
-    } 
-    else if (get_declaration_nature(index_type_declaration) == TYPE_STRUCT) {
+        for (int i = 0; i < size; i++)
+            declare_variable(frame, element_type);
+    } else if (get_declaration_nature(index_type_declaration) == TYPE_STRUCT) {
         int field_count = get_struct_field_count(index_type_declaration);
 
         for (int i = 0; i < field_count; i++) {
@@ -56,7 +57,7 @@ vm_cell get_variable_cell(int index_declaration) {
     return get_cell_from_stack_frame(frame, address);
 }
 
-vm_cell get_return_cell() {
+vm_cell get_return_cell(void) {
     return get_stack_frame_by_id(peek_execution_stack().dynamic_link)->region_value;
 }
 
@@ -76,12 +77,23 @@ void handle_array_affectation(Node *array_index_list, vm_cell cell) {
     update_cell_in_stack_frame(frame, address, cell);
 }
 
-void handle_structure_affectation(Node* struct_field_access, vm_cell cell) {
+void handle_structure_affectation(Node *struct_field_access, vm_cell cell) {
     int address = get_struct_field_address(struct_field_access, NULL_VALUE, NULL_VALUE);
     int region = get_declaration_region(struct_field_access->index_declaration);
 
     stack_frame *frame = find_stack_frame_by_region_index(region);
     update_cell_in_stack_frame(frame, address, cell);
+}
+
+void copy_cells(stack_frame *destination, int destination_address, stack_frame *source, int source_address, int size) {
+    for (int i = 0; i < size; i++) {
+        vm_cell cell = get_cell_from_stack_frame(*source, source_address + i);
+        *(vm_cell *) get_stack_value(destination->cells, destination_address + i) = cell;
+    }
+}
+
+stack_frame *get_lvalue_frame(Node *access) {
+    return find_stack_frame_by_region_index(get_declaration_region(access->index_declaration));
 }
 
 void handle_function_return_value(vm_cell cell) {

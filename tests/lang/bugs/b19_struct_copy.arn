@@ -1,0 +1,8 @@
+// CATEGORY: bug
+// DESC: q := p ne copie que la premiere cellule
+// OUT: 1 2
+type Point : struct { x : int; y : int; } fstruct;
+var p : Point; var q : Point;
+p.x := 1; p.y := 2;
+q := p;
+print("%d %d\n", q.x, q.y);

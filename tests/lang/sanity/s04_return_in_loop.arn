@@ -1,0 +1,11 @@
+// CATEGORY: sanity
+// DESC: return depuis une boucle for
+// OUT: 8
+func find(limit : int) -> int {
+    var i : int;
+    for (i := 0; i < limit; i++) {
+        if (i * i > 50) { return i; }
+    }
+    return 0 - 1;
+}
+print("%d\n", find(100));

@@ -1,0 +1,11 @@
+// CATEGORY: bug
+// DESC: champ struct passe en argument: copie toujours depuis la base de la struct
+// OUT: (1, 2)
+// OUT: (3, 4)
+type Point : struct { x : int; y : int; } fstruct;
+type Rect : struct { tl : Point; br : Point; } fstruct;
+var r : Rect;
+proc show(p : Point) { print("(%d, %d)\n", p.x, p.y); }
+r.tl.x := 1; r.tl.y := 2; r.br.x := 3; r.br.y := 4;
+show(r.tl);
+show(r.br);

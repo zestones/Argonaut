@@ -1,0 +1,9 @@
+// CATEGORY: limitation
+// DESC: pas de return; dans une procedure
+// OUT: n=1
+proc p(n : int) {
+    if (n == 0) { return; }
+    print("n=%d\n", n);
+}
+p(0);
+p(1);

@@ -1,0 +1,6 @@
+// CATEGORY: bug
+// DESC: argoc retourne 0 malgre une erreur lexicale
+// COMPILE: fail
+// RC: nonzero
+var _x : int;
+_x := 1;

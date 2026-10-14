@@ -1,0 +1,8 @@
+// CATEGORY: sanity
+// DESC: appel de fonction dans la condition d'un while
+// OUT: 3
+var i : int;
+func lim() -> int { return 3; }
+i := 0;
+while (i < lim()) { i++; }
+print("%d\n", i);

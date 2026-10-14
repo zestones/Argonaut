@@ -1,3 +1,8 @@
+// CATEGORY: example
+// OUT: Top-left corner: (1, 1)
+// OUT: Bottom-right corner: (4, 5)
+// OUT: Area: 12
+
 // Example of nested structures with numerical data in Argonaut
 
 // Define a custom type 'Point' as a struct

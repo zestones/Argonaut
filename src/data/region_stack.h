@@ -24,7 +24,7 @@
 *
 * This function initializes the region stack, preparing it for use.
 */
-void init_stack_region();
+void init_stack_region(void);
 
 /**
  * @brief Pushes a region onto the stack.
@@ -38,35 +38,34 @@ void push_region(int region_index);
  *
  * @return The index of the region that was popped from the stack.
  */
-int pop_region();
+int pop_region(void);
 
 /**
  * @brief Peeks at the top region of the stack without removing it.
  *
  * @return The index of the region at the top of the stack.
  */
-int peek_region();
+int peek_region(void);
 
 /**
  * @brief Gets the size of the region stack.
  *
  * @return The number of regions currently in the stack.
  */
-int get_region_stack_size();
+int get_region_stack_size(void);
 
 /**
  * @brief Retrieves the region stack.
  *
  * @return The region stack.
  */
-Stack get_region_stack();
+Stack get_region_stack(void);
 
 /**
  * @brief Prints the contents of the region stack.
  *
  * This function prints the contents of the region stack to the standard output.
  */
-void print_stack_region();
+void print_stack_region(void);
 
 #endif // __STACK_REGION_H__
-

@@ -1,3 +1,7 @@
+// CATEGORY: example
+// IN: 10
+// OUT: Enter a number: fibonacci(10) = 55
+
 func fibonacci(num : int) -> int {
     if (num <= 1) {
         return num;

@@ -2,10 +2,6 @@
   Left operand type: 'int', right operand type: 'float'.
   Ensure both operands are of compatible types for the condition.
 
-[Type Error] Invalid condition at examples/compilation/errors/semantic/condition/while_statement.arn:8:15.
-  Expected a boolean expression, but received 'UNKNOWN'.
-  Ensure the expression evaluates to a boolean value.
-
 Verbose mode enabled. Printing tables and ast...
 
 +---------------------------+
@@ -77,10 +73,9 @@ Root of the AST:
 │   │   │   ├── A_VARIABLE_ASSIGNMENT, Lexico Idx: 4, Decl Idx: 4 -- Lexeme: 'x'
 │   │   │   │   ├── A_INTEGER_LITERAL, Lexico Idx: 5, Decl Idx: -1 -- Lexeme: '1'
 │   │   └── A_WHILE, Lexico Idx: -1, Decl Idx: -1
-│   │   │   ├── A_CONDITION, Lexico Idx: -1, Decl Idx: -1
-│   │   │   │   ├── A_LESS_THAN_OP, Lexico Idx: -1, Decl Idx: -1
-│   │   │   │   │   ├── A_IDENTIFIER, Lexico Idx: 4, Decl Idx: 4 -- Lexeme: 'x'
-│   │   │   │   │   └── A_FLOAT_LITERAL, Lexico Idx: 6, Decl Idx: -1 -- Lexeme: '5.0'
+│   │   │   ├── A_LESS_THAN_OP, Lexico Idx: -1, Decl Idx: -1
+│   │   │   │   ├── A_IDENTIFIER, Lexico Idx: 4, Decl Idx: 4 -- Lexeme: 'x'
+│   │   │   │   └── A_FLOAT_LITERAL, Lexico Idx: 6, Decl Idx: -1 -- Lexeme: '5.0'
 │   │   │   └── A_STATEMENT_LIST, Lexico Idx: -1, Decl Idx: -1
 │   │   │   │   ├── A_ASSIGNMENT_STATEMENT, Lexico Idx: -1, Decl Idx: -1
 │   │   │   │   │   ├── A_VARIABLE_ASSIGNMENT, Lexico Idx: 4, Decl Idx: 4 -- Lexeme: 'x'
@@ -89,3 +84,4 @@ Root of the AST:
 │   │   │   │   │   │   │   └── A_INTEGER_LITERAL, Lexico Idx: 5, Decl Idx: -1 -- Lexeme: '1'
 +------------------------------------------------------------------------+
 
+Compilation failed: 1 error(s).

@@ -1,0 +1,6 @@
+// CATEGORY: bug
+// DESC: 5-3 sans espaces est une erreur de syntaxe (lexeme '-3')
+// OUT: 2
+var x : int;
+x := 5-3;
+print("%d\n", x);

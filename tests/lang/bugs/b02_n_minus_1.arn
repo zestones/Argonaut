@@ -1,0 +1,5 @@
+// CATEGORY: bug
+// DESC: n-1 sans espaces est une erreur de syntaxe
+// OUT: 4
+func dec(n : int) -> int { return n-1; }
+print("%d\n", dec(5));

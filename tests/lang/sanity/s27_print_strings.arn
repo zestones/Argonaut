@@ -1,0 +1,10 @@
+// CATEGORY: sanity
+// DESC: chaines: %s, |, //, tab
+// OUT: hi
+// OUT: a|b
+// OUT: http://x
+// OUT: tab	here
+print("%s\n", "hi");
+print("a|b\n");
+print("http://x\n");
+print("tab\there\n");

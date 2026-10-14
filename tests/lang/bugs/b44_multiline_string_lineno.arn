@@ -1,0 +1,7 @@
+// CATEGORY: bug
+// DESC: une chaine multi-ligne decale les numeros de ligne des erreurs
+// COMPILE: fail
+// ERR: .arn:7:
+print("line1
+line2\n");
+print("%d\n", 1.5);

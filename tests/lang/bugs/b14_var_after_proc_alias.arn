@@ -1,0 +1,8 @@
+// CATEGORY: bug
+// DESC: variable declaree apres une proc ecrase une autre variable
+// OUT: a=1 b=2 c=3 x=99
+var a : int; var b : int; var c : int;
+proc p() { print("in p\n"); }
+var x : int;
+a := 1; b := 2; c := 3; x := 99;
+print("a=%d b=%d c=%d x=%d\n", a, b, c, x);

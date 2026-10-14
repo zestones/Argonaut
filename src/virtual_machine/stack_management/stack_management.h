@@ -2,6 +2,14 @@
 #define __STACK_MANAGEMENT_H__
 
 #include "frame/stack_frame.h"
+
+/**
+ * @brief Maximum number of frames on the execution stack.
+ *
+ * Every Argonaut call also recurses in the C interpreter, so the limit keeps the VM from
+ * overflowing its own C stack and reports a clean run-time error instead.
+ */
+#define MAX_CALL_DEPTH 3000
 #include "../core/vm_cell.h"
 
 /**
@@ -10,7 +18,7 @@
  * This function initializes the execution stack, which is responsible for managing the 
  * stack frames during the execution of the program. The stack is constructed as an empty stack.
  */
-void init_execution_stack();
+void init_execution_stack(void);
 
 /**
  * @brief Peeks at the top stack frame in a mutable way.
@@ -20,7 +28,7 @@ void init_execution_stack();
  * 
  * @return A pointer to the stack frame at the top of the execution stack.
  */
-stack_frame *peek_execution_stack_as_mutable();
+stack_frame *peek_execution_stack_as_mutable(void);
 
 /**
  * @brief Peeks at the top stack frame in a read-only way.
@@ -30,7 +38,7 @@ stack_frame *peek_execution_stack_as_mutable();
  * 
  * @return A copy of the stack frame at the top of the execution stack.
  */
-stack_frame peek_execution_stack();
+stack_frame peek_execution_stack(void);
 
 /**
  * @brief Pushes a new stack frame onto the execution stack.
@@ -49,9 +57,9 @@ void push_frame_to_execution_stack(stack_frame frame);
  * This function pops the top stack frame from the execution stack and returns it. The 
  * frame is removed from the stack and can be used for further processing or reporting.
  * 
- * @return The stack frame that was at the top of the execution stack before the pop.
+ * The frame is removed from the execution stack and its cells are freed.
  */
-stack_frame pop_frame_from_execution_stack();
+void pop_frame_from_execution_stack(void);
 
 /**
  * @brief Retrieves a stack frame by its ID.
@@ -87,7 +95,7 @@ stack_frame *find_stack_frame_by_region_index(int region_index);
  * 
  * @return The index of the current stack frame in the execution stack.
  */
-int get_execution_stack_current_frame_id();
+int get_execution_stack_current_frame_id(void);
 
 /**
  * @brief Prints the contents of the execution stack.
@@ -100,5 +108,4 @@ int get_execution_stack_current_frame_id();
  */
 void fprintf_vm_stack(FILE *out);
 
-#endif 
-
+#endif

@@ -1,3 +1,22 @@
+// CATEGORY: example
+// OUT: ID = 2
+// OUT: 4:8:1999
+// OUT: z -> 88.500000
+// OUT: a -> 44
+// OUT: =============================
+// OUT: 4:8:1999
+// OUT: a: 44
+// OUT: tab[0] = 10
+// OUT: tab[1] = 20
+// OUT: tab[2] = 30
+// OUT: tab[3] = 40
+// OUT: tab[4] = 50
+// OUT: tab[5] = 60
+// OUT: tab[6] = 70
+// OUT: tab[7] = 80
+// OUT: tab[8] = 90
+// OUT: tab[9] = 100
+
 type date_t : struct {
     day : int;
     month : int;

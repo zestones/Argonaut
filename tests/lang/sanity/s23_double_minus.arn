@@ -1,0 +1,6 @@
+// CATEGORY: sanity
+// DESC: 3 - -2
+// OUT: 5
+var x : int;
+x := 3 - -2;
+print("%d\n", x);
